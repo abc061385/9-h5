@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: "export",
   trailingSlash: true,
+  async rewrites() {
+    return process.env.NODE_ENV === "development"
+      ? [
+          {
+            source: "/app/:path*",
+            destination: "https://www.9mc.one/app/:path*",
+          },
+        ]
+      : [];
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

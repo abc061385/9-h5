@@ -7,23 +7,23 @@ export interface ApiResponse<T> {
   message: string;
 }
 
-const api: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "/",
+const axiosIn: AxiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "/app/",
   timeout: 10_000,
   headers: { "Content-Type": "application/json" },
 });
 
 // 请求拦截器：注入 token
-api.interceptors.request.use((config) => {
+axiosIn.interceptors.request.use((config) => {
   const token = typeof window !== "undefined" && localStorage.getItem("token");
   if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers["auth-token"] = token;
   }
   return config;
 });
 
 // 响应拦截器：直接 return data.data，统一错误处理
-api.interceptors.response.use(
+axiosIn.interceptors.response.use(
   (res) => res.data,
   (err) => {
     console.error("API Error", err);
@@ -31,4 +31,4 @@ api.interceptors.response.use(
   },
 );
 
-export default api;
+export default axiosIn;

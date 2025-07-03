@@ -1,21 +1,24 @@
 "use client";
 import Roulette from "@/components/roulette";
 import useSWR from "swr";
-import { getDemo } from "@/api/demo";
 import { useState } from "react";
+import { api } from "@/api";
 const DemoView = () => {
-  const [params, setParams] = useState({ id: "" });
+  const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const { data: user, isLoading } = useSWR(
-    params?.id ? ["getDemo", params] : null,
-    ([, p]) => getDemo(p),
+    params?.pageNo && params.pageSize
+      ? ["pageAnnouncementUsingGet", params]
+      : null,
+    ([, p]) => api.cms.pageAnnouncementUsingGet(p),
   );
+  // api.auth.infoUsingGet().then(console.log);
   return (
     <div>
       <div>
         <button
           className="text-4xl"
           onClick={() => {
-            setParams({ id: Math.random().toString() });
+            setParams({ ...params, pageNo: 2 });
           }}
         >
           Re-request
@@ -24,8 +27,9 @@ const DemoView = () => {
           {isLoading ? (
             <span className="inline-block animate-spin">x</span>
           ) : (
-            user?.id || "---"
-          )}
+            user?.data.size
+          )}{" "}
+          {user?.message}
         </span>
       </div>
       <Roulette />
