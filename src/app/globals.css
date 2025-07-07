@@ -3,7 +3,6 @@
 @theme {}
 @custom-variant h5 (@media (max-width: 768px));
 
-
 @plugin "daisyui" {
   themes:
     light --default,
@@ -16,14 +15,19 @@
 }
 
 html {
-  /* NOTE: PC = 16px/(1920px/100vw) */
-  font-size: clamp(12px, 0.833333vw, 48px);
+  height: 100%;
   /* NOTE: H5 = 16px/(375px/100vw) */
-  @media screen and (max-width: 767px) {
-    font-size: clamp(10px, 4.266666vw, 48px);
-  }
+  font-size: clamp(10PX, 4.266666vw, 4.266666vw);
+
+  /* NOTE: PC = 16px/(1920px/100vw) */
+  /* font-size: clamp(12PX, 0.833333vw, 48px); */
+  /* NOTE: H5 = 16px/(375px/100vw) */
+  /* @media screen and (max-width: 767px) { */
+  /* font-size: clamp(10PX, 4.266666vw, 48px); */
+  /* } */
 }
 
 body {
+  height: 100%;
   font-size: 1rem;
 }
