@@ -6,7 +6,7 @@ import { LayoutWarp } from "./layout-warp";
 export default function ViewLayout({ children }: PropsWithChildren) {
   return (
     <LayoutWarp>
-      <div className="layout h-full">
+      <div className="layout size-full">
         <Navbar />
         {children}
       </div>

@@ -16,7 +16,7 @@ export const Navbar = () => {
     <div className="navbar bg-base-100 shadow-sm">
       <ul className="menu menu-horizontal px-1 flex-1 text-[1.5rem]">
         <li>
-          <Link href={"/"} className="link">
+          <Link href={"/"} className="link" prefetch={true}>
             Home
           </Link>
         </li>

@@ -9,7 +9,7 @@ const Wheel = dynamic(
 const data = [
   {
     option: "🍎 苹果",
-    image: { uri: "/window.svg" },
+    // image: { uri: "/window.svg" },
     // style: { backgroundColor: "#e6194b", textColor: "white" },
   },
   {
