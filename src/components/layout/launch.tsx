@@ -2,7 +2,8 @@
 import Image from "next/image";
 import { PropsWithChildren, useEffect, useState } from "react";
 
-type IProps = PropsWithChildren<{}>;
+type IProps = PropsWithChildren;
+
 export const Launch = ({ children }: IProps) => {
   const [showSplash, setShowSplash] = useState(false);
   const [isMount, setIsMount] = useState(false);

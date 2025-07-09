@@ -14,6 +14,9 @@
   logs: true;
 }
 
+@import "../styles/theme.css";
+
+
 html {
   height: 100%;
   /* NOTE: H5 = 16px/(375px/100vw) */
@@ -31,3 +34,4 @@ body {
   height: 100%;
   font-size: 1rem;
 }
+

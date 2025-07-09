@@ -1,6 +1,6 @@
 "use client";
 import { Link } from "@/i18n/navigation";
-import { MouseEvent, PropsWithChildren } from "react";
+import { MouseEvent } from "react";
 import { LanguageSwitcher } from "../language-switcher";
 import { useLocale } from "next-intl";
 

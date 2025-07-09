@@ -1,13 +1,21 @@
+"use client";
 import { cn } from "@/lib/utils";
+import { useStore } from "@/store";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 export default function HomeView() {
   const t = useTranslations();
+  const setShowLayoutDock = useStore((s) => s.setShowLayoutDock);
+  useEffect(() => {
+    setShowLayoutDock(true);
+  }, []);
+
   return (
-    <div className="flex">
+    <div>
       <div
         className={cn([
-          "w-[1217px] bg-blue-800 text-white mx-auto mt-4",
+          "w-[1217px] bg-primary text-primary-content mx-auto mt-4 rounded-box",
           "h5:w-[200px]",
         ])}
       >
@@ -15,7 +23,7 @@ export default function HomeView() {
       </div>
       Home
       <h1>{t("test")}</h1>
-      <button className="text-[20px]">点击我</button>
+      <button className="btn btn-primary text-[20px] w-full">点击我</button>
     </div>
   );
 }
