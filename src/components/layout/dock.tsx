@@ -1,4 +1,5 @@
 "use client";
+import { useTrans } from "@/hooks/useTrans";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
@@ -6,12 +7,14 @@ const itemClass = (currentPathname: string, pathname: string) => {
   return cn([currentPathname === pathname ? ["dock-active text-primary"] : []]);
 };
 
-const pathList = [
-  { href: "/", name: "Home" },
-  { href: "/demo/", name: "Demo" },
-];
 export const LayoutDock = () => {
   const currentPathname = usePathname();
+  const t = useTrans();
+  const pathList = [
+    { href: "/", name: t("tabbar.home") },
+    { href: "/demo/", name: "Demo" },
+  ];
+
   return (
     <div className="dock md:absolute m-0 p-0">
       {pathList.map((i, index) => {
