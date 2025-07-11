@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { PropsWithChildren } from "react";
 import { setRequestLocale } from "next-intl/server";
-import ViewLayout from "@/components/layout";
+import { LayoutRoot } from "@/components/layout/layout-root";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +39,9 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider>
-          <ViewLayout>{children}</ViewLayout>
+          <div className="size-full md:bg-gray-100">
+            <LayoutRoot>{children}</LayoutRoot>
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

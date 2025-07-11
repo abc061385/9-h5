@@ -12,7 +12,8 @@ export const LayoutDock = () => {
   const t = useTrans();
   const pathList = [
     { href: "/", name: t("tabbar.home") },
-    { href: "/demo/", name: "Demo" },
+    { href: "/demo/", name: t("基金") },
+    { href: "/demo/", name: t("tabbar.assets") },
   ];
 
   return (
