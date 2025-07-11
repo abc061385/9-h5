@@ -3,7 +3,7 @@ import getStaticParams from "@/lib/getStaticParams";
 
 import { getTranslations } from "next-intl/server";
 import useInitLocale from "@/hooks/useInitLocale";
-import HomeView from "@/views/home";
+import IndexView from "@/views/index";
 
 export async function generateMetadata({
   params,
@@ -18,7 +18,7 @@ export async function generateMetadata({
 export default function HomePage({ params }: RootProps) {
   useInitLocale(params);
 
-  return <HomeView />;
+  return <IndexView />;
 }
 
 export function generateStaticParams() {

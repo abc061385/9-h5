@@ -4,7 +4,7 @@ import { useStore } from "@/store";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
-export default function HomeView() {
+export default function IndexView() {
   const t = useTranslations();
   const setShowLayoutDock = useStore((s) => s.setShowLayoutDock);
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function HomeView() {
       >
         123
       </div>
-      Home
+      Index
       <h1>{t("test")}</h1>
       <button className="btn btn-primary text-[20px] w-full">点击我</button>
     </div>
