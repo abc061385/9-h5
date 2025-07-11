@@ -9,7 +9,7 @@ export async function generateMetadata({
   params,
 }: RootProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const t = await getTranslations({ locale, namespace: "" });
 
   return {
     title: "首页title",

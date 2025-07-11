@@ -22,7 +22,7 @@ export default function IndexView() {
         123
       </div>
       Index
-      <h1>{t("test")}</h1>
+      <h1>{t("common.more")}</h1>
       <button className="btn btn-primary text-[20px] w-full">点击我</button>
     </div>
   );
