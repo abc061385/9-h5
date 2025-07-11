@@ -1,0 +1,18 @@
+@layer utilities {
+  .tabs-box {
+    --color-base-200: var(--color-primary-content);
+
+    .tab {
+      --tab-bg: var(--color-primary);
+      font-weight: 700;
+    }
+
+    > :is(input:checked, .tab-active) {
+      color: var(--color-white);
+    }
+
+    > :not(input:checked,.tab-active){
+      color: var(--color-black);
+    }
+  }
+}

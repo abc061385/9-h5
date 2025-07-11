@@ -12,7 +12,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
-    title: t("title"),
+    title: "首页title",
   };
 }
 export default function HomePage({ params }: RootProps) {
