@@ -9,7 +9,7 @@ export default function IndexView() {
   return (
     <ViewLayout dock={true}>
       <div>
-        Index
+        <p className="text-text2">Index</p>
         <h1>{t("common.more")}</h1>
         <button className={cn(["btn btn-primary text-[20px] w-full"])}>
           点击我
