@@ -11,17 +11,12 @@ export const Launch = ({ children }: IProps) => {
   const showSplashFunction = () => {
     setShowSplash(true);
     setTimeout(() => {
-      // sessionStorage.setItem("splashSeen", "true");
       setShowSplash(false);
     }, 2000);
   };
 
   useEffect(() => {
     showSplashFunction();
-    // const hasSeen = sessionStorage.getItem("splashSeen") === "true";
-    // if (!hasSeen) {
-    // showSplashFunction()
-    // }
     setIsMount(true);
   }, []);
   if (!isMount) return null;
