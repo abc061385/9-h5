@@ -21,6 +21,9 @@
   --color-text1: #323232;
   --color-text2: #9D95B5;
   --color-text-tip: var(--color-primary);
+
+
+  --spacing-content: 0.875rem;
 }
 
 @plugin "daisyui/theme" {
