@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { useTrans } from "@/hooks/useTrans";
+import BaseImage from "@/components/base-image";
 
 const CardsBox = () => {
   const t = useTrans();
@@ -31,12 +31,11 @@ const CardsBox = () => {
               key={index}
               className="rounded-md bg-white text-center pt-1 pb-2.5"
             >
-              <div className="w-13.5 h-13.5 relative mx-auto">
-                <Image src={item.image} alt="" fill />
-              </div>
-              <p className="text-xs font-medium">
-                {t(item.title)}
-              </p>
+              <BaseImage
+                src={item.image}
+                className="w-13.5 h-13.5 relative mx-auto"
+              />
+              <p className="text-xs font-medium">{t(item.title)}</p>
             </div>
           );
         })}

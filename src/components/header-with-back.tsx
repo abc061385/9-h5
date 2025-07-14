@@ -23,7 +23,7 @@ export const HeaderWithBack = ({ title, algin = "right" }: IProps) => {
     }
   }, [router]);
   return (
-    <div className={warpClass}>
+    <div className={cn(warpClass, "pb-2")}>
       <i
         className={cn(["cursor-pointer", notHistory && "text-red-400"])}
         onClick={handleBack}

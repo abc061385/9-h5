@@ -28,9 +28,9 @@ const Tabs: React.FC<TabsProps> = ({
   return (
     <div
       className={clsx(
-        "flex items-center",
-        type === "segment" && "bg-[#F3F1FF] rounded-xl p-1",
-        className
+        className,
+        "flex items-center justify-between",
+        type === "segment" && "rounded-xl p-1"
       )}
     >
       {tabs.map((tab) => {
@@ -40,11 +40,11 @@ const Tabs: React.FC<TabsProps> = ({
             key={tab.value}
             onClick={() => onChange(tab.value)}
             className={clsx(
-              "text-sm text-center cursor-pointer transition-all p-2",
+              "text-center cursor-pointer transition-all p-1.5 font-bold text-xs mr-0.5",
               type === "segment" &&
                 clsx(
-                  "rounded-lg",
-                  isActive ? "bg-primary text-white" : "text-[#1C1C1E]"
+                  "rounded-md px-3",
+                  isActive ? "bg-[#8F00FF] text-white" : "text-[#1C1C1E]"
                 ),
               type === "text" &&
                 (isActive ? activeClassName : inactiveClassName)

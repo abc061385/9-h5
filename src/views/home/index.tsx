@@ -7,7 +7,7 @@ import FundBox from "./fund";
 
 export default function HomeView() {
   return (
-    <div className="px-4.5">
+    <div className="p-content">
       <BannerBox />
       <ChartBox />
       <FundBox />

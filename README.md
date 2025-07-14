@@ -113,7 +113,14 @@ export default DemoView;
       "navigationStyle": "custom",
       "navigationBarTitleText": ""
     }
-  }
+  },
+  {
+    "path": "pages/home/charts",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "币价走势"
+    }
+  },
 ]
 ```
 
