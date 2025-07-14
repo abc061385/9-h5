@@ -36,7 +36,9 @@
     "inputConfirmPassword": "Please confirm password",
     "inputInviteCode": "Please enter invite code",
     "loginSuccess": "Login successful",
-    "loginSuccessContent": "To ensure the security of your account, you need to bind Google Authenticator before performing asset withdrawals or related operations."
+    "loginSuccessContent": "To ensure the security of your account, you need to bind Google Authenticator before performing asset withdrawals or related operations.",
+    "welcome": "Welcome to 9M AI",
+    "email": "Email"
   },
   "alerts": {
     "emptyFields": "Please enter username and password",

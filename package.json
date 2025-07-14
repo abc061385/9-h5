@@ -8,9 +8,12 @@
     "build:test": "NODE_ENV=test next build",
     "start": "next start",
     "lint": "next lint",
-    "genapi": "node ./scripts/generateApi.mjs"
+    "gen:api": "node ./scripts/generateApi.mjs",
+    "gen:icon": "npx fantasticon",
+    "gen:icontype": "node ./scripts/gen-icon-type.mjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "ahooks": "^3.9.0",
     "axios": "^1.10.0",
     "clsx": "^2.1.1",
@@ -20,9 +23,11 @@
     "react": "^19.0.0",
     "react-custom-roulette": "^1.4.1",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.60.0",
     "swiper": "^11.2.10",
     "swr": "^2.3.3",
     "tailwind-merge": "^3.3.1",
+    "zod": "^4.0.5",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
@@ -35,6 +40,7 @@
     "daisyui": "^5.0.43",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "fantasticon": "^3.0.0",
     "postcss": "^8.5.6",
     "postcss-pxtorem": "^6.1.0",
     "swagger-typescript-api": "^13.0.21",

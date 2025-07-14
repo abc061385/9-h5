@@ -36,7 +36,9 @@
     "inputConfirmPassword": "請輸入確認密碼",
     "inputInviteCode": "請輸入邀請碼",
     "loginSuccess": "登入成功",
-    "loginSuccessContent": "為了確保您的帳戶安全，您需要綁定 Google 驗證器，才能進行資產提現等相關操作。"
+    "loginSuccessContent": "為了確保您的帳戶安全，您需要綁定 Google 驗證器，才能進行資產提現等相關操作。",
+    "welcome": "歡迎來到9M AI",
+    "email": "邮箱"
   },
   "alerts": {
     "emptyFields": "請輸入帳號名和密碼",

@@ -35,6 +35,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} data-theme="light">
+      <head>
+        <link rel="stylesheet" href="/iconfont/icons.css" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

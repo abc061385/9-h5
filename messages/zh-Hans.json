@@ -36,7 +36,9 @@
     "inputConfirmPassword": "请输入确认密码",
     "inputInviteCode": "请输入邀请码",
     "loginSuccess": "登录成功",
-    "loginSuccessContent": "为确保您的账户安全，您还需绑定Google验证器才能进行资产提现等相关操作"
+    "loginSuccessContent": "为确保您的账户安全，您还需绑定Google验证器才能进行资产提现等相关操作",
+    "welcome": "欢迎来到 9M AI",
+    "email": "邮箱"
   },
   "alerts": {
     "emptyFields": "请输入账户名和密码",

@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ReactNode, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { Icon } from "./icon";
 
 type IProps = {
   title?: ReactNode;
@@ -27,7 +28,7 @@ export const HeaderWithBack = ({ title, algin = "right" }: IProps) => {
         className={cn(["cursor-pointer", notHistory && "text-red-400"])}
         onClick={handleBack}
       >
-        {"←"}
+        <Icon name="left-arrow" />
       </i>
       <span className="flex-1 flex justify-center">
         {algin === "center" ? title : null}

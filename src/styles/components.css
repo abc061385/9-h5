@@ -1,6 +1,8 @@
 @layer utilities {
   .tabs-box {
-    --color-base-200: var(--color-primary-content);
+    --color-base-200: var(--color-secondary);
+    --tab-height: 32px;
+    box-shadow: none;
 
     .tab {
       --tab-bg: var(--color-primary);

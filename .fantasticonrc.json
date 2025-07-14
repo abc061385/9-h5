@@ -1,0 +1,10 @@
+ {
+  "inputDir": "./public/icons",
+  "outputDir": "./public/iconfont",
+  "fontTypes": ["ttf", "woff", "woff2", "eot"],
+  "assetTypes": ["css", "html", "json"],
+  "prefix": "icon",
+  "tag": "i",
+  "fontsUrl": "/iconfont/"
+}
+

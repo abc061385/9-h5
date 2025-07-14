@@ -24,6 +24,12 @@ pnpm build
 pnpm build:test
 ```
 
+### Gen svg icon types:
+
+```bash
+pnpm gen:icontype
+```
+
 ### Responsive development
 
 - H5 UI design draft: 375px
