@@ -1,0 +1,12 @@
+@utility no-scrollbar {
+  /* Firefox */
+  scrollbar-width: none;
+  /* WebKit 浏览器 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility touch-scroll {
+  -webkit-overflow-scrolling: touch; /* iOS / Mac WebKit 手势滚动 */
+}

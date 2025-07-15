@@ -34,7 +34,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} data-theme="light">
+    <html className="scroll-smooth" lang={locale} data-theme="light">
       <head>
         <link rel="stylesheet" href="/iconfont/icons.css" />
       </head>

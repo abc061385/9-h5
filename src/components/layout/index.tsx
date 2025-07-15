@@ -1,23 +1,33 @@
 "use client";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import { LayoutDock } from "./dock";
 import { cn } from "@/lib/utils";
 
-type IProps = PropsWithChildren<{ dock?: boolean }>;
-export default function ViewLayout({ children, dock = false }: IProps) {
+type IProps = PropsWithChildren<{ dock?: boolean; header?: ReactNode }>;
+export default function ViewLayout({ children, dock = false, header }: IProps) {
   return (
-    <div className="layout size-full flex flex-col">
+    <div className="size-full relative">
+      {header ? (
+        <div className="absolute top-0 left-0 z-50 w-full">{header}</div>
+      ) : null}
       <div
         className={cn([
-          "bg-red-50 flex-1",
-          {
-            "mb-[64px]": dock,
-          },
+          "layout size-full flex flex-col",
+          header ? "pt-[44px]" : "",
         ])}
       >
-        {children}
+        <div
+          className={cn([
+            "flex-1",
+            {
+              "mb-[64px]": dock,
+            },
+          ])}
+        >
+          {children}
+        </div>
+        {dock ? <LayoutDock /> : null}
       </div>
-      {dock ? <LayoutDock /> : null}
     </div>
   );
 }

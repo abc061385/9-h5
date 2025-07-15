@@ -6,9 +6,17 @@ import { Icon } from "./icon";
 type IProps = {
   title?: ReactNode;
   algin?: "center" | "right";
+  className?: string;
 };
-export const HeaderWithBack = ({ title, algin = "right" }: IProps) => {
-  const warpClass = cn(["flex items-center"]);
+export const HeaderWithBack = ({
+  title,
+  algin = "right",
+  className = "",
+}: IProps) => {
+  const warpClass = cn([
+    "flex items-center w-full h-[44px] p-content",
+    className,
+  ]);
   const router = useRouter();
 
   const handleBack = () => {

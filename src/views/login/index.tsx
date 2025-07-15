@@ -24,10 +24,10 @@ const LoginView = () => {
   } = useForm({
     resolver: zodResolver(Schema),
   });
+
   return (
-    <ViewLayout>
-      <div className="p-content">
-        <HeaderWithBack title={t("loginTab")} algin="right"></HeaderWithBack>
+    <ViewLayout header={<HeaderWithBack title={t("loginTab")} algin="right" />}>
+      <div className="p-content size-full flex flex-col">
         <h1 className="text-h1 text-center my-8">{t("welcome")}</h1>
         <div className="tabs tabs-box mb-5">
           <a role="tab" className="tab flex-1 tab-active">
@@ -37,11 +37,7 @@ const LoginView = () => {
             Mobile Number
           </a>
         </div>
-
-        <form
-          onSubmit={handleSubmit((data) => console.log(data))}
-          className="space-y-4"
-        >
+        <form className="space-y-4 grow">
           <div>
             <label className="input w-full">
               E-
@@ -70,10 +66,14 @@ const LoginView = () => {
               <p className="text-error">{errors.password.message}</p>
             )}
           </div>
-          <button type="submit" className="btn btn-primary">
-            提交
-          </button>
         </form>
+        <button
+          type="submit"
+          className="btn btn-primary w-full"
+          onClick={handleSubmit((data) => console.log(data))}
+        >
+          提交
+        </button>
       </div>
     </ViewLayout>
   );
