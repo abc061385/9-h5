@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@theme {}
+
 @custom-variant h5 (@media (max-width: 768px));
 
 @plugin "daisyui" {
@@ -14,11 +14,10 @@
   logs: true;
 }
 
-
 html {
   height: 100%;
   /* NOTE: H5 = 16px/(375px/100vw) */
-  font-size: clamp(10PX, 4.266666vw, 32.7PX);
+  font-size: clamp(10px, 4.266666vw, 32.7px);
 
   /* NOTE: PC = 16px/(1920px/100vw) */
   /* font-size: clamp(12PX, 0.833333vw, 48px); */
