@@ -6,12 +6,14 @@ import { cn } from "@/lib/utils";
 type IProps = PropsWithChildren<{ dock?: boolean; header?: ReactNode }>;
 export default function ViewLayout({ children, dock = false, header }: IProps) {
   return (
-    <>
-      {header ? header : null}
+    <div className="size-full relative">
+      {header ? (
+        <div className="absolute top-0 left-0 z-50 w-full">{header}</div>
+      ) : null}
       <div
         className={cn([
           "layout size-full flex flex-col",
-          header ? "pt-[52px]" : "",
+          header ? "pt-[44px]" : "",
         ])}
       >
         <div
@@ -26,6 +28,6 @@ export default function ViewLayout({ children, dock = false, header }: IProps) {
         </div>
         {dock ? <LayoutDock /> : null}
       </div>
-    </>
+    </div>
   );
 }
