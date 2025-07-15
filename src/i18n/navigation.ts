@@ -10,5 +10,7 @@ export const routerMap = {
   index: "/",
   home: "/home",
   login: "/login",
+  "login/verification": "/login/verification",
   register: "/register",
+  "register/verification": "/register/verification",
 };

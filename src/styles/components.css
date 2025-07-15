@@ -13,8 +13,53 @@
       color: var(--color-white);
     }
 
-    > :not(input:checked,.tab-active){
+    > :not(input:checked, .tab-active) {
       color: var(--color-black);
     }
+  }
+
+  .input {
+    --input-color: var(--color-accent);
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-primary);
+      outline: none;
+      outline-offset: 0;
+    }
+  }
+
+  .checkbox {
+    border-radius: 2px;
+  }
+
+  .btn-link {
+    @apply no-underline h-auto leading-none px-0;
+    > :is(.btn-active, :hover, :active:focus, :focus-visible) {
+      @apply no-underline;
+    }
+  }
+}
+
+@layer components {
+  .vi__container {
+    @apply !w-full flex justify-between !h-[50px] !gap-0;
+  }
+  .character {
+    @apply rounded-md !text-sm font-bold flex justify-center items-center;
+    border-color: transparent !important;
+    background-color: var(--color-secondary) !important;
+    height: 50px !important;
+    width: 50px !important;
+    max-height: 50px !important;
+    max-width: 50px !important;
+  }
+
+  .characterSelected {
+    border-color: var(--color-primary) !important;
+    outline: none !important;
+  }
+
+  .characterFilled {
+    @apply !text-text1;
   }
 }

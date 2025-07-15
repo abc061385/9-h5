@@ -29,7 +29,7 @@ export const HeaderWithBack = ({
     } else {
       return true;
     }
-  }, [router]);
+  }, []);
   return (
     <div className={warpClass}>
       <i
