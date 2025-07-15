@@ -1,6 +1,7 @@
 "use client";
 import ViewLayout from "@/components/layout";
-import Roulette from "@/components/roulette";
+// import Roulette from "@/components/roulette";
+import { Verification } from "@/components/verification";
 // import useSWR from "swr";
 import { useState } from "react";
 // import { api } from "@/api";
@@ -42,7 +43,9 @@ const DemoView = () => {
             Tab 2
           </a>
         </div>
-        <Roulette />
+        <hr className="h-3" />
+        <Verification />
+        {/* <Roulette /> */}
       </div>
     </ViewLayout>
   );

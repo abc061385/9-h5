@@ -121,6 +121,34 @@ export default DemoView;
       "navigationBarTitleText": "币价走势"
     }
   },
+  {
+    "path": "pages/news/news",
+    "style": {
+      "navigationBarTitleText": "消息中心",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/fund/fund",
+    "style": {
+      "navigationBarTitleText": "基金",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/news/detail",
+    "style": {
+      "navigationBarTitleText": "详情",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/fund/record",
+    "style": {
+      "navigationBarTitleText": "",
+      "navigationStyle": "custom"
+    }
+  },
 ]
 ```
 
@@ -268,27 +296,6 @@ export default DemoView;
     }
   },
   {
-    "path": "pages/news/news",
-    "style": {
-      "navigationBarTitleText": "消息中心",
-      "navigationStyle": "custom"
-    }
-  },
-  {
-    "path": "pages/news/detail",
-    "style": {
-      "navigationBarTitleText": "详情",
-      "navigationStyle": "custom"
-    }
-  },
-  {
-    "path": "pages/fund/fund",
-    "style": {
-      "navigationBarTitleText": "基金",
-      "navigationStyle": "custom"
-    }
-  },
-  {
     "path": "pages/fund/rule",
     "style": {
       "navigationBarTitleText": "基金规则",
@@ -299,13 +306,6 @@ export default DemoView;
     "path": "pages/fund/buy",
     "style": {
       "navigationBarTitleText": "买入",
-      "navigationStyle": "custom"
-    }
-  },
-  {
-    "path": "pages/fund/record",
-    "style": {
-      "navigationBarTitleText": "",
       "navigationStyle": "custom"
     }
   },

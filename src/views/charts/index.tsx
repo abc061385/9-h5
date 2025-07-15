@@ -160,37 +160,39 @@ const ChartsView = () => {
     { label: t("walletDetail.all"), value: "" },
   ];
   return (
-    <div className="p-content">
+    <>
       <HeaderWithBack />
-      <div className="h-5"></div>
-      <h2 className="font-bold">Coin Price Trend</h2>
-      <div className="text-text-rise font-bold text-[26px] my-2">
-        $84,056.00
+      <div className="p-content">
+        <div className="h-5"></div>
+        <h2 className="font-bold">Coin Price Trend</h2>
+        <div className="text-text-rise font-bold text-[26px] my-2">
+          $84,056.00
+        </div>
+        <p className="font-bold text-xs text-[#61616E]">
+          {t("近24小时涨幅")} (22/05/2025)
+        </p>
+        <div className="font-bold mt-10.5 mb-3.5 text-center">
+          9M AI Search & Price
+        </div>
+        <div className="font-bold text-[10px] flex justify-center items-center">
+          <p className="w-4 h-2 bg-text-rise mr-1"></p>
+          9M AI price trends
+        </div>
+        <Tabs
+          tabs={tabsList}
+          value={tabsValue}
+          onChange={(e) => setTabsValue(e)}
+          type="segment"
+          className="my-4"
+        />
+        <ReactECharts
+          option={option}
+          style={{ height: "160px", width: "100%" }}
+          notMerge={true}
+          lazyUpdate={true}
+        />
       </div>
-      <p className="font-bold text-xs text-[#61616E]">
-        {t("近24小时涨幅")} (22/05/2025)
-      </p>
-      <div className="font-bold mt-10.5 mb-3.5 text-center">
-        9M AI Search & Price
-      </div>
-      <div className="font-bold text-[10px] flex justify-center items-center">
-        <p className="w-4 h-2 bg-text-rise mr-1"></p>
-        9M AI price trends
-      </div>
-      <Tabs
-        tabs={tabsList}
-        value={tabsValue}
-        onChange={(e) => setTabsValue(e)}
-        type="segment"
-        className="my-4"
-      />
-      <ReactECharts
-        option={option}
-        style={{ height: "160px", width: "100%" }}
-        notMerge={true}
-        lazyUpdate={true}
-      />
-    </div>
+    </>
   );
 };
 export default ChartsView;

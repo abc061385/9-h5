@@ -44,6 +44,9 @@ importers:
       react-hook-form:
         specifier: ^7.60.0
         version: 7.60.0(react@19.1.0)
+      react-verification-input:
+        specifier: ^4.2.2
+        version: 4.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       swiper:
         specifier: ^11.2.10
         version: 11.2.10
@@ -2346,6 +2349,12 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-verification-input@4.2.2:
+    resolution: {integrity: sha512-GqcsiZ5iwcXD4V0cKbZv1pbknqAZRszPoXzSKc5LLlfSdo3iOnxLxEbmDi+BWN1LfhCx2iXhEDGke9Bdk3q+4A==}
+    peerDependencies:
+      react: 16.8.0 - 19.x.x || >=19.0.0-rc
+      react-dom: 16.8.0 - 19.x.x || >=19.0.0-rc
 
   react@19.1.0:
     resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
@@ -5280,6 +5289,11 @@ snapshots:
       react: 19.1.0
 
   react-is@16.13.1: {}
+
+  react-verification-input@4.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   react@19.1.0: {}
 

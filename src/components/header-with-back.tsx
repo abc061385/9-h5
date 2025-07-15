@@ -29,7 +29,7 @@ export const HeaderWithBack = ({
     } else {
       return true;
     }
-  }, [router]);
+  }, []);
   return (
     <div className={cn(warpClass, "pb-2")}>
       <i
@@ -38,7 +38,7 @@ export const HeaderWithBack = ({
       >
         <Icon name="left-arrow" />
       </i>
-      <span className="flex-1 flex justify-center">
+      <span className="flex-1 flex justify-center pr-3 font-bold">
         {algin === "center" ? title : null}
       </span>
       <span>{algin === "right" ? title : null}</span>

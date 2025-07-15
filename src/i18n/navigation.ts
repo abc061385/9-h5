@@ -5,3 +5,12 @@ import { routing } from "./routing";
 // APIs that consider the routing configuration
 export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);
+
+export const routerMap = {
+  index: "/",
+  home: "/home",
+  login: "/login",
+  "login/verification": "/login/verification",
+  register: "/register",
+  "register/verification": "/register/verification",
+};
