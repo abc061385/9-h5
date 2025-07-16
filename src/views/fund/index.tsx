@@ -1,16 +1,18 @@
-'use client';
+"use client";
 
 import BaseImage from "@/components/base-image";
 import FundHeaderBox from "./header";
 import ListBox from "./list";
+import ViewLayout from "@/components/layout";
 
 const FundView = () => {
   return (
-    <div className="p-content pt-12">
-      <FundHeaderBox />
-      <BaseImage src="/images/fund/banner.png" className="w-full h-25" />
-      <ListBox />
-    </div>
+    <ViewLayout dock={true} header={<FundHeaderBox />}>
+      <div className="p-content">
+        <BaseImage src="/images/fund/banner.png" className="w-full h-25" />
+        <ListBox />
+      </div>
+    </ViewLayout>
   );
 };
 

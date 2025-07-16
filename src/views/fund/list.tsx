@@ -1,19 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
-import { useSetState } from "ahooks";
 import CoinIcon from "./coin-icon";
-
-interface StateType {
-  tabsValue: string | number;
-}
+import { cn } from "@/lib/utils";
 
 const ListBox = () => {
   const t = useTrans();
-  const [{ tabsValue }, setState] = useSetState<StateType>({
-    tabsValue: "2",
-  });
+  const [tabsValue, setTabsValue] = useState("2");
+
   const tabs = [
     {
       label: t("策略基金"),
@@ -211,25 +207,22 @@ const ListBox = () => {
   ];
   return (
     <div className="mt-4">
-      <div className="flex gap-1 items-center bg-[#F3F1FF] h-13 rounded-lg p-1 font-bold text-sm">
+      <div role="tablist" className="tabs tabs-box">
         {tabs.map((tab) => (
-          <div
+          <a
+            role="tab"
+            className={cn("tab", tab.value === tabsValue && "tab-active")}
             key={tab.value}
-            className={`flex-1 flex items-center justify-center h-full transition-all font-bold text-xs ${
-              tabsValue === tab.value
-                ? "text-white font-bold bg-primary rounded-md"
-                : "text-[#61616E]"
-            }`}
-            onClick={() => setState({ tabsValue: tab.value })}
+            onClick={() => setTabsValue(tab.value)}
           >
             {tab.label}
-          </div>
+          </a>
         ))}
       </div>
       <div className="flex items-center justify-between mt-4">
         <div className="flex items-center">
           <span className="font-bold text-xs">{t("质押周期")}：</span>
-          <div className="py-1.5 px-2 rounded-md bg-[#F3F1FF] font-bold text-xs flex items-center gap-1">
+          <div className="py-1.5 px-2 rounded-md bg-secondary font-bold text-xs flex items-center gap-1">
             360 days <Icon name="left-arrow" size={12} className="rotate-270" />
           </div>
         </div>
@@ -257,7 +250,7 @@ const ListBox = () => {
               {item.pledgeToken1}/{item.pledgeToken2}
             </div>
           </div>
-          <div className="text-[#9D95B5] text-sm font-[510]">
+          <div className="text-text2 text-sm font-[510]">
             {t("日收益率")}：{item.dailyYield}%
           </div>
         </div>

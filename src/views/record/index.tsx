@@ -1,13 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
-import { useSetState } from "ahooks";
 
 const FundRecordView = () => {
   const t = useTrans();
-  const [{ tabsValue }, setState] = useSetState({ tabsValue: "" });
+  const [tabsValue, setTabsValue] = useState("");
   const tabs = [
     {
       label: t("walletDetail.all"),
@@ -66,7 +66,7 @@ const FundRecordView = () => {
     <>
       <HeaderWithBack title={t("购买记录")} algin="center" />
       <div className="p-content">
-        <div className="flex gap-1 items-center bg-[#F3F1FF] h-10 rounded-lg p-1 font-bold text-sm mb-4">
+        <div className="flex gap-1 items-center bg-secondary h-10 rounded-lg p-1 font-bold text-sm mb-4">
           {tabs.map((tab) => (
             <div
               key={tab.value}
@@ -75,7 +75,7 @@ const FundRecordView = () => {
                   ? "text-white font-bold bg-primary rounded-md"
                   : "text-[#61616E]"
               }`}
-              onClick={() => setState({ tabsValue: tab.value })}
+              onClick={() => setTabsValue(tab.value)}
             >
               {tab.label}
             </div>
@@ -109,7 +109,7 @@ const FundRecordView = () => {
                   ))}
                   <h3>{t("最大收益进度")}</h3>
                   <progress
-                    className="progress progress-primary w-full"
+                    className="progress progress-gradient1 w-full"
                     value="10"
                     max="100"
                   ></progress>
@@ -131,7 +131,7 @@ const FundRecordView = () => {
               src="/images/common/no_data.png"
               className="w-[304px] h-[197px] mx-auto"
             />
-            <span className="font-bold text-[#9D95B5] text-sm">
+            <span className="font-bold text-text2 text-sm">
               {t("暂无更多数据")}
             </span>
           </div>

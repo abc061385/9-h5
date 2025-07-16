@@ -11,7 +11,7 @@ const NewsDetailView = () => {
       <div className="p-content">
         <h2 className="font-bold">9M AI关于新一轮节点政策的公告</h2>
         <div>2025-05-27 13:20:28</div>
-        <div className="border-b border-dashed h-2 border-[#9D95B5]"></div>
+        <div className="border-b border-dashed h-2 border-text2"></div>
       </div>
     </>
   );

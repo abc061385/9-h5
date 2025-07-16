@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 type IProps = PropsWithChildren<{ dock?: boolean; header?: ReactNode }>;
 export default function ViewLayout({ children, dock = false, header }: IProps) {
   return (
-    <div className="size-full relative">
+    <div className="size-full relative h-[max-content]">
       {header ? (
         <div className="absolute top-0 left-0 z-50 w-full">{header}</div>
       ) : null}

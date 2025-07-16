@@ -4,12 +4,12 @@
   }
   .character {
     @apply rounded-md !text-sm font-bold flex justify-center items-center;
-    border-color: transparent !important;
-    background-color: var(--color-secondary) !important;
-    height: 50px !important;
     width: 50px !important;
-    max-height: 50px !important;
     max-width: 50px !important;
+    height: 50px !important;
+    max-height: 50px !important;
+    background-color: var(--color-secondary) !important;
+    border-color: transparent !important;
   }
 
   .characterSelected {
@@ -82,4 +82,8 @@
       @apply translate-y-0;
     }
   }
+}
+
+@utility progress-gradient1 {
+  color: var(--color-gradient1);
 }

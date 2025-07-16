@@ -1,5 +1,5 @@
+import { cn } from "@/lib/utils";
 import React from "react";
-import clsx from "clsx";
 
 interface TabItem {
   label: string;
@@ -27,7 +27,7 @@ const Tabs: React.FC<TabsProps> = ({
 }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         className,
         "flex items-center justify-between",
         type === "segment" && "rounded-xl p-1"
@@ -39,10 +39,10 @@ const Tabs: React.FC<TabsProps> = ({
           <div
             key={tab.value}
             onClick={() => onChange(tab.value)}
-            className={clsx(
+            className={cn(
               "text-center cursor-pointer transition-all p-1.5 font-bold text-xs mr-0.5",
               type === "segment" &&
-                clsx(
+                cn(
                   "rounded-md px-3",
                   isActive ? "bg-[#8F00FF] text-white" : "text-[#1C1C1E]"
                 ),

@@ -22,7 +22,7 @@ const NewsView = () => {
         {[...new Array(10)].map((_, index) => (
           <div
             key={index}
-            className="bg-[#F3F1FF] rounded-lg p-2 mt-2 font-bold"
+            className="bg-secondary rounded-lg p-2 mt-2 font-bold"
             onClick={() => {
               push("/news/detail");
             }}
@@ -37,10 +37,10 @@ const NewsView = () => {
                 of the Charge & Withdrawal Function
               </div>
             </div>
-            <div className="text-[#9D95B5] my-2 text-xs">
+            <div className="text-text2 my-2 text-xs">
               Announcement Code：9M2506080...
             </div>
-            <div className="text-[#9D95B5] text-xs">
+            <div className="text-text2 text-xs">
               Times：2025-06-08 05:50:29
             </div>
           </div>

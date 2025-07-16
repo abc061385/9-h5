@@ -1,6 +1,6 @@
 import React from "react";
-import clsx from "clsx";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface CoinIconProps {
   coins: { src: string; alt?: string }[]; // 最多两个
@@ -22,13 +22,13 @@ const CoinIcon: React.FC<CoinIconProps> = ({
   const showDouble = coins.length === 2;
 
   return (
-    <div className={clsx("relative flex items-center", className)}>
+    <div className={cn("relative flex items-center", className)}>
       {coins.slice(0, 2).map((coin, index) => {
         const isSecond = index === 1;
         return (
           <div
             key={index}
-            className={clsx(
+            className={cn(
               "overflow-hidden bg-white",
               rounded && "rounded-full",
               border && "border border-white",

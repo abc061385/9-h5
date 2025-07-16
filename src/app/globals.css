@@ -33,3 +33,11 @@ body {
 }
 
 @import "../styles/core.css";
+
+@font-face {
+  font-family: 'ysbth';
+  src: url('/fonts/ysbth.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

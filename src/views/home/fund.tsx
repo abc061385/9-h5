@@ -46,7 +46,7 @@ const FundBox = () => {
         <button className="btn btn-primary w-full mt-5 mb-4">
           {t("立即买入")}
         </button>
-        <div className="text-xs text-[#9D95B5] font-[510]">
+        <div className="text-xs text-text2 font-[510]">
           {t("基金推荐描述")}
         </div>
         <div className="w-14 h-14 absolute right-2 top-[-26px]">
