@@ -1,9 +1,14 @@
 "use client";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import { Launch } from "./launch";
 import { cn } from "@/lib/utils";
+import { useStore } from "@/store";
 
 export const LayoutRoot = ({ children }: PropsWithChildren) => {
+  const initRoot = useStore((s) => s.initRoot);
+  useEffect(() => {
+    initRoot();
+  }, []);
   return (
     <div
       className={cn([
