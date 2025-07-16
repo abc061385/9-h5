@@ -1,3 +1,27 @@
+@layer components {
+  .vi__container {
+    @apply !w-full flex justify-between !h-[50px] !gap-0;
+  }
+  .character {
+    @apply rounded-md !text-sm font-bold flex justify-center items-center;
+    border-color: transparent !important;
+    background-color: var(--color-secondary) !important;
+    height: 50px !important;
+    width: 50px !important;
+    max-height: 50px !important;
+    max-width: 50px !important;
+  }
+
+  .characterSelected {
+    border-color: var(--color-primary) !important;
+    outline: none !important;
+  }
+
+  .characterFilled {
+    @apply !text-text1;
+  }
+}
+
 @layer utilities {
   .tabs-box {
     --color-base-200: var(--color-secondary);
@@ -40,26 +64,22 @@
   }
 }
 
-@layer components {
-  .vi__container {
-    @apply !w-full flex justify-between !h-[50px] !gap-0;
-  }
-  .character {
-    @apply rounded-md !text-sm font-bold flex justify-center items-center;
-    border-color: transparent !important;
-    background-color: var(--color-secondary) !important;
-    height: 50px !important;
-    width: 50px !important;
-    max-height: 50px !important;
-    max-width: 50px !important;
+@utility drawer-bottom {
+  &.drawer {
+    @apply static;
   }
 
-  .characterSelected {
-    border-color: var(--color-primary) !important;
-    outline: none !important;
+  > .drawer-toggle ~ .drawer-side {
+    @apply absolute bottom-0 top-auto z-50;
+
+    :not(.drawer-overlay) {
+      @apply translate-y-[100%];
+    }
   }
 
-  .characterFilled {
-    @apply !text-text1;
+  > .drawer-toggle:checked ~ .drawer-side {
+    :not(.drawer-overlay) {
+      @apply translate-y-0;
+    }
   }
 }
