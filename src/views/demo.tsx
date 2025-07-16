@@ -1,4 +1,5 @@
 "use client";
+import { Drawer } from "@/components/drawer";
 import ViewLayout from "@/components/layout";
 // import Roulette from "@/components/roulette";
 import { Verification } from "@/components/verification";
@@ -7,6 +8,7 @@ import { useState } from "react";
 // import { api } from "@/api";
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
+  const [open, setOpen] = useState(false);
   // const { data: user, isLoading } = useSWR(
   //   params?.pageNo && params.pageSize
   //     ? ["pageAnnouncementUsingGet", params]
@@ -46,6 +48,12 @@ const DemoView = () => {
         <hr className="h-3" />
         <Verification />
         {/* <Roulette /> */}
+        <button className="btn btn-primary" onClick={() => setOpen(true)}>
+          弹出
+        </button>
+        <Drawer open={open} onChange={setOpen} className="h-[40vh]">
+          <div>123</div>
+        </Drawer>
       </div>
     </ViewLayout>
   );
