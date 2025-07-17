@@ -12,7 +12,7 @@ export default function ViewLayout({ children, dock = false, header }: IProps) {
       ) : null}
       <div
         className={cn([
-          "layout size-full flex flex-col",
+          "layout size-full flex flex-col md:overflow-y-scroll no-scrollbar",
           header ? "pt-[44px]" : "",
         ])}
       >

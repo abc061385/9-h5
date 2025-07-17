@@ -21,3 +21,10 @@ type GeetestConfig = Partial<{
 interface Window {
   initGeetest4: (config: GeetestConfig, callback: any) => viod;
 }
+
+interface BaseState<T> {
+  setField: <K extends keyof Omit<T, "setField" | "reset">>(
+    key: K,
+    value: T[K],
+  ) => void;
+}

@@ -2,7 +2,7 @@ import { api } from "@/api";
 import type { StateCreator } from "zustand";
 import { AppStore } from "../index";
 
-export interface UserSlice {
+export interface UserSlice extends BaseState<UserSlice> {
   userInfo: UserInfo;
   fetchUserInfo: () => Promise<void>;
 }
@@ -19,4 +19,5 @@ export const createUserSlice: StateCreator<AppStore, [], [], UserSlice> = (
       set(() => ({ userInfo: {} }));
     }
   },
+  setField: (key, value) => set({ [key]: value } as any),
 });

@@ -5,21 +5,24 @@ import { useTrans } from "@/hooks/useTrans";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Icon } from "@/components/icon";
 import { Link, routerMap, useRouter } from "@/i18n/navigation";
 import { TextError } from "@/components/input/text-error";
 import { InputPassword } from "@/components/input/password";
+import z, { useRootReg } from "@/lib/z";
+import { useLoginStore } from "@/store/useLoginStore";
 
-const Schema = z.object({
-  email: z.string().email("请输入有效邮箱"),
-  password: z.string().min(8, "至少 8 位").max(30, "最多30位"),
-});
 const LoginView = () => {
   const t = useTrans("login");
   const router = useRouter();
   // const email = useLoginStore((s) => s.email);
-  // const setEmail = useLoginStore((s) => s.setEmail);
+  const setField = useLoginStore((s) => s.setField);
+  const reg = useRootReg();
+
+  const Schema = z.object({
+    email: reg.email,
+    password: reg.password,
+  });
 
   const {
     register,
@@ -27,6 +30,8 @@ const LoginView = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(Schema),
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   return (
@@ -70,6 +75,8 @@ const LoginView = () => {
           className="btn btn-primary w-full"
           onClick={handleSubmit((data) => {
             console.log(data);
+            setField("email", data.email);
+            setField("password", data.password);
             router.push(routerMap["login/verification"]);
           })}
         >
