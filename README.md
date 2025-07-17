@@ -149,6 +149,34 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
+  {
+    "path": "pages/teams/index",
+    "style": {
+      "navigationBarTitleText": "",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/user/vip",
+    "style": {
+      "navigationBarTitleText": " VIP权益",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/helperAI/helperAI",
+    "style": {
+      "navigationBarTitleText": "AI助手",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/user/index",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "个人中心"
+    }
+  },
 ]
 ```
 
@@ -190,13 +218,7 @@ export default DemoView;
       "navigationBarTitleText": "弹框组件演示"
     }
   },
-  {
-    "path": "pages/user/index",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "个人中心"
-    }
-  },
+ 
   {
     "path": "pages/assets/index",
     "style": {
@@ -282,20 +304,6 @@ export default DemoView;
     }
   },
   {
-    "path": "pages/user/vip",
-    "style": {
-      "navigationBarTitleText": " VIP权益",
-      "navigationStyle": "custom"
-    }
-  },
-  {
-    "path": "pages/helperAI/helperAI",
-    "style": {
-      "navigationBarTitleText": "AI助手",
-      "navigationStyle": "custom"
-    }
-  },
-  {
     "path": "pages/fund/rule",
     "style": {
       "navigationBarTitleText": "基金规则",
@@ -351,13 +359,7 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
-  {
-    "path": "pages/teams/index",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  },
+ 
   {
     "path": "pages/teams/next",
     "style": {

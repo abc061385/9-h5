@@ -6,9 +6,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTrans } from "@/hooks/useTrans";
 import BaseImage from "@/components/base-image";
+import { useStore } from "@/store";
+import { formatThousand } from "@/lib/utils";
+import StarIcon from "./star-icon";
 
 const VipBannerBox = () => {
   const t = useTrans();
+  const userInfo = useStore((s) => s.userInfo);
   return (
     <div>
       <Swiper
@@ -35,13 +39,18 @@ const VipBannerBox = () => {
                 {t("目前团队投资总额")}
               </h2>
               <div className="mb-13">
-                <span className="text-[26px]">30,200</span>
+                <span className="text-[26px]">
+                  {formatThousand(userInfo.totalTeamInvestment || 0)}
+                </span>
                 <span className="text-xs">USDT</span>
               </div>
               <div className="text-[rgba(255,255,255,0.7)] text-xs">
-                current level
+                {t("当前等级")}
               </div>
-              <div>VIP1</div>
+              <div className="flex items-center">
+                <span className="mr-1">VIP{userInfo.vipLevel}</span>
+                <StarIcon star={userInfo.star} level={userInfo.vipLevel || 0} />
+              </div>
             </div>
             <BaseImage
               src="/images/vip/vip-banner.png"
@@ -49,10 +58,10 @@ const VipBannerBox = () => {
             />
             <div className="z-1 absolute right-3 top-3 text-center">
               <BaseImage
-                src={"/images/vip/icon-vip1.svg"}
+                src={`/images/vip/icon-vip${userInfo.vipLevel}.svg`}
                 className="w-[82px] h-[75px]"
               />
-              <span className="text-white">VIP1</span>
+              <span className="text-white">VIP{userInfo.vipLevel}</span>
             </div>
           </div>
         </SwiperSlide>
