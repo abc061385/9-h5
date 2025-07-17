@@ -38,7 +38,7 @@ const LoginVerificationView = () => {
   );
   useEffect(() => {
     // sendCode();
-    console.log("我发送了验证码");
+    console.log("我发送了验证码1");
   }, []);
 
   return (
