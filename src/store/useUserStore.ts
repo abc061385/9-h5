@@ -3,29 +3,30 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 interface LoginState extends BaseState<LoginState> {
-  account: string;
-  faCheckId: string;
-  code: string;
-  accountType: "0" | "1"; // 0手机 1邮箱
-  reset: () => void;
+  userInfo: UserInfo;
+  getToken: () => string;
+  logOut: () => void;
 }
 
-export const useLoginStore = create<LoginState>()(
+export const useUserStore = create<LoginState>()(
   persist(
     devtools(
-      (set) => {
+      (set, get) => {
         return {
-          account: "",
-          code: "",
-          accountType: "1",
-          reset: () => set({ faCheckId: "", account: "", code: "" }),
+          userInfo: {},
+          logOut() {
+            set({ userInfo: {} });
+          },
+          getToken() {
+            return get().userInfo?.token || "";
+          },
           setField: (key, value) => set({ [key]: value } as any),
         };
       },
       { enabled: getIsDev() },
     ),
     {
-      name: "login-store",
+      name: "user-store",
     },
   ),
 );

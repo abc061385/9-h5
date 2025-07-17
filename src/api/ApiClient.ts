@@ -223,7 +223,6 @@ export class Api<
      * @name EditInfoUsingPost
      * @summary 编辑用户头像
      * @request POST:/auth/editHead
-     * @secure
      */
     editInfoUsingPost: (
       query?: {
@@ -236,7 +235,6 @@ export class Api<
         path: `/auth/editHead`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -248,7 +246,6 @@ export class Api<
      * @name EditNiceUsingPost
      * @summary 编辑用户昵称
      * @request POST:/auth/editNice
-     * @secure
      */
     editNiceUsingPost: (
       query?: {
@@ -261,7 +258,6 @@ export class Api<
         path: `/auth/editNice`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -273,7 +269,6 @@ export class Api<
      * @name EditTelUsingPost
      * @summary 编辑手机号
      * @request POST:/auth/editTel
-     * @secure
      */
     editTelUsingPost: (
       query?: {
@@ -359,7 +354,6 @@ export class Api<
         path: `/auth/editTel`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -371,7 +365,6 @@ export class Api<
      * @name ForgetUpdatePwdUsingPost
      * @summary 修改登录密码
      * @request POST:/auth/forget/updatePwd
-     * @secure
      */
     forgetUpdatePwdUsingPost: (
       query?: {
@@ -393,7 +386,6 @@ export class Api<
         path: `/auth/forget/updatePwd`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -405,7 +397,6 @@ export class Api<
      * @name ForgetPwdUsingPost
      * @summary 忘记密码
      * @request POST:/auth/forgetPwd
-     * @secure
      */
     forgetPwdUsingPost: (
       query: {
@@ -426,7 +417,6 @@ export class Api<
         path: `/auth/forgetPwd`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -438,13 +428,11 @@ export class Api<
      * @name JyPasswordUsingPost
      * @summary 全网信息
      * @request POST:/auth/getAllNetData
-     * @secure
      */
     jyPasswordUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/auth/getAllNetData`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -456,13 +444,39 @@ export class Api<
      * @name GetSwarmUsingPost
      * @summary 获取Swarm信息
      * @request POST:/auth/getSwarm
-     * @secure
      */
     getSwarmUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/auth/getSwarm`,
         method: "POST",
-        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name GetTokenUsingPost
+     * @summary 获取token
+     * @request POST:/auth/getToken
+     */
+    getTokenUsingPost: (
+      query: {
+        /** 校验码 */
+        faResultId: string;
+        /**
+         * 操作类型
+         * @default "0"
+         */
+        type: ref;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/getToken`,
+        method: "POST",
+        query: query,
         type: ContentType.Json,
         ...params,
       }),
@@ -474,13 +488,11 @@ export class Api<
      * @name InfoUsingGet
      * @summary 查询用户详情
      * @request GET:/auth/info
-     * @secure
      */
     infoUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/auth/info`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -491,7 +503,6 @@ export class Api<
      * @name JyPasswordUsingPost1
      * @summary 设置编辑交易密码
      * @request POST:/auth/jyPassword
-     * @secure
      */
     jyPasswordUsingPost1: (
       query?: {
@@ -506,7 +517,6 @@ export class Api<
         path: `/auth/jyPassword`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -518,7 +528,6 @@ export class Api<
      * @name LoginUsingPost
      * @summary 登录
      * @request POST:/auth/login
-     * @secure
      */
     loginUsingPost: (
       query: {
@@ -537,7 +546,72 @@ export class Api<
         path: `/auth/login`,
         method: "POST",
         query: query,
-        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name LoginByFaBeforeCheckUsingPost
+     * @summary 登录前置校验通过后下返回2fa验证项
+     * @request POST:/auth/loginByFaBeforeCheck
+     */
+    loginByFaBeforeCheckUsingPost: (
+      query: {
+        /** 账户 */
+        account: string;
+        /**
+         * 账户类型:0-手机1-邮箱
+         * @default "1"
+         */
+        accountType?: ref;
+        /** 凭证 */
+        certificate: string;
+        /** 密码 */
+        password: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/loginByFaBeforeCheck`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name RegByFaBeforeCheckUsingPost
+     * @summary 注册前验证信息
+     * @request POST:/auth/regByFaBeforeCheck
+     */
+    regByFaBeforeCheckUsingPost: (
+      query: {
+        /** 账户 */
+        account: string;
+        /**
+         * 账户类型:0-手机1-邮箱
+         * @default "1"
+         */
+        accountType?: ref;
+        /** 凭证 */
+        certificate: string;
+        /** 邀请码 */
+        invitationCode: string;
+        /** 密码 */
+        password: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/regByFaBeforeCheck`,
+        method: "POST",
+        query: query,
         type: ContentType.Json,
         ...params,
       }),
@@ -549,7 +623,6 @@ export class Api<
      * @name RegisterUsingPost
      * @summary 注册
      * @request POST:/auth/register
-     * @secure
      */
     registerUsingPost: (
       query: {
@@ -572,7 +645,6 @@ export class Api<
         path: `/auth/register`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -584,7 +656,6 @@ export class Api<
      * @name RegisterH5UsingPost
      * @summary 注册-H5
      * @request POST:/auth/registerH5
-     * @secure
      */
     registerH5UsingPost: (
       query: {
@@ -607,7 +678,36 @@ export class Api<
         path: `/auth/registerH5`,
         method: "POST",
         query: query,
-        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name SendCodeUsingPost
+     * @summary 发送验证码
+     * @request POST:/auth/sendCode
+     */
+    sendCodeUsingPost: (
+      query: {
+        /** 账户 */
+        account: string;
+        /**
+         * 账户类型:0-手机1-邮箱
+         * @default "1"
+         */
+        accountType?: ref;
+        /** 校验码 */
+        faCheckId: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/sendCode`,
+        method: "POST",
+        query: query,
         type: ContentType.Json,
         ...params,
       }),
@@ -619,13 +719,11 @@ export class Api<
      * @name TestUsingPost
      * @summary 测试语言的
      * @request POST:/auth/test
-     * @secure
      */
     testUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/auth/test`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -637,7 +735,6 @@ export class Api<
      * @name UpdatePwdUsingPost
      * @summary 修改登录密码
      * @request POST:/auth/updatePwd
-     * @secure
      */
     updatePwdUsingPost: (
       query?: {
@@ -659,7 +756,31 @@ export class Api<
         path: `/auth/updatePwd`,
         method: "POST",
         query: query,
-        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name ValidateCodeUsingPost
+     * @summary 校验验证码
+     * @request POST:/auth/validateCode
+     */
+    validateCodeUsingPost: (
+      query: {
+        /** 验证码 */
+        captcha: string;
+        /** 校验码 */
+        faCheckId: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/validateCode`,
+        method: "POST",
+        query: query,
         type: ContentType.Json,
         ...params,
       }),
@@ -672,13 +793,11 @@ export class Api<
      * @name GenCaptchaUsingGet
      * @summary genCaptcha
      * @request GET:/captcha
-     * @secure
      */
     genCaptchaUsingGet: (params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/captcha`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -690,13 +809,11 @@ export class Api<
      * @name AdvisoryUsingGet
      * @summary 咨询详情
      * @request GET:/cms/advisory/{id}
-     * @secure
      */
     advisoryUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/advisory/${id}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -707,7 +824,6 @@ export class Api<
      * @name NoReadUsingGet
      * @summary 获取未阅读消息数
      * @request GET:/cms/announcement-noRead
-     * @secure
      */
     noReadUsingGet: (
       query?: {
@@ -723,7 +839,6 @@ export class Api<
         path: `/cms/announcement-noRead`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -734,13 +849,11 @@ export class Api<
      * @name AnnouncementUsingGet
      * @summary 公告详情
      * @request GET:/cms/announcement/{id}
-     * @secure
      */
     announcementUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/announcement/${id}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -751,7 +864,6 @@ export class Api<
      * @name CaijinUsingGet
      * @summary 财经消息
      * @request GET:/cms/caijin
-     * @secure
      */
     caijinUsingGet: (
       query?: {
@@ -767,7 +879,6 @@ export class Api<
         path: `/cms/caijin`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -778,13 +889,11 @@ export class Api<
      * @name GetAgreementByIdUsingGet
      * @summary 根据id查询协议
      * @request GET:/cms/getAgreementById/{id}
-     * @secure
      */
     getAgreementByIdUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/getAgreementById/${id}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -795,13 +904,11 @@ export class Api<
      * @name GetAgreementByIdUsingGet1
      * @summary 根据多个id查询协议
      * @request GET:/cms/getAgreementByIds/{ids}
-     * @secure
      */
     getAgreementByIdUsingGet1: (ids: string, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/getAgreementByIds/${ids}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -812,7 +919,6 @@ export class Api<
      * @name GetChildMenuUsingGet
      * @summary 获取帮助中心二级列表
      * @request GET:/cms/getChildMenu
-     * @secure
      */
     getChildMenuUsingGet: (
       query?: {
@@ -825,7 +931,6 @@ export class Api<
         path: `/cms/getChildMenu`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -836,13 +941,11 @@ export class Api<
      * @name GetFirstMenuUsingGet
      * @summary 获取帮助中心一个菜单
      * @request GET:/cms/getFirstMenu
-     * @secure
      */
     getFirstMenuUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/getFirstMenu`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -853,7 +956,6 @@ export class Api<
      * @name GetOpeningPageUsingGet
      * @summary 获取开屏页
      * @request GET:/cms/getOpenPage
-     * @secure
      */
     getOpeningPageUsingGet: (
       query?: {
@@ -869,7 +971,6 @@ export class Api<
         path: `/cms/getOpenPage`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -880,7 +981,6 @@ export class Api<
      * @name InfoAdvertiseUsingGet
      * @summary 轮播图详细
      * @request GET:/cms/info-advertise
-     * @secure
      */
     infoAdvertiseUsingGet: (
       query?: {
@@ -896,7 +996,6 @@ export class Api<
         path: `/cms/info-advertise`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -907,7 +1006,6 @@ export class Api<
      * @name GetByTypeUsingGet
      * @summary 详情内容
      * @request GET:/cms/info-privacy-policy/getByType
-     * @secure
      */
     getByTypeUsingGet: (
       query?: {
@@ -923,7 +1021,6 @@ export class Api<
         path: `/cms/info-privacy-policy/getByType`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -934,13 +1031,11 @@ export class Api<
      * @name NoticeUsingGet
      * @summary 消息详情
      * @request GET:/cms/notice/{id}
-     * @secure
      */
     noticeUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/notice/${id}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -951,7 +1046,6 @@ export class Api<
      * @name PageAdvertiseUsingGet
      * @summary 轮播图
      * @request GET:/cms/page-advertise/{type}
-     * @secure
      */
     pageAdvertiseUsingGet: (
       type: number,
@@ -977,7 +1071,6 @@ export class Api<
         path: `/cms/page-advertise/${type}`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -988,7 +1081,6 @@ export class Api<
      * @name AdvisoryListUsingGet
      * @summary 咨询列表
      * @request GET:/cms/page-advisory
-     * @secure
      */
     advisoryListUsingGet: (
       query: {
@@ -1018,7 +1110,6 @@ export class Api<
         path: `/cms/page-advisory`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1029,7 +1120,6 @@ export class Api<
      * @name PageAnnouncementUsingGet
      * @summary 公告列表
      * @request GET:/cms/page-announcement
-     * @secure
      */
     pageAnnouncementUsingGet: (
       query: {
@@ -1064,7 +1154,6 @@ export class Api<
         path: `/cms/page-announcement`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1075,7 +1164,6 @@ export class Api<
      * @name PageAnnouncementInfoUsingGet
      * @summary 公告列表-消息
      * @request GET:/cms/page-announcement-info
-     * @secure
      */
     pageAnnouncementInfoUsingGet: (
       query: {
@@ -1110,7 +1198,6 @@ export class Api<
         path: `/cms/page-announcement-info`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1121,7 +1208,6 @@ export class Api<
      * @name PageNoticeUsingGet
      * @summary 消息列表
      * @request GET:/cms/page-notice
-     * @secure
      */
     pageNoticeUsingGet: (
       query: {
@@ -1146,7 +1232,6 @@ export class Api<
         path: `/cms/page-notice`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1157,7 +1242,6 @@ export class Api<
      * @name TypeUsingGet
      * @summary 查询协议
      * @request GET:/cms/type
-     * @secure
      */
     typeUsingGet: (
       query?: {
@@ -1170,7 +1254,6 @@ export class Api<
         path: `/cms/type`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1181,7 +1264,6 @@ export class Api<
      * @name UpdateNoReadUsingGet
      * @summary 更改阅读状态
      * @request GET:/cms/update-noRead
-     * @secure
      */
     updateNoReadUsingGet: (
       query?: {
@@ -1197,7 +1279,6 @@ export class Api<
         path: `/cms/update-noRead`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1208,13 +1289,11 @@ export class Api<
      * @name VersionUsingGet
      * @summary 查看版本
      * @request GET:/cms/version
-     * @secure
      */
     versionUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cms/version`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -1226,7 +1305,6 @@ export class Api<
      * @name HandleDoubleConfirmUsingPost
      * @summary handleDoubleConfirm
      * @request POST:/cobo/callback
-     * @secure
      */
     handleDoubleConfirmUsingPost: (
       rawBody: string,
@@ -1236,7 +1314,6 @@ export class Api<
         path: `/cobo/callback`,
         method: "POST",
         body: rawBody,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1248,7 +1325,6 @@ export class Api<
      * @name CreateAddrUsingPost
      * @summary 创建钱包中的地址
      * @request POST:/cobo/create-addr
-     * @secure
      */
     createAddrUsingPost: (
       query?: {
@@ -1261,7 +1337,6 @@ export class Api<
         path: `/cobo/create-addr`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1273,13 +1348,11 @@ export class Api<
      * @name CreateWalletUsingPost
      * @summary 创建钱包
      * @request POST:/cobo/create-wallet
-     * @secure
      */
     createWalletUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cobo/create-wallet`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1291,13 +1364,11 @@ export class Api<
      * @name EnabledChainsUsingPost
      * @summary 获取启动的链
      * @request POST:/cobo/enabled_chains
-     * @secure
      */
     enabledChainsUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cobo/enabled_chains`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1309,7 +1380,6 @@ export class Api<
      * @name GetChainAddrUsingGet
      * @summary 链获取地址
      * @request GET:/cobo/getChainAddr
-     * @secure
      */
     getChainAddrUsingGet: (
       query?: {
@@ -1322,7 +1392,6 @@ export class Api<
         path: `/cobo/getChainAddr`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1333,13 +1402,11 @@ export class Api<
      * @name RepairMemoUsingPost
      * @summary 修复地址的memo
      * @request POST:/cobo/repairMemo
-     * @secure
      */
     repairMemoUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/cobo/repairMemo`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1351,7 +1418,6 @@ export class Api<
      * @name HandleWebhookEventUsingPost
      * @summary handleWebhookEvent
      * @request POST:/cobo/webhook
-     * @secure
      */
     handleWebhookEventUsingPost: (
       rawBody: string,
@@ -1361,7 +1427,6 @@ export class Api<
         path: `/cobo/webhook`,
         method: "POST",
         body: rawBody,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1374,7 +1439,6 @@ export class Api<
      * @name GetCoinUsingGet
      * @summary 币种
      * @request GET:/coin/getCoin
-     * @secure
      */
     getCoinUsingGet: (
       query?: {
@@ -1387,7 +1451,6 @@ export class Api<
         path: `/coin/getCoin`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1398,7 +1461,6 @@ export class Api<
      * @name CoinConfigUsingGet
      * @summary 查询币种配置
      * @request GET:/coin/info
-     * @secure
      */
     coinConfigUsingGet: (
       query?: {
@@ -1411,7 +1473,6 @@ export class Api<
         path: `/coin/info`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -1423,7 +1484,6 @@ export class Api<
      * @name PageUsingGet
      * @summary 列表
      * @request GET:/currency-settings/list
-     * @secure
      */
     pageUsingGet: (
       query?: {
@@ -1436,7 +1496,6 @@ export class Api<
         path: `/currency-settings/list`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1447,13 +1506,11 @@ export class Api<
      * @name ProtocolListUsingGet
      * @summary 列表
      * @request GET:/currency-settings/protocol/list
-     * @secure
      */
     protocolListUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/currency-settings/protocol/list`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -1465,7 +1522,6 @@ export class Api<
      * @name CreateAddrUsingPost1
      * @summary 创建地址
      * @request POST:/deposit/create-addr
-     * @secure
      */
     createAddrUsingPost1: (
       query?: {
@@ -1478,7 +1534,6 @@ export class Api<
         path: `/deposit/create-addr`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1490,7 +1545,6 @@ export class Api<
      * @name CreateAddrTwoUsingPost
      * @summary 创建地址
      * @request POST:/deposit/create-addr_two
-     * @secure
      */
     createAddrTwoUsingPost: (
       query?: {
@@ -1503,8 +1557,23 @@ export class Api<
         path: `/deposit/create-addr_two`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
+        ...params,
+      }),
+  };
+  feign = {
+    /**
+     * No description
+     *
+     * @tags feign-test-controller
+     * @name CaptchaValidateUsingGet
+     * @summary captchaValidate
+     * @request GET:/feign/captcha/validate
+     */
+    captchaValidateUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/feign/captcha/validate`,
+        method: "GET",
         ...params,
       }),
   };
@@ -1516,7 +1585,6 @@ export class Api<
      * @name CalMaxProfitUsingPost
      * @summary calMaxProfit
      * @request POST:/fund-product-config/calMaxProfit
-     * @secure
      */
     calMaxProfitUsingPost: (
       query: {
@@ -1541,7 +1609,6 @@ export class Api<
         path: `/fund-product-config/calMaxProfit`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1553,7 +1620,6 @@ export class Api<
      * @name ClaimedProfitUsingGet
      * @summary claimedProfit
      * @request GET:/fund-product-config/claimedProfit
-     * @secure
      */
     claimedProfitUsingGet: (
       query?: {
@@ -1566,7 +1632,6 @@ export class Api<
         path: `/fund-product-config/claimedProfit`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1577,7 +1642,6 @@ export class Api<
      * @name ExtractUsingPost
      * @summary extract
      * @request POST:/fund-product-config/claimedProfit/extract
-     * @secure
      */
     extractUsingPost: (
       query?: {
@@ -1590,7 +1654,6 @@ export class Api<
         path: `/fund-product-config/claimedProfit/extract`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1602,7 +1665,6 @@ export class Api<
      * @name ClaimedProfitTransactionUsingGet
      * @summary claimedProfitTransaction
      * @request GET:/fund-product-config/claimedProfit/transaction
-     * @secure
      */
     claimedProfitTransactionUsingGet: (
       query: {
@@ -1629,7 +1691,6 @@ export class Api<
         path: `/fund-product-config/claimedProfit/transaction`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1640,7 +1701,6 @@ export class Api<
      * @name DetailUsingGet
      * @summary detail
      * @request GET:/fund-product-config/detail
-     * @secure
      */
     detailUsingGet: (
       query?: {
@@ -1656,7 +1716,6 @@ export class Api<
         path: `/fund-product-config/detail`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1667,7 +1726,6 @@ export class Api<
      * @name GetPledgeDaysUsingGet
      * @summary getPledgeDays
      * @request GET:/fund-product-config/getPledgeDays
-     * @secure
      */
     getPledgeDaysUsingGet: (
       query?: {
@@ -1683,7 +1741,6 @@ export class Api<
         path: `/fund-product-config/getPledgeDays`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1694,7 +1751,6 @@ export class Api<
      * @name PurchaseUsingPost
      * @summary purchase
      * @request POST:/fund-product-config/invest
-     * @secure
      */
     purchaseUsingPost: (
       query: {
@@ -1719,7 +1775,6 @@ export class Api<
         path: `/fund-product-config/invest`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1731,7 +1786,6 @@ export class Api<
      * @name PurchaseDetailUsingGet
      * @summary purchaseDetail
      * @request GET:/fund-product-config/invest/detail
-     * @secure
      */
     purchaseDetailUsingGet: (
       query?: {
@@ -1749,7 +1803,6 @@ export class Api<
         path: `/fund-product-config/invest/detail`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1760,7 +1813,6 @@ export class Api<
      * @name PurchaseRecordUsingGet
      * @summary purchaseRecord
      * @request GET:/fund-product-config/invest/page
-     * @secure
      */
     purchaseRecordUsingGet: (
       query: {
@@ -1787,7 +1839,6 @@ export class Api<
         path: `/fund-product-config/invest/page`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1798,7 +1849,6 @@ export class Api<
      * @name PageUsingGet1
      * @summary page
      * @request GET:/fund-product-config/page
-     * @secure
      */
     pageUsingGet1: (
       query: {
@@ -1833,7 +1883,6 @@ export class Api<
         path: `/fund-product-config/page`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1844,7 +1893,6 @@ export class Api<
      * @name ReinvestmentUsingPost
      * @summary reinvestment
      * @request POST:/fund-product-config/reinvestment
-     * @secure
      */
     reinvestmentUsingPost: (
       query?: {
@@ -1862,7 +1910,6 @@ export class Api<
         path: `/fund-product-config/reinvestment`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1874,7 +1921,6 @@ export class Api<
      * @name RewardExtractUsingPost
      * @summary rewardExtract
      * @request POST:/fund-product-config/reward/extract
-     * @secure
      */
     rewardExtractUsingPost: (
       query?: {
@@ -1887,7 +1933,6 @@ export class Api<
         path: `/fund-product-config/reward/extract`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1899,7 +1944,6 @@ export class Api<
      * @name GetRewardStatsUsingGet
      * @summary getRewardStats
      * @request GET:/fund-product-config/reward/stats
-     * @secure
      */
     getRewardStatsUsingGet: (
       query?: {
@@ -1912,7 +1956,6 @@ export class Api<
         path: `/fund-product-config/reward/stats`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -1923,7 +1966,6 @@ export class Api<
      * @name RewardTransactionUsingGet
      * @summary rewardTransaction
      * @request GET:/fund-product-config/reward/transaction
-     * @secure
      */
     rewardTransactionUsingGet: (
       query: {
@@ -1950,7 +1992,6 @@ export class Api<
         path: `/fund-product-config/reward/transaction`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -1962,13 +2003,11 @@ export class Api<
      * @name GetStatisticsUsingGet
      * @summary whatsApp统计报表
      * @request GET:/internal/whatsApp/{uid}
-     * @secure
      */
     getStatisticsUsingGet: (uid: number, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/internal/whatsApp/${uid}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -1980,13 +2019,11 @@ export class Api<
      * @name LatestPriceUsingGet
      * @summary 获取最新价格
      * @request GET:/kline/latestPrice
-     * @secure
      */
     latestPriceUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/kline/latestPrice`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -1997,7 +2034,6 @@ export class Api<
      * @name MarketSituationUsingGet
      * @summary 市场行情
      * @request GET:/kline/marketSituation
-     * @secure
      */
     marketSituationUsingGet: (
       query?: {
@@ -2010,7 +2046,6 @@ export class Api<
         path: `/kline/marketSituation`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -2022,7 +2057,6 @@ export class Api<
      * @name ThumbUsingGet
      * @summary 行情查询
      * @request GET:/market/thumb
-     * @secure
      */
     thumbUsingGet: (
       query?: {
@@ -2035,7 +2069,6 @@ export class Api<
         path: `/market/thumb`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -2047,7 +2080,6 @@ export class Api<
      * @name EditUsingPost
      * @summary 编辑
      * @request POST:/member-vip-level-config/edit
-     * @secure
      */
     editUsingPost: (
       query?: {
@@ -2108,7 +2140,6 @@ export class Api<
         path: `/member-vip-level-config/edit`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2120,7 +2151,6 @@ export class Api<
      * @name GetByIdUsingGet
      * @summary 获取详情
      * @request GET:/member-vip-level-config/getById
-     * @secure
      */
     getByIdUsingGet: (
       query?: {
@@ -2136,7 +2166,6 @@ export class Api<
         path: `/member-vip-level-config/getById`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2147,13 +2176,11 @@ export class Api<
      * @name ListUsingGet
      * @summary 会员列表
      * @request GET:/member-vip-level-config/list
-     * @secure
      */
     listUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member-vip-level-config/list`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -2165,7 +2192,6 @@ export class Api<
      * @name EditUsingPost1
      * @summary 编辑
      * @request POST:/member-vip-level-start-config/edit
-     * @secure
      */
     editUsingPost1: (
       query?: {
@@ -2220,7 +2246,6 @@ export class Api<
         path: `/member-vip-level-start-config/edit`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2232,7 +2257,6 @@ export class Api<
      * @name GetByIdUsingGet1
      * @summary 获取详情
      * @request GET:/member-vip-level-start-config/getById
-     * @secure
      */
     getByIdUsingGet1: (
       query?: {
@@ -2248,7 +2272,6 @@ export class Api<
         path: `/member-vip-level-start-config/getById`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2259,13 +2282,11 @@ export class Api<
      * @name ListUsingGet1
      * @summary 会员列表
      * @request GET:/member-vip-level-start-config/list
-     * @secure
      */
     listUsingGet1: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member-vip-level-start-config/list`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -2277,7 +2298,6 @@ export class Api<
      * @name InvitationUsingGet
      * @summary 认证
      * @request GET:/member/approve
-     * @secure
      */
     invitationUsingGet: (
       query?: {
@@ -2329,7 +2349,6 @@ export class Api<
         path: `/member/approve`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2340,13 +2359,11 @@ export class Api<
      * @name CheckApproveUsingGet
      * @summary 检查是否认证
      * @request GET:/member/checkApprove
-     * @secure
      */
     checkApproveUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member/checkApprove`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -2357,7 +2374,6 @@ export class Api<
      * @name BindEmailUsingPost
      * @summary bindEmail
      * @request POST:/member/email/bind
-     * @secure
      */
     bindEmailUsingPost: (
       query?: {
@@ -2371,7 +2387,6 @@ export class Api<
         path: `/member/email/bind`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2383,7 +2398,6 @@ export class Api<
      * @name ChangeEmailUsingPost
      * @summary changeEmail
      * @request POST:/member/email/change
-     * @secure
      */
     changeEmailUsingPost: (
       query?: {
@@ -2398,7 +2412,6 @@ export class Api<
         path: `/member/email/change`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2410,7 +2423,6 @@ export class Api<
      * @name SendEmailCodeUsingGet
      * @summary sendEmailCode
      * @request GET:/member/email/send-code
-     * @secure
      */
     sendEmailCodeUsingGet: (
       query: {
@@ -2428,7 +2440,6 @@ export class Api<
         path: `/member/email/send-code`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2439,7 +2450,6 @@ export class Api<
      * @name FlashExchangeUsingPost
      * @summary 用户闪兑
      * @request POST:/member/flash-exchange
-     * @secure
      */
     flashExchangeUsingPost: (
       query?: {
@@ -2458,7 +2468,6 @@ export class Api<
         path: `/member/flash-exchange`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2470,7 +2479,6 @@ export class Api<
      * @name BindGoogleUsingPost
      * @summary 绑定google验证
      * @request POST:/member/gg/bindGoogle
-     * @secure
      */
     bindGoogleUsingPost: (
       query?: {
@@ -2488,7 +2496,6 @@ export class Api<
         path: `/member/gg/bindGoogle`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2500,13 +2507,11 @@ export class Api<
      * @name GenerateGoogleSecretUsingPost
      * @summary 生成谷歌秘钥
      * @request POST:/member/gg/generateGoogleSecret
-     * @secure
      */
     generateGoogleSecretUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member/gg/generateGoogleSecret`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2518,7 +2523,6 @@ export class Api<
      * @name GoogleLoginUsingPost
      * @summary google验证验证码
      * @request POST:/member/gg/googleCodeTelVerify
-     * @secure
      */
     googleLoginUsingPost: (
       query?: {
@@ -2536,7 +2540,6 @@ export class Api<
         path: `/member/gg/googleCodeTelVerify`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2548,7 +2551,6 @@ export class Api<
      * @name GoogleLoginUsingPost1
      * @summary google验证验证码
      * @request POST:/member/gg/googleCodeVerify
-     * @secure
      */
     googleLoginUsingPost1: (
       query?: {
@@ -2564,7 +2566,6 @@ export class Api<
         path: `/member/gg/googleCodeVerify`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2576,13 +2577,11 @@ export class Api<
      * @name UserInfoUsingGet
      * @summary 邀请列表
      * @request GET:/member/info
-     * @secure
      */
     userInfoUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member/info`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -2593,7 +2592,6 @@ export class Api<
      * @name InitInvitationCodeUsingPost
      * @summary 用户钱包地址列表
      * @request POST:/member/init-invitation-code
-     * @secure
      */
     initInvitationCodeUsingPost: (
       query?: {
@@ -2606,7 +2604,6 @@ export class Api<
         path: `/member/init-invitation-code`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2618,7 +2615,6 @@ export class Api<
      * @name MemberAddressAddUsingPost
      * @summary 用户钱包地址列表
      * @request POST:/member/member-address-add
-     * @secure
      */
     memberAddressAddUsingPost: (
       query?: {
@@ -2633,7 +2629,6 @@ export class Api<
         path: `/member/member-address-add`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2645,7 +2640,6 @@ export class Api<
      * @name MemberAddressAddUsingPost1
      * @summary 用户钱包地址列表
      * @request POST:/member/member-address-del
-     * @secure
      */
     memberAddressAddUsingPost1: (
       query?: {
@@ -2658,7 +2652,6 @@ export class Api<
         path: `/member/member-address-del`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2670,13 +2663,11 @@ export class Api<
      * @name MemberAddressListUsingPost
      * @summary 用户钱包地址列表
      * @request POST:/member/member-address-list
-     * @secure
      */
     memberAddressListUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member/member-address-list`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2688,7 +2679,6 @@ export class Api<
      * @name InvitationUsingGet1
      * @summary 邀请列表
      * @request GET:/member/page-invitation
-     * @secure
      */
     invitationUsingGet1: (
       query: {
@@ -2713,7 +2703,6 @@ export class Api<
         path: `/member/page-invitation`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2724,13 +2713,11 @@ export class Api<
      * @name InvitationUsingGet2
      * @summary 生成邀请二维码
      * @request GET:/member/qrcode
-     * @secure
      */
     invitationUsingGet2: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member/qrcode`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -2741,7 +2728,6 @@ export class Api<
      * @name MemberTeamPageQueryUsingGet1
      * @summary 会员列表
      * @request GET:/member/team/page-query
-     * @secure
      */
     memberTeamPageQueryUsingGet1: (
       query: {
@@ -2788,7 +2774,6 @@ export class Api<
         path: `/member/team/page-query`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2799,13 +2784,11 @@ export class Api<
      * @name MemberTeamAreaUsingGet
      * @summary 分区信息
      * @request GET:/member/team/page-query/area
-     * @secure
      */
     memberTeamAreaUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member/team/page-query/area`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -2816,7 +2799,6 @@ export class Api<
      * @name MemberTeamAreaStatUsingGet
      * @summary 会员列表
      * @request GET:/member/team/page-query/areaStat
-     * @secure
      */
     memberTeamAreaStatUsingGet: (
       query?: {
@@ -2832,7 +2814,6 @@ export class Api<
         path: `/member/team/page-query/areaStat`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -2843,7 +2824,6 @@ export class Api<
      * @name MemberTeamPageQueryUsingGet
      * @summary 会员列表
      * @request GET:/member/team/page-query/generation
-     * @secure
      */
     memberTeamPageQueryUsingGet: (
       query?: {
@@ -2869,7 +2849,6 @@ export class Api<
         path: `/member/team/page-query/generation`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -2881,7 +2860,6 @@ export class Api<
      * @name PageUsingPost
      * @summary 列表
      * @request POST:/node-product-config/list
-     * @secure
      */
     pageUsingPost: (
       query?: {
@@ -2897,7 +2875,6 @@ export class Api<
         path: `/node-product-config/list`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2910,7 +2887,6 @@ export class Api<
      * @name PurchaseUsingPost1
      * @summary 列表
      * @request POST:/node-product/purchase
-     * @secure
      */
     purchaseUsingPost1: (
       query?: {
@@ -2926,7 +2902,6 @@ export class Api<
         path: `/node-product/purchase`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2938,7 +2913,6 @@ export class Api<
      * @name PurchaseCheckUsingPost
      * @summary 列表
      * @request POST:/node-product/purchase/check
-     * @secure
      */
     purchaseCheckUsingPost: (
       query?: {
@@ -2954,7 +2928,6 @@ export class Api<
         path: `/node-product/purchase/check`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2966,13 +2939,11 @@ export class Api<
      * @name PurchaseInfoUsingPost
      * @summary 列表
      * @request POST:/node-product/purchase/info
-     * @secure
      */
     purchaseInfoUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/node-product/purchase/info`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2985,7 +2956,6 @@ export class Api<
      * @name CreateUsingPost1
      * @summary 托管
      * @request POST:/order/create
-     * @secure
      */
     createUsingPost1: (
       query?: {
@@ -3001,7 +2971,6 @@ export class Api<
         path: `/order/create`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3013,13 +2982,11 @@ export class Api<
      * @name DividendsStatisticsUsingGet
      * @summary 分红统计
      * @request GET:/order/dividends-statistics
-     * @secure
      */
     dividendsStatisticsUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/order/dividends-statistics`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -3030,7 +2997,6 @@ export class Api<
      * @name InfoUsingGet3
      * @summary 详情
      * @request GET:/order/info
-     * @secure
      */
     infoUsingGet3: (
       query?: {
@@ -3046,7 +3012,6 @@ export class Api<
         path: `/order/info`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3057,7 +3022,6 @@ export class Api<
      * @name PageUsingGet2
      * @summary 托管列表
      * @request GET:/order/page
-     * @secure
      */
     pageUsingGet2: (
       query: {
@@ -3082,7 +3046,6 @@ export class Api<
         path: `/order/page`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3093,7 +3056,6 @@ export class Api<
      * @name UnlockUsingPost
      * @summary 解锁
      * @request POST:/order/unlock
-     * @secure
      */
     unlockUsingPost: (
       query?: {
@@ -3109,7 +3071,6 @@ export class Api<
         path: `/order/unlock`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3121,7 +3082,6 @@ export class Api<
      * @name UnlockInfoUsingGet
      * @summary 解锁手续费查询
      * @request GET:/order/unlock-info
-     * @secure
      */
     unlockInfoUsingGet: (
       query?: {
@@ -3137,7 +3097,6 @@ export class Api<
         path: `/order/unlock-info`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -3149,13 +3108,11 @@ export class Api<
      * @name InfoUsingGet1
      * @summary 详情
      * @request GET:/platform-config/info
-     * @secure
      */
     infoUsingGet1: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/platform-config/info`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -3167,13 +3124,11 @@ export class Api<
      * @name ComputingPowerOutputSwarmUsingGet
      * @summary 算力产出-swarm统计
      * @request GET:/porder/computing-power-output-swarm
-     * @secure
      */
     computingPowerOutputSwarmUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/porder/computing-power-output-swarm`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -3184,7 +3139,6 @@ export class Api<
      * @name CreateUsingPost
      * @summary 下单
      * @request POST:/porder/create
-     * @secure
      */
     createUsingPost: (
       query?: {
@@ -3352,7 +3306,6 @@ export class Api<
         path: `/porder/create`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3364,7 +3317,6 @@ export class Api<
      * @name InfoUsingGet2
      * @summary 订单详情
      * @request GET:/porder/info
-     * @secure
      */
     infoUsingGet2: (
       query?: {
@@ -3380,7 +3332,6 @@ export class Api<
         path: `/porder/info`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3391,7 +3342,6 @@ export class Api<
      * @name PageDetailMcDxUsingGet
      * @summary 算力产出
      * @request GET:/porder/page-detail-mc-dx
-     * @secure
      */
     pageDetailMcDxUsingGet: (
       query: {
@@ -3421,7 +3371,6 @@ export class Api<
         path: `/porder/page-detail-mc-dx`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3432,7 +3381,6 @@ export class Api<
      * @name ListPageUsingGet
      * @summary 订单列表
      * @request GET:/porder/page-list
-     * @secure
      */
     listPageUsingGet: (
       query: {
@@ -3467,7 +3415,6 @@ export class Api<
         path: `/porder/page-list`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3478,13 +3425,11 @@ export class Api<
      * @name SumIncomeUsingGet
      * @summary 订单列表-累计产出
      * @request GET:/porder/sumIncome
-     * @secure
      */
     sumIncomeUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/porder/sumIncome`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -3496,13 +3441,11 @@ export class Api<
      * @name HankUsingGet
      * @summary 产品销量排行
      * @request GET:/power/hank
-     * @secure
      */
     hankUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/power/hank`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -3513,7 +3456,6 @@ export class Api<
      * @name PageListUsingGet
      * @summary 产品列表
      * @request GET:/power/page-list
-     * @secure
      */
     pageListUsingGet: (
       query: {
@@ -3558,7 +3500,6 @@ export class Api<
         path: `/power/page-list`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3569,7 +3510,6 @@ export class Api<
      * @name PageListH5UsingGet
      * @summary 产品列表-H5
      * @request GET:/power/page-list-h5
-     * @secure
      */
     pageListH5UsingGet: (
       query: {
@@ -3614,7 +3554,6 @@ export class Api<
         path: `/power/page-list-h5`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3625,13 +3564,11 @@ export class Api<
      * @name PageListUsingGet1
      * @summary 根据查询产品
      * @request GET:/power/{id}
-     * @secure
      */
     pageListUsingGet1: (id?: string, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/power/${id}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -3643,13 +3580,11 @@ export class Api<
      * @name HankUsingGet1
      * @summary 产品销量排行
      * @request GET:/product/hank
-     * @secure
      */
     hankUsingGet1: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/product/hank`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -3660,7 +3595,6 @@ export class Api<
      * @name PageListUsingGet2
      * @summary 质押产品列表
      * @request GET:/product/page-list
-     * @secure
      */
     pageListUsingGet2: (
       query: {
@@ -3690,7 +3624,6 @@ export class Api<
         path: `/product/page-list`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3701,13 +3634,11 @@ export class Api<
      * @name PageListUsingGet3
      * @summary 根据查询产品
      * @request GET:/product/{id}
-     * @secure
      */
     pageListUsingGet3: (id?: string, params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/product/${id}`,
         method: "GET",
-        secure: true,
         ...params,
       }),
   };
@@ -3719,7 +3650,6 @@ export class Api<
      * @name GetCodeUsingGet
      * @summary 验证码
      * @request GET:/sms/get/{type}
-     * @secure
      */
     getCodeUsingGet: (
       type:
@@ -3728,7 +3658,8 @@ export class Api<
         | "EDIT_PASSWORD"
         | "EDIT_JY_PASSWORD"
         | "UPDATE_TEL"
-        | "WITHDRAW",
+        | "WITHDRAW"
+        | "LOGIN",
       query?: {
         /** globalRoaming */
         globalRoaming?: string;
@@ -3741,7 +3672,6 @@ export class Api<
         path: `/sms/get/${type}`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3752,7 +3682,6 @@ export class Api<
      * @name SendEmailUsingGet
      * @summary 发送邮箱验证码
      * @request GET:/sms/sendEmail/{type}
-     * @secure
      */
     sendEmailUsingGet: (
       type:
@@ -3761,7 +3690,8 @@ export class Api<
         | "EDIT_PASSWORD"
         | "EDIT_JY_PASSWORD"
         | "UPDATE_TEL"
-        | "WITHDRAW",
+        | "WITHDRAW"
+        | "LOGIN",
       query?: {
         /** emailNo */
         emailNo?: string;
@@ -3772,7 +3702,6 @@ export class Api<
         path: `/sms/sendEmail/${type}`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3783,7 +3712,6 @@ export class Api<
      * @name VerificationEmailUsingGet
      * @summary 验证邮箱验证
      * @request GET:/sms/verificationEmail
-     * @secure
      */
     verificationEmailUsingGet: (
       query?: {
@@ -3798,7 +3726,6 @@ export class Api<
         path: `/sms/verificationEmail`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
@@ -3810,7 +3737,6 @@ export class Api<
      * @name ApkUploadUsingPost
      * @summary apkUpload
      * @request POST:/upload/apkUpload
-     * @secure
      */
     apkUploadUsingPost: (
       data: {
@@ -3826,7 +3752,6 @@ export class Api<
         path: `/upload/apkUpload`,
         method: "POST",
         body: data,
-        secure: true,
         type: ContentType.FormData,
         ...params,
       }),
@@ -3838,7 +3763,6 @@ export class Api<
      * @name ImgUploadUsingPost
      * @summary imgUpload
      * @request POST:/upload/imgUpload
-     * @secure
      */
     imgUploadUsingPost: (
       data: {
@@ -3854,7 +3778,6 @@ export class Api<
         path: `/upload/imgUpload`,
         method: "POST",
         body: data,
-        secure: true,
         type: ContentType.FormData,
         ...params,
       }),
@@ -3867,7 +3790,6 @@ export class Api<
      * @name OutputFreezeAllUsingGet
      * @summary 账户明细-可用余额
      * @request GET:/wallet/account-details-balance
-     * @secure
      */
     outputFreezeAllUsingGet: (
       query?: {
@@ -3880,7 +3802,6 @@ export class Api<
         path: `/wallet/account-details-balance`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3891,7 +3812,6 @@ export class Api<
      * @name AccountDetailsFreezeUsingGet1
      * @summary 账户明细-产出冻结-总览
      * @request GET:/wallet/account-details-freeze
-     * @secure
      */
     accountDetailsFreezeUsingGet1: (
       query?: {
@@ -3904,7 +3824,6 @@ export class Api<
         path: `/wallet/account-details-freeze`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3915,7 +3834,6 @@ export class Api<
      * @name AccountDetailsFreezeUsingGet
      * @summary 账户明细-产出冻结-列表
      * @request GET:/wallet/account-details-freeze-list
-     * @secure
      */
     accountDetailsFreezeUsingGet: (
       query: {
@@ -3942,7 +3860,6 @@ export class Api<
         path: `/wallet/account-details-freeze-list`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3953,7 +3870,6 @@ export class Api<
      * @name OtherPageUsingGet
      * @summary 分页获取其他记录（系统操作）
      * @request GET:/wallet/deposit-other
-     * @secure
      */
     otherPageUsingGet: (
       query: {
@@ -3984,7 +3900,6 @@ export class Api<
         path: `/wallet/deposit-other`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -3995,7 +3910,6 @@ export class Api<
      * @name DepositPageUsingGet
      * @summary 分页获取冲币记录
      * @request GET:/wallet/deposit-page
-     * @secure
      */
     depositPageUsingGet: (
       query: {
@@ -4028,7 +3942,6 @@ export class Api<
         path: `/wallet/deposit-page`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4039,7 +3952,6 @@ export class Api<
      * @name GetAccountAvailableBalanceUsingGet
      * @summary 账户可用余额
      * @request GET:/wallet/getAccountAvailableBalance
-     * @secure
      */
     getAccountAvailableBalanceUsingGet: (
       query?: {
@@ -4052,7 +3964,6 @@ export class Api<
         path: `/wallet/getAccountAvailableBalance`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4063,13 +3974,11 @@ export class Api<
      * @name GetAccountAvailableBalanceSwarmUsingGet
      * @summary SWARM账户可用余额
      * @request GET:/wallet/getAccountAvailableBalanceSwarm
-     * @secure
      */
     getAccountAvailableBalanceSwarmUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/wallet/getAccountAvailableBalanceSwarm`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -4080,7 +3989,6 @@ export class Api<
      * @name GetRecordStatisticsUsingGet
      * @summary 资产-充值统计
      * @request GET:/wallet/getRecordStatistics
-     * @secure
      */
     getRecordStatisticsUsingGet: (
       query?: {
@@ -4095,7 +4003,6 @@ export class Api<
         path: `/wallet/getRecordStatistics`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4106,7 +4013,6 @@ export class Api<
      * @name GetTipsUsingPost
      * @summary 资产-获取温馨提示
      * @request POST:/wallet/getTips
-     * @secure
      */
     getTipsUsingPost: (
       query?: {
@@ -4124,7 +4030,6 @@ export class Api<
         path: `/wallet/getTips`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4136,13 +4041,11 @@ export class Api<
      * @name GetTotalInvestmentUsingGet
      * @summary 获取总投资金额
      * @request GET:/wallet/getTotalInvestment
-     * @secure
      */
     getTotalInvestmentUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/wallet/getTotalInvestment`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -4153,7 +4056,6 @@ export class Api<
      * @name GetWithdrawStatisticsUsingGet
      * @summary 资产-提币统计
      * @request GET:/wallet/getWithdrawStatistics
-     * @secure
      */
     getWithdrawStatisticsUsingGet: (
       query?: {
@@ -4168,7 +4070,6 @@ export class Api<
         path: `/wallet/getWithdrawStatistics`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4179,13 +4080,11 @@ export class Api<
      * @name InitUsingPost
      * @summary 初始化一下
      * @request POST:/wallet/initEvery
-     * @secure
      */
     initUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/wallet/initEvery`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4197,13 +4096,11 @@ export class Api<
      * @name ListUsingPost
      * @summary 资产列表
      * @request POST:/wallet/list
-     * @secure
      */
     listUsingPost: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/wallet/list`,
         method: "POST",
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4215,7 +4112,6 @@ export class Api<
      * @name PageDetailUsingGet
      * @summary 明细
      * @request GET:/wallet/page-detail
-     * @secure
      */
     pageDetailUsingGet: (
       query: {
@@ -4242,7 +4138,6 @@ export class Api<
         path: `/wallet/page-detail`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4253,7 +4148,6 @@ export class Api<
      * @name PageDetailListUsingPost
      * @summary 明细-按分类查询
      * @request POST:/wallet/page-detail-list
-     * @secure
      */
     pageDetailListUsingPost: (
       query: {
@@ -4285,7 +4179,6 @@ export class Api<
         path: `/wallet/page-detail-list`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4297,7 +4190,6 @@ export class Api<
      * @name PledgeThawingUsingGet
      * @summary 账户明细-质押解冻-总览
      * @request GET:/wallet/pledge-thawing
-     * @secure
      */
     pledgeThawingUsingGet: (
       query?: {
@@ -4310,7 +4202,6 @@ export class Api<
         path: `/wallet/pledge-thawing`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4321,7 +4212,6 @@ export class Api<
      * @name PledgeThawingListUsingGet
      * @summary 账户明细-质押解冻-列表
      * @request GET:/wallet/pledge-thawing-list
-     * @secure
      */
     pledgeThawingListUsingGet: (
       query: {
@@ -4348,7 +4238,6 @@ export class Api<
         path: `/wallet/pledge-thawing-list`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4359,7 +4248,6 @@ export class Api<
      * @name RechargeCommitUsingPost
      * @summary 资产-提交充币
      * @request POST:/wallet/rechargeCommit
-     * @secure
      */
     rechargeCommitUsingPost: (
       query: {
@@ -4382,7 +4270,6 @@ export class Api<
         path: `/wallet/rechargeCommit`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4394,7 +4281,6 @@ export class Api<
      * @name RechargeDetailUsingPost
      * @summary 资产-提交充币
      * @request POST:/wallet/rechargeDetail
-     * @secure
      */
     rechargeDetailUsingPost: (
       query?: {
@@ -4410,7 +4296,6 @@ export class Api<
         path: `/wallet/rechargeDetail`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4422,13 +4307,11 @@ export class Api<
      * @name InteamInvestmentStatitUsingGet
      * @summary 团队资产统计
      * @request GET:/wallet/team/investmentStat
-     * @secure
      */
     inteamInvestmentStatitUsingGet: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/wallet/team/investmentStat`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -4439,7 +4322,6 @@ export class Api<
      * @name TransferUsingPost
      * @summary 转账
      * @request POST:/wallet/transfer
-     * @secure
      */
     transferUsingPost: (
       query?: {
@@ -4454,7 +4336,6 @@ export class Api<
         path: `/wallet/transfer`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4466,7 +4347,6 @@ export class Api<
      * @name TransferPageUsingGet
      * @summary 分页获取转账记录
      * @request GET:/wallet/transfer-page
-     * @secure
      */
     transferPageUsingGet: (
       query: {
@@ -4491,7 +4371,6 @@ export class Api<
         path: `/wallet/transfer-page`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
 
@@ -4502,7 +4381,6 @@ export class Api<
      * @name WithdrawUsingPost
      * @summary 提币
      * @request POST:/wallet/withdraw
-     * @secure
      */
     withdrawUsingPost: (
       query: {
@@ -4532,7 +4410,6 @@ export class Api<
         path: `/wallet/withdraw`,
         method: "POST",
         query: query,
-        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4544,7 +4421,6 @@ export class Api<
      * @name WithdrawPageUsingGet
      * @summary 分页获取提币记录
      * @request GET:/wallet/withdraw-page
-     * @secure
      */
     withdrawPageUsingGet: (
       query: {
@@ -4571,7 +4447,6 @@ export class Api<
         path: `/wallet/withdraw-page`,
         method: "GET",
         query: query,
-        secure: true,
         ...params,
       }),
   };
