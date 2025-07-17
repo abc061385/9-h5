@@ -77,9 +77,9 @@ const DemoView = () => {
           <div>123</div>
         </Drawer>
         <div className="grow">
-          <InfiniteList<any>
+          <InfiniteList<{ name: string; size: number; description: string }>
             data={infiniteData}
-            fetchMore={async (_index): Promise<any[]> => {
+            fetchMore={async (_index) => {
               if (_index > 150) {
                 return [];
               }
