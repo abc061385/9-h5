@@ -4,10 +4,10 @@ import ViewLayout from "@/components/layout";
 // import Roulette from "@/components/roulette";
 import { Verification } from "@/components/verification";
 import useSWR from "swr";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { api } from "@/api";
 import { useStore } from "@/store";
-import { cn } from "@/lib/utils";
+import { InfiniteList } from "@/components/infinite-list";
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
@@ -20,9 +20,16 @@ const DemoView = () => {
     ([, p]) => api.cms.pageAnnouncementUsingGet(p),
   );
 
+  const users = useMemo(() => {
+    return Array.from({ length: 100000 }, (_, index) => ({
+      name: `User ${index}`,
+      size: Math.floor(Math.random() * 40) + 70,
+      description: `Description for user ${index}`,
+    }));
+  }, []);
   return (
     <ViewLayout dock={true}>
-      <div>
+      <div className="flex flex-col size-full">
         <div>
           <button
             className="text-4xl"
@@ -41,7 +48,7 @@ const DemoView = () => {
             {log?.message}
           </span>
         </div>
-        <div>{initLoading ? "loading " : userInfo.tel}</div>
+        <div>{initLoading ? "loading " : userInfo?.tel}</div>
         <div className="tabs tabs-box">
           <a role="tab" className="tab flex-1">
             Tab 1
@@ -59,6 +66,20 @@ const DemoView = () => {
         <Drawer open={open} onChange={setOpen} className="h-[40vh]">
           <div>123</div>
         </Drawer>
+        <div className="grow">
+          <InfiniteList
+            data={users}
+            itemContent={(_, user) => (
+              <div>
+                <p className="text-pink-600">
+                  <strong>{user.name}</strong>
+                </p>
+                <div className="text-blue-400">{user.description}</div>
+                <div className="divider"></div>
+              </div>
+            )}
+          />
+        </div>
       </div>
     </ViewLayout>
   );
