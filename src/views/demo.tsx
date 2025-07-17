@@ -19,7 +19,7 @@ const DemoView = () => {
       : null,
     ([, p]) => api.cms.pageAnnouncementUsingGet(p),
   );
-  const [infiniteData, setInfiniteData] = useState<any[]>();
+  const [infiniteData, setInfiniteData] = useState<any[]>([]);
 
   const users = useMemo(() => {}, []);
   useEffect(() => {
@@ -70,15 +70,18 @@ const DemoView = () => {
           <div>123</div>
         </Drawer>
         <div className="grow">
-          <InfiniteList
+          <InfiniteList<any>
             data={infiniteData}
-            endReached={(_index) => {
+            fetchMore={async (_index): Promise<any[]> => {
+              if (_index > 150) {
+                return [];
+              }
               const list = Array.from({ length: 100 }, (_, index) => ({
                 name: `User ${_index + index}`,
                 size: Math.floor(Math.random() * 40) + 70,
                 description: `Description for user ${_index + index}`,
               }));
-              setInfiniteData(infiniteData?.concat(list));
+              return list;
             }}
             itemContent={(_, user) => (
               <div>
