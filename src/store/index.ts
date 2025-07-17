@@ -6,7 +6,7 @@ type RootStore = {
   initRoot: () => void;
 };
 
-type AppStore = UserSlice & RootStore;
+export type AppStore = UserSlice & RootStore;
 
 export const useStore = create<AppStore>()((set, get, api) => ({
   ...createUserSlice(set, get, api),
@@ -16,7 +16,7 @@ export const useStore = create<AppStore>()((set, get, api) => ({
       set({ initLoading: true });
       await get().fetchUserInfo();
       set({ initLoading: false });
-    } catch (err) {
+    } catch {
       set({ initLoading: false });
     }
   },

@@ -26,7 +26,7 @@ export const Verification: FC<VerificationInputProps> = (props) => {
     try {
       const clip = await navigator.clipboard.readText();
       setText(clip);
-    } catch (err) {}
+    } catch {}
   };
   return (
     <div className="w-full">

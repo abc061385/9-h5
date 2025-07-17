@@ -17,7 +17,7 @@ export const LayoutDock = () => {
   ];
 
   return (
-    <div className="dock md:absolute m-0 p-0 z-50">
+    <div className="dock md:absolute m-0 p-0 z-50 bg-white border-none">
       {pathList.map((i, index) => {
         return (
           <Link href={i.href} key={index}>

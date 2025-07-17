@@ -2,7 +2,6 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
-import { useState } from "react";
 
 const LoginVerificationView = () => {
   return (
