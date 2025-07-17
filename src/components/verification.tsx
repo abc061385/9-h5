@@ -3,7 +3,13 @@ import VerificationInput, {
   VerificationInputProps,
 } from "react-verification-input";
 
-export const Verification: FC<VerificationInputProps> = (props) => {
+type IProps = {
+  reSendcode?: () => Promise<void>;
+};
+export const Verification: FC<VerificationInputProps & IProps> = ({
+  reSendcode,
+  ...props
+}) => {
   const [seconds, setSeconds] = useState(0); // 倒计时秒数
   const [text, setText] = useState("");
   const sendOtp = () => {
@@ -28,6 +34,12 @@ export const Verification: FC<VerificationInputProps> = (props) => {
       setText(clip);
     } catch {}
   };
+  const sendCode = async () => {
+    if (reSendcode) {
+      await reSendcode();
+    }
+    sendOtp();
+  };
   return (
     <div className="w-full">
       <VerificationInput
@@ -45,7 +57,9 @@ export const Verification: FC<VerificationInputProps> = (props) => {
       <div className="flex justify-between items-center  mt-2">
         <button
           className="btn btn-link h-auto"
-          onClick={sendOtp}
+          onClick={() => {
+            sendCode();
+          }}
           disabled={seconds > 0}
         >
           重发

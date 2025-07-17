@@ -1,7 +1,6 @@
 "use client";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-// import { useLoginStore } from "@/store/useLoginStore";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,12 +10,18 @@ import { TextError } from "@/components/input/text-error";
 import { InputPassword } from "@/components/input/password";
 import z, { useRootReg } from "@/lib/z";
 import { useLoginStore } from "@/store/useLoginStore";
+// import { api } from "@/api";
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 const LoginView = () => {
   const t = useTrans("login");
   const router = useRouter();
-  // const email = useLoginStore((s) => s.email);
   const setField = useLoginStore((s) => s.setField);
+  // const accountType = useLoginStore((s) => s.accountType);
   const reg = useRootReg();
 
   const Schema = z.object({
@@ -28,12 +33,27 @@ const LoginView = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: zodResolver(Schema),
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
+  const setup1 = async (data: FormData) => {
+    try {
+      console.log(data);
+      // const res = await api.auth.loginByFaBeforeCheckUsingPost({
+      //   account: data.email,
+      //   accountType,
+      //   password: data.password,
+      //   certificate: "",
+      // });
+      const faCheckId = "fec03103c2ff49449a4758550b3d967c";
+      setField("faCheckId", faCheckId);
+      setField("account", data.email);
+      router.push(routerMap["login/verification"]);
+    } catch {}
+  };
   return (
     <ViewLayout>
       <div className="p-content size-full flex flex-col">
@@ -74,10 +94,7 @@ const LoginView = () => {
           type="submit"
           className="btn btn-primary w-full"
           onClick={handleSubmit((data) => {
-            console.log(data);
-            setField("email", data.email);
-            setField("password", data.password);
-            router.push(routerMap["login/verification"]);
+            setup1(data);
           })}
         >
           {t("loginBtn")}
