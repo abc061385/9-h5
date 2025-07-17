@@ -29,4 +29,35 @@ function maskCore(str: string, front: number, back: number): string {
   return visibleFront + "***" + visibleBack;
 }
 
+/**
+ * 千分位格式化数字
+ * @param input 数字或字符串（可以是整数、小数、负数）
+ * @param options 可选配置项
+ * @returns 格式化后的字符串
+ */
+export function formatThousand(
+  input: number | string,
+  options?: {
+    separator?: string  // 默认使用 ","
+    decimalSeparator?: string // 默认使用 "."
+  }
+): string {
+  const separator = options?.separator ?? ',';
+  const decimalSeparator = options?.decimalSeparator ?? '.';
+
+  if (input === null || input === undefined || input === '') return '';
+
+  const numStr = String(input);
+  const isNegative = numStr.startsWith('-');
+  const [intPart, decPart] = numStr.replace('-', '').split('.');
+
+  const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+
+  return (
+    (isNegative ? '-' : '') +
+    formattedInt +
+    (decPart !== undefined ? decimalSeparator + decPart : '')
+  );
+}
+
 export const getIsDev = (): boolean => process.env.NODE_ENV === "development";
