@@ -16,6 +16,11 @@ const asyncA = () =>
     }, 5000);
   });
 
+type User = {
+  name: string;
+  size: number;
+  description: string;
+};
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
@@ -27,7 +32,7 @@ const DemoView = () => {
       : null,
     ([, p]) => api.cms.pageAnnouncementUsingGet(p),
   );
-  const [infiniteData, setInfiniteData] = useState<any[]>([]);
+  const [infiniteData, setInfiniteData] = useState<User[]>([]);
 
   useEffect(() => {
     const list = Array.from({ length: 100 }, (_, index) => ({
@@ -77,8 +82,9 @@ const DemoView = () => {
           <div>123</div>
         </Drawer>
         <div className="grow">
-          <InfiniteList<{ name: string; size: number; description: string }>
+          <InfiniteList<User, { context: number }>
             data={infiniteData}
+            context={{ context: 123999999 }}
             fetchMore={async (_index) => {
               if (_index > 150) {
                 return [];
@@ -93,8 +99,9 @@ const DemoView = () => {
               }));
               return list;
             }}
-            itemContent={(_, user) => (
+            itemContent={(_, user, context) => (
               <div>
+                <p className="text-red-400">context: {context.context}</p>
                 <p className="text-pink-600">
                   <strong>{user.name}</strong>
                 </p>

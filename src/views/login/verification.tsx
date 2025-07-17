@@ -2,12 +2,24 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
-import { useState } from "react";
+import { useLoginStore } from "@/store/useLoginStore";
 
 const LoginVerificationView = () => {
+  const email = useLoginStore((s) => s.email);
+  const password = useLoginStore((s) => s.password);
+  console.log(email, password);
+
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Security Verification" algin="center" />}
+      header={
+        <HeaderWithBack
+          title="Security Verification"
+          algin="center"
+          onChange={() => {
+            useLoginStore.persist.clearStorage();
+          }}
+        />
+      }
     >
       <div className="p-content">
         <p className="text-xs font-medium mb-2">

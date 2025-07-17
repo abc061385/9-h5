@@ -8,7 +8,7 @@ export const LayoutRoot = ({ children }: PropsWithChildren) => {
   const initRoot = useStore((s) => s.initRoot);
   useEffect(() => {
     initRoot();
-  }, []);
+  }, [initRoot]);
   return (
     <div
       className={cn([

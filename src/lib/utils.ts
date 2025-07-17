@@ -28,3 +28,5 @@ function maskCore(str: string, front: number, back: number): string {
   const visibleBack = str.slice(len - Math.min(back, len));
   return visibleFront + "***" + visibleBack;
 }
+
+export const getIsDev = (): boolean => process.env.NODE_ENV === "development";

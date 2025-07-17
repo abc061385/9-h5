@@ -1,17 +1,30 @@
+import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
 
-interface LoginState {
+interface LoginState extends BaseState<LoginState> {
   email: string;
+  password: string;
   code: string;
-  setEmail: (v: string) => void;
-  setCode: (v: string) => void;
   reset: () => void;
 }
 
-export const useLoginStore = create<LoginState>((set) => ({
-  email: "",
-  code: "",
-  setEmail: (v) => set({ email: v }),
-  setCode: (v) => set({ code: v }),
-  reset: () => set({ email: "", code: "" }),
-}));
+export const useLoginStore = create<LoginState>()(
+  persist(
+    devtools(
+      (set) => {
+        return {
+          email: "",
+          password: "",
+          code: "",
+          reset: () => set({ email: "", code: "" }),
+          setField: (key, value) => set({ [key]: value } as any),
+        };
+      },
+      { enabled: getIsDev() },
+    ),
+    {
+      name: "login-store",
+    },
+  ),
+);

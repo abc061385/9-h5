@@ -7,11 +7,13 @@ type IProps = {
   title?: ReactNode;
   algin?: "center" | "right";
   className?: string;
+  onChange?: () => void;
 };
 export const HeaderWithBack = ({
   title,
   algin = "right",
   className = "",
+  onChange,
 }: IProps) => {
   const warpClass = cn([
     "flex items-center w-full h-[44px] p-content",
@@ -20,6 +22,7 @@ export const HeaderWithBack = ({
   const router = useRouter();
 
   const handleBack = () => {
+    onChange && onChange();
     router.back();
   };
 

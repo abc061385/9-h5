@@ -10,28 +10,6 @@
  * ---------------------------------------------------------------
  */
 
-/** CouponCodeDto */
-export interface CouponCodeDto {
-  /** 体验券码 */
-  couponCode?: string;
-}
-
-/** FundInvestmentCouponDTO */
-export interface FundInvestmentCouponDTO {
-  /** 体验券码 */
-  couponCode?: string;
-  /**
-   * 质押计划ID
-   * @format int64
-   */
-  pledgeId: number;
-  /**
-   * 产品ID
-   * @format int64
-   */
-  productId: number;
-}
-
 /** 统一消息返回对象 */
 export interface _ {
   /** @format int32 */
@@ -1534,7 +1512,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name CalMaxProfitUsingPost
      * @summary calMaxProfit
      * @request POST:/fund-product-config/calMaxProfit
@@ -1571,7 +1549,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name ClaimedProfitUsingGet
      * @summary claimedProfit
      * @request GET:/fund-product-config/claimedProfit
@@ -1595,7 +1573,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name ExtractUsingPost
      * @summary extract
      * @request POST:/fund-product-config/claimedProfit/extract
@@ -1620,7 +1598,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name ClaimedProfitTransactionUsingGet
      * @summary claimedProfitTransaction
      * @request GET:/fund-product-config/claimedProfit/transaction
@@ -1656,50 +1634,9 @@ export class Api<
       }),
 
     /**
-     * @description data 字段为订单编号
-     *
-     * @tags 基金产品相关接口
-     * @name CouponInvestUsingPost
-     * @summary 体验金购买基金产品
-     * @request POST:/fund-product-config/coupon/invest
-     * @secure
-     */
-    couponInvestUsingPost: (
-      dto: FundInvestmentCouponDTO,
-      params: RequestParams = {},
-    ) =>
-      this.request<_, void>({
-        path: `/fund-product-config/coupon/invest`,
-        method: "POST",
-        body: dto,
-        secure: true,
-        type: ContentType.Json,
-        ...params,
-      }),
-
-    /**
-     * @description data 字段为优惠券ID
-     *
-     * @tags 基金产品相关接口
-     * @name ReceiveCouponUsingPost
-     * @summary 领取优惠券
-     * @request POST:/fund-product-config/coupon/receive
-     * @secure
-     */
-    receiveCouponUsingPost: (dto: CouponCodeDto, params: RequestParams = {}) =>
-      this.request<_, void>({
-        path: `/fund-product-config/coupon/receive`,
-        method: "POST",
-        body: dto,
-        secure: true,
-        type: ContentType.Json,
-        ...params,
-      }),
-
-    /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name DetailUsingGet
      * @summary detail
      * @request GET:/fund-product-config/detail
@@ -1726,7 +1663,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name GetPledgeDaysUsingGet
      * @summary getPledgeDays
      * @request GET:/fund-product-config/getPledgeDays
@@ -1753,7 +1690,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name PurchaseUsingPost
      * @summary purchase
      * @request POST:/fund-product-config/invest
@@ -1790,7 +1727,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name PurchaseDetailUsingGet
      * @summary purchaseDetail
      * @request GET:/fund-product-config/invest/detail
@@ -1803,6 +1740,8 @@ export class Api<
          * @format int64
          */
         id?: number;
+        /** orderType */
+        orderType?: string;
       },
       params: RequestParams = {},
     ) =>
@@ -1817,7 +1756,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name PurchaseRecordUsingGet
      * @summary purchaseRecord
      * @request GET:/fund-product-config/invest/page
@@ -1855,7 +1794,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name PageUsingGet1
      * @summary page
      * @request GET:/fund-product-config/page
@@ -1901,7 +1840,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name ReinvestmentUsingPost
      * @summary reinvestment
      * @request POST:/fund-product-config/reinvestment
@@ -1931,7 +1870,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name RewardExtractUsingPost
      * @summary rewardExtract
      * @request POST:/fund-product-config/reward/extract
@@ -1956,7 +1895,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name GetRewardStatsUsingGet
      * @summary getRewardStats
      * @request GET:/fund-product-config/reward/stats
@@ -1980,7 +1919,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags 基金产品相关接口
+     * @tags fund-product-config-controller
      * @name RewardTransactionUsingGet
      * @summary rewardTransaction
      * @request GET:/fund-product-config/reward/transaction

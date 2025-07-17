@@ -69,6 +69,7 @@ html,
 body {
   color: var(--color-text1);
   background-color: var(--color-white);
+  @apply no-scrollbar;
 }
 
 .layout {
