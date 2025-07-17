@@ -4,7 +4,7 @@ import ViewLayout from "@/components/layout";
 // import Roulette from "@/components/roulette";
 import { Verification } from "@/components/verification";
 import useSWR from "swr";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api";
 import { useStore } from "@/store";
 import { InfiniteList } from "@/components/infinite-list";
@@ -19,13 +19,16 @@ const DemoView = () => {
       : null,
     ([, p]) => api.cms.pageAnnouncementUsingGet(p),
   );
+  const [infiniteData, setInfiniteData] = useState<any[]>();
 
-  const users = useMemo(() => {
-    return Array.from({ length: 100000 }, (_, index) => ({
+  const users = useMemo(() => {}, []);
+  useEffect(() => {
+    const list = Array.from({ length: 100 }, (_, index) => ({
       name: `User ${index}`,
       size: Math.floor(Math.random() * 40) + 70,
       description: `Description for user ${index}`,
     }));
+    setInfiniteData(list);
   }, []);
   return (
     <ViewLayout dock={true}>
@@ -68,7 +71,15 @@ const DemoView = () => {
         </Drawer>
         <div className="grow">
           <InfiniteList
-            data={users}
+            data={infiniteData}
+            endReached={(_index) => {
+              const list = Array.from({ length: 100 }, (_, index) => ({
+                name: `User ${_index + index}`,
+                size: Math.floor(Math.random() * 40) + 70,
+                description: `Description for user ${_index + index}`,
+              }));
+              setInfiniteData(infiniteData?.concat(list));
+            }}
             itemContent={(_, user) => (
               <div>
                 <p className="text-pink-600">
