@@ -4,10 +4,18 @@ import ViewLayout from "@/components/layout";
 // import Roulette from "@/components/roulette";
 import { Verification } from "@/components/verification";
 import useSWR from "swr";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "@/api";
 import { useStore } from "@/store";
 import { InfiniteList } from "@/components/infinite-list";
+const asyncA = () =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("异步等待");
+      resolve([]);
+    }, 5000);
+  });
+
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
@@ -21,7 +29,6 @@ const DemoView = () => {
   );
   const [infiniteData, setInfiniteData] = useState<any[]>([]);
 
-  const users = useMemo(() => {}, []);
   useEffect(() => {
     const list = Array.from({ length: 100 }, (_, index) => ({
       name: `User ${index}`,
@@ -76,6 +83,9 @@ const DemoView = () => {
               if (_index > 150) {
                 return [];
               }
+              console.log("模拟请求api");
+              await asyncA();
+              console.log("拿到数据了");
               const list = Array.from({ length: 100 }, (_, index) => ({
                 name: `User ${_index + index}`,
                 size: Math.floor(Math.random() * 40) + 70,
