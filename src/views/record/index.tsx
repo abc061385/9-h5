@@ -88,7 +88,7 @@ const FundRecordView = () => {
                 <h3 className="mb-5 flex items-center justify-between">
                   {t("策略基金")}
                   <div className="flex items-center gap-1">
-                    <div className="rounded-sm px-1.5 py-1 bg-text-rise text-white text-xs">
+                    <div className="rounded-sm px-1.5 py-1 bg-rise text-white text-xs">
                       investing
                     </div>
                     <BaseImage

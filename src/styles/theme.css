@@ -18,6 +18,7 @@
   --color-text1: #323232;
   --color-text2: #9d95b5;
   --color-text-tip: var(--color-primary);
+  --color-rise: #43b067;
 
   /*utils*/
   --spacing-content: 0.875rem;

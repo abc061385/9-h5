@@ -165,7 +165,7 @@ const ChartsView = () => {
       <div className="p-content">
         <div className="h-5"></div>
         <h2 className="font-bold">Coin Price Trend</h2>
-        <div className="text-text-rise font-bold text-[26px] my-2">
+        <div className="text-rise font-bold text-[26px] my-2">
           $84,056.00
         </div>
         <p className="font-bold text-xs text-[#61616E]">
@@ -175,7 +175,7 @@ const ChartsView = () => {
           9M AI Search & Price
         </div>
         <div className="font-bold text-[10px] flex justify-center items-center">
-          <p className="w-4 h-2 bg-text-rise mr-1"></p>
+          <p className="w-4 h-2 bg-rise mr-1"></p>
           9M AI price trends
         </div>
         <Tabs
