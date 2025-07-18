@@ -699,6 +699,11 @@ export class Api<
          * @default "1"
          */
         accountType?: ref;
+        /**
+         * 0-登录 1-注册
+         * @default "0"
+         */
+        faBizType?: ref;
         /** 校验码 */
         faCheckId: string;
       },

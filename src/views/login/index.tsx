@@ -11,9 +11,8 @@ import { InputPassword } from "@/components/input/password";
 import z, { useRootReg } from "@/lib/z";
 import { encryptPassword } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
-import { AccountType } from "@/lib/const";
+import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
-import { useEffect } from "react";
 
 type FormData = {
   email: string;
@@ -47,12 +46,12 @@ const LoginView = () => {
         account: data.email,
         accountType: AccountType.email,
         password: encryptPassword(data.password),
-        certificate: "",
+        certificate: "abc",
       });
-      const faCheckId = "fec03103c2ff49449a4758550b3d967c";
-      setField("faCheckId", faCheckId);
+      setField("faCheckId", res?.data?.faCheckId);
       setField("account", data.email);
       setField("accountType", AccountType.email);
+      setField("faBizType", FaBizType.login);
       router.push(routerMap["verification"]);
     } catch {}
   };

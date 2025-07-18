@@ -7,7 +7,9 @@ type IProps<T, Context> = Pick<
   "itemContent" | "className" | "context"
 > & {
   data: T[];
-  fetchMore: (index: number) => Promise<T[]>;
+  fetchMore?: (index: number) => Promise<T[]>;
+  hiddenEmpty?: boolean;
+  hiddenFooter?: boolean;
 };
 
 export const InfiniteList = <T, Context>({
@@ -16,6 +18,8 @@ export const InfiniteList = <T, Context>({
   data,
   context,
   fetchMore,
+  hiddenEmpty = false,
+  hiddenFooter = false,
 }: IProps<T, Context>) => {
   const [items, setItems] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -27,6 +31,9 @@ export const InfiniteList = <T, Context>({
   }, [data]);
   const loadMore = useCallback(
     async (index: number) => {
+      if (!fetchMore) {
+        return;
+      }
       if (loading || !hasMore) return;
       setLoading(true);
       const next = await fetchMore(index);
@@ -36,6 +43,13 @@ export const InfiniteList = <T, Context>({
     },
     [loading, hasMore, fetchMore],
   );
+  const footerNode = useCallback(() => {
+    return (
+      <div>
+        {loading ? "加载中…" : hasMore ? "下滑加载更多" : "没有更多数据了"}
+      </div>
+    );
+  }, [loading, hasMore]);
   return (
     <Virtuoso<T, Context>
       className={cn(["size-full", className])}
@@ -45,23 +59,16 @@ export const InfiniteList = <T, Context>({
       endReached={(i) => loadMore(i)}
       increaseViewportBy={200}
       components={{
-        EmptyPlaceholder: () => (
-          <div
-            style={{ padding: 16, textAlign: "center", gridColumn: "1 / -1" }}
-          >
-            <em>表格暂无数据</em>
-          </div>
-        ),
-        Footer: () => {
-          return (
-            <div>
-              {loading
-                ? "加载中…"
-                : hasMore
-                  ? "下滑加载更多"
-                  : "没有更多数据了"}
+        EmptyPlaceholder: () =>
+          hiddenEmpty ? null : (
+            <div
+              style={{ padding: 16, textAlign: "center", gridColumn: "1 / -1" }}
+            >
+              <em>表格暂无数据</em>
             </div>
-          );
+          ),
+        Footer: () => {
+          return hiddenFooter ? null : footerNode();
         },
       }}
     />

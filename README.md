@@ -290,13 +290,6 @@ export default DemoView;
     }
   },
   {
-    "path": "pages/home/charts",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "币价走势"
-    }
-  },
-  {
     "path": "pages/nodes/nodes",
     "style": {
       "navigationStyle": "custom",

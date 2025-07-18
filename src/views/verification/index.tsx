@@ -14,14 +14,15 @@ const VerificationView = () => {
   const faCheckId = useVerificationStore((s) => s.faCheckId);
   const account = useVerificationStore((s) => s.account);
   const accountType = useVerificationStore((s) => s.accountType);
+  const faBizType = useVerificationStore((s) => s.faBizType);
   const setUserField = useUserStore((s) => s.setField);
 
   const sendCode = useCallback(async () => {
     api.auth
-      .sendCodeUsingPost({ account, faCheckId, accountType })
+      .sendCodeUsingPost({ account, faCheckId, accountType, faBizType })
       .then(console.log)
       .catch(console.log);
-  }, [account, faCheckId]);
+  }, [account, faCheckId, faBizType]);
   const validateCode = useCallback(
     async (code: string) => {
       const res = await api.auth.validateCodeUsingPost({
@@ -44,7 +45,7 @@ const VerificationView = () => {
     [faCheckId],
   );
   useEffect(() => {
-    // sendCode();
+    sendCode();
     console.log("我发送了验证码1");
   }, []);
 

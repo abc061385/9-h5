@@ -31,3 +31,22 @@ type NextStarConfig = Partial<{
   star: number;
   coefficient: number;
 }>;
+
+type TokenItem = Partial<{
+  id: number;
+  protocolType: string; // e.g., "TRON"
+  currencyCode: string; // e.g., "USDT"
+  depositDescription: string;
+  qrCode: string; // URL to QR image
+  rechargeAddress: string;
+  decimalPlaces: number;
+  isEnabled: boolean;
+  canDeposit: boolean;
+  canWithdraw: boolean;
+  minWithdrawal: number; // 使用 number 表示金额（如有高精度需求可改成 string 或 BigNumber）
+  maxWithdrawal: number;
+  withdrawalFeeType: "fixed" | "percentage" | string; // 可拓展为联合类型
+  withdrawalFeeConfig: number;
+  usdtExchangeMarket: number;
+  logo: string; // URL to logo image
+}>;
