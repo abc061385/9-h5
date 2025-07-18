@@ -177,6 +177,13 @@ export default DemoView;
       "navigationBarTitleText": "个人中心"
     }
   },
+  {
+    "path": "pages/wallet/deposit",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "充币"
+    }
+  }
 ]
 ```
 
@@ -218,7 +225,7 @@ export default DemoView;
       "navigationBarTitleText": "弹框组件演示"
     }
   },
- 
+
   {
     "path": "pages/assets/index",
     "style": {
@@ -231,13 +238,6 @@ export default DemoView;
     "style": {
       "navigationStyle": "custom",
       "navigationBarTitleText": "提币"
-    }
-  },
-  {
-    "path": "pages/wallet/deposit",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "充币"
     }
   },
   {
@@ -359,7 +359,7 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
- 
+
   {
     "path": "pages/teams/next",
     "style": {

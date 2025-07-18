@@ -30,7 +30,9 @@ axiosIn.interceptors.request.use((config) => {
 
 // 响应拦截器：直接 return data.data，统一错误处理
 axiosIn.interceptors.response.use(
-  (res) => res.data,
+  (res) => {
+    if (res.status) return res.data;
+  },
   (err) => {
     console.error("API Error", err);
     return Promise.reject(err);

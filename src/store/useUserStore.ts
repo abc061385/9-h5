@@ -1,4 +1,5 @@
 import { api } from "@/api";
+import { navigateTo, routerMap } from "@/i18n/navigation";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
@@ -22,6 +23,7 @@ export const useUserStore = create<LoginState>()(
           },
           fetchUserInfo: async () => {
             if (!get().token) {
+              navigateTo(routerMap.login);
               return;
             }
             try {

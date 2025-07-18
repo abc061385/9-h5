@@ -3,9 +3,15 @@ import { PropsWithChildren, useEffect } from "react";
 import { Launch } from "./launch";
 import { cn } from "@/lib/utils";
 import { useStore } from "@/store";
+import { initRouterPush, useRouter } from "@/i18n/navigation";
 
 export const LayoutRoot = ({ children }: PropsWithChildren) => {
   const initRoot = useStore((s) => s.initRoot);
+  const { push } = useRouter();
+  useEffect(() => {
+    initRouterPush(push);
+  }, [push]);
+
   useEffect(() => {
     initRoot();
   }, [initRoot]);
