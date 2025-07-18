@@ -6,13 +6,14 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTrans } from "@/hooks/useTrans";
 import BaseImage from "@/components/base-image";
-import { useStore } from "@/store";
 import { formatThousand } from "@/lib/utils";
 import StarIcon from "./star-icon";
+import { useUserStore } from "@/store/useUserStore";
 
 const VipBannerBox = () => {
   const t = useTrans();
-  const userInfo = useStore((s) => s.userInfo);
+  const userInfo = useUserStore((s) => s.userInfo);
+  console.log(userInfo)
   return (
     <div>
       <Swiper
@@ -40,7 +41,7 @@ const VipBannerBox = () => {
               </h2>
               <div className="mb-13">
                 <span className="text-[26px]">
-                  {formatThousand(userInfo.totalTeamInvestment || 0)}
+                  {formatThousand(userInfo?.totalTeamInvestment || 0)}
                 </span>
                 <span className="text-xs">USDT</span>
               </div>
@@ -48,8 +49,17 @@ const VipBannerBox = () => {
                 {t("当前等级")}
               </div>
               <div className="flex items-center">
-                <span className="mr-1">VIP{userInfo.vipLevel}</span>
-                <StarIcon star={userInfo.star} level={userInfo.vipLevel || 0} />
+                {userInfo.vipLevel === 0 ? (
+                  t("user.normalUser")
+                ) : (
+                  <>
+                    <span className="mr-1">VIP{userInfo.vipLevel}</span>
+                    <StarIcon
+                      star={userInfo.star}
+                      level={userInfo.vipLevel || 0}
+                    />
+                  </>
+                )}
               </div>
             </div>
             <BaseImage
@@ -61,7 +71,10 @@ const VipBannerBox = () => {
                 src={`/images/vip/icon-vip${userInfo.vipLevel}.svg`}
                 className="w-[82px] h-[75px]"
               />
-              <span className="text-white">VIP{userInfo.vipLevel}</span>
+              <span className="text-white flex items-center justify-center">
+                VIP{userInfo.vipLevel}{" "}
+                <StarIcon star={userInfo.star} level={userInfo.vipLevel || 0} />
+              </span>
             </div>
           </div>
         </SwiperSlide>

@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 import CardBox from "./card";
 import { DataType } from "./type";
 import { api } from "@/api";
-import { useStore } from "@/store";
 import { InfiniteList } from "@/components/infinite-list";
+import { useUserStore } from "@/store/useUserStore";
 
 const TeamsView = () => {
   const t = useTrans();
-  const userInfo = useStore((s) => s.userInfo);
+  const userInfo = useUserStore((s) => s.userInfo);
   const [tabsValue, setTabsValue] = useState<number>();
   const [list, setList] = useState<DataType[]>([]);
   const [teamNumbers, setTeamNumbers] = useState(0);
@@ -93,7 +93,7 @@ const TeamsView = () => {
           })}
         </div>
         <div className="h-[75vh]">
-          <InfiniteList<DataType>
+          <InfiniteList<DataType, object>
             data={list}
             fetchMore={async (_index) => {
               console.log(_index);

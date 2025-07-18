@@ -17,3 +17,17 @@ type UserInfo = Partial<{
   googleVerify: number;
   bindEmail: string;
 }>;
+
+type VipInfoType = Partial<{
+  vipLevel: number;
+  teamVipCount: number;
+  teamInvestmentTotal: number;
+  maxProfitMultiplier: number;
+  teamInvestmentReward: number;
+  aiQueryCount: number;
+}>;
+
+type NextStarConfig = Partial<{
+  star: number;
+  coefficient: number;
+}>;

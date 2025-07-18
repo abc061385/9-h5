@@ -5,10 +5,11 @@ import BannerBox from "./banner";
 import CardsBox from "./cards";
 import ChartBox from "./chart";
 import FundBox from "./fund";
+import HomeHeaderBox from "./header";
 
 export default function HomeView() {
   return (
-    <ViewLayout dock={true} header={<div>1</div>}>
+    <ViewLayout dock={true} header={<HomeHeaderBox />}>
       <div className="p-content">
         <BannerBox />
         <ChartBox />
