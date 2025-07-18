@@ -1,41 +1,21 @@
 import { useTrans } from "@/hooks/useTrans";
-import { useStore } from "@/store";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import StarIcon from "./star-icon";
-import { api } from "@/api";
-import { VipInfoType } from "./type";
 import { formatThousand } from "@/lib/utils";
+import { useVipStore } from "@/store/useVipStore";
+import { useUserStore } from "@/store/useUserStore";
 
 const PromoteBox = () => {
   const t = useTrans();
-  const userInfo = useStore((s) => s.userInfo);
-  const [nextLevelInfo, setNextLevelInfo] = useState<VipInfoType>({});
-
-  const getNextInfo = useCallback(async () => {
-    const { data } = await api.memberVipLevelConfig.listUsingGet({});
-
-    if (userInfo.vipLevel === null || userInfo.vipLevel === undefined) return;
-
-    if (userInfo.vipLevel < 9) {
-      // setCurrentLevelInfo(
-      //   data.find((v: VipInfoType) => v.vipLevel === userInfo.vipLevel)
-      // );
-      setNextLevelInfo(
-        data.find(
-          (v: VipInfoType) => v.vipLevel === Number(userInfo.vipLevel || 0) + 1
-        )
-      );
-    } else {
-      const info = data.find((v: VipInfoType) => v.vipLevel === 9);
-      // setCurrentLevelInfo(info);
-      setNextLevelInfo(info);
-    }
-  }, [userInfo]);
+  const userInfo = useUserStore((s) => s.userInfo);
+  const nextLevelInfo = useVipStore((s) => s.nextLevelInfo);
+  const fetchNextLevel = useVipStore((s) => s.fetchNextLevel);
 
   useEffect(() => {
-    getNextInfo();
-  }, [getNextInfo]);
+    fetchNextLevel();
+  }, [fetchNextLevel]);
 
+  if (userInfo.vipLevel === 9 && userInfo.star === 3) return null;
   return (
     <div className="mt-7">
       <div className="flex flex-wrap items-center gap-1.5">
@@ -43,7 +23,10 @@ const PromoteBox = () => {
           <span className="mr-1">
             {t("晋升")} VIP{nextLevelInfo?.vipLevel || "--"}
           </span>
-          <StarIcon star={userInfo.star} level={userInfo.vipLevel || 0} />
+          <StarIcon
+            star={(userInfo.star || 0) + 1}
+            level={userInfo.vipLevel || 0}
+          />
         </div>
         <div className="badge badge-soft badge-primary rounded-sm">
           &gt;={formatThousand(nextLevelInfo.teamInvestmentTotal || 0)}USDT

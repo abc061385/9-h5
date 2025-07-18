@@ -8,14 +8,14 @@ export const { Link, redirect, usePathname, useRouter, getPathname } =
 
 export const routerMap = {
   index: "/",
-  home: "/home",
+  home: "/home/",
   login: "/login",
   register: "/register",
   verification: "/verification",
-  fund: "/fund",
-  "helper-ai": "helper-ai",
-  news: "/news",
-  teams: "/teams",
-  user: "/user",
-  vip: "/vip",
+  fund: "/fund/",
+  "helper-ai": "helper-ai/",
+  news: "/news/",
+  teams: "/teams/",
+  user: "/user/",
+  vip: "/vip/",
 };
