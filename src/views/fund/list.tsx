@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import CoinIcon from "./coin-icon";
 import { cn } from "@/lib/utils";
+import { api } from "@/api";
 
 const ListBox = () => {
   const t = useTrans();
@@ -20,6 +21,18 @@ const ListBox = () => {
       value: "1",
     },
   ];
+
+  const getTokenList = useCallback(async () => {
+    const res = await api.fundProductConfig.pageUsingGet1({
+      pageNo: 1,
+      pageSize: 10,
+    });
+    console.log(res);
+  }, []);
+
+  useEffect(() => {
+    getTokenList();
+  }, [getTokenList]);
 
   const tokenList = [
     {
@@ -211,7 +224,10 @@ const ListBox = () => {
         {tabs.map((tab) => (
           <a
             role="tab"
-            className={cn("tab", tab.value === tabsValue && "tab-active")}
+            className={cn(
+              "tab flex-1",
+              tab.value === tabsValue && "tab-active"
+            )}
             key={tab.value}
             onClick={() => setTabsValue(tab.value)}
           >

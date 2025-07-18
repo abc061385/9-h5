@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Demo({ params }: RootProps) {
+export default function Teams({ params }: RootProps) {
   useInitLocale(params);
 
   return <TeamsView />;
