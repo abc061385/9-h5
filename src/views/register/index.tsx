@@ -10,9 +10,9 @@ import { InputPassword } from "@/components/input/password";
 import { TextError } from "@/components/input/text-error";
 import z, { useRootReg } from "@/lib/z";
 import { encryptPassword } from "@/lib/utils";
-// import { api } from "@/api";
 import { AccountType } from "@/lib/const";
 import { useVerificationStore } from "@/store/useVerification";
+import { api } from "@/api";
 
 type FormData = {
   email: string;
@@ -48,20 +48,24 @@ const RegisterView = () => {
 
   const handleNext = async (data: FormData) => {
     try {
-      // const res = await api.auth.regByFaBeforeCheckUsingPost({
-      //   account: data.email,
-      //   accountType: AccountType.email,
-      //   password: encryptPassword(data.password),
-      //   invitationCode: data.invitationCode,
-      //   certificate: "",
-      // });
-      console.log(AccountType.email, "accountType");
-      console.log(encryptPassword(data.password));
-      const faCheckId = "fec03103c2ff49449a4758550b3d967c";
-      setField("faCheckId", faCheckId);
-      setField("account", data.email);
-      setField("accountType", AccountType.email);
-      router.push(routerMap["verification"]);
+      const res = await api.auth.regByFaBeforeCheckUsingPost({
+        account: data.email,
+        accountType: AccountType.email,
+        password: encryptPassword(data.password),
+        invitationCode: data.invitationCode,
+        certificate: "abc",
+      });
+      if (res.code === 200) {
+        console.log(AccountType.email, "accountType");
+        console.log(encryptPassword(data.password));
+        const faCheckId = "fec03103c2ff49449a4758550b3d967c";
+        setField("faCheckId", faCheckId);
+        setField("account", data.email);
+        setField("accountType", AccountType.email);
+        router.push(routerMap["verification"]);
+      } else {
+        console.log(res.message);
+      }
     } catch {}
   };
   return (

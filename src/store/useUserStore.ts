@@ -1,11 +1,13 @@
+import { api } from "@/api";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 interface LoginState extends BaseState<LoginState> {
   userInfo: UserInfo;
-  getToken: () => string;
+  token: string;
   logOut: () => void;
+  fetchUserInfo: () => Promise<void>;
 }
 
 export const useUserStore = create<LoginState>()(
@@ -14,11 +16,20 @@ export const useUserStore = create<LoginState>()(
       (set, get) => {
         return {
           userInfo: {},
+          token: "",
           logOut() {
-            set({ userInfo: {} });
+            set({ userInfo: {}, token: "" });
           },
-          getToken() {
-            return get().userInfo?.token || "";
+          fetchUserInfo: async () => {
+            if (!get().token) {
+              return;
+            }
+            try {
+              const res = await api.member.userInfoUsingGet();
+              set(() => ({ userInfo: res.data }));
+            } catch {
+              set(() => ({ userInfo: {} }));
+            }
           },
           setField: (key, value) => set({ [key]: value } as any),
         };

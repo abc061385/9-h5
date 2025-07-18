@@ -19,6 +19,12 @@ axiosIn.interceptors.request.use((config) => {
   if (token && config.headers) {
     config.headers["auth-token"] = token;
   }
+
+  if (config.method === "post") {
+    config.headers["Content-Type"] = "application/x-www-form-urlencoded";
+    config.data = config.params;
+    config.params = {};
+  }
   return config;
 });
 

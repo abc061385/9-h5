@@ -9,11 +9,11 @@ import { Link, routerMap, useRouter } from "@/i18n/navigation";
 import { TextError } from "@/components/input/text-error";
 import { InputPassword } from "@/components/input/password";
 import z, { useRootReg } from "@/lib/z";
-import { useLoginStore } from "@/store/useLoginStore";
 import { encryptPassword } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
 import { AccountType } from "@/lib/const";
-// import { api } from "@/api";
+import { api } from "@/api";
+import { useEffect } from "react";
 
 type FormData = {
   email: string;
@@ -43,14 +43,12 @@ const LoginView = () => {
 
   const handleNext = async (data: FormData) => {
     try {
-      console.log(data);
-      // const res = await api.auth.loginByFaBeforeCheckUsingPost({
-      //   account: data.email,
-      // accountType: AccountType.email,
-      //   password: encryptPassword(data.password),
-      //   certificate: "",
-      // });
-      console.log(encryptPassword(data.password));
+      const res = await api.auth.loginByFaBeforeCheckUsingPost({
+        account: data.email,
+        accountType: AccountType.email,
+        password: encryptPassword(data.password),
+        certificate: "",
+      });
       const faCheckId = "fec03103c2ff49449a4758550b3d967c";
       setField("faCheckId", faCheckId);
       setField("account", data.email);

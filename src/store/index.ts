@@ -1,20 +1,19 @@
 import { create } from "zustand";
-import { createUserSlice, UserSlice } from "./slices/userSlice";
+import { useUserStore } from "./useUserStore";
 
 type RootStore = {
   initLoading: boolean;
   initRoot: () => void;
 };
 
-export type AppStore = UserSlice & RootStore;
+export type AppStore = RootStore;
 
-export const useStore = create<AppStore>()((set, get, api) => ({
-  ...createUserSlice(set, get, api),
+export const useStore = create<AppStore>()((set) => ({
   initLoading: false,
   async initRoot() {
     try {
       set({ initLoading: true });
-      await get().fetchUserInfo();
+      await useUserStore.getState().fetchUserInfo();
       set({ initLoading: false });
     } catch {
       set({ initLoading: false });
