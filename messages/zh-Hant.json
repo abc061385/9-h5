@@ -54,7 +54,8 @@
     "passwordInvalid": "8-30個字符，必須包含大小寫字母和數字",
     "loginSuccess": "登入成功",
     "tip": "提示",
-    "comingSoon": "敬請期待"
+    "comingSoon": "敬請期待",
+    "checkEmailTip": "電子郵件地址錯誤"
   },
   "user": {
     "title": "個人中心",

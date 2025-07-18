@@ -1,5 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+// @ts-ignore
+import CryptoJS from "crypto-js";
+import { AESsecretKey } from "./const";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -38,26 +41,35 @@ function maskCore(str: string, front: number, back: number): string {
 export function formatThousand(
   input: number | string,
   options?: {
-    separator?: string  // 默认使用 ","
-    decimalSeparator?: string // 默认使用 "."
-  }
+    separator?: string; // 默认使用 ","
+    decimalSeparator?: string; // 默认使用 "."
+  },
 ): string {
-  const separator = options?.separator ?? ',';
-  const decimalSeparator = options?.decimalSeparator ?? '.';
+  const separator = options?.separator ?? ",";
+  const decimalSeparator = options?.decimalSeparator ?? ".";
 
-  if (input === null || input === undefined || input === '') return '';
+  if (input === null || input === undefined || input === "") return "";
 
   const numStr = String(input);
-  const isNegative = numStr.startsWith('-');
-  const [intPart, decPart] = numStr.replace('-', '').split('.');
+  const isNegative = numStr.startsWith("-");
+  const [intPart, decPart] = numStr.replace("-", "").split(".");
 
   const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 
   return (
-    (isNegative ? '-' : '') +
+    (isNegative ? "-" : "") +
     formattedInt +
-    (decPart !== undefined ? decimalSeparator + decPart : '')
+    (decPart !== undefined ? decimalSeparator + decPart : "")
   );
 }
 
 export const getIsDev = (): boolean => process.env.NODE_ENV === "development";
+
+export const encryptPassword = (password: string) => {
+  const key = CryptoJS.enc.Utf8.parse(AESsecretKey);
+  const cipherTxt = CryptoJS.AES.encrypt(password, key, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7,
+  }).toString();
+  return cipherTxt;
+};

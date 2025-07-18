@@ -54,7 +54,8 @@
     "passwordInvalid": "8-30个字符，必须包含大小写字母和数字",
     "loginSuccess": "登录成功",
     "tip": "提示",
-    "comingSoon": "敬请期待"
+    "comingSoon": "敬请期待",
+    "checkEmailTip": "邮箱地址错误"
   },
   "user": {
     "title": "个人中心",

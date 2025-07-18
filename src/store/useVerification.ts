@@ -1,31 +1,30 @@
+import { AccountType } from "@/lib/const";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-interface LoginState extends BaseState<LoginState> {
+interface VerificationState extends BaseState<VerificationState> {
   account: string;
   faCheckId: string;
-  code: string;
-  accountType: "0" | "1"; // 0手机 1邮箱
+  accountType: AccountType; // 0手机 1邮箱
   reset: () => void;
 }
 
-export const useLoginStore = create<LoginState>()(
+export const useVerificationStore = create<VerificationState>()(
   persist(
     devtools(
       (set) => {
         return {
           account: "",
-          code: "",
-          accountType: "1",
-          reset: () => set({ faCheckId: "", account: "", code: "" }),
+          accountType: AccountType.phone,
+          reset: () => set({ faCheckId: "", account: "" }),
           setField: (key, value) => set({ [key]: value } as any),
         };
       },
       { enabled: getIsDev() },
     ),
     {
-      name: "login-store",
+      name: "verification_store",
     },
   ),
 );

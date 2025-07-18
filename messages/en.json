@@ -54,7 +54,8 @@
     "passwordInvalid": "8-30 characters, must contain uppercase and lowercase letters and numbers",
     "loginSuccess": "Login successful",
     "tip": "Notice",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "checkEmailTip": "Invalid email address"
   },
   "user": {
     "title": "Personal Center",

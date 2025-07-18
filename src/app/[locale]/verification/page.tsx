@@ -1,18 +1,17 @@
 import useInitLocale from "@/hooks/useInitLocale";
 import getStaticParams from "@/lib/getStaticParams";
-import RegisterVerificationView from "@/views/register/verification";
+import VerificationView from "@/views/verification";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "注册",
+    title: "发送验证码",
   };
 }
 
 export default function Demo({ params }: RootProps) {
   useInitLocale(params);
-
-  return <RegisterVerificationView />;
+  return <VerificationView />;
 }
 
 export function generateStaticParams() {

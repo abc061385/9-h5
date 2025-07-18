@@ -3,15 +3,15 @@ import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
-// import { GetTokenType } from "@/lib/const";
-import { useLoginStore } from "@/store/useLoginStore";
 import { useUserStore } from "@/store/useUserStore";
+// import { GetTokenType } from "@/lib/const";
+import { useVerificationStore } from "@/store/useVerification";
 import { useEffect, useCallback } from "react";
 
-const LoginVerificationView = () => {
-  const faCheckId = useLoginStore((s) => s.faCheckId);
-  const account = useLoginStore((s) => s.account);
-  const accountType = useLoginStore((s) => s.accountType);
+const VerificationView = () => {
+  const faCheckId = useVerificationStore((s) => s.faCheckId);
+  const account = useVerificationStore((s) => s.account);
+  const accountType = useVerificationStore((s) => s.accountType);
   const setUserField = useUserStore((s) => s.setField);
   const sendCode = useCallback(async () => {
     api.auth
@@ -48,7 +48,7 @@ const LoginVerificationView = () => {
           title="Security Verification"
           algin="center"
           onChange={() => {
-            useLoginStore.persist.clearStorage();
+            useVerificationStore.persist.clearStorage();
           }}
         />
       }
@@ -63,4 +63,4 @@ const LoginVerificationView = () => {
   );
 };
 
-export default LoginVerificationView;
+export default VerificationView;
