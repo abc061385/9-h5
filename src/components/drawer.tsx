@@ -17,7 +17,12 @@ export const Drawer: FC<IProps> = ({
   const id = useId();
   const inputId = `drawer-${id}`;
   return (
-    <div className="drawer drawer-bottom">
+    <div
+      className="drawer drawer-bottom"
+      role="dialog"
+      aria-label={title}
+      aria-modal={true}
+    >
       <input
         id={inputId}
         type="checkbox"

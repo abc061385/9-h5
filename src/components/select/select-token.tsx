@@ -13,50 +13,46 @@ interface ITokenSelectProps {
   name: string;
   value?: string;
   onChange?: (event: { target: { name: string; value: string } }) => void;
+  onSelect?: (item: CurrencyInfo) => void;
 }
 export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
-  ({ name, onChange, value }, ref) => {
+  ({ name, onChange, onSelect, value }, ref) => {
     const t = useTrans();
     const [open, setOpen] = useState(false);
     const { data, isLoading } = useSWR("protocolListUsingGet", () =>
       api.currencySettings.protocolListUsingGet(),
     );
-    const tokenList = data?.data as TokenItem[];
+    const currencyList = data?.data as CurrencyInfo[];
 
     useEffect(() => {
-      if (tokenList && value === undefined) {
-        const defaultToken = tokenList[0];
+      if (currencyList && value === undefined) {
+        const defaultToken = currencyList[0];
         if (defaultToken) {
           onChange?.({
             target: { name, value: defaultToken.currencyCode },
           } as any);
+          onSelect?.(defaultToken);
         }
       }
-    }, [tokenList, value, name, onChange]);
+    }, [currencyList, value, name, onChange]);
 
-    const selectToken = useMemo(() => {
-      return tokenList?.find((t) => t.currencyCode === value);
-    }, [value, tokenList]);
+    const selectCurrency = useMemo(() => {
+      return currencyList?.find((t) => t.currencyCode === value);
+    }, [value, currencyList]);
 
     const getActived = useCallback(
-      (index: number, item: TokenItem) => {
+      (index: number, item: CurrencyInfo) => {
         const activedClass = cn("bg-primary text-white rounded-md");
-        const isSelected = selectToken?.currencyCode === item?.currencyCode;
-        const isDefaultSelected = !selectToken && index === 0;
+        const isSelected = selectCurrency?.currencyCode === item?.currencyCode;
+        const isDefaultSelected = !selectCurrency && index === 0;
         const shouldHighlight = isSelected || isDefaultSelected;
         return shouldHighlight ? activedClass : "";
       },
-      [selectToken],
+      [selectCurrency],
     );
     return (
       <div>
-        <input
-          type="hidden"
-          name={name}
-          ref={ref}
-          value={value}
-          onChange={onChange}
-        />
+        <input type="hidden" name={name} ref={ref} value={value} />
         <button
           type="button"
           className="input w-full flex justify-between items-center"
@@ -65,14 +61,14 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
           <div className="flex items-center space-x-1">
             <Skeleton isLoading={isLoading} className="size-4">
               <BaseImage
-                src={selectToken?.logo || ""}
-                alt={selectToken?.currencyCode || ""}
+                src={selectCurrency?.logo || ""}
+                alt={selectCurrency?.currencyCode || ""}
                 className="size-4 rounded-full overflow-hidden"
               />
             </Skeleton>
             <Skeleton isLoading={isLoading} className="w-14 h-3 rounded-xs">
               <span className="text-sm font-bold">
-                {selectToken?.currencyCode}
+                {selectCurrency?.currencyCode}
               </span>
             </Skeleton>
           </div>
@@ -80,8 +76,8 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
         </button>
         <Drawer open={open} onChange={setOpen} title={t("address.selectToken")}>
           <div className="size-full">
-            <InfiniteList<TokenItem, {}>
-              data={tokenList}
+            <InfiniteList<CurrencyInfo, {}>
+              data={currencyList}
               hiddenEmpty
               hiddenFooter
               fetchMore={async () => {
@@ -96,6 +92,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
                         target: { name, value: item?.currencyCode },
                       };
                       onChange?.(event as any);
+                      onSelect?.(item);
                     }}
                     className={cn([
                       "flex justify-center items-center h-8 space-x-2 mb-2",

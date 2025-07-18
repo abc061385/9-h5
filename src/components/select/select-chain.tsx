@@ -1,52 +1,40 @@
-import { forwardRef, useCallback, useEffect, useMemo, useState } from "react";
+import { forwardRef, useCallback, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
 import { useTrans } from "@/hooks/useTrans";
 import { InfiniteList } from "@/components/infinite-list";
 import { api } from "@/api";
 import useSWR from "swr";
 import { cn } from "@/lib/utils";
-import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
-import { Skeleton } from "@/components/skeleton";
 
 interface ITokenSelectProps {
   name: string;
+  currencyCode: string;
   value?: string;
   onChange?: (event: { target: { name: string; value: string } }) => void;
 }
 export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
-  ({ name, onChange, value }, ref) => {
+  ({ name, value, currencyCode, onChange }, ref) => {
     const t = useTrans();
     const [open, setOpen] = useState(false);
-    const { data, isLoading } = useSWR("protocolListUsingGet", () =>
-      api.currencySettings.protocolListUsingGet(),
+    const { data } = useSWR(
+      currencyCode ? ["protocolListUsingGet", currencyCode] : null,
+      ([_, _currencyCode]) =>
+        api.currencySettings.pageUsingGet({ currencyCode: _currencyCode }),
     );
-    const tokenList = data?.data as TokenItem[];
+    const currencyList = data?.data as CurrencyInfo[];
 
-    useEffect(() => {
-      if (tokenList && value === undefined) {
-        const defaultToken = tokenList[0];
-        if (defaultToken) {
-          onChange?.({
-            target: { name, value: defaultToken.currencyCode },
-          } as any);
-        }
-      }
-    }, [tokenList, value, name, onChange]);
-
-    const selectToken = useMemo(() => {
-      return tokenList?.find((t) => t.currencyCode === value);
-    }, [value, tokenList]);
+    const selectCurrency = useMemo(() => {
+      return currencyList?.find((t) => t.protocolType === value);
+    }, [value, currencyList]);
 
     const getActived = useCallback(
-      (index: number, item: TokenItem) => {
+      (_: number, item: CurrencyInfo) => {
         const activedClass = cn("bg-primary text-white rounded-md");
-        const isSelected = selectToken?.currencyCode === item?.currencyCode;
-        const isDefaultSelected = !selectToken && index === 0;
-        const shouldHighlight = isSelected || isDefaultSelected;
-        return shouldHighlight ? activedClass : "";
+        const isSelected = selectCurrency?.protocolType === item?.protocolType;
+        return isSelected ? activedClass : "";
       },
-      [selectToken],
+      [selectCurrency],
     );
     return (
       <div>
@@ -62,26 +50,19 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
           className="input w-full flex justify-between items-center"
           onClick={() => setOpen(true)}
         >
-          <div className="flex items-center space-x-1">
-            <Skeleton isLoading={isLoading} className="size-4">
-              <BaseImage
-                src={selectToken?.logo || ""}
-                alt={selectToken?.currencyCode || ""}
-                className="size-4 rounded-full overflow-hidden"
-              />
-            </Skeleton>
-            <Skeleton isLoading={isLoading} className="w-14 h-3 rounded-xs">
-              <span className="text-sm font-bold">
-                {selectToken?.currencyCode}
-              </span>
-            </Skeleton>
-          </div>
+          {value ? (
+            <span className="text-sm font-bold">
+              {selectCurrency?.protocolType}
+            </span>
+          ) : (
+            <p>{t("deposit.selectChain")}</p>
+          )}
           <Icon name="arrow-line-down" />
         </button>
-        <Drawer open={open} onChange={setOpen} title={t("address.selectToken")}>
+        <Drawer open={open} onChange={setOpen} title={t("address.selectChain")}>
           <div className="size-full">
-            <InfiniteList<TokenItem, {}>
-              data={tokenList}
+            <InfiniteList<CurrencyInfo, {}>
+              data={currencyList}
               hiddenEmpty
               hiddenFooter
               fetchMore={async () => {
@@ -93,7 +74,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
                     onClick={() => {
                       setOpen(false);
                       const event = {
-                        target: { name, value: item?.currencyCode },
+                        target: { name, value: item?.protocolType },
                       };
                       onChange?.(event as any);
                     }}
@@ -102,13 +83,8 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
                       getActived(index, item),
                     ])}
                   >
-                    <BaseImage
-                      src={item?.logo || ""}
-                      alt={item?.currencyCode || ""}
-                      className="size-4 rounded-full overflow-hidden mr-0.5"
-                    />
                     <span className="text-sm font-bold">
-                      {item?.currencyCode}
+                      {item?.protocolType}
                     </span>
                   </div>
                 );

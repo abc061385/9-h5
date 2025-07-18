@@ -32,7 +32,7 @@ type NextStarConfig = Partial<{
   coefficient: number;
 }>;
 
-type TokenItem = Partial<{
+type CurrencyInfo = Partial<{
   id: number;
   protocolType: string; // e.g., "TRON"
   currencyCode: string; // e.g., "USDT"

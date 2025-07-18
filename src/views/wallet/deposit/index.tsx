@@ -1,4 +1,5 @@
 "use client";
+import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { SelectChain } from "@/components/select/select-chain";
@@ -6,17 +7,27 @@ import { SelectToken } from "@/components/select/select-token";
 import { useTrans } from "@/hooks/useTrans";
 import z from "@/lib/z";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 
 const DepositView = () => {
   const t = useTrans();
   const Schema = z.object({
     currencyCode: z.string().nonempty(),
+    chainEnum: z.string().nonempty(),
   });
-  const { register, handleSubmit, getValues, control } = useForm({
+  const { control } = useForm({
     defaultValues: { currencyCode: "USDT" },
     resolver: zodResolver(Schema),
   });
+
+  const currencyCode = useWatch({ control, name: "currencyCode" });
+  const chainEnum = useWatch({ control, name: "chainEnum" });
+  useEffect(() => {
+    api.deposit.createAddrTwoUsingPost({ chainEnum }).then((res) => {
+      console.log(res);
+    });
+  }, [chainEnum]);
   return (
     <ViewLayout
       header={<HeaderWithBack title={t("deposit.title")} algin="center" />}
@@ -31,16 +42,18 @@ const DepositView = () => {
               render={({ field }) => <SelectToken {...field} />}
             ></Controller>
           </fieldset>
-          {/* <fieldset className="fieldset"> */}
-          {/*   <legend className="fieldset-legend"> */}
-          {/*     {t("deposit.chainType")} */}
-          {/*   </legend> */}
-          {/*   <Controller */}
-          {/*     name="chain" */}
-          {/*     control={control} */}
-          {/*     render={({ field }) => <SelectChain {...field} />} */}
-          {/*   ></Controller> */}
-          {/* </fieldset> */}
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">
+              {t("deposit.chainType")}
+            </legend>
+            <Controller
+              name="chainEnum"
+              control={control}
+              render={({ field }) => (
+                <SelectChain currencyCode={currencyCode} {...field} />
+              )}
+            ></Controller>
+          </fieldset>
         </form>
       </div>
     </ViewLayout>
