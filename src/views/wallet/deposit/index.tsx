@@ -2,6 +2,7 @@
 import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { Qrcode } from "@/components/qrcode";
 import { SelectChain } from "@/components/select/select-chain";
 import { SelectToken } from "@/components/select/select-token";
 import { useTrans } from "@/hooks/useTrans";
@@ -36,6 +37,9 @@ const DepositView = () => {
       header={<HeaderWithBack title={t("deposit.title")} algin="center" />}
     >
       <div className="p-content">
+        <div className="size-[188px] p-4 mx-auto bg-secondary rounded-xl">
+          <Qrcode value="123" bgColor="var(--color-secondary)" />
+        </div>
         <form>
           <fieldset className="fieldset">
             <legend className="fieldset-legend">{t("deposit.coinType")}</legend>

@@ -16,6 +16,7 @@
     "@hookform/resolvers": "^5.1.1",
     "axios": "^1.10.0",
     "clsx": "^2.1.1",
+    "crypto-js": "^4.2.0",
     "echarts": "^5.6.0",
     "echarts-for-react": "^3.0.2",
     "next": "15.3.4",
@@ -28,10 +29,13 @@
     "react-virtuoso": "^4.13.0",
     "swiper": "^11.2.10",
     "swr": "^2.3.3",
-    "tailwind-merge": "^3.3.1",
     "zod": "^4.0.5",
     "zustand": "^5.0.6",
-    "crypto-js": "^4.2.0"
+    "react-qr-code": "^2.0.18",
+    "daisyui": "^5.0.43",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -40,15 +44,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
-    "daisyui": "^5.0.43",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "fantasticon": "^3.0.0",
     "postcss": "^8.5.6",
     "postcss-pxtorem": "^6.1.0",
     "swagger-typescript-api": "^13.0.21",
-    "tailwindcss": "^4",
-    "tw-animate-css": "^1.3.4",
     "typescript": "^5"
   }
 }

@@ -3,28 +3,18 @@ import { IconName } from "@/types/icons";
 import Image, { ImageProps } from "next/image";
 import * as React from "react";
 import { FC } from "react";
+import BaseImage from "./base-image";
 
-export interface IconProps
-  extends Omit<ImageProps, "alt" | "src" | "width" | "height"> {
+export interface IconProps extends Pick<ImageProps, "className"> {
   name: IconName;
-  size?: number;
-  color?: string;
 }
 
-export const Icon: FC<IconProps> = ({
-  name,
-  size = 24,
-  className,
-  ...props
-}) => {
+export const Icon: FC<IconProps> = ({ name, className }) => {
   return (
-    <Image
+    <BaseImage
       alt={name}
       src={`/icons/${name}.svg`}
-      width={size}
-      height={size}
-      className={cn(["inline-block", className])}
-      {...props}
+      className={cn(["inline-block", "size-4", className])}
     />
   );
 };
