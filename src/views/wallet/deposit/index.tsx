@@ -16,7 +16,7 @@ const DepositView = () => {
     currencyCode: z.string().nonempty(),
     chainEnum: z.string().nonempty(),
   });
-  const { control } = useForm({
+  const { control, setValue } = useForm({
     defaultValues: { currencyCode: "USDT" },
     resolver: zodResolver(Schema),
   });
@@ -24,6 +24,9 @@ const DepositView = () => {
   const currencyCode = useWatch({ control, name: "currencyCode" });
   const chainEnum = useWatch({ control, name: "chainEnum" });
   useEffect(() => {
+    if (!chainEnum) {
+      return;
+    }
     api.deposit.createAddrTwoUsingPost({ chainEnum }).then((res) => {
       console.log(res);
     });
@@ -39,7 +42,15 @@ const DepositView = () => {
             <Controller
               name="currencyCode"
               control={control}
-              render={({ field }) => <SelectToken {...field} />}
+              render={({ field }) => (
+                <SelectToken
+                  {...field}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    setValue("chainEnum", "");
+                  }}
+                />
+              )}
             ></Controller>
           </fieldset>
           <fieldset className="fieldset">

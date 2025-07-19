@@ -55,41 +55,55 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
               {selectCurrency?.protocolType}
             </span>
           ) : (
-            <p>{t("deposit.selectChain")}</p>
+            <p className="text-text2">{t("deposit.selectChain")}</p>
           )}
           <Icon name="arrow-line-down" />
         </button>
         <Drawer open={open} onChange={setOpen} title={t("address.selectChain")}>
-          <div className="size-full">
-            <InfiniteList<CurrencyInfo, {}>
-              data={currencyList}
-              hiddenEmpty
-              hiddenFooter
-              fetchMore={async () => {
-                return [];
-              }}
-              itemContent={(index, item) => {
-                return (
-                  <div
-                    onClick={() => {
-                      setOpen(false);
-                      const event = {
-                        target: { name, value: item?.protocolType },
-                      };
-                      onChange?.(event as any);
-                    }}
-                    className={cn([
-                      "flex justify-center items-center h-8 space-x-2 mb-2",
-                      getActived(index, item),
-                    ])}
-                  >
-                    <span className="text-sm font-bold">
-                      {item?.protocolType}
-                    </span>
-                  </div>
-                );
-              }}
-            />
+          <div className="size-full flex flex-col">
+            <div className="flex-1">
+              <InfiniteList<CurrencyInfo, {}>
+                data={currencyList}
+                hiddenEmpty
+                hiddenFooter
+                fetchMore={async () => {
+                  return [];
+                }}
+                itemContent={(index, item) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        setOpen(false);
+                        const event = {
+                          target: { name, value: item?.protocolType },
+                        };
+                        onChange?.(event as any);
+                      }}
+                      className={cn([
+                        "flex justify-center items-center h-8 space-x-2 mb-2 text-text2",
+                        getActived(index, item),
+                      ])}
+                    >
+                      <span className="text-sm font-bold">
+                        {item?.protocolType}
+                      </span>
+                    </div>
+                  );
+                }}
+              />
+            </div>
+            <div className="flex-none">
+              <p className="text-xs font-bold flex items-center mb-2">
+                <Icon name="prompt" size={14} className="mr-1" />
+                Draw attention to sth.
+              </p>
+              <div className="text-text2 text-xs font-bold">
+                When you top up this coin, please only top up through the 9M
+                platform support network listed above. Please do not top up
+                through other networks or smart contracts to avoid loss of
+                funds.
+              </div>
+            </div>
           </div>
         </Drawer>
       </div>

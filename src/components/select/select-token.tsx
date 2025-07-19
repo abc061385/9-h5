@@ -95,7 +95,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
                       onSelect?.(item);
                     }}
                     className={cn([
-                      "flex justify-center items-center h-8 space-x-2 mb-2",
+                      "flex justify-center items-center h-8 space-x-2 mb-2 text-text2",
                       getActived(index, item),
                     ])}
                   >
