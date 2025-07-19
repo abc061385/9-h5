@@ -35,10 +35,10 @@ const UserInfoBox = () => {
           <div className="font-bold">Anqiu Nezi Buds</div>
           <div className="badge badge-soft badge-primary rounded-md text-xs font-bold px-2">
             @sm…le499
-            <Icon name={"copy-user"} size={14} />
+            <Icon name={"copy-user"} className="w-3 h-3" />
           </div>
         </div>
-        <Icon name={"right-arrow-user"} size={10} />
+        <Icon name={"right-arrow-user"} />
       </div>
       <div className="bg-secondary py-6 px-4 rounded-md mt-5 flex">
         {cards.map((item, index) => (
@@ -47,7 +47,7 @@ const UserInfoBox = () => {
             className="flex flex-1 gap-1.5 font-bold"
             onClick={() => push(item.path)}
           >
-            <Icon name={item.icon} size={26} />
+            <Icon name={item.icon} className="w-6 h-6"/>
             <div>
               <div>{item.title}</div>
               <p className="text-text2 text-xs mt-0.5">{item.desc}</p>

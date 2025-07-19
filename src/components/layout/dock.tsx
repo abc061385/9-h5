@@ -6,7 +6,10 @@ import { Icon } from "../icon";
 import { IconName } from "@/types/icons";
 
 const itemClass = (currentPathname: string, pathname: string) => {
-  return cn([currentPathname === pathname ? ["dock-active text-primary"] : []]);
+  return cn(
+    [currentPathname === pathname ? ["dock-active text-primary"] : []],
+    "flex justify-center items-center flex-col"
+  );
 };
 
 export const LayoutDock = () => {
@@ -30,6 +33,7 @@ export const LayoutDock = () => {
                     currentPathname === i.href ? "l" : "d"
                   }` as IconName
                 }
+                className="w-5.5 h-5.5"
               />
               <span className={cn(["dock-label"])}>{i.name}</span>
             </button>

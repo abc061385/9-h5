@@ -54,7 +54,7 @@ const TeamsView = () => {
     >
       <div className="p-content">
         <label className="input w-full mb-2 bg-white">
-          <Icon name="search" size={16} />
+          <Icon name="search" className="w-4 h-4" />
           <input
             type="search"
             className="grow"
@@ -72,7 +72,7 @@ const TeamsView = () => {
           </span>
           <span className="text-primary flex-1 flex items-center justify-end">
             {t("查看团队投资数据")}
-            <Icon name="right-arrow" size={12} />
+            <Icon name="right-arrow" className="w-3 h-3" />
           </span>
         </div>
         <div role="tablist" className="tabs tabs-box flex my-4">
