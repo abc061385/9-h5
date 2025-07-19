@@ -15,7 +15,7 @@ export const LayoutDock = () => {
   const pathList = [
     { href: routerMap.home, name: t("tabbar.home"), icon: "home" },
     { href: routerMap.fund, name: t("基金"), icon: "fund" },
-    { href: "/demo/", name: t("tabbar.assets"), icon: "assets" },
+    { href: routerMap.assets, name: t("tabbar.assets"), icon: "assets" },
   ];
 
   return (

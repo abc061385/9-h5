@@ -24,9 +24,10 @@ export const routerMap = {
   register: "/register",
   verification: "/verification",
   fund: "/fund/",
-  "helper-ai": "helper-ai/",
+  "helper-ai": "/helper-ai/",
   news: "/news/",
   teams: "/teams/",
   user: "/user/",
   vip: "/vip/",
+  assets: "/assets/",
 };
