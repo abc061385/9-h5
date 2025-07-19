@@ -14,7 +14,7 @@ import { useVerificationStore } from "@/store/useVerification";
 import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
 import { Geetest, GeetestRef, GeetestValidateRes } from "@/components/geetest";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 type FormData = {
   email: string;
@@ -33,7 +33,6 @@ const LoginView = () => {
     password: reg.password,
   });
 
-  useEffect(() => {}, []);
   const {
     register,
     getValues,
@@ -103,7 +102,7 @@ const LoginView = () => {
         <button
           type="submit"
           className="btn btn-primary w-full"
-          onClick={handleSubmit((data) => {
+          onClick={handleSubmit(() => {
             geetestRef.current?.showCaptcha();
           })}
         >

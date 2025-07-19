@@ -1,9 +1,6 @@
 import { ContentType } from "@/api/ApiClient";
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  InternalAxiosRequestConfig,
-} from "axios";
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import toast from "react-hot-toast";
 
 // 响应统一数据格式
 export interface ApiResponse<T> {
@@ -44,6 +41,8 @@ const createAxiosInstance = (
       if (res.data.code === 200) {
         return res?.data;
       } else {
+        res.data?.message && toast.error(res.data?.message);
+        res.data?.msg && toast.error(res.data?.msg);
         return Promise.reject(res.data);
       }
     },

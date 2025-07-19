@@ -4,6 +4,7 @@ import { Launch } from "./launch";
 import { cn } from "@/lib/utils";
 import { useStore } from "@/store";
 import { initRouterPush, useRouter } from "@/i18n/navigation";
+import { ToastWrapper } from "../toast-wrapper";
 
 export const LayoutRoot = ({ children }: PropsWithChildren) => {
   const initRoot = useStore((s) => s.initRoot);
@@ -23,6 +24,7 @@ export const LayoutRoot = ({ children }: PropsWithChildren) => {
       ])}
     >
       <Launch>{children}</Launch>
+      <ToastWrapper />
     </div>
   );
 };
