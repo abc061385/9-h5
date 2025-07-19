@@ -1,8 +1,3 @@
-export enum GetTokenType {
-  "login",
-  "register",
-}
-
 export enum AccountType {
   "phone" = "0",
   "email" = "1",

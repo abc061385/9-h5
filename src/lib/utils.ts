@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 // @ts-ignore
 import CryptoJS from "crypto-js";
 import { AESsecretKey } from "./const";
+import lodash from "./lodash";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -72,4 +73,8 @@ export const encryptPassword = (password: string) => {
     padding: CryptoJS.pad.Pkcs7,
   }).toString();
   return cipherTxt;
+};
+
+export const utils = {
+  ...lodash,
 };

@@ -1,4 +1,9 @@
-import axios, { AxiosInstance } from "axios";
+import { ContentType } from "@/api/ApiClient";
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 // 响应统一数据格式
 export interface ApiResponse<T> {
@@ -7,36 +12,56 @@ export interface ApiResponse<T> {
   message: string;
 }
 
-const axiosIn: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "/app/",
-  timeout: 10_000,
-  headers: { "Content-Type": "application/json" },
+// 构建 axios 实例的函数，可动态传入 baseURL
+const createAxiosInstance = (
+  baseURL?: string,
+  setPost?: (config: InternalAxiosRequestConfig) => void,
+): AxiosInstance => {
+  const instance = axios.create({
+    baseURL: baseURL || process.env.NEXT_PUBLIC_API_URL || "/app/",
+    timeout: 10_000,
+    headers: { "Content-Type": "application/json" },
+  });
+
+  // 请求拦截器：注入 token
+  instance.interceptors.request.use((config) => {
+    const token =
+      typeof window !== "undefined" && localStorage.getItem("token");
+    if (token && config.headers) {
+      config.headers["auth-token"] = token;
+    }
+
+    if (config.method === "post") {
+      setPost && setPost(config);
+    }
+
+    return config;
+  });
+
+  // 响应拦截器：返回 data.data，统一处理错误
+  instance.interceptors.response.use(
+    (res) => {
+      if (res.data.code === 200) {
+        return res?.data;
+      } else {
+        return Promise.reject(res.data);
+      }
+    },
+    (err) => {
+      console.error("API Error", err);
+      return Promise.reject(err);
+    },
+  );
+
+  return instance;
+};
+
+// 默认导出一个主实例（默认 baseURL）
+const axiosIn = createAxiosInstance("/app/", (config) => {
+  config.headers["Content-Type"] = ContentType.FormData;
+  config.data = config.params;
+  config.params = {};
 });
 
-// 请求拦截器：注入 token
-axiosIn.interceptors.request.use((config) => {
-  const token = typeof window !== "undefined" && localStorage.getItem("token");
-  if (token && config.headers) {
-    config.headers["auth-token"] = token;
-  }
-
-  if (config.method === "post") {
-    config.headers["Content-Type"] = "application/x-www-form-urlencoded";
-    config.data = config.params;
-    config.params = {};
-  }
-  return config;
-});
-
-// 响应拦截器：直接 return data.data，统一错误处理
-axiosIn.interceptors.response.use(
-  (res) => {
-    if (res.status) return res.data;
-  },
-  (err) => {
-    console.error("API Error", err);
-    return Promise.reject(err);
-  },
-);
-
+export { createAxiosInstance };
 export default axiosIn;

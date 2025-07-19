@@ -13,6 +13,8 @@ import { encryptPassword } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
 import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
+import { Geetest, GeetestRef, GeetestValidateRes } from "@/components/geetest";
+import { useEffect, useRef } from "react";
 
 type FormData = {
   email: string;
@@ -24,14 +26,17 @@ const LoginView = () => {
   const router = useRouter();
   const setField = useVerificationStore((s) => s.setField);
   const reg = useRootReg();
+  const geetestRef = useRef<GeetestRef | null>(null);
 
   const Schema = z.object({
     email: reg.email,
     password: reg.password,
   });
 
+  useEffect(() => {}, []);
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -40,20 +45,24 @@ const LoginView = () => {
     reValidateMode: "onChange",
   });
 
-  const handleNext = async (data: FormData) => {
+  const handleNext = async (verData: GeetestValidateRes) => {
     try {
+      const data = getValues();
+      console.log(data, "data");
       const res = await api.auth.loginByFaBeforeCheckUsingPost({
         account: data.email,
         accountType: AccountType.email,
         password: encryptPassword(data.password),
-        certificate: "abc",
+        certificate: verData?.certificate || "",
       });
       setField("faCheckId", res?.data?.faCheckId);
       setField("account", data.email);
       setField("accountType", AccountType.email);
       setField("faBizType", FaBizType.login);
       router.push(routerMap["verification"]);
-    } catch {}
+    } catch (err) {
+      console.log(err, "err");
+    }
   };
   return (
     <ViewLayout>
@@ -95,11 +104,17 @@ const LoginView = () => {
           type="submit"
           className="btn btn-primary w-full"
           onClick={handleSubmit((data) => {
-            handleNext(data);
+            geetestRef.current?.showCaptcha();
           })}
         >
           {t("loginBtn")}
         </button>
+        <Geetest
+          ref={geetestRef}
+          onSuccess={(ver) => {
+            handleNext(ver);
+          }}
+        />
       </div>
     </ViewLayout>
   );

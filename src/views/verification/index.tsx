@@ -4,7 +4,6 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
 import { useUserStore } from "@/store/useUserStore";
-import { GetTokenType } from "@/lib/const";
 import { useVerificationStore } from "@/store/useVerification";
 import { useEffect, useCallback } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
@@ -29,16 +28,13 @@ const VerificationView = () => {
         captcha: code,
         faCheckId,
       });
-      const faResultId = "0f00bb1711ad44ee831a080ce66c427f";
+      const faResultId = res.data.faResultId;
       await api.auth.getTokenUsingPost({
         faResultId,
-        type: GetTokenType.login,
+        type: faBizType,
       });
       setUserField("userInfo", res.data);
-      setUserField(
-        "token",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoxNzUyNjM2NjQxMjYzLCJpZCI6NTc0NzksIm9iamVjdCI6IiJ9.f-o1aUDT1fw69h0K5WUco9ANoVsIipHz0VAftXfGUsg",
-      );
+      setUserField("token", res.data.token);
       useVerificationStore.persist.clearStorage();
       router.push(routerMap.home);
     },

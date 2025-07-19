@@ -15,7 +15,7 @@ type GeetestConfig = Partial<{
   userInfo: any;
   callType: any;
   language: any;
-  product: string; // ????
+  product: "popup" | "float" | "bind";
 }>;
 
 interface Window {

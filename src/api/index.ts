@@ -1,13 +1,13 @@
-import { CustomApi } from "./CustomApi";
+import { ApiCustom } from "./ApiCustom";
 
 export class AppApi {
-  private static _instance: InstanceType<typeof CustomApi>;
+  private static _instance: InstanceType<typeof ApiCustom>;
 
-  static init(): InstanceType<typeof CustomApi> {
+  static init(): InstanceType<typeof ApiCustom> {
     if (this._instance) {
       return this._instance;
     }
-    this._instance = new CustomApi();
+    this._instance = new ApiCustom();
     return this._instance;
   }
 

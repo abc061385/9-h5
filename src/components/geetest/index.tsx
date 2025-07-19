@@ -1,21 +1,47 @@
-import { FC, useEffect } from "react";
+import { api } from "@/api";
+import { FC, forwardRef, useEffect, useImperativeHandle } from "react";
+import useSWRImmutable from "swr/immutable";
+import "../../../public/js/gt4.js";
+import { BehaviorValidateRespDTO } from "@/api/NineIndexClient.js";
 
 type IProps = {
-  product?: string;
+  onSuccess?: (validateData: BehaviorValidateRespDTO) => void;
 };
 
-const captcha = {
+export type GeetestValidateRes = BehaviorValidateRespDTO;
+interface GeetestCaptchaResponse {
+  captcha_id: string;
+  captcha_output: string;
+  gen_time: string; // Timestamp，如 "1752910785"
+  lot_number: string;
+  pass_token: string;
+}
+type Captcha = {
+  instance: {
+    getValidate: () => GeetestCaptchaResponse;
+    validate: () => void;
+    showCaptcha: () => void;
+    showBox: () => void;
+    onSuccess: (callpack: () => Promise<void>) => void;
+  } | null;
+};
+
+export type GeetestRef = {
+  showCaptcha: () => void;
+};
+export const captcha: Captcha = {
   instance: null,
 };
 
-export const Geetest: FC<IProps> = ({ product }) => {
+export const Geetest = forwardRef<GeetestRef, IProps>(({ onSuccess }, ref) => {
+  const { data } = useSWRImmutable("behavior/apply", () =>
+    api.nineIndex.behavior.apply(),
+  );
   async function init() {
-    const lang = "zh";
-    // const res = await post_captchaApply({params: {type: 2}})
-    const { sdkKey } = { sdkKey: "1123" };
+    const lang = "cn";
     const config: GeetestConfig = {
-      captchaId: sdkKey, //验证 id，极验后台申请得到
-      product: product || "bind",
+      captchaId: data?.data.sdkKey, //验证 id，极验后台申请得到
+      product: "bind",
       language: (() => {
         const obj: { [key in string]?: string } = {
           cn: "zho",
@@ -31,26 +57,27 @@ export const Geetest: FC<IProps> = ({ product }) => {
       protocol: "https://",
       // apiServers: [host + "/geapi/v4"],
     };
-    const post_captchaValidate = async (p: unknown): Promise<unknown> => {
-      return p;
-    };
     try {
-      /* eslint-disable */
-      require("./gt4");
       window.initGeetest4(config, (captchaObj: any) => {
         captcha.instance = captchaObj;
         console.log("【验证码初始化成功】%o", captchaObj);
         captchaObj.appendTo("#geetest"); //将验证按钮插入到宿主页面中captchaBox元素内
-        captchaObj.onSuccess(async () => {
-          const result = captchaObj.getValidate();
-          console.log("【验证码验证成功】", result);
-          const res = await post_captchaValidate({
-            params: {
-              data: JSON.stringify(result),
-              type: 2,
-            },
-          });
-          console.log(res);
+        captchaObj.onSuccess(() => {
+          const result = captchaObj?.getValidate();
+          api.nineIndex.behavior
+            .validate1({
+              bizType: "",
+              lotNumber: result.lot_number,
+              captchaOutput: result.captcha_output,
+              passToken: result.pass_token,
+              genTime: result.gen_time,
+            })
+            .then((res) => {
+              if (res.code === 200) {
+                onSuccess?.(res.data);
+              }
+            })
+            .catch(() => {});
         });
       });
     } catch (err) {
@@ -58,7 +85,21 @@ export const Geetest: FC<IProps> = ({ product }) => {
     }
   }
   useEffect(() => {
-    init();
-  }, []);
-  return <div id={"geetest"} style={{ display: "none" }}></div>;
-};
+    if (data?.data?.sdkKey) {
+      init();
+    }
+  }, [data]);
+
+  const showCaptcha = () => {
+    captcha.instance?.showCaptcha();
+  };
+  useImperativeHandle(
+    ref,
+    () => ({
+      showCaptcha,
+    }),
+    [],
+  );
+
+  return <div id={"geetest"} className="hidden"></div>;
+});
