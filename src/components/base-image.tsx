@@ -15,9 +15,12 @@ const BaseImage: React.FC<IBaseImageProps> = ({
   onClick,
 }) => {
   return (
-    <div className={cn("relative", className)} onClick={() => onClick?.()}>
+    <span
+      className={cn("relative inline-block", className)}
+      onClick={() => onClick?.()}
+    >
       <Image src={src} alt={alt} fill />
-    </div>
+    </span>
   );
 };
 
