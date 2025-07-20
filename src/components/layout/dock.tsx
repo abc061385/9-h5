@@ -8,7 +8,7 @@ import { IconName } from "@/types/icons";
 const itemClass = (currentPathname: string, pathname: string) => {
   return cn(
     [currentPathname === pathname ? ["dock-active text-primary"] : []],
-    "flex justify-center items-center flex-col"
+    "flex justify-center items-center flex-col",
   );
 };
 
@@ -25,7 +25,7 @@ export const LayoutDock = () => {
     <div className="dock md:absolute m-0 p-0 z-50 bg-white border-none">
       {pathList.map((i, index) => {
         return (
-          <Link href={i.href} key={index}>
+          <Link href={i.href} key={index} className="h-full">
             <button
               className={cn([
                 itemClass(currentPathname, i.href),
@@ -39,7 +39,6 @@ export const LayoutDock = () => {
                     currentPathname === i.href ? "l" : "d"
                   }` as IconName
                 }
-                className="w-5.5 h-5.5"
               />
               <span className={cn(["dock-label"])}>{i.name}</span>
             </button>
