@@ -5,7 +5,7 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 const HomeHeaderBox = () => {
   const { push } = useRouter();
   return (
-    <div className="flex items-center justify-between py-4 px-3.5">
+    <div className="flex items-center justify-between py-4 px-3.5 bg-white">
       <BaseImage
         src="/images/common/logo.svg"
         className="h-[31px] w-[91px]"

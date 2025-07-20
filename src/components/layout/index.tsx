@@ -2,23 +2,31 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { LayoutDock } from "./dock";
 import { cn } from "@/lib/utils";
+import { ShowIf } from "../show-if";
 
 type IProps = PropsWithChildren<{ dock?: boolean; header?: ReactNode }>;
 export default function ViewLayout({ children, dock = false, header }: IProps) {
   return (
-    <div className="size-full relative">
-      {header ? (
-        <div className="absolute top-0 left-0 z-50 w-full">{header}</div>
-      ) : null}
+    <div data-name="layout" className="size-full relative">
+      <ShowIf condition={!!header}>
+        <div
+          className={cn([
+            "fixed top-0 left-0 z-50 w-full h-11 bg-white",
+            "md-pc:absolute",
+          ])}
+        >
+          {header}
+        </div>
+      </ShowIf>
       <div
         className={cn([
-          "layout size-full flex flex-col md:overflow-y-scroll no-scrollbar",
-          header ? "pt-[44px]" : "",
+          "size-full max-h-full",
+          "md-pc:flex-1 md-pc:overflow-y-scroll md-pc:no-scrollbar",
+          header ? "pt-11" : "",
         ])}
       >
         <div
           className={cn([
-            "flex-1",
             {
               "pb-[64px]": dock,
             },
@@ -26,8 +34,8 @@ export default function ViewLayout({ children, dock = false, header }: IProps) {
         >
           {children}
         </div>
-        {dock ? <LayoutDock /> : null}
       </div>
+      {dock ? <LayoutDock /> : null}
     </div>
   );
 }

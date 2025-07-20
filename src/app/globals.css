@@ -1,7 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant h5 (@media (max-width: 768px));
+/* is PC */
+@custom-variant pc (@media (hover: hover) and (pointer: fine));
+/* screen >= 768 and is PC */
+@custom-variant md-pc (@media (min-width: 768px) and  (hover: hover) and (pointer: fine));
 
 @plugin "daisyui" {
   themes:
@@ -17,7 +20,7 @@
 html {
   height: 100%;
   /* NOTE: H5 = 16px/(375px/100vw) */
-  font-size: clamp(10px, 4.266666vw, 32.7px);
+  font-size: clamp(10px, 4.266666vw, 32.7PX);
 
   /* NOTE: PC = 16px/(1920px/100vw) */
   /* font-size: clamp(12PX, 0.833333vw, 48px); */
@@ -25,6 +28,9 @@ html {
   /* @media screen and (max-width: 767px) { */
   /* font-size: clamp(10PX, 4.266666vw, 48px); */
   /* } */
+  @media (min-width: 768px) and  (hover: hover) and (pointer: fine){
+    font-size: clamp(10px, 4.266666vw, 19.1146PX);
+  }
 }
 
 body {
@@ -35,8 +41,8 @@ body {
 @import "../styles/core.css";
 
 @font-face {
-  font-family: 'ysbth';
-  src: url('/fonts/ysbth.ttf') format('truetype');
+  font-family: "ysbth";
+  src: url("/fonts/ysbth.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

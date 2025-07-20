@@ -35,15 +35,16 @@ pnpm gen:icontype
 - H5 UI design draft: 375px
 - PC UI design draft: 1920px
 - Default base font-size: 16px
+- md-pc screen >= 768 and isPC eg: md-pc:text-sm
 
 ```css
 /* src/app/globals.css */
 html {
-  /* NOTE: PC = 16px/(1920px/100vw) */
-  font-size: clamp(12px, 0.833333vw, 48px);
   /* NOTE: H5 = 16px/(375px/100vw) */
-  @media screen and (max-width: 767px) {
-    font-size: clamp(10px, 4.266666vw, 48px);
+  font-size: clamp(10px, 4.266666vw, 32.7px);
+  /* isPC */
+  @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    font-size: clamp(10px, 4.266666vw, 19.1146px);
   }
 }
 ```
