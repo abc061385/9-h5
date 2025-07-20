@@ -50,3 +50,20 @@ type CurrencyInfo = Partial<{
   usdtExchangeMarket: number;
   logo: string; // URL to logo image
 }>;
+
+type AssetsList = Partial<{
+  address?: string;
+  balance: number;
+  coin: string;
+  exchangeRateUSDT: string | number;
+  frozenBalance: number;
+  id: number;
+  memberId: number;
+  releaseBalance: number;
+  trans: string | number;
+  usdtPrice: string | number;
+  usdtValue: number;
+  version: number;
+  yesterdayIncome: string | number;
+  zyFrozenBalance: string | number;
+}>;

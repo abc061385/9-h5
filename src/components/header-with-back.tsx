@@ -2,27 +2,35 @@ import { cn } from "@/lib/utils";
 import { ReactNode, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Icon } from "./icon";
+import { useRouter as useI18nRouter } from "@/i18n/navigation";
 
 type IProps = {
   title?: ReactNode;
   algin?: "center" | "right";
   className?: string;
   onChange?: () => void;
+  path?: string;
 };
 export const HeaderWithBack = ({
   title,
   algin = "right",
   className = "",
   onChange,
+  path,
 }: IProps) => {
   const warpClass = cn([
     "flex items-center w-full h-[44px] p-content",
     className,
   ]);
   const router = useRouter();
+  const { push } = useI18nRouter();
 
   const handleBack = () => {
-    onChange && onChange();
+    onChange?.();
+    if (path) {
+      push(path);
+      return;
+    }
     router.back();
   };
 
@@ -36,7 +44,7 @@ export const HeaderWithBack = ({
   return (
     <div className={cn(warpClass, "pb-2")}>
       <i
-        className={cn(["cursor-pointer", notHistory && "text-red-400"])}
+        className={cn(["cursor-pointer flex", notHistory && "text-red-400"])}
         onClick={handleBack}
       >
         <Icon name="left-arrow" />

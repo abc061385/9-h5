@@ -13,7 +13,7 @@ const ListBox = () => {
   const { push } = useRouter();
   const menuList: MenuType[] = [
     { icon: "team-user", title: "我的团队", path: routerMap.teams },
-    { icon: "language", title: "user.language", path: "/team" },
+    { icon: "language", title: "user.language", path: routerMap.lang },
     { icon: "books", title: "user.addressBook", path: "/team" },
     { icon: "save", title: "user.securitySettings", path: "/team" },
     { icon: "about-us", title: "关于我们", path: "/team" },
@@ -29,7 +29,7 @@ const ListBox = () => {
           >
             <Icon name={item.icon} />
             <span className="flex-1 font-bold">{t(item.title)}</span>
-            <Icon name="right-arrow-user" size={10} />
+            <Icon name="right-arrow-user" />
           </div>
         );
       })}

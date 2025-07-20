@@ -7,6 +7,7 @@ import CoinIcon from "./coin-icon";
 import { cn } from "@/lib/utils";
 import { api } from "@/api";
 import { Drawer } from "@/components/drawer";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 type TokenListType = {
   id: number;
@@ -19,6 +20,7 @@ type TokenListType = {
 
 const ListBox = () => {
   const t = useTrans();
+  const { push } = useRouter();
   const [tabsValue, setTabsValue] = useState(2);
   const [list, setList] = useState<TokenListType[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -62,7 +64,7 @@ const ListBox = () => {
           <a
             role="tab"
             className={cn(
-              "tab flex-1",
+              "tab flex-1 leading-[100%]",
               tab.value === tabsValue && "tab-active"
             )}
             key={tab.value}
@@ -80,11 +82,16 @@ const ListBox = () => {
             onClick={() => setDrawerOpen(true)}
           >
             {pledgeDays} {t("天")}
-            <Icon name="left-arrow" size={12} className="rotate-270" />
+            <Icon name="left-arrow" className="w-3 h-3 rotate-270" />
           </div>
         </div>
-        <span className="flex items-center text-[#8F00FF] text-xs font-510">
-          {t("基金规则")} <Icon name="right-arrow" size={12} />
+        <span
+          className="flex items-center text-[#8F00FF] text-xs font-510"
+          onClick={() => {
+            push(routerMap.rule);
+          }}
+        >
+          {t("基金规则")} <Icon name="right-arrow" className="w-3 h-3" />
         </span>
       </div>
       {list.map((item) => (
@@ -116,8 +123,8 @@ const ListBox = () => {
         open={drawerOpen}
         onChange={setDrawerOpen}
         className="h-[40vh] py-4"
+        title={t("质押周期")}
       >
-        <div className="text-center font-bold">{t("质押周期")}</div>
         {pledgeList.map((item) => (
           <div
             key={item.value}

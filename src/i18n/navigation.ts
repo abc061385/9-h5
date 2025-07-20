@@ -30,4 +30,8 @@ export const routerMap = {
   user: "/user/",
   vip: "/vip/",
   assets: "/assets/",
+  upgrade: "/assets/upgrade/",
+  income: "/assets/income/",
+  lang: "/user/lang/",
+  rule: "/fund/rule/",
 };
