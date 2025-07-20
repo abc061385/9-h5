@@ -10,15 +10,11 @@ import { InputPassword } from "@/components/input/password";
 import { TextError } from "@/components/input/text-error";
 import z, { useRootReg } from "@/lib/z";
 import { encryptPassword } from "@/lib/utils";
-import { AccountType, FaBizType } from "@/lib/const";
 import { useVerificationStore } from "@/store/useVerification";
+import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
-
-type FormData = {
-  email: string;
-  password: string;
-  invitationCode: string;
-};
+import { useRef } from "react";
+import { Geetest, GeetestRef, GeetestValidateRes } from "@/components/geetest";
 
 const RegisterView = () => {
   const t = useTrans();
@@ -26,6 +22,7 @@ const RegisterView = () => {
   const reg = useRootReg();
   const setField = useVerificationStore((s) => s.setField);
 
+  const geetestRef = useRef<GeetestRef | null>(null);
   const Schema = z
     .object({
       email: reg.email,
@@ -40,20 +37,22 @@ const RegisterView = () => {
 
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(Schema),
   });
 
-  const handleNext = async (data: FormData) => {
+  const handleNext = async (ver: GeetestValidateRes) => {
     try {
+      const data = getValues();
       const res = await api.auth.regByFaBeforeCheckUsingPost({
         account: data.email,
         accountType: AccountType.email,
         password: encryptPassword(data.password),
         invitationCode: data.invitationCode,
-        certificate: "abc",
+        certificate: ver.certificate || "",
       });
       if (res.code === 200) {
         setField("faCheckId", res.data?.faCheckId);
@@ -62,7 +61,6 @@ const RegisterView = () => {
         setField("faBizType", FaBizType.register);
         router.push(routerMap["verification"]);
       } else {
-        console.log(res.message);
       }
     } catch {}
   };
@@ -145,12 +143,18 @@ const RegisterView = () => {
         <button
           type="submit"
           className="btn btn-primary w-full"
-          onClick={handleSubmit((data) => {
-            handleNext(data);
+          onClick={handleSubmit(() => {
+            geetestRef.current?.showCaptcha();
           })}
         >
           {t("login.registerBtn")}
         </button>
+        <Geetest
+          ref={geetestRef}
+          onSuccess={(ver) => {
+            handleNext(ver);
+          }}
+        />
       </div>
     </ViewLayout>
   );

@@ -23,8 +23,14 @@ export const LayoutDock = () => {
       {pathList.map((i, index) => {
         return (
           <Link href={i.href} key={index}>
-            <button className={itemClass(currentPathname, i.href)}>
+            <button
+              className={cn([
+                itemClass(currentPathname, i.href),
+                "flex flex-col items-center",
+              ])}
+            >
               <Icon
+                className="block size-4.5"
                 name={
                   `${i.icon}-${
                     currentPathname === i.href ? "l" : "d"
