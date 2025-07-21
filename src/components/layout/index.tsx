@@ -8,19 +8,21 @@ type IProps = PropsWithChildren<{
   dock?: boolean;
   header?: ReactNode;
   footer?: ReactNode;
+  className?: string;
 }>;
 export default function ViewLayout({
   children,
   dock = false,
   header,
   footer,
+  className,
 }: IProps) {
   return (
     <div data-name="layout" className="size-full relative">
       <ShowIf condition={!!header}>
         <div
           className={cn([
-            "fixed top-0 left-0 z-50 w-full h-11 bg-white",
+            "fixed top-0 left-0 z-50 w-full min-h-11 bg-white",
             "md-pc:absolute",
           ])}
         >
@@ -29,12 +31,13 @@ export default function ViewLayout({
       </ShowIf>
       <div
         className={cn([
-          "size-full max-h-full",
+          "bg-white min-h-full min-w-full",
           "md-pc:flex-1 md-pc:overflow-y-scroll md-pc:no-scrollbar",
           {
             "pt-11": header,
-            "pb-[64px]": dock,
+            "pb-16": dock,
           },
+          className,
         ])}
       >
         {children}
@@ -43,7 +46,12 @@ export default function ViewLayout({
         <LayoutDock />
       </ShowIf>
       <ShowIf condition={!dock && !!footer}>
-        <div className="fixed bottom-0 left-0 right-0 md-pc:absolute flex justify-center h-16">
+        <div
+          className={cn([
+            "fixed bottom-0 left-0 right-0  flex justify-center min-h-16",
+            "md-pc:absolute",
+          ])}
+        >
           {footer}
         </div>
       </ShowIf>
