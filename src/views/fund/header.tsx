@@ -6,7 +6,7 @@ const FundHeaderBox = () => {
   const { push } = useRouter();
   const t = useTrans();
   return (
-    <div className="flex items-center justify-between  px-4 size-full">
+    <div className="flex items-center justify-between  px-4 h-11">
       <h1 className="text-lg font-bold">{t("基金")}</h1>
       <Icon
         name="order"
