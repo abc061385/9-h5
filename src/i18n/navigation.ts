@@ -27,6 +27,7 @@ export const routerMap = {
   "helper-ai": "/helper-ai/",
   news: "/news/",
   teams: "/teams/",
+  teamsNext: "/teams/next",
   user: "/user/",
   vip: "/vip/",
   assets: "/assets/",
@@ -36,4 +37,5 @@ export const routerMap = {
   rule: "/fund/rule/",
   fundBuy: "/fund/buy/",
   fundProtocol: "/fund/protocol/",
+  invite: "/invite/",
 };

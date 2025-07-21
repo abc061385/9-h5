@@ -206,6 +206,41 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
+  {
+    "path": "pages/wallet/detail",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "交易记录"
+    }
+  },
+   {
+    "path": "pages/invite/invite",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "邀请好友"
+    }
+  },
+   {
+    "path": "pages/assets/upgrade",
+    "style": {
+      "navigationBarTitleText": "VIP计划",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/textDetail",
+    "style": {
+      "navigationBarTitleText": "用户协议",
+      "navigationStyle": "custom"
+    }
+  },
+   {
+    "path": "pages/teams/next",
+    "style": {
+      "navigationBarTitleText": "下级团队",
+      "navigationStyle": "custom"
+    }
+  },
 ]
 ```
 
@@ -235,13 +270,6 @@ export default DemoView;
     }
   },
   {
-    "path": "pages/invite/invite",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "邀请好友"
-    }
-  },
-  {
     "path": "pages/demo/alert-dialog-demo",
     "style": {
       "navigationBarTitleText": "弹框组件演示"
@@ -254,13 +282,6 @@ export default DemoView;
     "style": {
       "navigationStyle": "custom",
       "navigationBarTitleText": "提币"
-    }
-  },
-  {
-    "path": "pages/wallet/detail",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "交易记录"
     }
   },
   {
@@ -334,31 +355,8 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
-  
-  {
-    "path": "pages/assets/upgrade",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  },
-  {
-    "path": "pages/textDetail",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  },
   {
     "path": "pages/assets/exchange",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  },
-
-  {
-    "path": "pages/teams/next",
     "style": {
       "navigationBarTitleText": "",
       "navigationStyle": "custom"

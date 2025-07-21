@@ -31,7 +31,7 @@ const AssetsListBox = () => {
   return (
     <div className="flex-1">
       <h2>资产</h2>
-      <div className="h-full">
+      <div className="h-[50vh]">
         <InfiniteList<AssetsList, object>
           data={list}
           fetchMore={async (_index) => {

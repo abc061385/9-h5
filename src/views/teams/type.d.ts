@@ -24,6 +24,7 @@ export interface DataType {
 
 export interface ICardProps {
   data: DataType;
+  onClick?: () => void;
 }
 
 export interface IndividualType {

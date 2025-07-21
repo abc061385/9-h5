@@ -5,15 +5,17 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { cn } from "@/lib/utils";
+import { cn, maskString } from "@/lib/utils";
 import CardBox from "./card";
 import { DataType } from "./type";
 import { api } from "@/api";
 import { InfiniteList } from "@/components/infinite-list";
 import { useUserStore } from "@/store/useUserStore";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 const TeamsView = () => {
   const t = useTrans();
+  const { push } = useRouter();
   const userInfo = useUserStore((s) => s.userInfo);
   const [tabsValue, setTabsValue] = useState<number>();
   const [list, setList] = useState<DataType[]>([]);
@@ -35,7 +37,125 @@ const TeamsView = () => {
       generation: 1,
       tel: searchValue,
     });
-    setList(data?.list || []);
+    setList(
+      data?.list || [
+        {
+          id: 55004,
+          parentId: 55001,
+          totalInvestment: 0,
+          totalInvestmentTeam: 0,
+          totalInvestmentYesterday: 0,
+          yesterdayReturn: 0,
+          totalFundReturn: 0,
+          nodeInvestment: 0,
+          tel: "Mjfi777",
+          nickname: "Mjfi777",
+          createTime: "2025-04-30 00:33:47",
+          vipLevel: 0,
+          generation: 1,
+          frozen_ubx: 0,
+          emailAccount: "",
+          isInvest: 0,
+          areaType: 1,
+          accountType: 0,
+          totalUsersCount: 0,
+          yesterdayNewUsersCount: 0,
+          area: "A",
+        },
+        {
+          id: 55005,
+          parentId: 55001,
+          totalInvestment: 0,
+          totalInvestmentTeam: 0,
+          totalInvestmentYesterday: 0,
+          yesterdayReturn: 0,
+          totalFundReturn: 0,
+          nodeInvestment: 0,
+          tel: "Mjfi7777",
+          nickname: "Mjfi7777",
+          createTime: "2025-04-30 00:37:46",
+          vipLevel: 0,
+          generation: 1,
+          frozen_ubx: 0,
+          emailAccount: "",
+          isInvest: 0,
+          areaType: 1,
+          accountType: 0,
+          totalUsersCount: 4,
+          yesterdayNewUsersCount: 0,
+          area: "B",
+        },
+        {
+          id: 55022,
+          parentId: 55001,
+          totalInvestment: 3000,
+          totalInvestmentTeam: 114707,
+          totalInvestmentYesterday: 0,
+          yesterdayReturn: 0,
+          totalFundReturn: 317.18,
+          nodeInvestment: 3000,
+          tel: "Theconsultant",
+          nickname: "Theconsultant",
+          createTime: "2025-05-01 16:34:32",
+          vipLevel: 6,
+          generation: 1,
+          frozen_ubx: 0,
+          emailAccount: "",
+          isInvest: 1,
+          areaType: 2,
+          accountType: 0,
+          totalUsersCount: 881,
+          yesterdayNewUsersCount: 0,
+          area: "C",
+        },
+        {
+          id: 55319,
+          parentId: 55001,
+          totalInvestment: 0,
+          totalInvestmentTeam: 0,
+          totalInvestmentYesterday: 0,
+          yesterdayReturn: 0,
+          totalFundReturn: 0,
+          nodeInvestment: 0,
+          tel: "AAA123",
+          nickname: "AAA123",
+          createTime: "2025-05-17 23:15:40",
+          vipLevel: 0,
+          generation: 1,
+          frozen_ubx: 0,
+          emailAccount: "",
+          isInvest: 0,
+          areaType: 1,
+          accountType: 0,
+          totalUsersCount: 5,
+          yesterdayNewUsersCount: 0,
+          area: "D",
+        },
+        {
+          id: 61702,
+          parentId: 55001,
+          totalInvestment: 0,
+          totalInvestmentTeam: 0,
+          totalInvestmentYesterday: 0,
+          yesterdayReturn: 0,
+          totalFundReturn: 0,
+          nodeInvestment: 0,
+          tel: "o0n5msi00p@iwatermail.com",
+          nickname: "o0n5msi00p@iwatermail.com",
+          createTime: "2025-07-21 14:38:36",
+          vipLevel: 1,
+          generation: 1,
+          frozen_ubx: 0,
+          emailAccount: "o0n5msi00p@iwatermail.com",
+          isInvest: 0,
+          areaType: 1,
+          accountType: 1,
+          totalUsersCount: 0,
+          yesterdayNewUsersCount: 0,
+          area: "E",
+        },
+      ]
+    );
   }, [tabsValue, searchValue, userInfo]);
 
   const getInfo = useCallback(async () => {
@@ -68,7 +188,8 @@ const TeamsView = () => {
         </label>
         <div className="flex justify-between font-bold text-xs gap-2">
           <span>
-            {t("团队总人数")}:<span className="text-sm">{teamNumbers}</span>
+            {t("团队总人数")}:
+            <span className="text-sm">{teamNumbers || 0}</span>
           </span>
           <span className="text-primary flex-1 flex items-center justify-end">
             {t("查看团队投资数据")}
@@ -99,7 +220,19 @@ const TeamsView = () => {
               console.log(_index);
               return [];
             }}
-            itemContent={(_, item) => <CardBox key={item.id} data={item} />}
+            itemContent={(_, item) => (
+              <CardBox
+                key={item.id}
+                data={item}
+                onClick={() =>
+                  push(
+                    `${routerMap.teamsNext}?id=${item.id}&name=${maskString(
+                      item.nickname
+                    )}`
+                  )
+                }
+              />
+            )}
           />
         </div>
       </div>
