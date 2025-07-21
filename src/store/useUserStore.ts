@@ -20,6 +20,7 @@ export const useUserStore = create<LoginState>()(
           token: "",
           logOut() {
             set({ userInfo: {}, token: "" });
+            navigateTo(routerMap.login);
           },
           fetchUserInfo: async () => {
             if (!get().token) {

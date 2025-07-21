@@ -4,8 +4,17 @@ import { LayoutDock } from "./dock";
 import { cn } from "@/lib/utils";
 import { ShowIf } from "../show-if";
 
-type IProps = PropsWithChildren<{ dock?: boolean; header?: ReactNode }>;
-export default function ViewLayout({ children, dock = false, header }: IProps) {
+type IProps = PropsWithChildren<{
+  dock?: boolean;
+  header?: ReactNode;
+  footer?: ReactNode;
+}>;
+export default function ViewLayout({
+  children,
+  dock = false,
+  header,
+  footer,
+}: IProps) {
   return (
     <div data-name="layout" className="size-full relative">
       <ShowIf condition={!!header}>
@@ -23,14 +32,21 @@ export default function ViewLayout({ children, dock = false, header }: IProps) {
           "size-full max-h-full",
           "md-pc:flex-1 md-pc:overflow-y-scroll md-pc:no-scrollbar",
           {
-            "pb-[64px]": dock,
             "pt-11": header,
+            "pb-[64px]": dock,
           },
         ])}
       >
         {children}
       </div>
-      {dock ? <LayoutDock /> : null}
+      <ShowIf condition={dock}>
+        <LayoutDock />
+      </ShowIf>
+      <ShowIf condition={!dock && !!footer}>
+        <div className="fixed bottom-0 left-0 right-0 md-pc:absolute flex justify-center h-16">
+          {footer}
+        </div>
+      </ShowIf>
     </div>
   );
 }
