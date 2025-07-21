@@ -75,7 +75,7 @@ const LoginView = () => {
               {t("registerBtn")}
             </Link>
           </div>
-          <form className="grow">
+          <form className="grow" autoComplete="off">
             <fieldset className="fieldset">
               <legend className="fieldset-legend">{t("email")}</legend>
               <label className="input w-full">
