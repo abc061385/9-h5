@@ -5,7 +5,7 @@ import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
 import { useUserStore } from "@/store/useUserStore";
 import { useVerificationStore } from "@/store/useVerification";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef, forwardRef } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
 
 const VerificationView = () => {
@@ -15,6 +15,7 @@ const VerificationView = () => {
   const accountType = useVerificationStore((s) => s.accountType);
   const faBizType = useVerificationStore((s) => s.faBizType);
   const setUserField = useUserStore((s) => s.setField);
+  const mounted = useRef(false);
 
   const sendCode = useCallback(async () => {
     api.auth
@@ -24,25 +25,32 @@ const VerificationView = () => {
   }, [account, faCheckId, faBizType]);
   const validateCode = useCallback(
     async (code: string) => {
-      const res = await api.auth.validateCodeUsingPost({
-        captcha: code,
-        faCheckId,
-      });
-      const faResultId = res.data.faResultId;
-      await api.auth.getTokenUsingPost({
-        faResultId,
-        type: faBizType,
-      });
-      setUserField("userInfo", res.data);
-      setUserField("token", res.data.token);
-      useVerificationStore.persist.clearStorage();
-      router.push(routerMap.home);
+      try {
+        const res = await api.auth.validateCodeUsingPost({
+          captcha: code,
+          faCheckId,
+        });
+        const faResultId = res.data.faResultId;
+        const userResponse = await api.auth.getTokenUsingPost({
+          faResultId,
+          type: faBizType,
+        });
+        setUserField("userInfo", userResponse.data);
+        setUserField("token", userResponse.data?.token);
+        useVerificationStore.persist.clearStorage();
+        router.push(routerMap.home);
+      } catch (error) {
+        console.log(error);
+      }
     },
     [faCheckId],
   );
   useEffect(() => {
-    sendCode();
-    console.log("我发送了验证码1");
+    if (mounted.current) {
+      sendCode();
+    } else {
+      mounted.current = true;
+    }
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import { ContentType } from "@/api/ApiClient";
+import { useUserStore } from "@/store/useUserStore";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import toast from "react-hot-toast";
 
@@ -22,8 +23,7 @@ const createAxiosInstance = (
 
   // 请求拦截器：注入 token
   instance.interceptors.request.use((config) => {
-    const token =
-      typeof window !== "undefined" && localStorage.getItem("token");
+    const token = useUserStore.getState().token;
     if (token && config.headers) {
       config.headers["auth-token"] = token;
     }

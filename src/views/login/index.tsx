@@ -47,7 +47,6 @@ const LoginView = () => {
   const handleNext = async (verData: GeetestValidateRes) => {
     try {
       const data = getValues();
-      console.log(data, "data");
       const res = await api.auth.loginByFaBeforeCheckUsingPost({
         account: data.email,
         accountType: AccountType.email,
@@ -66,39 +65,41 @@ const LoginView = () => {
   return (
     <ViewLayout>
       <div className="p-content size-full flex flex-col">
-        <h1 className="text-h1 text-center my-8">{t("welcome")}</h1>
-        <div className="tabs tabs-box mb-5">
-          <a role="tab" className="tab flex-1 tab-active">
-            {t("loginBtn")}
-          </a>
-          <Link href={routerMap.register} role="tab" className="tab flex-1">
-            {t("registerBtn")}
-          </Link>
-        </div>
-        <form className="grow">
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("email")}</legend>
-            <label className="input w-full">
-              <Icon name="email" />
-              <input
-                type="email"
-                {...register("email")}
-                placeholder={t("email")}
+        <div className="grow">
+          <h1 className="text-h1 text-center my-8">{t("welcome")}</h1>
+          <div className="tabs tabs-box mb-5">
+            <a role="tab" className="tab flex-1 tab-active">
+              {t("loginBtn")}
+            </a>
+            <Link href={routerMap.register} role="tab" className="tab flex-1">
+              {t("registerBtn")}
+            </Link>
+          </div>
+          <form className="grow">
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend">{t("email")}</legend>
+              <label className="input w-full">
+                <Icon name="email" />
+                <input
+                  type="email"
+                  {...register("email")}
+                  placeholder={t("email")}
+                  className="grow"
+                />
+              </label>
+              <TextError>{errors?.email?.message}</TextError>
+            </fieldset>
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend">{t("password")}</legend>
+              <InputPassword
                 className="grow"
+                placeholder={t("password")}
+                err={errors?.password?.message}
+                {...register("password")}
               />
-            </label>
-            <TextError>{errors?.email?.message}</TextError>
-          </fieldset>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("password")}</legend>
-            <InputPassword
-              className="grow"
-              placeholder={t("password")}
-              err={errors?.password?.message}
-              {...register("password")}
-            />
-          </fieldset>
-        </form>
+            </fieldset>
+          </form>
+        </div>
         <button
           type="submit"
           className="btn btn-primary w-full"

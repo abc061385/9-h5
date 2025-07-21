@@ -22,10 +22,10 @@ export const useUserStore = create<LoginState>()(
             set({ userInfo: {}, token: "" });
           },
           fetchUserInfo: async () => {
-            // if (!get().token) {
-            //   navigateTo(routerMap.login);
-            //   return;
-            // }
+            if (!get().token) {
+              navigateTo(routerMap.login);
+              return;
+            }
             try {
               const res = await api.member.userInfoUsingGet();
               set(() => ({ userInfo: res.data }));

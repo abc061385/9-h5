@@ -22,18 +22,13 @@ export default function ViewLayout({ children, dock = false, header }: IProps) {
         className={cn([
           "size-full max-h-full",
           "md-pc:flex-1 md-pc:overflow-y-scroll md-pc:no-scrollbar",
-          header ? "pt-11" : "",
+          {
+            "pb-[64px]": dock,
+            "pt-11": header,
+          },
         ])}
       >
-        <div
-          className={cn([
-            {
-              "pb-[64px]": dock,
-            },
-          ])}
-        >
-          {children}
-        </div>
+        {children}
       </div>
       {dock ? <LayoutDock /> : null}
     </div>
