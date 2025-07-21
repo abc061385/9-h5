@@ -2,6 +2,7 @@ import { ContentType } from "@/api/ApiClient";
 import { useUserStore } from "@/store/useUserStore";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import toast from "react-hot-toast";
+import { getIsDev } from "./utils";
 
 // 响应统一数据格式
 export interface ApiResponse<T> {
@@ -12,11 +13,11 @@ export interface ApiResponse<T> {
 
 // 构建 axios 实例的函数，可动态传入 baseURL
 const createAxiosInstance = (
-  baseURL?: string,
+  baseURL: string,
   setPost?: (config: InternalAxiosRequestConfig) => void,
 ): AxiosInstance => {
   const instance = axios.create({
-    baseURL: baseURL || process.env.NEXT_PUBLIC_API_URL || "/app/",
+    baseURL: getIsDev() ? baseURL : process.env.NEXT_PUBLIC_API_URL + baseURL,
     timeout: 10_000,
     headers: { "Content-Type": "application/json" },
   });
