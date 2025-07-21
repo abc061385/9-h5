@@ -46,7 +46,7 @@ const VerificationView = () => {
   );
   useEffect(() => {
     sendCode();
-  }, []);
+  }, [sendCode]);
 
   return (
     <ViewLayout
