@@ -29,15 +29,15 @@ const CoinIcon: React.FC<CoinIconProps> = ({
           <div
             key={index}
             className={cn(
-              "overflow-hidden bg-white",
+              "overflow-hidden bg-white relative",
               rounded && "rounded-full",
               border && "border border-white",
               "shrink-0",
               isSecond && showDouble ? "absolute left-0" : ""
             )}
             style={{
-              width: size,
-              height: size,
+              width: size + "px",
+              height: size + "px",
               left: isSecond && showDouble ? overlap : undefined,
               zIndex: isSecond ? 0 : 10,
             }}

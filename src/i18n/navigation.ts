@@ -34,4 +34,6 @@ export const routerMap = {
   income: "/assets/income/",
   lang: "/user/lang/",
   rule: "/fund/rule/",
+  fundBuy: "/fund/buy/",
+  fundProtocol: "/fund/protocol/",
 };

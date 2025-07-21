@@ -184,7 +184,28 @@ export default DemoView;
       "navigationStyle": "custom",
       "navigationBarTitleText": "充币"
     }
-  }
+  },
+   {
+    "path": "pages/assets/index",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "我的资产"
+    }
+  },
+  {
+    "path": "pages/fund/rule",
+    "style": {
+      "navigationBarTitleText": "基金规则",
+      "navigationStyle": "custom"
+    }
+  },
+  {
+    "path": "pages/assets/income",
+    "style": {
+      "navigationBarTitleText": "投资收益",
+      "navigationStyle": "custom"
+    }
+  },
 ]
 ```
 
@@ -227,13 +248,7 @@ export default DemoView;
     }
   },
 
-  {
-    "path": "pages/assets/index",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "我的资产"
-    }
-  },
+ 
   {
     "path": "pages/withdraw/index",
     "style": {
@@ -297,13 +312,7 @@ export default DemoView;
       "navigationBarTitleText": "节点购买"
     }
   },
-  {
-    "path": "pages/fund/rule",
-    "style": {
-      "navigationBarTitleText": "基金规则",
-      "navigationStyle": "custom"
-    }
-  },
+  
   {
     "path": "pages/fund/buy",
     "style": {
@@ -325,13 +334,7 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
-  {
-    "path": "pages/assets/income",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  },
+  
   {
     "path": "pages/assets/upgrade",
     "style": {
