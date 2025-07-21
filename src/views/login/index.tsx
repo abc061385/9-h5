@@ -63,7 +63,7 @@ const LoginView = () => {
     }
   };
   return (
-    <ViewLayout>
+    <ViewLayout heightFull>
       <div className="p-content size-full flex flex-col">
         <div className="grow">
           <h1 className="text-h1 text-center my-8">{t("welcome")}</h1>

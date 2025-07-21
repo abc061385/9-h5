@@ -8,6 +8,7 @@ type IProps = PropsWithChildren<{
   dock?: boolean;
   header?: ReactNode;
   footer?: ReactNode;
+  heightFull?: boolean;
   className?: string;
 }>;
 export default function ViewLayout({
@@ -15,6 +16,7 @@ export default function ViewLayout({
   dock = false,
   header,
   footer,
+  heightFull = false,
   className,
 }: IProps) {
   return (
@@ -31,11 +33,12 @@ export default function ViewLayout({
       </ShowIf>
       <div
         className={cn([
-          "bg-white min-h-full min-w-full",
+          "bg-white min-h-full w-full",
           "md-pc:flex-1 md-pc:overflow-y-scroll md-pc:no-scrollbar",
           {
             "pt-11": header,
             "pb-16": dock,
+            "h-full": heightFull,
           },
           className,
         ])}

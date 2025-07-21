@@ -65,7 +65,7 @@ const RegisterView = () => {
     } catch {}
   };
   return (
-    <ViewLayout>
+    <ViewLayout heightFull>
       <div className="p-content size-full flex flex-col">
         <h1 className="text-h1 text-center my-8">{t("login.welcome")}</h1>
         <div className="tabs tabs-box mb-5">
