@@ -11,7 +11,7 @@ interface ITokenSelectProps {
   name: string;
   currencyCode: string;
   value?: string;
-  onChange?: (event: { target: { name: string; value: string } }) => void;
+  onChange?: (event: { target: { name: string; value?: string } }) => void;
 }
 export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
   ({ name, value, currencyCode, onChange }, ref) => {
@@ -19,7 +19,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
     const [open, setOpen] = useState(false);
     const { data } = useSWR(
       currencyCode ? ["protocolListUsingGet", currencyCode] : null,
-      ([_, _currencyCode]) =>
+      ([, _currencyCode]) =>
         api.currencySettings.pageUsingGet({ currencyCode: _currencyCode }),
     );
     const currencyList = data?.data as CurrencyInfo[];
@@ -62,7 +62,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
         <Drawer open={open} onChange={setOpen} title={t("address.selectChain")}>
           <div className="size-full flex flex-col">
             <div className="flex-1">
-              <InfiniteList<CurrencyInfo, {}>
+              <InfiniteList<CurrencyInfo, unknown>
                 data={currencyList}
                 hiddenEmpty
                 hiddenFooter
@@ -77,7 +77,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
                         const event = {
                           target: { name, value: item?.protocolType },
                         };
-                        onChange?.(event as any);
+                        onChange?.(event);
                       }}
                       className={cn([
                         "flex justify-center items-center h-8 space-x-2 mb-2 text-text2",
@@ -94,7 +94,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
             </div>
             <div className="flex-none">
               <p className="text-xs font-bold flex items-center mb-2">
-                <Icon name="prompt" size={14} className="mr-1" />
+                <Icon name="prompt" className="mr-1 size-0.875" />
                 Draw attention to sth.
               </p>
               <div className="text-text2 text-xs font-bold">
@@ -110,3 +110,5 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
     );
   },
 );
+
+SelectChain.displayName = "SelectChain";

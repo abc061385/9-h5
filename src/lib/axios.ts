@@ -29,7 +29,7 @@ const createAxiosInstance = (
     }
 
     if (config.method === "post") {
-      setPost && setPost(config);
+      if (setPost) setPost(config);
     }
 
     return config;
@@ -41,8 +41,8 @@ const createAxiosInstance = (
       if (res.data.code === 200) {
         return res?.data;
       } else {
-        res.data?.message && toast.error(res.data?.message);
-        res.data?.msg && toast.error(res.data?.msg);
+        if (res.data?.message) toast.error(res.data?.message);
+        if (res.data?.msg) toast.error(res.data?.msg);
         return Promise.reject(res.data);
       }
     },

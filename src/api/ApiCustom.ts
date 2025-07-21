@@ -2,12 +2,12 @@ import axiosIn, { createAxiosInstance } from "@/lib/axios";
 import { Api, _ } from "./ApiClient";
 import { Api as NineIndexClient } from "./NineIndexClient";
 
-export class ApiCustom extends Api<any> {
+export class ApiCustom extends Api<string> {
   nineIndex: InstanceType<typeof NineIndexClient>;
   constructor() {
     super({ axiosInstance: axiosIn });
     this.nineIndex = new NineIndexClient({
-      axiosInstance: createAxiosInstance("/app/nine-index/", (config) => {}),
+      axiosInstance: createAxiosInstance("/app/nine-index/"),
     });
   }
 

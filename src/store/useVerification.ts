@@ -20,7 +20,7 @@ export const useVerificationStore = create<VerificationState>()(
           accountType: AccountType.phone,
           faBizType: "",
           reset: () => set({ faCheckId: "", account: "" }),
-          setField: (key, value) => set({ [key]: value } as any),
+          setField: (key, value) => set({ [key]: value }),
         };
       },
       { enabled: getIsDev() },

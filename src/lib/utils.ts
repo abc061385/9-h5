@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-// @ts-ignore
+// @ts-expect-error - 忽略三方警告
 import CryptoJS from "crypto-js";
 import { AESsecretKey } from "./const";
 import lodash from "./lodash";

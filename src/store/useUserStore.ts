@@ -34,7 +34,7 @@ export const useUserStore = create<LoginState>()(
               set(() => ({ userInfo: {} }));
             }
           },
-          setField: (key, value) => set({ [key]: value } as any),
+          setField: (key, value) => set({ [key]: value }),
         };
       },
       { enabled: getIsDev() },

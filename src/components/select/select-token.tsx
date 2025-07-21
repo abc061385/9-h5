@@ -12,7 +12,7 @@ import { Skeleton } from "@/components/skeleton";
 interface ITokenSelectProps {
   name: string;
   value?: string;
-  onChange?: (event: { target: { name: string; value: string } }) => void;
+  onChange?: (event: { target: { name: string; value?: string } }) => void;
   onSelect?: (item: CurrencyInfo) => void;
 }
 export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
@@ -30,11 +30,11 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
         if (defaultToken) {
           onChange?.({
             target: { name, value: defaultToken.currencyCode },
-          } as any);
+          });
           onSelect?.(defaultToken);
         }
       }
-    }, [currencyList, value, name, onChange]);
+    }, [currencyList, value, name, onChange, onSelect]);
 
     const selectCurrency = useMemo(() => {
       return currencyList?.find((t) => t.currencyCode === value);
@@ -76,7 +76,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
         </button>
         <Drawer open={open} onChange={setOpen} title={t("address.selectToken")}>
           <div className="size-full">
-            <InfiniteList<CurrencyInfo, {}>
+            <InfiniteList<CurrencyInfo, unknown>
               data={currencyList}
               hiddenEmpty
               hiddenFooter
@@ -91,7 +91,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
                       const event = {
                         target: { name, value: item?.currencyCode },
                       };
-                      onChange?.(event as any);
+                      onChange?.(event);
                       onSelect?.(item);
                     }}
                     className={cn([
@@ -117,3 +117,5 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
     );
   },
 );
+
+SelectToken.displayName = "SelectToken";

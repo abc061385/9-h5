@@ -6,7 +6,6 @@ import { Verification } from "@/components/verification";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { api } from "@/api";
-import { useStore } from "@/store";
 import { InfiniteList } from "@/components/infinite-list";
 const asyncA = () =>
   new Promise((resolve) => {
@@ -24,8 +23,6 @@ type User = {
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
-  const userInfo = useStore((s) => s.userInfo);
-  const initLoading = useStore((s) => s.initLoading);
   const { data: log, isLoading: isLogLoading } = useSWR(
     params?.pageNo && params.pageSize
       ? ["pageAnnouncementUsingGet", params]
@@ -63,7 +60,6 @@ const DemoView = () => {
             {log?.message}
           </span>
         </div>
-        <div>{initLoading ? "loading " : userInfo?.tel}</div>
         <div className="tabs tabs-box">
           <a role="tab" className="tab flex-1">
             Tab 1

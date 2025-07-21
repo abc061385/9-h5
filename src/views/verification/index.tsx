@@ -5,7 +5,7 @@ import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
 import { useUserStore } from "@/store/useUserStore";
 import { useVerificationStore } from "@/store/useVerification";
-import { useEffect, useCallback, useRef, forwardRef } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
 
 const VerificationView = () => {
@@ -22,7 +22,7 @@ const VerificationView = () => {
       .sendCodeUsingPost({ account, faCheckId, accountType, faBizType })
       .then(console.log)
       .catch(console.log);
-  }, [account, faCheckId, faBizType]);
+  }, [account, faCheckId, faBizType, accountType]);
   const validateCode = useCallback(
     async (code: string) => {
       try {
@@ -43,7 +43,7 @@ const VerificationView = () => {
         console.log(error);
       }
     },
-    [faCheckId],
+    [faCheckId, faBizType, router, setUserField],
   );
   useEffect(() => {
     if (mounted.current) {
@@ -51,7 +51,7 @@ const VerificationView = () => {
     } else {
       mounted.current = true;
     }
-  }, []);
+  }, [sendCode]);
 
   return (
     <ViewLayout

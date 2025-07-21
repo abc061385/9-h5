@@ -1,5 +1,7 @@
 import omit from "lodash-es/omit";
 
-export default {
+const lodashHelpers = {
   omit,
 };
+
+export default lodashHelpers;
