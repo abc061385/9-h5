@@ -29,6 +29,7 @@
     box-shadow: none;
 
     .tab {
+      --tab-p: 0;
       --tab-bg: var(--color-primary);
       font-weight: 700;
     }
