@@ -5,10 +5,11 @@ import { useRef, useMemo, useEffect } from "react";
  * 返回一个防抖后的函数，参数与输入一致。
  * 组件卸载时自动清理延迟。
  */
-export function useDebouncedCallback<T extends (...args: any[]) => void>(
+export function useDebouncedCallback<T extends (...args: never[]) => void>(
   callback: T,
   delay: number,
 ) {
+  const a = "123" as any;
   const callbackRef = useRef(callback);
   useEffect(() => {
     callbackRef.current = callback;
