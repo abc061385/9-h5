@@ -1,7 +1,7 @@
-import omit from "lodash-es/omit";
+import debounce from "lodash-es/debounce";
 
 const lodashHelpers = {
-  omit,
+  debounce,
 };
 
 export default lodashHelpers;

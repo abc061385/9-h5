@@ -3,12 +3,13 @@ import { Drawer } from "@/components/drawer";
 import ViewLayout from "@/components/layout";
 // import Roulette from "@/components/roulette";
 import { Verification } from "@/components/verification";
-import useSWR from "swr";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api";
 import { InfiniteList } from "@/components/infinite-list";
-import { useRequestQuery } from "@/hooks/useRequestQuery";
+// import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { utils } from "@/lib/utils";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 const asyncA = () =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -25,11 +26,11 @@ type User = {
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
-  const { data: typeData, isLoading } = useRequestQuery(
-    api.kline.latestPriceUsingGet,
-    {},
-  );
-  console.log("typeData", typeData, isLoading);
+  // const { data: typeData, isLoading } = useRequestQuery(
+  //   api.kline.latestPriceUsingGet,
+  //   {},
+  // );
+  // console.log("typeData", typeData, isLoading);
   const {
     trigger,
     data: log,
@@ -38,8 +39,9 @@ const DemoView = () => {
 
   const [infiniteData, setInfiniteData] = useState<User[]>([]);
 
+  const debouncedTrigger = useDebouncedCallback(trigger, 100);
   useEffect(() => {
-    trigger({ pageNo: 1, pageSize: 10 });
+    debouncedTrigger({ pageNo: 1, pageSize: 100 });
     const list = Array.from({ length: 100 }, (_, index) => ({
       name: `User ${index}`,
       size: Math.floor(Math.random() * 40) + 70,
