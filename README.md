@@ -146,14 +146,14 @@ export default DemoView;
   {
     "path": "pages/fund/record",
     "style": {
-      "navigationBarTitleText": "",
+      "navigationBarTitleText": "基金购买记录",
       "navigationStyle": "custom"
     }
   },
   {
     "path": "pages/teams/index",
     "style": {
-      "navigationBarTitleText": "",
+      "navigationBarTitleText": "我的团队",
       "navigationStyle": "custom"
     }
   },
@@ -241,6 +241,41 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
+   {
+    "path": "pages/settings/security",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "安全设置"
+    }
+  },
+    {
+    "path": "pages/settings/editPassword",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "修改登录密码"
+    }
+  },
+  {
+    "path": "pages/settings/googleVerify",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "谷歌验证"
+    }
+  },
+    {
+    "path": "pages/settings/bindEmail",
+    "style": {
+      "navigationBarTitleText": "绑定邮箱",
+      "navigationStyle": "custom"
+    }
+  },
+   {
+    "path": "pages/assets/exchange",
+    "style": {
+      "navigationBarTitleText": "闪兑",
+      "navigationStyle": "custom"
+    }
+  },
 ]
 ```
 
@@ -292,27 +327,6 @@ export default DemoView;
     }
   },
   {
-    "path": "pages/settings/security",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "安全设置"
-    }
-  },
-  {
-    "path": "pages/settings/editPassword",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "修改登录密码"
-    }
-  },
-  {
-    "path": "pages/settings/googleVerify",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "谷歌验证"
-    }
-  },
-  {
     "path": "pages/settings/address",
     "style": {
       "navigationStyle": "custom",
@@ -356,13 +370,6 @@ export default DemoView;
     }
   },
   {
-    "path": "pages/assets/exchange",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  },
-  {
     "path": "pages/teams/detail",
     "style": {
       "navigationBarTitleText": "",
@@ -376,12 +383,5 @@ export default DemoView;
       "navigationStyle": "custom"
     }
   },
-  {
-    "path": "pages/settings/bindEmail",
-    "style": {
-      "navigationBarTitleText": "",
-      "navigationStyle": "custom"
-    }
-  }
 ]
 ```

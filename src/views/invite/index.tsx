@@ -26,7 +26,7 @@ const InviteView = () => {
             {t("invite.scanQRCodeTip")}
           </div>
         </div>
-        <div className="flex items-center justify-between mt-20 h-10 bg-[#F6F7FD] rounded-md px-2">
+        <div className="flex items-center justify-between mt-20 h-10 bg-bg-color2 rounded-md px-2">
           <span className="font-medium">{t("invite.inviteCode")}</span>
           <span className="font-bold flex items-center gap-1">
             5QX62004
@@ -34,7 +34,7 @@ const InviteView = () => {
           </span>
         </div>
 
-        <div className="flex items-center justify-between mt-4 h-10 bg-[#F6F7FD] rounded-md px-2">
+        <div className="flex items-center justify-between mt-4 h-10 bg-bg-color2 rounded-md px-2">
           <span className="font-medium">{t("invite.inviteLink")}</span>
           <span className="font-bold flex items-center gap-1 text-primary">
             https：//www.9mc.org

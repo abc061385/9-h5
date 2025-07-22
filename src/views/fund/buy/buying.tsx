@@ -13,7 +13,7 @@ const BuyingBox = () => {
         placeholder={t("输入总质押USDT额度")}
         className="input bg-white"
       />
-      <div className="bg-[#F6F7FD] rounded-md px-2.5 py-4 mt-4">
+      <div className="bg-bg-color2 rounded-md px-2.5 py-4 mt-4">
         <h3>{t("您需支付")}</h3>
         <div className="flex justify-between items-center h-12 bg-white rounded-md px-2 mt-4">
           <div>USDT</div>
@@ -32,7 +32,7 @@ const BuyingBox = () => {
           <span className="text-primary cursor-pointer">{t("充值")}</span>
         </div>
       </div>
-      <div className="flex items-center justify-between h-12 mt-2 rounded-md bg-[#F6F7FD] px-3">
+      <div className="flex items-center justify-between h-12 mt-2 rounded-md bg-bg-color2 px-3">
         <span>{t("买入周期")}</span>
         <span className="flex items-center gap-1">
           360{t("天")}

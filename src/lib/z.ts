@@ -12,6 +12,9 @@ export const useRootReg = () => {
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, {
         message: t("alerts.passwordInvalid"),
       }),
+    googleVerifyCode: z.string().regex(/^\d{6}$/, {
+      message: t("editPassword.enterSixDigit"),
+    }),
   };
 };
 

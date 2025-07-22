@@ -15,7 +15,11 @@ const HeaderBox = () => {
   const cardList: CardType[] = [
     { icon: "/images/assets/deposit.svg", label: "assets.deposit" },
     { icon: "/images/assets/withdraw.svg", label: "assets.withdraw" },
-    { icon: "/images/assets/flash.svg", label: "闪兑" },
+    {
+      icon: "/images/assets/flash.svg",
+      label: "闪兑",
+      path: routerMap.assetsExchange,
+    },
     {
       icon: "/images/assets/investment.svg",
       label: "assets.investment",

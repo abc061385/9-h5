@@ -26,7 +26,7 @@ const FundBox = () => {
         {t("9M基金推荐")}
       </h2>
       <div className="bg-white rounded-lg p-2 relative">
-        <div className="bg-[#F6F7FD] rounded-lg p-3.5 text-center">
+        <div className="bg-bg-color2 rounded-lg p-3.5 text-center">
           <h3 className="text-primary font-[860] text-base">
             {t("年/季度/月/周")}
           </h3>

@@ -84,7 +84,7 @@ const FundRecordView = () => {
         {list?.length ? (
           list.map((item) => (
             <div key={item.id}>
-              <div className="bg-[#F6F7FD] rounded-md pt-2 px-3.5 pb-5 font-bold text-sm">
+              <div className="bg-bg-color2 rounded-md pt-2 px-3.5 pb-5 font-bold text-sm">
                 <h3 className="mb-5 flex items-center justify-between">
                   {t("策略基金")}
                   <div className="flex items-center gap-1">

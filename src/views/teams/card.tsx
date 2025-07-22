@@ -19,7 +19,7 @@ const CardBox: FC<ICardProps> = ({ data, onClick }) => {
     { label: "团队投资金额", value: "totalInvestmentTeam" },
   ];
   return (
-    <div className="rounded-md bg-[#F6F7FD] mb-4 p-3.5">
+    <div className="rounded-md bg-bg-color2 mb-4 p-3.5">
       <div className="flex justify-between font-bold">
         <div className="flex flex-wrap gap-1 items-center">
           <span>{maskString(data.nickname) || "--"}</span>

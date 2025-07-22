@@ -15,7 +15,7 @@ const ListBox = () => {
     { icon: "team-user", title: "我的团队", path: routerMap.teams },
     { icon: "language", title: "user.language", path: routerMap.lang },
     { icon: "books", title: "user.addressBook", path: "/team" },
-    { icon: "save", title: "user.securitySettings", path: "/team" },
+    { icon: "save", title: "user.securitySettings", path: routerMap.setting },
     { icon: "about-us", title: "关于我们", path: "/team" },
   ];
   return (

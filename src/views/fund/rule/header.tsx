@@ -3,7 +3,7 @@ import { useTrans } from "@/hooks/useTrans";
 const RuleHeaderBox = () => {
   const t = useTrans();
   return (
-    <div className="bg-[#F6F7FD] rounded-md py-4 px-3.5">
+    <div className="bg-bg-color2 rounded-md py-4 px-3.5">
       <div className="bg-white rounded-md py-4 text-center font-bold">
         <h2 className="text-base text-primary mb-2">{t("年/季度/月/周")}</h2>
         <p className="text-[#61616E] text-xs">{t("基金周期")}</p>

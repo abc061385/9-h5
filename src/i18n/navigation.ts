@@ -38,4 +38,9 @@ export const routerMap = {
   fundBuy: "/fund/buy/",
   fundProtocol: "/fund/protocol/",
   invite: "/invite/",
+  setting: "/setting/",
+  settingPassword: "/setting/password/",
+  settingGoogleVerify: "/setting/google-verify/",
+  settingBindEmail: "/setting/bind-email/",
+  assetsExchange: "/assets/exchange/",
 };
