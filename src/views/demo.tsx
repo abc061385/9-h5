@@ -7,6 +7,8 @@ import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { api } from "@/api";
 import { InfiniteList } from "@/components/infinite-list";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
 const asyncA = () =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -23,15 +25,21 @@ type User = {
 const DemoView = () => {
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
-  const { data: log, isLoading: isLogLoading } = useSWR(
-    params?.pageNo && params.pageSize
-      ? ["pageAnnouncementUsingGet", params]
-      : null,
-    ([, p]) => api.cms.pageAnnouncementUsingGet(p),
+  const { data: typeData, isLoading } = useRequestQuery(
+    api.kline.latestPriceUsingGet,
+    {},
   );
+  console.log("typeData", typeData, isLoading);
+  const {
+    trigger,
+    data: log,
+    isMutating: isLogLoading,
+  } = useRequestMutation(api.cms.pageAnnouncementUsingGet);
+
   const [infiniteData, setInfiniteData] = useState<User[]>([]);
 
   useEffect(() => {
+    trigger({ pageNo: 1, pageSize: 10 });
     const list = Array.from({ length: 100 }, (_, index) => ({
       name: `User ${index}`,
       size: Math.floor(Math.random() * 40) + 70,
@@ -40,7 +48,7 @@ const DemoView = () => {
     setInfiniteData(list);
   }, []);
   return (
-    <ViewLayout dock={true}>
+    <ViewLayout dock={true} heightFull>
       <div className="flex flex-col size-full">
         <div>
           <button

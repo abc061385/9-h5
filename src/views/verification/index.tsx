@@ -5,7 +5,7 @@ import ViewLayout from "@/components/layout";
 import { Verification } from "@/components/verification";
 import { useUserStore } from "@/store/useUserStore";
 import { useVerificationStore } from "@/store/useVerification";
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
 
 const VerificationView = () => {
@@ -15,7 +15,6 @@ const VerificationView = () => {
   const accountType = useVerificationStore((s) => s.accountType);
   const faBizType = useVerificationStore((s) => s.faBizType);
   const setUserField = useUserStore((s) => s.setField);
-  const mounted = useRef(false);
 
   const sendCode = useCallback(async () => {
     api.auth
@@ -46,11 +45,7 @@ const VerificationView = () => {
     [faCheckId, faBizType, router, setUserField],
   );
   useEffect(() => {
-    if (mounted.current) {
-      sendCode();
-    } else {
-      mounted.current = true;
-    }
+    sendCode();
   }, [sendCode]);
 
   return (
