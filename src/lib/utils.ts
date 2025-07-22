@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import CryptoJS from "crypto-js";
 import { AESsecretKey } from "./const";
 import lodash from "./lodash";
+import toBigNumber from "./bignumber";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -77,4 +78,5 @@ export const encryptPassword = (password: string) => {
 
 export const utils = {
   ...lodash,
+  toBigNumber,
 };

@@ -9,6 +9,7 @@ import { InfiniteList } from "@/components/infinite-list";
 // import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+import { utils } from "@/lib/utils";
 const asyncA = () =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -84,7 +85,7 @@ const DemoView = () => {
           弹出
         </button>
         <Drawer open={open} onChange={setOpen} className="h-[40vh]">
-          <div>123</div>
+          <div>{utils.toBigNumber("1.111123").toPrecision()}</div>
         </Drawer>
         <div className="grow">
           <InfiniteList<User, { context: number }>
