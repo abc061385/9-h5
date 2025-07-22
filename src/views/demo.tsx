@@ -47,7 +47,7 @@ const DemoView = () => {
       description: `Description for user ${index}`,
     }));
     setInfiniteData(list);
-  }, []);
+  }, [debouncedTrigger]);
   return (
     <ViewLayout dock={true} heightFull>
       <div className="flex flex-col size-full">

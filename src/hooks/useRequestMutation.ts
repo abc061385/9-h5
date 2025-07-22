@@ -5,13 +5,13 @@ import useSWRMutation, {
 
 type FetcherFn<Data, Params> = (params: Params) => Promise<Data>;
 
-export function useRequestMutation<Data, Params>(
+export function useRequestMutation<Data, Params, ErrorType = Error>(
   fetcher: FetcherFn<Data, Params>,
   key?: string,
-  config?: SWRMutationConfiguration<Data, any, string, Params>,
-): SWRMutationResponse<Data, any, string, Params> {
+  config?: SWRMutationConfiguration<Data, ErrorType, string, Params>,
+): SWRMutationResponse<Data, ErrorType, string, Params> {
   const mutationKey = key ?? fetcher.name;
-  return useSWRMutation<Data, any, string, Params>(
+  return useSWRMutation<Data, ErrorType, string, Params>(
     mutationKey,
     (_key, { arg }) => fetcher(arg as Params),
     {
