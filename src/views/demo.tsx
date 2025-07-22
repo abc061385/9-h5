@@ -3,12 +3,11 @@ import { Drawer } from "@/components/drawer";
 import ViewLayout from "@/components/layout";
 // import Roulette from "@/components/roulette";
 import { Verification } from "@/components/verification";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "@/api";
 import { InfiniteList } from "@/components/infinite-list";
 // import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
-import { utils } from "@/lib/utils";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 const asyncA = () =>
   new Promise((resolve) => {
