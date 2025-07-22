@@ -7,7 +7,7 @@
     "build": "next build",
     "build:test": "NODE_ENV=test next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "gen:api": "node ./scripts/generateApi.mjs",
     "gen:icon": "npx fantasticon",
     "gen:icontype": "node ./scripts/gen-icon-type.mjs"
@@ -55,5 +55,16 @@
     "postcss-pxtorem": "^6.1.0",
     "swagger-typescript-api": "^13.0.21",
     "typescript": "^5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "next lint --fix",
+      "git add"
+    ]
   }
 }
