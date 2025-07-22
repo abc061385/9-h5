@@ -9,7 +9,6 @@ export function useDebouncedCallback<T extends (...args: never[]) => void>(
   callback: T,
   delay: number,
 ) {
-  const a = "123" as any;
   const callbackRef = useRef(callback);
   useEffect(() => {
     callbackRef.current = callback;
