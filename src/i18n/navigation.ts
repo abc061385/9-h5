@@ -44,4 +44,5 @@ export const routerMap = {
   settingGoogleVerify: "/setting/google-verify/",
   settingBindEmail: "/setting/bind-email/",
   assetsExchange: "/assets/exchange/",
+  settingAddress: "/setting/address/",
 };
