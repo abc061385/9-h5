@@ -18,7 +18,7 @@ const FundBuyView = () => {
   return (
     <ViewLayout header={<HeaderWithBack title={t("买入")} algin="center" />}>
       <div className="p-content font-bold">
-        <div className="bg-bg-color2 rounded-md py-4 px-3.5">
+        <div className="bg-bg1 rounded-md py-4 px-3.5">
           <div className="bg-white rounded-md py-7 px-9 flex justify-between text-xs">
             <div>
               <h3>{t("质押代币")}</h3>

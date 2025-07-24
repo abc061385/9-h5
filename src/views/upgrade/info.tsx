@@ -4,7 +4,7 @@ import { useTrans } from "@/hooks/useTrans";
 const InfoBox = () => {
   const t = useTrans();
   return (
-    <div className="bg-bg-color2 rounded-lg p-3 pb-4 mt-4 font-bold">
+    <div className="bg-bg1 rounded-lg p-3 pb-4 mt-4 font-bold">
       <div className="rounded-lg py-2.5 text-center bg-white p-3">
         <h2>{t("币权累计")}</h2>
         <div className="text-[26px] text-primary my-2">299.99 USDM</div>

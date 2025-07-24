@@ -45,4 +45,5 @@ export const routerMap = {
   settingBindEmail: "/setting/bind-email/",
   assetsExchange: "/assets/exchange/",
   settingAddress: "/setting/address/",
+  settingAddressAdd: "/setting/address/add/",
 };

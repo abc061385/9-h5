@@ -11,7 +11,7 @@ const ProcessBox = () => {
     { title: "首笔收益到账", desc: "买入后24小时到账" },
   ];
   return (
-    <div className="bg-bg-color2 rounded-md py-4 px-3.5">
+    <div className="bg-bg1 rounded-md py-4 px-3.5">
       <div className="bg-white rounded-md py-4 font-bold">
         <h3 className="text-center">{t("交易流程")}</h3>
         <div className="pl-10">

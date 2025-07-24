@@ -118,7 +118,7 @@ const SettingGoogleVerifyView = () => {
             <div className="w-30 mx-auto">
               <Qrcode value={data?.data?.secretQrCode || ""}></Qrcode>
             </div>
-            <div className="flex items-center justify-between h-10 px-4 font-bold text-xs bg-bg-color2 rounded-md my-4">
+            <div className="flex items-center justify-between h-10 px-4 font-bold text-xs bg-bg1 rounded-md my-4">
               <span>{data?.data?.secret}</span>
               <Icon
                 name="copy-user"

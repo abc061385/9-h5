@@ -32,7 +32,7 @@ const SettingView = () => {
       }
     >
       <div className="p-content">
-        <div className="bg-bg-color2 rounded-md p-4">
+        <div className="bg-bg1 rounded-md p-4">
           {list.map((v, i) => {
             return (
               <div
