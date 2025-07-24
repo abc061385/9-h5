@@ -8,6 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z, { useRootReg } from "@/lib/z";
 import { Icon } from "@/components/icon";
 import { TextError } from "@/components/input/text-error";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { api } from "@/api";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+import { useRouter } from "@/i18n/navigation";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import Countdown from "@/components/countdown";
 
 type FormData = {
   googleCode: string;
@@ -18,6 +25,15 @@ type FormData = {
 const SettingGoogleVerifyView = () => {
   const t = useTrans();
   const reg = useRootReg();
+  const { back } = useRouter();
+  const [codeCountDown, setCodeCountDown] = useState(false);
+
+  const { trigger: sendCode, isMutating } = useRequestMutation(
+    api.member.sendEmailCodeUsingGet
+  );
+
+  const { trigger } = useRequestMutation(api.member.bindEmailUsingPost);
+  const debouncedTrigger = useDebouncedCallback(trigger, 100);
 
   const Schema = z.object({
     googleCode: reg.googleVerifyCode,
@@ -27,7 +43,8 @@ const SettingGoogleVerifyView = () => {
 
   const {
     register,
-    // getValues,
+    getValues,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -64,9 +81,37 @@ const SettingGoogleVerifyView = () => {
                 placeholder={t("请输入验证码")}
                 className="grow placeholder:text-xs"
               />
-              <span className="text-primary font-bold text-xs">
-                {t("获取验证码")}
-              </span>
+              {codeCountDown ? (
+                <Countdown
+                  seconds={60}
+                  onFinish={() => {
+                    setCodeCountDown(false);
+                  }}
+                />
+              ) : (
+                <span
+                  className="text-primary font-bold text-xs"
+                  onClick={() => {
+                    if (isMutating) return;
+                    if (getValues("email")) {
+                      sendCode(
+                        { email: getValues("email") || "", type: "BIND" },
+                        {
+                          onSuccess: () => setCodeCountDown(true),
+                        }
+                      );
+                      return;
+                    }
+                    toast.error(t("请输入要绑定的邮箱账号"));
+                  }}
+                >
+                  {isMutating ? (
+                    <span className="loading loading-spinner loading-xs"></span>
+                  ) : (
+                    t("获取验证码")
+                  )}
+                </span>
+              )}
             </label>
             <TextError>{errors?.emailCode?.message}</TextError>
           </fieldset>
@@ -85,7 +130,13 @@ const SettingGoogleVerifyView = () => {
                 placeholder={t("googleVerify.enterCode")}
                 className="grow placeholder:text-xs"
               />
-              <span className="text-primary font-bold placeholder:text-xs">
+              <span
+                className="text-primary font-bold placeholder:text-xs"
+                onClick={async () => {
+                  const text = await navigator.clipboard.readText();
+                  setValue("googleCode", text);
+                }}
+              >
                 {t("googleVerify.paste")}
               </span>
             </label>
@@ -96,7 +147,13 @@ const SettingGoogleVerifyView = () => {
           type="submit"
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
-            console.log(e);
+            debouncedTrigger(e, {
+              onSuccess: () => {
+                toast.success(t("googleVerify.bindComplete"));
+                back();
+              },
+              throwOnError: false,
+            });
           })}
         >
           {t("verify.confirm")}

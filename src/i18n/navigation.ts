@@ -31,6 +31,7 @@ export const routerMap = {
   user: "/user/",
   vip: "/vip/",
   assets: "/assets/",
+  assetsWalletDetail: "/assets/wallet-detail/",
   upgrade: "/assets/upgrade/",
   income: "/assets/income/",
   lang: "/user/lang/",

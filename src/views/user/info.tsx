@@ -1,12 +1,14 @@
+import { ReactNode } from "react";
 import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
+import StarIcon from "../vip/star-icon";
 
 interface CardType {
   icon: "vip-user" | "invite-user";
-  title: string;
+  title: string | ReactNode;
   desc: string;
   path: string;
 }
@@ -18,7 +20,12 @@ const UserInfoBox = () => {
   const cards: CardType[] = [
     {
       icon: "vip-user",
-      title: "VIP" + userInfo.vipLevel,
+      title: (
+        <div className="flex items-center gap-1">
+          {"VIP" + userInfo.vipLevel}{" "}
+          <StarIcon level={userInfo.vipLevel || 0} star={userInfo.star} />
+        </div>
+      ),
       desc: t("user.level"),
       path: routerMap.vip,
     },

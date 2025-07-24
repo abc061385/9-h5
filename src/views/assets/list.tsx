@@ -1,9 +1,11 @@
 import { api } from "@/api";
 import BaseImage from "@/components/base-image";
 import { InfiniteList } from "@/components/infinite-list";
+import { routerMap, useRouter } from "@/i18n/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const AssetsListBox = () => {
+  const { push } = useRouter();
   const [list, setList] = useState<AssetsList[]>([]);
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
 
@@ -42,6 +44,9 @@ const AssetsListBox = () => {
             <div
               key={item.id}
               className="flex items-center justify-between pr-2 pb-3 gap-1.5"
+              onClick={() =>
+                push(`${routerMap.assetsWalletDetail}?coin=${item.coin}`)
+              }
             >
               <BaseImage
                 src={getTokenIcon(item.coin || "")}

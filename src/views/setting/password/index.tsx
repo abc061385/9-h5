@@ -9,6 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z, { useRootReg } from "@/lib/z";
 import { Icon } from "@/components/icon";
 import { TextError } from "@/components/input/text-error";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { api } from "@/api";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+import { useUserStore } from "@/store/useUserStore";
+import { encryptPassword } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 type FormData = {
   pswd: string;
@@ -19,6 +25,7 @@ type FormData = {
 const SettingPasswordView = () => {
   const t = useTrans();
   const reg = useRootReg();
+  const { userInfo, logOut } = useUserStore();
 
   const Schema = z.object({
     pswd: reg.password,
@@ -26,9 +33,13 @@ const SettingPasswordView = () => {
     code: reg.googleVerifyCode,
   });
 
+  const { trigger } = useRequestMutation(api.auth.updatePwdUsingPost);
+  const debouncedTrigger = useDebouncedCallback(trigger, 100);
+
   const {
     register,
     // getValues,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -80,7 +91,13 @@ const SettingPasswordView = () => {
                 placeholder={t("googleVerify.enterCode")}
                 className="grow"
               />
-              <span className="text-primary font-bold">
+              <span
+                className="text-primary font-bold placeholder:text-xs"
+                onClick={async () => {
+                  const text = await navigator.clipboard.readText();
+                  setValue("code", text);
+                }}
+              >
                 {t("googleVerify.paste")}
               </span>
             </label>
@@ -91,7 +108,21 @@ const SettingPasswordView = () => {
           type="submit"
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
-            console.log(e);
+            debouncedTrigger(
+              {
+                code: Number(e.code),
+                tel: userInfo.tel,
+                pswd: encryptPassword(e.pswd),
+                confirmPswd: encryptPassword(e.confirmPswd),
+              },
+              {
+                onSuccess: () => {
+                  toast.success(t("common.doSuccess"));
+                  logOut();
+                },
+                throwOnError: false,
+              }
+            );
           })}
         >
           {t("editPassword.complete")}

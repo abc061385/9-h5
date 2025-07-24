@@ -6,17 +6,25 @@ import ViewLayout from "@/components/layout";
 import { Modal } from "@/components/modal";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { useState } from "react";
+import { useUserStore } from "@/store/useUserStore";
+import { useEffect, useState } from "react";
 
 const SettingView = () => {
   const t = useTrans();
   const { push } = useRouter();
+  const { userInfo } = useUserStore();
   const [modalOpen, setModalOpen] = useState(false);
   const list = [
     { label: "修改登录密码", path: routerMap.settingPassword },
     { label: "谷歌身份验证", path: routerMap.settingGoogleVerify },
     { label: "绑定邮箱", path: routerMap.settingBindEmail },
   ];
+
+  useEffect(() => {
+    if (!userInfo?.bindEmail) {
+      setModalOpen(true);
+    }
+  }, [userInfo]);
   return (
     <ViewLayout
       header={
@@ -38,9 +46,7 @@ const SettingView = () => {
             );
           })}
         </div>
-        <button className="btn" onClick={() => setModalOpen(true)}>
-          test 触发Modal
-        </button>
+
         <Modal
           open={modalOpen}
           title={t("安全提示")}
@@ -56,7 +62,10 @@ const SettingView = () => {
               >
                 {t("稍后绑定")}
               </button>
-              <button className="btn btn-primary">
+              <button
+                className="btn btn-primary"
+                onClick={() => push(routerMap.settingBindEmail)}
+              >
                 {t("googleVerify.continueBtn")}
               </button>
             </div>

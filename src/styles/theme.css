@@ -19,6 +19,7 @@
   --color-text2: #9d95b5;
   --color-text-tip: var(--color-primary);
   --color-rise: #43b067;
+  --color-fall: #fd4141;
   --color-bg-color2: #f6f7fd;
 
   /*utils*/
@@ -43,7 +44,7 @@
   --color-info-content: oklch(97% 0.013 236.62);
   --color-success: oklch(62% 0.194 149.214);
   --color-success-content: oklch(98% 0.018 155.826);
-  --color-warning: oklch(64% 0.222 41.116);
+  --color-warning: oklch(82% .189 84.429);
   --color-warning-content: oklch(98% 0.016 73.684);
   --color-error-content: oklch(96% 0.015 12.422);
   --radius-selector: 2rem;
@@ -63,7 +64,7 @@
   --color-secondary-content: #323232;
   --color-accent: rgba(162, 89, 255, 0.5);
   --color-accent-content: var(--color-white);
-  --color-error: var(--color-primary);
+  --color-error: var(--color-fall);
 }
 
 html,

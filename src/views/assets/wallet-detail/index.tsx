@@ -1,18 +1,58 @@
 "use client";
 
+import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useTrans } from "@/hooks/useTrans";
+import { typeMap } from "@/lib/const";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+interface ListType {
+  id: number;
+  status: number;
+  type: number;
+  inOut: string;
+  amount: string;
+  symbol: string;
+  createTime: string;
+}
 
 const AssetsWalletDetailView = () => {
-  const [tabsValue, setTabsValue] = useState("0");
+  const t = useTrans();
+  const [tabsValue, setTabsValue] = useState<string | number>("");
+  const searchParams = useSearchParams();
+
+  const { trigger, data } = useRequestMutation(
+    api.wallet.pageDetailListUsingPost
+  );
+
+  const list: ListType[] = data?.data?.list ?? [];
 
   const tabs = [
-    { label: "全部", value: "0" },
-    { label: "充币", value: "1" },
-    { label: "提币", value: "2" },
+    { label: "全部", value: "" },
+    { label: "充币", value: 4 },
+    { label: "提币", value: 3 },
   ];
+
+  useEffect(() => {
+    trigger({
+      pageNo: 1,
+      pageSize: 10,
+      coinCode: searchParams.get("coin") || "",
+      type: tabsValue as number,
+    });
+  }, [trigger, searchParams, tabsValue]);
+
+  const statusMap: {
+    [key: string]: string;
+  } = {
+    0: t("walletDetail.statusPending"),
+    1: t("walletDetail.statusSuccess"),
+    2: t("walletDetail.statusFailed"),
+  };
   return (
     <ViewLayout header={<HeaderWithBack title="USDT" algin="center" />}>
       <div className="p-content">
@@ -31,16 +71,33 @@ const AssetsWalletDetailView = () => {
             </a>
           ))}
         </div>
-        <div className="flex justify-between my-4 font-bold items-center border-b border-text2 border-dashed pb-2">
-          <div className="flex flex-col gap-1">
-            <span>-1.00 USDT</span>
-            <span className="font-medium">2025-07-12</span>
-          </div>
-          <div className="flex flex-col gap-1 font-medium">
-            <div className="badge badge-soft badge-success rounded-sm">Primary</div>
-            <span>闪兑扣款</span>
-          </div>
-        </div>
+        {list.map((item) => {
+          return (
+            <div
+              key={item?.id}
+              className="flex justify-between my-4 font-bold items-center border-b border-text2 border-dashed pb-2"
+            >
+              <div className="flex flex-col gap-1">
+                <span className="text-rise">
+                  {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
+                  {item?.amount}
+                  <span className="text-xs ml-1">{item?.symbol}</span>
+                </span>
+                <span className="font-bold text-xs">{item?.createTime}</span>
+              </div>
+              <div className="flex flex-col gap-1 font-medium items-end text-xs">
+                <div
+                  className={cn(
+                    "badge badge-soft rounded-sm py-1 text-xs font-bold",{}
+                  )}
+                >
+                  {statusMap[item?.status]}
+                </div>
+                <span>{t(typeMap[item?.type] || "--")}</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </ViewLayout>
   );
