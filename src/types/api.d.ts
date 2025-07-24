@@ -67,3 +67,51 @@ type AssetsList = Partial<{
   yesterdayIncome: string | number;
   zyFrozenBalance: string | number;
 }>;
+
+type CryptoAsset = Partial<{
+  id: number;
+  protocolType: string;
+  currencyCode: string;
+  depositDescription: string;
+  qrCode: string;
+  rechargeAddress: string;
+  decimalPlaces: number;
+  isEnabled: boolean;
+  canDeposit: boolean;
+  canWithdraw: boolean;
+  minWithdrawal: number;
+  maxWithdrawal: number;
+  withdrawalFeeType: "fixed" | "percentage";
+  withdrawalFeeConfig: number;
+  usdtExchangeMarket: number;
+  logo: string;
+}>;
+
+type ChainList = Partial<{
+  id: number;
+  protocolType: string;
+  currencyCode: string;
+  depositDescription: string;
+  qrCode: string;
+  rechargeAddress: string;
+  decimalPlaces: number;
+  isEnabled: boolean;
+  canDeposit: boolean;
+  canWithdraw: boolean;
+  minWithdrawal: number;
+  maxWithdrawal: number;
+  withdrawalFeeType: string;
+  withdrawalFeeConfig: number;
+  usdtExchangeMarket: number | null;
+  logo: string;
+}>;
+
+type AddressList = Partial<{
+  id: number;
+  memberId: number;
+  type: string;
+  addr: string;
+  coin: string;
+  protocol: string;
+  systemType: number;
+}>;

@@ -78,8 +78,12 @@ const AssetsWalletDetailView = () => {
               className="flex justify-between my-4 font-bold items-center border-b border-text2 border-dashed pb-2"
             >
               <div className="flex flex-col gap-1">
-                <span className="text-rise">
-                  {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
+                <span
+                  className={cn(
+                    item.inOut === "ADD_BALANCE" ? "text-rise" : "text-fall"
+                  )}
+                >
+                  {item?.inOut === "ADD_BALANCE" ? "+" : ""}
                   {item?.amount}
                   <span className="text-xs ml-1">{item?.symbol}</span>
                 </span>
@@ -88,7 +92,14 @@ const AssetsWalletDetailView = () => {
               <div className="flex flex-col gap-1 font-medium items-end text-xs">
                 <div
                   className={cn(
-                    "badge badge-soft rounded-sm py-1 text-xs font-bold",{}
+                    "badge badge-soft rounded-sm py-1 text-xs font-bold",
+                    item.status === 1
+                      ? "badge-success"
+                      : item.status === 0
+                      ? "badge-info"
+                      : item.status === 2
+                      ? "badeg-error"
+                      : ""
                   )}
                 >
                   {statusMap[item?.status]}

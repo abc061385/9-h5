@@ -75,7 +75,7 @@ const AssetsExchangeView = () => {
 
           <div className="text-xs font-bold">{t("余额")}：123 USDT</div>
 
-          <div className="bg-bg-color2 h-10 px-4 rounded-md flex items-center justify-between text-xs font-bold my-4">
+          <div className="bg-bg1 h-10 px-4 rounded-md flex items-center justify-between text-xs font-bold my-4">
             <span>{t("兑换价格")}</span>
             <span>1 USDM ≈ 1 USDT</span>
           </div>

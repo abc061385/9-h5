@@ -79,7 +79,7 @@ const PrivilegeBox = () => {
             <div
               key={i}
               className={cn(
-                "bg-bg-color2 rounded-md mb-2 px-2 py-3 font-bold",
+                "bg-bg1 rounded-md mb-2 px-2 py-3 font-bold",
                 v.judgeShow
                   ? userInfo.vipLevel === 9 && (userInfo?.star || 0) > 0
                     ? ""
@@ -97,7 +97,7 @@ const PrivilegeBox = () => {
       ) : (
         <div
           key={"di"}
-          className="bg-bg-color2 rounded-md mb-2 px-2 py-3 font-bold"
+          className="bg-bg1 rounded-md mb-2 px-2 py-3 font-bold"
         >
           <h3 className="text-primary mb-2">{t("AI助手权限")}</h3>
           <p className="font-[510] text-xs text-text2 leading-[120%]">
@@ -127,7 +127,7 @@ const PrivilegeBox = () => {
             return (userInfo.vipLevel || 0) >= v.showLevel ? (
               <div
                 key={i}
-                className="bg-bg-color2 rounded-md mb-2 px-2 py-3 font-bold"
+                className="bg-bg1 rounded-md mb-2 px-2 py-3 font-bold"
               >
                 <h3 className="mb-2 flex gap-1">
                   <BaseImage

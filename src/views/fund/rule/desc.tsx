@@ -16,7 +16,7 @@ const RuleDescBox = () => {
     <div className="mt-4">
       {list.map((item, index) => {
         return (
-          <div key={index} className="bg-bg-color2 rounded-md px-2 py-2.5 mb-2">
+          <div key={index} className="bg-bg1 rounded-md px-2 py-2.5 mb-2">
             <h3 className="flex items-center gap-2.5 font-bold leading-[120%] mb-2">
               <Icon
                 name={`rule-desc-icon${index + 1}` as IconName}

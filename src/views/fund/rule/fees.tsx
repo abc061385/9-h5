@@ -13,7 +13,7 @@ const FeesDescBox = () => {
       <p className="font-[510] text-text2 leading-[120%] text-xs">
         {t("运作费用说明p")}
       </p>
-      <div className="bg-bg-color2 rounded-md px-3.5 py-4 font-bold mt-4">
+      <div className="bg-bg1 rounded-md px-3.5 py-4 font-bold mt-4">
         <h3 className="flex justify-between items-start gap-1 leading-[120%]">
           <span className="text-left flex-1/3">{t("费用名称")}</span>
           <span className="text-text2 text-right flex-2/3">
