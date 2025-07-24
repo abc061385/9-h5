@@ -203,7 +203,7 @@
     "network": "所属网络",
     "selectChain": "请选择链类型",
     "amount": "提币金额",
-    "minAmountTip": "最小可提金额为",
+    "minAmountTip": "最小可提金额为{min}",
     "selectCoinFirst": "请先选择币种",
     "availableBalance": "可用余额",
     "useAll": "全部",

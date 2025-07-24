@@ -15,7 +15,7 @@ const DepositView = () => {
   const t = useTrans();
   const Schema = z.object({
     currencyCode: z.string().nonempty(),
-    chainEnum: z.string().nonempty(),
+    chainEnum: z.object({ protocolType: z.string() }),
   });
   const { control, setValue } = useForm({
     defaultValues: { currencyCode: "USDT" },
@@ -28,9 +28,11 @@ const DepositView = () => {
     if (!chainEnum) {
       return;
     }
-    api.deposit.createAddrTwoUsingPost({ chainEnum }).then((res) => {
-      console.log(res);
-    });
+    api.deposit
+      .createAddrTwoUsingPost({ chainEnum: chainEnum.protocolType })
+      .then((res) => {
+        console.log(res);
+      });
   }, [chainEnum]);
   return (
     <ViewLayout
@@ -51,7 +53,7 @@ const DepositView = () => {
                   {...field}
                   onChange={(e) => {
                     field.onChange(e);
-                    setValue("chainEnum", "");
+                    setValue("chainEnum", { protocolType: "" });
                   }}
                 />
               )}
@@ -65,7 +67,11 @@ const DepositView = () => {
               name="chainEnum"
               control={control}
               render={({ field }) => (
-                <SelectChain currencyCode={currencyCode} {...field} />
+                <SelectChain
+                  {...field}
+                  currencyCode={currencyCode}
+                  value={field.value?.protocolType}
+                />
               )}
             ></Controller>
           </fieldset>

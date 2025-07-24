@@ -203,7 +203,7 @@
     "network": "Network",
     "selectChain": "Please select chain type",
     "amount": "Withdrawal Amount",
-    "minAmountTip": "Minimum withdrawal amount is",
+    "minAmountTip": "Minimum withdrawal amount is {min}",
     "selectCoinFirst": "Please select a currency first",
     "availableBalance": "Available Balance",
     "useAll": "All",

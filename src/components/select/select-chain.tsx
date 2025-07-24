@@ -7,14 +7,15 @@ import useSWR from "swr";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icon";
 
-interface ITokenSelectProps {
+interface IChainSelectProps {
   name: string;
   currencyCode: string;
   value?: string;
-  onChange?: (event: { target: { name: string; value?: string } }) => void;
+  onChange?: (item?: CurrencyInfo) => void;
 }
-export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
-  ({ name, value, currencyCode, onChange }, ref) => {
+
+export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
+  ({ value, currencyCode, onChange }, ref) => {
     const t = useTrans();
     const [open, setOpen] = useState(false);
     const { data } = useSWR(
@@ -22,29 +23,22 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
       ([, _currencyCode]) =>
         api.currencySettings.pageUsingGet({ currencyCode: _currencyCode }),
     );
-    const currencyList = data?.data as CurrencyInfo[];
+    const chainList = data?.data as CurrencyInfo[];
 
-    const selectCurrency = useMemo(() => {
-      return currencyList?.find((t) => t.protocolType === value);
-    }, [value, currencyList]);
+    const selectChain = useMemo(() => {
+      return chainList?.find((t) => t.protocolType === value);
+    }, [value, chainList]);
 
     const getActived = useCallback(
       (_: number, item: CurrencyInfo) => {
         const activedClass = cn("bg-primary text-white rounded-md");
-        const isSelected = selectCurrency?.protocolType === item?.protocolType;
+        const isSelected = selectChain?.protocolType === item?.protocolType;
         return isSelected ? activedClass : "";
       },
-      [selectCurrency],
+      [selectChain],
     );
     return (
-      <div>
-        <input
-          type="hidden"
-          name={name}
-          ref={ref}
-          value={value}
-          onChange={onChange}
-        />
+      <div ref={ref}>
         <button
           type="button"
           className="input w-full flex justify-between items-center"
@@ -52,7 +46,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
         >
           {value ? (
             <span className="text-sm font-bold">
-              {selectCurrency?.protocolType}
+              {selectChain?.protocolType}
             </span>
           ) : (
             <p className="text-text2">{t("deposit.selectChain")}</p>
@@ -60,10 +54,14 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
           <Icon name="arrow-line-down" />
         </button>
         <Drawer open={open} onChange={setOpen} title={t("address.selectChain")}>
-          <div className="size-full flex flex-col">
+          <div
+            className="size-full flex flex-col"
+            aria-haspopup="listbox"
+            aria-expanded={open}
+          >
             <div className="flex-1">
               <InfiniteList<CurrencyInfo, unknown>
-                data={currencyList}
+                data={chainList}
                 hiddenEmpty
                 hiddenFooter
                 fetchMore={async () => {
@@ -74,10 +72,7 @@ export const SelectChain = forwardRef<HTMLInputElement, ITokenSelectProps>(
                     <div
                       onClick={() => {
                         setOpen(false);
-                        const event = {
-                          target: { name, value: item?.protocolType },
-                        };
-                        onChange?.(event);
+                        onChange?.(item);
                       }}
                       className={cn([
                         "flex justify-center items-center h-8 space-x-2 mb-2 text-text2",

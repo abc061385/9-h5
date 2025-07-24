@@ -45,6 +45,7 @@
 
   .input {
     --input-color: var(--color-accent);
+    background-color: var(--color-white);
     &:focus,
     &:focus-within {
       --input-color: var(--color-primary);
