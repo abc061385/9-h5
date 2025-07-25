@@ -104,9 +104,7 @@ const SettingAddressAddView = () => {
             <legend className="fieldset-legend">
               {t("addressAdd.coinType")}
             </legend>
-            {isLoading ? (
-              <div className="skeleton w-full h-10 rounded-md"></div>
-            ) : (
+            <Skeleton isLoading={isLoading}>
               <label
                 className="input w-full"
                 onClick={() => setCoinDrawer(true)}
@@ -123,15 +121,13 @@ const SettingAddressAddView = () => {
                 />
                 <Icon name="arrow-line-down" />
               </label>
-            )}
+            </Skeleton>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend">
               {t("addressAdd.chainType")}
             </legend>
-            {isLoading ? (
-              <div className="skeleton w-full h-10 rounded-md"></div>
-            ) : (
+            <Skeleton isLoading={isLoading}>
               <label
                 className="input w-full"
                 onClick={() => {
@@ -147,7 +143,7 @@ const SettingAddressAddView = () => {
                 />
                 <Icon name="arrow-line-down" />
               </label>
-            )}
+            </Skeleton>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend">
@@ -180,14 +176,16 @@ const SettingAddressAddView = () => {
             <legend className="fieldset-legend">
               {t("addressAdd.remark")}
             </legend>
-            <textarea
-              rows={4}
-              maxLength={50}
-              className="textarea border-accent placeholder:text-xs font-bold flex-1 pt-2 w-full !outline-none focus-within:border-primary"
-              value={remark}
-              placeholder={t("addressAdd.enterRemark")}
-              onChange={(e) => setRemark(e.target.value)}
-            />
+            <Skeleton isLoading={isLoading}>
+              <textarea
+                rows={4}
+                maxLength={50}
+                className="textarea border-accent placeholder:text-xs font-bold flex-1 pt-2 w-full !outline-none focus-within:border-primary"
+                value={remark}
+                placeholder={t("addressAdd.enterRemark")}
+                onChange={(e) => setRemark(e.target.value)}
+              />
+            </Skeleton>
           </fieldset>
         </form>
         <button className="btn btn-primary w-full" onClick={handleSubmit}>

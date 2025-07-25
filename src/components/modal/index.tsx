@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { PropsWithChildren, ReactNode, useId } from "react";
-import { Icon } from "./icon";
+import { Icon } from "../icon";
 
 interface IModalProps extends PropsWithChildren {
   open: boolean;
