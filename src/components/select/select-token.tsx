@@ -3,11 +3,11 @@ import { Drawer } from "@/components/drawer";
 import { useTrans } from "@/hooks/useTrans";
 import { InfiniteList } from "@/components/infinite-list";
 import { api } from "@/api";
-import useSWR from "swr";
 import { cn } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
 import { Skeleton } from "@/components/skeleton";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 
 interface ITokenSelectProps {
   name: string;
@@ -19,8 +19,9 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
   ({ name, onChange, onSelect, value }, ref) => {
     const t = useTrans();
     const [open, setOpen] = useState(false);
-    const { data, isLoading } = useSWR("protocolListUsingGet", () =>
-      api.currencySettings.protocolListUsingGet(),
+    const { data, isLoading } = useRequestQuery(
+      api.currencySettings.protocolListUsingGet,
+      {},
     );
     const currencyList = data?.data as CurrencyInfo[];
 

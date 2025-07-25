@@ -115,3 +115,20 @@ type AddressList = Partial<{
   protocol: string;
   systemType: number;
 }>;
+
+type Account = Partial<{
+  id: number;
+  balance: number;
+  frozenBalance: number;
+  zyFrozenBalance: number | null;
+  coin: string;
+  memberId: number;
+  releaseBalance: number;
+  version: number;
+  address: string | null;
+  exchangeRateUSDT: number | null;
+  usdtPrice: number | null;
+  usdtValue: number;
+  yesterdayIncome: number | null;
+  trans: unknown; // 若你能明確定義結構，請改成具體 interface
+}>;

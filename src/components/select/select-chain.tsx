@@ -3,9 +3,9 @@ import { Drawer } from "@/components/drawer";
 import { useTrans } from "@/hooks/useTrans";
 import { InfiniteList } from "@/components/infinite-list";
 import { api } from "@/api";
-import useSWR from "swr";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icon";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 
 interface IChainSelectProps {
   name: string;
@@ -18,11 +18,9 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
   ({ value, currencyCode, onChange }, ref) => {
     const t = useTrans();
     const [open, setOpen] = useState(false);
-    const { data } = useSWR(
-      currencyCode ? ["protocolListUsingGet", currencyCode] : null,
-      ([, _currencyCode]) =>
-        api.currencySettings.pageUsingGet({ currencyCode: _currencyCode }),
-    );
+    const { data } = useRequestQuery(api.currencySettings.pageUsingGet, {
+      currencyCode,
+    });
     const chainList = data?.data as CurrencyInfo[];
 
     const selectChain = useMemo(() => {
