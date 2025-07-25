@@ -4,19 +4,24 @@ import { api } from "@/api";
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { ConfirmModal } from "@/components/modal/confirm-modal";
+import { ListNoData } from "@/components/nodata/list-nodata";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { useAddressStore } from "@/store/useAddressStore";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const SettingAddressView = () => {
   const t = useTrans();
   const { push } = useRouter();
+  const { cb } = useAddressStore();
 
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
   const [openEdit, setOpenEdit] = useState(false);
   const [delIds, setDelIds] = useState<number[]>([]);
+  const [delConfirmOpen, setDelConfirmOpen] = useState(false);
 
   const { trigger: getAddressList, data } = useRequestMutation(
     api.member.memberAddressListUsingPost
@@ -77,7 +82,10 @@ const SettingAddressView = () => {
               {t("address.title")}
               <span
                 className="text-primary text-xs font-bold absolute right-0"
-                onClick={() => setOpenEdit(!openEdit)}
+                onClick={() => {
+                  setOpenEdit(!openEdit);
+                  setDelIds([]);
+                }}
               >
                 {t(openEdit ? "common.done" : "address.manage")}
               </span>
@@ -90,39 +98,43 @@ const SettingAddressView = () => {
     >
       <div className="p-content h-full flex flex-col justify-between">
         <div className="flex-1 font-bold overflow-auto">
-          {addressList.map((item) => {
-            return (
-              <div
-                className="bg-bg1 px-3.5 py-4 rounded-md mb-4 w-full"
-                key={item.id}
-                onClick={() => {}}
-              >
-                <label className="flex items-center gap-4">
-                  {openEdit && check(item)}
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      {item.coin && (
-                        <BaseImage
-                          src={getTokenIcon(item.coin)}
-                          className="w-6 h-6 rounded-full overflow-hidden"
-                        />
-                      )}
-                      <span>{item.coin}</span>
-                      <div className="badge badge-soft badge-primary text-xs rounded-sm">
-                        {item.protocol}
+          {addressList?.length ? (
+            addressList.map((item) => {
+              return (
+                <div
+                  className="bg-bg1 px-3.5 py-4 rounded-md mb-4 w-full"
+                  key={item.id}
+                  onClick={() => cb?.(item)}
+                >
+                  <label className="flex items-center gap-4">
+                    {openEdit && check(item)}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        {item.coin && (
+                          <BaseImage
+                            src={getTokenIcon(item.coin)}
+                            className="w-6 h-6 rounded-full overflow-hidden"
+                          />
+                        )}
+                        <span>{item.coin}</span>
+                        <div className="badge badge-soft badge-primary text-xs rounded-sm">
+                          {item.protocol}
+                        </div>
                       </div>
+                      <p className="text-text2 my-2 pb-2 border-b border-text2 border-dashed wrap-break-word">
+                        {item.addr}
+                      </p>
+                      <p className="text-text2 font-medium">
+                        {t("address.remark")}:
+                      </p>
                     </div>
-                    <p className="text-text2 my-2 pb-2 border-b border-text2 border-dashed wrap-break-word">
-                      {item.addr}
-                    </p>
-                    <p className="text-text2 font-medium">
-                      {t("address.remark")}:
-                    </p>
-                  </div>
-                </label>
-              </div>
-            );
-          })}
+                  </label>
+                </div>
+              );
+            })
+          ) : (
+            <ListNoData />
+          )}
         </div>
         <div className="bg-white py-2 pb-0">
           {openEdit ? (
@@ -145,20 +157,7 @@ const SettingAddressView = () => {
               </label>
               <button
                 className="btn btn-error"
-                onClick={() => {
-                  delAddress(
-                    {
-                      ids: delIds.toString(),
-                    },
-                    {
-                      onSuccess: async () => {
-                        toast.success(t("address.deleteSuccess"));
-                        await getAddressList();
-                        setDelIds([]);
-                      },
-                    }
-                  );
-                }}
+                onClick={() => setDelConfirmOpen(true)}
               >
                 {t("address.delete")}
               </button>
@@ -172,6 +171,29 @@ const SettingAddressView = () => {
             </button>
           )}
         </div>
+        <ConfirmModal
+          title={t("alerts.tip")}
+          tips={t("address.confirmDelete")}
+          open={delConfirmOpen}
+          onClose={() => setDelConfirmOpen(false)}
+          onConfirm={() => {
+            delAddress(
+              {
+                ids: delIds.toString(),
+              },
+              {
+                onSuccess: async () => {
+                  toast.success(t("address.deleteSuccess"));
+                  setDelConfirmOpen(false);
+                  await getAddressList();
+                  setDelIds([]);
+                },
+              }
+            );
+          }}
+        >
+          1
+        </ConfirmModal>
       </div>
     </ViewLayout>
   );

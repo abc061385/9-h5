@@ -28,3 +28,5 @@ interface BaseState<T> {
     value: T[K],
   ) => void;
 }
+
+declare module "crypto-js";

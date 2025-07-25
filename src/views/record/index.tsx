@@ -4,6 +4,7 @@ import { useState } from "react";
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
+import { ListNoData } from "@/components/nodata/list-nodata";
 
 const FundRecordView = () => {
   const t = useTrans();
@@ -126,15 +127,7 @@ const FundRecordView = () => {
             </div>
           ))
         ) : (
-          <div className="text-center mt-10">
-            <BaseImage
-              src="/images/common/no_data.png"
-              className="w-[304px] h-[197px] mx-auto"
-            />
-            <span className="font-bold text-text2 text-sm">
-              {t("暂无更多数据")}
-            </span>
-          </div>
+          <ListNoData />
         )}
       </div>
     </>

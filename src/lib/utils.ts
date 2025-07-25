@@ -45,7 +45,7 @@ export function formatThousand(
   options?: {
     separator?: string; // 默认使用 ","
     decimalSeparator?: string; // 默认使用 "."
-  },
+  }
 ): string {
   const separator = options?.separator ?? ",";
   const decimalSeparator = options?.decimalSeparator ?? ".";
@@ -75,6 +75,27 @@ export const encryptPassword = (password: string) => {
   }).toString();
   return cipherTxt;
 };
+
+/**
+ * 格式化币种余额
+ * @param value
+ * @param precision
+ * @returns
+ */
+export function formatBalance(
+  value: string | number,
+  precision: number
+): string {
+  if (value == null || isNaN(Number(value))) return "--";
+
+  const [intPart, decimalPart = ""] = String(value).split(".");
+  const trimmedDecimal = decimalPart.slice(0, precision).padEnd(precision, "0");
+
+  // 添加千分位
+  const formattedInt = Number(intPart).toLocaleString("en-US");
+
+  return precision > 0 ? `${formattedInt}.${trimmedDecimal}` : formattedInt;
+}
 
 export const utils = {
   ...lodash,
