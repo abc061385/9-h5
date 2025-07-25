@@ -159,7 +159,7 @@ const {
       "navigationBarTitleText": "充币"
     }
   },
-   {
+  {
     "path": "pages/assets/index",
     "style": {
       "navigationStyle": "custom",
@@ -187,14 +187,14 @@ const {
       "navigationBarTitleText": "交易记录"
     }
   },
-   {
+  {
     "path": "pages/invite/invite",
     "style": {
       "navigationStyle": "custom",
       "navigationBarTitleText": "邀请好友"
     }
   },
-   {
+  {
     "path": "pages/assets/upgrade",
     "style": {
       "navigationBarTitleText": "VIP计划",
@@ -208,21 +208,21 @@ const {
       "navigationStyle": "custom"
     }
   },
-   {
+  {
     "path": "pages/teams/next",
     "style": {
       "navigationBarTitleText": "下级团队",
       "navigationStyle": "custom"
     }
   },
-   {
+  {
     "path": "pages/settings/security",
     "style": {
       "navigationStyle": "custom",
       "navigationBarTitleText": "安全设置"
     }
   },
-    {
+  {
     "path": "pages/settings/editPassword",
     "style": {
       "navigationStyle": "custom",
@@ -236,20 +236,27 @@ const {
       "navigationBarTitleText": "谷歌验证"
     }
   },
-    {
+  {
     "path": "pages/settings/bindEmail",
     "style": {
       "navigationBarTitleText": "绑定邮箱",
       "navigationStyle": "custom"
     }
   },
-   {
+  {
     "path": "pages/assets/exchange",
     "style": {
       "navigationBarTitleText": "闪兑",
       "navigationStyle": "custom"
     }
   },
+  {
+    "path": "pages/withdraw/index",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "提币"
+    }
+  }
 ]
 ```
 
@@ -285,14 +292,6 @@ const {
     }
   },
 
- 
-  {
-    "path": "pages/withdraw/index",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "提币"
-    }
-  },
   {
     "path": "pages/wallet/transaction-detail",
     "style": {
@@ -321,7 +320,7 @@ const {
       "navigationBarTitleText": "节点购买"
     }
   },
-  
+
   {
     "path": "pages/fund/buy",
     "style": {
@@ -356,6 +355,6 @@ const {
       "navigationBarTitleText": "",
       "navigationStyle": "custom"
     }
-  },
+  }
 ]
 ```
