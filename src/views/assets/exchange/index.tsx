@@ -5,24 +5,29 @@ import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import z, { useRootReg } from "@/lib/z";
+import z from "@/lib/z";
 import { Icon } from "@/components/icon";
 import { TextError } from "@/components/input/text-error";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { useCallback, useEffect, useState } from "react";
 import { Drawer } from "@/components/drawer";
-import { cn, formatBalance } from "@/lib/utils";
+import { encryptPassword, formatBalance } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
+import axios from "axios";
+import CoinList from "./coin-list";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import toast from "react-hot-toast";
+import { Skeleton } from "@/components/skeleton";
 
 type FormData = {
-  code: string;
+  formCoinValue: string;
+  toCoinValue: string;
 };
 
 const AssetsExchangeView = () => {
   const t = useTrans();
-  const reg = useRootReg();
   const { getBalanceList, balanceList } = useAssetStore();
 
   const [formCoinList, setFormCoinList] = useState<CurrencyInfo[]>([]);
@@ -34,11 +39,17 @@ const AssetsExchangeView = () => {
   const [formCoinItem, setFormCoinItem] = useState<CurrencyInfo>();
   const [toCoinItem, setToCoinItem] = useState<CurrencyInfo>();
 
-  const { data } = useRequestQuery(
+  const [price, setPrice] = useState("");
+
+  const { data, isLoading } = useRequestQuery(
     api.currencySettings.protocolListUsingGet,
     {}
   );
   const currencyList = data?.data as CurrencyInfo[];
+
+  const { trigger, isMutating } = useRequestMutation(
+    api.member.flashExchangeUsingPost
+  );
 
   useEffect(() => {
     getBalanceList();
@@ -83,12 +94,14 @@ const AssetsExchangeView = () => {
   );
 
   const Schema = z.object({
-    code: reg.googleVerifyCode,
+    formCoinValue: z.string(),
+    toCoinValue: z.string(),
   });
 
   const {
     register,
-    // getValues,
+    setValue,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -97,41 +110,70 @@ const AssetsExchangeView = () => {
     reValidateMode: "onChange",
   });
 
+  useEffect(() => {
+    if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
+    if (formCoinItem?.currencyCode !== "USDT") return setPrice("1");
+
+    axios(
+      `https://www.okx.com/api/v5/market/index-tickers?instId=${toCoinItem?.currencyCode}-USDT`
+    ).then((res) => {
+      const price = res?.data?.data?.[0]?.idxPx || 0;
+      setPrice(formatBalance(1 / price, toCoinItem.decimalPlaces || 2));
+    });
+  }, [formCoinItem, toCoinItem]);
+
+  useEffect(() => {
+    setValue(
+      "toCoinValue",
+      (Number(getValues().formCoinValue) * Number(price)).toString()
+    );
+  }, [setValue, getValues, price, toCoinItem]);
+
   return (
-    <ViewLayout
-      header={<HeaderWithBack title={t("verify.title")} algin="center" />}
-    >
+    <ViewLayout header={<HeaderWithBack title={t("闪兑")} algin="center" />}>
       <div className="p-content">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
             <legend className="fieldset-legend">{t("支付代币")}</legend>
+
             <label className="input w-full">
-              <span
-                className="text-xs flex items-center gap-1"
-                onClick={() => setFormDrawerOpen(true)}
-              >
-                {formCoinItem?.id ? (
-                  <>
-                    <BaseImage
-                      src={formCoinItem?.logo || "/"}
-                      className="w-5 h-5 rounded-full overflow-hidden"
-                    />
-                    <span className="font-bold">
-                      {formCoinItem.currencyCode}
-                    </span>
-                  </>
-                ) : (
-                  t("withdraw.selectCoin")
-                )}
-                <Icon name="arrow-line-down" />
-              </span>
+              <Skeleton isLoading={isLoading}>
+                <span
+                  className="text-xs flex items-center gap-1"
+                  onClick={() => setFormDrawerOpen(true)}
+                >
+                  {formCoinItem?.id ? (
+                    <>
+                      <BaseImage
+                        src={formCoinItem?.logo || "/"}
+                        className="w-5 h-5 rounded-full overflow-hidden"
+                      />
+                      <span className="font-bold">
+                        {formCoinItem.currencyCode}
+                      </span>
+                    </>
+                  ) : (
+                    t("withdraw.selectCoin")
+                  )}
+                  <Icon name="arrow-line-down" />
+                </span>
+              </Skeleton>
+
               <input
-                type="code"
-                {...register("code")}
+                type="number"
+                {...register("formCoinValue")}
                 className="grow text-xs text-right"
+                onChange={(e) => {
+                  if (!formCoinItem?.id || !toCoinItem?.id) return;
+                  setValue(
+                    "toCoinValue",
+                    (Number(e.target.value) * Number(price)).toString()
+                  );
+                }}
               />
             </label>
-            <TextError>{errors?.code?.message}</TextError>
+
+            <TextError>{errors?.formCoinValue?.message}</TextError>
           </fieldset>
 
           <div className="flex items-center justify-between text-xs font-medium">
@@ -142,36 +184,59 @@ const AssetsExchangeView = () => {
                 formCoinItem?.decimalPlaces || 2
               )}
             </span>
-            <button className="text-primary">{t("walletDetail.all")}</button>
+            <span
+              className="btn-text text-primary"
+              onClick={() => {
+                if (!formCoinItem?.currencyCode) return;
+                setValue(
+                  "formCoinValue",
+                  balanceList
+                    .find((v) => v.coin === formCoinItem?.currencyCode)
+                    ?.balance?.toString() || ""
+                );
+                setValue(
+                  "toCoinValue",
+                  (
+                    Number(getValues("formCoinValue")) * Number(price)
+                  ).toString()
+                );
+              }}
+            >
+              {t("walletDetail.all")}
+            </span>
           </div>
 
           <fieldset className="fieldset">
             <legend className="fieldset-legend">{t("接收代币")}</legend>
             <label className="input w-full">
-              <span
-                className="text-xs flex items-center gap-1"
-                onClick={() => setToDrawerOpen(true)}
-              >
-                {toCoinItem?.id ? (
-                  <>
-                    <BaseImage
-                      src={toCoinItem?.logo || "/"}
-                      className="w-5 h-5 rounded-full overflow-hidden"
-                    />
-                    <span className="font-bold">{toCoinItem.currencyCode}</span>
-                  </>
-                ) : (
-                  t("withdraw.selectCoin")
-                )}
-                <Icon name="arrow-line-down" />
-              </span>
+              <Skeleton isLoading={isLoading}>
+                <span
+                  className="text-xs flex items-center gap-1"
+                  onClick={() => setToDrawerOpen(true)}
+                >
+                  {toCoinItem?.id ? (
+                    <>
+                      <BaseImage
+                        src={toCoinItem?.logo || "/"}
+                        className="w-5 h-5 rounded-full overflow-hidden"
+                      />
+                      <span className="font-bold">
+                        {toCoinItem.currencyCode}
+                      </span>
+                    </>
+                  ) : (
+                    t("withdraw.selectCoin")
+                  )}
+                  <Icon name="arrow-line-down" />
+                </span>
+              </Skeleton>
               <input
-                type="code"
-                {...register("code")}
+                type="text"
+                {...register("toCoinValue")}
                 className="grow text-xs text-right"
+                readOnly
               />
             </label>
-            <TextError>{errors?.code?.message}</TextError>
           </fieldset>
 
           <div className="text-xs font-bold">
@@ -181,17 +246,46 @@ const AssetsExchangeView = () => {
 
           <div className="bg-bg1 h-10 px-4 rounded-md flex items-center justify-between text-xs font-bold my-4">
             <span>{t("兑换价格")}</span>
-            <span>1 USDM ≈ 1 USDT</span>
+            {formCoinItem?.currencyCode && toCoinItem?.currencyCode && (
+              <span>
+                1 {formCoinItem?.currencyCode} ≈ {price}{" "}
+                {toCoinItem?.currencyCode}
+              </span>
+            )}
           </div>
         </form>
         <button
+          disabled={isMutating}
           type="submit"
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
-            console.log(e);
+            if (!e.formCoinValue) return toast.error(t("deposit.selectCoin"));
+            if (!price) return toast.error(t("未获取到币价"));
+
+            trigger(
+              {
+                fromCoin: formCoinItem?.currencyCode,
+                toCoin: toCoinItem?.currencyCode,
+                amount: Number(e.formCoinValue),
+                rate: encryptPassword(e.toCoinValue),
+              },
+
+              {
+                onSuccess: () => {
+                  toast.success(t("操作成功"));
+                  getBalanceList();
+                  setValue("formCoinValue", "");
+                  setValue("toCoinValue", "");
+                },
+              }
+            );
           })}
         >
-          {t("verify.confirm")}
+          {isMutating ? (
+            <span className="loading loading-spinner loading-xs"></span>
+          ) : (
+            t("verify.confirm")
+          )}
         </button>
         <Drawer
           open={formDrawerOpen}
@@ -199,29 +293,16 @@ const AssetsExchangeView = () => {
           onChange={setFormDrawerOpen}
           className="h-auto"
         >
-          <div className="px-2">
-            {formCoinList?.map((item) => {
-              return (
-                <div
-                  key={item.id}
-                  className={cn(
-                    "flex items-center justify-center gap-1 h-11 mb-4 font-bold rounded-md",
-                    item.id === formCoinItem?.id ? "bg-primary text-white" : ""
-                  )}
-                  onClick={() => {
-                    setFormCoinItem(item);
-                    setFormDrawerOpen(false);
-                  }}
-                >
-                  <BaseImage
-                    src={item.logo || ""}
-                    className="w-6 h-6 rounded-full overflow-hidden"
-                  />
-                  <span>{item.currencyCode}</span>
-                </div>
-              );
-            })}
-          </div>
+          <CoinList
+            list={formCoinList}
+            checkValue={formCoinItem?.id}
+            onClick={(item) => {
+              setFormCoinItem(item);
+              setFormDrawerOpen(false);
+              setToCoinItem(undefined);
+              setValue("formCoinValue", "");
+            }}
+          />
         </Drawer>
         <Drawer
           open={toDrawerOpen}
@@ -229,35 +310,15 @@ const AssetsExchangeView = () => {
           onChange={setToDrawerOpen}
           className="h-auto"
         >
-          <div className="px-2 max-h-[40vh] overflow-auto">
-            {toCoinList?.length ? (
-              toCoinList.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    className={cn(
-                      "flex items-center justify-center gap-1 h-11 mb-4 font-bold rounded-md",
-                      item.id === toCoinItem?.id ? "bg-primary text-white" : ""
-                    )}
-                    onClick={() => {
-                      setToCoinItem(item);
-                      setToDrawerOpen(false);
-                    }}
-                  >
-                    <BaseImage
-                      src={item.logo || ""}
-                      className="w-6 h-6 rounded-full overflow-hidden"
-                    />
-                    <span>{item.currencyCode}</span>
-                  </div>
-                );
-              })
-            ) : (
-              <h3 className="font-bold text-text2 text-sm text-center py-4">
-                {t("暂无数据")}
-              </h3>
-            )}
-          </div>
+          <CoinList
+            list={toCoinList}
+            checkValue={toCoinItem?.id}
+            onClick={(item) => {
+              setToCoinItem(item);
+              setToDrawerOpen(false);
+              setPrice("");
+            }}
+          />
         </Drawer>
       </div>
     </ViewLayout>
