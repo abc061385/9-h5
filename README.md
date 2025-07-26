@@ -113,7 +113,7 @@ const {
   {
     "path": "pages/news/detail",
     "style": {
-      "navigationBarTitleText": "详情",
+      "navigationBarTitleText": "消息详情",
       "navigationStyle": "custom"
     }
   },
@@ -256,7 +256,28 @@ const {
       "navigationStyle": "custom",
       "navigationBarTitleText": "提币"
     }
-  }
+  },
+    {
+    "path": "pages/settings/address",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "地址簿"
+    }
+  },
+  {
+    "path": "pages/settings/addressAdd",
+    "style": {
+      "navigationStyle": "custom",
+      "navigationBarTitleText": "添加地址簿"
+    }
+  },
+  {
+    "path": "pages/fund/buy",
+    "style": {
+      "navigationBarTitleText": "买入",
+      "navigationStyle": "custom"
+    }
+  },
 ]
 ```
 
@@ -275,7 +296,7 @@ const {
     "path": "pages/forgot-password/index",
     "style": {
       "navigationStyle": "custom",
-      "navigationBarTitleText": ""
+      "navigationBarTitleText": "忘记密码"
     }
   },
   {
@@ -299,20 +320,7 @@ const {
       "navigationBarTitleText": "交易详情"
     }
   },
-  {
-    "path": "pages/settings/address",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "地址簿"
-    }
-  },
-  {
-    "path": "pages/settings/addressAdd",
-    "style": {
-      "navigationStyle": "custom",
-      "navigationBarTitleText": "地址簿"
-    }
-  },
+
   {
     "path": "pages/nodes/nodes",
     "style": {
@@ -320,32 +328,24 @@ const {
       "navigationBarTitleText": "节点购买"
     }
   },
-
-  {
-    "path": "pages/fund/buy",
-    "style": {
-      "navigationBarTitleText": "买入",
-      "navigationStyle": "custom"
-    }
-  },
   {
     "path": "pages/fund/success",
     "style": {
-      "navigationBarTitleText": "",
+      "navigationBarTitleText": "基金购买",
       "navigationStyle": "custom"
     }
   },
   {
     "path": "pages/fund/detail",
     "style": {
-      "navigationBarTitleText": "",
+      "navigationBarTitleText": "投资详情",
       "navigationStyle": "custom"
     }
   },
   {
     "path": "pages/teams/detail",
     "style": {
-      "navigationBarTitleText": "",
+      "navigationBarTitleText": "团队详情",
       "navigationStyle": "custom"
     }
   },

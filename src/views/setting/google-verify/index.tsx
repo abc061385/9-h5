@@ -65,6 +65,20 @@ const SettingGoogleVerifyView = () => {
 
   const submit = useCallback(
     (e: { code: string }) => {
+      if (!isVerify) {
+        debouncedBindGoogle(
+          { code: Number(e.code), secret: data?.data?.secret },
+          {
+            onSuccess: () => {
+              toast.success(t("googleVerify.bindComplete"));
+              setValue("code", "");
+              fetchUserInfo();
+            },
+            throwOnError: false,
+          }
+        );
+        return;
+      }
       if (gaPreviousPageType) {
         debouncedPostGoogleVerify(
           { code: Number(e.code) },
@@ -79,26 +93,12 @@ const SettingGoogleVerifyView = () => {
         );
         return;
       }
-      if (isVerify) {
-        debouncedPostGoogleVerify(
-          { code: Number(e.code) },
-          {
-            onSuccess: () => {
-              setVerify(false);
-              setValue("code", "");
-            },
-            throwOnError: false,
-          }
-        );
-        return;
-      }
-      debouncedBindGoogle(
-        { code: Number(e.code), secret: data?.data?.secret },
+      debouncedPostGoogleVerify(
+        { code: Number(e.code) },
         {
           onSuccess: () => {
-            toast.success(t("googleVerify.bindComplete"));
+            setVerify(false);
             setValue("code", "");
-            fetchUserInfo();
           },
           throwOnError: false,
         }
@@ -119,13 +119,9 @@ const SettingGoogleVerifyView = () => {
   );
 
   useEffect(() => {
+    setVerify(Boolean(userInfo.googleVerify));
     trigger();
-    if (!gaPreviousPageType) {
-      setVerify(Boolean(userInfo.googleVerify));
-      return;
-    }
-    setVerify(true);
-  }, [userInfo, trigger, gaPreviousPageType]);
+  }, [userInfo, trigger]);
 
   return (
     <ViewLayout
