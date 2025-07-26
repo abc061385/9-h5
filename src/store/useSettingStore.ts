@@ -8,7 +8,7 @@ interface SettingState extends BaseState<SettingState> {
   addressInfo: AddressList;
   clearGoogleCode: () => void;
   clearAddressInfo: () => void;
-  previousPageType: PreviousPageType | "";
+  previousPageType: PreviousPageType;
 }
 
 export const useSettingStore = create<SettingState>()(

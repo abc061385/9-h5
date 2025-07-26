@@ -37,3 +37,5 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_STATIC_EARNINGS: "领取静态收益",
   CLAIM_DYNAMIC_REWARDS: "领取动态收益",
 };
+
+export type PreviousPageType = "withdraw" | "";
