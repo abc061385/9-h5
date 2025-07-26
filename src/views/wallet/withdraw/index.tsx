@@ -9,12 +9,15 @@ import { SelectChain } from "@/components/select/select-chain";
 import { SelectToken } from "@/components/select/select-token";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { Link, routerMap } from "@/i18n/navigation";
+import { routerMap, useRouter } from "@/i18n/navigation";
 import z from "@/lib/z";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useWithdrawalStore } from "@/store/useWithdrawal";
+import { useSettingStore } from "@/store/useSettingStore";
+import { ConfirmModal } from "@/components/modal/confirm-modal";
 
 const chainEnum = z.object({
   protocolType: z.string(),
@@ -26,6 +29,18 @@ const chainEnum = z.object({
 
 const WithdrawView = () => {
   const t = useTrans();
+  const setField = useWithdrawalStore((s) => s.setField);
+  const setSettingField = useSettingStore((s) => s.setField);
+  const googleCode = useSettingStore((s) => s.googleCode);
+  const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
+  const gaPreviousPageType = useSettingStore((s) => s.gaPreviousPageType);
+  const addressPreviousPageType = useSettingStore(
+    (s) => s.addressPreviousPageType,
+  );
+  const addressInfo = useSettingStore((s) => s.addressInfo);
+  const formState = useWithdrawalStore((s) => s.formState);
+  const [openModal, setOpenModal] = useState(false);
+  const { push } = useRouter();
   const { trigger } = useRequestMutation(api.wallet.withdrawUsingPost);
   const Schema = z
     .object({
@@ -37,7 +52,6 @@ const WithdrawView = () => {
     })
     .check((ctx) => {
       const data = ctx.value;
-      console.log(data);
       if (data.withdrawAmount < (data.chainEnum.minWithdrawal as number)) {
         ctx.issues.push({
           code: "custom",
@@ -66,13 +80,7 @@ const WithdrawView = () => {
     formState: { errors },
     handleSubmit,
   } = useForm({
-    defaultValues: {
-      currencyCode: "USDT",
-      chainEnum: {},
-      XRPTag: "",
-      withdrawAmount: 0,
-      withdrawAddress: "",
-    },
+    defaultValues: formState,
     resolver: zodResolver(Schema),
   });
   const currencyCode = useWatch({ control, name: "currencyCode" });
@@ -100,18 +108,44 @@ const WithdrawView = () => {
         : "";
 
   const submit = (data: z.infer<typeof Schema>) => {
-    console.log(data, "data");
-
-    trigger({
-      address: data.withdrawAddress,
-      amount: data.withdrawAmount,
-      coinCode: data.currencyCode,
-      protocol: data.chainEnum.protocolType,
-      code: Number("026289"),
-      // hash: "",
-      // certificate: "",
-    } as Parameters<typeof trigger>[0]);
+    setField("formState", data);
+    setSettingField("gaPreviousPageType", "withdraw");
+    push({
+      pathname: routerMap.settingGoogleVerify,
+    });
   };
+
+  // INFO: 如果是有谷歌验证码就提示弹窗
+  useEffect(() => {
+    if (gaPreviousPageType === "withdraw" && googleCode && formState) {
+      setOpenModal(true);
+    }
+  }, [googleCode, formState, gaPreviousPageType]);
+  // INFO: 如果是有地址
+  useEffect(() => {
+    if (addressPreviousPageType === "withdraw" && addressInfo) {
+      setValue("withdrawAddress", addressInfo?.addr || "");
+    }
+  }, [addressPreviousPageType, addressInfo, setValue]);
+
+  const confirm = useCallback(() => {
+    trigger({
+      address: formState.withdrawAddress,
+      amount: formState.withdrawAmount,
+      coinCode: formState.currencyCode,
+      protocol: formState.chainEnum.protocolType,
+      code: Number(googleCode),
+      memo: formState.XRPTag,
+    } as Parameters<typeof trigger>[0]);
+  }, [googleCode, formState, trigger]);
+
+  const handleModalColse = useCallback(() => {
+    setOpenModal(false);
+    clearGoogleCode();
+    // resetFormState();
+    // reset();
+  }, [clearGoogleCode]);
+
   return (
     <ViewLayout
       header={<HeaderWithBack title={t("withdraw.title")} algin="center" />}
@@ -181,11 +215,15 @@ const WithdrawView = () => {
                 placeholder={t("withdraw.longPressToPaste")}
                 className="w-9/10"
               />
-              <Link href={routerMap.home}>
-                <div className="grow text-center">
-                  <Icon name="address" />
-                </div>
-              </Link>
+              <div
+                className="grow text-center"
+                onClick={() => {
+                  setSettingField("addressPreviousPageType", "withdraw");
+                  push(routerMap.settingAddress);
+                }}
+              >
+                <Icon name="address" />
+              </div>
             </label>
             <TextError>{errors.withdrawAddress?.message}</TextError>
           </fieldset>
@@ -228,12 +266,26 @@ const WithdrawView = () => {
         <button
           className="btn btn-primary w-full"
           onClick={handleSubmit((data) => {
-            console.log(123, "123");
             submit(data);
           })}
         >
           {t("withdraw.confirm")}
         </button>
+        <ConfirmModal
+          open={openModal}
+          title={t("withdraw.confirmWithdraw")}
+          onClose={handleModalColse}
+          tips={
+            <p className="text-center">
+              {t("withdraw.withdrawConfirmContent", {
+                amount: getValues("withdrawAmount") as string,
+                currency: getValues("currencyCode") as string,
+                address: getValues("withdrawAddress") as string,
+              })}
+            </p>
+          }
+          onConfirm={confirm}
+        ></ConfirmModal>
       </div>
     </ViewLayout>
   );

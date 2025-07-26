@@ -21,13 +21,35 @@ type WithdrawForm = {
 
 interface WithdrawalState extends BaseState<WithdrawalState> {
   formState: WithdrawForm;
+  resetFormState: () => void;
+  clear: () => void;
 }
 
-export const useUserStore = create<WithdrawalState>()(
+const defaultFormState = {
+  currencyCode: "USDT",
+  chainEnum: {
+    protocolType: "",
+    minWithdrawal: 0,
+    maxWithdrawal: 0,
+    withdrawalFeeType: "",
+    withdrawalFeeConfig: 0,
+  },
+  XRPTag: "",
+  withdrawAmount: 0,
+  withdrawAddress: "",
+};
+export const useWithdrawalStore = create<WithdrawalState>()(
   persist(
     devtools(
-      (set) => {
+      (set, get) => {
         return {
+          formState: defaultFormState,
+          resetFormState: () => {
+            set(() => ({ formState: defaultFormState }));
+          },
+          clear: () => {
+            get().resetFormState();
+          },
           setField: (key, value) => set({ [key]: value }),
         };
       },

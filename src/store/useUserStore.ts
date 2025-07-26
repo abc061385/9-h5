@@ -3,6 +3,7 @@ import { navigateTo, routerMap } from "@/i18n/navigation";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import { useWithdrawalStore } from "./useWithdrawal";
 
 interface LoginState extends BaseState<LoginState> {
   userInfo: UserInfo;
@@ -21,6 +22,7 @@ export const useUserStore = create<LoginState>()(
           logOut() {
             set({ userInfo: {}, token: "" });
             navigateTo(routerMap.login);
+            useWithdrawalStore.getState().clear();
           },
           fetchUserInfo: async () => {
             if (!get().token) {
