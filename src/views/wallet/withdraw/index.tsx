@@ -10,7 +10,6 @@ import { SelectToken } from "@/components/select/select-token";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import z from "@/lib/z";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
@@ -18,16 +17,8 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { defaultFormState, useWithdrawalStore } from "@/store/useWithdrawal";
 import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
-import { utils } from "@/lib/utils";
 import toast from "react-hot-toast";
-
-const chainEnum = z.object({
-  protocolType: z.string().nonempty({ message: "请选择网路" }),
-  minWithdrawal: z.number(),
-  maxWithdrawal: z.number(),
-  withdrawalFeeType: z.string(),
-  withdrawalFeeConfig: z.number(),
-});
+import useSchema from "./useSchema";
 
 const WithdrawView = () => {
   const { push } = useRouter();
@@ -49,63 +40,9 @@ const WithdrawView = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const { trigger } = useRequestMutation(api.wallet.withdrawUsingPost);
-  const Schema = z
-    .object({
-      currencyCode: z.string().nonempty(),
-      chainEnum: chainEnum,
-      XRPTag: z.string(),
-      withdrawAddress: z.string().nonempty({ message: "请输入地址" }),
-      withdrawAmount: z.string(),
-    })
-    .check((ctx) => {
-      const data = ctx.value;
-      if (!data.chainEnum?.protocolType) {
-        ctx.issues.push({
-          code: "custom",
-          message: "请选择网络",
-          path: ["chainEnum"],
-          input: ctx.value,
-        });
-      }
-      if (
-        utils
-          .toBigNumber(data.withdrawAmount)
-          .lt(utils.toBigNumber(data.chainEnum.minWithdrawal))
-      ) {
-        ctx.issues.push({
-          code: "custom",
-          message: t("withdraw.minAmountTip", {
-            min: (data.chainEnum.minWithdrawal as number) + data.currencyCode,
-          }),
-          path: ["withdrawAmount"],
-          input: ctx.value,
-        });
-      }
 
-      if (
-        utils
-          .toBigNumber(data.withdrawAmount)
-          .gt(utils.toBigNumber(data.chainEnum.maxWithdrawal))
-      ) {
-        ctx.issues.push({
-          code: "custom",
-          message: t("withdraw.maxAmountTip", {
-            max: (data.chainEnum.maxWithdrawal as number) + data.currencyCode,
-          }),
-          path: ["withdrawAmount"],
-          input: ctx.value,
-        });
-      }
+  const Schema = useSchema();
 
-      if (data.currencyCode.toUpperCase() === "XRP" && !data.XRPTag) {
-        ctx.issues.push({
-          code: "custom",
-          message: t("XRP Tag Withdraw"),
-          path: ["XRPTag"],
-          input: ctx.value,
-        });
-      }
-    });
   const {
     control,
     setValue,
@@ -143,7 +80,7 @@ const WithdrawView = () => {
         ? "%"
         : "";
 
-  const submit = () => {
+  const handleNext = () => {
     setField("formState", getValues());
     setSettingField("gaPreviousPageType", "withdraw");
     push({
@@ -327,7 +264,7 @@ const WithdrawView = () => {
         <button
           className="btn btn-primary w-full"
           onClick={handleSubmit(() => {
-            submit();
+            handleNext();
           })}
         >
           {t("withdraw.confirm")}
