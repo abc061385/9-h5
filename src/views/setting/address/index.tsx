@@ -10,15 +10,13 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useSettingStore } from "@/store/useSettingStore";
-import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const SettingAddressView = () => {
   const t = useTrans();
   const { push, back } = useRouter();
-  const { setField } = useSettingStore();
-  const searchParams = useSearchParams();
+  const { setField, addressPreviousPageType } = useSettingStore();
 
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
   const [openEdit, setOpenEdit] = useState(false);
@@ -107,7 +105,7 @@ const SettingAddressView = () => {
                   className="bg-bg1 px-3.5 py-4 rounded-md mb-4 w-full"
                   key={item.id}
                   onClick={() => {
-                    if (searchParams.get("type")) {
+                    if (addressPreviousPageType) {
                       setField("addressInfo", item);
                       back();
                     }

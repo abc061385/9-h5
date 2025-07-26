@@ -128,7 +128,7 @@ const DemoView = () => {
         <button
           onClick={() => push(`${routerMap.settingAddress}?type=withdraw`)}
         >
-          go to 
+          go to
         </button>
       </div>
     </ViewLayout>

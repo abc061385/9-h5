@@ -39,3 +39,4 @@ export const typeMap: { [key: string]: string } = {
 };
 
 export type PreviousPageType = "withdraw" | "";
+export type AddressPreviousPageType = "withdraw" | "";
