@@ -12,8 +12,8 @@ const HomeHeaderBox = () => {
         onClick={() => push(routerMap.user)}
       />
       <div className="flex gap-4">
-        <Icon name="ling-dang" onClick={() => push(routerMap.news)} />
-        <Icon name="ai-icon" onClick={() => push(routerMap["helper-ai"])} />
+        <Icon className="w-5 h-5" name="ling-dang" onClick={() => push(routerMap.news)} />
+        <Icon className="w-5 h-5" name="ai-icon" onClick={() => push(routerMap["helper-ai"])} />
       </div>
     </div>
   );

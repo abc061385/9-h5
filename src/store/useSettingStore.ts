@@ -1,4 +1,4 @@
-import { AddressPreviousPageType, PreviousPageType } from "@/lib/const";
+import { AddressPreviousPageType, GAPreviousPageType } from "@/lib/const";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
@@ -8,7 +8,7 @@ interface SettingState extends BaseState<SettingState> {
   addressInfo: AddressList;
   clearGoogleCode: () => void;
   clearAddressInfo: () => void;
-  previousPageType: PreviousPageType;
+  gaPreviousPageType: GAPreviousPageType;
   addressPreviousPageType: AddressPreviousPageType;
 }
 
@@ -18,11 +18,11 @@ export const useSettingStore = create<SettingState>()(
       (set) => {
         return {
           googleCode: "",
-          previousPageType: "",
+          gaPreviousPageType: "",
           addressInfo: {},
           addressPreviousPageType: "",
           clearGoogleCode: () => {
-            set(() => ({ googleCode: "", previousPageType: "" }));
+            set(() => ({ googleCode: "", gaPreviousPageType: "" }));
           },
           clearAddressInfo: () => {
             set(() => ({

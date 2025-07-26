@@ -38,5 +38,5 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_DYNAMIC_REWARDS: "领取动态收益",
 };
 
-export type PreviousPageType = "withdraw" | "";
+export type GAPreviousPageType = "withdraw" | "";
 export type AddressPreviousPageType = "withdraw" | "";

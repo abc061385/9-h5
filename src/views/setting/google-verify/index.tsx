@@ -27,7 +27,7 @@ const SettingGoogleVerifyView = () => {
   const reg = useRootReg();
   const { back } = useRouter();
 
-  const { setField, previousPageType } = useSettingStore();
+  const { setField, gaPreviousPageType } = useSettingStore();
 
   const { userInfo, fetchUserInfo } = useUserStore();
 
@@ -65,7 +65,7 @@ const SettingGoogleVerifyView = () => {
 
   const submit = useCallback(
     (e: { code: string }) => {
-      if (previousPageType) {
+      if (gaPreviousPageType) {
         debouncedPostGoogleVerify(
           { code: Number(e.code) },
           {
@@ -112,7 +112,7 @@ const SettingGoogleVerifyView = () => {
       fetchUserInfo,
       isVerify,
       setValue,
-      previousPageType,
+      gaPreviousPageType,
       setField,
       back,
     ]
@@ -120,12 +120,12 @@ const SettingGoogleVerifyView = () => {
 
   useEffect(() => {
     trigger();
-    if (!previousPageType) {
+    if (!gaPreviousPageType) {
       setVerify(Boolean(userInfo.googleVerify));
       return;
     }
     setVerify(true);
-  }, [userInfo, trigger, previousPageType]);
+  }, [userInfo, trigger, gaPreviousPageType]);
 
   return (
     <ViewLayout
