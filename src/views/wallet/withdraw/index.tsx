@@ -28,19 +28,24 @@ const chainEnum = z.object({
 });
 
 const WithdrawView = () => {
+  const { push } = useRouter();
   const t = useTrans();
+
   const setField = useWithdrawalStore((s) => s.setField);
+  const formState = useWithdrawalStore((s) => s.formState);
+  const resetFormState = useWithdrawalStore((s) => s.resetFormState);
+
   const setSettingField = useSettingStore((s) => s.setField);
   const googleCode = useSettingStore((s) => s.googleCode);
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
+  const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
   const gaPreviousPageType = useSettingStore((s) => s.gaPreviousPageType);
   const addressPreviousPageType = useSettingStore(
     (s) => s.addressPreviousPageType,
   );
   const addressInfo = useSettingStore((s) => s.addressInfo);
-  const formState = useWithdrawalStore((s) => s.formState);
+
   const [openModal, setOpenModal] = useState(false);
-  const { push } = useRouter();
   const { trigger } = useRequestMutation(api.wallet.withdrawUsingPost);
   const Schema = z
     .object({
@@ -77,6 +82,7 @@ const WithdrawView = () => {
     setValue,
     register,
     getValues,
+    reset,
     formState: { errors },
     handleSubmit,
   } = useForm({
@@ -139,16 +145,26 @@ const WithdrawView = () => {
     } as Parameters<typeof trigger>[0]);
   }, [googleCode, formState, trigger]);
 
+  const clear = useCallback(() => {
+    clearGoogleCode();
+    resetFormState();
+    clearAddressInfo();
+    reset();
+  }, [clearGoogleCode, resetFormState, clearAddressInfo, reset]);
   const handleModalColse = useCallback(() => {
     setOpenModal(false);
-    clearGoogleCode();
-    // resetFormState();
-    // reset();
-  }, [clearGoogleCode]);
+    clear();
+  }, [clear]);
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title={t("withdraw.title")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={t("withdraw.title")}
+          algin="center"
+          onChange={clear}
+        />
+      }
       heightFull
     >
       <div className="p-content h-full flex flex-col">

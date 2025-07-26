@@ -20,6 +20,8 @@ export function navigateTo(...args: Parameters<typeof globalPush>) {
 export const routerMap = {
   index: "/",
   home: "/home/",
+  walletDeposit: "/wallet/deposit",
+  walletWithdraw: "/wallet/withdraw",
   login: "/login",
   register: "/register",
   verification: "/verification",

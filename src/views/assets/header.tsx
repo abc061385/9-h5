@@ -13,8 +13,8 @@ const HeaderBox = () => {
   const { push } = useRouter();
   const t = useTrans();
   const cardList: CardType[] = [
-    { icon: "/images/assets/deposit.svg", label: "assets.deposit" },
-    { icon: "/images/assets/withdraw.svg", label: "assets.withdraw" },
+    { icon: "/images/assets/deposit.svg", label: "assets.deposit", path: routerMap.walletDeposit },
+    { icon: "/images/assets/withdraw.svg", label: "assets.withdraw", path: routerMap.walletWithdraw },
     {
       icon: "/images/assets/flash.svg",
       label: "闪兑",
