@@ -15,6 +15,9 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { Qrcode } from "@/components/qrcode";
 import toast from "react-hot-toast";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+import { useSearchParams } from "next/navigation";
+import { useSettingStore } from "@/store/useSettingStore";
+import { useRouter } from "@/i18n/navigation";
 
 type FormData = {
   code: string;
@@ -23,6 +26,11 @@ type FormData = {
 const SettingGoogleVerifyView = () => {
   const t = useTrans();
   const reg = useRootReg();
+  const searchParams = useSearchParams();
+  const { back } = useRouter();
+
+  const { setField } = useSettingStore();
+
   const { userInfo, fetchUserInfo } = useUserStore();
 
   const [isVerify, setVerify] = useState(true);
@@ -59,6 +67,20 @@ const SettingGoogleVerifyView = () => {
 
   const submit = useCallback(
     (e: { code: string }) => {
+      if (searchParams.get("type")) {
+        debouncedPostGoogleVerify(
+          { code: Number(e.code) },
+          {
+            onSuccess: () => {
+              setField("googleCode", e.code);
+              setValue("code", "");
+              back();
+            },
+            throwOnError: false,
+          }
+        );
+        return;
+      }
       if (isVerify) {
         debouncedPostGoogleVerify(
           { code: Number(e.code) },
@@ -92,13 +114,20 @@ const SettingGoogleVerifyView = () => {
       fetchUserInfo,
       isVerify,
       setValue,
+      searchParams,
+      setField,
+      back,
     ]
   );
 
   useEffect(() => {
-    setVerify(Boolean(userInfo.googleVerify));
     trigger();
-  }, [userInfo, trigger]);
+    if (!searchParams.get("type")) {
+      setVerify(Boolean(userInfo.googleVerify));
+      return;
+    }
+    setVerify(true);
+  }, [userInfo, trigger, searchParams]);
 
   return (
     <ViewLayout

@@ -10,6 +10,8 @@ import { InfiniteList } from "@/components/infinite-list";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 import { utils } from "@/lib/utils";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import { useSettingStore } from "@/store/useSettingStore";
 const asyncA = () =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -24,6 +26,8 @@ type User = {
   description: string;
 };
 const DemoView = () => {
+  const { addressInfo } = useSettingStore();
+  const { push } = useRouter();
   const [params, setParams] = useState({ pageNo: 1, pageSize: 20 });
   const [open, setOpen] = useState(false);
   // const { data: typeData, isLoading } = useRequestQuery(
@@ -49,6 +53,10 @@ const DemoView = () => {
     }));
     setInfiniteData(list);
   }, [debouncedTrigger]);
+
+  useEffect(() => {
+    console.log(addressInfo);
+  }, [addressInfo]);
   return (
     <ViewLayout dock={true} heightFull>
       <div className="flex flex-col size-full">
@@ -117,6 +125,11 @@ const DemoView = () => {
             )}
           />
         </div>
+        <button
+          onClick={() => push(`${routerMap.settingAddress}?type=withdraw`)}
+        >
+          go to 
+        </button>
       </div>
     </ViewLayout>
   );

@@ -9,14 +9,16 @@ import { ListNoData } from "@/components/nodata/list-nodata";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { useAddressStore } from "@/store/useAddressStore";
+import { useSettingStore } from "@/store/useSettingStore";
+import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const SettingAddressView = () => {
   const t = useTrans();
-  const { push } = useRouter();
-  const { cb } = useAddressStore();
+  const { push, back } = useRouter();
+  const { setField } = useSettingStore();
+  const searchParams = useSearchParams();
 
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
   const [openEdit, setOpenEdit] = useState(false);
@@ -104,7 +106,12 @@ const SettingAddressView = () => {
                 <div
                   className="bg-bg1 px-3.5 py-4 rounded-md mb-4 w-full"
                   key={item.id}
-                  onClick={() => cb?.(item)}
+                  onClick={() => {
+                    if (searchParams.get("type")) {
+                      setField("addressInfo", item);
+                      back();
+                    }
+                  }}
                 >
                   <label className="flex items-center gap-4">
                     {openEdit && check(item)}
