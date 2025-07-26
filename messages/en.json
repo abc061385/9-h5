@@ -204,6 +204,7 @@
     "selectChain": "Please select chain type",
     "amount": "Withdrawal Amount",
     "minAmountTip": "Minimum withdrawal amount is {min}",
+    "maxAmountTip": "The maximum withdrawal amount is {max}",
     "selectCoinFirst": "Please select a currency first",
     "availableBalance": "Available Balance",
     "useAll": "All",

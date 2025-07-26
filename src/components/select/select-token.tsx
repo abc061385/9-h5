@@ -59,20 +59,18 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
           className="input w-full flex justify-between items-center"
           onClick={() => setOpen(true)}
         >
-          <div className="flex items-center space-x-1">
-            <Skeleton isLoading={isLoading} className="size-4">
+          <Skeleton isLoading={isLoading}>
+            <div className="flex  space-x-1 min-w-14">
               <BaseImage
                 src={selectCurrency?.logo || ""}
                 alt={selectCurrency?.currencyCode || ""}
                 className="size-4 rounded-full overflow-hidden"
               />
-            </Skeleton>
-            <Skeleton isLoading={isLoading} className="w-14 h-3 rounded-xs">
               <span className="text-sm font-bold">
                 {selectCurrency?.currencyCode}
               </span>
-            </Skeleton>
-          </div>
+            </div>
+          </Skeleton>
           <Icon name="arrow-line-down" />
         </button>
         <Drawer open={open} onChange={setOpen} title={t("address.selectToken")}>

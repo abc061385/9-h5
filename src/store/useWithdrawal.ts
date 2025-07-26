@@ -11,12 +11,12 @@ type ChainEnum = {
   withdrawalFeeConfig: number;
 };
 
-type WithdrawForm = {
+export type WithdrawForm = {
   currencyCode: string;
   chainEnum: ChainEnum;
   XRPTag: string;
   withdrawAddress: string;
-  withdrawAmount: number;
+  withdrawAmount: string;
 };
 
 interface WithdrawalState extends BaseState<WithdrawalState> {
@@ -25,7 +25,7 @@ interface WithdrawalState extends BaseState<WithdrawalState> {
   clear: () => void;
 }
 
-const defaultFormState = {
+export const defaultFormState = {
   currencyCode: "USDT",
   chainEnum: {
     protocolType: "",
@@ -35,7 +35,7 @@ const defaultFormState = {
     withdrawalFeeConfig: 0,
   },
   XRPTag: "",
-  withdrawAmount: 0,
+  withdrawAmount: "0",
   withdrawAddress: "",
 };
 export const useWithdrawalStore = create<WithdrawalState>()(

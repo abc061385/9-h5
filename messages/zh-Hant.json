@@ -204,6 +204,7 @@
     "selectChain": "請選擇鏈類型",
     "amount": "提幣金額",
     "minAmountTip": "最小可提金額為{min}",
+    "maxAmountTip": "最大可提金額為 {max}",
     "selectCoinFirst": "請先選擇幣種",
     "availableBalance": "可用餘額",
     "useAll": "全部",

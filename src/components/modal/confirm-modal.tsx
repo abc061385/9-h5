@@ -29,7 +29,7 @@ export const ConfirmModal: FC<IConfirmModalProps> = ({
     <Modal open={open} onClose={onClose} close={false}>
       {title && <h3 className="font-bold text-center">{title}</h3>}
       {tips && (
-        <p className="text-text2 font-bold mt-4 leading-[120%]">{tips}</p>
+        <div className="text-text2 font-bold mt-4 leading-[120%]">{tips}</div>
       )}
       <div className="flex justify-between gap-4 mt-6">
         <button

@@ -15,12 +15,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
-import { useWithdrawalStore } from "@/store/useWithdrawal";
+import { defaultFormState, useWithdrawalStore } from "@/store/useWithdrawal";
 import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
+import { utils } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 const chainEnum = z.object({
-  protocolType: z.string(),
+  protocolType: z.string().nonempty({ message: "请选择网路" }),
   minWithdrawal: z.number(),
   maxWithdrawal: z.number(),
   withdrawalFeeType: z.string(),
@@ -53,15 +55,42 @@ const WithdrawView = () => {
       chainEnum: chainEnum,
       XRPTag: z.string(),
       withdrawAddress: z.string().nonempty({ message: "请输入地址" }),
-      withdrawAmount: z.coerce.number(),
+      withdrawAmount: z.string(),
     })
     .check((ctx) => {
       const data = ctx.value;
-      if (data.withdrawAmount < (data.chainEnum.minWithdrawal as number)) {
+      if (!data.chainEnum?.protocolType) {
+        ctx.issues.push({
+          code: "custom",
+          message: "请选择网络",
+          path: ["chainEnum"],
+          input: ctx.value,
+        });
+      }
+      if (
+        utils
+          .toBigNumber(data.withdrawAmount)
+          .lt(utils.toBigNumber(data.chainEnum.minWithdrawal))
+      ) {
         ctx.issues.push({
           code: "custom",
           message: t("withdraw.minAmountTip", {
             min: (data.chainEnum.minWithdrawal as number) + data.currencyCode,
+          }),
+          path: ["withdrawAmount"],
+          input: ctx.value,
+        });
+      }
+
+      if (
+        utils
+          .toBigNumber(data.withdrawAmount)
+          .gt(utils.toBigNumber(data.chainEnum.maxWithdrawal))
+      ) {
+        ctx.issues.push({
+          code: "custom",
+          message: t("withdraw.maxAmountTip", {
+            max: (data.chainEnum.maxWithdrawal as number) + data.currencyCode,
           }),
           path: ["withdrawAmount"],
           input: ctx.value,
@@ -89,6 +118,7 @@ const WithdrawView = () => {
     defaultValues: formState,
     resolver: zodResolver(Schema),
   });
+
   const currencyCode = useWatch({ control, name: "currencyCode" });
   const [withdrawalFeeConfig, withdrawalFeeType] = useWatch({
     control,
@@ -113,8 +143,8 @@ const WithdrawView = () => {
         ? "%"
         : "";
 
-  const submit = (data: z.infer<typeof Schema>) => {
-    setField("formState", data);
+  const submit = () => {
+    setField("formState", getValues());
     setSettingField("gaPreviousPageType", "withdraw");
     push({
       pathname: routerMap.settingGoogleVerify,
@@ -132,25 +162,39 @@ const WithdrawView = () => {
     if (addressPreviousPageType === "withdraw" && addressInfo) {
       setValue("withdrawAddress", addressInfo?.addr || "");
     }
-  }, [addressPreviousPageType, addressInfo, setValue]);
-
-  const confirm = useCallback(() => {
-    trigger({
-      address: formState.withdrawAddress,
-      amount: formState.withdrawAmount,
-      coinCode: formState.currencyCode,
-      protocol: formState.chainEnum.protocolType,
-      code: Number(googleCode),
-      memo: formState.XRPTag,
-    } as Parameters<typeof trigger>[0]);
-  }, [googleCode, formState, trigger]);
+  }, [addressPreviousPageType, addressInfo, setValue, clearAddressInfo]);
 
   const clear = useCallback(() => {
     clearGoogleCode();
     resetFormState();
     clearAddressInfo();
-    reset();
+    reset(defaultFormState);
   }, [clearGoogleCode, resetFormState, clearAddressInfo, reset]);
+
+  const confirm = useCallback(() => {
+    const _data = {
+      address: formState.withdrawAddress,
+      amount: Number(formState.withdrawAmount),
+      coinCode: formState.currencyCode,
+      protocol: formState.chainEnum.protocolType,
+      code: Number(googleCode),
+    } as Parameters<typeof trigger>[0];
+
+    if (formState.XRPTag) {
+      _data.memo = formState.XRPTag;
+    }
+    trigger(_data)
+      .then(() => {
+        clear();
+        setOpenModal(false);
+        toast.success(t("withdraw.withdrawSuccess"));
+      })
+      .catch(() => {
+        clearGoogleCode();
+        setOpenModal(false);
+      });
+  }, [googleCode, formState, trigger, clearGoogleCode, t, clear]);
+
   const handleModalColse = useCallback(() => {
     setOpenModal(false);
     clear();
@@ -235,6 +279,7 @@ const WithdrawView = () => {
                 className="grow text-center"
                 onClick={() => {
                   setSettingField("addressPreviousPageType", "withdraw");
+                  setField("formState", getValues());
                   push(routerMap.settingAddress);
                 }}
               >
@@ -268,7 +313,7 @@ const WithdrawView = () => {
               type="button"
               className="btn btn-link text-sm font-bold"
               onClick={() => {
-                setValue("withdrawAmount", currencyAccount?.balance);
+                setValue("withdrawAmount", String(currencyAccount?.balance));
               }}
             >
               {t("withdraw.useAll")}
@@ -281,8 +326,8 @@ const WithdrawView = () => {
         </form>
         <button
           className="btn btn-primary w-full"
-          onClick={handleSubmit((data) => {
-            submit(data);
+          onClick={handleSubmit(() => {
+            submit();
           })}
         >
           {t("withdraw.confirm")}
@@ -294,7 +339,7 @@ const WithdrawView = () => {
           tips={
             <p className="text-center">
               {t("withdraw.withdrawConfirmContent", {
-                amount: getValues("withdrawAmount") as string,
+                amount: getValues("withdrawAmount"),
                 currency: getValues("currencyCode") as string,
                 address: getValues("withdrawAddress") as string,
               })}
