@@ -1,6 +1,7 @@
 import { Virtuoso, VirtuosoProps } from "react-virtuoso";
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
+import BaseImage from "./base-image";
 
 type IProps<T, Context> = Pick<
   VirtuosoProps<T, Context>,
@@ -45,8 +46,8 @@ export const InfiniteList = <T, Context>({
   );
   const footerNode = useCallback(() => {
     return (
-      <div>
-        {loading ? "加载中…" : hasMore ? "下滑加载更多" : "没有更多数据了"}
+      <div className="text-center">
+        {loading ? "加载中…" : hasMore ? "下滑加载更多" : ""}
       </div>
     );
   }, [loading, hasMore]);
@@ -64,7 +65,7 @@ export const InfiniteList = <T, Context>({
             <div
               style={{ padding: 16, textAlign: "center", gridColumn: "1 / -1" }}
             >
-              <em>表格暂无数据</em>
+              <BaseImage src="/common/no_data.png" />
             </div>
           ),
         Footer: () => {
