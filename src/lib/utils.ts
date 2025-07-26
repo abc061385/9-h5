@@ -1,6 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-// @ts-expect-error - 忽略三方警告
 import CryptoJS from "crypto-js";
 import { AESsecretKey } from "./const";
 import lodash from "./lodash";
@@ -45,7 +44,7 @@ export function formatThousand(
   options?: {
     separator?: string; // 默认使用 ","
     decimalSeparator?: string; // 默认使用 "."
-  }
+  },
 ): string {
   const separator = options?.separator ?? ",";
   const decimalSeparator = options?.decimalSeparator ?? ".";
@@ -84,7 +83,7 @@ export const encryptPassword = (password: string) => {
  */
 export function formatBalance(
   value: string | number,
-  precision: number
+  precision: number,
 ): string {
   if (value == null || isNaN(Number(value))) return "--";
 
