@@ -29,7 +29,7 @@ const ProcessBox = () => {
                 <div className="flex flex-col flex-1">
                   <span>{t(item.title)}</span>
                   <span className="text-text2 leading-[120%]">
-                    {t(item.desc)}
+                    {item.desc && t(item.desc)}
                   </span>
                 </div>
               </div>

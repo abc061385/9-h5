@@ -75,7 +75,7 @@ const FundSuccessView = () => {
             {cardEl(t("购买总额"), `${data?.totalAmount} USDT`)}
             {cardEl(
               t("支付代币"),
-              <div className="flex flex-col">
+              <div className="flex flex-col items-end">
                 <span>
                   {data?.pledgeToken1Amount + " " + data?.pledgeToken1}
                 </span>
@@ -120,11 +120,10 @@ const FundSuccessView = () => {
                 isReinvestment: isCheck,
               },
               {
-                onSuccess: (res) => {
+                onSuccess: () => {
                   toast.success(t("购买成功"));
                   setField("buyData", undefined);
                   push(routerMap.fundRecord);
-                  console.log(res);
                 },
               }
             );

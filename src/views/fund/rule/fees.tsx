@@ -1,11 +1,18 @@
+import { api } from "@/api";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 
 const FeesDescBox = () => {
   const t = useTrans();
+
+  const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
+
+  const feesData = data?.data;
+
   const feesList = [
-    { title: "管理费", value: "1" },
-    { title: "平台分红", value: "2" },
-    { title: "用户投资收益", value: "3" },
+    { title: "管理费", value: feesData?.managementFee },
+    { title: "平台分红", value: feesData?.platformDividend },
+    { title: "用户投资收益", value: feesData?.investmentReturn },
   ];
   return (
     <div>

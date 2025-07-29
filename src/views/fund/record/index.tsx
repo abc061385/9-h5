@@ -7,6 +7,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
+import { routerMap } from "@/i18n/navigation";
 
 const FundRecordView = () => {
   const t = useTrans();
@@ -18,7 +19,7 @@ const FundRecordView = () => {
 
   useEffect(() => {
     trigger(
-      { pageNo: 1, pageSize: 15, outputToken: tabsValue },
+      { pageNo: 1, pageSize: 100, outputToken: tabsValue },
       {
         onSuccess: ({ data }) => {
           setList(data.list);
@@ -48,7 +49,7 @@ const FundRecordView = () => {
       value: "pledgeToken1Amount",
       symbol: "pledgeToken1",
       render: (item: FundOrder) => (
-        <div className="flex flex-col">
+        <div className="flex flex-col items-end">
           <span>
             {item.pledgeToken1Amount}
             {item.pledgeToken1}
@@ -74,7 +75,11 @@ const FundRecordView = () => {
   ];
   return (
     <>
-      <HeaderWithBack title={t("购买记录")} algin="center" />
+      <HeaderWithBack
+        title={t("购买记录")}
+        algin="center"
+        path={routerMap.fund}
+      />
       <div className="p-content">
         <div className="flex gap-1 items-center bg-secondary h-10 rounded-lg p-1 font-bold text-sm mb-4">
           {tabs.map((tab) => (
@@ -138,7 +143,7 @@ const FundRecordView = () => {
                 <span className="font-bold">{t("自动复投")}</span>
                 <input
                   type="checkbox"
-                  checked={Boolean(item.isReinvestment)}
+                  defaultChecked={Boolean(item.isReinvestment)}
                   className="toggle toggle-primary checked:border-primary checked:bg-primary checked:text-white"
                 />
               </div>
