@@ -41,7 +41,12 @@ const UserInfoBox = () => {
       <div className="flex items-center justify-between gap-2.5">
         <BaseImage src="/images/user/head.png" className="w-12 h-12" />
         <div className="flex-1">
-          <div className="font-bold">{userInfo?.emailAccount || "--"}</div>
+          <div className="font-bold">
+            {userInfo?.emailAccount ||
+              userInfo?.bindEmail ||
+              userInfo?.tel ||
+              "--"}
+          </div>
           <div className="badge badge-soft badge-primary rounded-md text-xs font-bold px-2">
             {userInfo.invitationCode || "-–"}
             <Icon name={"copy-user"} className="w-3 h-3" />

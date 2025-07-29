@@ -15,7 +15,7 @@ import toast from "react-hot-toast";
 
 const SettingAddressView = () => {
   const t = useTrans();
-  const { push, back } = useRouter();
+  const { push } = useRouter();
   const { setField, addressPreviousPageType } = useSettingStore();
 
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
@@ -105,9 +105,9 @@ const SettingAddressView = () => {
                   className="bg-bg1 px-3.5 py-4 rounded-md mb-4 w-full"
                   key={item.id}
                   onClick={() => {
-                    if (addressPreviousPageType) {
+                    if (addressPreviousPageType === "withdraw") {
                       setField("addressInfo", item);
-                      back();
+                      push(routerMap.walletWithdraw);
                     }
                   }}
                 >

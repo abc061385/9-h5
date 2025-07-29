@@ -132,3 +132,61 @@ type Account = Partial<{
   yesterdayIncome: number | null;
   trans: unknown; // 若你能明確定義結構，請改成具體 interface
 }>;
+
+type FundInfoType = {
+  pledgeToken1: string;
+  pledgeToken2: string;
+  pledgeToken2Logo: string;
+  pledgeToken1Logo: string;
+  pledgePlans: PledgeType[];
+  outputToken: string;
+  outputTokenLogo: string;
+  token1Percentage: number;
+  pledgeToken1Price: number;
+  token2Percentage: number;
+  pledgeToken2Price: number;
+  minInvestment: number;
+  id: number;
+  productType: number;
+};
+
+type FundBuyType = FundInfoType & {
+  productId: string;
+  pledgeId: string | number;
+  totalAmount: string;
+  pledgeToken1Amount: string;
+  pledgeToken2Amount: string;
+  selectCycle: string | number;
+  pledge: PledgeType;
+};
+
+type PledgeType = {
+  pledgeDays: number;
+  dailyYield: number;
+  id: number;
+  maxBet: number;
+};
+
+type FundOrder = {
+  id: number;
+  pledgeId: number | null;
+  fundId: number | null;
+  fundType: number;
+  investmentAmount: number;
+  pledgeToken1: string;
+  pledgeToken1Logo: string;
+  pledgeToken1Amount: number;
+  pledgeToken2: string;
+  pledgeToken2Logo: string;
+  pledgeToken2Amount: number;
+  fundCycleDays: number | null;
+  purchaseTime: string; // 格式: "YYYY-MM-DD HH:mm:ss"
+  status: number;
+  maturityTime: string; // 格式: "YYYY-MM-DD HH:mm:ss"
+  maxProfit: number;
+  totalProfit: number | null;
+  dailyYield: number;
+  isReinvestment: boolean | null;
+  userId: number;
+  orderType: string; // 如果固定为 "FUND"，可以写为 'FUND'
+};

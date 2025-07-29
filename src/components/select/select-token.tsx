@@ -60,7 +60,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
           onClick={() => setOpen(true)}
         >
           <Skeleton isLoading={isLoading}>
-            <div className="flex  space-x-1 min-w-14">
+            <div className="flex items-center space-x-1 min-w-14">
               <BaseImage
                 src={selectCurrency?.logo || ""}
                 alt={selectCurrency?.currencyCode || ""}

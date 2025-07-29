@@ -48,4 +48,6 @@ export const routerMap = {
   assetsExchange: "/assets/exchange/",
   settingAddress: "/setting/address/",
   settingAddressAdd: "/setting/address/add/",
+  fundSuccess: "/fund/success/",
+  fundRecord: "/fund/record/",
 };

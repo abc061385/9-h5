@@ -1,18 +1,18 @@
 import useInitLocale from "@/hooks/useInitLocale";
 import getStaticParams from "@/lib/getStaticParams";
-import FundRecordView from "@/views/fund/record/index";
+import FundSuccessView from "@/views/fund/success/index";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "购买记录",
+    title: "基金购买",
   };
 }
 
-export default function FundRecord({ params }: RootProps) {
+export default function FundSuccess({ params }: RootProps) {
   useInitLocale(params);
 
-  return <FundRecordView />;
+  return <FundSuccessView />;
 }
 
 export function generateStaticParams() {

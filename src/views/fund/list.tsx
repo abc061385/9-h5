@@ -16,6 +16,7 @@ type TokenListType = {
   pledgeToken1: string;
   pledgeToken2: string;
   dailyYield: number;
+  productId: number;
 };
 
 const ListBox = () => {
@@ -98,6 +99,11 @@ const ListBox = () => {
         <div
           key={item.id}
           className="flex items-center justify-between p-2 mt-2 font-bold"
+          onClick={() =>
+            push(
+              `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+            )
+          }
         >
           <div className="flex items-center">
             <CoinIcon
