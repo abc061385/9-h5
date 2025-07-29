@@ -2,7 +2,7 @@ import { forwardRef, useCallback, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
 import { InfiniteList } from "@/components/infinite-list";
 import { cn } from "@/lib/utils";
-import { Icon } from "./icon";
+import { Icon } from "../icon";
 type Data = {
   value: string | number;
   label: string;

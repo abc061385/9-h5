@@ -17,6 +17,7 @@ import toast from "react-hot-toast";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 import { useSettingStore } from "@/store/useSettingStore";
 import { useRouter } from "@/i18n/navigation";
+import CopyText from "@/components/copy-text";
 
 type FormData = {
   code: string;
@@ -143,13 +144,7 @@ const SettingGoogleVerifyView = () => {
             </div>
             <div className="flex items-center justify-between h-10 px-4 font-bold text-xs bg-bg1 rounded-md my-4">
               <span>{data?.data?.secret}</span>
-              <Icon
-                name="copy-user"
-                onClick={() => {
-                  navigator.clipboard.writeText(data?.data?.secret);
-                  toast.success(t("googleVerify.keyCopied"));
-                }}
-              />
+              <CopyText text={data?.data?.secret} />
             </div>
           </div>
         )}

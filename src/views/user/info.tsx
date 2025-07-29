@@ -5,6 +5,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import StarIcon from "../vip/star-icon";
+import CopyText from "@/components/copy-text";
 
 interface CardType {
   icon: "vip-user" | "invite-user";
@@ -49,7 +50,7 @@ const UserInfoBox = () => {
           </div>
           <div className="badge badge-soft badge-primary rounded-md text-xs font-bold px-2">
             {userInfo.invitationCode || "-–"}
-            <Icon name={"copy-user"} className="w-3 h-3" />
+            <CopyText text={userInfo.invitationCode || ""} />
           </div>
         </div>
         {/* <Icon name={"right-arrow-user"} /> */}
