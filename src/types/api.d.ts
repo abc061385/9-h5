@@ -190,3 +190,38 @@ type FundOrder = {
   userId: number;
   orderType: string; // 如果固定为 "FUND"，可以写为 'FUND'
 };
+
+type FundDetailOrder = {
+  id: number;
+  pledgeId: number | null;
+  fundId: number | null;
+  fundType: number;
+
+  pledgeToken1: string;
+  pledgeToken1Logo: string;
+  pledgeToken1Amount: number;
+
+  pledgeToken2: string;
+  pledgeToken2Logo: string;
+  pledgeToken2Amount: number;
+
+  fundCycleDays: number | null;
+
+  purchaseTime: string; // e.g., "2025-07-29 10:40:55"
+  maturityTime: string; // e.g., "2026-07-24 10:40:55"
+
+  status: number;
+
+  investmentAmount: number;
+  maxProfit: number;
+  totalProfit: number | null;
+  yesterdayProfit?: number | null; // 可选字段，部分数据存在
+  dailyYield: number;
+
+  isReinvestment: boolean | null;
+
+  outputToken?: string; // 可选字段
+  outputTokenLogo?: string; // 可选字段
+
+  orderType: "FUND"; // 目前只出现了 "FUND"
+};

@@ -7,14 +7,22 @@ import { useTrans } from "@/hooks/useTrans";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
-import { routerMap } from "@/i18n/navigation";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import toast from "react-hot-toast";
 
 const FundRecordView = () => {
   const t = useTrans();
+  const { push } = useRouter();
+
   const [tabsValue, setTabsValue] = useState("");
   const [list, setList] = useState<FundOrder[]>([]);
+
   const { trigger } = useRequestMutation(
     api.fundProductConfig.purchaseRecordUsingGet
+  );
+
+  const { trigger: editReinvestment } = useRequestMutation(
+    api.fundProductConfig.reinvestmentUsingPost
   );
 
   useEffect(() => {
@@ -29,18 +37,9 @@ const FundRecordView = () => {
   }, [trigger, tabsValue]);
 
   const tabs = [
-    {
-      label: t("walletDetail.all"),
-      value: "",
-    },
-    {
-      label: "USDM",
-      value: "USDM",
-    },
-    {
-      label: "9MC",
-      value: "9MC",
-    },
+    { label: t("walletDetail.all"), value: "" },
+    { label: "USDM", value: "USDM" },
+    { label: "9MC", value: "9MC" },
   ];
 
   const fieldMap = [
@@ -100,7 +99,14 @@ const FundRecordView = () => {
           list.map((item) => (
             <div key={item.id} className="mb-4">
               <div className="bg-bg1 rounded-md pt-2 px-3.5 pb-5 font-bold text-sm">
-                <h3 className="mb-5 flex items-center justify-between">
+                <h3
+                  className="mb-5 flex items-center justify-between"
+                  onClick={() =>
+                    push(
+                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`
+                    )
+                  }
+                >
                   {item.fundType == 1 ? t("稳健基金") : t("策略基金")}
                   <div className="flex items-center gap-1">
                     <div className="rounded-sm px-1.5 py-1 bg-rise text-white text-xs">
@@ -143,8 +149,21 @@ const FundRecordView = () => {
                 <span className="font-bold">{t("自动复投")}</span>
                 <input
                   type="checkbox"
-                  defaultChecked={Boolean(item.isReinvestment)}
+                  checked={Boolean(item.isReinvestment)}
                   className="toggle toggle-primary checked:border-primary checked:bg-primary checked:text-white"
+                  onChange={(e) => {
+                    editReinvestment(
+                      {
+                        id: item.id,
+                        isReinvestment: e.target.checked,
+                      },
+                      {
+                        onSuccess: () => {
+                          toast.success(t("操作成功"));
+                        },
+                      }
+                    );
+                  }}
                 />
               </div>
             </div>

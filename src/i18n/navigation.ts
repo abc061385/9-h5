@@ -50,4 +50,5 @@ export const routerMap = {
   settingAddressAdd: "/setting/address/add/",
   fundSuccess: "/fund/success/",
   fundRecord: "/fund/record/",
+  fundDetail: "/fund/detail/",
 };

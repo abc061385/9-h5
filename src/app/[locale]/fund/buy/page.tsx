@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Fund({ params }: RootProps) {
+export default function FundBuyPage({ params }: RootProps) {
   useInitLocale(params);
 
   return <FundBuyView />;
