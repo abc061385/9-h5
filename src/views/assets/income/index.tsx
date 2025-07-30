@@ -31,23 +31,14 @@ const IncomeView = () => {
     api.fundProductConfig.claimedProfitTransactionUsingGet
   );
 
+  const { trigger: postExtract, isMutating } = useRequestMutation(
+    api.fundProductConfig.extractUsingPost
+  );
+
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
   const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
 
-  useEffect(() => {
-    trigger(
-      {
-        outputToken: tabsValue,
-      },
-      {
-        onSuccess: ({ data }) => {
-          setIncomeInfo(data as AssetsIncomeType);
-        },
-      }
-    );
-  }, [tabsValue, trigger]);
-
-  useEffect(() => {
+  const getIncomeList = useCallback(() => {
     getList(
       {
         pageNo: 1,
@@ -59,6 +50,27 @@ const IncomeView = () => {
       }
     );
   }, [getList, tabsValue]);
+
+  const getInfo = useCallback(() => {
+    trigger(
+      {
+        outputToken: tabsValue,
+      },
+      {
+        onSuccess: ({ data }) => {
+          setIncomeInfo(data as AssetsIncomeType);
+        },
+      }
+    );
+  }, [trigger, tabsValue]);
+
+  useEffect(() => {
+    getIncomeList();
+  }, [getIncomeList]);
+
+  useEffect(() => {
+    getInfo();
+  }, [getInfo]);
 
   const expectIncome = useCallback(() => {
     if (!withdrawConfig?.managementFee) return 0;
@@ -204,6 +216,30 @@ const IncomeView = () => {
           <span>{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
+        <button
+          className="btn btn-primary w-full mt-4"
+          disabled={isMutating}
+          onClick={() => {
+            postExtract(
+              {
+                outputToken: tabsValue,
+              },
+              {
+                onSuccess: () => {
+                  getInfo();
+                  getIncomeList();
+                  setOpenWithdraw(false);
+                },
+              }
+            );
+          }}
+        >
+          {isMutating ? (
+            <span className="loading loading-spinner loading-xs"></span>
+          ) : (
+            t("common.confirm")
+          )}
+        </button>
       </Drawer>
     </ViewLayout>
   );
