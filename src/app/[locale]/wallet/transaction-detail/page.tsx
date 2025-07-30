@@ -1,18 +1,18 @@
 import useInitLocale from "@/hooks/useInitLocale";
 import getStaticParams from "@/lib/getStaticParams";
-import IncomeView from "@/views/assets/income/index";
+import WalletTransDetailView from "@/views/wallet/transaction-detail/index";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "投资收益",
+    title: "详情",
   };
 }
 
-export default function Assets({ params }: RootProps) {
+export default function WalletDetail({ params }: RootProps) {
   useInitLocale(params);
 
-  return <IncomeView />;
+  return <WalletTransDetailView />;
 }
 
 export function generateStaticParams() {

@@ -1,6 +1,6 @@
 import useInitLocale from "@/hooks/useInitLocale";
 import getStaticParams from "@/lib/getStaticParams";
-import AssetsWalletDetailView from "@/views/assets/wallet-detail/index";
+import WalletDetailView from "@/views/wallet/detail/index";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -9,10 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Assets({ params }: RootProps) {
+export default function WalletDetail({ params }: RootProps) {
   useInitLocale(params);
 
-  return <AssetsWalletDetailView />;
+  return <WalletDetailView />;
 }
 
 export function generateStaticParams() {

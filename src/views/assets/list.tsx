@@ -1,11 +1,14 @@
 import { api } from "@/api";
 import BaseImage from "@/components/base-image";
 import { InfiniteList } from "@/components/infinite-list";
+import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const AssetsListBox = () => {
   const { push } = useRouter();
+  const { formatBalance } = useFormatBalance();
+
   const [list, setList] = useState<AssetsList[]>([]);
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
 
@@ -59,9 +62,11 @@ const AssetsListBox = () => {
                 </span>
               </div>
               <div className="flex flex-col items-end">
-                <span className="font-bold">{item.balance}</span>
+                <span className="font-bold">
+                  {formatBalance(item.balance || "0", item.coin || "USDT")}
+                </span>
                 <span className="font-[510] text-xs text-text2">
-                  ≈ {item.usdtValue || "0.00"} USDT
+                  ≈ {formatBalance(item.usdtValue || "0", "USDT")} USDT
                 </span>
               </div>
             </div>

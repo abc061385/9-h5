@@ -225,3 +225,56 @@ type FundDetailOrder = {
 
   orderType: "FUND"; // 目前只出现了 "FUND"
 };
+
+type TransactionRecord = {
+  id: number;
+  status: number; // 0: 待处理，1: 成功，2: 失败（具体可根据业务枚举定义）
+  amount: number;
+  fee: number;
+  createTime: string; // 格式：YYYY-MM-DD HH:mm:ss
+  flag: string; // 可能是状态标记，例如 "0"、"1"
+  remarkJson: string | null;
+  memberId: number;
+  symbol: string; // 例如 "USDT"
+  type: "WITHDRAW" | "DEPOSIT" | string; // 示例值为 "WITHDRAW"
+  txid: string | null; // 区块链交易哈希，提现时常为 null
+  detail: string;
+  beforeBalance: number;
+  afterBalance: number;
+  inOut: "ADD_BALANCE" | "REDUCE_BALANCE" | string;
+  tel: string | null;
+  nickname: string | null;
+  nodeName: string | null;
+  dowTime: string | null;
+  protocol: string; // 如 "TRON"、"ERC20"、"BEP20"
+  certificate: string | null; // 上传的证明图、截图等
+  rechargeAddress: string; // 地址或标签
+  reason: string; // 失败原因或备注
+};
+
+type AssetsIncomeType = {
+  personalFundInvestment: number;
+  totalFundReturn: number;
+  withdrawnReturn: number;
+  unWithdrawnReturn: number;
+  yesterdayReturn: number;
+  frozenUbx: number;
+};
+
+type infoUsingGet1Type = {
+  id: number;
+  managementFee: number;
+  platformDividend: number;
+  investmentReturn: number;
+  createdTime: string;
+  updatedTime: string;
+};
+
+type IncomeListType = {
+  id: number;
+  status: number;
+  amount: number;
+  createTime: string;
+  fundType: number;
+  type: string;
+};
