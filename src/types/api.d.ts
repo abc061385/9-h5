@@ -278,3 +278,38 @@ type IncomeListType = {
   fundType: number;
   type: string;
 };
+
+type AwardInfoType = {
+  totalReward: number;
+  totalCurrency: number;
+  frozenRewards: number;
+  extractedRewards: number;
+  yesterdayVipReward: number;
+  yesterdayCurrencyReward: number;
+};
+
+type AwardListType = {
+  id: number;
+  from: string;
+  status: number;
+  amount: number;
+  createTime: string;
+  fundType: number;
+  type: string;
+};
+
+type TeamDetailType = {
+  totalTeamMembers: number;
+  newMembersToday: number;
+  newCommunityInvestmentToday: number;
+  newTeamInvestmentToday: number;
+  totalCommunityInvestment: number;
+  totalTeamInvestment: number;
+  totalInvestment360Days: number;
+  totalInvestment180Days: number;
+  totalInvestment90Days: number;
+  totalInvestment30Days: number;
+  totalInvestment7Days: number;
+  totalFaithNodeInvestment: number;
+  totalGenesisNodeInvestment: number;
+};

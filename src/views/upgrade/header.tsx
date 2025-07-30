@@ -6,12 +6,19 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTrans } from "@/hooks/useTrans";
 import BaseImage from "@/components/base-image";
-import { formatThousand } from "@/lib/utils";
 import StarIcon from "../vip/star-icon";
 import { useUserStore } from "@/store/useUserStore";
+import { FC } from "react";
+import { useFormatBalance } from "@/hooks/useFormatBalance";
 
-const VipBannerBox = () => {
+interface IUpgradeProps {
+  tabsValue: string;
+  info: AwardInfoType;
+}
+
+const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const t = useTrans();
+  const { formatBalance } = useFormatBalance();
   const userInfo = useUserStore((s) => s.userInfo);
   return (
     <div>
@@ -36,15 +43,21 @@ const VipBannerBox = () => {
           <div className="rounded-2xl py-4.5 px-4 font-bold relative">
             <div className="relative z-1 text-white">
               <h2 className="text-xs text-[rgba(255,255,255,0.7)]">
-                {t("目前团队投资总额")}
+                {tabsValue}
+                {t("累计奖励")}
               </h2>
-              <div className="mb-13">
+              <div>
                 <span className="text-[26px]">
-                  {formatThousand(userInfo?.totalTeamInvestment || 0)}
+                  {formatBalance(info?.totalReward || 0, tabsValue)}
                 </span>
-                <span className="text-xs">USDT</span>
+                <span className="text-xs">{tabsValue}</span>
               </div>
-              <div className="text-[rgba(255,255,255,0.7)] text-xs">
+              <div className="badge badge-soft badge-success text-xs rounded-md">
+                {info.yesterdayVipReward > 0 ? "↑" : "↓"} {t("昨日VIP奖励")}{" "}
+                {formatBalance(info?.yesterdayVipReward || 0, tabsValue)}
+                {tabsValue}
+              </div>
+              <div className="text-[rgba(255,255,255,0.7)] text-xs mt-12">
                 {t("当前等级")}
               </div>
               <div className="flex items-center">

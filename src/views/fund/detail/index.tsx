@@ -41,7 +41,7 @@ const FundDetailView = () => {
       return (
         <div className="flex items-start justify-between text-xs mb-4 last:mb-0">
           <span className="font-medium">{label}</span>
-          <Skeleton isLoading={isMutating}>
+          <Skeleton isLoading={isMutating} className="text-right">
             <span>{value}</span>
           </Skeleton>
         </div>

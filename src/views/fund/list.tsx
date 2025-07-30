@@ -41,7 +41,7 @@ const ListBox = () => {
     { label: "360", value: 360 },
     { label: "180", value: 180 },
     { label: "30", value: 30 },
-    { label: "1", value: 1 },
+    { label: "7", value: 7 },
   ];
 
   const getTokenList = useCallback(async () => {

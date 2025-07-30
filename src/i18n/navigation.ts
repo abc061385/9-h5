@@ -52,4 +52,5 @@ export const routerMap = {
   fundRecord: "/fund/record/",
   fundDetail: "/fund/detail/",
   walletTransDetail: "/wallet/transaction-detail/",
+  teamDetail: "/teams/detail/",
 };

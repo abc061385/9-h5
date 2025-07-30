@@ -34,7 +34,7 @@ const TeamsNextView = () => {
       isInvest: tabsValue,
       generation: 1,
     });
-    setList(data as DataType[]);
+    setList((data as DataType[]) || []);
   }, [tabsValue, searchParams]);
 
   const getInfo = useCallback(async () => {
