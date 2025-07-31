@@ -11,11 +11,11 @@ export const InputPassword: FC<IProps> = ({ err, ...props }) => {
   return (
     <>
       <label className="input w-full">
-        <Icon name="lock" />
         <input type={open ? "text" : "password"} className="grow" {...props} />
         <Icon
           name={open ? "eye-open" : "eye-close"}
           onClick={() => setOpen(!open)}
+          className="size-6"
         />
       </label>
       <TextError>{err}</TextError>

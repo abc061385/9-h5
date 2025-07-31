@@ -19,7 +19,7 @@ export const HeaderWithBack = ({
   path,
 }: IProps) => {
   const warpClass = cn([
-    "flex items-center w-full h-[44px] p-content",
+    "flex items-center w-full h-[44px] p-content pl-2",
     className,
   ]);
   const router = useRouter();
@@ -47,12 +47,12 @@ export const HeaderWithBack = ({
         className={cn(["cursor-pointer flex", notHistory && "text-red-400"])}
         onClick={handleBack}
       >
-        <Icon name="left-arrow" />
+        <Icon name="back_icon" className="w-11 h-11"/>
       </i>
       <span className="flex-1 flex justify-center pr-3 font-bold">
         {algin === "center" ? title : null}
       </span>
-      <span>{algin === "right" ? title : null}</span>
+      <span className="text-lg font-bold">{algin === "right" ? title : null}</span>
     </div>
   );
 };

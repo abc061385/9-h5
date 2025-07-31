@@ -14,6 +14,7 @@ const SettingView = () => {
   const { push } = useRouter();
   const { userInfo } = useUserStore();
   const [modalOpen, setModalOpen] = useState(false);
+  const [googleModalOpen, setGoogleModalOpen] = useState(false);
   const list = [
     { label: "修改登录密码", path: routerMap.settingPassword },
     { label: "谷歌身份验证", path: routerMap.settingGoogleVerify },
@@ -21,9 +22,8 @@ const SettingView = () => {
   ];
 
   useEffect(() => {
-    if (!userInfo?.bindEmail) {
-      setModalOpen(true);
-    }
+    if (!userInfo.googleVerify) return setGoogleModalOpen(true);
+    if (!userInfo?.bindEmail) return setModalOpen(true);
   }, [userInfo]);
   return (
     <ViewLayout
@@ -69,6 +69,31 @@ const SettingView = () => {
                 {t("googleVerify.continueBtn")}
               </button>
             </div>
+          </div>
+        </Modal>
+        <Modal
+          close={false}
+          open={googleModalOpen}
+          onClose={() => setGoogleModalOpen(false)}
+        >
+          <div className="pt-2 text-center">
+            <Icon name="google-verify" className="w-13 h-12" />
+            <h2 className="text-lg mt-8 mb-4 font-bold">{t("安全提示")}</h2>
+            <p className="text-text4 text-sm">
+              {t("login.loginSuccessContent")}
+            </p>
+            <button
+              className="btn btn-primary w-full mt-8 mb-2"
+              onClick={() => push(routerMap.settingGoogleVerify)}
+            >
+              {t("login.bind")}
+            </button>
+            <button
+              className="btn btn-outline w-full"
+              onClick={() => setGoogleModalOpen(false)}
+            >
+              {t("common.cancel")}
+            </button>
           </div>
         </Modal>
       </div>

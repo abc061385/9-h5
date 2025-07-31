@@ -44,7 +44,7 @@
   }
 
   .input {
-    --input-color: var(--color-accent);
+    --input-color: var(--color-border1);
     background-color: var(--color-white);
     &:focus,
     &:focus-within {
@@ -58,11 +58,36 @@
     border-radius: 2px;
   }
 
+  .btn {
+    border-radius: 8px;
+  }
+
   .btn-link {
     @apply no-underline h-auto leading-none px-0;
     > :is(.btn-active, :hover, :active:focus, :focus-visible) {
       @apply no-underline;
     }
+  }
+  .btn:is(:disabled, [disabled], .btn-disabled):not(.btn-link, .btn-ghost) {
+    color: var(--color-white);
+    background: #d4bfff;
+  }
+
+  .btn-outline {
+    border-color: var(--color-border1);
+  }
+
+  .modal-toggle:checked + .modal {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .steps .step:before {
+    height: 2px;
+  }
+  .steps .step > .step-icon,
+  .steps .step:not(:has(.step-icon)):after {
+    width: 24px;
+    height: 24px;
   }
 }
 

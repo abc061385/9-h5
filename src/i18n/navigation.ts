@@ -53,4 +53,5 @@ export const routerMap = {
   fundDetail: "/fund/detail/",
   walletTransDetail: "/wallet/transaction-detail/",
   teamDetail: "/teams/detail/",
+  forgotPassword: "/forgot-password",
 };

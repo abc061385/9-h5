@@ -56,6 +56,7 @@ const SettingGoogleVerifyView = () => {
   const {
     register,
     setValue,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -126,17 +127,32 @@ const SettingGoogleVerifyView = () => {
 
   return (
     <ViewLayout
+      heightFull
       header={<HeaderWithBack title={t("verify.title")} algin="center" />}
     >
-      <div className="p-content">
+      <div className="p-content h-full flex flex-col">
         {!isVerify && (
           <div>
-            <ul className="steps w-full font-bold text-xs">
-              <li className="step step-primary">{t("googleVerify.step1")}</li>
-              <li className="step step-primary">{t("googleVerify.step2")}</li>
-              <li className="step">{t("googleVerify.step3")}</li>
+            <ul className="steps w-full text-xs">
+              <li className="step step-primary">
+                <span className="step-icon">
+                  <Icon name="duigou" />
+                </span>
+                {t("googleVerify.step1")}
+              </li>
+              <li className="step step-primary">
+                <span className="step-icon">
+                  <Icon name="duigou" />
+                </span>
+                {t("googleVerify.step2")}
+              </li>
+              <li className="step">
+                <span className="step-icon !bg-white !border-2">
+                </span>
+                {t("googleVerify.step3")}
+              </li>
             </ul>
-            <p className="font-bold text-center text-xs my-4">
+            <p className="text-center text-xs text-text4 my-8">
               {t("googleVerify.instructions")}
             </p>
             <div className="w-30 mx-auto">
@@ -148,14 +164,8 @@ const SettingGoogleVerifyView = () => {
             </div>
           </div>
         )}
-        <form className="grow" autoComplete="off">
+        <form autoComplete="off">
           <fieldset className="fieldset">
-            <legend className="fieldset-legend flex-col items-start gap-0">
-              <h3>{t("googleVerify.googleAuth")}</h3>
-              <p className="text-xs text-text2">
-                {t("googleVerify.authFromApp")}
-              </p>
-            </legend>
             <label className="input w-full">
               <Icon name="google-verify" />
               <input
@@ -165,7 +175,7 @@ const SettingGoogleVerifyView = () => {
                 className="grow text-xs"
               />
               <span
-                className="text-primary font-bold"
+                className="text-sm"
                 onClick={async () => {
                   const text = await navigator.clipboard.readText();
                   setValue("code", text);
@@ -177,7 +187,16 @@ const SettingGoogleVerifyView = () => {
             <TextError>{errors?.code?.message}</TextError>
           </fieldset>
         </form>
+        <div className="flex items-start gap-2 px-4 py-3 bg-bg2 rounded-lg mt-6">
+          <Icon name="warning-black" className="w-4 h-4 mt-0" />
+          <p className="flex-1 text-xs text-text4">
+            The key of Google Authenticator is valid for 30 seconds. Please
+            enter the correct key within the valid time.
+          </p>
+        </div>
+        <div className="grow"></div>
         <button
+          disabled={!getValues("code")}
           type="submit"
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {

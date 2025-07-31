@@ -16,7 +16,6 @@ interface IModalProps extends PropsWithChildren {
 export const Modal: React.FC<IModalProps> = ({
   open,
   title = "",
-  onChange,
   onClose,
   wrapClassName = "",
   titleClassName = "",
@@ -32,7 +31,7 @@ export const Modal: React.FC<IModalProps> = ({
         type="checkbox"
         checked={open}
         className="modal-toggle"
-        onChange={(e) => onChange?.(e.target.checked)}
+        onChange={() => onClose?.()}
       />
       <div className="modal" role="dialog">
         <div className={cn("modal-box rounded-2xl", wrapClassName)}>
