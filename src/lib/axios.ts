@@ -3,6 +3,8 @@ import { useUserStore } from "@/store/useUserStore";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import toast from "react-hot-toast";
 import { getIsDev } from "./utils";
+import { useStore } from "@/store";
+import { APILang } from "@/i18n/routing";
 
 // 响应统一数据格式
 export interface ApiResponse<T> {
@@ -25,6 +27,10 @@ const createAxiosInstance = (
   // 请求拦截器：注入 token
   instance.interceptors.request.use((config) => {
     const token = useUserStore.getState().token;
+    const lang = useStore.getState().lang as keyof typeof APILang;
+    if (lang) {
+      config.headers["Language"] = APILang[lang];
+    }
     if (token && config.headers) {
       config.headers["auth-token"] = token;
     }

@@ -5,9 +5,12 @@ import { cn } from "@/lib/utils";
 import { useStore } from "@/store";
 import { initRouterPush, useRouter } from "@/i18n/navigation";
 import { ToastWrapper } from "../toast-wrapper";
+import { useLocale } from "next-intl";
 
 export const LayoutRoot = ({ children }: PropsWithChildren) => {
   const initRoot = useStore((s) => s.initRoot);
+  const setLang = useStore((s) => s.setLang);
+  const locale = useLocale();
   const { push } = useRouter();
   useEffect(() => {
     initRouterPush(push);
@@ -16,6 +19,12 @@ export const LayoutRoot = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     initRoot();
   }, [initRoot]);
+
+  useEffect(() => {
+    if (locale) {
+      setLang(locale);
+    }
+  }, [locale, setLang]);
   return (
     <div
       className={cn([
