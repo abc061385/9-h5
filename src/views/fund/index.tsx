@@ -7,7 +7,12 @@ import ViewLayout from "@/components/layout";
 
 const FundView = () => {
   return (
-    <ViewLayout dock={true} header={<FundHeaderBox />}>
+    <ViewLayout
+      className="h-max md-pc:h-full"
+      heightFull
+      dock={true}
+      header={<FundHeaderBox />}
+    >
       <div className="p-content">
         <BaseImage src="/images/fund/banner.png" className="w-full h-25" />
         <ListBox />

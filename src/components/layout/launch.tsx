@@ -23,10 +23,10 @@ export const Launch = ({ children }: IProps) => {
   if (showSplash) {
     return (
       <div className="size-full bg-white flex justify-center items-center">
-        <div className="w-1/2 h-full relative">
+        <div className="w-25 h-full relative">
           <Image
             className="animate-in zoom-in duration-2000 ease-in-out"
-            src="/images/common/logo.svg"
+            src="/images/common/logo-start.svg"
             alt="Logo"
             fill
             unoptimized

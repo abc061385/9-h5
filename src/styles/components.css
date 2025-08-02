@@ -77,6 +77,14 @@
     border-color: var(--color-border1);
   }
 
+  .btn-gradient {
+    color: var(--color-white);
+    font-size: 16px;
+    background: linear-gradient(90deg, #a93aff 0%, #6e2afe 100%);
+    border: none;
+    box-shadow: none;
+  }
+
   .modal-toggle:checked + .modal {
     background: rgba(0, 0, 0, 0.8);
   }

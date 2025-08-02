@@ -9,7 +9,12 @@ import HomeHeaderBox from "./header";
 
 export default function HomeView() {
   return (
-    <ViewLayout dock={true} header={<HomeHeaderBox />} className="pt-16.5">
+    <ViewLayout
+      dock={true}
+      header={<HomeHeaderBox />}
+      className="h-max md-pc:h-full"
+      heightFull
+    >
       <div className="px-content">
         <BannerBox />
         <ChartBox />

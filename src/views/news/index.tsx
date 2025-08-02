@@ -2,13 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { api } from "@/api";
-import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { InfiniteList } from "@/components/infinite-list";
 import { useTrans } from "@/hooks/useTrans";
 import { useRouter } from "@/i18n/navigation";
 import { NewsDataType } from "./type";
 import { useLocale } from "next-intl";
+import { Icon } from "@/components/icon";
 
 export const langType: {
   [key: string]: string;
@@ -41,12 +41,9 @@ const NewsView = () => {
     <>
       <HeaderWithBack title={t("消息中心")} algin="center" />
       <div className="p-content">
-        <button className="btn btn-primary flex justify-between mb-4">
+        <button className="btn border-none bg-bg3 flex justify-between mb-4 text-base font-normal">
+          <Icon name="news-icon" className="w-4 h-4 mr-1" />
           {t("公告")}
-          <BaseImage
-            src="/images/news/news_icon.png"
-            className="w-8 h-8 ml-1.5"
-          />
         </button>
         <div className="h-[75vh]">
           <InfiniteList<NewsDataType, object>
@@ -58,37 +55,18 @@ const NewsView = () => {
             itemContent={(_, item) => (
               <div
                 key={item.id}
-                className="bg-secondary rounded-lg p-2 mt-2 font-bold"
+                className="pb-4 mt-4 text-sm border-b border-assist1 "
                 onClick={() => {
                   localStorage.setItem("newsDetail", JSON.stringify(item));
                   push("/news/detail");
                 }}
               >
                 <div className="flex items-center">
-                  <BaseImage
-                    src="/images/news/list_logo.png"
-                    className="w-5.5 h-5.5 mr-1"
-                  />
-                  <div className="flex-1 font-bold text-xs">
+                  <div className="flex-1 text-xs mb-2">
                     {item["title" + langType[locale]]}
                   </div>
                 </div>
-                <div
-                  className="text-text2 my-2 text-xs"
-                  style={{
-                    display: " -webkit-box",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    WebkitLineClamp: "1",
-                    WebkitBoxOrient: "vertical",
-                  }}
-                  dangerouslySetInnerHTML={{
-                    __html: item["content" + langType[locale]],
-                  }}
-                ></div>
-                <div className="text-text2 text-xs">
-                  {t("时间")}：{item.createTime}
-                </div>
+                <div className="text-text2 text-xs">{item.createTime}</div>
               </div>
             )}
           />

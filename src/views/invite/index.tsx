@@ -1,6 +1,5 @@
 "use client";
 
-import BaseImage from "@/components/base-image";
 import CopyText from "@/components/copy-text";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
@@ -9,6 +8,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { routerMap } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { useLocale } from "next-intl";
+import Image from "next/image";
 
 const InviteView = () => {
   const t = useTrans();
@@ -17,37 +17,58 @@ const InviteView = () => {
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title={t("邀请好友")} algin="center" />}
+      header={
+        <HeaderWithBack title={t("邀请好友")} algin="center" theme="dark" />
+      }
+      className="bg-black flex flex-col h-max md-pc:h-full"
+      heightFull
     >
-      <div className="p-content relative">
-        <BaseImage
+      <div>
+        <Image
           src="/images/invite/invite-bg.png"
-          className="w-[340px] h-[430px] absolute"
+          alt=""
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "100%", height: "auto" }}
+          className="relative top-[-80px] mb-[-64px]"
         />
-        <div className="relative z-1">
-          <div className="w-[184px] h-[184px] mx-auto mt-19 p-2 bg-white">
+      </div>
+      <div className="relative p-content flex-1 flex flex-col pb-6">
+        <div className="relative z-1 flex text-white justify-between grow">
+          <div className="flex-1">
+            <div className="flex flex-col gap-1">
+              <span className="text-text5 text-sm leading-4">
+                {t("invite.inviteCode")}
+              </span>
+              <span className="font-bold flex items-center gap-1 leading-4">
+                {userInfo.invitationCode || "-"}
+                <CopyText
+                  text={userInfo.invitationCode || ""}
+                  className="mt-0.5"
+                />
+              </span>
+            </div>
+            <div className="flex flex-col mt-6 gap-1">
+              <span className="text-text5 text-sm  leading-4">
+                {t("invite.inviteLink")}
+              </span>
+              <span className="font-bold flex items-center gap-1 flex-1  leading-4">
+                <span className="truncate max-w-40">{`${window.origin}/${locale}${routerMap.register}`}</span>
+                <CopyText
+                  className="mt-0.5"
+                  text={`${window.origin}/${locale}${routerMap.register}`}
+                />
+              </span>
+            </div>
+          </div>
+          <div className="w-26 h-26 p-2 bg-white">
             <Qrcode value={`${window.origin}/${locale}${routerMap.register}`} />
           </div>
-          <div className="w-50 mx-auto text-center font-bold text-white mt-25">
-            {t("invite.scanQRCodeTip")}
-          </div>
         </div>
-        <div className="flex items-center justify-between mt-20 h-10 bg-bg1 rounded-md px-2">
-          <span className="font-medium">{t("invite.inviteCode")}</span>
-          <span className="font-bold flex items-center gap-1">
-            {userInfo.invitationCode || "-"}
-            <CopyText text={userInfo.invitationCode || ""} className="mt-0.5" />
-          </span>
-        </div>
-
-        <div className="flex items-center justify-between mt-4 h-10 bg-bg1 rounded-md px-2 gap-2">
-          <span className="font-medium">{t("invite.inviteLink")}</span>
-          <span className="font-bold flex items-center gap-1 text-primary flex-1 justify-end text-right leading-[100%] text-xs">
-            {`${window.origin}/${locale}${routerMap.register}`}
-            <CopyText
-              text={`${window.origin}/${locale}${routerMap.register}`}
-            />
-          </span>
+        <div className="mt-9 grid grid-cols-2 gap-2">
+          <button className="btn bg-white">Save QR Code</button>
+          <button className="btn btn-primary">Copy Address</button>
         </div>
       </div>
     </ViewLayout>

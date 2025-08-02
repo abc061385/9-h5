@@ -48,7 +48,6 @@ const Typewriter: React.FC<TypewriterProps> = ({
     return () => {
       cancelledRef.current = true;
     };
-    // ✅ 不依赖 text/props 的变化，确保只运行一次
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // 👈 空依赖数组，确保只执行一次
 

@@ -24,7 +24,7 @@ export default function ViewLayout({
       <ShowIf condition={!!header}>
         <div
           className={cn([
-            "fixed top-0 left-0 z-50 w-full min-h-11 bg-white",
+            "fixed top-0 left-0 z-50 w-full min-h-11",
             "md-pc:absolute",
           ])}
         >

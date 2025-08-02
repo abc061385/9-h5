@@ -45,22 +45,26 @@ const HelperAIView = () => {
   );
 
   return (
-    <ViewLayout header={<HeaderWithBack title={t("AI助手")} algin="center" />}>
-      <div className="p-content max-h-[85.7vh] overflow-auto">
+    <ViewLayout
+      heightFull
+      header={<HeaderWithBack title={t("AI助手")} algin="center" />}
+      className="flex flex-col"
+    >
+      <div className="p-content overflow-auto grow">
         {dialogueList && dialogueList?.length ? (
           dialogueList.map((item) => {
             return (
               <div
                 key={item.timestamp}
                 className={cn(
-                  "flex justify-end mb-4 font-bold",
+                  "flex justify-end mb-4 text-sm relative",
                   item.type === "ai" ? "justify-start" : ""
                 )}
               >
                 {item.type === "user" ? (
                   <div
                     className={cn(
-                      "bg-secondary rounded-lg px-3.5 py-3 rounded-br-none"
+                      "bg-primary rounded-lg px-4 py-2.5 text-white"
                     )}
                   >
                     {item.content}
@@ -68,17 +72,19 @@ const HelperAIView = () => {
                 ) : (
                   <div
                     className={cn(
-                      "rounded-lg px-3.5 py-3 bg-[rgba(137,44,255,0.3)] rounded-bl-none"
+                      "rounded-lg px-3.5 py-3 bg-bg3 relative pb-6"
                     )}
                   >
                     {item.loading ? (
                       <span className="loading loading-spinner loading-sm max-w-full"></span>
                     ) : (
-                      <TypeWriter
-                        text={item.content}
-                        speed={30}
-                        onDone={() => setDisabledSend(false)}
-                      />
+                      <div>
+                        <TypeWriter
+                          text={item.content}
+                          speed={30}
+                          onDone={() => setDisabledSend(false)}
+                        />
+                      </div>
                     )}
                   </div>
                 )}
@@ -89,14 +95,15 @@ const HelperAIView = () => {
           <>
             <BaseImage
               src="/images/common/logo.svg"
-              className="w-20 h-8 mb-10"
+              className="w-20 h-8 mb-4"
             />
             <h2 className="font-bold text-lg text-primary">{t("ai嗨")}</h2>
-            <p className="font-bold text-xs mt-4">{t("ai介绍")}</p>
+            <p className="text-sm mt-4 text-text3">{t("ai介绍")}</p>
           </>
         )}
-
-        <label className="input h-10 w-[92%] py-1.5  pr-1 fixed bottom-8">
+      </div>
+      <div className="p-content flex items-center gap-2 pt-3 border-t border-[#eee]">
+        <label className="input h-10 flex-1 border-none shadow-none !bg-bg3">
           <input
             type="text"
             className="grow"
@@ -104,36 +111,36 @@ const HelperAIView = () => {
             onChange={(e) => setInputValue(e.target.value)}
             value={inputValue}
           />
-          <span
-            className={cn(
-              "btn btn-primary h-full text-xs font-bold",
-              disabledSend && "btn-disabled"
-            )}
-            onClick={() => {
-              if (!inputValue || disabledSend) return;
-              const arr = [...(dialogueList || [])];
-              arr.push(
-                {
-                  type: "user",
-                  content: inputValue,
-                  timestamp: new Date().getTime(),
-                },
-                {
-                  type: "ai",
-                  content: "",
-                  timestamp: new Date().getTime() + 100,
-                  loading: true,
-                }
-              );
-              askAi(inputValue, arr);
-              setDialogueList(arr);
-              setInputValue("");
-              setDisabledSend(true);
-            }}
-          >
-            {t("发送")}
-          </span>
         </label>
+        <button
+          className={cn(
+            "btn btn-primary text-xs font-bold w-20",
+            disabledSend && "btn-disabled"
+          )}
+          onClick={() => {
+            if (!inputValue || disabledSend) return;
+            const arr = [...(dialogueList || [])];
+            arr.push(
+              {
+                type: "user",
+                content: inputValue,
+                timestamp: new Date().getTime(),
+              },
+              {
+                type: "ai",
+                content: "",
+                timestamp: new Date().getTime() + 100,
+                loading: true,
+              }
+            );
+            askAi(inputValue, arr);
+            setDialogueList(arr);
+            setInputValue("");
+            setDisabledSend(true);
+          }}
+        >
+          {t("发送")}
+        </button>
       </div>
     </ViewLayout>
   );
