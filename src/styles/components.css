@@ -97,6 +97,21 @@
     width: 24px;
     height: 24px;
   }
+
+  .divider:before,
+  .divider:after {
+    height: 1px;
+  }
+
+  .checkbox-neutral {
+    color: var(--color-text1);
+    background-color: none;
+    border-radius: 4px;
+  }
+  .checkbox:checked,
+  .checkbox[aria-checked="true"] {
+    background: none !important;
+  }
 }
 
 @utility drawer-bottom {

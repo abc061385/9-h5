@@ -4,10 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import CoinIcon from "./coin-icon";
-import { cn } from "@/lib/utils";
 import { api } from "@/api";
-import { Drawer } from "@/components/drawer";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import Tabs from "@/components/tabs/tabs";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 
 type TokenListType = {
   id: number;
@@ -24,7 +24,6 @@ const ListBox = () => {
   const { push } = useRouter();
   const [tabsValue, setTabsValue] = useState(2);
   const [list, setList] = useState<TokenListType[]>([]);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [pledgeDays, setPledgeDays] = useState(360);
 
   const tabs = [
@@ -38,10 +37,10 @@ const ListBox = () => {
     },
   ];
   const pledgeList = [
-    { label: "360", value: 360 },
-    { label: "180", value: 180 },
-    { label: "30", value: 30 },
-    { label: "7", value: 7 },
+    { label: "360" + t("天"), value: 360 },
+    { label: "180" + t("天"), value: 180 },
+    { label: "30" + t("天"), value: 30 },
+    { label: "7" + t("天"), value: 7 },
   ];
 
   const getTokenList = useCallback(async () => {
@@ -59,95 +58,64 @@ const ListBox = () => {
   }, [getTokenList]);
 
   return (
-    <div className="mt-4">
-      <div role="tablist" className="tabs tabs-box">
-        {tabs.map((tab) => (
-          <a
-            role="tab"
-            className={cn(
-              "tab flex-1 leading-[100%]",
-              tab.value === tabsValue && "tab-active"
-            )}
-            key={tab.value}
-            onClick={() => setTabsValue(tab.value)}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </div>
-      <div className="flex items-center justify-between mt-4">
-        <div className="flex items-center">
-          <span className="font-bold text-xs">{t("质押周期")}：</span>
-          <div
-            className="py-1.5 px-2 rounded-md bg-secondary font-bold text-xs flex items-center gap-1"
-            onClick={() => setDrawerOpen(true)}
-          >
-            {pledgeDays} {t("天")}
-            <Icon name="left-arrow" className="w-3 h-3 rotate-270" />
-          </div>
-        </div>
+    <div>
+      <Tabs
+        tabs={tabs}
+        value={tabsValue}
+        onChange={(value) => setTabsValue(value as number)}
+      />
+
+      <div className="flex items-center justify-between mt-4 font-medium mb-2">
+        <span className="text-base">{t("质押周期")}：</span>
         <span
-          className="flex items-center text-[#8F00FF] text-xs font-510"
+          className="flex items-center text-sm"
           onClick={() => {
             push(routerMap.rule);
           }}
         >
-          {t("基金规则")} <Icon name="right-arrow" className="w-3 h-3" />
+          {t("基金规则")} <Icon name="right-enter" className="w-2 h-2.5 ml-2" />
         </span>
       </div>
-      {list.map((item) => (
-        <div
-          key={item.id}
-          className="flex items-center justify-between p-2 mt-2 font-bold"
-          onClick={() =>
-            push(
-              `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
-            )
-          }
-        >
-          <div className="flex items-center">
-            <CoinIcon
-              coins={[
-                { src: item.pledgeToken1Logo },
-                { src: item.pledgeToken2Logo },
-              ]}
-              size={28}
-              overlap={16}
-              className="mr-5"
-            />
-
-            <div className="flex-1 font-bold text-sm">
-              {item.pledgeToken1}/{item.pledgeToken2}
+      <HorizontalTabs
+        tabs={pledgeList}
+        value={pledgeDays}
+        onChange={(value) => setPledgeDays(value as number)}
+      />
+      <div className="grid grid-cols-2 gap-2 mt-4">
+        {list.map((item) => (
+          <div
+            key={item.id}
+            className="bg-bg2 rounded-2xl p-4"
+            onClick={() =>
+              push(
+                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+              )
+            }
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-base font-medium">
+                {item.pledgeToken1}/{item.pledgeToken2}
+              </span>
+              <CoinIcon
+                coins={[
+                  { src: item.pledgeToken1Logo },
+                  { src: item.pledgeToken2Logo },
+                ]}
+                size={20}
+                overlap={16}
+                className="pr-2"
+              />
+            </div>
+            <div className="text-text4 text-xs mt-1 flex flex-col">
+              {t("日收益率")}
+              <span className="text-rise text-base font-bold">
+                {" "}
+                ≈ {item.dailyYield}%
+              </span>
             </div>
           </div>
-          <div className="text-text2 text-sm font-[510]">
-            {t("日收益率")}：{item.dailyYield}%
-          </div>
-        </div>
-      ))}
-      <Drawer
-        open={drawerOpen}
-        onChange={setDrawerOpen}
-        className="h-[40vh] py-4"
-        title={t("质押周期")}
-      >
-        {pledgeList.map((item) => (
-          <div
-            key={item.value}
-            className={cn(
-              "h-10 flex justify-center items-center rounded-md my-2 font-bold text-[#757575]",
-              item.value === pledgeDays && "bg-primary text-white"
-            )}
-            onClick={() => {
-              setPledgeDays(item.value);
-              setDrawerOpen(false);
-            }}
-          >
-            {item.label}
-            {t("天")}
-          </div>
         ))}
-      </Drawer>
+      </div>
     </div>
   );
 };

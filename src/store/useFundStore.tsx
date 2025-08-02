@@ -4,6 +4,7 @@ import { devtools, persist } from "zustand/middleware";
 
 interface FundState extends BaseState<FundState> {
   buyData?: FundBuyType;
+  pledgeDays?: PledgeType;
 }
 
 export const useFundStore = create<FundState>()(
@@ -12,6 +13,7 @@ export const useFundStore = create<FundState>()(
       (set) => {
         return {
           buyData: {},
+          pledgeDays: {},
           setField: (key, value) => set({ [key]: value }),
         };
       },

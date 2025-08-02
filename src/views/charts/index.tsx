@@ -4,7 +4,7 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import * as echarts from "echarts/core";
 import ReactECharts from "echarts-for-react";
-import Tabs from "@/components/tabs";
+import Tabs from "@/components/tabs/tabs";
 import { useState } from "react";
 
 const ChartsView = () => {

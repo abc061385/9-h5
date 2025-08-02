@@ -22,7 +22,7 @@ const CoinIcon: React.FC<CoinIconProps> = ({
   const showDouble = coins.length === 2;
 
   return (
-    <div className={cn("relative flex items-center", className)}>
+    <div className={cn("relative flex items-center justify-end", className)}>
       {coins.slice(0, 2).map((coin, index) => {
         const isSecond = index === 1;
         return (
@@ -31,7 +31,7 @@ const CoinIcon: React.FC<CoinIconProps> = ({
             className={cn(
               "overflow-hidden bg-white relative",
               rounded && "rounded-full",
-              border && "border border-white",
+              border,
               "shrink-0",
               isSecond && showDouble ? "absolute left-0" : ""
             )}
@@ -39,7 +39,7 @@ const CoinIcon: React.FC<CoinIconProps> = ({
               width: size + "px",
               height: size + "px",
               left: isSecond && showDouble ? overlap : undefined,
-              zIndex: isSecond ? 0 : 10,
+              zIndex: isSecond ? 10 : 0,
             }}
           >
             <Image

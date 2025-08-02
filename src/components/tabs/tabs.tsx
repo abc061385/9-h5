@@ -40,7 +40,7 @@ const Tabs: React.FC<TabsProps> = ({
             key={tab.value}
             onClick={() => onChange(tab.value)}
             className={cn(
-              "text-center cursor-pointer transition-all p-1.5 font-bold text-xs mr-0.5",
+              "text-center cursor-pointer transition-all font-bold text-lg mr-0.5 flex-1 p-1.5",
               type === "segment" &&
                 cn(
                   "rounded-md px-3",
@@ -51,6 +51,9 @@ const Tabs: React.FC<TabsProps> = ({
             )}
           >
             {tab.label}
+            <div
+              className={cn("w-5 h-[3px] mx-auto", isActive && "bg-primary")}
+            ></div>
           </div>
         );
       })}
