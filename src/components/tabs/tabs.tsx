@@ -14,25 +14,20 @@ interface TabsProps {
   activeClassName?: string;
   inactiveClassName?: string;
   className?: string;
+  between?: boolean;
 }
 
 const Tabs: React.FC<TabsProps> = ({
   tabs,
   value,
   onChange,
-  type = "text",
   activeClassName = "text-primary font-bold",
   inactiveClassName = "text-[#61616E]",
   className = "",
+  between = true,
 }) => {
   return (
-    <div
-      className={cn(
-        className,
-        "flex items-center justify-between",
-        type === "segment" && "rounded-xl p-1"
-      )}
-    >
+    <div className={cn("flex items-center justify-between text-lg", className)}>
       {tabs.map((tab) => {
         const isActive = tab.value === value;
         return (
@@ -40,14 +35,9 @@ const Tabs: React.FC<TabsProps> = ({
             key={tab.value}
             onClick={() => onChange(tab.value)}
             className={cn(
-              "text-center cursor-pointer transition-all font-bold text-lg mr-0.5 flex-1 p-1.5",
-              type === "segment" &&
-                cn(
-                  "rounded-md px-3",
-                  isActive ? "bg-[#8F00FF] text-white" : "text-[#1C1C1E]"
-                ),
-              type === "text" &&
-                (isActive ? activeClassName : inactiveClassName)
+              "text-center cursor-pointer transition-all font-bold mr-0.5 p-1.5",
+              isActive ? activeClassName : inactiveClassName,
+              between ? "flex-1" : "mr-6"
             )}
           >
             {tab.label}

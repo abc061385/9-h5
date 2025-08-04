@@ -28,6 +28,7 @@ export const routerMap = {
   fund: "/fund/",
   "helper-ai": "/helper-ai/",
   news: "/news/",
+  newsDetail: "/news/detail/",
   teams: "/teams/",
   teamsNext: "/teams/next",
   user: "/user/",

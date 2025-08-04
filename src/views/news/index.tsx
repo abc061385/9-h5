@@ -5,7 +5,7 @@ import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { InfiniteList } from "@/components/infinite-list";
 import { useTrans } from "@/hooks/useTrans";
-import { useRouter } from "@/i18n/navigation";
+import { routerMap, useRouter } from "@/i18n/navigation";
 import { NewsDataType } from "./type";
 import { useLocale } from "next-intl";
 import { Icon } from "@/components/icon";
@@ -58,7 +58,7 @@ const NewsView = () => {
                 className="pb-4 mt-4 text-sm border-b border-assist1 "
                 onClick={() => {
                   localStorage.setItem("newsDetail", JSON.stringify(item));
-                  push("/news/detail");
+                  push(routerMap.newsDetail);
                 }}
               >
                 <div className="flex items-center">

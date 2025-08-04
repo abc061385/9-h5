@@ -102,7 +102,7 @@ const HelperAIView = () => {
           </>
         )}
       </div>
-      <div className="p-content flex items-center gap-2 pt-3 border-t border-[#eee]">
+      <div className="p-content flex items-center gap-2 pt-3 border-t border-border2">
         <label className="input h-10 flex-1 border-none shadow-none !bg-bg3">
           <input
             type="text"

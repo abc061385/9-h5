@@ -129,7 +129,7 @@ const IncomeView = () => {
               </div>
             </div>
             <div className="flex py-4">
-              <div className="flex-1 flex flex-col items-center border-r border-[#eee]">
+              <div className="flex-1 flex flex-col items-center border-r border-border2">
                 <span className="text-xs">{t("已提取收益")}</span>
                 <span className="text-primary">
                   {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}

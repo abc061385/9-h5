@@ -71,7 +71,7 @@ const FundBuyView = () => {
       heightFull
       header={<HeaderWithBack title={t("买入")} algin="center" />}
     >
-      <div className="p-content h-full flex flex-col">
+      <div className="p-content relative h-full flex flex-col">
         <div className="flex justify-between relative">
           <div>
             <h3 className="text-text4 text-xs">{t("质押代币")}</h3>

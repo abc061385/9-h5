@@ -9,6 +9,7 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
 import { useFundStore } from "@/store/useFundStore";
 import { Icon } from "@/components/icon";
+import ConfirmOrderBox from "./confirm";
 
 const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const t = useTrans();
@@ -19,6 +20,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
 
   const [amount, setAmount] = useState<string>("");
   const [isAgreement, setIsAgreement] = useState(false);
+  const [buyConfirmOpen, setBuyConfirmOpen] = useState(false);
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.calMaxProfitUsingPost
@@ -61,7 +63,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
             selectCycle: pledgeDays?.pledgeDays || "",
             pledge: pledgeDays!,
           });
-          push(routerMap.fundSuccess);
+          setBuyConfirmOpen(true);
         },
       }
     );
@@ -211,6 +213,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       <button className="btn btn-primary w-full mt-4" onClick={submit}>
         {t("买入")}
       </button>
+      <ConfirmOrderBox open={buyConfirmOpen} />
     </div>
   );
 };

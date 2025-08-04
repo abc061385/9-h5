@@ -42,12 +42,14 @@ const CoinIcon: React.FC<CoinIconProps> = ({
               zIndex: isSecond ? 10 : 0,
             }}
           >
-            <Image
-              src={coin.src}
-              alt={coin.alt || "coin"}
-              fill
-              className="object-contain"
-            />
+            {coin.src && (
+              <Image
+                src={coin.src}
+                alt={coin.alt || "coin"}
+                fill
+                className="object-contain"
+              />
+            )}
           </div>
         );
       })}

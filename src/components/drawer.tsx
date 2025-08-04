@@ -51,7 +51,7 @@ export const Drawer: FC<IProps> = ({
             <div className="w-[46px] h-1 bg-[#D9D9D9] rounded-xs"></div>
           </div>
           {title ? (
-            <p className="text-center text-sm font-bold mb-4">{title}</p>
+            <p className="text-center text-lg font-bold mb-4">{title}</p>
           ) : null}
           <div className="grow">{children}</div>
         </div>

@@ -77,6 +77,11 @@
     border-color: var(--color-border1);
   }
 
+  .btn-neutral {
+    color: var(--color-white);
+    background-color: var(--color-black);
+  }
+
   .btn-gradient {
     color: var(--color-white);
     font-size: 16px;
@@ -111,6 +116,11 @@
   .checkbox:checked,
   .checkbox[aria-checked="true"] {
     background: none !important;
+  }
+
+  .progress-gradient::-webkit-progress-value {
+    background: var(--color-gradient2);
+    border-radius: 0;
   }
 }
 
