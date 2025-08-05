@@ -1,6 +1,7 @@
 import { api } from "@/api";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
+import ReactECharts from "echarts-for-react";
 
 const FeesDescBox = () => {
   const t = useTrans();
@@ -10,37 +11,65 @@ const FeesDescBox = () => {
   const feesData = data?.data;
 
   const feesList = [
-    { title: "管理费", value: feesData?.managementFee },
-    { title: "平台分红", value: feesData?.platformDividend },
-    { title: "用户投资收益", value: feesData?.investmentReturn },
+    { title: "平台分红", value: feesData?.platformDividend, color: "#6E2AFE" },
+    {
+      title: "用户投资收益",
+      value: feesData?.investmentReturn,
+      color: "#A93AFF",
+    },
+    { title: "管理费", value: feesData?.managementFee, color: "#000000" },
   ];
+
+  const option = {
+    tooltip: null,
+    series: [
+      {
+        name: "",
+        type: "pie",
+        radius: ["40%", "70%"],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: "center",
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [
+          { value: feesData?.platformDividend, name: t("平台分红") },
+          { value: feesData?.investmentReturn, name: t("用户投资收益") },
+          { value: feesData?.managementFee, name: t("管理费") },
+        ],
+      },
+    ],
+    color: ["#6E2AFE", "#A93AFF", "#000000"],
+  };
   return (
-    <div>
-      <h3 className="font-bold mt-4 mb-2">{t("运作费用说明")}</h3>
-      <p className="font-[510] text-text2 leading-[120%] text-xs">
-        {t("运作费用说明p")}
-      </p>
-      <div className="bg-bg1 rounded-md px-3.5 py-4 font-bold mt-4">
-        <h3 className="flex justify-between items-start gap-1 leading-[120%]">
-          <span className="text-left flex-1/3">{t("费用名称")}</span>
-          <span className="text-text2 text-right flex-2/3">
-            {t("基金收益分配占比")}
-          </span>
-        </h3>
-        <div className="bg-white rounded-md py-4 px-2.5 mt-4">
-          {feesList.map((item, index) => {
-            return (
+    <div className="border-y border-border2 py-6">
+      <h3 className="font-medium leading-6 mb-2">{t("运作费用说明")}</h3>
+      <p className="text-text4 leading-4 text-sm mb-6">{t("运作费用说明p")}</p>
+      <div className="flex justify-between gap-2">
+        {feesList.map((v, i) => {
+          return (
+            <div key={i} className="flex gap-2">
               <div
-                key={index}
-                className="flex items-center justify-between mb-4 last:mb-0"
-              >
-                <span className="text-left">{t(item.title)}</span>
-                <span className="text-right">{item.value}%</span>
+                className="w-2 h-2 mt-1.5"
+                style={{ backgroundColor: v.color }}
+              ></div>
+              <div className="flex-1">
+                <h5 className="text-sm">{t(v.title)}</h5>
+                <span style={{ color: v.color }}>{v.value}%</span>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
+      <ReactECharts
+        option={option}
+        style={{ height: "135px", width: "135px", margin: "0 auto" }}
+        notMerge={true}
+        lazyUpdate={true}
+      />
     </div>
   );
 };

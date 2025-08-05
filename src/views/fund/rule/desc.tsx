@@ -1,6 +1,4 @@
-import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
-import { IconName } from "@/types/icons";
 
 const RuleDescBox = () => {
   const t = useTrans();
@@ -13,18 +11,12 @@ const RuleDescBox = () => {
     { title: "了解风险和回报", desc: "了解风险和回报p" },
   ];
   return (
-    <div className="mt-4">
+    <div className="mt-8">
       {list.map((item, index) => {
         return (
-          <div key={index} className="bg-bg1 rounded-md px-2 py-2.5 mb-2">
-            <h3 className="flex items-center gap-2.5 font-bold leading-[120%] mb-2">
-              <Icon
-                name={`rule-desc-icon${index + 1}` as IconName}
-                className="w-5 h-5"
-              />
-              <span>{t(item.title)}</span>
-            </h3>
-            <p className="font-[510] text-text2 leading-[120%]">{t(item.desc)}</p>
+          <div key={index} className="mb-8">
+            <h3 className="font-medium mb-2 leading-6">{t(item.title)}</h3>
+            <p className="text-text4 text-sm leading-4">{t(item.desc)}</p>
           </div>
         );
       })}

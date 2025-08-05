@@ -1,58 +1,74 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { cn, maskString } from "@/lib/utils";
-import CardBox from "../card";
-import { DataType } from "../type";
-import { api } from "@/api";
-import { InfiniteList } from "@/components/infinite-list";
-import { useSearchParams } from "next/navigation";
-import { routerMap, useRouter } from "@/i18n/navigation";
+import { useEffect, useState } from "react";
+
+interface AreaData {
+  area: string;
+  topMemberId: number;
+}
+
+interface AreaStatData {
+  count: number;
+  star: number;
+  vipLevel: number;
+}
 
 const TeamsNextView = () => {
   const t = useTrans();
-  const { back, push } = useRouter();
-  const [tabsValue, setTabsValue] = useState<number>();
-  const [list, setList] = useState<DataType[]>([]);
-  const [teamNumbers, setTeamNumbers] = useState(0);
-  const [searchValue, setSearchValue] = useState("");
-  const searchParams = useSearchParams();
-  const tabsList = [
-    { label: "withdraw.useAll", value: undefined },
-    { label: "已投资", value: 1 },
-    { label: "未投资", value: 0 },
-  ];
 
-  const getList = useCallback(async () => {
-    if (!searchParams.get("id")) return;
-    const { data } = await api.member.memberTeamPageQueryUsingGet({
-      userId: Number(searchParams.get("id") || 0),
-      isInvest: tabsValue,
-      generation: 1,
-    });
-    setList((data as DataType[]) || []);
-  }, [tabsValue, searchParams]);
+  const [, setSearchValue] = useState("");
+  const [areaList, setAreaList] = useState<
+    {
+      label: string;
+      value: string | number;
+    }[]
+  >([]);
+  const [tabsValue, setTabsValue] = useState<string | number>("");
+  const [areaStatList, setAreaStatList] = useState<AreaStatData[]>([]);
 
-  const getInfo = useCallback(async () => {
-    const { data } = await api.wallet.inteamInvestmentStatitUsingGet();
-    setTeamNumbers(data?.totalTeamMembers);
-  }, []);
+  const { data } = useRequestQuery(api.member.memberTeamAreaUsingGet, {});
+  const { trigger } = useRequestMutation(api.member.memberTeamAreaStatUsingGet);
 
   useEffect(() => {
-    getList();
-    getInfo();
-  }, [tabsValue, searchValue, getList, getInfo]);
+    if (!data?.data?.length) return;
+    const arr = data?.data.map((v: AreaData) => {
+      return {
+        value: v.topMemberId,
+        label: v.area + t("区"),
+      };
+    });
+    setAreaList([{ label: t("withdraw.useAll"), value: "" }, ...arr]);
+  }, [data, t]);
+
+  useEffect(() => {
+    trigger(
+      {
+        topMemberId: (tabsValue as number) || undefined,
+      },
+      {
+        onSuccess: ({ data }) => {
+          setAreaStatList((data as AreaStatData[]) || []);
+        },
+      }
+    );
+  }, [tabsValue, trigger]);
 
   return (
     <ViewLayout
-      header={<HeaderWithBack algin="center" title={t("我的团队")} />}
+      heightFull
+      header={<HeaderWithBack title="Team Members" algin="center" />}
+      className="h-max md-pc:h-full overflow-hidden"
     >
       <div className="p-content">
-        <label className="input w-full mb-2 bg-white">
+        <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
           <Icon name="search" className="w-4 h-4" />
           <input
             type="search"
@@ -65,62 +81,32 @@ const TeamsNextView = () => {
             }}
           />
         </label>
-        <div className="flex justify-between font-bold text-xs gap-2">
-          <span>
-            {t("团队总人数")}:
-            <span className="text-sm">{teamNumbers || 0}</span>
-          </span>
-          <span className="text-primary flex-1 flex items-center justify-end">
-            {t("查看团队投资数据")}
-            <Icon name="right-arrow" className="w-3 h-3" />
-          </span>
+
+        <div className="flex items-center text-sm my-4">
+          <label className="label">
+            Only show depositors
+            <input type="checkbox" className="checkbox checkbox-neutral w-4 h-4" />
+          </label>
         </div>
-        <div role="tablist" className="tabs tabs-box flex my-4">
-          {tabsList.map((item, index) => {
+
+        <HorizontalTabs
+          tabs={areaList}
+          value={tabsValue!}
+          onChange={(e) => setTabsValue(e)}
+          type="border"
+        />
+        <div className="mt-4 grid grid-cols-4 gap-2">
+          {areaStatList.map((item, index) => {
             return (
-              <a
-                role="tab"
-                className={cn(
-                  "tab flex-1 leading-[100%]",
-                  item.value === tabsValue && "tab-active"
-                )}
+              <div
                 key={index}
-                onClick={() => setTabsValue(item.value)}
+                className="flex flex-col h-13.5 rounded-lg items-center justify-center bg-bg3 text-sm"
               >
-                {t(item.label)}
-              </a>
+                <span className="text-text4">VIP{item.vipLevel}</span>
+                <span className="font-medium">{item.count}</span>
+              </div>
             );
           })}
-        </div>
-        <div className="badge badge-soft badge-primary flex items-center justify-between h-10 px-4 w-full rounded-md mb-4 font-bold">
-          <span>
-            {t("邀请人")}:{searchParams.get("name")}
-          </span>
-          <span className="flex items-center gap-1" onClick={() => back()}>
-            {t("返回上级")} <Icon name="right-arrow" className="w-3" />
-          </span>
-        </div>
-        <div className="h-[75vh]">
-          <InfiniteList<DataType, object>
-            data={list}
-            fetchMore={async (_index) => {
-              console.log(_index);
-              return [];
-            }}
-            itemContent={(_, item) => (
-              <CardBox
-                key={item.id}
-                data={item}
-                onClick={() =>
-                  push(
-                    `${routerMap.teamsNext}?id=${item.id}&name=${maskString(
-                      item.nickname
-                    )}`
-                  )
-                }
-              />
-            )}
-          />
         </div>
       </div>
     </ViewLayout>

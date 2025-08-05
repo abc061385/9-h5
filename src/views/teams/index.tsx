@@ -1,44 +1,50 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { cn, maskString } from "@/lib/utils";
+import { maskString } from "@/lib/utils";
 import CardBox from "./card";
 import { DataType } from "./type";
 import { api } from "@/api";
 import { InfiniteList } from "@/components/infinite-list";
 import { useUserStore } from "@/store/useUserStore";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import Image from "next/image";
+import Tabs from "@/components/tabs/tabs";
+import { ShowIf } from "@/components/show-if";
 
 const TeamsView = () => {
   const t = useTrans();
   const { push } = useRouter();
   const userInfo = useUserStore((s) => s.userInfo);
-  const [tabsValue, setTabsValue] = useState<number>();
+  const [tabsValue, setTabsValue] = useState<number | string>("");
   const [list, setList] = useState<DataType[]>([]);
   const [teamNumbers, setTeamNumbers] = useState(0);
   const [searchValue, setSearchValue] = useState("");
 
   const tabsList = [
-    { label: "withdraw.useAll", value: undefined },
-    { label: "已投资", value: 1 },
-    { label: "未投资", value: 0 },
+    { label: t("withdraw.useAll"), value: "" },
+    { label: t("已投资"), value: 1 },
+    { label: t("未投资"), value: 0 },
   ];
 
-  const getList = useCallback(async () => {
-    const { data } = await api.member.memberTeamPageQueryUsingGet1({
-      pageNo: 1,
-      pageSize: 100,
-      userId: userInfo.id,
-      isInvest: tabsValue,
-      generation: 1,
-      tel: searchValue,
-    });
-    setList(data?.list || []);
-  }, [tabsValue, searchValue, userInfo]);
+  const getList = useCallback(
+    async (pageNo = 1) => {
+      const { data } = await api.member.memberTeamPageQueryUsingGet1({
+        pageNo,
+        pageSize: 100,
+        userId: userInfo.id,
+        isInvest: tabsValue === "" ? undefined : (tabsValue as number),
+        generation: 1,
+        tel: searchValue,
+      });
+      setList(data?.list || []);
+      return data?.list;
+    },
+    [tabsValue, searchValue, userInfo]
+  );
 
   const getInfo = useCallback(async () => {
     const { data } = await api.wallet.inteamInvestmentStatitUsingGet();
@@ -50,12 +56,56 @@ const TeamsView = () => {
     getInfo();
   }, [tabsValue, searchValue, getList, getInfo]);
 
+  const NoDataEl = (
+    <div className="text-center mt-20">
+      <Icon
+        name="Invite"
+        className="w-14 h-14 mb-4"
+        onClick={() => push(routerMap.invite)}
+      />
+      <p>No team members yet.</p>
+      <p>Invite your friends to join your team!</p>
+      <button
+        className="btn btn-primary w-[168px] mt-6"
+        onClick={() => push(routerMap.invite)}
+      >
+        {t("user.invite")}
+      </button>
+    </div>
+  );
+
   return (
-    <ViewLayout
-      header={<HeaderWithBack algin="center" title={t("我的团队")} />}
-    >
-      <div className="p-content">
-        <label className="input w-full mb-2 bg-white">
+    <ViewLayout heightFull className="relative flex flex-col">
+      <div>
+        <Image
+          src="/images/team/team-banner.png"
+          alt=""
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{
+            width: "100%",
+            height: "auto",
+            position: "relative",
+            top: "-40px",
+            marginBottom: "-78px",
+          }}
+        />
+      </div>
+      <header className="p-content absolute top-0 w-full">
+        <div className="flex items-center justify-between">
+          <span className="font-bold text-lg">{t("我的团队")}</span>
+          <span className="text-sm" onClick={() => push(routerMap.teamDetail)}>
+            {t("查看团队投资数据")}
+            <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
+          </span>
+        </div>
+        <div className="mt-1">
+          <b className="text-3xl">{teamNumbers || 0}</b>
+        </div>
+      </header>
+      <div className="p-content flex-1 flex flex-col">
+        <label className="input w-full mb-4 !bg-bg3 border-none placeholder:text-text5">
           <Icon name="search" className="w-4 h-4" />
           <input
             type="search"
@@ -68,58 +118,37 @@ const TeamsView = () => {
             }}
           />
         </label>
-        <div className="flex justify-between font-bold text-xs gap-2">
-          <span>
-            {t("团队总人数")}:
-            <span className="text-sm">{teamNumbers || 0}</span>
-          </span>
-          <span
-            className="text-primary flex-1 flex items-center justify-end"
-            onClick={() => push(routerMap.teamDetail)}
-          >
-            {t("查看团队投资数据")}
-            <Icon name="right-arrow" className="w-3 h-3" />
-          </span>
-        </div>
-        <div role="tablist" className="tabs tabs-box flex my-4">
-          {tabsList.map((item, index) => {
-            return (
-              <a
-                role="tab"
-                className={cn(
-                  "tab flex-1 leading-[100%]",
-                  item.value === tabsValue && "tab-active"
-                )}
-                key={index}
-                onClick={() => setTabsValue(item.value)}
-              >
-                {t(item.label)}
-              </a>
-            );
-          })}
-        </div>
-        <div className="h-[75vh]">
-          <InfiniteList<DataType, object>
-            data={list}
-            fetchMore={async (_index) => {
-              console.log(_index);
-              return [];
-            }}
-            itemContent={(_, item) => (
-              <CardBox
-                key={item.id}
-                data={item}
-                onClick={() =>
-                  push(
-                    `${routerMap.teamsNext}?id=${item.id}&name=${maskString(
-                      item.nickname
-                    )}`
-                  )
-                }
-              />
-            )}
-          />
-        </div>
+        <Tabs
+          tabs={tabsList}
+          value={tabsValue!}
+          onChange={(e) => setTabsValue(e as number)}
+          between={false}
+          className="text-base justify-start"
+        />
+        <ShowIf condition={Boolean(list?.length)} elseEl={NoDataEl}>
+          <div className="mt-4.5 flex-1">
+            <InfiniteList<DataType, object>
+              data={list}
+              fetchMore={async () => {
+                return [];
+                // return getList(_index + 1);
+              }}
+              itemContent={(_, item) => (
+                <CardBox
+                  key={item.id}
+                  data={item}
+                  onClick={() =>
+                    push(
+                      `${routerMap.teamsNext}?id=${item.id}&name=${maskString(
+                        item.nickname
+                      )}`
+                    )
+                  }
+                />
+              )}
+            />
+          </div>
+        </ShowIf>
       </div>
     </ViewLayout>
   );

@@ -97,6 +97,10 @@
   .steps .step:before {
     height: 2px;
   }
+  .steps-vertical .step:before {
+    width: 2px;
+    height: 100%;
+  }
   .steps .step > .step-icon,
   .steps .step:not(:has(.step-icon)):after {
     width: 24px;
@@ -121,6 +125,20 @@
   .progress-gradient::-webkit-progress-value {
     background: var(--color-gradient2);
     border-radius: 0;
+  }
+
+  .badge-primary2 {
+    color: var(--color-primary2);
+    background-color: color-mix(
+      in oklab,
+      var(--color-primary2, var(--color-base-content)) 8%,
+      var(--color-base-100)
+    );
+    border-color: color-mix(
+      in oklab,
+      var(--color-primary2, var(--color-base-content)) 10%,
+      var(--color-base-100)
+    );
   }
 }
 

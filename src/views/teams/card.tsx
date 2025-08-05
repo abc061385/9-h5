@@ -19,51 +19,48 @@ const CardBox: FC<ICardProps> = ({ data, onClick }) => {
     { label: "团队投资金额", value: "totalInvestmentTeam" },
   ];
   return (
-    <div className="rounded-md bg-bg1 mb-4 p-3.5">
-      <div className="flex justify-between font-bold">
+    <div className="rounded-md bg-bg2 mb-6 p-4">
+      <div className="flex justify-between border-b border-border2 pb-4 mb-4">
         <div className="flex flex-wrap gap-1 items-center">
-          <span>{maskString(data.nickname) || "--"}</span>
-          <div className="badge badge-soft badge-primary rounded-sm py-1.5 px-1">
+          <span className="text-lg font-bold mr-2">
+            {maskString(data.nickname) || "--"}
+          </span>
+          <div className="badge badge-soft badge-primary rounded-xs text-xs">
             {data.areaType === 1 ? t("小区") : t("大区")}
           </div>
-          <div className="badge badge-soft badge-primary rounded-sm py-1.5 px-1">
+          <div className="badge badge-soft badge-primary2 rounded-xs text-xs">
             {data.area || "--"} {t("区")}
           </div>
         </div>
-        <div className="flex items-center gap-1 text-xs">
+        <div className="flex items-center gap-1 text-sm">
           <div
-            className={cn(
-              "badge bg-text2 text-white rounded-sm py-1.5 px-1 leading-[100%]",
-              data.isInvest !== 0 && "bg-rise"
-            )}
+            className={cn(data.isInvest === 0 ? "text-text4" : "text-primary")}
           >
             {data.isInvest === 0 ? t("未投资") : t("已投资")}
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-md py-4 px-3 mt-4 grid grid-cols-2 font-bold">
-        <div className="border-r border-[#F4F1FD] pr-3">
-          <h3 className="text-center">{t("个人")}</h3>
-          {individualList.map((item) => {
-            return (
-              <div key={item.value} className="flex justify-between mt-4">
-                <span>{t(item.label)}</span>
-                <span>{data[item.value]}</span>
-              </div>
-            );
-          })}
-        </div>
-        <div className="pl-3">
-          <h3 className="text-center">{t("团队")}</h3>
-          {teamList.map((item) => {
-            return (
-              <div key={item.value} className="flex justify-between mt-4">
-                <span>{t(item.label)}</span>
-                <span>{data[item.value]}</span>
-              </div>
-            );
-          })}
-        </div>
+      <h3 className="font-medium mb-2">{t("个人")}</h3>
+      <div className="bg-white rounded-lg p-4">
+        {individualList.map((item) => {
+          return (
+            <div key={item.value} className="flex justify-between mt-2 text-sm">
+              <span className="text-text4">{t(item.label)}</span>
+              <span>{data[item.value]}</span>
+            </div>
+          );
+        })}
+      </div>
+      <h3 className="font-medium mb-2 mt-4">{t("团队")}</h3>
+      <div className="bg-white rounded-lg p-4">
+        {teamList.map((item) => {
+          return (
+            <div key={item.value} className="flex justify-between mt-2">
+              <span className="text-text4">{t(item.label)}</span>
+              <span>{data[item.value]}</span>
+            </div>
+          );
+        })}
       </div>
       <div className="btn btn-primary w-full mt-4" onClick={() => onClick?.()}>
         {t("查看下级")}

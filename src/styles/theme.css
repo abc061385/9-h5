@@ -69,6 +69,7 @@
 
   /* custom */
   --color-primary: #6e2afe;
+  --color-primary2: #A93AFF;
   --color-primary-content: var(--color-white);
   --color-secondary: #f2f3f6;
   --color-secondary-content: #323232;
