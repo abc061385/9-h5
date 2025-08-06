@@ -8,7 +8,7 @@ import { IconName } from "@/types/icons";
 const itemClass = (currentPathname: string, pathname: string) => {
   return cn(
     [currentPathname === pathname ? ["dock-active text-primary"] : []],
-    "flex justify-center items-center flex-col",
+    "flex justify-center items-center flex-col"
   );
 };
 
@@ -18,11 +18,12 @@ export const LayoutDock = () => {
   const pathList = [
     { href: routerMap.home, name: t("tabbar.home"), icon: "home" },
     { href: routerMap.fund, name: t("基金"), icon: "fund" },
+    { href: routerMap.teams, name: t("团队"), icon: "team" },
     { href: routerMap.assets, name: t("tabbar.assets"), icon: "assets" },
   ];
 
   return (
-    <div className="dock md-pc:absolute m-0 p-0 z-50 bg-white border-none">
+    <div className="dock md-pc:absolute m-0 p-0 z-50 bg-white border-none shadow-[0_0_2px_rgba(0,0,0,0.16)] backdrop-blur-[20px]">
       {pathList.map((i, index) => {
         return (
           <Link href={i.href} key={index} className="h-full">
@@ -33,14 +34,14 @@ export const LayoutDock = () => {
               ])}
             >
               <Icon
-                className="block size-4.5"
+                className="block w-6 h-6"
                 name={
                   `${i.icon}-${
                     currentPathname === i.href ? "l" : "d"
                   }` as IconName
                 }
               />
-              <span className={cn(["dock-label"])}>{i.name}</span>
+              <span className={cn("text-xs", ["dock-label"])}>{i.name}</span>
             </button>
           </Link>
         );

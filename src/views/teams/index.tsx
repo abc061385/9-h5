@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { maskString } from "@/lib/utils";
 import CardBox from "./card";
 import { DataType } from "./type";
 import { api } from "@/api";
@@ -75,7 +74,7 @@ const TeamsView = () => {
   );
 
   return (
-    <ViewLayout heightFull className="relative flex flex-col">
+    <ViewLayout dock heightFull className="relative flex flex-col">
       <div>
         <Image
           src="/images/team/team-banner.png"
@@ -104,7 +103,7 @@ const TeamsView = () => {
           <b className="text-3xl">{teamNumbers || 0}</b>
         </div>
       </header>
-      <div className="p-content flex-1 flex flex-col">
+      <div className="p-content flex-1 flex flex-col relative pb-12">
         <label className="input w-full mb-4 !bg-bg3 border-none placeholder:text-text5">
           <Icon name="search" className="w-4 h-4" />
           <input
@@ -133,21 +132,18 @@ const TeamsView = () => {
                 return [];
                 // return getList(_index + 1);
               }}
-              itemContent={(_, item) => (
-                <CardBox
-                  key={item.id}
-                  data={item}
-                  onClick={() =>
-                    push(
-                      `${routerMap.teamsNext}?id=${item.id}&name=${maskString(
-                        item.nickname
-                      )}`
-                    )
-                  }
-                />
-              )}
+              itemContent={(_, item) => <CardBox key={item.id} data={item} />}
             />
           </div>
+        </ShowIf>
+        <ShowIf condition={Boolean(list?.length)}>
+          <button
+            className="btn btn-primary fixed bottom-20 z-20"
+            style={{ width: "calc(100% - 48px)" }}
+            onClick={() => push(routerMap.teamsNext)}
+          >
+            {t("查看下级")}
+          </button>
         </ShowIf>
       </div>
     </ViewLayout>

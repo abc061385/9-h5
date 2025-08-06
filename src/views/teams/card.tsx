@@ -3,7 +3,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { ICardProps, IndividualType, TeamType } from "./type";
 import { cn, maskString } from "@/lib/utils";
 
-const CardBox: FC<ICardProps> = ({ data, onClick }) => {
+const CardBox: FC<ICardProps> = ({ data }) => {
   const t = useTrans();
   const individualList: IndividualType[] = [
     { label: "代数", value: "generation" },
@@ -61,9 +61,6 @@ const CardBox: FC<ICardProps> = ({ data, onClick }) => {
             </div>
           );
         })}
-      </div>
-      <div className="btn btn-primary w-full mt-4" onClick={() => onClick?.()}>
-        {t("查看下级")}
       </div>
     </div>
   );
