@@ -6,7 +6,7 @@ import AssetsListBox from "./list";
 
 const AssetsView = () => {
   return (
-    <ViewLayout dock>
+    <ViewLayout dock heightFull>
       <div className="p-content h-full flex flex-col">
         <Header />
         <AssetsListBox />

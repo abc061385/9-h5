@@ -34,38 +34,39 @@ const AssetsListBox = () => {
     getCurrentList();
   }, [getList, getCurrentList]);
   return (
-    <div className="flex-1">
-      <h2>资产</h2>
-      <div className="h-[50vh]">
+    <div className="flex-1 mt-6 flex flex-col">
+      <h2 className="font-medium leading-6 mb-6">资产</h2>
+      <div className="flex-1">
         <InfiniteList<AssetsList, object>
           data={list}
           fetchMore={async (_index) => {
             console.log(_index);
             return [];
           }}
+          className="no-scrollbar"
           itemContent={(_, item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between pr-2 pb-3 gap-1.5"
+              className="flex items-center justify-between mb-6 gap-2"
               onClick={() =>
                 push(`${routerMap.assetsWalletDetail}?coin=${item.coin}`)
               }
             >
               <BaseImage
                 src={getTokenIcon(item.coin || "")}
-                className="w-7 h-7 rounded-full overflow-hidden"
+                className="w-10 h-10 rounded-full overflow-hidden"
               />
               <div className="flex-1 flex flex-col">
-                <span className="font-bold">{item.coin}</span>
-                <span className="font-[510] text-xs text-text2">
+                <span>{item.coin}</span>
+                <span className="text-xs text-text4">
                   {item.coin}
                 </span>
               </div>
               <div className="flex flex-col items-end">
-                <span className="font-bold">
+                <span>
                   {formatBalance(item.balance || "0", item.coin || "USDT")}
                 </span>
-                <span className="font-[510] text-xs text-text2">
+                <span className="text-xs text-text4">
                   ≈ {formatBalance(item.usdtValue || "0", "USDT")} USDT
                 </span>
               </div>

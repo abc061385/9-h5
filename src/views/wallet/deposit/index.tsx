@@ -1,92 +1,148 @@
 "use client";
 import { api } from "@/api";
 import CopyText from "@/components/copy-text";
+import { Drawer } from "@/components/drawer";
 import { HeaderWithBack } from "@/components/header-with-back";
+import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { Qrcode } from "@/components/qrcode";
-import { SelectChain } from "@/components/select/select-chain";
-import { SelectToken } from "@/components/select/select-token";
 import { ShowIf } from "@/components/show-if";
 import { useTrans } from "@/hooks/useTrans";
-import z from "@/lib/z";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useAssetStore } from "@/store/useAssetStore";
 import { useEffect, useState } from "react";
-import { Controller, useForm, useWatch } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const DepositView = () => {
   const t = useTrans();
-  const [address, setAddress] = useState("");
-  const Schema = z.object({
-    currencyCode: z.string().nonempty(),
-    chainEnum: z.object({ protocolType: z.string() }),
-  });
-  const { control, setValue } = useForm({
-    defaultValues: { currencyCode: "USDT" },
-    resolver: zodResolver(Schema),
-  });
+  const { depositChainItem, depositCoinItem, chainList, setField } =
+    useAssetStore();
 
-  const currencyCode = useWatch({ control, name: "currencyCode" });
-  const chainEnum = useWatch({ control, name: "chainEnum" });
+  const [address, setAddress] = useState("");
+  const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
+
   useEffect(() => {
-    if (!chainEnum) {
-      return;
-    }
+    if (!depositChainItem?.id) return;
     api.deposit
-      .createAddrTwoUsingPost({ chainEnum: chainEnum.protocolType })
+      .createAddrTwoUsingPost({ chainEnum: depositChainItem.protocolType })
       .then((res) => {
         setAddress(res.data.addr || "");
       });
-  }, [chainEnum]);
+  }, [depositChainItem]);
   return (
     <ViewLayout
-      header={<HeaderWithBack title={t("deposit.title")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={
+            <div className="flex items-center justify-center w-full relative">
+              <span>
+                {depositCoinItem.currencyCode} {t("deposit.title")}
+              </span>
+              <Icon name="history" className="size-11 absolute right-[-30px]" />
+            </div>
+          }
+          algin="center"
+        />
+      }
     >
       <div className="p-content">
         <ShowIf condition={Boolean(address)}>
           <>
-            <div className="size-[188px] p-4 mx-auto bg-secondary rounded-xl">
-              <Qrcode value={address} bgColor="var(--color-secondary)" />
+            <div className="size-40 mx-auto my-12">
+              <Qrcode value={address} />
             </div>
-            <div className="h-10 rounded-md bg-bg1 mt-4 flex items-center justify-between px-2.5">
-              <p>{address}</p>
+            <div className="rounded-lg bg-bg2 flex items-center justify-between p-4 font-medium text-sm">
+              <p className="max-w-[88%] flex-1 leading-4 wrap-break-word">
+                {address}
+              </p>
               <CopyText text={address} />
             </div>
           </>
         </ShowIf>
-        <form>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("deposit.coinType")}</legend>
-            <Controller
-              name="currencyCode"
-              control={control}
-              render={({ field }) => (
-                <SelectToken
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(e);
-                    setValue("chainEnum", { protocolType: "" });
+        <h5 className="mt-6 mb-4 text-sm lieading-5">
+          {t("address.selectChain")}
+        </h5>
+        <label
+          className="input w-full"
+          onClick={() => {
+            setDepositChainDrawerOpen(true);
+          }}
+        >
+          <input
+            type="text"
+            className="grow placeholder:text-xs font-bold flex-1"
+            value={depositChainItem?.protocolType ?? ""}
+            readOnly
+            placeholder={t("addressAdd.selectChain")}
+          />
+          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" />
+        </label>
+        <div className="flex items-center justify-between text-text4 text-xs mb-1 mt-4">
+          <span>Arrived(Tradable)</span>
+          <span>6 Confirmations</span>
+        </div>
+        <div className="flex items-center justify-between text-text4 text-xs">
+          <span>Unlocked(Withdrawable)</span>
+          <span>64 Confirmations</span>
+        </div>
+        <div className="bg-bg2 rounded-lg py-3 px-4 flex gap-2 mt-6">
+          <Icon name="warning-black" className="size-4" />
+          <p className="flex-1 text-xs text-text4 leading-4">
+            When depositing this currency, please ensure that you use only the
+            networks supported by 9M AI, as listed above. To prevent the
+            potential loss of funds, do not use any other networks or smart
+            contracts.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-2 mt-14">
+          <button className="btn btn-neutral">Save QR Code</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              navigator.clipboard.writeText(address);
+              toast.success(t("transactionDetail.copy"));
+            }}
+          >
+            Copy Address
+          </button>
+        </div>
+        <Drawer
+          className="h-auto"
+          title={t("address.selectChain")}
+          open={depositChainDrawerOpen}
+          onChange={() => {
+            setDepositChainDrawerOpen(false);
+          }}
+        >
+          <div className="max-h-[400px] overflow-auto no-scrollbar">
+            {chainList?.map((v) => {
+              return (
+                <div
+                  key={v.id}
+                  className="flex items-center justify-between py-3.5 border-b border-border2"
+                  onClick={() => {
+                    setField("depositChainItem", v);
+                    setDepositChainDrawerOpen(false);
                   }}
-                />
-              )}
-            ></Controller>
-          </fieldset>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">
-              {t("deposit.chainType")}
-            </legend>
-            <Controller
-              name="chainEnum"
-              control={control}
-              render={({ field }) => (
-                <SelectChain
-                  {...field}
-                  currencyCode={currencyCode}
-                  value={field.value?.protocolType}
-                />
-              )}
-            ></Controller>
-          </fieldset>
-        </form>
+                >
+                  <span className="font-bold flex-1">{v.protocolType}</span>
+                  <ShowIf
+                    condition={depositChainItem.protocolType === v.protocolType}
+                  >
+                    <Icon name="duigou-primary" className="w-4 h-3" />
+                  </ShowIf>
+                </div>
+              );
+            })}
+          </div>
+          <button
+            className="btn btn-outline w-full mt-6"
+            onClick={() => {
+              setDepositChainDrawerOpen(false);
+            }}
+          >
+            {t("common.cancel")}
+          </button>
+        </Drawer>
       </div>
     </ViewLayout>
   );

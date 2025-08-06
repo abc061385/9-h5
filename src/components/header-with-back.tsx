@@ -55,7 +55,7 @@ export const HeaderWithBack = ({
           className="w-11 h-11"
         />
       </i>
-      <span className="flex-1 flex justify-center pr-3 font-bold">
+      <span className="flex-1 flex justify-center pr-5.5 font-bold">
         {algin === "center" ? title : null}
       </span>
       <span className="text-lg font-bold">

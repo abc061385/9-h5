@@ -1,14 +1,15 @@
 import { api } from "@/api";
 import BaseImage from "@/components/base-image";
-import { Icon } from "@/components/icon";
-import { useFormatBalance } from "@/hooks/useFormatBalance";
+import { Drawer } from "@/components/drawer";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { formatBalance } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { useAssetStore } from "@/store/useAssetStore";
+import { Icon } from "@/components/icon";
+import { ShowIf } from "@/components/show-if";
 
 interface TotalInvestmentType {
   personalFundInvestment: number;
@@ -20,14 +21,19 @@ type CardType = {
   icon: string;
   label: string;
   path?: string;
+  onClick?: () => void;
 };
 
 const HeaderBox = () => {
   const { push } = useRouter();
   const t = useTrans();
-  const { formatBalance: formatCoinBalance } = useFormatBalance();
+  const { coinList, setField, depositCoinItem, getChainList, chainList } =
+    useAssetStore();
 
   const [totalInvestment, setTotalInvestment] = useState<TotalInvestmentType>();
+  const [coinListData, setCoinList] = useState<CryptoAsset[]>([]);
+  const [depositCoinDrawerOpen, setDepositCoinDrawerOpen] = useState(false);
+  const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
 
   const { data } = useRequestQuery(api.wallet.listUsingPost, {});
   const totalAmount = data?.data.total;
@@ -44,11 +50,21 @@ const HeaderBox = () => {
     );
   }, [trigger]);
 
+  useEffect(() => {
+    if (!coinList?.length) return;
+    setCoinList(coinList);
+  }, [coinList, setField]);
+
+  useEffect(() => {
+    setField("depositCoinItem", {});
+    setField("depositChainItem", {});
+  }, [setField]);
+
   const cardList: CardType[] = [
     {
       icon: "/images/assets/deposit.svg",
       label: "assets.deposit",
-      path: routerMap.walletDeposit,
+      onClick: () => setDepositCoinDrawerOpen(true),
     },
     {
       icon: "/images/assets/withdraw.svg",
@@ -71,46 +87,126 @@ const HeaderBox = () => {
       path: routerMap.upgrade,
     },
   ];
+
   return (
-    <div>
-      <BaseImage
-        src="/images/assets/assets-banner.png"
-        className="w-full h-[350px] absolute top-0 left-0"
-      />
-      <div className="relative z-1 font-bold">
-        <h3 className="mb-2">{t("assets.balance")}</h3>
-        <h4 className="text-[26px]">${formatBalance(totalAmount, 4)}</h4>
-        <div className="bg-[rgba(255,255,255,0.3)] rounded-md inline-flex items-center px-1 py-1.5 text-xs my-3">
-          <span>{t("冻结金额")}：</span>
-          <span>
-            {formatCoinBalance(totalInvestment?.frozenUbx || 0, "USDT")} USDT
-          </span>
-          <Icon
-            name={"prompt"}
-            className="ml-1 w-3.5 h-3.5"
-            onClick={() => toast(t("老数据总资产"), { className: "text-xs font-bold" })}
-          />
-        </div>
-        <p className="mb-2 text-xs">{t("投资总额")} (USD)</p>
-        <p>${formatBalance(totalInvestment?.personalFundInvestment || 0, 2)}</p>
-        <div className="grid grid-cols-5 bg-[rgba(255,255,255,0.5)] rounded-t-2xl p-5 px-2 mt-4 gap-1">
-          {cardList.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-start"
-              onClick={() => {
-                if (!item.path) return;
-                push(item.path);
-              }}
-            >
-              <BaseImage src={item.icon} className="w-[42px] h-[42px]" />
-              <span className="font-bold text-xs mt-2.5 text-center">
-                {t(item.label)}
-              </span>
-            </div>
-          ))}
-        </div>
+    <div className="">
+      <h3 className="text-lg font-bold mb-9.5">My Assets</h3>
+      <h4 className="text-sm text-text4 mb-1">{t("assets.balance")}</h4>
+      <h4 className="text-[28px] font-bold leading-8">
+        ${formatBalance(totalAmount, 4)}
+      </h4>
+      <div className="text-text4 text-sm mt-2">
+        <span className="mb-2 text-xs">{t("投资总额")}</span>：
+        <span>
+          {formatBalance(totalInvestment?.personalFundInvestment || 0, 2)} USDT
+        </span>
       </div>
+      <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
+        {cardList.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-start"
+            onClick={() => {
+              if (item.onClick) return item.onClick();
+              if (!item.path) return;
+              push(item.path);
+            }}
+          >
+            <BaseImage src={item.icon} className="w-10 h-10" />
+            <span className="text-xs mt-2 text-center">{t(item.label)}</span>
+          </div>
+        ))}
+      </div>
+      <Drawer
+        className="h-auto"
+        title={t("address.selectToken")}
+        open={depositCoinDrawerOpen}
+        onChange={() => {
+          setDepositCoinDrawerOpen(false);
+          setField("depositCoinItem", {});
+        }}
+      >
+        <div className="max-h-[400px] overflow-auto no-scrollbar">
+          {coinListData?.map((v) => {
+            return (
+              <div
+                key={v.id}
+                className="flex items-center justify-between py-3.5 border-b border-border2"
+                onClick={() => {
+                  setField("depositCoinItem", v);
+                  getChainList();
+                  setDepositCoinDrawerOpen(false);
+                  setDepositChainDrawerOpen(true);
+                }}
+              >
+                <BaseImage
+                  src={v.logo!}
+                  className="w-6 h-6 rounded-full overflow-hidden mr-4"
+                />
+                <span className="font-bold">{v.currencyCode}</span>
+                <span className="flex-1 ml-2 text-sm text-text4">
+                  {v.currencyCode}
+                </span>
+                <ShowIf
+                  condition={depositCoinItem.currencyCode === v.currencyCode}
+                >
+                  <Icon name="duigou-primary" className="w-4 h-3" />
+                </ShowIf>
+              </div>
+            );
+          })}
+        </div>
+        <button
+          className="btn btn-outline w-full mt-6"
+          onClick={() => {
+            setDepositCoinDrawerOpen(false);
+            setField("depositCoinItem", {});
+          }}
+        >
+          {t("common.cancel")}
+        </button>
+      </Drawer>
+      <Drawer
+        className="h-auto"
+        title={t("address.selectChain")}
+        open={depositChainDrawerOpen}
+        onChange={() => {
+          setDepositChainDrawerOpen(false);
+          setField("depositCoinItem", {});
+          setField("depositChainItem", {});
+        }}
+      >
+        <div className="max-h-[400px] overflow-auto no-scrollbar">
+          {chainList?.map((v) => {
+            return (
+              <div
+                key={v.id}
+                className="flex items-center justify-between py-3.5 border-b border-border2"
+                onClick={() => {
+                  setField("depositChainItem", v);
+                  push(routerMap.walletDeposit);
+                }}
+              >
+                {/* <BaseImage
+                  src={v.logo!}
+                  className="w-6 h-6 rounded-full overflow-hidden mr-4"
+                /> */}
+                <span className="font-bold flex-1">{v.protocolType}</span>
+              </div>
+            );
+          })}
+        </div>
+        <button
+          className="btn btn-outline w-full mt-6"
+          onClick={() => {
+            setDepositChainDrawerOpen(false);
+            setField("depositCoinItem", {});
+            setField("depositChainItem", {});
+          }}
+        >
+          {t("common.cancel")}
+        </button>
+      </Drawer>
     </div>
   );
 };

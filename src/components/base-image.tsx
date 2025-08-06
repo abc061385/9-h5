@@ -20,7 +20,6 @@ const BaseImage: React.FC<IBaseImageProps> = ({
       onClick={() => onClick?.()}
     >
       {src ? <Image src={src} alt={alt} fill /> : alt}
-      <Image src={src} alt={alt} fill />
     </span>
   );
 };

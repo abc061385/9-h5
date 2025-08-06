@@ -148,7 +148,7 @@
   }
 
   > .drawer-toggle ~ .drawer-side {
-    @apply absolute bottom-0 top-auto z-50;
+    @apply absolute bottom-0 top-auto z-51;
 
     :not(.drawer-overlay) {
       @apply translate-y-[100%];

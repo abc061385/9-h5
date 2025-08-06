@@ -34,7 +34,7 @@ const WithdrawView = () => {
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
   const gaPreviousPageType = useSettingStore((s) => s.gaPreviousPageType);
   const addressPreviousPageType = useSettingStore(
-    (s) => s.addressPreviousPageType,
+    (s) => s.addressPreviousPageType
   );
   const addressInfo = useSettingStore((s) => s.addressInfo);
 
@@ -63,7 +63,7 @@ const WithdrawView = () => {
   });
   const { data: accountResponse } = useRequestQuery(
     api.wallet.listUsingPost,
-    {},
+    {}
   );
   const accountList: Account[] = accountResponse?.data?.wallet;
   const currencyAccount = useMemo(() => {
@@ -77,8 +77,8 @@ const WithdrawView = () => {
     withdrawalFeeType === "fixed"
       ? currencyCode
       : withdrawalFeeType === "percentage"
-        ? "%"
-        : "";
+      ? "%"
+      : "";
 
   const handleNext = () => {
     setField("formState", getValues());
@@ -141,7 +141,12 @@ const WithdrawView = () => {
     <ViewLayout
       header={
         <HeaderWithBack
-          title={t("withdraw.title")}
+          title={
+            <div className="flex items-center justify-center w-full relative">
+              <span>{t("withdraw.title")}</span>
+              <Icon name="history" className="size-11 absolute right-[-30px]" />
+            </div>
+          }
           algin="center"
           onChange={clear}
         />
@@ -150,8 +155,8 @@ const WithdrawView = () => {
     >
       <div className="p-content h-full flex flex-col">
         <form className="grow" autoComplete="off">
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">
+          <fieldset className="fieldset p-0">
+            <legend className="fieldset-legend text-sm font-normal pb-4">
               {t("withdraw.coinType")}
             </legend>
             <Controller
@@ -174,8 +179,57 @@ const WithdrawView = () => {
               )}
             ></Controller>
           </fieldset>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("withdraw.network")}</legend>
+
+          {getValues("currencyCode").toUpperCase() === "XRP" ? (
+            <fieldset className="fieldset p-0">
+              <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+                XRP Tag
+              </legend>
+              <label className="input w-full h-12">
+                <input
+                  type="text"
+                  {...register("XRPTag")}
+                  placeholder={t("输入 XRP Tag")}
+                  className="grow"
+                />
+              </label>
+              <TextError>{errors.XRPTag?.message}</TextError>
+            </fieldset>
+          ) : null}
+
+          <fieldset className="fieldset p-0">
+            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+              {t("withdraw.address")}
+            </legend>
+            <div className="join items-center gap-4.5">
+              <label className="input w-full flex items-center h-12 rounded-lg pr-0">
+                <input
+                  type="text"
+                  {...register("withdrawAddress")}
+                  placeholder={t("withdraw.longPressToPaste")}
+                  className="w-9/10"
+                />
+                <div className="inline-flex items-center h-12">
+                  <Icon name="scan" className="size-11" />
+                </div>
+              </label>
+              <Icon
+                name="address-book"
+                className="size-5"
+                onClick={() => {
+                  setSettingField("addressPreviousPageType", "withdraw");
+                  setField("formState", getValues());
+                  push(routerMap.settingAddress);
+                }}
+              />
+            </div>
+            <TextError>{errors.withdrawAddress?.message}</TextError>
+          </fieldset>
+
+          <fieldset className="fieldset p-0">
+            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+              {t("withdraw.network")}
+            </legend>
             <Controller
               name="chainEnum"
               control={control}
@@ -189,45 +243,12 @@ const WithdrawView = () => {
             ></Controller>
             <TextError>{errors.chainEnum?.message}</TextError>
           </fieldset>
-          {getValues("currencyCode").toUpperCase() === "XRP" ? (
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">XRP Tag</legend>
-              <label className="input w-full">
-                <input
-                  type="text"
-                  {...register("XRPTag")}
-                  placeholder={t("输入 XRP Tag")}
-                  className="grow"
-                />
-              </label>
-              <TextError>{errors.XRPTag?.message}</TextError>
-            </fieldset>
-          ) : null}
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("withdraw.address")}</legend>
-            <label className="input w-full flex">
-              <input
-                type="text"
-                {...register("withdrawAddress")}
-                placeholder={t("withdraw.longPressToPaste")}
-                className="w-9/10"
-              />
-              <div
-                className="grow text-center"
-                onClick={() => {
-                  setSettingField("addressPreviousPageType", "withdraw");
-                  setField("formState", getValues());
-                  push(routerMap.settingAddress);
-                }}
-              >
-                <Icon name="address" />
-              </div>
-            </label>
-            <TextError>{errors.withdrawAddress?.message}</TextError>
-          </fieldset>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("withdraw.amount")}</legend>
-            <label className="input w-full">
+
+          <fieldset className="fieldset p-0">
+            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+              {t("withdraw.amount")}
+            </legend>
+            <label className="input w-full h-12">
               <input
                 type="number"
                 placeholder={t("withdraw.amount")}
@@ -236,9 +257,13 @@ const WithdrawView = () => {
               />
               <span>{getValues("currencyCode")}</span>
             </label>
+            <p className="text-text4 text-xs">
+              {t("余额")}：{currencyAccount?.balance || 0}{" "}
+              {getValues("currencyCode")}
+            </p>
             <TextError>{errors.withdrawAmount?.message}</TextError>
           </fieldset>
-          <fieldset className="fieldset h-10 rounded-md bg-bg1 flex items-center px-3 mt-4">
+          {/* <fieldset className="fieldset h-10 rounded-md bg-bg1 flex items-center px-3 mt-4">
             <span className="grow text-sm font-bold">
               {t("withdraw.availableBalance")}
             </span>
@@ -255,9 +280,10 @@ const WithdrawView = () => {
             >
               {t("withdraw.useAll")}
             </button>
-          </fieldset>
-          <fieldset className="fieldset h-10 rounded-md bg-bg1 flex items-center px-3 mt-4">
-            <span className="grow text-sm font-bold">{t("withdraw.fee")}</span>
+          </fieldset> */}
+
+          <fieldset className="fieldset h-12 rounded-lg bg-bg2 flex items-center p-4 mt-6 text-sm text-text4 justify-between font-normal">
+            <span>{t("withdraw.fee")}</span>
             <NumberWithUnit value={withdrawalFeeConfig} unit={feeUnit} />
           </fieldset>
         </form>

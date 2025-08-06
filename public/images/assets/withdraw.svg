@@ -1,12 +1,16 @@
-<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="42" height="42" rx="8" fill="#882AFF"/>
-<rect width="42" height="42" rx="8" fill="url(#paint0_linear_5142_3690)"/>
-<path d="M23.1005 26.5786H13.5008C12.1754 26.5786 11.1009 25.5041 11.1008 24.1787L11.1006 15.1789C11.1005 13.8534 12.1751 12.7788 13.5006 12.7788H27.9C29.2256 12.7788 30.3001 13.8527 30.3001 15.1782L30.3001 19.3788M11.7001 16.9787H29.7001M26.1001 24.2212L28.5544 21.7787M28.5544 21.7787L30.9001 24.1108M28.5544 21.7787L28.5544 27.2212" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<defs>
-<linearGradient id="paint0_linear_5142_3690" x1="11.5" y1="-1.58236e-07" x2="42" y2="42" gradientUnits="userSpaceOnUse">
-<stop offset="0.0673077" stop-color="#A845FF"/>
-<stop offset="0.524038" stop-color="#731BFF"/>
-<stop offset="1" stop-color="#3400F2"/>
-</linearGradient>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Deposit</title>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-100, -224)">
+            <g id="编组-4" transform="translate(24, 224)">
+                <g id="编组-8备份" transform="translate(70, 0)">
+                    <g id="Deposit" transform="translate(6, 0)">
+                        <path d="M20,0 C31.04568,0 40,8.95432 40,20 C40,31.04568 31.04568,40 20,40 C8.95432,40 0,31.04568 0,20 C0,8.95432 8.95432,0 20,0 Z" id="Rectangle-34624293" fill="#6E2AFE"></path>
+                        <path d="M21.5,12 L21.499,22 L25.6666667,17.8333333 L28,20.1666667 L20,28 L12,20.1666667 L14.3333333,17.8333333 L18.333,21.832 L18.3333333,12 L21.5,12 Z" id="形状结合" fill="#FFFFFF" fill-rule="nonzero" transform="translate(20, 20) scale(1, -1) translate(-20, -20)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

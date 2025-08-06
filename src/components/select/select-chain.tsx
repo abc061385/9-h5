@@ -1,11 +1,10 @@
-import { forwardRef, useCallback, useMemo, useState } from "react";
+import { forwardRef, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
 import { useTrans } from "@/hooks/useTrans";
-import { InfiniteList } from "@/components/infinite-list";
 import { api } from "@/api";
-import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icon";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
+import { ShowIf } from "../show-if";
 
 interface IChainSelectProps {
   name: string;
@@ -27,19 +26,11 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
       return chainList?.find((t) => t.protocolType === value);
     }, [value, chainList]);
 
-    const getActived = useCallback(
-      (_: number, item: CurrencyInfo) => {
-        const activedClass = cn("bg-primary text-white rounded-md");
-        const isSelected = selectChain?.protocolType === item?.protocolType;
-        return isSelected ? activedClass : "";
-      },
-      [selectChain],
-    );
     return (
       <div ref={ref}>
         <button
           type="button"
-          className="input w-full flex justify-between items-center"
+          className="input w-full flex justify-between items-center h-12"
           onClick={() => setOpen(true)}
         >
           {value ? (
@@ -49,59 +40,47 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
           ) : (
             <p className="text-text2">{t("deposit.selectChain")}</p>
           )}
-          <Icon name="arrow-line-down" />
+          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" />
         </button>
-        <Drawer open={open} onChange={setOpen} title={t("address.selectChain")}>
+        <Drawer
+          open={open}
+          onChange={setOpen}
+          className="h-auto"
+          title={t("address.selectChain")}
+        >
+          <div className="max-h-[400px] overflow-auto no-scrollbar">
+            {chainList?.map((v) => {
+              return (
+                <div
+                  key={v.id}
+                  className="flex items-center justify-between py-3.5 border-b border-border2"
+                  onClick={() => {
+                    setOpen(false);
+                    onChange?.(v);
+                  }}
+                >
+                  <span className="font-bold flex-1">{v.protocolType}</span>
+                  <ShowIf
+                    condition={selectChain?.protocolType === v.protocolType}
+                  >
+                    <Icon name="duigou-primary" className="w-4 h-3" />
+                  </ShowIf>
+                </div>
+              );
+            })}
+          </div>
           <div
-            className="size-full flex flex-col"
-            aria-haspopup="listbox"
-            aria-expanded={open}
+            className="btn btn-outline w-full mt-6"
+            onClick={() => {
+              setOpen(false);
+            }}
           >
-            <div className="flex-1">
-              <InfiniteList<CurrencyInfo, unknown>
-                data={chainList}
-                hiddenEmpty
-                hiddenFooter
-                fetchMore={async () => {
-                  return [];
-                }}
-                itemContent={(index, item) => {
-                  return (
-                    <div
-                      onClick={() => {
-                        setOpen(false);
-                        onChange?.(item);
-                      }}
-                      className={cn([
-                        "flex justify-center items-center h-8 space-x-2 mb-2 text-text2",
-                        getActived(index, item),
-                      ])}
-                    >
-                      <span className="text-sm font-bold">
-                        {item?.protocolType}
-                      </span>
-                    </div>
-                  );
-                }}
-              />
-            </div>
-            <div className="flex-none">
-              <p className="text-xs font-bold flex items-center mb-2">
-                <Icon name="prompt" className="mr-1 size-0.875" />
-                Draw attention to sth.
-              </p>
-              <div className="text-text2 text-xs font-bold">
-                When you top up this coin, please only top up through the 9M
-                platform support network listed above. Please do not top up
-                through other networks or smart contracts to avoid loss of
-                funds.
-              </div>
-            </div>
+            {t("common.cancel")}
           </div>
         </Drawer>
       </div>
     );
-  },
+  }
 );
 
 SelectChain.displayName = "SelectChain";

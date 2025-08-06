@@ -13,7 +13,8 @@ const nextConfig: NextConfig = {
       ? [
           {
             source: "/app/:path*",
-            destination: "https://www.9mc.one/app/:path*",
+            destination: "https://www.9mc.org/app/:path*",
+            // destination: "https://www.9mc.one/app/:path*",
           },
         ]
       : [];
