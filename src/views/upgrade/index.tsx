@@ -10,9 +10,13 @@ import InfoBox from "./info";
 import AwardDetail from "./award-detail";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
+import { useAssetStore } from "@/store/useAssetStore";
+import BaseImage from "@/components/base-image";
 
 const UpgradeView = () => {
   const t = useTrans();
+  const { coinList } = useAssetStore();
+
   const [tabsValue, setTabsValue] = useState("USDM");
   const [awardInfo, setAwardInfo] = useState<AwardInfoType>();
   const tabs = [
@@ -37,23 +41,35 @@ const UpgradeView = () => {
     );
   }, [tabsValue, trigger]);
 
+  const coinLogo = useCallback(
+    (coin: string) => {
+      return coinList.find((v) => v.currencyCode === coin)?.logo || "";
+    },
+    [coinList]
+  );
+
   useEffect(() => {
     getAwaedInfo();
   }, [getAwaedInfo]);
   return (
     <ViewLayout header={<HeaderWithBack title={t("VIP计划")} algin="center" />}>
       <div className="p-content">
-        <div role="tablist" className="tabs tabs-box mb-4">
+        <div role="tablist" className="tabs mb-4">
           {tabs.map((tab) => (
             <a
               role="tab"
               className={cn(
                 "tab flex-1 leading-[100%]",
-                tab.value === tabsValue && "tab-active"
+                tab.value === tabsValue && "tab-active font-bold"
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}
             >
+              <BaseImage
+                src={coinLogo(tab.label)}
+                className="size-5 rounded-full overflow-hidden mr-2"
+              />
+
               {tab.label}
             </a>
           ))}

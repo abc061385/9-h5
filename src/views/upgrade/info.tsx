@@ -1,6 +1,5 @@
 import { api } from "@/api";
 import { Drawer } from "@/components/drawer";
-import { Icon } from "@/components/icon";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
@@ -39,45 +38,47 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
   }, [info, formatBalance, withdrawConfig, tabsValue]);
 
   return (
-    <div className="bg-bg1 rounded-lg p-3 pb-4 mt-4 font-bold">
-      <div className="rounded-lg py-2.5 text-center bg-white p-3">
-        <h2>{t("币权累计")}</h2>
-        <div className="text-[26px] text-primary my-2">
+    <div>
+      <div className="rounded-lg bg-bg2 p-4 pt-6">
+        <h2 className="text-xs text-text4 text-center">{t("币权累计")}</h2>
+        <div className="text-xl font-medium leading-6 mt-1 text-center">
           {formatBalance(info.totalCurrency || "0", tabsValue)}
           {tabsValue}
         </div>
-        <h3 className="text-xs">{t("昨日币权奖励")}</h3>
-        <div className="mt-2 flex items-center justify-center gap-1">
-          <Icon name="up-arrow-vip" className="w-4.5 h-4.5" />
-          {formatBalance(info.yesterdayCurrencyReward || "0", tabsValue)}
-          {tabsValue}
-        </div>
-        <div className="border-t border-[#F4F1FD] mt-2.5 pt-2.5 flex justify-between">
-          <div className="flex flex-col items-start border-r border-[#F4F1FD] flex-1 text-left pr-2 gap-3">
-            <span className="leading-[120%]">{t("已提取收益")}</span>
-            <span>
+        <div className="border-t border-border2 mt-3 pt-4 flex justify-between">
+          <div className="flex flex-col items-start gap-0.5">
+            <span className="text-xs text-text4">{t("已提取收益")}</span>
+            <span className="text-sm">
               {formatBalance(info.extractedRewards || "0", tabsValue)}
               {tabsValue}
             </span>
           </div>
-          <div className="flex flex-col items-end flex-1 text-right pl-2 gap-3">
-            <span className="leading-[120%]">{t("未提取收益")}</span>{" "}
-            <span>
+          <div className="flex flex-col items-end gap-0.5">
+            <span className="text-xs text-text4">{t("未提取收益")}</span>{" "}
+            <span className="text-sm">
               {formatBalance(info.frozenRewards || "0", tabsValue)}
               {tabsValue}
             </span>
           </div>
         </div>
+        <div className="flex items-center justify-between bg-white rounded-lg h-12 px-4 mt-4 mb-6">
+          <h3 className="text-xs text-text4">{t("昨日币权奖励")}</h3>
+          <div className="text-sm text-primary">
+            {formatBalance(info.yesterdayCurrencyReward || "0", tabsValue)}
+            {tabsValue}
+          </div>
+        </div>
+        <button
+          className="btn btn-primary w-full"
+          onClick={() => {
+            if (!info.frozenRewards) return toast.error(t("没有可领取得奖励"));
+            setOpenWithdraw(true);
+          }}
+        >
+          {t("领取奖励")}
+        </button>
       </div>
-      <button
-        className="btn btn-primary w-full mt-2.5"
-        onClick={() => {
-          if (!info.frozenRewards) return toast.error(t("没有可领取得奖励"));
-          setOpenWithdraw(true);
-        }}
-      >
-        {t("领取奖励")}
-      </button>
+
       <Drawer
         open={openWithdraw}
         title={t("提取收益")}

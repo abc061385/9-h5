@@ -9,6 +9,7 @@ interface AssetState extends BaseState<AssetState> {
   depositCoinItem: CryptoAsset;
   chainList: ChainList[];
   depositChainItem: ChainList;
+  incomeWithdrawAmount: string;
   getBalanceList: () => Promise<void>;
   getCoinList: () => Promise<void>;
   formatBalance: (value: string | number, coin: string) => Promise<void>;
@@ -25,6 +26,7 @@ export const useAssetStore = create<AssetState>()(
           chainList: [],
           depositCoinItem: {},
           depositChainItem: {},
+          incomeWithdrawAmount: "",
           getBalanceList: async () => {
             const { data } = await api.wallet.listUsingPost();
             set(() => ({ balanceList: data?.wallet || [] }));

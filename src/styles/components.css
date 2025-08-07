@@ -140,6 +140,16 @@
       var(--color-base-100)
     );
   }
+
+  .animate-spin1 {
+    animation: spin1 2s linear infinite;
+  }
+
+  @keyframes spin1 {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @utility drawer-bottom {

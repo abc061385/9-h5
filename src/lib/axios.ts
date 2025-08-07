@@ -21,7 +21,7 @@ const createAxiosInstance = (
 ): AxiosInstance => {
   const instance = axios.create({
     baseURL: getIsDev() ? baseURL : process.env.NEXT_PUBLIC_API_URL + baseURL,
-    timeout: 10_000,
+    timeout: 100_000,
     headers: { "Content-Type": "application/json" },
   });
 

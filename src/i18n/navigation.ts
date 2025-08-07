@@ -39,6 +39,7 @@ export const routerMap = {
   assetsWalletDetail: "/wallet/detail/",
   upgrade: "/assets/upgrade/",
   income: "/assets/income/",
+  incomeResult: "/assets/income/results/",
   lang: "/user/lang/",
   rule: "/fund/rule/",
   fundBuy: "/fund/buy/",
