@@ -37,15 +37,15 @@ export const SupportedLanguages = [
 ];
 
 export const APILang = {
-  en: "en-US",
-  "zh-Hans": "zh-CN",
-  "zh-Hant": "zh-TW",
-  "it-IT": "it-IT",
-  "ja-JP": "japan",
-  "ko-KR": "korea",
-  "ms-MY": "malayalam",
-  "pt-PT": "pt-PT",
-  "th-TH": "thai",
-  "vi-VN": "vietnamese",
-  "hi-IN": "hindi",
+  en: "en",
+  "zh-Hans": "zh-cn",
+  "zh-Hant": "zh-tw",
+  "it-IT": "it",
+  "ja-JP": "ja",
+  "ko-KR": "ko",
+  "ms-MY": "ms",
+  "pt-PT": "pt",
+  "th-TH": "th",
+  "vi-VN": "vi",
+  "hi-IN": "hi",
 };
