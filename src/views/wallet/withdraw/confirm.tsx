@@ -1,12 +1,39 @@
 "use client";
 
+import { api } from "@/api";
 import BaseImage from "@/components/base-image";
 import CopyText from "@/components/copy-text";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { useFormatBalance } from "@/hooks/useFormatBalance";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useTrans } from "@/hooks/useTrans";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import { useSettingStore } from "@/store/useSettingStore";
+import { useWithdrawalStore } from "@/store/useWithdrawal";
 import { ReactNode, useCallback } from "react";
+import toast from "react-hot-toast";
+
+type ChainEnum = {
+  protocolType: string;
+  minWithdrawal: number;
+  maxWithdrawal: number;
+  withdrawalFeeType: string;
+  withdrawalFeeConfig: number;
+  logo: string;
+};
 
 const WithdrawConfirmView = () => {
+  const t = useTrans();
+  const { push } = useRouter();
+  const { formState, resetFormState } = useWithdrawalStore();
+  const { googleCode, clearGoogleCode } = useSettingStore();
+  const { clearAddressInfo } = useSettingStore();
+
+  const { formatBalance } = useFormatBalance();
+
+  const { trigger } = useRequestMutation(api.wallet.withdrawUsingPost);
+
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
       return (
@@ -18,6 +45,36 @@ const WithdrawConfirmView = () => {
     },
     []
   );
+
+  const clear = useCallback(() => {
+    clearGoogleCode();
+    resetFormState();
+    clearAddressInfo();
+  }, [clearGoogleCode, resetFormState, clearAddressInfo]);
+
+  const confirm = useCallback(() => {
+    const _data = {
+      address: formState.withdrawAddress,
+      amount: Number(formState.withdrawAmount),
+      coinCode: formState.currencyCode,
+      protocol: formState.chainEnum.protocolType,
+      code: Number(googleCode),
+    } as Parameters<typeof trigger>[0];
+
+    if (formState.XRPTag) {
+      _data.memo = formState.XRPTag;
+    }
+    trigger(_data)
+      .then(() => {
+        clear();
+        toast.success(t("withdraw.withdrawSuccess"));
+        push(routerMap.assets);
+      })
+      .catch(() => {
+        clearGoogleCode();
+      });
+  }, [googleCode, formState, trigger, clearGoogleCode, t, clear, push]);
+
   return (
     <ViewLayout
       header={<HeaderWithBack title="Confirm Information" algin="center" />}
@@ -26,19 +83,25 @@ const WithdrawConfirmView = () => {
         <h5 className="text-sm text-text4 mt-2">Withdrawal Currency</h5>
         <BaseImage
           className="size-10 rounded-full overflow-hidden my-4"
-          src="https://imgproxy.fourthwall.com/rEYCFIiLk2SGLTIz1fNLTH5zOY4_M-K0QzKh5Mcs-eo/w:720/sm:1/enc/5B60Lq5u3DeKLeQ8/9nH5KNpahn2M6geF/qal-qQOGMKclF6y4/cirwa8y2MkYeHCRg/7PpwnSJ8bY8jbIJW/oSbql05LkNqofb8S/9DGew1yVDNfbl6b-/KPr4O07xEVA2pq2H/oQXbS1q4iLoe7Fvl/u4ya3YLJCY9rJwVp/BhykAZ0cGk2k5kQA/1XwJnFcVUBdGwW3I/dQZgOwi7-le2x0FP/52_A93KxDK-I_R5S/QNeDimOPK5M"
+          src={(formState?.chainEnum as ChainEnum).logo}
         />
-        <div className="font-bold text-2xl mb-10">10000.00 USDT</div>
-        {fieldEl("Network", "Ethereum(ERC20)")}
+        <div className="font-bold text-2xl mb-10">
+          {formatBalance(formState.withdrawAmount, formState.currencyCode)}{" "}
+          {formState.currencyCode}
+        </div>
+        {fieldEl("Network", formState.chainEnum.protocolType)}
         {fieldEl(
           "Address",
           <div className="flex items-center gap-2">
-            <span>0x0480dsfjofeowfwfwfdssode23</span>
-            <CopyText text="0x0480dsfjofeowfwfwfdssode23" />
+            <span>{formState.withdrawAddress}</span>
+            <CopyText text={formState.withdrawAddress} />
           </div>
         )}
-        {fieldEl("Service Fee", "0.001 USDT")}
-        <button className="btn btn-primary w-full mt-10">
+        {fieldEl(
+          "Service Fee",
+          formState.chainEnum.withdrawalFeeConfig + " USDT"
+        )}
+        <button className="btn btn-primary w-full mt-10" onClick={confirm}>
           Confirm and Submit
         </button>
       </div>

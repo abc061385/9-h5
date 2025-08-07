@@ -22,6 +22,8 @@ export const routerMap = {
   home: "/home/",
   walletDeposit: "/wallet/deposit",
   walletWithdraw: "/wallet/withdraw",
+  walletWithdrawConfirm: "/wallet/withdraw/confirm",
+  walletWithdrawResults: "/wallet/withdraw/results",
   login: "/login",
   register: "/register",
   verification: "/verification",

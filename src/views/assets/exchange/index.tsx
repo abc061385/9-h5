@@ -130,13 +130,23 @@ const AssetsExchangeView = () => {
   }, [setValue, getValues, price, toCoinItem]);
 
   return (
-    <ViewLayout header={<HeaderWithBack title={t("闪兑")} algin="center" />}>
+    <ViewLayout
+      header={
+        <HeaderWithBack
+          title={
+            <div className="flex items-center justify-center w-full relative">
+              <span>{t("闪兑")}</span>
+              <Icon name="history" className="size-11 absolute right-[-30px]" />
+            </div>
+          }
+          algin="center"
+        />
+      }
+    >
       <div className="p-content">
         <form className="grow" autoComplete="off">
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("支付代币")}</legend>
-
-            <label className="input w-full">
+          <fieldset className="fieldset p-0">
+            <label className="input w-full border-none !shadow-none h-[92px] !bg-bg2 rounded-lg px-6">
               <Skeleton isLoading={isLoading}>
                 <span
                   className="text-xs flex items-center gap-1"
@@ -146,23 +156,27 @@ const AssetsExchangeView = () => {
                     <>
                       <BaseImage
                         src={formCoinItem?.logo || "/"}
-                        className="w-5 h-5 rounded-full overflow-hidden"
+                        className="w-8 h-8 rounded-full overflow-hidden mr-2"
                       />
-                      <span className="font-bold">
+                      <span className="text-base">
                         {formCoinItem.currencyCode}
                       </span>
                     </>
                   ) : (
                     t("withdraw.selectCoin")
                   )}
-                  <Icon name="arrow-line-down" />
+                  <Icon
+                    name="right-enter"
+                    className="rotate-90 w-1.5 h-2.5 ml-2"
+                  />
                 </span>
               </Skeleton>
 
               <input
                 type="number"
                 {...register("formCoinValue")}
-                className="grow text-xs text-right"
+                className="grow text-xl font-normal text-right placeholder:text-text1"
+                placeholder="0"
                 onChange={(e) => {
                   if (!formCoinItem?.id || !toCoinItem?.id) return;
                   setValue(
@@ -171,44 +185,20 @@ const AssetsExchangeView = () => {
                   );
                 }}
               />
+              <div className="text-xs text-text4 absolute bottom-4 right-6">
+                {t("余额")}：
+                {balance(
+                  formCoinItem?.currencyCode,
+                  formCoinItem?.decimalPlaces || 2
+                )}
+              </div>
             </label>
 
             <TextError>{errors?.formCoinValue?.message}</TextError>
           </fieldset>
 
-          <div className="flex items-center justify-between text-xs font-medium">
-            <span>
-              {t("余额")}：
-              {balance(
-                formCoinItem?.currencyCode,
-                formCoinItem?.decimalPlaces || 2
-              )}
-            </span>
-            <span
-              className="btn-text text-primary"
-              onClick={() => {
-                if (!formCoinItem?.currencyCode) return;
-                setValue(
-                  "formCoinValue",
-                  balanceList
-                    .find((v) => v.coin === formCoinItem?.currencyCode)
-                    ?.balance?.toString() || ""
-                );
-                setValue(
-                  "toCoinValue",
-                  (
-                    Number(getValues("formCoinValue")) * Number(price)
-                  ).toString()
-                );
-              }}
-            >
-              {t("walletDetail.all")}
-            </span>
-          </div>
-
           <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("接收代币")}</legend>
-            <label className="input w-full">
+            <label className="input w-full border-none !shadow-none h-[92px] !bg-bg2 rounded-lg px-6">
               <Skeleton isLoading={isLoading}>
                 <span
                   className="text-xs flex items-center gap-1"
@@ -218,39 +208,47 @@ const AssetsExchangeView = () => {
                     <>
                       <BaseImage
                         src={toCoinItem?.logo || "/"}
-                        className="w-5 h-5 rounded-full overflow-hidden"
+                        className="w-8 h-8 rounded-full overflow-hidden mr-2"
                       />
-                      <span className="font-bold">
+                      <span className="text-base">
                         {toCoinItem.currencyCode}
                       </span>
                     </>
                   ) : (
                     t("withdraw.selectCoin")
                   )}
-                  <Icon name="arrow-line-down" />
+                  <Icon
+                    name="right-enter"
+                    className="rotate-90 w-1.5 h-2.5 ml-2"
+                  />
                 </span>
               </Skeleton>
               <input
                 type="text"
                 {...register("toCoinValue")}
-                className="grow text-xs text-right"
+                className="grow text-xl font-normal text-right placeholder:text-text1"
+                placeholder="0"
                 readOnly
               />
+              <div className="text-xs text-text4 absolute bottom-4 right-6">
+                {t("余额")}：{" "}
+                {balance(
+                  toCoinItem?.currencyCode,
+                  toCoinItem?.decimalPlaces || 2
+                )}
+              </div>
             </label>
           </fieldset>
 
-          <div className="text-xs font-bold">
-            {t("余额")}：{" "}
-            {balance(toCoinItem?.currencyCode, toCoinItem?.decimalPlaces || 2)}
-          </div>
-
-          <div className="bg-bg1 h-10 px-4 rounded-md flex items-center justify-between text-xs font-bold my-4">
+          <div className="flex items-center justify-between text-xs text-text4 my-6">
             <span>{t("兑换价格")}</span>
-            {formCoinItem?.currencyCode && toCoinItem?.currencyCode && (
+            {formCoinItem?.currencyCode && toCoinItem?.currencyCode ? (
               <span>
                 1 {formCoinItem?.currencyCode} ≈ {price}{" "}
                 {toCoinItem?.currencyCode}
               </span>
+            ) : (
+              "--"
             )}
           </div>
         </form>

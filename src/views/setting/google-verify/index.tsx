@@ -33,6 +33,7 @@ const SettingGoogleVerifyView = () => {
   const { userInfo, fetchUserInfo } = useUserStore();
 
   const [isVerify, setVerify] = useState(true);
+  const [codeValue, setCodeValue] = useState("");
 
   const { trigger, data } = useRequestMutation(
     api.member.generateGoogleSecretUsingPost
@@ -74,6 +75,7 @@ const SettingGoogleVerifyView = () => {
             onSuccess: () => {
               toast.success(t("googleVerify.bindComplete"));
               setValue("code", "");
+              setCodeValue("");
               fetchUserInfo();
             },
             throwOnError: false,
@@ -88,6 +90,7 @@ const SettingGoogleVerifyView = () => {
             onSuccess: () => {
               setField("googleCode", e.code);
               setValue("code", "");
+              setCodeValue("");
               back();
             },
             throwOnError: false,
@@ -101,6 +104,7 @@ const SettingGoogleVerifyView = () => {
           onSuccess: () => {
             setVerify(false);
             setValue("code", "");
+            setCodeValue("");
           },
           throwOnError: false,
         }
@@ -147,8 +151,7 @@ const SettingGoogleVerifyView = () => {
                 {t("googleVerify.step2")}
               </li>
               <li className="step">
-                <span className="step-icon !bg-white !border-2">
-                </span>
+                <span className="step-icon !bg-white !border-2"></span>
                 {t("googleVerify.step3")}
               </li>
             </ul>
@@ -173,11 +176,14 @@ const SettingGoogleVerifyView = () => {
                 {...register("code")}
                 placeholder={t("googleVerify.enterCode")}
                 className="grow text-xs"
+                value={codeValue}
+                onChange={(e) => setCodeValue(e.target.value)}
               />
               <span
                 className="text-sm"
                 onClick={async () => {
                   const text = await navigator.clipboard.readText();
+                  setCodeValue(text);
                   setValue("code", text);
                 }}
               >

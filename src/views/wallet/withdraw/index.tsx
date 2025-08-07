@@ -13,12 +13,11 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
-import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { defaultFormState, useWithdrawalStore } from "@/store/useWithdrawal";
 import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
-import toast from "react-hot-toast";
 import useSchema from "./useSchema";
+import SecurityVerification from "@/components/security-verify";
 
 const WithdrawView = () => {
   const { push } = useRouter();
@@ -29,17 +28,15 @@ const WithdrawView = () => {
   const resetFormState = useWithdrawalStore((s) => s.resetFormState);
 
   const setSettingField = useSettingStore((s) => s.setField);
-  const googleCode = useSettingStore((s) => s.googleCode);
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
-  const gaPreviousPageType = useSettingStore((s) => s.gaPreviousPageType);
   const addressPreviousPageType = useSettingStore(
     (s) => s.addressPreviousPageType
   );
   const addressInfo = useSettingStore((s) => s.addressInfo);
 
   const [openModal, setOpenModal] = useState(false);
-  const { trigger } = useRequestMutation(api.wallet.withdrawUsingPost);
+  const [verifyOpen, setVerifyOpen] = useState(false);
 
   const Schema = useSchema();
 
@@ -83,17 +80,15 @@ const WithdrawView = () => {
   const handleNext = () => {
     setField("formState", getValues());
     setSettingField("gaPreviousPageType", "withdraw");
-    push({
-      pathname: routerMap.settingGoogleVerify,
-    });
+    setVerifyOpen(true);
   };
 
   // INFO: 如果是有谷歌验证码就提示弹窗
-  useEffect(() => {
-    if (gaPreviousPageType === "withdraw" && googleCode && formState) {
-      setOpenModal(true);
-    }
-  }, [googleCode, formState, gaPreviousPageType]);
+  // useEffect(() => {
+  //   if (gaPreviousPageType === "withdraw" && googleCode && formState) {
+  //     // push(routerMap.walletWithdrawConfirm);
+  //   }
+  // }, [googleCode, formState, gaPreviousPageType, push]);
   // INFO: 如果是有地址
   useEffect(() => {
     if (addressPreviousPageType === "withdraw" && addressInfo) {
@@ -107,30 +102,6 @@ const WithdrawView = () => {
     clearAddressInfo();
     reset(defaultFormState);
   }, [clearGoogleCode, resetFormState, clearAddressInfo, reset]);
-
-  const confirm = useCallback(() => {
-    const _data = {
-      address: formState.withdrawAddress,
-      amount: Number(formState.withdrawAmount),
-      coinCode: formState.currencyCode,
-      protocol: formState.chainEnum.protocolType,
-      code: Number(googleCode),
-    } as Parameters<typeof trigger>[0];
-
-    if (formState.XRPTag) {
-      _data.memo = formState.XRPTag;
-    }
-    trigger(_data)
-      .then(() => {
-        clear();
-        setOpenModal(false);
-        toast.success(t("withdraw.withdrawSuccess"));
-      })
-      .catch(() => {
-        clearGoogleCode();
-        setOpenModal(false);
-      });
-  }, [googleCode, formState, trigger, clearGoogleCode, t, clear]);
 
   const handleModalColse = useCallback(() => {
     setOpenModal(false);
@@ -311,6 +282,13 @@ const WithdrawView = () => {
           onConfirm={confirm}
         ></ConfirmModal>
       </div>
+      <SecurityVerification
+        open={verifyOpen}
+        onClick={(e) => {
+          setSettingField("googleCode", e);
+          push(routerMap.walletWithdrawConfirm);
+        }}
+      />
     </ViewLayout>
   );
 };

@@ -53,10 +53,10 @@ export const useWithdrawalStore = create<WithdrawalState>()(
           setField: (key, value) => set({ [key]: value }),
         };
       },
-      { enabled: getIsDev() },
+      { enabled: getIsDev() }
     ),
     {
       name: "withdraw-store",
-    },
-  ),
+    }
+  )
 );
