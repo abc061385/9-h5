@@ -31,6 +31,8 @@
   --color-border1: #cecece;
   --color-border2: #eeeeee;
   --color-assist1: #f2f3f6;
+  --color-assist2: #fe2c55;
+  --color-bg-assist2: rgba(254, 44, 85, 0.1);
 
   /*utils*/
   --spacing-content: 0.875rem 24px;
@@ -69,7 +71,7 @@
 
   /* custom */
   --color-primary: #6e2afe;
-  --color-primary2: #A93AFF;
+  --color-primary2: #a93aff;
   --color-primary-content: var(--color-white);
   --color-secondary: #f2f3f6;
   --color-secondary-content: #323232;

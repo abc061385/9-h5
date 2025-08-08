@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状</title>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Login-out" transform="translate(-175, -338)" fill="#FE2C55" fill-rule="nonzero">
+            <g id="Swap-confirm备份-2" transform="translate(24, 266)">
+                <g id="编组" transform="translate(24, 72)">
+                    <path d="M147,40 C136,40 127,31 127,20 C127,9 136,0 147,0 C158,0 167,9 167,20 C167,31 158,40 147,40 Z M147,35 C155.25,35 162,28.25 162,20 C162,11.75 155.25,4.99999999 147,4.99999999 C138.75,4.99999999 132,11.75 132,20 C132,28.25 138.75,35 147,35 Z M149.5,25 L149.5,30 L144.5,30 L144.5,25 L149.5,25 Z M149.5,9.99999997 L149.5,22.5 L144.5,22.5 L144.5,9.99999997 L149.5,9.99999997 L149.5,9.99999997 Z" id="形状"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
@@ -39,33 +38,33 @@ const UserInfoBox = () => {
   ];
   return (
     <div>
-      <div className="flex items-center justify-between gap-2.5">
-        <BaseImage src="/images/user/head.png" className="w-12 h-12" />
-        <div className="flex-1">
-          <div className="font-bold">
-            {userInfo?.emailAccount ||
-              userInfo?.bindEmail ||
-              userInfo?.tel ||
-              "--"}
-          </div>
-          <div className="badge badge-soft badge-primary rounded-md text-xs font-bold px-2">
-            {userInfo.invitationCode || "-–"}
-            <CopyText text={userInfo.invitationCode || ""} />
-          </div>
+      <div className="flex flex-col items-center">
+        <Icon name="user-head" className="w-16 h-16" />
+        <div className="font-bold text-xl mt-4 mb-2">
+          {userInfo?.emailAccount ||
+            userInfo?.bindEmail ||
+            userInfo?.tel ||
+            "--"}
         </div>
-        {/* <Icon name={"right-arrow-user"} /> */}
+        <div className="flex justify-center text-sm gap-2 text-center">
+          {t("invite.inviteCode")}：{userInfo.invitationCode || "-–"}
+          <CopyText
+            text={userInfo.invitationCode || ""}
+            className="mt-0.5 size-3.5"
+          />
+        </div>
       </div>
-      <div className="bg-secondary py-6 px-4 rounded-md mt-5 flex">
+      <div className="mt-8 grid grid-cols-2 gap-2">
         {cards.map((item, index) => (
           <div
             key={index}
-            className="flex flex-1 gap-1.5 font-bold items-center"
+            className="flex items-center gap-4 bg-bg2 p-4 pr-2 rounded-lg"
             onClick={() => push(item.path)}
           >
-            <Icon name={item.icon} className="w-6 h-6" />
+            <Icon name={item.icon} className="size-7.5" />
             <div>
-              <div>{item.title}</div>
-              <p className="text-text2 text-xs mt-0.5">{item.desc}</p>
+              <div className="font-medium text-sm leading-6">{item.title}</div>
+              <p className="text-text4 text-xs mt-1 leading-3">{item.desc}</p>
             </div>
           </div>
         ))}

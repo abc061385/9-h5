@@ -17,9 +17,9 @@ const PromoteBox = () => {
 
   if (userInfo.vipLevel === 9 && userInfo.star === 3) return null;
   return (
-    <div className="mt-7">
+    <div className="mt-6 border-b border-border2 pb-6">
       <div className="flex flex-wrap items-center gap-1.5">
-        <div className="font-bold text-nowrap flex items-center">
+        <div className="font-medium leading-6 flex items-center">
           <span className="mr-1">
             {t("晋升")} VIP{nextLevelInfo?.vipLevel || "--"}
           </span>
@@ -40,11 +40,11 @@ const PromoteBox = () => {
       </div>
       <div className="flex items-center gap-1">
         <progress
-          className="progress progress-primary my-3"
+          className="progress progress-gradient w-full h-1.5 rounded-sm bg-border2"
           value={userInfo.totalTeamInvestment}
           max={nextLevelInfo.teamInvestmentTotal}
         ></progress>
-        <div className="text-[#E4E0ED] text-sm font-[ysbth] flex">
+        <div className="text-sm font-bold flex">
           <span className="mr-1">VIP{nextLevelInfo.vipLevel}</span>
           <StarIcon
             star={(userInfo.star || 0) + 1}
@@ -53,19 +53,17 @@ const PromoteBox = () => {
           />
         </div>
       </div>
-      <div className="font-[510] text-xs text-text2">
-        <span>
-          {t("还差")}{" "}
-          {(nextLevelInfo.teamInvestmentTotal || 0) -
-            (userInfo.totalTeamInvestment || 0) >
-          0
-            ? formatThousand(
-                (nextLevelInfo.teamInvestmentTotal || 0) -
-                  (userInfo.totalTeamInvestment || 0)
-              )
-            : 0}{" "}
-          USDT
-        </span>
+      <div className="text-sm text-primary">
+        <span className="text-text1 mr-2">{t("还差")}</span>
+        {(nextLevelInfo.teamInvestmentTotal || 0) -
+          (userInfo.totalTeamInvestment || 0) >
+        0
+          ? formatThousand(
+              (nextLevelInfo.teamInvestmentTotal || 0) -
+                (userInfo.totalTeamInvestment || 0)
+            )
+          : 0}{" "}
+        USDT
         {nextLevelInfo.teamVipCount ? "," : null}
         {nextLevelInfo.teamVipCount ? (
           <span>

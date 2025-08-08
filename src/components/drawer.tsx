@@ -53,7 +53,9 @@ export const Drawer: FC<IProps> = ({
           {title ? (
             <p className="text-center text-lg font-bold mb-4">{title}</p>
           ) : null}
-          <div className="grow">{children}</div>
+          <div className="grow overflow-hidden overflow-y-scroll no-scrollbar">
+            {children}
+          </div>
         </div>
       </div>
     </div>

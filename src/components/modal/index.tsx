@@ -39,7 +39,7 @@ export const Modal: React.FC<IModalProps> = ({
             {title && (
               <div
                 className={cn(
-                  "font-bold text-center text-base text-primary",
+                  "font-bold text-center text-lg",
                   titleClassName
                 )}
               >

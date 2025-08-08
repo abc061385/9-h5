@@ -21,22 +21,26 @@ const PrivilegeBox = () => {
 
   const nowList = [
     {
+      icon: "icon-jlsx",
       title: t("VIP奖励上限"),
       desc: t("VIP奖励上限p", {
         n: currentLevelInfo?.maxProfitMultiplier || "--",
       }),
     },
     {
+      icon: "icon-jl",
       title: t("VIP奖励"),
       desc: t("VIP奖励p", {
         n: currentLevelInfo?.teamInvestmentReward || "--",
       }),
     },
     {
+      icon: "icon-ai",
       title: t("AI助手权限"),
       desc: t("AI助手权限p", { n: currentLevelInfo?.aiQueryCount || "0" }),
     },
     {
+      icon: "",
       title: t("币权奖励"),
       desc: t("币权奖励p", { n: currentStartConfig?.coefficient || "--" }),
       judgeShow: true,
@@ -48,19 +52,19 @@ const PrivilegeBox = () => {
       desc: t("VIP奖励上限p", {
         n: nextLevelInfo?.maxProfitMultiplier || "--",
       }),
-      icon: "jlsx",
+      icon: "icon-jlsx",
       showLevel: 0,
     },
     {
       title: t("VIP奖励"),
       desc: t("VIP奖励p", { n: nextLevelInfo?.teamInvestmentReward || "--" }),
-      icon: "vipjl",
+      icon: "icon-jl",
       showLevel: 0,
     },
     {
       title: t("AI助手权限"),
       desc: t("AI助手权限p", { n: nextLevelInfo?.aiQueryCount || "0" }),
-      icon: "aizsqx",
+      icon: "icon-ai",
       showLevel: 0,
     },
     {
@@ -71,15 +75,15 @@ const PrivilegeBox = () => {
     },
   ];
   return (
-    <div className="mt-5">
-      <h2 className="font-bold mb-2">{t("当前特权")}</h2>
+    <div className="mt-6">
+      <h2 className="font-medium">{t("当前特权")}</h2>
       {userInfo.vipLevel && userInfo.vipLevel > 0 ? (
         nowList.map((v, i) => {
           return (
             <div
               key={i}
               className={cn(
-                "bg-bg1 rounded-md mb-2 px-2 py-3 font-bold",
+                "flex gap-4 mt-6",
                 v.judgeShow
                   ? userInfo.vipLevel === 9 && (userInfo?.star || 0) > 0
                     ? ""
@@ -87,28 +91,35 @@ const PrivilegeBox = () => {
                   : ""
               )}
             >
-              <h3 className="text-primary mb-2">{v.title}</h3>
-              <p className="font-[510] text-xs text-text2 leading-[120%]">
-                {v.desc}
-              </p>
+              <BaseImage
+                src={`/images/vip/${v.icon}.svg`}
+                className="size-6 mt-1"
+              />
+              <div className="flex-1">
+                <h3 className="text-sm font-medium mb-1">{v.title}</h3>
+                <p className="text-xs text-text4 leading-4">{v.desc}</p>
+              </div>
             </div>
           );
         })
       ) : (
-        <div
-          key={"di"}
-          className="bg-bg1 rounded-md mb-2 px-2 py-3 font-bold"
-        >
-          <h3 className="text-primary mb-2">{t("AI助手权限")}</h3>
-          <p className="font-[510] text-xs text-text2 leading-[120%]">
-            {t("AI助手权限p", {
-              n: 20,
-            })}
-          </p>
+        <div key={"di"} className="flex gap-4">
+          <BaseImage src={`/images/vip/icon-ai.svg`} className="size-6 mt-1" />
+          <div className="flex-1">
+            <h3 className="text-sm font-medium mb-1">{t("AI助手权限")}</h3>
+            <p className="text-xs text-text4 leading-4">
+              {t("AI助手权限p", {
+                n: 20,
+              })}
+            </p>
+          </div>
         </div>
       )}
+
+      <div className="divider"></div>
+
       {userInfo.vipLevel === 9 && userInfo.star === 3 ? (
-        <div className="text-center">
+        <div className="flex flex-col items-center">
           <BaseImage
             src="/images/vip/icon-maxStar.png"
             className="w-[140px] h-[140px] mx-auto mt-10 mb-4"
@@ -119,26 +130,18 @@ const PrivilegeBox = () => {
         </div>
       ) : (
         <>
-          <h2 className="font-bold mb-5 mt-6 flex gap-1">
-            <BaseImage src={`/images/vip/enjoy_vip.png`} className="w-6 h-6" />
-            {t("尊享特权")}
-          </h2>
+          <h2 className="font-medium text-primary">{t("尊享特权")}</h2>
           {enjoyList.map((v, i) => {
             return (userInfo.vipLevel || 0) >= v.showLevel ? (
-              <div
-                key={i}
-                className="bg-bg1 rounded-md mb-2 px-2 py-3 font-bold"
-              >
-                <h3 className="mb-2 flex gap-1">
-                  <BaseImage
-                    src={`/images/vip/${v.icon}.png`}
-                    className="w-6 h-6"
-                  />
-                  {v.title}
-                </h3>
-                <p className="font-[510] text-xs text-text2 leading-[120%]">
-                  {v.desc}
-                </p>
+              <div key={i} className="flex gap-4 mt-6">
+                <BaseImage
+                  src={`/images/vip/${v.icon}.svg`}
+                  className="size-6 mt-1"
+                />
+                <div className="flex-1">
+                  <h3 className="text-sm font-medium mb-1">{v.title}</h3>
+                  <p className="text-xs text-text4 leading-4">{v.desc}</p>
+                </div>
               </div>
             ) : null;
           })}
