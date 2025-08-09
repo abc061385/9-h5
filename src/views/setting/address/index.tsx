@@ -38,13 +38,6 @@ const SettingAddressView = () => {
     setCurrentList(data as CurrencyInfo[]);
   }, []);
 
-  const getTokenIcon = useCallback(
-    (coin: string) => {
-      return currentList.find((v) => v.currencyCode === coin)?.logo || coin;
-    },
-    [currentList]
-  );
-
   useEffect(() => {
     getAddressList();
     getCurrentList();
@@ -56,7 +49,7 @@ const SettingAddressView = () => {
       return (
         <input
           type="checkbox"
-          className="checkbox checkbox-primary"
+          className="checkbox checkbox-neutral1"
           checked={checked}
           onChange={(e) => {
             const isChecked = e.target.checked;
@@ -81,7 +74,7 @@ const SettingAddressView = () => {
               <span></span>
               {t("address.title")}
               <span
-                className="text-primary text-xs font-bold absolute right-0"
+                className="absolute right-[-20px] font-normal"
                 onClick={() => {
                   setOpenEdit(!openEdit);
                   setDelIds([]);
@@ -97,12 +90,12 @@ const SettingAddressView = () => {
       heightFull
     >
       <div className="p-content h-full flex flex-col justify-between">
-        <div className="flex-1 font-bold overflow-auto">
+        <div className="flex-1 overflow-auto">
           {addressList?.length ? (
             addressList.map((item) => {
               return (
                 <div
-                  className="bg-bg1 px-3.5 py-4 rounded-md mb-4 w-full"
+                  className="bg-bg2 p-4 rounded-lg mb-4 w-full"
                   key={item.id}
                   onClick={() => {
                     if (addressPreviousPageType === "withdraw") {
@@ -111,25 +104,20 @@ const SettingAddressView = () => {
                     }
                   }}
                 >
-                  <label className="flex items-center gap-4">
-                    {openEdit && check(item)}
+                  <label className="flex items-center">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        {item.coin && (
-                          <BaseImage
-                            src={getTokenIcon(item.coin)}
-                            className="w-6 h-6 rounded-full overflow-hidden"
-                          />
-                        )}
-                        <span>{item.coin}</span>
-                        <div className="badge badge-soft badge-primary text-xs rounded-sm">
+                      <div className="font-bold flex justify-between items-center">
+                        <span>
+                          {item.coin}
+                          {" - "}
                           {item.protocol}
-                        </div>
+                        </span>
+                        {openEdit && check(item)}
                       </div>
-                      <p className="text-text2 my-2 pb-2 border-b border-text2 border-dashed wrap-break-word">
+                      <p className="text-text4 text-sm wrap-break-word mt-4 mb-2">
                         {item.addr}
                       </p>
-                      <p className="text-text2 font-medium">
+                      <p className="text-text4 text-sm">
                         {t("address.remark")}:
                       </p>
                     </div>

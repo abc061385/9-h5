@@ -9,16 +9,6 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import Tabs from "@/components/tabs/tabs";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 
-type TokenListType = {
-  id: number;
-  pledgeToken1Logo: string;
-  pledgeToken2Logo: string;
-  pledgeToken1: string;
-  pledgeToken2: string;
-  dailyYield: number;
-  productId: number;
-};
-
 const ListBox = () => {
   const t = useTrans();
   const { push } = useRouter();

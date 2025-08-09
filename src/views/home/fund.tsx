@@ -1,57 +1,129 @@
 "use client";
+import { api } from "@/api";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import Image from "next/image";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import CoinIcon from "../fund/coin-icon";
+import { useCallback, useEffect, useState } from "react";
+import { Icon } from "@/components/icon";
+import BaseImage from "@/components/base-image";
+import toast from "react-hot-toast";
+import { useLocale } from "next-intl";
+import { langType } from "../news";
 
 const FundBox = () => {
   const t = useTrans();
+  const { push } = useRouter();
+  const locale = useLocale();
+  const [pledgeDays] = useState(180);
+  const [newsList, setNewsList] = useState<NewsDataType[]>([]);
 
-  const fundList = [
-    {
-      label: "起投金额",
-      value: t("等值") + " 100usdt",
-    },
-    {
-      label: "收益周期",
-      value: "24h",
-    },
-    {
-      label: "预估日收益率",
-      value: "2.0%～1.0%",
-    },
+  const { data } = useRequestQuery(api.fundProductConfig.pageUsingGet1, {
+    pledgeDays: pledgeDays,
+    pageNo: 1,
+    pageSize: 6,
+    productType: 2,
+    order: "asc",
+  });
+
+  const list: TokenListType[] = data?.data?.list || [];
+
+  const getList = useCallback(async () => {
+    const { data } = await api.cms.pageAnnouncementUsingGet({
+      pageNo: 1,
+      pageSize: 1,
+    });
+    setNewsList(data?.list || []);
+  }, []);
+
+  useEffect(() => {
+    getList();
+  }, [getList]);
+
+  console.log(newsList);
+
+  const hotList = [
+    { label: "Datebase", icon: "database" },
+    { label: "Invite Friends", icon: "invite-friends", path: routerMap.invite },
+    { label: "Ranking", icon: "ranking" },
+    { label: "Challenge", icon: "challenge" },
   ];
 
   return (
     <div>
-      <h2 className="mb-4 font-[860] text-base">
-        {t("9M基金推荐")}
-      </h2>
-      <div className="bg-white rounded-lg p-2 relative">
-        <div className="bg-bg1 rounded-lg p-3.5 text-center">
-          <h3 className="text-primary font-[860] text-base">
-            {t("年/季度/月/周")}
-          </h3>
-          <p className="text-[#61616E] font-[510] text-xs my-2">
-            {t("基金周期")}
-          </p>
-          {fundList.map((item, index) => (
+      <div
+        className="flex items-center justify-between mt-2"
+        onClick={() => push(routerMap.news)}
+      >
+        <Icon name="trumpet" className="size-6 mr-2" />
+        <p className="flex-1 text-left mr-8 truncate text-xs">
+          {newsList?.[0]?.["title" + langType[locale]]}
+        </p>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+      <div className="flex justify-between mt-6">
+        {hotList.map((v, i) => {
+          return (
             <div
-              key={index}
-              className="flex justify-between items-start mb-4 text-sm font-medium last:mb-1"
+              key={i}
+              className="text-center"
+              onClick={() => {
+                if (v.path) return push(v.path);
+                toast.error("Not open yet");
+              }}
             >
-              <span className="text-left">{t(item.label)}</span>
-              <span className="text-right">{item.value}</span>
+              <BaseImage
+                src={`/images/home/${v.icon}.svg`}
+                className="size-14"
+              />
+              <h4 className="text-xs mt-1">{v.label}</h4>
             </div>
-          ))}
-        </div>
-        <button className="btn btn-primary w-full mt-5 mb-4">
-          {t("立即买入")}
-        </button>
-        <div className="text-xs text-text2 font-[510]">
-          {t("基金推荐描述")}
-        </div>
-        <div className="w-14 h-14 absolute right-2 top-[-26px]">
-          <Image src="/images/home/fund_mark.png" alt={""} fill />
-        </div>
+          );
+        })}
+      </div>
+
+      <h2 className="mb-4 font-medium text-base mt-6">{t("9M基金推荐")}</h2>
+      <div className="grid grid-cols-2 gap-2 mt-4">
+        {list.map((item) => (
+          <div
+            key={item.id}
+            className="bg-bg2 rounded-2xl p-4"
+            onClick={() =>
+              push(
+                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+              )
+            }
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-base font-medium">
+                {item.pledgeToken1}/{item.pledgeToken2}
+              </span>
+              <CoinIcon
+                coins={[
+                  { src: item.pledgeToken1Logo },
+                  { src: item.pledgeToken2Logo },
+                ]}
+                size={20}
+                overlap={16}
+                className="pr-2"
+              />
+            </div>
+            <div className="text-text4 text-xs mt-1 flex flex-col">
+              {t("日收益率")}
+              <span className="text-rise text-base font-bold">
+                {" "}
+                ≈ {item.dailyYield}%
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div
+        className="text-sm flex items-center justify-center gap-2 mt-4"
+        onClick={() => push(routerMap.fund)}
+      >
+        {t("common.more")}
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
     </div>
   );

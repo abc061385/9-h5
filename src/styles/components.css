@@ -117,9 +117,18 @@
     background-color: none;
     border-radius: 4px;
   }
-  .checkbox:checked,
-  .checkbox[aria-checked="true"] {
+  .checkbox-neutral:checked,
+  .checkbox-neutral[aria-checked="true"] {
     background: none !important;
+  }
+  .checkbox-neutral1 {
+    color: var(--color-white);
+    background-color: none;
+    border-radius: 4px;
+  }
+  .checkbox-neutral1:checked,
+  .checkbox-neutral1[aria-checked="true"] {
+    background: var(--color-black) !important;
   }
 
   .progress-gradient::-webkit-progress-value {

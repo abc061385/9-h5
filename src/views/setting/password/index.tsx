@@ -55,7 +55,7 @@ const SettingPasswordView = () => {
       <div className="p-content">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
-            <legend className="fieldset-legend">
+            <legend className="fieldset-legend font-medium text-base">
               {t("forgotPassword.newPassword")}
             </legend>
             <InputPassword
@@ -65,8 +65,8 @@ const SettingPasswordView = () => {
               {...register("pswd")}
             />
           </fieldset>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend">
+          <fieldset className="fieldset my-3">
+            <legend className="fieldset-legend font-medium text-base">
               {t("forgotPassword.confirmPassword")}
             </legend>
             <InputPassword
@@ -77,13 +77,15 @@ const SettingPasswordView = () => {
             />
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend flex-col items-start gap-0">
-              <h3>{t("googleVerify.googleAuth")}</h3>
-              <p className="text-xs text-text2">
+            <legend className="fieldset-legend flex-col items-start gap-1">
+              <h3 className="font-medium text-base">
+                {t("googleVerify.googleAuth")}
+              </h3>
+              <p className="text-sm text-text4 font-normal">
                 {t("googleVerify.authFromApp")}
               </p>
             </legend>
-            <label className="input w-full">
+            <label className="input w-full h-12 mt-2">
               <Icon name="google-verify" />
               <input
                 type="code"
@@ -92,7 +94,7 @@ const SettingPasswordView = () => {
                 className="grow"
               />
               <span
-                className="text-primary font-bold placeholder:text-xs"
+                className="text-sm"
                 onClick={async () => {
                   const text = await navigator.clipboard.readText();
                   setValue("code", text);

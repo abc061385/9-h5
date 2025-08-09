@@ -18,6 +18,7 @@ const UserView = () => {
   const [logoutOpen, setLogoutOpen] = useState(false);
   return (
     <ViewLayout
+      heightFull
       header={
         <HeaderWithBack
           title={t("user.title")}

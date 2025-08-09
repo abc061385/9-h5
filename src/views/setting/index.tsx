@@ -18,7 +18,11 @@ const SettingView = () => {
   const list = [
     { label: "修改登录密码", path: routerMap.settingPassword },
     { label: "谷歌身份验证", path: routerMap.settingGoogleVerify },
-    { label: "绑定邮箱", path: routerMap.settingBindEmail },
+    {
+      label: "绑定邮箱",
+      path: routerMap.settingBindEmail,
+      value: "Enhance Security",
+    },
   ];
 
   useEffect(() => {
@@ -32,16 +36,18 @@ const SettingView = () => {
       }
     >
       <div className="p-content">
-        <div className="bg-bg1 rounded-md p-4">
+        <div className="leading-5">
           {list.map((v, i) => {
             return (
               <div
                 key={i}
-                className="flex items-center justify-between font-bold mb-8 last:mb-0"
+                className="flex items-center justify-between py-6 border-b border-border2 last:border-0"
                 onClick={() => v.path && push(v.path)}
               >
-                <span>{v.label}</span>
-                <Icon name="right-arrow-user" className="w-2 h-3" />
+                <span className="flex-1">{v.label}</span>
+
+                <span className="text-text4 text-xs mr-2">{v.value}</span>
+                <Icon name="right-enter" className="w-1.5 h-2.5" />
               </div>
             );
           })}

@@ -11,7 +11,10 @@ import { ShowIf } from "../show-if";
 interface ITokenSelectProps {
   name: string;
   value?: string;
-  onChange?: (event: { target: { name: string; value?: string } }) => void;
+  onChange?: (event: {
+    target: { name: string; value?: string };
+    coin?: CurrencyInfo;
+  }) => void;
   onSelect?: (item: CurrencyInfo) => void;
 }
 export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
@@ -30,6 +33,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
         if (defaultToken) {
           onChange?.({
             target: { name, value: defaultToken.currencyCode },
+            coin: defaultToken,
           });
           onSelect?.(defaultToken);
         }
@@ -42,7 +46,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
 
     return (
       <div>
-        <input type="hidden" name={name} ref={ref} value={value} />
+        <input type="hidden" name={name} ref={ref} value={value || ""} />
         <button
           type="button"
           className="input w-full flex justify-between items-center  h-12"

@@ -138,7 +138,7 @@ const TeamsView = () => {
         </ShowIf>
         <ShowIf condition={Boolean(list?.length)}>
           <button
-            className="btn btn-primary fixed bottom-20 z-20"
+            className="btn btn-primary absolute bottom-10 z-20"
             style={{ width: "calc(100% - 48px)" }}
             onClick={() => push(routerMap.teamsNext)}
           >

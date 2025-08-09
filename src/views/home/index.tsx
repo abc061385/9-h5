@@ -2,8 +2,7 @@
 
 import ViewLayout from "@/components/layout";
 import BannerBox from "./banner";
-import CardsBox from "./cards";
-import ChartBox from "./chart";
+// import CardsBox from "./cards";
 import FundBox from "./fund";
 import HomeHeaderBox from "./header";
 
@@ -12,14 +11,14 @@ export default function HomeView() {
     <ViewLayout
       dock={true}
       header={<HomeHeaderBox />}
-      className="h-max md-pc:h-full"
+      className="h-max md-pc:h-full pt-15.5 pb-20"
       heightFull
     >
+      <BannerBox />
       <div className="px-content">
-        <BannerBox />
-        <ChartBox />
+        {/* <ChartBox /> */}
         <FundBox />
-        <CardsBox />
+        {/* <CardsBox /> */}
       </div>
     </ViewLayout>
   );

@@ -60,26 +60,24 @@ const SettingGoogleVerifyView = () => {
       <div className="p-content">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("邮箱账号")}</legend>
-            <label className="input w-full">
-              <Icon name="email" />
+            <legend className="fieldset-legend font-medium text-base pb-2">{t("邮箱账号")}</legend>
+            <label className="input w-full h-12">
               <input
                 type="email"
                 {...register("email")}
                 placeholder={t("请输入要绑定的邮箱账号")}
-                className="grow placeholder:text-xs"
+                className="grow placeholder:text-base"
               />
             </label>
             <TextError>{errors?.email?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend">{t("邮箱验证码")}</legend>
-            <label className="input w-full">
+            <label className="input w-full pr-2 h-12 border-border1">
               <input
                 type="text"
                 {...register("emailCode")}
                 placeholder={t("请输入验证码")}
-                className="grow placeholder:text-xs"
+                className="grow placeholder:text-base"
               />
               {codeCountDown ? (
                 <Countdown
@@ -90,7 +88,7 @@ const SettingGoogleVerifyView = () => {
                 />
               ) : (
                 <span
-                  className="text-primary font-bold text-xs"
+                  className="btn btn-neutral font-medium text-sm h-8"
                   onClick={() => {
                     if (isMutating) return;
                     if (getValues("email")) {
@@ -108,30 +106,30 @@ const SettingGoogleVerifyView = () => {
                   {isMutating ? (
                     <span className="loading loading-spinner loading-xs"></span>
                   ) : (
-                    t("获取验证码")
+                    t("发送")
                   )}
                 </span>
               )}
             </label>
             <TextError>{errors?.emailCode?.message}</TextError>
           </fieldset>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend flex-col items-start gap-0">
-              <h3>{t("googleVerify.googleAuth")}</h3>
-              <p className="text-xs text-text2">
+          <fieldset className="fieldset mt-2">
+            <legend className="fieldset-legend flex-col items-start gap-1">
+              <h3 className="font-medium text-base">{t("googleVerify.googleAuth")}</h3>
+              <p className="text-sm text-text4 font-normal">
                 {t("googleVerify.authFromApp")}
               </p>
             </legend>
-            <label className="input w-full">
+            <label className="input w-full h-12 mt-1">
               <Icon name="google-verify" />
               <input
                 type="text"
                 {...register("googleCode")}
                 placeholder={t("googleVerify.enterCode")}
-                className="grow placeholder:text-xs"
+                className="grow placeholder:text-base"
               />
               <span
-                className="text-primary font-bold placeholder:text-xs"
+                className="text-sm"
                 onClick={async () => {
                   const text = await navigator.clipboard.readText();
                   setValue("googleCode", text);

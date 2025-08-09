@@ -313,3 +313,42 @@ type TeamDetailType = {
   totalFaithNodeInvestment: number;
   totalGenesisNodeInvestment: number;
 };
+
+type TokenListType = {
+  id: number;
+  pledgeToken1Logo: string;
+  pledgeToken2Logo: string;
+  pledgeToken1: string;
+  pledgeToken2: string;
+  dailyYield: number;
+  productId: number;
+};
+
+type ActivityList = {
+  activityDate: "2025.08.05-2025.12.28";
+  activityName: string;
+  activityState: number;
+  bannerEn: string;
+  bannerZh: string;
+  content: string;
+  createTime: string;
+  depositAmount: number;
+  display: boolean;
+  id: number;
+  langContent: string;
+  remark: string;
+  updateTime: string;
+};
+
+type NewsDataType = {
+  contentEn: string;
+  contentZhCn: string;
+  contentZhTw: string;
+  createTime: string;
+  id: number;
+  status: number;
+  titleEn: string;
+  titleZhCn: string;
+  titleZhTw: string;
+  [key: string]: string;
+};
