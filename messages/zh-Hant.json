@@ -36,9 +36,7 @@
     "inputConfirmPassword": "請輸入確認密碼",
     "inputInviteCode": "請輸入邀請碼",
     "loginSuccess": "登入成功",
-    "loginSuccessContent": "為了確保您的帳戶安全，您需要綁定 Google 驗證器，才能進行資產提現等相關操作。",
-    "welcome": "歡迎來到9M AI",
-    "email": "邮箱"
+    "loginSuccessContent": "為了確保您的帳戶安全，您需要綁定 Google 驗證器，才能進行資產提現等相關操作。"
   },
   "alerts": {
     "emptyFields": "請輸入帳號名和密碼",
@@ -54,8 +52,7 @@
     "passwordInvalid": "8-30個字符，必須包含大小寫字母和數字",
     "loginSuccess": "登入成功",
     "tip": "提示",
-    "comingSoon": "敬請期待",
-    "checkEmailTip": "電子郵件地址錯誤"
+    "comingSoon": "敬請期待"
   },
   "user": {
     "title": "個人中心",
@@ -203,8 +200,7 @@
     "network": "所屬網絡",
     "selectChain": "請選擇鏈類型",
     "amount": "提幣金額",
-    "minAmountTip": "最小可提金額為{min}",
-    "maxAmountTip": "最大可提金額為 {max}",
+    "minAmountTip": "最小可提金額為",
     "selectCoinFirst": "請先選擇幣種",
     "availableBalance": "可用餘額",
     "useAll": "全部",
@@ -344,7 +340,8 @@
     "draw1": "提幣成功",
     "draw2": "提幣失敗",
     "statusNo": "未知狀態",
-    "copy": "複製成功"
+    "copy": "複製成功",
+    "review": "undefined"
   },
   "9M基金推荐": "9M基金推薦",
   "基金推荐描述": "隨時靈活買入 AI策略即時生效 首次收益將於買入後24小時內自動到賬",
@@ -488,6 +485,7 @@
   "请输入质押额度": "請輸入質押額度",
   "基金型号": "基金型號",
   "处理中": "處理中",
+  ":投资中": "undefined",
   "已到期": "已到期",
   "已赎回": "已贖回",
   "已取消": "已取消",
@@ -518,7 +516,7 @@
   "信仰节点返回": "信仰節點返回",
   "信仰节点收益": "信仰節點收益",
   "冻结金额": "其他資金",
-  "老数据总资产": " 老數據總資產",
+  "老数据总资产": "老數據總資產",
   "解冻": "解凍",
   "账号导入赠送": "帳號導入贈送",
   "充币哈希": "充幣雜湊",
