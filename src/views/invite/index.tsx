@@ -9,6 +9,7 @@ import { routerMap } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const InviteView = () => {
   const t = useTrans();
@@ -68,7 +69,17 @@ const InviteView = () => {
         </div>
         <div className="mt-9 grid grid-cols-2 gap-2">
           <button className="btn bg-white">Save QR Code</button>
-          <button className="btn btn-primary">Copy Address</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `${window.origin}/${locale}${routerMap.register}`
+              );
+              toast.success("复制成功");
+            }}
+          >
+            Copy Address
+          </button>
         </div>
       </div>
     </ViewLayout>

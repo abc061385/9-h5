@@ -284,6 +284,7 @@ const WithdrawView = () => {
       </div>
       <SecurityVerification
         open={verifyOpen}
+        onClose={() => setVerifyOpen(false)}
         onClick={(e) => {
           setSettingField("googleCode", e);
           push(routerMap.walletWithdrawConfirm);

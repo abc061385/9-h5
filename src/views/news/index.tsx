@@ -1,14 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
-import { InfiniteList } from "@/components/infinite-list";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { NewsDataType } from "./type";
 import { useLocale } from "next-intl";
 import { Icon } from "@/components/icon";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 
 export const langType: {
   [key: string]: string;
@@ -23,19 +23,22 @@ const NewsView = () => {
   const t = useTrans();
   const locale = useLocale();
 
-  const [list, setList] = useState<NewsDataType[]>([]);
+  const [pageSize] = useState(15);
 
-  const getList = useCallback(async () => {
-    const { data } = await api.cms.pageAnnouncementUsingGet({
-      pageNo: 1,
-      pageSize: 15,
-    });
-    setList(data?.list || []);
-  }, []);
-
-  useEffect(() => {
-    getList();
-  }, [getList]);
+  const getList = useCallback(
+    async (page: number) => {
+      const { data } = await api.cms.pageAnnouncementUsingGet({
+        pageNo: page,
+        pageSize: pageSize,
+      });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
+    },
+    [pageSize]
+  );
 
   return (
     <>
@@ -45,32 +48,28 @@ const NewsView = () => {
           <Icon name="news-icon" className="w-4 h-4 mr-1" />
           {t("公告")}
         </button>
-        <div className="h-[75vh]">
-          <InfiniteList<NewsDataType, object>
-            data={list}
-            fetchMore={async (_index) => {
-              console.log(_index);
-              return [];
-            }}
-            itemContent={(_, item) => (
-              <div
-                key={item.id}
-                className="pb-4 mt-4 text-sm border-b border-assist1 "
-                onClick={() => {
-                  localStorage.setItem("newsDetail", JSON.stringify(item));
-                  push(routerMap.newsDetail);
-                }}
-              >
-                <div className="flex items-center">
-                  <div className="flex-1 text-xs mb-2">
-                    {item["title" + langType[locale]]}
-                  </div>
+        <InfiniteVirtuosoList<NewsDataType>
+          fetchData={getList}
+          className="!h-[100vh]"
+          columns={1}
+          renderItem={(item: NewsDataType) => (
+            <div
+              key={item.id}
+              className="pb-4 mt-4 text-sm border-b border-assist1 "
+              onClick={() => {
+                localStorage.setItem("newsDetail", JSON.stringify(item));
+                push(routerMap.newsDetail);
+              }}
+            >
+              <div className="flex items-center">
+                <div className="flex-1 text-xs mb-2">
+                  {item["title" + langType[locale]]}
                 </div>
-                <div className="text-text2 text-xs">{item.createTime}</div>
               </div>
-            )}
-          />
-        </div>
+              <div className="text-text2 text-xs">{item.createTime}</div>
+            </div>
+          )}
+        />
       </div>
     </>
   );

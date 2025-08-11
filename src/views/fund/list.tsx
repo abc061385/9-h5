@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import CoinIcon from "./coin-icon";
@@ -8,12 +8,12 @@ import { api } from "@/api";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import Tabs from "@/components/tabs/tabs";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 
 const ListBox = () => {
   const t = useTrans();
   const { push } = useRouter();
   const [tabsValue, setTabsValue] = useState(2);
-  const [list, setList] = useState<TokenListType[]>([]);
   const [pledgeDays, setPledgeDays] = useState(360);
 
   const tabs = [
@@ -33,22 +33,25 @@ const ListBox = () => {
     { label: "7" + t("天"), value: 7 },
   ];
 
-  const getTokenList = useCallback(async () => {
-    const { data } = await api.fundProductConfig.pageUsingGet1({
-      pageNo: 1,
-      pageSize: 100,
-      productType: tabsValue,
-      pledgeDays: pledgeDays,
-    });
-    setList(data.list);
-  }, [tabsValue, pledgeDays]);
-
-  useEffect(() => {
-    getTokenList();
-  }, [getTokenList]);
+  const getTokenList = useCallback(
+    async (page: number) => {
+      const { data } = await api.fundProductConfig.pageUsingGet1({
+        pageNo: page,
+        pageSize: 100,
+        productType: tabsValue,
+        pledgeDays: pledgeDays,
+      });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: data.pageNum < data.pages,
+      };
+    },
+    [tabsValue, pledgeDays]
+  );
 
   return (
-    <div>
+    <>
       <Tabs
         tabs={tabs}
         value={tabsValue}
@@ -71,42 +74,47 @@ const ListBox = () => {
         value={pledgeDays}
         onChange={(value) => setPledgeDays(value as number)}
       />
-      <div className="grid grid-cols-2 gap-2 mt-4">
-        {list.map((item) => (
-          <div
-            key={item.id}
-            className="bg-bg2 rounded-2xl p-4"
-            onClick={() =>
-              push(
-                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
-              )
-            }
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-base font-medium">
-                {item.pledgeToken1}/{item.pledgeToken2}
-              </span>
-              <CoinIcon
-                coins={[
-                  { src: item.pledgeToken1Logo },
-                  { src: item.pledgeToken2Logo },
-                ]}
-                size={20}
-                overlap={16}
-                className="pr-2"
-              />
+      <div className="mt-4 grow flex flex-col">
+        <InfiniteVirtuosoList<TokenListType>
+          fetchData={getTokenList}
+          className="!flex-1"
+          columns={2}
+          renderItem={(item: TokenListType) => (
+            <div
+              key={item.id}
+              className="bg-bg2 rounded-2xl p-4"
+              onClick={() =>
+                push(
+                  `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+                )
+              }
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-base font-medium">
+                  {item.pledgeToken1}/{item.pledgeToken2}
+                </span>
+                <CoinIcon
+                  coins={[
+                    { src: item.pledgeToken1Logo },
+                    { src: item.pledgeToken2Logo },
+                  ]}
+                  size={20}
+                  overlap={16}
+                  className="pr-2"
+                />
+              </div>
+              <div className="text-text4 text-xs mt-1 flex flex-col">
+                {t("日收益率")}
+                <span className="text-rise text-base font-bold">
+                  {" "}
+                  ≈ {item.dailyYield}%
+                </span>
+              </div>
             </div>
-            <div className="text-text4 text-xs mt-1 flex flex-col">
-              {t("日收益率")}
-              <span className="text-rise text-base font-bold">
-                {" "}
-                ≈ {item.dailyYield}%
-              </span>
-            </div>
-          </div>
-        ))}
+          )}
+        />
       </div>
-    </div>
+    </>
   );
 };
 

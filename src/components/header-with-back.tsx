@@ -10,6 +10,7 @@ type IProps = {
   className?: string;
   onChange?: () => void;
   path?: string;
+  onClick?: () => void;
   theme?: "light" | "dark";
 };
 export const HeaderWithBack = ({
@@ -18,6 +19,7 @@ export const HeaderWithBack = ({
   className = "",
   onChange,
   path,
+  onClick,
   theme = "light",
 }: IProps) => {
   const warpClass = cn([
@@ -30,10 +32,8 @@ export const HeaderWithBack = ({
 
   const handleBack = () => {
     onChange?.();
-    if (path) {
-      push(path);
-      return;
-    }
+    if (onClick) return onClick();
+    if (path) return push(path);
     router.back();
   };
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { api } from "@/api";
-import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
+import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
 import { ListNoData } from "@/components/nodata/list-nodata";
@@ -15,10 +15,9 @@ import toast from "react-hot-toast";
 
 const SettingAddressView = () => {
   const t = useTrans();
-  const { push } = useRouter();
+  const { push, back } = useRouter();
   const { setField, addressPreviousPageType } = useSettingStore();
 
-  const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
   const [openEdit, setOpenEdit] = useState(false);
   const [delIds, setDelIds] = useState<number[]>([]);
   const [delConfirmOpen, setDelConfirmOpen] = useState(false);
@@ -33,15 +32,9 @@ const SettingAddressView = () => {
 
   const addressList: AddressList[] = Array.isArray(data?.data) ? data.data : [];
 
-  const getCurrentList = useCallback(async () => {
-    const { data } = await api.currencySettings.pageUsingGet();
-    setCurrentList(data as CurrencyInfo[]);
-  }, []);
-
   useEffect(() => {
     getAddressList();
-    getCurrentList();
-  }, [getAddressList, getCurrentList]);
+  }, [getAddressList]);
 
   const check = useCallback(
     (item: CurrencyInfo) => {
@@ -73,18 +66,21 @@ const SettingAddressView = () => {
             <div className="flex-1 flex justify-center items-center relative">
               <span></span>
               {t("address.title")}
-              <span
-                className="absolute right-[-20px] font-normal"
+              <Icon
+                name="delete"
+                className="w-4 h-4.5 absolute right-[-20px]"
                 onClick={() => {
                   setOpenEdit(!openEdit);
                   setDelIds([]);
                 }}
-              >
-                {t(openEdit ? "common.done" : "address.manage")}
-              </span>
+              />
             </div>
           }
           algin="center"
+          onClick={() => {
+            if (openEdit) return setOpenEdit(false);
+            back();
+          }}
         />
       }
       heightFull
@@ -131,30 +127,12 @@ const SettingAddressView = () => {
         </div>
         <div className="bg-white py-2 pb-0">
           {openEdit ? (
-            <div className="flex justify-between items-center">
-              <label className="label font-bold">
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-primary"
-                  onChange={(e) => {
-                    const isChecked = e.target.checked;
-                    if (isChecked) {
-                      const arr = addressList.map((v) => v.id!);
-                      setDelIds(arr);
-                    } else {
-                      setDelIds(() => []);
-                    }
-                  }}
-                />
-                {t("address.selectAll")}
-              </label>
-              <button
-                className="btn btn-error"
-                onClick={() => setDelConfirmOpen(true)}
-              >
-                {t("address.delete")}
-              </button>
-            </div>
+            <button
+              className="btn btn-neutral w-full"
+              onClick={() => setDelConfirmOpen(true)}
+            >
+              {t("address.delete")}
+            </button>
           ) : (
             <button
               className="btn btn-primary w-full"
@@ -165,8 +143,10 @@ const SettingAddressView = () => {
           )}
         </div>
         <ConfirmModal
-          title={t("alerts.tip")}
-          tips={t("address.confirmDelete")}
+          title={"Delete Address"}
+          tips={
+            "Please confirm the deletion of the selected addresses. They can be re-imported after deletion; however, proceed with caution."
+          }
           open={delConfirmOpen}
           onClose={() => setDelConfirmOpen(false)}
           onConfirm={() => {

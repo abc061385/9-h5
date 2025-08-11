@@ -1,6 +1,5 @@
 import { api } from "@/api";
 import BaseImage from "@/components/base-image";
-import { InfiniteList } from "@/components/infinite-list";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -34,17 +33,11 @@ const AssetsListBox = () => {
     getCurrentList();
   }, [getList, getCurrentList]);
   return (
-    <div className="flex-1 mt-6 flex flex-col">
+    <div className="flex-1 mt-6 flex flex-col h-full overflow-auto no-scrollbar">
       <h2 className="font-medium leading-6 mb-6">资产</h2>
       <div className="flex-1">
-        <InfiniteList<AssetsList, object>
-          data={list}
-          fetchMore={async (_index) => {
-            console.log(_index);
-            return [];
-          }}
-          className="no-scrollbar"
-          itemContent={(_, item) => (
+        {list.map((item) => {
+          return (
             <div
               key={item.id}
               className="flex items-center justify-between mb-6 gap-2"
@@ -58,9 +51,7 @@ const AssetsListBox = () => {
               />
               <div className="flex-1 flex flex-col">
                 <span>{item.coin}</span>
-                <span className="text-xs text-text4">
-                  {item.coin}
-                </span>
+                <span className="text-xs text-text4">{item.coin}</span>
               </div>
               <div className="flex flex-col items-end">
                 <span>
@@ -71,8 +62,8 @@ const AssetsListBox = () => {
                 </span>
               </div>
             </div>
-          )}
-        />
+          );
+        })}
       </div>
     </div>
   );

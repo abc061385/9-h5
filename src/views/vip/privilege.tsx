@@ -40,7 +40,7 @@ const PrivilegeBox = () => {
       desc: t("AI助手权限p", { n: currentLevelInfo?.aiQueryCount || "0" }),
     },
     {
-      icon: "",
+      icon: "bqjl",
       title: t("币权奖励"),
       desc: t("币权奖励p", { n: currentStartConfig?.coefficient || "--" }),
       judgeShow: true,
@@ -122,11 +122,8 @@ const PrivilegeBox = () => {
         <div className="flex flex-col items-center">
           <BaseImage
             src="/images/vip/icon-maxStar.png"
-            className="w-[140px] h-[140px] mx-auto mt-10 mb-4"
+            className="w-[114px] h-[120px] mx-auto mt-10 mb-4"
           />
-          <span className="font-bold text-[#d69603] text-lg">
-            {t("您已达成最高等级")}
-          </span>
         </div>
       ) : (
         <>

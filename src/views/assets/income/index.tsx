@@ -12,10 +12,10 @@ import { useFormatBalance } from "@/hooks/useFormatBalance";
 import toast from "react-hot-toast";
 import { Drawer } from "@/components/drawer";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
-import { ListNoData } from "@/components/nodata/list-nodata";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 
 const IncomeView = () => {
   const t = useTrans();
@@ -27,14 +27,10 @@ const IncomeView = () => {
   const [tabsValue, setTabsValue] = useState("USDM");
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
-  const [list, setList] = useState<IncomeListType[]>();
+  const [pageSize] = useState(20);
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.claimedProfitUsingGet
-  );
-
-  const { trigger: getList } = useRequestMutation(
-    api.fundProductConfig.claimedProfitTransactionUsingGet
   );
 
   const { trigger: postExtract, isMutating } = useRequestMutation(
@@ -44,18 +40,22 @@ const IncomeView = () => {
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
   const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
 
-  const getIncomeList = useCallback(() => {
-    getList(
-      {
-        pageNo: 1,
-        pageSize: 100,
-        outputToken: tabsValue,
-      },
-      {
-        onSuccess: ({ data }) => setList(data?.list || []),
-      }
-    );
-  }, [getList, tabsValue]);
+  const getIncomeList = useCallback(
+    async (page: number) => {
+      const { data } =
+        await api.fundProductConfig.claimedProfitTransactionUsingGet({
+          pageNo: page,
+          pageSize: pageSize,
+          outputToken: tabsValue,
+        });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
+    },
+    [tabsValue, pageSize]
+  );
 
   const getInfo = useCallback(() => {
     trigger(
@@ -69,10 +69,6 @@ const IncomeView = () => {
       }
     );
   }, [trigger, tabsValue]);
-
-  useEffect(() => {
-    getIncomeList();
-  }, [getIncomeList]);
 
   useEffect(() => {
     getInfo();
@@ -105,6 +101,7 @@ const IncomeView = () => {
     <ViewLayout
       heightFull
       header={<HeaderWithBack title={t("投资收益")} algin="center" />}
+      className="flex flex-col"
     >
       <div className="p-content">
         <div role="tablist" className="tabs">
@@ -182,11 +179,14 @@ const IncomeView = () => {
         </div>
 
         <h2 className="font-medium mt-6 mb-4">{t("收益明细")}</h2>
-        {list?.length ? (
-          list.map((v, i) => <CardBox key={i} data={v} symbol={tabsValue} />)
-        ) : (
-          <ListNoData />
-        )}
+        <InfiniteVirtuosoList<IncomeListType>
+          fetchData={getIncomeList}
+          className="h-[100vh]"
+          columns={1}
+          renderItem={(item: IncomeListType) => (
+            <CardBox key={item.id} data={item} symbol={tabsValue} />
+          )}
+        />
       </div>
       <Drawer
         open={openWithdraw}

@@ -3,15 +3,15 @@
 import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
-import { ListNoData } from "@/components/nodata/list-nodata";
-import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { typeMap } from "@/lib/const";
-import { cn } from "@/lib/utils";
+import { useAssetStore } from "@/store/useAssetStore";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface ListType {
   id: number;
@@ -26,32 +26,55 @@ interface ListType {
 const WalletDetailView = () => {
   const t = useTrans();
   const { push } = useRouter();
+  const { formatBalance } = useFormatBalance();
   const searchParams = useSearchParams();
+  const { balanceList } = useAssetStore();
 
-  const [tabsValue, setTabsValue] = useState<string | number>("");
-
-  const { trigger, data } = useRequestMutation(
-    api.wallet.pageDetailListUsingPost
-  );
-
-  const list: ListType[] = data?.data?.list ?? [];
-
-  const tabs = [
-    { label: "全部", value: "" },
-    { label: "充币", value: 4 },
-    { label: "提币", value: 3 },
-  ];
+  const [coin, setCoin] = useState("");
 
   const showDetail = ["RECHARGE", "WITHDRAW"];
 
   useEffect(() => {
-    trigger({
-      pageNo: 1,
-      pageSize: 100,
-      coinCode: searchParams.get("coin") || "",
-      type: tabsValue as number,
-    });
-  }, [trigger, searchParams, tabsValue]);
+    setCoin(searchParams.get("coin") || "");
+  }, [searchParams]);
+
+  const getList = useCallback(
+    async (page: number) => {
+      const { data } = await api.wallet.pageDetailListUsingPost({
+        pageNo: page,
+        pageSize: 20,
+        coinCode: searchParams.get("coin") || "",
+      });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: data.pageNum < data.pages,
+      };
+    },
+    [searchParams]
+  );
+
+  const balance = useCallback(
+    (coin: string | undefined) => {
+      if (!balanceList?.length) return;
+      return formatBalance(
+        balanceList.find((v) => v.coin === coin)?.balance || "--",
+        coin || ""
+      );
+    },
+    [balanceList, formatBalance]
+  );
+
+  const usdtValue = useCallback(
+    (coin: string | undefined) => {
+      if (!balanceList?.length) return;
+      return formatBalance(
+        balanceList.find((v) => v.coin === coin)?.usdtValue || "--",
+        "USDT"
+      );
+    },
+    [balanceList, formatBalance]
+  );
 
   const statusMap: {
     [key: string]: string;
@@ -61,75 +84,54 @@ const WalletDetailView = () => {
     2: t("walletDetail.statusFailed"),
   };
   return (
-    <ViewLayout header={<HeaderWithBack title="USDT" algin="center" />}>
-      <div className="p-content">
-        <div role="tablist" className="tabs tabs-box">
-          {tabs.map((tab) => (
-            <a
-              role="tab"
-              className={cn(
-                "tab flex-1 leading-[100%]",
-                tab.value === tabsValue && "tab-active"
-              )}
-              key={tab.value}
-              onClick={() => setTabsValue(tab.value)}
-            >
-              {tab.label}
-            </a>
-          ))}
-        </div>
-        {list?.length ? (
-          list.map((item) => {
-            return (
-              <div
-                key={item?.id}
-                className="flex justify-between my-4 font-bold items-center pb-2 border-b border-[#ECECEF] border-dashed px-2"
-                onClick={() => {
-                  if (showDetail.indexOf(item.type) !== -1) {
-                    push(`${routerMap.walletTransDetail}?id=${item.id}`);
-                  }
-                }}
-              >
-                <div className="flex flex-col gap-1">
-                  <span
-                    className={cn(
-                      item.inOut === "ADD_BALANCE" ? "text-rise" : "text-fall"
-                    )}
-                  >
-                    {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
-                    {item?.amount}
-                    <span className="text-xs ml-1">{item?.symbol}</span>
-                  </span>
-                  <span className="font-bold text-xs">{item?.createTime}</span>
-                </div>
-                <div className="flex items-center gap-0.5">
-                  <div className="flex flex-col gap-1 font-medium items-end text-xs">
-                    <div
-                      className={cn(
-                        "badge badge-soft rounded-sm py-1 text-xs font-bold",
-                        item.status === 1
-                          ? "badge-success"
-                          : item.status === 0
-                          ? "badge-info"
-                          : item.status === 2
-                          ? "badeg-error"
-                          : ""
-                      )}
-                    >
-                      {statusMap[item?.status]}
-                    </div>
+    <ViewLayout
+      heightFull
+      header={<HeaderWithBack title={coin?.toUpperCase()} algin="center" />}
+    >
+      <div className="p-content flex flex-col h-full">
+        <h2 className="text-[32px] font-bold leading-7.5 mb-2">
+          {balance(coin)}
+        </h2>
+        <p className="text-sm text-text4">≈ {usdtValue(coin)} USDT</p>
+        <div className="mt-4 pt-4 border-t border-border2 grow flex flex-col">
+          <h3 className="font-medium">History</h3>
+          <div className="grow">
+            <InfiniteVirtuosoList<ListType>
+              fetchData={getList}
+              renderItem={(item) => (
+                <div
+                  key={item?.id}
+                  className="border-b border-border2 py-4"
+                  onClick={() => {
+                    if (showDetail.indexOf(item.type) !== -1) {
+                      push(`${routerMap.walletTransDetail}?id=${item.id}`);
+                    }
+                  }}
+                >
+                  <div className="flex items-center justify-between gap-1 text-sm leading-5 mb-1">
                     <span>{t(typeMap[item?.type] || "--")}</span>
+                    <span>
+                      {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
+                      {formatBalance(item?.amount, coin)}
+                      <span className="ml-1">{item?.symbol}</span>
+                    </span>
                   </div>
-                  {showDetail.indexOf(item.type) !== -1 ? (
-                    <Icon name="left-arrow" className="rotate-180" />
-                  ) : null}
+                  <div className="flex items-center justify-between text-xs text-text4">
+                    <div className="flex flex-col gap-1 ">
+                      <span>{statusMap[item?.status]}</span>
+                    </div>
+                    <span>
+                      <span>{item?.createTime}</span>
+                      {showDetail.indexOf(item.type) !== -1 ? (
+                        <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
+                      ) : null}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <ListNoData />
-        )}
+              )}
+            />
+          </div>
+        </div>
       </div>
     </ViewLayout>
   );

@@ -124,6 +124,7 @@
   .checkbox-neutral1 {
     color: var(--color-white);
     background-color: none;
+    border-color: var(--color-black);
     border-radius: 4px;
   }
   .checkbox-neutral1:checked,
@@ -152,6 +153,10 @@
 
   .animate-spin1 {
     animation: spin1 2s linear infinite;
+  }
+
+  .modal-toggle:checked + .modal {
+    background-color: rgba(0, 0, 0, 0.8);
   }
 
   @keyframes spin1 {

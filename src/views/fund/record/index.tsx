@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
-import { ListNoData } from "@/components/nodata/list-nodata";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
 import { routerMap, useRouter } from "@/i18n/navigation";
@@ -12,6 +11,7 @@ import Tabs from "@/components/tabs/tabs";
 import { Icon } from "@/components/icon";
 import CoinIcon from "../coin-icon";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 
 const FundRecordView = () => {
   const t = useTrans();
@@ -19,26 +19,27 @@ const FundRecordView = () => {
   const { formatBalance } = useFormatBalance();
 
   const [tabsValue, setTabsValue] = useState("");
-  const [list, setList] = useState<FundOrder[]>([]);
-
-  const { trigger } = useRequestMutation(
-    api.fundProductConfig.purchaseRecordUsingGet
-  );
+  const [pageSize] = useState(15);
 
   const { trigger: editReinvestment } = useRequestMutation(
     api.fundProductConfig.reinvestmentUsingPost
   );
 
-  useEffect(() => {
-    trigger(
-      { pageNo: 1, pageSize: 100, outputToken: tabsValue },
-      {
-        onSuccess: ({ data }) => {
-          setList(data.list);
-        },
-      }
-    );
-  }, [trigger, tabsValue]);
+  const getList = useCallback(
+    async (page: number) => {
+      const { data } = await api.fundProductConfig.purchaseRecordUsingGet({
+        pageNo: page,
+        pageSize: pageSize,
+        outputToken: tabsValue,
+      });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
+    },
+    [pageSize, tabsValue]
+  );
 
   const tabs = [
     { label: t("walletDetail.all"), value: "" },
@@ -68,8 +69,11 @@ const FundRecordView = () => {
           className="text-base justify-start"
           between={false}
         />
-        {list?.length ? (
-          list.map((item) => (
+        <InfiniteVirtuosoList<FundOrder>
+          fetchData={getList}
+          className="!h-[100vh]"
+          columns={1}
+          renderItem={(item: FundOrder) => (
             <div key={item.id} className="mt-4">
               <div className="bg-bg2 rounded-2xl p-4 pb-5">
                 <h3
@@ -153,10 +157,8 @@ const FundRecordView = () => {
                 </div>
               </div>
             </div>
-          ))
-        ) : (
-          <ListNoData />
-        )}
+          )}
+        />
       </div>
     </>
   );

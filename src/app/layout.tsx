@@ -7,3 +7,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
     </>
   );
 }
+
+export const metadata = {
+  icons: {
+    icon: "/favicon.svg", // 相对 public 路径
+  },
+};

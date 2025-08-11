@@ -27,24 +27,25 @@ export const ConfirmModal: FC<IConfirmModalProps> = ({
   const t = useTrans();
   return (
     <Modal open={open} onClose={onClose} close={false}>
-      {title && <h3 className="font-bold text-center">{title}</h3>}
-      {tips && (
-        <div className="text-text2 font-bold mt-4 leading-[120%]">{tips}</div>
+      {title && (
+        <h3 className="font-bold text-lg leading-6 text-center">{title}</h3>
       )}
-      <div className="flex justify-between gap-4 mt-6">
-        <button
-          className="flex-1 btn"
-          onClick={() => {
-            if (onCancel) return onCancel();
-            onClose?.();
-          }}
-        >
-          {cancelText || t("common.cancel")}
-        </button>
-        <button className="flex-1 btn btn-primary" onClick={onConfirm}>
-          {confirmText || t("common.confirm")}
-        </button>
-      </div>
+      {tips && (
+        <div className="text-assist2 mt-4 text-sm leading-4">{tips}</div>
+      )}
+
+      <button className="flex-1 btn btn-neutral w-full mt-6 mb-2" onClick={onConfirm}>
+        {confirmText || t("common.confirm")}
+      </button>
+      <button
+        className="flex-1 btn btn-outline w-full"
+        onClick={() => {
+          if (onCancel) return onCancel();
+          onClose?.();
+        }}
+      >
+        {cancelText || t("common.cancel")}
+      </button>
     </Modal>
   );
 };

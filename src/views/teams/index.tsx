@@ -7,12 +7,12 @@ import { useTrans } from "@/hooks/useTrans";
 import CardBox from "./card";
 import { DataType } from "./type";
 import { api } from "@/api";
-import { InfiniteList } from "@/components/infinite-list";
 import { useUserStore } from "@/store/useUserStore";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import Image from "next/image";
 import Tabs from "@/components/tabs/tabs";
 import { ShowIf } from "@/components/show-if";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 
 const TeamsView = () => {
   const t = useTrans();
@@ -22,6 +22,7 @@ const TeamsView = () => {
   const [list, setList] = useState<DataType[]>([]);
   const [teamNumbers, setTeamNumbers] = useState(0);
   const [searchValue, setSearchValue] = useState("");
+  const [pageSize] = useState(100);
 
   const tabsList = [
     { label: t("withdraw.useAll"), value: "" },
@@ -30,19 +31,23 @@ const TeamsView = () => {
   ];
 
   const getList = useCallback(
-    async (pageNo = 1) => {
+    async (page = 1) => {
       const { data } = await api.member.memberTeamPageQueryUsingGet1({
-        pageNo,
-        pageSize: 100,
+        pageNo: page,
+        pageSize: pageSize,
         userId: userInfo.id,
         isInvest: tabsValue === "" ? undefined : (tabsValue as number),
         generation: 1,
         tel: searchValue,
       });
-      setList(data?.list || []);
-      return data?.list;
+      const newData = data?.list || [];
+      setList(newData);
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
     },
-    [tabsValue, searchValue, userInfo]
+    [tabsValue, searchValue, userInfo, pageSize]
   );
 
   const getInfo = useCallback(async () => {
@@ -125,14 +130,13 @@ const TeamsView = () => {
           className="text-base justify-start"
         />
         <ShowIf condition={Boolean(list?.length)} elseEl={NoDataEl}>
-          <div className="mt-4.5 flex-1">
-            <InfiniteList<DataType, object>
-              data={list}
-              fetchMore={async () => {
-                return [];
-                // return getList(_index + 1);
-              }}
-              itemContent={(_, item) => <CardBox key={item.id} data={item} />}
+          <div className="mt-4.5 flex-1 pb-10">
+            <InfiniteVirtuosoList<DataType>
+              fetchData={getList}
+              columns={1}
+              renderItem={(item: DataType) => (
+                <CardBox key={item.id} data={item} />
+              )}
             />
           </div>
         </ShowIf>
