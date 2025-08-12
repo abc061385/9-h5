@@ -2,10 +2,8 @@
 import { Link } from "@/i18n/navigation";
 import { MouseEvent } from "react";
 import { LanguageSwitcher } from "../language-switcher";
-import { useLocale } from "next-intl";
 
 export const Navbar = () => {
-  const locale = useLocale();
   const handleItemClick = (e: MouseEvent<HTMLAnchorElement>) => {
     const detail = e.currentTarget.closest("details");
     if (detail) {
@@ -34,7 +32,7 @@ export const Navbar = () => {
         </li>
       </ul>
       <div>
-        <LanguageSwitcher locale={locale} />
+        <LanguageSwitcher />
       </div>
     </div>
   );
