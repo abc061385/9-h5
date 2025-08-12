@@ -1,6 +1,6 @@
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import BaseImage from "@/components/base-image";
 import { useSearchParams } from "next/navigation";
@@ -10,6 +10,7 @@ import { api } from "@/api";
 import { useFundStore } from "@/store/useFundStore";
 import { Icon } from "@/components/icon";
 import ConfirmOrderBox from "./confirm";
+import { useAssetStore } from "@/store/useAssetStore";
 
 const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const t = useTrans();
@@ -17,10 +18,15 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const { push } = useRouter();
   const { setField, pledgeDays } = useFundStore();
   const { formatBalance, getBalance } = useFormatBalance();
+  const { getBalanceList } = useAssetStore();
 
   const [amount, setAmount] = useState<string>("");
   const [isAgreement, setIsAgreement] = useState(false);
   const [buyConfirmOpen, setBuyConfirmOpen] = useState(false);
+
+  useEffect(() => {
+    getBalanceList();
+  }, [getBalanceList]);
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.calMaxProfitUsingPost
@@ -147,7 +153,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         <div className="flex items-center gap-1">
           <BaseImage
             src={info.pledgeToken1Logo}
-            className="w-5 h-5 rounded-full flex-1"
+            className="w-5 h-5 rounded-full flex-1 overflow-hidden"
           />
           <span>{info.pledgeToken1}</span>
         </div>
@@ -171,7 +177,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         <div className="flex items-center gap-1">
           <BaseImage
             src={info.pledgeToken2Logo}
-            className="w-5 h-5 rounded-full flex-1"
+            className="w-5 h-5 rounded-full flex-1 overflow-hidden"
           />
           <span>{info.pledgeToken2}</span>
         </div>
