@@ -53,7 +53,8 @@
     "passwordInvalid": "8~30자, 대소문자 및 숫자를 포함해야 합니다",
     "loginSuccess": "로그인 성공",
     "tip": "알림",
-    "comingSoon": "곧 출시 예정"
+    "comingSoon": "곧 출시 예정",
+    "invalidEmail": "유효하지 않은 이메일 주소"
   },
   "user": {
     "title": "개인 센터",

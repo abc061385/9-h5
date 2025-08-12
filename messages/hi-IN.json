@@ -53,7 +53,8 @@
     "passwordInvalid": "8–30 characters, must include uppercase and lowercase letters and numbers",
     "loginSuccess": "Login successful",
     "tip": "Notice",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "invalidEmail": "अमान्य ईमेल पता"
   },
   "user": {
     "title": "Personal Center",

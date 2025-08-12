@@ -53,7 +53,8 @@
     "passwordInvalid": "8–30 aksara, mesti mengandungi huruf besar, huruf kecil, dan nombor",
     "loginSuccess": "Log masuk berjaya",
     "tip": "Notis",
-    "comingSoon": "Akan Datang"
+    "comingSoon": "Akan Datang",
+    "invalidEmail": "Alamat emel tidak sah"
   },
   "user": {
     "title": "Pusat Peribadi",

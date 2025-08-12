@@ -53,7 +53,8 @@
     "passwordInvalid": "8–30 caratteri, deve includere lettere maiuscole, minuscole e numeri",
     "loginSuccess": "Accesso effettuato con successo",
     "tip": "Avviso",
-    "comingSoon": "Prossimamente"
+    "comingSoon": "Prossimamente",
+    "invalidEmail": "Indirizzo email non valido"
   },
   "user": {
     "title": "Centro personale",

@@ -53,7 +53,8 @@
     "passwordInvalid": "8～30文字、大文字・小文字・数字を含めてください",
     "loginSuccess": "ログイン成功",
     "tip": "お知らせ",
-    "comingSoon": "近日公開予定"
+    "comingSoon": "近日公開予定",
+    "invalidEmail": "無効なメールアドレス"
   },
   "user": {
     "title": "個人センター",

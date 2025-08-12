@@ -53,7 +53,8 @@
     "passwordInvalid": "8–30 ký tự, phải bao gồm chữ hoa, chữ thường và số",
     "loginSuccess": "Đăng nhập thành công",
     "tip": "Thông báo",
-    "comingSoon": "Sắp ra mắt"
+    "comingSoon": "Sắp ra mắt",
+    "invalidEmail": "Địa chỉ email không hợp lệ"
   },
   "user": {
     "title": "Trung tâm cá nhân",
