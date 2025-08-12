@@ -10,7 +10,7 @@ import PrivilegeBox from "./privilege";
 const VipView = () => {
   const t = useTrans();
   return (
-    <ViewLayout header={<HeaderWithBack title={t("VIP权益")} algin="center" />}>
+    <ViewLayout heightFull header={<HeaderWithBack title={t("VIP权益")} algin="center" />}>
       <div className="p-content">
         <VipBannerBox />
         <PromoteBox />
