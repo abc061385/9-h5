@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
@@ -13,14 +13,20 @@ import CoinIcon from "../coin-icon";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
+import { useAssetStore } from "@/store/useAssetStore";
 
 const FundRecordView = () => {
   const t = useTrans();
   const { push } = useRouter();
+  const { getCoinList } = useAssetStore();
   const { formatBalance } = useFormatBalance();
 
   const [tabsValue, setTabsValue] = useState("");
   const [pageSize] = useState(15);
+
+  useEffect(() => {
+    getCoinList();
+  }, [getCoinList]);
 
   const { trigger: editReinvestment } = useRequestMutation(
     api.fundProductConfig.reinvestmentUsingPost

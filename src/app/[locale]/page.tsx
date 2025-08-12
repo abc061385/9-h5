@@ -4,18 +4,18 @@ import getStaticParams from "@/lib/getStaticParams";
 // import { getTranslations } from "next-intl/server";
 import useInitLocale from "@/hooks/useInitLocale";
 import IndexView from "@/views/index";
+import { generateSEO } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: RootProps): Promise<Metadata> {
   const { locale } = await params;
-  console.log(locale);
-  // const t = await getTranslations({ locale, namespace: "" });
-
-  return {
-    title: "首页title",
-  };
+  return generateSEO({
+    title: "",
+    locale,
+  });
 }
+
 export default function IndexPage({ params }: RootProps) {
   useInitLocale(params);
 

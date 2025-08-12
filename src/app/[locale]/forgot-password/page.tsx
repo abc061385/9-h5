@@ -1,12 +1,17 @@
 import useInitLocale from "@/hooks/useInitLocale";
 import getStaticParams from "@/lib/getStaticParams";
+import { generateSEO } from "@/lib/seo";
 import ForgotPasswordView from "@/views/forgot-password/index";
 import { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "重置登录密码",
-  };
+export async function generateMetadata({
+  params,
+}: RootProps): Promise<Metadata> {
+  const { locale } = await params;
+  return generateSEO({
+    title: "forgotPassword.title",
+    locale,
+  });
 }
 
 export default function ForgotPasswordPage({ params }: RootProps) {

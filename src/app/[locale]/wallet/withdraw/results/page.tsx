@@ -1,17 +1,17 @@
 import useInitLocale from "@/hooks/useInitLocale";
 import getStaticParams from "@/lib/getStaticParams";
+import { generateSEO } from "@/lib/seo";
 import WithdrawResultsView from "@/views/wallet/withdraw/results";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params,
 }: RootProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "withdraw" });
-  return {
-    title: t("title"),
-  };
+  return generateSEO({
+    title: "results",
+    locale,
+  });
 }
 
 export default function WithdrawResultsPage({ params }: RootProps) {

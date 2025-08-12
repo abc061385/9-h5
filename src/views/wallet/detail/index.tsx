@@ -28,11 +28,15 @@ const WalletDetailView = () => {
   const { push } = useRouter();
   const { formatBalance } = useFormatBalance();
   const searchParams = useSearchParams();
-  const { balanceList } = useAssetStore();
+  const { balanceList, getBalanceList } = useAssetStore();
 
   const [coin, setCoin] = useState("");
 
   const showDetail = ["RECHARGE", "WITHDRAW"];
+
+  useEffect(() => {
+    getBalanceList();
+  }, [getBalanceList]);
 
   useEffect(() => {
     setCoin(searchParams.get("coin") || "");
@@ -94,7 +98,7 @@ const WalletDetailView = () => {
         </h2>
         <p className="text-sm text-text4">≈ {usdtValue(coin)} USDT</p>
         <div className="mt-4 pt-4 border-t border-border2 grow flex flex-col">
-          <h3 className="font-medium">{t('history')}</h3>
+          <h3 className="font-medium">{t("history")}</h3>
           <div className="grow">
             <InfiniteVirtuosoList<ListType>
               fetchData={getList}
