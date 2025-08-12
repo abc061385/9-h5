@@ -18,7 +18,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const { push } = useRouter();
   const { setField, pledgeDays } = useFundStore();
   const { formatBalance, getBalance } = useFormatBalance();
-  const { getBalanceList } = useAssetStore();
+  const { getBalanceList, getCoinList } = useAssetStore();
 
   const [amount, setAmount] = useState<string>("");
   const [isAgreement, setIsAgreement] = useState(false);
@@ -26,7 +26,8 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
 
   useEffect(() => {
     getBalanceList();
-  }, [getBalanceList]);
+    getCoinList();
+  }, [getBalanceList, getCoinList]);
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.calMaxProfitUsingPost
@@ -185,7 +186,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       </div>
       <div className="flex items-center justify-between mt-2 text-xs">
         <span className="text-text4">
-          {t("余额")}
+          {t("余额")}{" "}
           {formatBalance(getBalance(info.pledgeToken2), info.pledgeToken2)}
           {info.pledgeToken2}
         </span>
@@ -219,7 +220,10 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       <button className="btn btn-primary w-full mt-4" onClick={submit}>
         {t("买入")}
       </button>
-      <ConfirmOrderBox open={buyConfirmOpen} />
+      <ConfirmOrderBox
+        open={buyConfirmOpen}
+        onChange={() => setBuyConfirmOpen(false)}
+      />
     </div>
   );
 };

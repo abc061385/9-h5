@@ -11,9 +11,10 @@ import { api } from "@/api";
 
 interface Iprops {
   open: boolean;
+  onChange: () => void;
 }
 
-const ConfirmOrderBox: FC<Iprops> = ({ open }) => {
+const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
   const t = useTrans();
   const { push } = useRouter();
   const { buyData } = useFundStore();
@@ -26,7 +27,12 @@ const ConfirmOrderBox: FC<Iprops> = ({ open }) => {
   );
 
   return (
-    <Drawer open={open} title={t("confirmOrder")} className="h-auto">
+    <Drawer
+      open={open}
+      title={t("confirmOrder")}
+      className="h-auto"
+      onChange={() => onChange?.()}
+    >
       <h4 className="text-text4 text-sm leading-4">{t("purchase")}</h4>
       <div className="font-bold my-1 leading-5">
         9M AI Stategy Fund - 360Days

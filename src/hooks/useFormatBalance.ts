@@ -10,7 +10,7 @@ export function useFormatBalance() {
       const coinItem = coinList.find(
         (v) => v.currencyCode?.toUpperCase() === coin?.toUpperCase()
       );
-      return format(value, coinItem?.decimalPlaces || 2);
+      return format(value, coinItem?.decimalPlaces || 4);
     },
     [coinList]
   );
