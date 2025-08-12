@@ -27,8 +27,14 @@ type CardType = {
 const HeaderBox = () => {
   const { push } = useRouter();
   const t = useTrans();
-  const { coinList, setField, depositCoinItem, getChainList, chainList } =
-    useAssetStore();
+  const {
+    coinList,
+    setField,
+    depositCoinItem,
+    getChainList,
+    chainList,
+    getCoinList,
+  } = useAssetStore();
 
   const [totalInvestment, setTotalInvestment] = useState<TotalInvestmentType>();
   const [coinListData, setCoinList] = useState<CryptoAsset[]>([]);
@@ -51,9 +57,12 @@ const HeaderBox = () => {
   }, [trigger]);
 
   useEffect(() => {
-    if (!coinList?.length) return;
+    if (!coinList?.length) {
+      getCoinList();
+      return;
+    }
     setCoinList(coinList);
-  }, [coinList, setField]);
+  }, [coinList, setField, getCoinList]);
 
   useEffect(() => {
     setField("depositCoinItem", {});

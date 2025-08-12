@@ -58,7 +58,7 @@ const WalletDetailView = () => {
     (coin: string | undefined) => {
       if (!balanceList?.length) return;
       return formatBalance(
-        balanceList.find((v) => v.coin === coin)?.balance || "--",
+        balanceList.find((v) => v.coin === coin)?.balance || "0",
         coin || ""
       );
     },
@@ -69,7 +69,7 @@ const WalletDetailView = () => {
     (coin: string | undefined) => {
       if (!balanceList?.length) return;
       return formatBalance(
-        balanceList.find((v) => v.coin === coin)?.usdtValue || "--",
+        balanceList.find((v) => v.coin === coin)?.usdtValue || "0",
         "USDT"
       );
     },

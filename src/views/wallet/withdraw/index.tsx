@@ -115,7 +115,7 @@ const WithdrawView = () => {
           title={
             <div className="flex items-center justify-center w-full relative">
               <span>{t("withdraw.title")}</span>
-              <Icon name="history" className="size-11 absolute right-[-30px]" />
+              {/* <Icon name="history" className="size-11 absolute right-[-30px]" /> */}
             </div>
           }
           algin="center"

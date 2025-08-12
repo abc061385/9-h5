@@ -29,7 +29,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
             <a
               key={tab.value}
               className={cn(
-                "tab leading-[20px] rounded-lg h-8 text-text4 font-normal",
+                "tab leading-[20px] rounded-lg h-8 text-text4 font-normal flex-col",
                 type === "border" ? "bg-none px-0" : "bg-bg3 px-3",
                 isActive && type === "box"
                   ? "tab-active bg-black text-white font-bold"
