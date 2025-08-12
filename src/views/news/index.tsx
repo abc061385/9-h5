@@ -9,6 +9,7 @@ import { NewsDataType } from "./type";
 import { useLocale } from "next-intl";
 import { Icon } from "@/components/icon";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
+import ViewLayout from "@/components/layout";
 
 export const langType: {
   [key: string]: string;
@@ -41,37 +42,42 @@ const NewsView = () => {
   );
 
   return (
-    <>
-      <HeaderWithBack title={t("消息中心")} algin="center" />
-      <div className="p-content">
-        <button className="btn border-none bg-bg3 flex justify-between mb-4 text-base font-normal">
-          <Icon name="news-icon" className="w-4 h-4 mr-1" />
-          {t("公告")}
-        </button>
-        <InfiniteVirtuosoList<NewsDataType>
-          fetchData={getList}
-          className="!h-[100vh]"
-          columns={1}
-          renderItem={(item: NewsDataType) => (
-            <div
-              key={item.id}
-              className="pb-4 mt-4 text-sm border-b border-assist1 "
-              onClick={() => {
-                localStorage.setItem("newsDetail", JSON.stringify(item));
-                push(routerMap.newsDetail);
-              }}
-            >
-              <div className="flex items-center">
-                <div className="flex-1 text-xs mb-2">
-                  {item["title" + langType[locale]]}
+    <ViewLayout
+      header={<HeaderWithBack title={t("消息中心")} algin="center" />}
+      heightFull
+    >
+      <div className="p-content h-full flex flex-col">
+        <div>
+          <button className="btn border-none bg-bg3 inline-flex justify-between mb-4 text-base font-normal">
+            <Icon name="news-icon" className="w-4 h-4 mr-1" />
+            {t("公告")}
+          </button>
+        </div>
+        <div className="grow">
+          <InfiniteVirtuosoList<NewsDataType>
+            fetchData={getList}
+            columns={1}
+            renderItem={(item: NewsDataType) => (
+              <div
+                key={item.id}
+                className="pb-4 mt-4 text-sm border-b border-assist1 "
+                onClick={() => {
+                  localStorage.setItem("newsDetail", JSON.stringify(item));
+                  push(routerMap.newsDetail);
+                }}
+              >
+                <div className="flex items-center">
+                  <div className="flex-1 text-xs mb-2">
+                    {item["title" + langType[locale]]}
+                  </div>
                 </div>
+                <div className="text-text2 text-xs">{item.createTime}</div>
               </div>
-              <div className="text-text2 text-xs">{item.createTime}</div>
-            </div>
-          )}
-        />
+            )}
+          />
+        </div>
       </div>
-    </>
+    </ViewLayout>
   );
 };
 

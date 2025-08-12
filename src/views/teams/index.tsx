@@ -108,7 +108,7 @@ const TeamsView = () => {
           <b className="text-3xl">{teamNumbers || 0}</b>
         </div>
       </header>
-      <div className="p-content flex-1 flex flex-col relative pb-12">
+      <div className="p-content flex-1 flex flex-col relative pb-4">
         <label className="input w-full mb-4 !bg-bg3 border-none placeholder:text-text5">
           <Icon name="search" className="w-4 h-4" />
           <input
@@ -130,7 +130,7 @@ const TeamsView = () => {
           className="text-base justify-start"
         />
         <ShowIf condition={Boolean(list?.length)} elseEl={NoDataEl}>
-          <div className="mt-4.5 flex-1 pb-10">
+          <div className="mt-4.5 flex-1 pb-0">
             <InfiniteVirtuosoList<DataType>
               fetchData={getList}
               columns={1}
@@ -142,7 +142,7 @@ const TeamsView = () => {
         </ShowIf>
         <ShowIf condition={Boolean(list?.length)}>
           <button
-            className="btn btn-primary absolute bottom-10 z-20"
+            className="btn btn-primary absolute bottom-4 z-20"
             style={{ width: "calc(100% - 48px)" }}
             onClick={() => push(routerMap.teamsNext)}
           >

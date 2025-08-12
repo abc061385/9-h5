@@ -286,6 +286,7 @@ type AwardInfoType = {
   extractedRewards: number;
   yesterdayVipReward: number;
   yesterdayCurrencyReward: number;
+  chuJuAmount: number;
 };
 
 type AwardListType = {

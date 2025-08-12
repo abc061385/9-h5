@@ -47,6 +47,7 @@ const InviteView = () => {
                 <CopyText
                   text={userInfo.invitationCode || ""}
                   className="mt-0.5"
+                  theme="light"
                 />
               </span>
             </div>
@@ -59,6 +60,7 @@ const InviteView = () => {
                 <CopyText
                   className="mt-0.5"
                   text={`${window.origin}/${locale}${routerMap.register}`}
+                  theme="light"
                 />
               </span>
             </div>

@@ -4,6 +4,8 @@ import StarIcon from "../vip/star-icon";
 import { useUserStore } from "@/store/useUserStore";
 import { FC } from "react";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
+import { Icon } from "@/components/icon";
+import toast from "react-hot-toast";
 
 interface IUpgradeProps {
   tabsValue: string;
@@ -30,10 +32,23 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
             </>
           )}
         </div>
+        <div className="text-sm flex items-center">
+          <span className="text-xs text-text4 mr-2">VIP收益上限</span>
+          <span className="text-primary">
+            {formatBalance(info?.chuJuAmount || 0, tabsValue)} {tabsValue}
+          </span>
+          <Icon
+            name="annotation"
+            className="size-3 ml-2"
+            onClick={() => {
+              toast.error("不包含用户通过购买基金产品所获得的收益");
+            }}
+          />
+        </div>
         <div className="text-sm">
           <span className="text-xs text-text4 mr-2">{t("昨日VIP奖励")}</span>
           <span className="text-primary">
-            {formatBalance(info?.yesterdayVipReward || 0, tabsValue)}
+            {formatBalance(info?.yesterdayVipReward || 0, tabsValue)}{" "}
             {tabsValue}
           </span>
         </div>

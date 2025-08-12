@@ -12,6 +12,7 @@ const FundRuleView = () => {
   const t = useTrans();
   return (
     <ViewLayout
+      heightFull
       header={<HeaderWithBack title={t("基金规则")} algin="center" />}
     >
       <div className="p-content">

@@ -12,6 +12,7 @@ import { Icon } from "@/components/icon";
 import CoinIcon from "../coin-icon";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
+import ViewLayout from "@/components/layout";
 
 const FundRecordView = () => {
   const t = useTrans();
@@ -55,12 +56,16 @@ const FundRecordView = () => {
     t("已取消"),
   ];
   return (
-    <>
-      <HeaderWithBack
-        title={t("购买记录")}
-        algin="center"
-        path={routerMap.fund}
-      />
+    <ViewLayout
+      heightFull
+      header={
+        <HeaderWithBack
+          title={t("购买记录")}
+          algin="center"
+          path={routerMap.fund}
+        />
+      }
+    >
       <div className="p-content">
         <Tabs
           tabs={tabs}
@@ -160,7 +165,7 @@ const FundRecordView = () => {
           )}
         />
       </div>
-    </>
+    </ViewLayout>
   );
 };
 export default FundRecordView;
