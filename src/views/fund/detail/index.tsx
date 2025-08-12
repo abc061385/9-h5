@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Skeleton } from "@/components/skeleton";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import CoinIcon from "../coin-icon";
+import toast from "react-hot-toast";
 
 const FundDetailView = () => {
   const t = useTrans();
@@ -22,7 +23,11 @@ const FundDetailView = () => {
     api.fundProductConfig.purchaseDetailUsingGet
   );
 
-  useEffect(() => {
+  const { trigger: editReinvestment } = useRequestMutation(
+    api.fundProductConfig.reinvestmentUsingPost
+  );
+
+  const getData = useCallback(() => {
     if (!params.get("id") || !params.get("orderType")) return;
     trigger(
       {
@@ -36,6 +41,9 @@ const FundDetailView = () => {
       }
     );
   }, [params, trigger]);
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const cardEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
@@ -117,7 +125,20 @@ const FundDetailView = () => {
               type="checkbox"
               checked={Boolean(data?.isReinvestment)}
               className="toggle toggle-primary checked:border-primary checked:bg-primary checked:text-white"
-              readOnly
+              onChange={(e) => {
+                editReinvestment(
+                  {
+                    id: data?.id,
+                    isReinvestment: e.target.checked,
+                  },
+                  {
+                    onSuccess: () => {
+                      toast.success(t("操作成功"));
+                      getData();
+                    },
+                  }
+                );
+              }}
             />
           </div>
           <p className="text-xs text-text4 mt-4 leading-4">

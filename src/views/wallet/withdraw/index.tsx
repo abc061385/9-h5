@@ -181,7 +181,7 @@ const WithdrawView = () => {
                   className="w-9/10"
                 />
                 <div className="inline-flex items-center h-12">
-                  <Icon name="scan" className="size-11" />
+                  {/* <Icon name="scan" className="size-11" /> */}
                 </div>
               </label>
               <Icon

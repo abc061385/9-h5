@@ -15,6 +15,7 @@ export interface InfiniteVirtuosoListProps<T> {
   className?: string;
   listClassName?: string;
   columns?: number;
+  onReloadReady?: (reload: () => Promise<void>) => void;
 }
 
 export function InfiniteVirtuosoList<T>({
@@ -24,6 +25,7 @@ export function InfiniteVirtuosoList<T>({
   className,
   listClassName,
   columns = 1,
+  onReloadReady,
 }: InfiniteVirtuosoListProps<T>) {
   const [items, setItems] = useState<T[]>([]);
   const [page, setPage] = useState<number>(1);
@@ -66,6 +68,19 @@ export function InfiniteVirtuosoList<T>({
   useEffect(() => {
     loadMore();
   }, [loadMore]);
+
+  const reload = useCallback(async () => {
+    const { data } = await fetchData(1);
+    setItems(data);
+    setPage(1);
+    setHasMore(true);
+  }, [fetchData]);
+
+  useEffect(() => {
+    if (onReloadReady) {
+      onReloadReady(reload);
+    }
+  }, [onReloadReady, reload]);
 
   const LoadingRow = (
     <div style={{ padding: 16, textAlign: "center", color: "#666" }}>

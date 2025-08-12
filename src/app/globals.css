@@ -19,8 +19,8 @@
 
 html {
   height: 100%;
-  /* NOTE: H5 = 16px/(375px/100vw) */
-  font-size: clamp(10px, 4.266666vw, 32.7PX);
+  /* NOTE: H5 = 16px/(390px/100vw) */
+  font-size: clamp(10px, 4.06vw, 32.7PX);
 
   /* NOTE: PC = 16px/(1920px/100vw) */
   /* font-size: clamp(12PX, 0.833333vw, 48px); */

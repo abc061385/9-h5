@@ -32,7 +32,7 @@ const AwardDetail: FC<{ tabsValue: string }> = ({ tabsValue }) => {
       <h2 className="font-medium mb-4">{t("奖励明细")}</h2>
       <InfiniteVirtuosoList<IncomeListType>
         fetchData={getList}
-        className="!h-[100vh]"
+        className="!h-[40vh]"
         columns={1}
         renderItem={(item: IncomeListType) => (
           <div key={item.id} className="border-b border-border2 pb-4 mb-4">

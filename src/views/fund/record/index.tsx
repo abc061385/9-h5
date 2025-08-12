@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
@@ -16,6 +16,7 @@ import ViewLayout from "@/components/layout";
 import { useAssetStore } from "@/store/useAssetStore";
 
 const FundRecordView = () => {
+  const reloadRef = useRef<() => Promise<void>>(null);
   const t = useTrans();
   const { push } = useRouter();
   const { getCoinList } = useAssetStore();
@@ -84,6 +85,9 @@ const FundRecordView = () => {
           fetchData={getList}
           className="!h-[100vh]"
           columns={1}
+          onReloadReady={(fn) => {
+            reloadRef.current = fn;
+          }}
           renderItem={(item: FundOrder) => (
             <div key={item.id} className="mt-4">
               <div className="bg-bg2 rounded-2xl p-4 pb-5">
@@ -158,8 +162,9 @@ const FundRecordView = () => {
                           isReinvestment: e.target.checked,
                         },
                         {
-                          onSuccess: () => {
+                          onSuccess: async () => {
                             toast.success(t("操作成功"));
+                            await reloadRef.current?.();
                           },
                         }
                       );

@@ -32,7 +32,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                 "tab leading-[20px] rounded-lg h-8 text-text4 font-normal flex-col",
                 type === "border" ? "bg-none px-0" : "bg-bg3 px-3",
                 isActive && type === "box"
-                  ? "tab-active bg-black text-white font-bold"
+                  ? "tab-active bg-black text-white font-bold hover:text-white"
                   : "",
                 isActive && type === "border"
                   ? "tab-active text-primary font-bold"

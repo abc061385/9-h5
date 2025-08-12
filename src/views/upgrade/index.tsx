@@ -52,7 +52,7 @@ const UpgradeView = () => {
     getAwaedInfo();
   }, [getAwaedInfo]);
   return (
-    <ViewLayout header={<HeaderWithBack title={t("VIP计划")} algin="center" />}>
+    <ViewLayout heightFull header={<HeaderWithBack title={t("VIP计划")} algin="center" />}>
       <div className="p-content">
         <div role="tablist" className="tabs mb-4">
           {tabs.map((tab) => (
