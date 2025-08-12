@@ -69,8 +69,8 @@ const InviteView = () => {
             <Qrcode value={`${window.origin}/${locale}${routerMap.register}`} />
           </div>
         </div>
-        <div className="mt-9 grid grid-cols-2 gap-2">
-          <button className="btn bg-white">Save QR Code</button>
+        <div className="mt-9 grid grid-cols-1 gap-2">
+          {/* <button className="btn bg-white">Save QR Code</button> */}
           <button
             className="btn btn-primary"
             onClick={() => {

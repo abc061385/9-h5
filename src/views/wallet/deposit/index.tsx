@@ -93,10 +93,10 @@ const DepositView = () => {
             contracts.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-2 mt-14">
-          <button className="btn btn-neutral">Save QR Code</button>
+        <div className="grid grid-cols-1 gap-2 mt-14">
+          {/* <button className="btn btn-neutral">Save QR Code</button> */}
           <button
-            className="btn btn-primary"
+            className="btn btn-primary w-full"
             onClick={() => {
               navigator.clipboard.writeText(address);
               toast.success(t("transactionDetail.copy"));
