@@ -328,7 +328,7 @@ const AssetsExchangeView = () => {
         <Drawer
           open={confirmOpen}
           onChange={setConfirmOpen}
-          title="Confirmation of exchange"
+          title={t("exchangeConfirmation")}
           className="h-auto"
         >
           <ShowIf
@@ -339,9 +339,7 @@ const AssetsExchangeView = () => {
                   className="size-12 animate-spin1 duration-50000"
                   name="confirm-loading"
                 />
-                <p className="text-sm text-text4 mt-6">
-                  Security check in progress..
-                </p>
+                <p className="text-sm text-text4 mt-6">{t("securityCheck")}</p>
               </div>
             }
           >
@@ -371,7 +369,7 @@ const AssetsExchangeView = () => {
               </div>
             </div>
             {fieldEl(
-              "Channel",
+              t("channel"),
               `${formCoinItem?.currencyCode} ${toCoinItem?.currencyCode}`
             )}
             {fieldEl(
@@ -382,7 +380,7 @@ const AssetsExchangeView = () => {
               )}
               ${toCoinItem?.currencyCode}`
             )}
-            {fieldEl("Expected to receive", getValues().toCoinValue)}
+            {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
             <div className="grid grid-flow-row-dense grid-cols-3 gap-2 mt-9">
               <button
                 className="btn btn-outline"

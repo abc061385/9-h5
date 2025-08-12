@@ -33,7 +33,9 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           )}
         </div>
         <div className="text-sm flex items-center">
-          <span className="text-xs text-text4 mr-2">VIP收益上限</span>
+          <span className="text-xs text-text4 mr-2">
+            {t("vipEarningsLimit")}
+          </span>
           <span className="text-primary">
             {formatBalance(info?.chuJuAmount || 0, tabsValue)} {tabsValue}
           </span>
@@ -41,7 +43,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
             name="annotation"
             className="size-3 ml-2"
             onClick={() => {
-              toast.error("不包含用户通过购买基金产品所获得的收益");
+              toast.error(t("excludedEarningsNote"));
             }}
           />
         </div>

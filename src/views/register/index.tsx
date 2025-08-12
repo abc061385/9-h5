@@ -144,7 +144,7 @@ const RegisterView = () => {
         </div>
         <div className="text-center text-sm pb-6">
           <h3 className="text-text4">Already have an Account?</h3>
-          <Link href={routerMap.register}>Back to Login</Link>
+          <Link href={routerMap.login}>Back to Login</Link>
         </div>
         <Geetest
           ref={geetestRef}

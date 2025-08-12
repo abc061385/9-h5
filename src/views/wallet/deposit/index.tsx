@@ -87,10 +87,7 @@ const DepositView = () => {
         <div className="bg-bg2 rounded-lg py-3 px-4 flex gap-2 mt-6">
           <Icon name="warning-black" className="size-4" />
           <p className="flex-1 text-xs text-text4 leading-4">
-            When depositing this currency, please ensure that you use only the
-            networks supported by 9M AI, as listed above. To prevent the
-            potential loss of funds, do not use any other networks or smart
-            contracts.
+            {t("depositWarning")}
           </p>
         </div>
         <div className="grid grid-cols-1 gap-2 mt-14">

@@ -69,7 +69,7 @@ const FundBox = () => {
               className="text-center"
               onClick={() => {
                 if (v.path) return push(v.path);
-                toast.error("Not open yet");
+                toast.error(t("notOpenYet"));
               }}
             >
               <BaseImage

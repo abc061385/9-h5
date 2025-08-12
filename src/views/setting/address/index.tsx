@@ -143,10 +143,8 @@ const SettingAddressView = () => {
           )}
         </div>
         <ConfirmModal
-          title={"Delete Address"}
-          tips={
-            "Please confirm the deletion of the selected addresses. They can be re-imported after deletion; however, proceed with caution."
-          }
+          title={t("deleteAddress")}
+          tips={t("deleteAddressConfirm")}
           open={delConfirmOpen}
           onClose={() => setDelConfirmOpen(false)}
           onConfirm={() => {

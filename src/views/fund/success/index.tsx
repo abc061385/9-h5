@@ -15,7 +15,7 @@ const FundSuccessView = () => {
   const { push } = useRouter();
 
   return (
-    <ViewLayout header={<HeaderWithBack title={"Results"} algin="center" />}>
+    <ViewLayout header={<HeaderWithBack title={t("results")} algin="center" />}>
       <div className="p-content flex flex-col items-center">
         <Icon name="right-result" className="w-16 h-16 mt-16" />
         <p className="text-text4 mt-6 mb-2">{t("购买总额")}</p>
@@ -29,7 +29,7 @@ const FundSuccessView = () => {
             push(routerMap.fundRecord);
           }}
         >
-          View fund details
+          {t("viewFundDetails")}
         </button>
         <button
           className="btn btn-outline w-50"
@@ -38,7 +38,7 @@ const FundSuccessView = () => {
             setField("buyData", undefined);
           }}
         >
-          Return
+          {t("return")}
         </button>
       </div>
     </ViewLayout>

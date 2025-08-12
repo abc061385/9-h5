@@ -77,10 +77,10 @@ const WithdrawConfirmView = () => {
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Confirm Information" algin="center" />}
+      header={<HeaderWithBack title={t("confirmInfo")} algin="center" />}
     >
       <div className="p-content">
-        <h5 className="text-sm text-text4 mt-2">Withdrawal Currency</h5>
+        <h5 className="text-sm text-text4 mt-2">{t("withdrawalCurrency")}</h5>
         <BaseImage
           className="size-10 rounded-full overflow-hidden my-4"
           src={(formState?.chainEnum as ChainEnum).logo}
@@ -102,7 +102,7 @@ const WithdrawConfirmView = () => {
           formState.chainEnum.withdrawalFeeConfig + " USDT"
         )}
         <button className="btn btn-primary w-full mt-10" onClick={confirm}>
-          Confirm and Submit
+          {t("confirmSubmit")}
         </button>
       </div>
     </ViewLayout>

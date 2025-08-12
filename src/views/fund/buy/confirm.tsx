@@ -26,8 +26,8 @@ const ConfirmOrderBox: FC<Iprops> = ({ open }) => {
   );
 
   return (
-    <Drawer open={open} title="Confirm your order" className="h-auto">
-      <h4 className="text-text4 text-sm leading-4">You will purchase</h4>
+    <Drawer open={open} title={t("confirmOrder")} className="h-auto">
+      <h4 className="text-text4 text-sm leading-4">{t("purchase")}</h4>
       <div className="font-bold my-1 leading-5">
         9M AI Stategy Fund - 360Days
       </div>

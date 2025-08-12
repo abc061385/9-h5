@@ -21,7 +21,7 @@ const SettingView = () => {
     {
       label: "绑定邮箱",
       path: routerMap.settingBindEmail,
-      value: "Enhance Security",
+      value: t("enhanceSecurity"),
     },
   ];
 

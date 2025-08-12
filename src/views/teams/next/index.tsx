@@ -64,7 +64,7 @@ const TeamsNextView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="Team Members" algin="center" />}
+      header={<HeaderWithBack title={t("teamMembers")} algin="center" />}
       className="h-max md-pc:h-full overflow-hidden"
     >
       <div className="p-content">
@@ -84,8 +84,11 @@ const TeamsNextView = () => {
 
         <div className="flex items-center text-sm my-4">
           <label className="label">
-            Only show depositors
-            <input type="checkbox" className="checkbox checkbox-neutral w-4 h-4" />
+            {t("onlyShowDepositors")}
+            <input
+              type="checkbox"
+              className="checkbox checkbox-neutral w-4 h-4"
+            />
           </label>
         </div>
 

@@ -9,8 +9,10 @@ import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
 import { useRouter } from "@/i18n/navigation";
 import toast from "react-hot-toast";
+import { useTrans } from "@/hooks/useTrans";
 
 export default function HomeView() {
+  const t = useTrans();
   const { push } = useRouter();
   const moduleList = [
     {
@@ -43,7 +45,7 @@ export default function HomeView() {
                 className="flex items-center justify-between gap-1 rounded-lg border border-border2 p-4"
                 onClick={() => {
                   if (v.path) return push(v.path);
-                  toast.error("Not open yet");
+                  toast.error(t("notOpenYet"));
                 }}
               >
                 <BaseImage

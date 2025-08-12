@@ -67,8 +67,8 @@ const TeamsView = () => {
         className="w-14 h-14 mb-4"
         onClick={() => push(routerMap.invite)}
       />
-      <p>No team members yet.</p>
-      <p>Invite your friends to join your team!</p>
+      <p>{t("noTeamMembers")}</p>
+      <p>{t("inviteFriends")}</p>
       <button
         className="btn btn-primary w-[168px] mt-6"
         onClick={() => push(routerMap.invite)}

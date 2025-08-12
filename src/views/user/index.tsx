@@ -45,9 +45,7 @@ const UserView = () => {
       >
         <div className="text-center pt-6">
           <Icon name="warning-red" className="size-10" />
-          <p className="text-sm text-assist2 mt-4">
-            Are you sure you want to log out of your current account?
-          </p>
+          <p className="text-sm text-assist2 mt-4">{t("logoutConfirm")}</p>
           <button className="btn btn-neutral w-full mt-6 mb-2" onClick={logOut}>
             {t("common.confirm")}
           </button>

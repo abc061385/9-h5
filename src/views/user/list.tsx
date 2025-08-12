@@ -30,7 +30,7 @@ const ListBox = () => {
 
   const menuList: MenuListType[] = [
     {
-      title: "Account Settings",
+      title: t("accountSettings"),
       list: [
         {
           icon: "save",
@@ -40,7 +40,7 @@ const ListBox = () => {
       ],
     },
     {
-      title: "Transaction Settings",
+      title: t("transactionSettings"),
       list: [
         {
           icon: "books",
@@ -101,7 +101,7 @@ const ListBox = () => {
       </div>
       <Drawer
         open={langSelectOpen}
-        title="Select a Language"
+        title={t("selectLanguage")}
         className="h-auto"
         onChange={setLangSelectOpen}
       >

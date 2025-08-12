@@ -99,7 +99,7 @@ const HeaderBox = () => {
 
   return (
     <div className="">
-      <h3 className="text-lg font-bold mb-9.5">My Assets</h3>
+      <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
       <h4 className="text-sm text-text4 mb-1">{t("assets.balance")}</h4>
       <h4 className="text-[28px] font-bold leading-8">
         ${formatBalance(totalAmount, 4)}

@@ -121,11 +121,7 @@ const FundDetailView = () => {
             />
           </div>
           <p className="text-xs text-text4 mt-4 leading-4">
-            The platform&apos;s automatic reinvestment feature makes investing more
-            convenient and flexible. Upon maturity, the platform automatically
-            reinvests your principal. Enabling automatic reinvestment allows
-            your funds to compound over a longer period of time, making your
-            investment more valuable.
+            {t("autoReinvestmentDesc")}
           </p>
         </div>
         <h3 className="font-medium mb-4">{t("收益规则")}</h3>

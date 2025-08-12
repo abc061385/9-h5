@@ -77,11 +77,11 @@ const TeamsDetailView = () => {
 
         <div>
           <h3 className="font-medium mb-4">{t("投资总额")}</h3>
-          {FieldEL("360 Days Fund", info?.totalInvestment360Days || 0)}
-          {FieldEL("180 Days Fund", info?.totalInvestment180Days || 0)}
-          {FieldEL("90 Days Fund", info?.totalInvestment90Days || 0)}
-          {FieldEL("30 Days Fund", info?.totalInvestment30Days || 0)}
-          {FieldEL("7 Days Fund", info?.totalInvestment7Days || 0)}
+          {FieldEL(`360 ${t("daysFund")}`, info?.totalInvestment360Days || 0)}
+          {FieldEL(`180 ${t("daysFund")}`, info?.totalInvestment180Days || 0)}
+          {FieldEL(`90 ${t("daysFund")}`, info?.totalInvestment90Days || 0)}
+          {FieldEL(`30 ${t("daysFund")}`, info?.totalInvestment30Days || 0)}
+          {FieldEL(`7 ${t("daysFund")}`, info?.totalInvestment7Days || 0)}
         </div>
       </div>
     </ViewLayout>
