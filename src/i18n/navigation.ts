@@ -59,4 +59,5 @@ export const routerMap = {
   teamDetail: "/teams/detail/",
   forgotPassword: "/forgot-password",
   aboutUs: "/about-us/",
+  protocol: "/protocol/",
 };

@@ -37,6 +37,7 @@ const LoginView = () => {
     register,
     getValues,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(Schema),
@@ -80,7 +81,7 @@ const LoginView = () => {
               <legend className="fieldset-legend text-base py-0 mb-2">
                 {t("email")}
               </legend>
-              <label className="input w-full">
+              <label className="input w-full h-12">
                 <input
                   type="email"
                   {...register("email")}
@@ -109,10 +110,11 @@ const LoginView = () => {
           </div>
           <button
             type="submit"
-            className="btn btn-primary w-full mt-6 text-lg"
+            className="btn btn-primary w-full mt-6 text-lg h-12"
             onClick={handleSubmit(() => {
               geetestRef.current?.showCaptcha();
             })}
+            disabled={!Boolean(watch("email")) || !Boolean(watch("password"))}
           >
             {t("loginBtn")}
           </button>

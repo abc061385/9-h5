@@ -28,10 +28,10 @@ const PromoteBox = () => {
             level={userInfo.vipLevel || 0}
           />
         </div>
-        <div className="badge badge-soft badge-primary rounded-sm">
+        <div className="text-sm text-primary">
           &gt;={formatThousand(nextLevelInfo.teamInvestmentTotal || 0)}USDT
         </div>
-        <div className="badge badge-soft badge-primary rounded-sm">
+        <div className="text-sm text-primary">
           {t("多少个用户", {
             num: nextLevelInfo.teamVipCount || 0,
             level: "VIP" + userInfo.vipLevel,

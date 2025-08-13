@@ -57,7 +57,6 @@ const SettingGoogleVerifyView = () => {
   const {
     register,
     setValue,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -202,7 +201,7 @@ const SettingGoogleVerifyView = () => {
         </div>
         <div className="grow"></div>
         <button
-          disabled={!getValues("code")}
+          disabled={!Boolean(codeValue)}
           type="submit"
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {

@@ -40,7 +40,6 @@ const FundBox = () => {
     getList();
   }, [getList]);
 
-  console.log(newsList);
 
   const hotList = [
     { label: "Datebase", icon: "database" },

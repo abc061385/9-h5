@@ -15,6 +15,8 @@ import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 import { useUserStore } from "@/store/useUserStore";
 import { encryptPassword } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { Modal } from "@/components/modal";
+import { useEffect, useState } from "react";
 
 type FormData = {
   pswd: string;
@@ -27,6 +29,8 @@ const SettingPasswordView = () => {
   const reg = useRootReg();
   const { userInfo, logOut } = useUserStore();
 
+  const [googleTipsModalOpen, setGoogleTipsModalOpen] = useState(false);
+
   const Schema = z.object({
     pswd: reg.password,
     confirmPswd: reg.password,
@@ -35,6 +39,12 @@ const SettingPasswordView = () => {
 
   const { trigger } = useRequestMutation(api.auth.updatePwdUsingPost);
   const debouncedTrigger = useDebouncedCallback(trigger, 100);
+
+  useEffect(() => {
+    if (userInfo?.googleVerify === 0) {
+      setGoogleTipsModalOpen(true);
+    }
+  }, [userInfo?.googleVerify]);
 
   const {
     register,
@@ -129,6 +139,21 @@ const SettingPasswordView = () => {
         >
           {t("editPassword.complete")}
         </button>
+        <Modal
+          open={googleTipsModalOpen}
+          onClose={() => setGoogleTipsModalOpen(false)}
+        >
+          <div className="text-center pb-5">
+            <Icon name="warning-red1" className="size-11" />
+            <h3 className="mt-6 mb-4 text-lg font-bold">
+              Google Authenticator Not Bound
+            </h3>
+            <p className="text-text4 text-sm">
+              You have not bound Google Authenticator and cannot reset your
+              password.
+            </p>
+          </div>
+        </Modal>
       </div>
     </ViewLayout>
   );

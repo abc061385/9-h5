@@ -12,15 +12,19 @@ import { encryptPassword } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
 import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Geetest, GeetestRef, GeetestValidateRes } from "@/components/geetest";
 import { HeaderWithBack } from "@/components/header-with-back";
+import toast from "react-hot-toast";
 
 const RegisterView = () => {
+  const { push } = useRouter();
   const t = useTrans();
   const router = useRouter();
   const reg = useRootReg();
   const setField = useVerificationStore((s) => s.setField);
+
+  const [isAgreement, setIsAgreement] = useState(false);
 
   const geetestRef = useRef<GeetestRef | null>(null);
   const Schema = z
@@ -119,23 +123,39 @@ const RegisterView = () => {
               <TextError>{errors?.invitationCode?.message}</TextError>
             </fieldset>
             <fieldset className="fieldset text-xs flex mt-4 mb-6">
-              <input
-                type="checkbox"
-                defaultChecked
-                className="checkbox checkbox-primary checkbox-xs mt-0.5"
-              />
-              <div className="text-text4 text-xs">
-                {t("login.agreement")}
-                <a className="text-text1">《{t("login.serviceTerms")}》</a>
-                {t("login.and")}
-                <a className="text-text1">《{t("login.privacyPolicy")}》</a>
-              </div>
+              <label className="label items-start">
+                <input
+                  type="checkbox"
+                  checked={isAgreement}
+                  onChange={(e) => setIsAgreement(e.target.checked)}
+                  className="checkbox checkbox-neutral size-4 mt-0.5"
+                />
+                <div className="text-text4 text-xs flex flex-wrap">
+                  {t("login.agreement")}
+                  <a
+                    className="text-text1"
+                    onClick={() => {
+                      push(`${routerMap.protocol}?type=3`);
+                    }}
+                  >
+                    《{t("login.serviceTerms")}》
+                  </a>
+                  {t("login.and")}
+                  <a
+                    className="text-text1"
+                    onClick={() => push(`${routerMap.protocol}?type=1`)}
+                  >
+                    《{t("login.privacyPolicy")}》
+                  </a>
+                </div>
+              </label>
             </fieldset>
           </form>
           <button
             type="submit"
             className="btn btn-primary w-full"
             onClick={handleSubmit(() => {
+              if (!isAgreement) return toast.error(t("请先同意协议"));
               geetestRef.current?.showCaptcha();
             })}
           >

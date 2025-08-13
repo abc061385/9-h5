@@ -370,7 +370,7 @@ const AssetsExchangeView = () => {
             </div>
             {fieldEl(
               t("channel"),
-              `${formCoinItem?.currencyCode} ${toCoinItem?.currencyCode}`
+              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`
             )}
             {fieldEl(
               t("兑换价格"),
