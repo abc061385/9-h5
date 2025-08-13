@@ -646,5 +646,8 @@
   "deleteAddress": "アドレス削除",
   "deleteAddressConfirm": "選択したアドレスの削除を確認してください。削除後も再インポート可能ですが、慎重に操作してください。",
   "vipEarningsLimit": "VIP収益上限",
-  "excludedEarningsNote": "ユーザーがファンド商品購入で得た収益は含まれません"
+  "excludedEarningsNote": "ユーザーがファンド商品購入で得た収益は含まれません",
+  "verificationCodeMustBe6Digits": "確認コードは6桁の数字でなければなりません",
+  "resend": "再送信",
+  "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。"
 }

@@ -1,15 +1,21 @@
+import { useTrans } from "@/hooks/useTrans";
 import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import VerificationInput, {
   VerificationInputProps,
 } from "react-verification-input";
 
 type IProps = {
   reSendcode?: () => Promise<void>;
+  onComplete?: (code: string) => Promise<void>;
 };
 export const Verification: FC<VerificationInputProps & IProps> = ({
   reSendcode,
+  onComplete,
   ...props
 }) => {
+  const t = useTrans();
+
   const [seconds, setSeconds] = useState(0); // 倒计时秒数
   const [text, setText] = useState("");
   const sendOtp = () => {
@@ -31,7 +37,15 @@ export const Verification: FC<VerificationInputProps & IProps> = ({
     }
     try {
       const clip = await navigator.clipboard.readText();
+
+      // 增加6位数字验证逻辑
+      if (!/^\d{6}$/.test(clip)) {
+        toast.error(t("verificationCodeMustBe6Digits"));
+        return;
+      }
+
       setText(clip);
+      onComplete?.(clip);
     } catch {}
   };
   const sendCode = async () => {
@@ -52,6 +66,7 @@ export const Verification: FC<VerificationInputProps & IProps> = ({
         value={text}
         onChange={setText}
         placeholder=" "
+        onComplete={onComplete}
         {...props}
       />
       <div className="flex justify-between items-center  mt-2">
@@ -62,13 +77,13 @@ export const Verification: FC<VerificationInputProps & IProps> = ({
           }}
           disabled={seconds > 0}
         >
-          重发
+          {t('resend')}
           <span className="text-primary text-xs font-medium">
             {seconds ? `${seconds}s` : null}
           </span>
         </button>
-        <button disabled={seconds < 1} onClick={handlePaste}>
-          Paste
+        <button onClick={handlePaste}>
+          {t("googleVerify.paste")}
         </button>
       </div>
     </div>

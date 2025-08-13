@@ -646,5 +646,8 @@
   "deleteAddress": "Excluir Endereço",
   "deleteAddressConfirm": "Confirme a exclusão dos endereços selecionados. Eles podem ser reimportados após a exclusão; no entanto, prossiga com cautela.",
   "vipEarningsLimit": "Limite de Ganhos VIP",
-  "excludedEarningsNote": "Não inclui ganhos obtidos pelos usuários através da compra de produtos de fundos"
+  "excludedEarningsNote": "Não inclui ganhos obtidos pelos usuários através da compra de produtos de fundos",
+  "verificationCodeMustBe6Digits": "O código de verificação deve ter 6 dígitos",
+  "resend": "Reenviar",
+  "googleAuthenticatorValidTime": "A chave do Google Authenticator é válida por 30 segundos. Por favor, insira a chave correta dentro do período válido."
 }

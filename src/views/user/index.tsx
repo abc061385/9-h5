@@ -9,11 +9,19 @@ import { routerMap } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { Modal } from "@/components/modal";
 import { Icon } from "@/components/icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAssetStore } from "@/store/useAssetStore";
 
 const UserView = () => {
   const t = useTrans();
   const logOut = useUserStore((s) => s.logOut);
+
+  const { getBalanceList } = useAssetStore();
+
+  useEffect(() => {
+    // 触发一下登录状态
+    getBalanceList();
+  }, [getBalanceList]);
 
   const [logoutOpen, setLogoutOpen] = useState(false);
   return (

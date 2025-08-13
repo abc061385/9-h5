@@ -646,5 +646,8 @@
   "deleteAddress": "删除地址",
   "deleteAddressConfirm": "请确认删除所选地址。删除后可以重新导入，但请谨慎操作。",
   "vipEarningsLimit": "VIP收益上限",
-  "excludedEarningsNote": "不包含用户通过购买基金产品所获得的收益"
+  "excludedEarningsNote": "不包含用户通过购买基金产品所获得的收益",
+  "verificationCodeMustBe6Digits": "验证码必须为6位数字",
+  "resend": "重新发送",
+  "googleAuthenticatorValidTime": "Google身份验证器的密钥有效期为30秒。请在有效期内输入正确的密钥。"
 }

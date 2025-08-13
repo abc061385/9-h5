@@ -161,7 +161,7 @@ const IncomeView = () => {
           </div>
           <div className="flex items-center justify-between bg-white rounded-lg h-12 px-4">
             <span className="text-xs text-text4">{t("昨日投资收益")}</span>
-            <span className="text-primary text-sm">
+            <span className="text-primary text-sm text-right">
               {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
               {tabsValue}
             </span>

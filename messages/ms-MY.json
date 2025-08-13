@@ -646,5 +646,8 @@
   "deleteAddress": "Padam Alamat",
   "deleteAddressConfirm": "Sahkan pemadaman alamat yang dipilih. Ia boleh diimport semula selepas pemadaman; namun, teruskan dengan berhati-hati.",
   "vipEarningsLimit": "Had Pendapatan VIP",
-  "excludedEarningsNote": "Tidak termasuk pendapatan yang diperoleh pengguna melalui pembelian produk dana"
+  "excludedEarningsNote": "Tidak termasuk pendapatan yang diperoleh pengguna melalui pembelian produk dana",
+  "verificationCodeMustBe6Digits": "Kod pengesahan mestilah 6 digit",
+  "resend": "Kemaskini",
+  "googleAuthenticatorValidTime": "Kunci Google Authenticator adalah sah selama 30 detik. Sila masukkan kunci yang betul dalam masa yang sah."
 }

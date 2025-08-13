@@ -646,5 +646,8 @@
   "deleteAddress": "पता हटाएं",
   "deleteAddressConfirm": "कृपया चयनित पतों को हटाने की पुष्टि करें। हटाने के बाद उन्हें फिर से आयात किया जा सकता है; हालांकि, सावधानी से आगे बढ़ें।",
   "vipEarningsLimit": "VIP आय सीमा",
-  "excludedEarningsNote": "उपयोगकर्ताओं द्वारा फंड उत्पाद खरीदने से प्राप्त आय शामिल नहीं है"
+  "excludedEarningsNote": "उपयोगकर्ताओं द्वारा फंड उत्पाद खरीदने से प्राप्त आय शामिल नहीं है",
+  "verificationCodeMustBe6Digits": "सत्यापन कोड 6 अंकों का होना चाहिए",
+  "resend": "पुनः भेजें",
+  "googleAuthenticatorValidTime": "Google Authenticator की कुंजी 30 सेकंड के लिए वैध होती है। कृपया वैध समय के भीतर सही कुंजी दर्ज करें।"
 }

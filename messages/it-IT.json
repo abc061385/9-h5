@@ -646,5 +646,8 @@
   "deleteAddress": "Elimina Indirizzo",
   "deleteAddressConfirm": "Conferma l'eliminazione degli indirizzi selezionati. Possono essere reimportati dopo l'eliminazione; tuttavia, procedi con cautela.",
   "vipEarningsLimit": "Limite Guadagni VIP",
-  "excludedEarningsNote": "Non include i guadagni ottenuti dagli utenti attraverso l'acquisto di prodotti del fondo"
+  "excludedEarningsNote": "Non include i guadagni ottenuti dagli utenti attraverso l'acquisto di prodotti del fondo",
+  "verificationCodeMustBe6Digits": "Il codice di verifica deve essere di 6 cifre",
+  "resend": "Rinvia",
+  "googleAuthenticatorValidTime": "La chiave di Google Authenticator è valida per 30 secondi. Inserisci la chiave corretta entro il periodo valido."
 }

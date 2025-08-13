@@ -646,5 +646,8 @@
   "deleteAddress": "Xóa địa chỉ",
   "deleteAddressConfirm": "Vui lòng xác nhận xóa các địa chỉ đã chọn. Chúng có thể được nhập lại sau khi xóa; tuy nhiên, hãy thận trọng.",
   "vipEarningsLimit": "Giới hạn thu nhập VIP",
-  "excludedEarningsNote": "Không bao gồm thu nhập người dùng nhận được thông qua việc mua sản phẩm quỹ"
+  "excludedEarningsNote": "Không bao gồm thu nhập người dùng nhận được thông qua việc mua sản phẩm quỹ",
+  "verificationCodeMustBe6Digits": "Mã xác minh phải là 6 chữ số",
+  "resend": "Gửi lại",
+  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này."
 }
