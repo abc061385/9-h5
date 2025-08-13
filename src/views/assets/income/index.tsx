@@ -194,20 +194,21 @@ const IncomeView = () => {
         className="h-auto"
         onChange={(e) => setOpenWithdraw(e)}
       >
-        <div className="bg-bg1 rounded-md px-3.5 py-4 font-bold text-center">
-          <p className="text-xs mb-1">{t("预计到账")}</p>
-          <div className="text-primary text-2xl">
+        <p className="text-text4 mb-6">{t("withdrawNotice")}</p>
+        <div className="bg-bg1 rounded-md px-3.5 py-4 text-center">
+          <p className="mb-1">{t("预计到账")}</p>
+          <div className="text-primary text-xl font-medium">
             {expectIncome()} {tabsValue}
           </div>
         </div>
-        <div className="flex items-center justify-between font-bold text-xs mt-3">
-          <span>{t("提取数量")}</span>
+        <div className="flex items-center justify-between text-sm mt-4">
+          <span className=" text-text4">{t("提取数量")}</span>
           <span>
             {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
           </span>
         </div>
-        <div className="flex items-center justify-between font-bold text-xs mt-3">
-          <span>{t("手续费")}</span>
+        <div className="flex items-center justify-between mt-2 text-sm">
+          <span className=" text-text4">{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
         <button

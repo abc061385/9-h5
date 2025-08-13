@@ -35,7 +35,7 @@ const Tabs: React.FC<TabsProps> = ({
             key={tab.value}
             onClick={() => onChange(tab.value)}
             className={cn(
-              "text-center cursor-pointer transition-all font-bold mr-0.5 p-1.5",
+              "text-center cursor-pointer transition-all mr-0.5 p-1.5",
               isActive ? activeClassName : inactiveClassName,
               between ? "flex-1" : "mr-6"
             )}

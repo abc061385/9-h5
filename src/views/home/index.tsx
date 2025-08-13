@@ -10,6 +10,7 @@ import { Icon } from "@/components/icon";
 import { useRouter } from "@/i18n/navigation";
 import toast from "react-hot-toast";
 import { useTrans } from "@/hooks/useTrans";
+import SmartChatBox from "./smart-chat";
 
 export default function HomeView() {
   const t = useTrans();
@@ -61,6 +62,7 @@ export default function HomeView() {
           })}
         </div>
         {/* <CardsBox /> */}
+        <SmartChatBox />
       </div>
     </ViewLayout>
   );
