@@ -23,7 +23,7 @@ const AssetsListBox = () => {
 
   const getTokenIcon = useCallback(
     (coin: string) => {
-      return currentList.find((v) => v.currencyCode === coin)?.logo || coin;
+      return currentList.find((v) => v.currencyCode === coin)?.logo || '';
     },
     [currentList]
   );
@@ -45,10 +45,13 @@ const AssetsListBox = () => {
                 push(`${routerMap.assetsWalletDetail}?coin=${item.coin}`)
               }
             >
-              <BaseImage
-                src={getTokenIcon(item.coin || "")}
-                className="w-10 h-10 rounded-full overflow-hidden"
-              />
+              {item.coin ? (
+                <BaseImage
+                  src={getTokenIcon(item.coin || "")}
+                  className="w-10 h-10 rounded-full overflow-hidden"
+                />
+              ) : null}
+
               <div className="flex-1 flex flex-col">
                 <span>{item.coin}</span>
                 <span className="text-xs text-text4">{item.coin}</span>
