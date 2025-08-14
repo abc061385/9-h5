@@ -246,7 +246,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         </label>
         <span
           className="text-text1"
-          onClick={() => push(routerMap.fundProtocol)}
+          onClick={() => push(routerMap.protocol + "?type=2")}
         >
           {t("基金投资协议")}
         </span>
