@@ -10,6 +10,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import QRCode from "qrcode";
 
 const InviteView = () => {
   const t = useTrans();
@@ -65,12 +66,34 @@ const InviteView = () => {
               </span>
             </div>
           </div>
-          <div className="w-26 h-26 p-2 bg-white">
-            <Qrcode value={`${window.origin}/${locale}${routerMap.register}`} />
+          <div className="w-26 h-26 p-1 bg-white">
+            <Qrcode
+              value={`${window.origin}/${locale}${routerMap.register}`}
+              size={104}
+            />
           </div>
         </div>
         <div className="mt-9 grid grid-cols-1 gap-2">
-          {/* <button className="btn bg-white">Save QR Code</button> */}
+          <button
+            className="btn bg-white"
+            onClick={async () => {
+              try {
+                // 生成 base64 图片
+                const dataUrl = await QRCode.toDataURL(
+                  `${window.origin}/${locale}${routerMap.register}`,
+                  { width: 300 }
+                );
+                const link = document.createElement("a");
+                link.href = dataUrl;
+                link.download = "invite.png";
+                link.click();
+              } catch (err) {
+                console.error(err);
+              }
+            }}
+          >
+            Save QR Code
+          </button>
           <button
             className="btn btn-primary"
             onClick={() => {

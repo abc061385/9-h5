@@ -17,8 +17,15 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const params = useSearchParams();
   const { push } = useRouter();
   const { setField, pledgeDays } = useFundStore();
+
   const { formatBalance, getBalance } = useFormatBalance();
-  const { getBalanceList, getCoinList } = useAssetStore();
+  const {
+    getBalanceList,
+    getCoinList,
+    setField: assetsSetField,
+    coinList,
+    getChainList,
+  } = useAssetStore();
 
   const [amount, setAmount] = useState<string>("");
   const [isAgreement, setIsAgreement] = useState(false);
@@ -28,6 +35,11 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
     getBalanceList();
     getCoinList();
   }, [getBalanceList, getCoinList]);
+
+  useEffect(() => {
+    assetsSetField("depositCoinItem", {});
+    assetsSetField("depositChainItem", {});
+  }, [assetsSetField]); // 清空充值币种和链
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.calMaxProfitUsingPost
@@ -168,7 +180,18 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         </span>
         <span
           className="text-primary cursor-pointer flex items-center gap-1"
-          onClick={() => push(routerMap.walletDeposit)}
+          onClick={async () => {
+            const coin = coinList.find(
+              (v) => v.currencyCode === info.pledgeToken1
+            );
+            if (coin) {
+              assetsSetField("depositCoinItem", coin);
+              await getChainList();
+              push(routerMap.walletDeposit);
+            } else {
+              toast.error(t("未查询到该币种"));
+            }
+          }}
         >
           <Icon name="circle-add" className="w-3 h-3" />
           {t("充值")}
@@ -192,7 +215,18 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         </span>
         <span
           className="text-primary cursor-pointer flex items-center gap-1"
-          onClick={() => push(routerMap.walletDeposit)}
+          onClick={async () => {
+            const coin = coinList.find(
+              (v) => v.currencyCode === info.pledgeToken2
+            );
+            if (coin) {
+              assetsSetField("depositCoinItem", coin);
+              await getChainList();
+              push(routerMap.walletDeposit);
+            } else {
+              toast.error(t("未查询到该币种"));
+            }
+          }}
         >
           <Icon name="circle-add" className="w-3 h-3" />
           {t("充值")}
