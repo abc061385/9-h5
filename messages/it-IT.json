@@ -54,7 +54,8 @@
     "loginSuccess": "Accesso effettuato con successo",
     "tip": "Avviso",
     "comingSoon": "Prossimamente",
-    "invalidEmail": "Indirizzo email non valido"
+    "invalidEmail": "Indirizzo email non valido",
+    "checkEmailTip": "Indirizzo email non valido"
   },
   "user": {
     "title": "Centro personale",

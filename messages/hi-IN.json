@@ -54,7 +54,8 @@
     "loginSuccess": "Login successful",
     "tip": "Notice",
     "comingSoon": "Coming Soon",
-    "invalidEmail": "अमान्य ईमेल पता"
+    "invalidEmail": "अमान्य ईमेल पता",
+    "checkEmailTip": "अमान्य ईमेल पता"
   },
   "user": {
     "title": "Personal Center",

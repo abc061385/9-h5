@@ -54,7 +54,8 @@
     "loginSuccess": "Đăng nhập thành công",
     "tip": "Thông báo",
     "comingSoon": "Sắp ra mắt",
-    "invalidEmail": "Địa chỉ email không hợp lệ"
+    "invalidEmail": "Địa chỉ email không hợp lệ",
+    "checkEmailTip": "Địa chỉ email không hợp lệ"
   },
   "user": {
     "title": "Trung tâm cá nhân",

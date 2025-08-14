@@ -54,7 +54,8 @@
     "loginSuccess": "登入成功",
     "tip": "提示",
     "comingSoon": "敬請期待",
-    "invalidEmail": "無效的電子郵件地址"
+    "invalidEmail": "無效的電子郵件地址",
+    "checkEmailTip": "無效的電子郵件地址"
   },
   "user": {
     "title": "個人中心",

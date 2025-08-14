@@ -54,7 +54,8 @@
     "loginSuccess": "ログイン成功",
     "tip": "お知らせ",
     "comingSoon": "近日公開予定",
-    "invalidEmail": "無効なメールアドレス"
+    "invalidEmail": "無効なメールアドレス",
+    "checkEmailTip": "無効なメールアドレス"
   },
   "user": {
     "title": "個人センター",

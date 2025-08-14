@@ -54,7 +54,8 @@
     "loginSuccess": "登录成功",
     "tip": "提示",
     "comingSoon": "敬请期待",
-    "invalidEmail": "无效的电子邮件地址"
+    "invalidEmail": "无效的电子邮件地址",
+    "checkEmailTip": "无效的电子邮件地址"
   },
   "user": {
     "title": "个人中心",

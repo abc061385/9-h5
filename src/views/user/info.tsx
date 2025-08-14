@@ -1,10 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import StarIcon from "../vip/star-icon";
 import CopyText from "@/components/copy-text";
+import BaseImage from "@/components/base-image";
+import { Drawer } from "@/components/drawer";
 
 interface CardType {
   icon: "vip-user" | "invite-user";
@@ -17,6 +19,9 @@ const UserInfoBox = () => {
   const t = useTrans();
   const userInfo = useUserStore((s) => s.userInfo);
   const { push } = useRouter();
+
+  const [editUserHead, setEditUserHead] = useState(false);
+
   const cards: CardType[] = [
     {
       icon: "vip-user",
@@ -39,7 +44,11 @@ const UserInfoBox = () => {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <Icon name="user-head" className="w-16 h-16" />
+        <BaseImage
+          src="/icons/user-head.svg"
+          className="size-16"
+          // onClick={() => setEditUserHead(true)}
+        />
         <div className="font-bold text-xl mt-4 mb-2">
           {userInfo?.emailAccount ||
             userInfo?.bindEmail ||
@@ -69,6 +78,26 @@ const UserInfoBox = () => {
           </div>
         ))}
       </div>
+      <Drawer
+        open={editUserHead}
+        onChange={() => setEditUserHead(false)}
+        className="h-auto text-center"
+      >
+        <div className="py-4 border-b border-border2">
+          {t("user.takePhoto")}
+        </div>
+        <div className="py-3.5 border-b border-border2">
+          {t("user.chooseFromAlbum")}
+        </div>
+        <button
+          className="btn btn-outline w-full mt-6"
+          onClick={() => {
+            setEditUserHead(false);
+          }}
+        >
+          {t("common.cancel")}
+        </button>
+      </Drawer>
     </div>
   );
 };

@@ -54,7 +54,8 @@
     "loginSuccess": "Log masuk berjaya",
     "tip": "Notis",
     "comingSoon": "Akan Datang",
-    "invalidEmail": "Alamat emel tidak sah"
+    "invalidEmail": "Alamat emel tidak sah",
+    "checkEmailTip": "Alamat emel tidak sah"
   },
   "user": {
     "title": "Pusat Peribadi",

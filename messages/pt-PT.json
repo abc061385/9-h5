@@ -54,7 +54,8 @@
     "loginSuccess": "Login bem-sucedido",
     "tip": "Aviso",
     "comingSoon": "Em breve",
-    "invalidEmail": "Endereço de email inválido"
+    "invalidEmail": "Endereço de email inválido",
+    "checkEmailTip": "Endereço de email inválido"
   },
   "user": {
     "title": "Centro Pessoal",

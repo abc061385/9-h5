@@ -54,7 +54,8 @@
     "loginSuccess": "로그인 성공",
     "tip": "알림",
     "comingSoon": "곧 출시 예정",
-    "invalidEmail": "유효하지 않은 이메일 주소"
+    "invalidEmail": "유효하지 않은 이메일 주소",
+    "checkEmailTip": "유효하지 않은 이메일 주소"
   },
   "user": {
     "title": "개인 센터",

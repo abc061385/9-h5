@@ -42,33 +42,27 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
       <div className="rounded-lg bg-bg2 p-4 pt-6">
         <h2 className="text-xs text-text4 text-center">{t("币权累计")}</h2>
         <div className="text-xl font-medium leading-6 mt-1 text-center">
-          {formatBalance(info.totalCurrency || "0", tabsValue)}
-          {' '}
-          {tabsValue}
+          {formatBalance(info.totalCurrency || "0", tabsValue)} {tabsValue}
         </div>
         <div className="border-t border-border2 mt-3 pt-4 flex justify-between">
           <div className="flex flex-col items-start gap-0.5">
             <span className="text-xs text-text4">{t("已提取收益")}</span>
             <span className="text-sm">
-              {formatBalance(info.extractedRewards || "0", tabsValue)}
-              {' '}
+              {formatBalance(info.extractedRewards || "0", tabsValue)}{" "}
               {tabsValue}
             </span>
           </div>
           <div className="flex flex-col items-end gap-0.5">
             <span className="text-xs text-text4">{t("未提取收益")}</span>{" "}
             <span className="text-sm">
-              {formatBalance(info.frozenRewards || "0", tabsValue)}
-              {' '}
-              {tabsValue}
+              {formatBalance(info.frozenRewards || "0", tabsValue)} {tabsValue}
             </span>
           </div>
         </div>
         <div className="flex items-center justify-between bg-white rounded-lg h-12 px-4 mt-4 mb-6">
           <h3 className="text-xs text-text4">{t("昨日币权奖励")}</h3>
           <div className="text-sm text-primary">
-            {formatBalance(info.yesterdayCurrencyReward || "0", tabsValue)}
-            {' '}
+            {formatBalance(info.yesterdayCurrencyReward || "0", tabsValue)}{" "}
             {tabsValue}
           </div>
         </div>
@@ -89,18 +83,19 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
         className="h-auto"
         onChange={(e) => setOpenWithdraw(e)}
       >
-        <div className="bg-bg1 rounded-md px-3.5 py-4 font-bold text-center">
-          <p className="text-xs mb-1">{t("预计到账")}</p>
-          <div className="text-primary text-2xl">
+        <p className="text-text4 mb-6">{t("withdrawNotice")}</p>
+        <div className="bg-bg1 rounded-md px-3.5 py-4 text-center">
+          <p className="mb-1">{t("预计到账")}</p>
+          <div className="text-primary text-xl font-medium">
             {expectIncome()} {tabsValue}
           </div>
         </div>
-        <div className="flex items-center justify-between font-bold text-xs mt-3">
-          <span>{t("提取数量")}</span>
+        <div className="flex items-center justify-between text-sm mt-4">
+          <span className=" text-text4">{t("提取数量")}</span>
           <span>{formatBalance(info?.frozenRewards || 0, tabsValue)}</span>
         </div>
-        <div className="flex items-center justify-between font-bold text-xs mt-3">
-          <span>{t("手续费")}</span>
+        <div className="flex items-center justify-between mt-2 text-sm">
+          <span className=" text-text4">{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
         <button
