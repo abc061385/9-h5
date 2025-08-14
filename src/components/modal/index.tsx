@@ -49,7 +49,7 @@ export const Modal: React.FC<IModalProps> = ({
             {close && (
               <Icon
                 name="close"
-                className="absolute right-0 top-0"
+                className="absolute right-0 top-0 size-6"
                 onClick={() => onClose?.()}
               />
             )}

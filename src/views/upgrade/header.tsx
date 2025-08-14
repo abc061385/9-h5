@@ -2,10 +2,10 @@ import { useTrans } from "@/hooks/useTrans";
 import BaseImage from "@/components/base-image";
 import StarIcon from "../vip/star-icon";
 import { useUserStore } from "@/store/useUserStore";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { Icon } from "@/components/icon";
-import toast from "react-hot-toast";
+import { Modal } from "@/components/modal";
 
 interface IUpgradeProps {
   tabsValue: string;
@@ -17,6 +17,8 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const { formatBalance } = useFormatBalance();
 
   const userInfo = useUserStore((s) => s.userInfo);
+
+  const [earningsOpen, setEarningsOpen] = useState(false);
 
   return (
     <div className="flex justify-between border-t border-border2 mt-6 pt-6">
@@ -42,9 +44,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           <Icon
             name="annotation"
             className="size-3 ml-2"
-            onClick={() => {
-              toast.error(t("excludedEarningsNote"));
-            }}
+            onClick={() => setEarningsOpen(true)}
           />
         </div>
         <div className="text-sm">
@@ -57,8 +57,17 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
       </div>
       <BaseImage
         src={`/images/vip/icon-vip${userInfo.vipLevel}.png`}
-        className="w-[124px] h-[112px] relative top-[-12px]"
+        className="w-[124px] h-[112px] absolute right-4"
       />
+      <Modal
+        title={t("vipEarningsLimit")}
+        open={earningsOpen}
+        onClose={() => setEarningsOpen(false)}
+      >
+        <p className="text-sm mt-4 w-62 text-center mx-auto">
+          {t("excludedEarningsNote")}
+        </p>
+      </Modal>
     </div>
   );
 };
