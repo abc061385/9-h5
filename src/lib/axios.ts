@@ -2,7 +2,7 @@ import { ContentType } from "@/api/ApiClient";
 import { useUserStore } from "@/store/useUserStore";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import toast from "react-hot-toast";
-import { getIsDev } from "./utils";
+// import { getIsDev } from "./utils";
 import { useStore } from "@/store";
 import { APILang } from "@/i18n/routing";
 import { navigateTo, routerMap } from "@/i18n/navigation";
@@ -17,10 +17,11 @@ export interface ApiResponse<T> {
 // 构建 axios 实例的函数，可动态传入 baseURL
 const createAxiosInstance = (
   baseURL: string,
-  setPost?: (config: InternalAxiosRequestConfig) => void
+  setPost?: (config: InternalAxiosRequestConfig) => void,
 ): AxiosInstance => {
   const instance = axios.create({
-    baseURL: getIsDev() ? baseURL : process.env.NEXT_PUBLIC_API_URL + baseURL,
+    // baseURL: getIsDev() ? baseURL : process.env.NEXT_PUBLIC_API_URL + baseURL,
+    baseURL: baseURL,
     timeout: 100_000,
     headers: { "Content-Type": "application/json" },
   });
@@ -59,7 +60,7 @@ const createAxiosInstance = (
     (err) => {
       console.error("API Error", err);
       return Promise.reject(err);
-    }
+    },
   );
 
   return instance;
