@@ -22,7 +22,7 @@ const AboutUsView = () => {
       <div
         className="p-content text-sm"
         dangerouslySetInnerHTML={{
-          __html: detail?.["content" + langType[locale]] || "",
+          __html: detail?.["content" + (langType[locale] || "En")] || "",
         }}
       ></div>
     </ViewLayout>

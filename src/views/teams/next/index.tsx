@@ -2,7 +2,7 @@
 
 import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
-import { Icon } from "@/components/icon";
+// import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
@@ -24,7 +24,7 @@ interface AreaStatData {
 const TeamsNextView = () => {
   const t = useTrans();
 
-  const [, setSearchValue] = useState("");
+  // const [, setSearchValue] = useState("");
   const [areaList, setAreaList] = useState<
     {
       label: string;
@@ -68,7 +68,7 @@ const TeamsNextView = () => {
       className="h-max md-pc:h-full overflow-hidden"
     >
       <div className="p-content">
-        <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
+        {/* <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
           <Icon name="search" className="w-4 h-4" />
           <input
             type="search"
@@ -90,7 +90,7 @@ const TeamsNextView = () => {
               className="checkbox checkbox-neutral w-4 h-4"
             />
           </label>
-        </div>
+        </div> */}
 
         <HorizontalTabs
           tabs={areaList}

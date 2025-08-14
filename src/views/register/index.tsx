@@ -12,16 +12,18 @@ import { encryptPassword } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
 import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Geetest, GeetestRef, GeetestValidateRes } from "@/components/geetest";
 import { HeaderWithBack } from "@/components/header-with-back";
 import toast from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 const RegisterView = () => {
   const { push } = useRouter();
   const t = useTrans();
   const router = useRouter();
   const reg = useRootReg();
+  const searchParams = useSearchParams();
   const setField = useVerificationStore((s) => s.setField);
 
   const [isAgreement, setIsAgreement] = useState(false);
@@ -43,6 +45,7 @@ const RegisterView = () => {
     register,
     getValues,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(Schema),
@@ -68,6 +71,12 @@ const RegisterView = () => {
       }
     } catch {}
   };
+
+  useEffect(() => {
+    if (searchParams.get("inviteCode")) {
+      setValue("invitationCode", searchParams.get("inviteCode") || "");
+    }
+  }, [searchParams, setValue]);
   return (
     <ViewLayout
       heightFull

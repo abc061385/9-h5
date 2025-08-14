@@ -57,7 +57,7 @@ const InviteView = () => {
                 {t("invite.inviteLink")}
               </span>
               <span className="font-bold flex items-center gap-1 flex-1  leading-4">
-                <span className="truncate max-w-40">{`${window.origin}/${locale}${routerMap.register}`}</span>
+                <span className="truncate max-w-40">{`${window.origin}/${locale}${routerMap.register}?inviteCode=${userInfo.invitationCode}`}</span>
                 <CopyText
                   className="mt-0.5"
                   text={`${window.origin}/${locale}${routerMap.register}`}
@@ -97,7 +97,7 @@ const InviteView = () => {
             className="btn btn-primary"
             onClick={() => {
               navigator.clipboard.writeText(
-                `${window.origin}/${locale}${routerMap.register}`
+                `${window.origin}/${locale}${routerMap.register}?inviteCode=${userInfo.invitationCode}`
               );
               toast.success("复制成功");
             }}

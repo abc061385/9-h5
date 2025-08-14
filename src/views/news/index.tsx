@@ -68,7 +68,7 @@ const NewsView = () => {
               >
                 <div className="flex items-center">
                   <div className="flex-1 text-xs mb-2">
-                    {item["title" + langType[locale]]}
+                    {item["title" + (langType[locale] || "En")]}
                   </div>
                 </div>
                 <div className="text-text2 text-xs">{item.createTime}</div>

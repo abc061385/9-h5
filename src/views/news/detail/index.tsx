@@ -26,14 +26,16 @@ const NewsDetailView = () => {
       <HeaderWithBack title={t("详情")} algin="center" />
       <div className="p-content">
         <h2 className="font-bold text-lg">
-          {newsDetail?.["title" + langType[locale]]}
+          {newsDetail?.["title" + (langType[locale] || "En")]}
         </h2>
-        <div className="text-text4 mb-6 text-sm mt-1.5">{newsDetail?.createTime}</div>
+        <div className="text-text4 mb-6 text-sm mt-1.5">
+          {newsDetail?.createTime}
+        </div>
         <div className="border-b border-assist1"></div>
         <div
           className="my-4 text-sm text-text4"
           dangerouslySetInnerHTML={{
-            __html: newsDetail?.["content" + langType[locale]] || "",
+            __html: newsDetail?.["content" + (langType[locale] || "En")] || "",
           }}
         ></div>
       </div>
