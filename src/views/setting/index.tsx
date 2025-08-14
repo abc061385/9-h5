@@ -6,6 +6,7 @@ import ViewLayout from "@/components/layout";
 import { Modal } from "@/components/modal";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { maskString } from "@/lib/utils";
 import { useUserStore } from "@/store/useUserStore";
 import { useEffect, useState } from "react";
 
@@ -21,7 +22,9 @@ const SettingView = () => {
     {
       label: "绑定邮箱",
       path: routerMap.settingBindEmail,
-      value: t("enhanceSecurity"),
+      value: userInfo?.bindEmail
+        ? maskString(userInfo?.bindEmail, 3, 2)
+        : t("enhanceSecurity"),
     },
   ];
 
