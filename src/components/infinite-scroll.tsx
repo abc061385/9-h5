@@ -66,8 +66,10 @@ export function InfiniteVirtuosoList<T>({
   }, [fetchData, loadMore]);
 
   useEffect(() => {
-    loadMore();
-  }, [loadMore]);
+    if (page === 1 || items.length === 0) {
+      loadMore();
+    }
+  }, [loadMore, page, items]);
 
   const reload = useCallback(async () => {
     const { data } = await fetchData(1);
