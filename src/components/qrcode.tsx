@@ -26,8 +26,9 @@ const Qrcode: React.FC<QRCodeProps> = ({
   useEffect(() => {
     if (!value) return;
     const opts = {
-      width: size,
       margin: 1,
+      width: size,
+      height: size,
       color: {
         dark: fgColor,
         light: bgColor,
@@ -56,7 +57,12 @@ const Qrcode: React.FC<QRCodeProps> = ({
     });
   }, [value, size, bgColor, fgColor, level, logo, logoSize]);
 
-  return <canvas ref={canvasRef} style={{ display: "block" }} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ display: "block", width: "100%", height: "100%" }}
+    />
+  );
 };
 
 export { Qrcode };

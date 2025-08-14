@@ -66,7 +66,7 @@ const InviteView = () => {
               </span>
             </div>
           </div>
-          <div className="w-26 h-26 p-1 bg-white">
+          <div className="w-26 h-26">
             <Qrcode
               value={`${window.origin}/${locale}${routerMap.register}`}
               size={104}
@@ -78,7 +78,6 @@ const InviteView = () => {
             className="btn bg-white"
             onClick={async () => {
               try {
-                // 生成 base64 图片
                 const dataUrl = await QRCode.toDataURL(
                   `${window.origin}/${locale}${routerMap.register}`,
                   { width: 300 }
