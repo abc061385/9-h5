@@ -40,7 +40,6 @@ const FundBox = () => {
     getList();
   }, [getList]);
 
-
   const hotList = [
     { label: "Datebase", icon: "database" },
     { label: "Invite Friends", icon: "invite-friends", path: routerMap.invite },
@@ -56,7 +55,7 @@ const FundBox = () => {
       >
         <Icon name="trumpet" className="size-6 mr-2" />
         <p className="flex-1 text-left mr-8 truncate text-xs">
-          {newsList?.[0]?.["title" + langType[locale]]}
+          {newsList?.[0]?.["title" + (langType[locale] || "En")]}
         </p>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
@@ -89,7 +88,7 @@ const FundBox = () => {
             className="bg-bg2 rounded-2xl p-4"
             onClick={() =>
               push(
-                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`,
               )
             }
           >
