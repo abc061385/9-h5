@@ -6,7 +6,6 @@ import z, { useRootReg } from "@/lib/z";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
 import { FC } from "react";
-import { TextError } from "@/components/input/text-error";
 import { encryptPassword } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { routerMap, useRouter } from "@/i18n/navigation";
