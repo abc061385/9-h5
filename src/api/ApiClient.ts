@@ -10,6 +10,30 @@
  * ---------------------------------------------------------------
  */
 
+/** AccountBindDTO */
+export interface AccountBindDTO {
+  /** @format int64 */
+  childId?: number;
+  /** @format int64 */
+  parentId?: number;
+}
+
+/** RegistActivityDTO */
+export interface RegistActivityDTO {
+  /** @format int64 */
+  activityId?: number;
+  coin?: string;
+  contact?: string;
+  /** @format int32 */
+  payStatus?: number;
+}
+
+/** UserLoterryDTO */
+export interface UserLoterryDTO {
+  /** @format int64 */
+  activityId?: number;
+}
+
 /** 统一消息返回对象 */
 export interface _ {
   /** @format int32 */
@@ -215,7 +239,128 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<
   SecurityDataType extends unknown,
 > extends HttpClient<SecurityDataType> {
+  apiPrice = {
+    /**
+     * No description
+     *
+     * @tags C端活动奖品
+     * @name GetUserLoteryCountUsingGet
+     * @summary 获取用户抽奖次数
+     * @request GET:/apiPrice/getUserLoteryCount
+     */
+    getUserLoteryCountUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/apiPrice/getUserLoteryCount`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags C端活动奖品
+     * @name GetPriceListUsingGet
+     * @summary 奖品列表
+     * @request GET:/apiPrice/priceList
+     */
+    getPriceListUsingGet: (
+      query: {
+        /**
+         * activityId
+         * @format int64
+         */
+        activityId: number;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/apiPrice/priceList`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags C端活动奖品
+     * @name UserLotteryUsingPost
+     * @summary 用户抽奖
+     * @request POST:/apiPrice/userLottery
+     */
+    userLotteryUsingPost: (dto: UserLoterryDTO, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/apiPrice/userLottery`,
+        method: "POST",
+        body: dto,
+        type: ContentType.Json,
+        ...params,
+      }),
+  };
   auth = {
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name BindAccountUsingPost
+     * @summary 绑定账号
+     * @request POST:/auth/account/bind
+     */
+    bindAccountUsingPost: (dto: AccountBindDTO, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/auth/account/bind`,
+        method: "POST",
+        body: dto,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name UnbindAccountUsingPost
+     * @summary 解绑账号
+     * @request POST:/auth/account/unbind
+     */
+    unbindAccountUsingPost: (dto: AccountBindDTO, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/auth/account/unbind`,
+        method: "POST",
+        body: dto,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name GetBindListUsingGet
+     * @summary 根据会员ID，查询绑定关系
+     * @request GET:/auth/bind-list/{id}
+     */
+    getBindListUsingGet: (id: ref, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/auth/bind-list/${id}`,
+        method: "GET",
+        ...params,
+      }),
+
     /**
      * No description
      *
@@ -304,6 +449,10 @@ export class Api<
         isDisable?: boolean;
         /** @format int32 */
         isTop?: number;
+        /** @format int32 */
+        isUbx?: number;
+        lastLoginDevice?: string;
+        lastLoginIp?: string;
         /** @format date-time */
         lastLoginTime?: string;
         /** @format int32 */
@@ -343,6 +492,8 @@ export class Api<
         username?: string;
         /** @format int32 */
         vipLevel?: number;
+        /** @format int32 */
+        vipLevelBase?: number;
         /** @format date-time */
         vipLevelUpTime?: string;
         /** @format int32 */
@@ -576,6 +727,31 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/auth/loginByFaBeforeCheck`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name LoginByTokenUsingPost
+     * @summary 通过token登录系统
+     * @request POST:/auth/loginByToken
+     */
+    loginByTokenUsingPost: (
+      query: {
+        /** 登录账号 */
+        account: string;
+        /** 账号类型；1-邮箱；0-手机 */
+        accountType: ref;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/loginByToken`,
         method: "POST",
         query: query,
         type: ContentType.Json,
@@ -1518,6 +1694,28 @@ export class Api<
         method: "GET",
         ...params,
       }),
+
+    /**
+     * No description
+     *
+     * @tags currency-settings-controller
+     * @name ProtocolExchangeUsingGet
+     * @summary 任意币种兑换汇率
+     * @request GET:/currency-settings/protocol/rate
+     */
+    protocolExchangeUsingGet: (
+      query?: {
+        /** instId */
+        instId?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/currency-settings/protocol/rate`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
   };
   deposit = {
     /**
@@ -1593,6 +1791,7 @@ export class Api<
      */
     calMaxProfitUsingPost: (
       query: {
+        isLockPosit?: boolean;
         /** 复投是否开启(0:否,1:是) */
         isReinvestment?: boolean;
         /**
@@ -1759,6 +1958,7 @@ export class Api<
      */
     purchaseUsingPost: (
       query: {
+        isLockPosit?: boolean;
         /** 复投是否开启(0:否,1:是) */
         isReinvestment?: boolean;
         /**
@@ -2369,6 +2569,31 @@ export class Api<
       this.request<_, void>({
         path: `/member/checkApprove`,
         method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name EditInfoUsingPost1
+     * @summary 修改用户信息
+     * @request POST:/member/edit-info
+     */
+    editInfoUsingPost1: (
+      query?: {
+        /** 头像地址 */
+        headUrl?: string;
+        /** 用户昵称 */
+        nickname?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/member/edit-info`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
         ...params,
       }),
 
@@ -3787,6 +4012,151 @@ export class Api<
         ...params,
       }),
   };
+  userActivity = {
+    /**
+     * No description
+     *
+     * @tags 用户报名活动
+     * @name GetActivityByIdUsingGet
+     * @summary 活动详情
+     * @request GET:/userActivity/getActivityById
+     */
+    getActivityByIdUsingGet: (
+      query: {
+        /**
+         * id
+         * @format int64
+         */
+        id: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/userActivity/getActivityById`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户报名活动
+     * @name GetActivityListUsingGet
+     * @summary api活动列表
+     * @request GET:/userActivity/getApiActivityList
+     */
+    getActivityListUsingGet: (
+      query: {
+        /**
+         * activityId
+         * @format int64
+         */
+        activityId?: number;
+        /**
+         * activityType
+         * @format int32
+         */
+        activityType?: number;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/userActivity/getApiActivityList`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户报名活动
+     * @name GetLotteryActivityListUsingGet
+     * @summary C端抽奖活动列表
+     * @request GET:/userActivity/getLotteryActivityList
+     */
+    getLotteryActivityListUsingGet: (
+      query?: {
+        /**
+         * activityId
+         * @format int64
+         */
+        activityId?: number;
+        /**
+         * activityType
+         * @format int32
+         */
+        activityType?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/userActivity/getLotteryActivityList`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户报名活动
+     * @name GetUserActByActivityIdUsingGet
+     * @summary 展示活动审核状态
+     * @request GET:/userActivity/getUserActByActivityId
+     */
+    getUserActByActivityIdUsingGet: (
+      query: {
+        /**
+         * activityId
+         * @format int64
+         */
+        activityId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/userActivity/getUserActByActivityId`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户报名活动
+     * @name RegistActivityUsingPost
+     * @summary 用户报名活动
+     * @request POST:/userActivity/regist/activity
+     */
+    registActivityUsingPost: (
+      dto: RegistActivityDTO,
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/userActivity/regist/activity`,
+        method: "POST",
+        body: dto,
+        type: ContentType.Json,
+        ...params,
+      }),
+  };
   wallet = {
     /**
      * No description
@@ -3865,6 +4235,22 @@ export class Api<
         path: `/wallet/account-details-freeze-list`,
         method: "GET",
         query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 资产
+     * @name CheckTransferLockedUsingPost
+     * @summary 检查账户是否被锁定
+     * @request POST:/wallet/checkTransferLocked
+     */
+    checkTransferLockedUsingPost: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/wallet/checkTransferLocked`,
+        method: "POST",
+        type: ContentType.Json,
         ...params,
       }),
 
@@ -4325,12 +4711,14 @@ export class Api<
      *
      * @tags 资产
      * @name TransferUsingPost
-     * @summary 转账
+     * @summary 内部转账
      * @request POST:/wallet/transfer
      */
     transferUsingPost: (
       query?: {
-        balance?: number;
+        amount?: number;
+        /** @format int64 */
+        code?: number;
         jyPassword?: string;
         receiveTel?: string;
         symbol?: string;
@@ -4374,6 +4762,28 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/wallet/transfer-page`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 资产
+     * @name UnlockTransferUsingGet
+     * @summary 通过邮件token解锁账户
+     * @request GET:/wallet/unlockTransfer
+     */
+    unlockTransferUsingGet: (
+      query?: {
+        /** token */
+        token?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/wallet/unlockTransfer`,
         method: "GET",
         query: query,
         ...params,
