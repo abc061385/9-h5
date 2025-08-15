@@ -23,9 +23,10 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
   const [isCheck, setIsCheck] = useState(true);
 
   const { trigger: postBuy, isMutating } = useRequestMutation(
-    api.fundProductConfig.purchaseUsingPost
+    api.fundProductConfig.purchaseUsingPost,
   );
 
+  console.log("buyData", buyData);
   return (
     <Drawer
       open={open}
@@ -52,15 +53,8 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
         <div className="text-right">
           <h4 className="text-text4 text-sm leading-4">{t("支付代币")}</h4>
           <p>
-            {formatBalance(
-              buyData?.pledgeToken1Amount || 0,
-              buyData?.pledgeToken1 || "USDT"
-            )}
-            {buyData?.pledgeToken1} +{" "}
-            {formatBalance(
-              buyData?.pledgeToken2Amount || 0,
-              buyData?.pledgeToken2 || "USDT"
-            )}{" "}
+            {buyData?.pledgeToken1Amount}
+            {buyData?.pledgeToken1} + {buyData?.pledgeToken2Amount}
             {buyData?.pledgeToken2}
           </p>
         </div>
@@ -83,7 +77,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
       <button
         className={cn(
           "btn btn-primary w-full mt-10.5",
-          isMutating && "btn-disabled"
+          isMutating && "btn-disabled",
         )}
         disabled={isMutating}
         onClick={() => {
@@ -98,7 +92,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
               onSuccess: () => {
                 push(routerMap.fundSuccess);
               },
-            }
+            },
           );
         }}
       >
