@@ -35,6 +35,9 @@ const SettingPasswordView = () => {
     pswd: reg.password,
     confirmPswd: reg.password,
     code: reg.googleVerifyCode,
+  }).refine((data) => data.pswd === data.confirmPswd, {
+    path: ["confirmPswd"], 
+    message: t("alerts.passwordMismatch"),
   });
 
   const { trigger } = useRequestMutation(api.auth.updatePwdUsingPost);

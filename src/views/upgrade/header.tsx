@@ -43,7 +43,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           </span>
           <Icon
             name="annotation"
-            className="size-3 ml-2"
+            className="size-3 ml-2 relative z-50"
             onClick={() => setEarningsOpen(true)}
           />
         </div>
