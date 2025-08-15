@@ -10,13 +10,13 @@ import { useTrans } from "@/hooks/useTrans";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
+import { useLocationHref } from "@/hooks/useLocationHref";
 
 const BannerBox = () => {
   const t = useTrans();
   const locale = useLocale();
-  const { push } = useRouter();
+  const { goToActivity } = useLocationHref();
 
   const [activityList, setActivityList] = useState<ActivityList[]>([]);
 
@@ -59,7 +59,7 @@ const BannerBox = () => {
       {activityList.map((v, i) => {
         return (
           <SwiperSlide key={i}>
-            <div onClick={() => push(`/activity/${v.id}`)}>
+            <div onClick={() => goToActivity(v.id.toString())}>
               <Image
                 src={locale === "zh-Hans" ? v.bannerZh : v.bannerEn}
                 alt=""

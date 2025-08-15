@@ -20,9 +20,9 @@ export const useStore = create<AppStore>()((set) => ({
   },
   async initRoot() {
     if (typeof window !== "undefined") {
-      // useUserStore
-      //   .getState()
-      //   .setField("token", window.localStorage.getItem("token") || "");
+      useUserStore
+        .getState()
+        .setField("token", window.localStorage.getItem("token") || "");
     }
     try {
       set({ initLoading: true });

@@ -36,6 +36,7 @@ const VerificationView = () => {
         });
         setUserField("userInfo", userResponse.data);
         setUserField("token", userResponse.data?.token);
+        window.localStorage.setItem("token", userResponse.data?.token);
         useVerificationStore.persist.clearStorage();
         router.push(routerMap.home);
       } catch (error) {

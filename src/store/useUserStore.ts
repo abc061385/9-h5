@@ -23,6 +23,7 @@ export const useUserStore = create<LoginState>()(
             set({ userInfo: {}, token: "" });
             navigateTo(routerMap.login);
             useWithdrawalStore.getState().clear();
+            window.localStorage.removeItem("token");
           },
           fetchUserInfo: async () => {
             if (!get().token) {
