@@ -17,10 +17,10 @@ const SettingView = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [googleModalOpen, setGoogleModalOpen] = useState(false);
   const list = [
-    { label: "修改登录密码", path: routerMap.settingPassword },
-    { label: "谷歌身份验证", path: routerMap.settingGoogleVerify },
+    { label: t("security.changePassword"), path: routerMap.settingPassword },
+    { label: t("security.googleAuth"), path: routerMap.settingGoogleVerify },
     {
-      label: "绑定邮箱",
+      label: t("绑定邮箱"),
       path: routerMap.settingBindEmail,
       value: userInfo?.bindEmail
         ? maskString(userInfo?.bindEmail, 3, 2)
