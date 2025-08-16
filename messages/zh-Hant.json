@@ -319,7 +319,7 @@
     "loading": "加載中...",
     "noMoreData": "沒有更多數據了",
     "noTransactions": "暫無交易記錄",
-    "loadMore": "點擊加載更多",
+    "loadMore": "加載更多",
     "fetchFailed": "獲取交易記錄失敗",
     "ADMIN_EDIT": "平台操作",
     "RECHARGE": "充幣",

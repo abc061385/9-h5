@@ -21,7 +21,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const [earningsOpen, setEarningsOpen] = useState(false);
 
   return (
-    <div className="flex justify-between border-t border-border2 mt-6 pt-6">
+    <div className="flex justify-between border-t border-border2 mt-6 pt-6 relative">
       <div>
         <h4 className="text-sm">{t("当前等级")}</h4>
         <div className="text-2xl font-bold leading-6 mt-1 mb-4 flex items-center">
@@ -34,7 +34,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
             </>
           )}
         </div>
-        <div className="text-sm flex items-center">
+        <div className="text-sm flex items-center relative z-[1]">
           <span className="text-xs text-text4 mr-2">
             {t("vipEarningsLimit")}
           </span>
@@ -43,7 +43,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           </span>
           <Icon
             name="annotation"
-            className="size-3 ml-2 relative z-50"
+            className="size-3 ml-2"
             onClick={() => setEarningsOpen(true)}
           />
         </div>
@@ -57,7 +57,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
       </div>
       <BaseImage
         src={`/images/vip/icon-vip${userInfo.vipLevel}.png`}
-        className="w-[124px] h-[112px] absolute right-4"
+        className="w-[124px] h-[112px] absolute right-0"
       />
       <Modal
         title={t("vipEarningsLimit")}

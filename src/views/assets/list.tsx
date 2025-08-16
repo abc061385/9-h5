@@ -3,10 +3,12 @@ import BaseImage from "@/components/base-image";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useTrans } from "@/hooks/useTrans";
 
 const AssetsListBox = () => {
   const { push } = useRouter();
   const { formatBalance } = useFormatBalance();
+  const t = useTrans();
 
   const [list, setList] = useState<AssetsList[]>([]);
   const [currentList, setCurrentList] = useState<CurrencyInfo[]>([]);
@@ -23,9 +25,9 @@ const AssetsListBox = () => {
 
   const getTokenIcon = useCallback(
     (coin: string) => {
-      return currentList.find((v) => v.currencyCode === coin)?.logo || '';
+      return currentList.find((v) => v.currencyCode === coin)?.logo || "";
     },
-    [currentList]
+    [currentList],
   );
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const AssetsListBox = () => {
   }, [getList, getCurrentList]);
   return (
     <div className="flex-1 mt-6 flex flex-col h-full overflow-auto no-scrollbar">
-      <h2 className="font-medium leading-6 mb-6">资产</h2>
+      <h2 className="font-medium leading-6 mb-6">{t("tabbar.assets")}</h2>
       <div className="flex-1">
         {list.map((item) => {
           return (

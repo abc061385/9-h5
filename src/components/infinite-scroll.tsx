@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { Virtuoso, Components, VirtuosoGrid } from "react-virtuoso";
+import { useTrans } from "@/hooks/useTrans";
 
 export interface FetchDataResult<T> {
   data: T[];
@@ -27,6 +28,7 @@ export function InfiniteVirtuosoList<T>({
   columns = 1,
   onReloadReady,
 }: InfiniteVirtuosoListProps<T>) {
+  const t = useTrans();
   const [items, setItems] = useState<T[]>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
@@ -86,7 +88,11 @@ export function InfiniteVirtuosoList<T>({
 
   const LoadingRow = (
     <div style={{ padding: 16, textAlign: "center", color: "#666" }}>
-      {loading ? "加载中..." : hasMore ? "下滑加载更多" : "没有更多了"}
+      {loading
+        ? t("common.loading")
+        : hasMore
+          ? t("walletDetail.loadMore")
+          : t("walletDetail.noMoreData")}
     </div>
   );
 

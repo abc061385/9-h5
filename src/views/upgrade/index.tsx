@@ -25,7 +25,7 @@ const UpgradeView = () => {
   ];
 
   const { trigger } = useRequestMutation(
-    api.fundProductConfig.getRewardStatsUsingGet
+    api.fundProductConfig.getRewardStatsUsingGet,
   );
 
   const getAwaedInfo = useCallback(() => {
@@ -37,7 +37,7 @@ const UpgradeView = () => {
         onSuccess: ({ data }) => {
           setAwardInfo(data as AwardInfoType);
         },
-      }
+      },
     );
   }, [tabsValue, trigger]);
 
@@ -45,14 +45,17 @@ const UpgradeView = () => {
     (coin: string) => {
       return coinList.find((v) => v.currencyCode === coin)?.logo || "";
     },
-    [coinList]
+    [coinList],
   );
 
   useEffect(() => {
     getAwaedInfo();
   }, [getAwaedInfo]);
   return (
-    <ViewLayout heightFull header={<HeaderWithBack title={t("VIP计划")} algin="center" />}>
+    <ViewLayout
+      heightFull
+      header={<HeaderWithBack title={t("VIP计划")} algin="center" />}
+    >
       <div className="p-content">
         <div role="tablist" className="tabs mb-4">
           {tabs.map((tab) => (
@@ -60,7 +63,7 @@ const UpgradeView = () => {
               role="tab"
               className={cn(
                 "tab flex-1 leading-[100%]",
-                tab.value === tabsValue && "tab-active font-bold"
+                tab.value === tabsValue && "tab-active font-bold",
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}
