@@ -13,6 +13,7 @@ import Image from "next/image";
 import Tabs from "@/components/tabs/tabs";
 import { ShowIf } from "@/components/show-if";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 const TeamsView = () => {
   const t = useTrans();
@@ -54,11 +55,14 @@ const TeamsView = () => {
     const { data } = await api.wallet.inteamInvestmentStatitUsingGet();
     setTeamNumbers(data?.totalTeamMembers);
   }, []);
-
-  useEffect(() => {
+  const deboun = useDebouncedCallback(() => {
     getList();
     getInfo();
-  }, [tabsValue, searchValue, getList, getInfo]);
+  }, 300);
+
+  useEffect(() => {
+    deboun();
+  }, [tabsValue, searchValue, deboun]);
 
   const NoDataEl = (
     <div className="text-center mt-20">
@@ -116,18 +120,18 @@ const TeamsView = () => {
             className="grow"
             placeholder={t("查询团队账号")}
             onInput={(e) => {
-              if (!(e.target as HTMLInputElement).value) {
-                // 清除按钮被点击时触发
-                setSearchValue("");
-                getList();
-                getInfo();
-              }
+              setSearchValue((e.target as HTMLInputElement).value);
+              // if (!(e.target as HTMLInputElement).value) {
+              //   // 清除按钮被点击时触发
+              //   getList();
+              //   getInfo();
+              // }
             }}
-            onKeyDown={(e) => {
-              if (e.code === "Enter") {
-                setSearchValue((e.target as HTMLInputElement).value);
-              }
-            }}
+            // onKeyDown={(e) => {
+            //   if (e.code === "Enter") {
+            //     setSearchValue((e.target as HTMLInputElement).value);
+            //   }
+            // }}
           />
         </label>
         <Tabs

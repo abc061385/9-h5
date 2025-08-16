@@ -38,7 +38,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           <span className="text-xs text-text4 mr-2">
             {t("vipEarningsLimit")}
           </span>
-          <span className="text-primary">
+          <span className="text-text1">
             {formatBalance(info?.chuJuAmount || 0, "USDT")} USDT
           </span>
           <Icon

@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from "react";
 import Countdown from "@/components/countdown";
 import { useUserStore } from "@/store/useUserStore";
 import { ShowIf } from "@/components/show-if";
+import { useRouter } from "@/i18n/navigation";
 
 type FormData = {
   googleCode: string;
@@ -27,11 +28,12 @@ type FormData = {
 const SettingGoogleVerifyView = () => {
   const t = useTrans();
   const reg = useRootReg();
-  const { userInfo } = useUserStore();
+  const { userInfo, fetchUserInfo } = useUserStore();
   const [codeCountDown, setCodeCountDown] = useState(false);
   const [oldcodeCountDown, setOldCodeCountDown] = useState(false);
   const [isBind, setIsBind] = useState(false);
   const [btnType, setType] = useState<"new" | "old">("new");
+  const { back } = useRouter();
 
   useEffect(() => {
     if (userInfo?.bindEmail) return setIsBind(true);
@@ -82,7 +84,13 @@ const SettingGoogleVerifyView = () => {
             oldEmailCode: e.oldEmailCode,
           },
           {
-            onSuccess: () => {},
+            onSuccess: () => {
+              toast.success(t("操作成功"));
+              fetchUserInfo();
+              setTimeout(() => {
+                back();
+              }, 1000);
+            },
             throwOnError: false,
           },
         );
@@ -94,13 +102,20 @@ const SettingGoogleVerifyView = () => {
             googleCode: e?.googleCode,
           },
           {
-            onSuccess: () => {},
+            onSuccess: () => {
+              toast.success(t("操作成功"));
+              fetchUserInfo();
+
+              setTimeout(() => {
+                back();
+              }, 1000);
+            },
             throwOnError: false,
           },
         );
       }
     },
-    [debouncedTrigger, isBind, changeEmail, t],
+    [debouncedTrigger, isBind, changeEmail, t, back, fetchUserInfo],
   );
 
   return (
