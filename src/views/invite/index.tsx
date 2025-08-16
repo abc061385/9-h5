@@ -11,11 +11,19 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import QRCode from "qrcode";
+import { useMemo } from "react";
 
 const InviteView = () => {
   const t = useTrans();
   const { userInfo } = useUserStore();
   const locale = useLocale();
+
+  const copyLink = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return `${window.origin}/${locale}${routerMap.register}?inviteCode=${userInfo.invitationCode}`;
+    }
+    return "";
+  }, [locale, userInfo]);
 
   return (
     <ViewLayout
@@ -57,20 +65,13 @@ const InviteView = () => {
                 {t("invite.inviteLink")}
               </span>
               <span className="font-bold flex items-center gap-1 flex-1  leading-4">
-                <span className="truncate max-w-40">{`${window.origin}/${locale}${routerMap.register}?inviteCode=${userInfo.invitationCode}`}</span>
-                <CopyText
-                  className="mt-0.5"
-                  text={`${window.origin}/${locale}${routerMap.register}`}
-                  theme="light"
-                />
+                <span className="truncate max-w-40">{copyLink}</span>
+                <CopyText className="mt-0.5" text={copyLink} theme="light" />
               </span>
             </div>
           </div>
           <div className="w-26 h-26">
-            <Qrcode
-              value={`${window.origin}/${locale}${routerMap.register}`}
-              size={104}
-            />
+            <Qrcode value={copyLink} size={104} />
           </div>
         </div>
         <div className="mt-9 grid grid-cols-1 gap-2">
@@ -78,10 +79,9 @@ const InviteView = () => {
             className="btn bg-white"
             onClick={async () => {
               try {
-                const dataUrl = await QRCode.toDataURL(
-                  `${window.origin}/${locale}${routerMap.register}`,
-                  { width: 300 }
-                );
+                const dataUrl = await QRCode.toDataURL(copyLink, {
+                  width: 300,
+                });
                 const link = document.createElement("a");
                 link.href = dataUrl;
                 link.download = "invite.png";
@@ -96,10 +96,8 @@ const InviteView = () => {
           <button
             className="btn btn-primary"
             onClick={() => {
-              navigator.clipboard.writeText(
-                `${window.origin}/${locale}${routerMap.register}?inviteCode=${userInfo.invitationCode}`
-              );
-              toast.success("复制成功");
+              navigator.clipboard.writeText(copyLink);
+              toast.success(t("transactionDetail.copy"));
             }}
           >
             Copy Address

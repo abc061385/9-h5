@@ -47,7 +47,7 @@ const TeamsView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, searchValue, userInfo, pageSize]
+    [tabsValue, searchValue, userInfo, pageSize],
   );
 
   const getInfo = useCallback(async () => {
@@ -115,6 +115,14 @@ const TeamsView = () => {
             type="search"
             className="grow"
             placeholder={t("查询团队账号")}
+            onInput={(e) => {
+              if (!(e.target as HTMLInputElement).value) {
+                // 清除按钮被点击时触发
+                setSearchValue("");
+                getList();
+                getInfo();
+              }
+            }}
             onKeyDown={(e) => {
               if (e.code === "Enter") {
                 setSearchValue((e.target as HTMLInputElement).value);

@@ -11,8 +11,6 @@ const Countdown: React.FC<CountdownProps> = ({ seconds, onFinish, render }) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    setCount(seconds); // 支持外部秒数变更时重置倒计时
-
     timerRef.current = setInterval(() => {
       setCount((prev) => {
         if (prev <= 1) {
@@ -27,7 +25,7 @@ const Countdown: React.FC<CountdownProps> = ({ seconds, onFinish, render }) => {
     return () => {
       clearInterval(timerRef.current!);
     };
-  }, [seconds, onFinish]);
+  }, [count, onFinish]);
 
   return (
     <>

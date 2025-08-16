@@ -29,7 +29,9 @@ const SettingGoogleVerifyView = () => {
   const reg = useRootReg();
   const { userInfo } = useUserStore();
   const [codeCountDown, setCodeCountDown] = useState(false);
+  const [oldcodeCountDown, setOldCodeCountDown] = useState(false);
   const [isBind, setIsBind] = useState(false);
+  const [btnType, setType] = useState<"new" | "old">("new");
 
   useEffect(() => {
     if (userInfo?.bindEmail) return setIsBind(true);
@@ -37,13 +39,13 @@ const SettingGoogleVerifyView = () => {
   }, [userInfo]);
 
   const { trigger: sendCode, isMutating } = useRequestMutation(
-    api.member.sendEmailCodeUsingGet
+    api.member.sendEmailCodeUsingGet,
   );
 
   const { trigger } = useRequestMutation(api.member.bindEmailUsingPost);
 
   const { trigger: changeEmail } = useRequestMutation(
-    api.member.changeEmailUsingPost
+    api.member.changeEmailUsingPost,
   );
 
   const debouncedTrigger = useDebouncedCallback(trigger, 100);
@@ -82,7 +84,7 @@ const SettingGoogleVerifyView = () => {
           {
             onSuccess: () => {},
             throwOnError: false,
-          }
+          },
         );
       } else {
         debouncedTrigger(
@@ -94,11 +96,11 @@ const SettingGoogleVerifyView = () => {
           {
             onSuccess: () => {},
             throwOnError: false,
-          }
+          },
         );
       }
     },
-    [debouncedTrigger, isBind, changeEmail, t]
+    [debouncedTrigger, isBind, changeEmail, t],
   );
 
   return (
@@ -131,6 +133,7 @@ const SettingGoogleVerifyView = () => {
               />
               {codeCountDown ? (
                 <Countdown
+                  key="new"
                   seconds={60}
                   onFinish={() => {
                     setCodeCountDown(false);
@@ -140,20 +143,21 @@ const SettingGoogleVerifyView = () => {
                 <span
                   className="btn btn-neutral font-medium text-sm h-8"
                   onClick={() => {
-                    if (isMutating) return;
+                    setType("new");
+                    if (btnType === "new" && isMutating) return;
                     if (getValues("email")) {
                       sendCode(
                         { email: getValues("email") || "", type: "BIND" },
                         {
                           onSuccess: () => setCodeCountDown(true),
-                        }
+                        },
                       );
                       return;
                     }
                     toast.error(t("请输入要绑定的邮箱账号"));
                   }}
                 >
-                  {isMutating ? (
+                  {btnType === "new" && isMutating ? (
                     <span className="loading loading-spinner loading-xs"></span>
                   ) : (
                     t("发送")
@@ -176,34 +180,36 @@ const SettingGoogleVerifyView = () => {
                     placeholder={t("请输入验证码")}
                     className="grow placeholder:text-base"
                   />
-                  {codeCountDown ? (
+                  {oldcodeCountDown ? (
                     <Countdown
+                      key="old"
                       seconds={60}
                       onFinish={() => {
-                        setCodeCountDown(false);
+                        setOldCodeCountDown(false);
                       }}
                     />
                   ) : (
                     <span
                       className="btn btn-neutral font-medium text-sm h-8"
                       onClick={() => {
-                        if (isMutating) return;
-                        if (getValues("oldEmailCode")) {
+                        setType("old");
+                        if (btnType === "old" && isMutating) return;
+                        if (userInfo?.bindEmail) {
                           sendCode(
                             {
-                              email: getValues("oldEmailCode") || "",
+                              email: userInfo?.bindEmail || "",
                               type: "CHANGE",
                             },
                             {
-                              onSuccess: () => setCodeCountDown(true),
-                            }
+                              onSuccess: () => setOldCodeCountDown(true),
+                            },
                           );
                           return;
                         }
                         toast.error(t("请输入正确的邮箱账号"));
                       }}
                     >
-                      {isMutating ? (
+                      {btnType === "old" && isMutating ? (
                         <span className="loading loading-spinner loading-xs"></span>
                       ) : (
                         t("发送")
