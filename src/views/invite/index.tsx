@@ -33,7 +33,7 @@ const InviteView = () => {
       className="bg-black flex flex-col h-max md-pc:h-full"
       heightFull
     >
-      <div>
+      <div className="pt-14">
         <Image
           src="/images/invite/invite-bg.png"
           alt=""

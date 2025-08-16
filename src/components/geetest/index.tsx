@@ -46,13 +46,11 @@ export const Geetest = forwardRef<GeetestRef, IProps>(({ onSuccess }, ref) => {
         product: "bind",
         language: (() => {
           const obj: { [key in string]?: string } = {
-            cn: "zho",
-            hk: "zho-hk",
+            "zh-Hans": "zho",
+            "zh-Hant": "zho-hk",
             en: "eng",
-            ja: "jpn",
-            in: "ind",
-            ru: "rus",
-            es: "spa",
+            "ja-JP": "jpn",
+            "ko-KR": "kor",
           };
           return obj[lang] || "eng";
         })(),
