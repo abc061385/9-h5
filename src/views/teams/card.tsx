@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { ICardProps, IndividualType, TeamType } from "./type";
-import { cn, maskString } from "@/lib/utils";
+import { cn, formatThousand, maskString } from "@/lib/utils";
 
 const CardBox: FC<ICardProps> = ({ data }) => {
   const t = useTrans();
@@ -46,7 +46,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
           return (
             <div key={item.value} className="flex justify-between mt-2 text-sm">
               <span className="text-text4">{t(item.label)}</span>
-              <span>{data[item.value]}</span>
+              <span>{formatThousand(data[item.value] || 0)}</span>
             </div>
           );
         })}
@@ -57,7 +57,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
           return (
             <div key={item.value} className="flex justify-between mt-2">
               <span className="text-text4">{t(item.label)}</span>
-              <span>{data[item.value]}</span>
+              <span>{formatThousand(data[item.value] || 0)}</span>
             </div>
           );
         })}

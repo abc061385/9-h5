@@ -12,7 +12,7 @@ export function useLocationHref() {
     window.location.href = targetUrl;
   }
   function goToLuckyActivity(id: string) {
-    if (!id) return;
+    if (!id) return true;
     const targetUrl = getLucydrawPath(id);
     window.location.href = targetUrl;
   }

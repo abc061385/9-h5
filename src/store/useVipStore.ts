@@ -6,7 +6,7 @@ import { useUserStore } from "./useUserStore";
 
 interface VipState extends BaseState<VipState> {
   currentLevelInfo: VipInfoType;
-  nextLevelInfo: VipInfoType;
+  nnextStartConfigextLevelInfo: VipInfoType;
   currentStartConfig: NextStarConfig;
   nextStartConfig: NextStarConfig;
   fetchNextLevel: () => Promise<void>;
@@ -18,7 +18,7 @@ export const useVipStore = create<VipState>()(
     (set) => {
       return {
         currentLevelInfo: {},
-        nextLevelInfo: {},
+        nextLevelInfo: { teamVipCount: 0 },
         currentStartConfig: {},
         nextStartConfig: {},
         fetchNextLevel: async () => {
@@ -30,11 +30,11 @@ export const useVipStore = create<VipState>()(
             if (userInfo.vipLevel < 9) {
               set(() => ({
                 currentLevelInfo: data.find(
-                  (v: VipInfoType) => v.vipLevel === userInfo.vipLevel
+                  (v: VipInfoType) => v.vipLevel === userInfo.vipLevel,
                 ),
                 nextLevelInfo: data.find(
                   (v: VipInfoType) =>
-                    v.vipLevel === Number(userInfo.vipLevel || 0) + 1
+                    v.vipLevel === Number(userInfo.vipLevel || 0) + 1,
                 ),
               }));
             } else {
@@ -50,21 +50,21 @@ export const useVipStore = create<VipState>()(
           const userInfo = useUserStore.getState().userInfo;
 
           const { data } = await api.memberVipLevelStartConfig.listUsingGet1(
-            {}
+            {},
           );
           set(() => ({
             currentStartConfig: data.find(
-              (item: NextStarConfig) => item.star === userInfo.star
+              (item: NextStarConfig) => item.star === userInfo.star,
             ),
             nextStartConfig: data.find(
               (item: NextStarConfig) =>
-                item.star === Number(userInfo.star || 0) + 1
+                item.star === Number(userInfo.star || 0) + 1,
             ),
           }));
         },
         setField: (key, value) => set({ [key]: value }),
       };
     },
-    { enabled: getIsDev() }
-  )
+    { enabled: getIsDev() },
+  ),
 );

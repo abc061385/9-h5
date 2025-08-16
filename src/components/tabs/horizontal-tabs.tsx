@@ -36,7 +36,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                   : "",
                 isActive && type === "border"
                   ? "tab-active text-primary font-bold"
-                  : ""
+                  : "",
               )}
               onClick={() => onChange(tab.value)}
             >
@@ -45,7 +45,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                 <div
                   className={cn(
                     "w-5 h-[3px] mx-auto",
-                    isActive && "bg-primary"
+                    isActive && "bg-primary",
                   )}
                 ></div>
               </ShowIf>

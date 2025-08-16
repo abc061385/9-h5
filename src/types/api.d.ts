@@ -30,6 +30,7 @@ type VipInfoType = Partial<{
 type NextStarConfig = Partial<{
   star: number;
   coefficient: number;
+  teamVipCount: number;
 }>;
 
 type CurrencyInfo = Partial<{

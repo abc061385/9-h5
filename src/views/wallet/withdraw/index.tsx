@@ -18,6 +18,7 @@ import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
 import useSchema from "./useSchema";
 import SecurityVerification from "@/components/security-verify";
+import { formatThousand } from "@/lib/utils";
 
 const WithdrawView = () => {
   const { push } = useRouter();
@@ -31,7 +32,7 @@ const WithdrawView = () => {
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
   const addressPreviousPageType = useSettingStore(
-    (s) => s.addressPreviousPageType
+    (s) => s.addressPreviousPageType,
   );
   const addressInfo = useSettingStore((s) => s.addressInfo);
 
@@ -60,7 +61,7 @@ const WithdrawView = () => {
   });
   const { data: accountResponse } = useRequestQuery(
     api.wallet.listUsingPost,
-    {}
+    {},
   );
   const accountList: Account[] = accountResponse?.data?.wallet;
   const currencyAccount = useMemo(() => {
@@ -74,8 +75,8 @@ const WithdrawView = () => {
     withdrawalFeeType === "fixed"
       ? currencyCode
       : withdrawalFeeType === "percentage"
-      ? "%"
-      : "";
+        ? "%"
+        : "";
 
   const handleNext = () => {
     setField("formState", getValues());
@@ -229,7 +230,7 @@ const WithdrawView = () => {
               <span>{getValues("currencyCode")}</span>
             </label>
             <p className="text-text4 text-xs">
-              {t("余额")}：{currencyAccount?.balance || 0}{" "}
+              {t("余额")}：{formatThousand(currencyAccount?.balance || 0)}{" "}
               {getValues("currencyCode")}
             </p>
             <TextError>{errors.withdrawAmount?.message}</TextError>

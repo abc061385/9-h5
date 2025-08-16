@@ -60,7 +60,7 @@ export default function HomeView() {
                 className="flex items-center justify-between gap-1 rounded-lg border border-border2 p-4"
                 onClick={() => {
                   if (v?.goto) {
-                    v.goto();
+                    if (v.goto()) toast.error(t("notOpenYet"));
                     return;
                   }
                   if (v.path) return push(v.path);

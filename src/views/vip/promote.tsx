@@ -1,5 +1,5 @@
 import { useTrans } from "@/hooks/useTrans";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import StarIcon from "./star-icon";
 import { formatThousand } from "@/lib/utils";
 import { useVipStore } from "@/store/useVipStore";
@@ -9,12 +9,21 @@ const PromoteBox = () => {
   const t = useTrans();
   const userInfo = useUserStore((s) => s.userInfo);
   const nextLevelInfo = useVipStore((s) => s.nextLevelInfo);
+  const nextStartConfig = useVipStore((s) => s.nextStartConfig);
   const fetchNextLevel = useVipStore((s) => s.fetchNextLevel);
 
   useEffect(() => {
     fetchNextLevel();
   }, [fetchNextLevel]);
 
+  const teamVipCount = useMemo(() => {
+    if (userInfo.vipLevel === 9) {
+      return nextStartConfig?.teamVipCount || 0;
+    }
+    return nextLevelInfo.teamVipCount || 0;
+  }, [nextLevelInfo, nextStartConfig, userInfo]);
+  console.log(teamVipCount, "teamVipCount");
+  console.log(userInfo.inviteCount, "userInfo.inviteCount");
   if (userInfo.vipLevel === 9 && userInfo.star === 3) return null;
   return (
     <div className="mt-6 border-b border-border2 pb-6">
@@ -33,7 +42,7 @@ const PromoteBox = () => {
         </div>
         <div className="text-sm text-primary">
           {t("多少个用户", {
-            num: nextLevelInfo.teamVipCount || 0,
+            num: teamVipCount || 0,
             level: "VIP" + userInfo.vipLevel,
           })}
         </div>
@@ -60,17 +69,17 @@ const PromoteBox = () => {
         0
           ? formatThousand(
               (nextLevelInfo.teamInvestmentTotal || 0) -
-                (userInfo.totalTeamInvestment || 0)
+                (userInfo.totalTeamInvestment || 0),
             )
           : 0}{" "}
         USDT
-        {nextLevelInfo.teamVipCount ? "," : null}
-        {nextLevelInfo.teamVipCount ? (
+        {teamVipCount ? "," : null}
+        {teamVipCount ? (
           <span>
             {t("多少个用户", {
               num:
-                nextLevelInfo.teamVipCount - (userInfo.inviteCount || 0) > 0
-                  ? nextLevelInfo.teamVipCount - (userInfo.inviteCount || 0)
+                teamVipCount - (userInfo.inviteCount || 0) > 0
+                  ? teamVipCount - (userInfo.inviteCount || 0)
                   : 0,
               level: "VIP" + userInfo.vipLevel,
             })}
