@@ -22,8 +22,6 @@ const PromoteBox = () => {
     }
     return nextLevelInfo.teamVipCount || 0;
   }, [nextLevelInfo, nextStartConfig, userInfo]);
-  console.log(teamVipCount, "teamVipCount");
-  console.log(userInfo.inviteCount, "userInfo.inviteCount");
   if (userInfo.vipLevel === 9 && userInfo.star === 3) return null;
   return (
     <div className="mt-6 border-b border-border2 pb-6">
