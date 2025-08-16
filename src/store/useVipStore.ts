@@ -6,7 +6,7 @@ import { useUserStore } from "./useUserStore";
 
 interface VipState extends BaseState<VipState> {
   currentLevelInfo: VipInfoType;
-  nnextStartConfigextLevelInfo: VipInfoType;
+  nextLevelInfo: VipInfoType;
   currentStartConfig: NextStarConfig;
   nextStartConfig: NextStarConfig;
   fetchNextLevel: () => Promise<void>;
@@ -18,9 +18,9 @@ export const useVipStore = create<VipState>()(
     (set) => {
       return {
         currentLevelInfo: {},
-        nextLevelInfo: { teamVipCount: 0 },
+        nextLevelInfo: {},
         currentStartConfig: {},
-        nextStartConfig: {},
+        nextStartConfig: { teamVipCount: 0 },
         fetchNextLevel: async () => {
           const userInfo = useUserStore.getState().userInfo;
           try {
