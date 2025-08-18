@@ -614,5 +614,8 @@
   "excludedEarningsNote": "उपयोगकर्ता ने निवेश किए गए सभी निवेशों के लिए लाभ नहीं मिलेगा",
   "verificationCodeMustBe6Digits": "सत्यापन कोड 6 अंकों की आवश्यकता है",
   "resend": "पुनः भेजें",
-  "googleAuthenticatorValidTime": "Google Authenticator की कुंजी 30 सेकंड के लिए वैध होती है। कृपया वैध समय के भीतर सही कुंजी दर्ज करें।"
+  "googleAuthenticatorValidTime": "Google Authenticator की कुंजी 30 सेकंड के लिए वैध होती है। कृपया वैध समय के भीतर सही कुंजी दर्ज करें।",
+  "myAssets": "मेरी संपत्ति",
+  "confirmInfo": "जानकारी की पुष्टि करें",
+  "results": "परिणाम"
 }
