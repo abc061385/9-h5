@@ -29,6 +29,7 @@ const ListBox = () => {
   const pledgeList = [
     { label: "360" + t("天"), value: 360 },
     { label: "180" + t("天"), value: 180 },
+    { label: "90" + t("天"), value: 90 },
     { label: "30" + t("天"), value: 30 },
     { label: "7" + t("天"), value: 7 },
   ];
@@ -47,7 +48,7 @@ const ListBox = () => {
         hasMore: data.pageNum < data.pages,
       };
     },
-    [tabsValue, pledgeDays]
+    [tabsValue, pledgeDays],
   );
 
   return (
@@ -85,7 +86,7 @@ const ListBox = () => {
               className="bg-bg2 rounded-2xl p-4"
               onClick={() =>
                 push(
-                  `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+                  `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`,
                 )
               }
             >
