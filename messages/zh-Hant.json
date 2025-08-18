@@ -14,8 +14,10 @@
     "assets": "资产"
   },
   "login": {
-    "email": "郵箱",
+    "old_user_email_hint": "已有账户暂未绑定邮箱?",
+    "go_bind": "去綁定",
     "bind": "去綁定",
+    "email": "郵箱",
     "appName": "9M",
     "slogan": "會自己賺錢的AI",
     "loginTab": "登入",

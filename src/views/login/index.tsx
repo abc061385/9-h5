@@ -90,6 +90,15 @@ const LoginView = () => {
                 />
               </label>
               <TextError>{errors?.email?.message}</TextError>
+              <div className="text-xs">
+                {t("old_user_email_hint")}{" "}
+                <a
+                  className="text-primary"
+                  href="https://old.9mc.org/#/pages/login/login1"
+                >
+                  {t("go_bind")}
+                </a>
+              </div>
             </fieldset>
             <fieldset className="fieldset mt-6 py-0">
               <legend className="fieldset-legend text-base py-0 mb-2">
@@ -120,7 +129,7 @@ const LoginView = () => {
           </button>
         </div>
         <div className="text-center text-sm pb-6">
-          <h3 className="text-text4">Don&apos;t have a Tiger AI account? </h3>
+          <h3 className="text-text4">Don&apos;t have a 9M AI account? </h3>
           <Link href={routerMap.register}>Register now</Link>
         </div>
         <Geetest

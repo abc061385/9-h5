@@ -14,6 +14,8 @@
     "assets": "資産"
   },
   "login": {
+    "old_user_email_hint": "すでにアカウントをお持ちですが、メールに紐付けられていませんか？",
+    "go_bind": "今すぐ設定",
     "email": "メール",
     "bind": "連携しに行く",
     "appName": "9M",

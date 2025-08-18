@@ -14,6 +14,8 @@
     "assets": "สินทรัพย์"
   },
   "login": {
+    "old_user_email_hint": "Hai già un account ma non è associato all'email?",
+    "go_bind": "Vai a Collegare",
     "email": "อีเมล",
     "bind": "ไปที่ผูกมัด",
     "appName": "9 ล้าน",

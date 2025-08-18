@@ -14,8 +14,10 @@
     "assets": "Ativos"
   },
   "login": {
+    "old_user_email_hint": "Já tem uma conta mas não vinculou ao e-mail?",
+    "go_bind": "Vincular Agora",
+    "bind": "Já tem uma conta mas não vinculou ao e-mail?",
     "email": "Email",
-    "bind": "Vincular Agora",
     "appName": "9M",
     "slogan": "A IA Que Sabe Fazer Seu Dinheiro Crescer",
     "loginTab": "Entrar",

@@ -14,6 +14,8 @@
     "assets": "Aset"
   },
   "login": {
+    "old_user_email_hint": "Sudah ada akaun tetapi belum dikaitkan dengan e-mel?",
+    "go_bind": "Pergi Ikat",
     "email": "E-mel",
     "bind": "Pergi ke Ikat",
     "appName": "9Jt",

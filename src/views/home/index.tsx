@@ -11,28 +11,29 @@ import { useRouter } from "@/i18n/navigation";
 import toast from "react-hot-toast";
 import { useTrans } from "@/hooks/useTrans";
 import SmartChatBox from "./smart-chat";
-import { useRequestQuery } from "@/hooks/useRequestQuery";
-import { api } from "@/api";
+// import { useRequestQuery } from "@/hooks/useRequestQuery";
+// import { api } from "@/api";
 import { useMemo } from "react";
-import { useLocationHref } from "@/hooks/useLocationHref";
+// import { useLocationHref } from "@/hooks/useLocationHref";
 
 export default function HomeView() {
   const t = useTrans();
   const { push } = useRouter();
-  const { goToLuckyActivity } = useLocationHref();
-  const { data } = useRequestQuery(api.userActivity.getActivityListUsingGet, {
-    pageNo: 1,
-    pageSize: 1000,
-    activityType: 1,
-  });
+  // const { goToLuckyActivity } = useLocationHref();
+  // const { data } = useRequestQuery(api.userActivity.getActivityListUsingGet, {
+  //   pageNo: 1,
+  //   pageSize: 1000,
+  //   activityType: 1,
+  // });
   const moduleList = useMemo(() => {
-    const list = data?.data.list || [];
-    const luckyId = list[0]?.id || null;
+    // const list = data?.data.list || [];
+    // const luckyId = list[0]?.id || null;
     return [
       {
         title: "Lucky Wheel",
         icon: "lucky-wheel.svg",
-        goto: () => goToLuckyActivity(luckyId),
+        path: "",
+        // goto: () => goToLuckyActivity(luckyId),
       },
       {
         title: "Community Project",
@@ -40,7 +41,7 @@ export default function HomeView() {
         path: "",
       },
     ];
-  }, [goToLuckyActivity, data]);
+  }, []);
   return (
     <ViewLayout
       dock={true}
@@ -59,10 +60,10 @@ export default function HomeView() {
                 key={i}
                 className="flex items-center justify-between gap-1 rounded-lg border border-border2 p-4"
                 onClick={() => {
-                  if (v?.goto) {
-                    if (v.goto()) toast.error(t("notOpenYet"));
-                    return;
-                  }
+                  // if (v?.goto) {
+                  //   if (v?.goto()) toast.error(t("notOpenYet"));
+                  //   return;
+                  // }
                   if (v.path) return push(v.path);
                   toast.error(t("notOpenYet"));
                 }}

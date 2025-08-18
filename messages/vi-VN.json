@@ -14,6 +14,8 @@
     "assets": "Tài sản"
   },
   "login": {
+    "old_user_email_hint": "Đã có tài khoản nhưng chưa liên kết email?",
+    "go_bind": "Liên kết ngay",
     "email": "Email",
     "bind": "Đi đến Liên kết",
     "appName": "9M",

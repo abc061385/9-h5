@@ -14,8 +14,10 @@
     "assets": "Assets"
   },
   "login": {
+    "old_user_email_hint": "Already have an account but not bound to email?",
+    "go_bind": "Go Bind",
+    "bind": "Go Bind",
     "email": "Email",
-    "bind": "Go to Bind",
     "appName": "9M",
     "slogan": "The AI That Knows How to Grow Your Money",
     "loginTab": "Login",
