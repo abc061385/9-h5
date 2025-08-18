@@ -151,6 +151,10 @@
     "securityWarning": "For your asset security"
   },
   "home": {
+    "invite_friend":"Invite Friends",
+    "database":"Database",
+    "ranking":"Ranking",
+    "challenge":"Challenge",
     "welcome": "Welcome to 9M Investment Platform",
     "subtitle": "Smart Investment Future",
     "startNow": "Start Now",

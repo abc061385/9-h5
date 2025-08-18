@@ -152,6 +152,10 @@
     "securityWarning": "Vì sự an toàn tài sản của bạn"
   },
   "home": {
+    "invite_friend":"Mời Bạn bè",
+    "database":"Cơ sở dữ liệu",
+    "ranking":"Bảng xếp hạng",
+    "challenge":"Thử thách",
     "welcome": "Chào mừng đến với Nền tảng Đầu tư 9M",
     "subtitle": "Tương lai đầu tư thông minh",
     "startNow": "Bắt đầu ngay",

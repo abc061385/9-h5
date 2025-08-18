@@ -53,7 +53,8 @@ export default function HomeView() {
       <div className="px-content">
         {/* <ChartBox /> */}
         <FundBox />
-        <div className="grid grid-cols-2 gap-2 mt-6">
+        <div className="hidden">
+          {/* <div className="grid grid-cols-2 gap-2 mt-6"> */}
           {moduleList.map((v, i) => {
             return (
               <div

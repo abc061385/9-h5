@@ -152,6 +152,10 @@
     "securityWarning": "Untuk keselamatan aset anda"
   },
   "home": {
+    "invite_friend":"Menjemput Rakan",
+    "database":"Pangkalan Data",
+    "ranking":"Kedudukan",
+    "challenge":"Cabaran",
     "welcome": "Selamat Datang ke Platform Pelaburan 9M",
     "subtitle": "Masa Depan Pelaburan Pintar",
     "startNow": "Mulakan Sekarang",

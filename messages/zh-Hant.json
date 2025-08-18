@@ -152,6 +152,10 @@
     "securityWarning": "為了您的資產安全，您在更改賬號關聯的身份驗證應用之後的8小時內，將無法進行提幣操作。"
   },
   "home": {
+    "invite_friend":"邀請好友",
+    "database":"數據庫",
+    "ranking":"排行榜",
+    "challenge":"挑戰",
     "welcome": "歡迎來到 9M 投資平台",
     "subtitle": "智投未來，AI 為你財富加速",
     "startNow": "立刻開始",

@@ -41,10 +41,14 @@ const FundBox = () => {
   }, [getList]);
 
   const hotList = [
-    { label: "Datebase", icon: "database" },
-    { label: "Invite Friends", icon: "invite-friends", path: routerMap.invite },
-    { label: "Ranking", icon: "ranking" },
-    { label: "Challenge", icon: "challenge" },
+    { label: t("home.database"), icon: "database" },
+    {
+      label: t("home.invite_friend"),
+      icon: "invite-friends",
+      path: routerMap.invite,
+    },
+    { label: t("home.ranking"), icon: "ranking" },
+    { label: t("home.challenge"), icon: "challenge" },
   ];
 
   return (

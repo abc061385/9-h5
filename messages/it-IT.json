@@ -150,6 +150,10 @@
     "securityWarning": "Per la sicurezza dei tuoi asset"
   },
   "home": {
+    "invite_friend":"Invita Amici",
+    "database":"Database",
+    "ranking":"Classifica",
+    "challenge":"Sfida",
     "welcome": "Benvenuto su 9M Piattaforma d'Investimento",
     "subtitle": "Futuro degli Investimenti Intelligenti",
     "startNow": "Inizia Ora",
