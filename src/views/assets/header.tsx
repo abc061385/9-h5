@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useAssetStore } from "@/store/useAssetStore";
 import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
+import toast from "react-hot-toast";
 
 interface TotalInvestmentType {
   personalFundInvestment: number;
@@ -52,7 +53,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      }
+      },
     );
   }, [trigger]);
 
@@ -97,6 +98,9 @@ const HeaderBox = () => {
     },
   ];
 
+  const handleTip = () => {
+    toast(t("老数据总资产"));
+  };
   return (
     <div className="">
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
@@ -104,6 +108,17 @@ const HeaderBox = () => {
       <h4 className="text-[28px] font-bold leading-8">
         ${formatBalance(totalAmount, 4)}
       </h4>
+      {totalInvestment?.frozenUbx ? (
+        <div className="text-text4 text-sm mt-2">
+          <div className="flex items-center">
+            <span className="text-xs">{t("冻结金额")}</span>：
+            <span>
+              {formatBalance(totalInvestment?.frozenUbx || 0, 2)} USDT
+            </span>
+            <Icon name="warning-black" onClick={handleTip} />
+          </div>
+        </div>
+      ) : null}
       <div className="text-text4 text-sm mt-2">
         <span className="mb-2 text-xs">{t("投资总额")}</span>：
         <span>
