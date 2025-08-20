@@ -31,9 +31,6 @@ export const LayoutRoot = ({ children }: PropsWithChildren) => {
   }, [setUserField]);
 
   useEffect(() => {
-    console.log(pathname, "pathname");
-    console.log(WhiteListPath, "WhiteListPath");
-    console.log(WhiteListPath.indexOf(pathname) === -1);
     if (WhiteListPath.indexOf(pathname) === -1) {
       initRoot();
     }
