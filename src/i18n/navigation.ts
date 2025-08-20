@@ -69,4 +69,7 @@ export const WhiteListPath = [
   routerMap.login,
   routerMap.forgotPassword,
   routerMap.protocol,
+  routerMap.news,
+  routerMap.newsDetail,
+  routerMap.verification,
 ];
