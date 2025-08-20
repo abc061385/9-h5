@@ -8,14 +8,14 @@ import ViewLayout from "@/components/layout";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { typeMap } from "@/lib/const";
+import { typeMap, WalletOrderType } from "@/lib/const";
 import { useAssetStore } from "@/store/useAssetStore";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 interface ListType {
   id: number;
-  status: number;
+  status: 0 | 1 | 2;
   type: string;
   inOut: string;
   amount: string;
@@ -55,7 +55,7 @@ const WalletDetailView = () => {
         hasMore: data.pageNum < data.pages,
       };
     },
-    [searchParams]
+    [searchParams],
   );
 
   const balance = useCallback(
@@ -63,10 +63,10 @@ const WalletDetailView = () => {
       if (!balanceList?.length) return;
       return formatBalance(
         balanceList.find((v) => v.coin === coin)?.balance || "0",
-        coin || ""
+        coin || "",
       );
     },
-    [balanceList, formatBalance]
+    [balanceList, formatBalance],
   );
 
   const usdtValue = useCallback(
@@ -74,18 +74,31 @@ const WalletDetailView = () => {
       if (!balanceList?.length) return;
       return formatBalance(
         balanceList.find((v) => v.coin === coin)?.usdtValue || "0",
-        "USDT"
+        "USDT",
       );
     },
-    [balanceList, formatBalance]
+    [balanceList, formatBalance],
   );
 
-  const statusMap: {
-    [key: string]: string;
-  } = {
-    0: t("walletDetail.statusPending"),
-    1: t("walletDetail.statusSuccess"),
-    2: t("walletDetail.statusFailed"),
+  const getStatusText = (status: ListType["status"], type: string) => {
+    const statusMap = {
+      0: t("walletDetail.statusPending"),
+      1: t("walletDetail.statusSuccess"),
+      2: t("walletDetail.statusFailed"),
+    };
+    if (WalletOrderType.indexOf(type) > -1) {
+      statusMap[2] = t("已提取");
+    }
+    if (
+      type == "INVESTMENT_INCOME" ||
+      type == "VIP_REWARD" ||
+      type == "EQUAL_LEVEL_REWARD" ||
+      type == "CURRENCY_RIGHTS_REWARD"
+    ) {
+      statusMap[1] = t("已发放");
+      statusMap[2] = t("已提取");
+    }
+    return statusMap[status] || t("walletDetail.statusUnknown");
   };
   return (
     <ViewLayout
@@ -122,7 +135,7 @@ const WalletDetailView = () => {
                   </div>
                   <div className="flex items-center justify-between text-xs text-text4">
                     <div className="flex flex-col gap-1 ">
-                      <span>{statusMap[item?.status]}</span>
+                      <span>{getStatusText(item?.status, item?.type)}</span>
                     </div>
                     <span>
                       <span>{item?.createTime}</span>

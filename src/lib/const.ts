@@ -40,3 +40,22 @@ export const typeMap: { [key: string]: string } = {
 
 export type GAPreviousPageType = "withdraw" | "";
 export type AddressPreviousPageType = "withdraw" | "";
+
+export const WalletOrderType = [
+  "INVESTMENT_INCOME", //27("投资收益")
+  "VIP_REWARD", //28("VIP奖励")
+  "EQUAL_LEVEL_REWARD", //29("平级奖励")
+  "CURRENCY_RIGHTS_REWARD", //30("币权奖励")
+  "DIRECT_PUSH_REWARD", //31("基金购买直推奖励")
+  "INDIRECT_PUSH_REWARD", //32("基金购买间推奖励")
+  "RETURN_OF_PRINCIPAL", //33("本金返回")
+
+  "INVESTMENT_FUND", //34("购买基金")
+
+  "CREATION_REWARD", //35("创世返回")
+  "NODE_REWARD", //36("信仰节点收益")
+  "NODE_RETURN", //37("信仰节点本金返回")
+  "UBX_RETURN", //38("UBX解冻")
+  "UBX_ADD", //39("UBX账号导入赠送")
+  "FLASH_REDEMPTION_DEDUCTION", //40("闪兑扣款")
+]; //一些特殊的类型
