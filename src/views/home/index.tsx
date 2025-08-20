@@ -14,6 +14,7 @@ import SmartChatBox from "./smart-chat";
 // import { useRequestQuery } from "@/hooks/useRequestQuery";
 // import { api } from "@/api";
 import { useMemo } from "react";
+import ChartBox from "./chart";
 // import { useLocationHref } from "@/hooks/useLocationHref";
 
 export default function HomeView() {
@@ -51,7 +52,7 @@ export default function HomeView() {
     >
       <BannerBox />
       <div className="px-content">
-        {/* <ChartBox /> */}
+        <ChartBox />
         <FundBox />
         <div className="hidden">
           {/* <div className="grid grid-cols-2 gap-2 mt-6"> */}

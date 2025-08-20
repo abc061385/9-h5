@@ -4,6 +4,7 @@ import CryptoJS from "crypto-js";
 import { AESsecretKey } from "./const";
 import lodash from "./lodash";
 import toBigNumber from "./bignumber";
+import dayjs from "dayjs";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -99,4 +100,5 @@ export function formatBalance(
 export const utils = {
   ...lodash,
   toBigNumber,
+  dayjs,
 };
