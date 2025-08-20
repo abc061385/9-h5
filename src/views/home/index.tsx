@@ -52,7 +52,7 @@ export default function HomeView() {
     >
       <BannerBox />
       <div className="px-content">
-        <ChartBox />
+        {/* <ChartBox /> */}
         <FundBox />
         <div className="hidden">
           {/* <div className="grid grid-cols-2 gap-2 mt-6"> */}
