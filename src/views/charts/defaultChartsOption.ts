@@ -2,7 +2,13 @@ import * as echarts from "echarts/core";
 export const defaultChartOption = {
   tooltip: {
     trigger: "axis",
-    position: function (pt, params, dom, rect, size) {
+    position: function (
+      pt: [number, number],
+      params: string,
+      dom: string,
+      rect: string,
+      size: { viewSize: [number, number]; contentSize: [number, number] },
+    ) {
       const [x, y] = pt; // 鼠标位置
       const viewWidth = size.viewSize[0];
       const boxWidth = size.contentSize[0];
