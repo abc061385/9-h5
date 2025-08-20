@@ -5,29 +5,36 @@ import { cn } from "@/lib/utils";
 import { useStore } from "@/store";
 import {
   initRouterPush,
-  useRouter,
   usePathname,
-  routerMap,
+  useRouter,
+  WhiteListPath,
 } from "@/i18n/navigation";
-import { useSearchParams } from "next/navigation";
 import { ToastWrapper } from "../toast-wrapper";
 import { useLocale } from "next-intl";
+import { useUserStore } from "@/store/useUserStore";
 
 export const LayoutRoot = ({ children }: PropsWithChildren) => {
   const initRoot = useStore((s) => s.initRoot);
   const setLang = useStore((s) => s.setLang);
   const locale = useLocale();
-  const { push } = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const { push } = useRouter();
+  const setUserField = useUserStore((s) => s.setField);
 
   useEffect(() => {
     initRouterPush(push);
   }, [push]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUserField("token", window.localStorage.getItem("token") || "");
+    }
+  }, [setUserField]);
 
   useEffect(() => {
-    initRoot();
-  }, [initRoot]);
+    if (WhiteListPath.indexOf(pathname) === -1) {
+      initRoot();
+    }
+  }, [initRoot, pathname]);
 
   useEffect(() => {
     if (locale) {

@@ -1,6 +1,8 @@
 import React, { PropsWithChildren } from "react";
 import toast from "react-hot-toast";
 import { Icon } from "./icon";
+import { utils } from "@/lib/utils";
+import { useTrans } from "@/hooks/useTrans";
 
 type CopyTextProps = {
   text: string;
@@ -16,12 +18,12 @@ const CopyText: React.FC<PropsWithChildren<CopyTextProps>> = ({
   className,
   theme = "dark",
 }) => {
+  const t = useTrans();
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(text);
-      setTimeout(() => {
-        toast.success(copySuccessTip || "复制成功");
-      }, 200);
+      utils.copyText(text).then(() => {
+        toast.success(copySuccessTip || t("transactionDetail.copy"));
+      });
     } catch (err) {
       console.error("复制失败：", err);
     }

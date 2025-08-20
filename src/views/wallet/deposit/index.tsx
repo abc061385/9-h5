@@ -8,6 +8,7 @@ import ViewLayout from "@/components/layout";
 import { Qrcode } from "@/components/qrcode";
 import { ShowIf } from "@/components/show-if";
 import { useTrans } from "@/hooks/useTrans";
+import { utils } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -48,7 +49,7 @@ const DepositView = () => {
         <ShowIf condition={Boolean(address)}>
           <>
             <div className="size-40 mx-auto my-12">
-              <Qrcode value={address} size={160}/>
+              <Qrcode value={address} size={160} />
             </div>
             <div className="rounded-lg bg-bg2 flex items-center justify-between p-4 font-medium text-sm">
               <p className="max-w-[88%] flex-1 leading-4 wrap-break-word">
@@ -95,8 +96,10 @@ const DepositView = () => {
           <button
             className="btn btn-primary w-full"
             onClick={() => {
-              navigator.clipboard.writeText(address);
-              toast.success(t("transactionDetail.copy"));
+              utils.copyText(address).then(() => {
+                toast.success(t("transactionDetail.copy"));
+              });
+              // navigator.clipboard.writeText(address);
             }}
           >
             Copy Address

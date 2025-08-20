@@ -4,6 +4,7 @@ import CryptoJS from "crypto-js";
 import { AESsecretKey } from "./const";
 import lodash from "./lodash";
 import toBigNumber from "./bignumber";
+import dayjs from "dayjs";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -96,7 +97,28 @@ export function formatBalance(
   return precision > 0 ? `${formattedInt}.${trimmedDecimal}` : formattedInt;
 }
 
+function copyText(text: string) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  } else {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed"; // 避免滚动影响
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+      document.execCommand("copy");
+    } catch (err) {
+      console.error("复制失败", err);
+    }
+    document.body.removeChild(textarea);
+    return Promise.resolve();
+  }
+}
 export const utils = {
   ...lodash,
   toBigNumber,
+  dayjs,
+  copyText,
 };

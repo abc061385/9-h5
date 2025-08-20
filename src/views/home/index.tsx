@@ -59,7 +59,6 @@ export default function HomeView() {
         />
       </FixedComponent>
       <div className="px-content">
-        {/* <ChartBox /> */}
         <FundBox />
         <div className="hidden">
           {/* <div className="grid grid-cols-2 gap-2 mt-6"> */}
