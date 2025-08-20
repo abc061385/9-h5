@@ -7,6 +7,7 @@ import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { NewsDataType } from "../type";
 import { langType } from "..";
+import ViewLayout from "@/components/layout";
 
 const NewsDetailView = () => {
   const t = useTrans();
@@ -22,8 +23,10 @@ const NewsDetailView = () => {
     return back();
   }, [back]);
   return (
-    <>
-      <HeaderWithBack title={t("详情")} algin="center" />
+    <ViewLayout
+      heightFull
+      header={<HeaderWithBack title={t("详情")} algin="center" />}
+    >
       <div className="p-content">
         <h2 className="font-bold text-lg">
           {newsDetail?.["title" + (langType[locale] || "En")]}
@@ -39,7 +42,7 @@ const NewsDetailView = () => {
           }}
         ></div>
       </div>
-    </>
+    </ViewLayout>
   );
 };
 export default NewsDetailView;

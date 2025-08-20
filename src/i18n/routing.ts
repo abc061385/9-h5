@@ -49,3 +49,18 @@ export const APILang = {
   "vi-VN": "vi",
   "hi-IN": "hi",
 };
+
+// 客服国际化语言映射
+export const CustomerSupportLang = {
+  en: "en-US",
+  "zh-Hans": "zh-CN",
+  "zh-Hant": "zh-HK",
+  "it-IT": "it",
+  "ja-JP": "ja-JP",
+  "ko-KR": "ko",
+  "ms-MY": "en-US",
+  "pt-PT": "pt",
+  "th-TH": "th-TH",
+  "vi-VN": "vi-VN",
+  "hi-IN": "en-US",
+};

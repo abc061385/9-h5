@@ -7,13 +7,14 @@ import FundBox from "./fund";
 import HomeHeaderBox from "./header";
 import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
-import { useRouter } from "@/i18n/navigation";
+import { routerMap, useRouter } from "@/i18n/navigation";
 import toast from "react-hot-toast";
 import { useTrans } from "@/hooks/useTrans";
 import SmartChatBox from "./smart-chat";
 // import { useRequestQuery } from "@/hooks/useRequestQuery";
 // import { api } from "@/api";
 import { useMemo } from "react";
+import { FixedComponent } from "@/components/fixed";
 // import { useLocationHref } from "@/hooks/useLocationHref";
 
 export default function HomeView() {
@@ -50,6 +51,13 @@ export default function HomeView() {
       heightFull
     >
       <BannerBox />
+      <FixedComponent className="bottom-[100px] right-[16px] size-[56px] z-50">
+        <BaseImage
+          src="/images/home/AIBall.png"
+          className="size-[56px] cursor-pointer"
+          onClick={() => push(routerMap["helper-ai"])}
+        />
+      </FixedComponent>
       <div className="px-content">
         {/* <ChartBox /> */}
         <FundBox />

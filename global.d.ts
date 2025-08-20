@@ -12,14 +12,22 @@ type GeetestConfig = Partial<{
   captchaId: string;
   challenge: string;
   riskType: string;
-  userInfo: any;
-  callType: any;
-  language: any;
+  userInfo: unknown;
+  callType: unknown;
+  language: unknown;
   product: "popup" | "float" | "bind";
 }>;
 
 interface Window {
-  initGeetest4: (config: GeetestConfig, callback: any) => viod;
+  initGeetest4: (config: GeetestConfig, callback: () => void) => viod;
+  ssq: {
+    push: (...args: unknown[]) => void;
+  };
+  __ssc: {
+    setting: {
+      hideIcon: boolean;
+    };
+  };
 }
 
 interface BaseState<T> {

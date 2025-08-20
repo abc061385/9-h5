@@ -3,6 +3,7 @@ import { PropsWithChildren, ReactNode } from "react";
 import { LayoutDock } from "./dock";
 import { cn } from "@/lib/utils";
 import { ShowIf } from "../show-if";
+import { useSettingChat } from "@/hooks/useSettingChat";
 
 type IProps = PropsWithChildren<{
   dock?: boolean;
@@ -19,6 +20,7 @@ export default function ViewLayout({
   heightFull = false,
   className,
 }: IProps) {
+  useSettingChat();
   return (
     <div data-name="layout" className="size-full relative">
       <ShowIf condition={!!header}>

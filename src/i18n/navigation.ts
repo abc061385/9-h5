@@ -60,4 +60,5 @@ export const routerMap = {
   forgotPassword: "/forgot-password",
   aboutUs: "/about-us/",
   protocol: "/protocol/",
+  "customer-support": "/customer-support/",
 };

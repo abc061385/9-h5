@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { routing } from "@/i18n/routing";
+import { CustomerSupportLang, routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { PropsWithChildren } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { LayoutRoot } from "@/components/layout/layout-root";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,8 @@ export default async function LocaleLayout({
   }
   setRequestLocale(locale);
 
+  const lang =
+    CustomerSupportLang[locale as keyof typeof CustomerSupportLang] || "en-US";
   return (
     <html className="scroll-smooth" lang={locale} data-theme="light">
       <body
@@ -43,7 +46,61 @@ export default async function LocaleLayout({
             <LayoutRoot>{children}</LayoutRoot>
           </div>
         </NextIntlClientProvider>
+        <Script
+          id="ss_chat"
+          src="https://plugin-code.salesmartly.com/js/project_315109_323721_1745570348.js"
+          strategy="afterInteractive"
+        />
+        <Script id="global-params" strategy="afterInteractive">
+          {`
+          const ss_chat = document.getElementById('ss_chat');
+          ss_chat.addEventListener('load', () => {
+            window.__ssc.setting = {
+              hideIcon: true,
+              mode: "chat",
+              positionHorizontal: {
+                desktop: 0,
+                mobile: 0,
+              },
+              showNotification: true,
+            };
+            window.ssq && ssq.push('onReady', () => {
+              ssq.push('setLoginInfo', {
+                language: "${lang}",
+              })
+            });
+          });
+          `}
+        </Script>
       </body>
+      {/* <Script id="global-params" strategy="afterInteractive"> */}
+      {/*   {` */}
+      {/*   const ss_chat = document.getElementById('ss_chat'); */}
+      {/*   ss_chat.addEventListener('load', () => { */}
+      {/*     window.__ssc.setting = { */}
+      {/*       hideIcon: true, */}
+      {/*       mode: "chat", */}
+      {/*       positionHorizontal: { */}
+      {/*         desktop: 0, */}
+      {/*         mobile: 0, */}
+      {/*       }, */}
+      {/*       showNotification: true, */}
+      {/*     }; */}
+      {/*     window.ssq && ssq.push('onReady', () => { */}
+      {/*       const container = document.getElementById('chat-container'); */}
+      {/*       console.log(container) */}
+      {/*       // ssq.push('hideCloseIcon'); */}
+      {/*       ssq.push('setLoginInfo', { */}
+      {/*         language: "${lang}", */}
+      {/*       }) */}
+      {/*       if (container) { */}
+      {/*         ssq.push('setContainer', container); */}
+      {/*         ssq.push('chatOpen'); */}
+      {/*       } */}
+      {/*     }); */}
+      {/*   }); */}
+      {/*   `} */}
+      {/* </Script> */}
     </html>
   );
 }
