@@ -12,6 +12,7 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import QRCode from "qrcode";
 import { useMemo } from "react";
+import { utils } from "@/lib/utils";
 
 const InviteView = () => {
   const t = useTrans();
@@ -96,8 +97,10 @@ const InviteView = () => {
           <button
             className="btn btn-primary"
             onClick={() => {
-              navigator.clipboard.writeText(copyLink);
-              toast.success(t("transactionDetail.copy"));
+              utils.copyText(copyLink).then(() => {
+                toast.success(t("transactionDetail.copy"));
+              });
+              // navigator.clipboard.writeText(copyLink);
             }}
           >
             Copy Address
