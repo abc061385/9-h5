@@ -1,6 +1,7 @@
 import { usePathname, WhiteListPath } from "@/i18n/navigation";
 import Bridge from "@/lib/dsBridge";
 import Platform from "@/lib/platfrom";
+import { utils } from "@/lib/utils";
 import { useStore } from "@/store";
 import { useUserStore } from "@/store/useUserStore";
 import { useCallback, useEffect } from "react";
@@ -14,12 +15,14 @@ export const useInitToken = () => {
   const setToken = useCallback(async () => {
     if (Platform.isInApp()) {
       Bridge.setFull(false);
-      setUserField(
-        "token",
-        Bridge?.getToken() || window.localStorage.getItem("token") || "",
-      );
+      const token =
+        Bridge?.getToken() || window.localStorage.getItem("token") || "";
+      utils.setJwtCookie(token);
+      setUserField("token", token);
     } else {
-      setUserField("token", window.localStorage.getItem("token") || "");
+      const token = window.localStorage.getItem("token") || "";
+      utils.setJwtCookie(token);
+      setUserField("token", token);
     }
   }, [setUserField]);
 

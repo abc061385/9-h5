@@ -7,6 +7,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { useVerificationStore } from "@/store/useVerification";
 import { useEffect, useCallback } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { utils } from "@/lib/utils";
 
 const VerificationView = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const VerificationView = () => {
         setUserField("userInfo", userResponse.data);
         setUserField("token", userResponse.data?.token);
         window.localStorage.setItem("token", userResponse.data?.token);
+        utils.setJwtCookie(userResponse.data?.token);
         useVerificationStore.persist.clearStorage();
         router.push(routerMap.home);
       } catch (error) {

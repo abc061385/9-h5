@@ -116,9 +116,45 @@ function copyText(text: string) {
     return Promise.resolve();
   }
 }
+
+/**
+ * 解析 JWT，设置 cookie 到 *.abc.com
+ * @param token JWT 字符串
+ * @param cookieName Cookie 名称，默认 "token"
+ */
+function setJwtCookie(token: string, cookieName = "token") {
+  try {
+    // 拆分 JWT
+    const payloadBase64 = token.split(".")[1];
+    if (!payloadBase64) throw new Error("无效的 JWT");
+
+    // Base64 解码
+    const payloadJson = atob(
+      payloadBase64.replace(/-/g, "+").replace(/_/g, "/"),
+    );
+    const payload = JSON.parse(payloadJson);
+
+    // 获取过期时间（exp 单位是秒）
+    const exp = payload.date;
+    if (!exp) throw new Error("JWT 中没有 exp 字段");
+
+    // 转换成 GMT 时间字符串
+    const expires = new Date(exp * 1000).toUTCString();
+
+    const domain = process.env.NEXT_PUBLIC_COOKIE_DOMAIN || ".9mc.one";
+    // 设置 cookie，domain 为 9mc.one，支持子域名
+    document.cookie = `${cookieName}=${token}; expires=${expires}; path=/; domain=${domain}; secure; SameSite=Lax`;
+
+    console.log("✅ Token 已设置，过期时间:", expires);
+  } catch (err) {
+    console.error("❌ 解析或设置 JWT 出错:", err);
+  }
+}
+
 export const utils = {
   ...lodash,
   toBigNumber,
   dayjs,
   copyText,
+  setJwtCookie,
 };
