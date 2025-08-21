@@ -19,7 +19,7 @@ type GeetestConfig = Partial<{
 }>;
 
 interface Window {
-  initGeetest4: (config: GeetestConfig, callback: () => void) => viod;
+  initGeetest4: (config: GeetestConfig, callback) => void;
   ssq: {
     push: (...args: unknown[]) => void;
   };
