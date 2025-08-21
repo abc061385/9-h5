@@ -4,6 +4,7 @@ import { LayoutDock } from "./dock";
 import { cn } from "@/lib/utils";
 import { ShowIf } from "../show-if";
 import { useSettingChat } from "@/hooks/useSettingChat";
+import { useInitToken } from "@/hooks/useInitToken";
 
 type IProps = PropsWithChildren<{
   dock?: boolean;
@@ -20,6 +21,7 @@ export default function ViewLayout({
   heightFull = false,
   className,
 }: IProps) {
+  useInitToken();
   useSettingChat();
   return (
     <div data-name="layout" className="size-full relative">
