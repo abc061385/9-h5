@@ -16,11 +16,11 @@ export const useSettingChat = () => {
       };
     }
     window?.ssq?.push("onCloseChat", () => {
-      if (!Platform.isDesktop()) {
+      if (!Platform.isDesktop() && pathname === routerMap["customer-support"]) {
         push(routerMap.home);
       }
     });
-  }, [push]);
+  }, [push, pathname]);
   useEffect(() => {
     if (Platform.isDesktop()) {
       if (pathname !== routerMap["home"]) window?.ssq?.push("chatClose");
