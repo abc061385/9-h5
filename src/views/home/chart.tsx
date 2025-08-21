@@ -60,7 +60,7 @@ const ChartBox = () => {
       onClick={() => push("/home/charts")}
     >
       <div className="flex items-center">
-        <div className="w-5 h-5 rounded-full bg-[#E1C9FF] p-1 mr-1">
+        <div className="w-5 h-5 rounded-full bg-[#E1C9FF] p-[1PX] mr-1">
           <BaseImage
             className="w-full h-full"
             src="/images/common/1024x1024.png"
