@@ -33,15 +33,12 @@ export const Modal: React.FC<IModalProps> = ({
         className="modal-toggle"
         onChange={() => onClose?.()}
       />
-      <div className="modal" role="dialog">
+      <div className="modal md-pc:absolute" role="dialog">
         <div className={cn("modal-box rounded-2xl", wrapClassName)}>
           <header className="relative pt-2">
             {title && (
               <div
-                className={cn(
-                  "font-bold text-center text-lg",
-                  titleClassName
-                )}
+                className={cn("font-bold text-center text-lg", titleClassName)}
               >
                 {title}
               </div>

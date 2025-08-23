@@ -23,11 +23,11 @@ const SettingAddressView = () => {
   const [delConfirmOpen, setDelConfirmOpen] = useState(false);
 
   const { trigger: getAddressList, data } = useRequestMutation(
-    api.member.memberAddressListUsingPost
+    api.member.memberAddressListUsingPost,
   );
 
   const { trigger: delAddress } = useRequestMutation(
-    api.member.memberAddressAddUsingPost1
+    api.member.memberAddressAddUsingPost1,
   );
 
   const addressList: AddressList[] = Array.isArray(data?.data) ? data.data : [];
@@ -55,7 +55,7 @@ const SettingAddressView = () => {
         />
       );
     },
-    [delIds]
+    [delIds],
   );
 
   return (
@@ -159,7 +159,7 @@ const SettingAddressView = () => {
                   await getAddressList();
                   setDelIds([]);
                 },
-              }
+              },
             );
           }}
         >

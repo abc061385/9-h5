@@ -16,10 +16,15 @@ import SmartChatBox from "./smart-chat";
 import { useMemo } from "react";
 import { FixedComponent } from "@/components/fixed";
 // import { useLocationHref } from "@/hooks/useLocationHref";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
+import { api } from "@/api";
+import ImageQueueModal from "@/components/image-queue-modal";
 
 export default function HomeView() {
   const t = useTrans();
   const { push } = useRouter();
+  const { data: popups } = useRequestQuery(api.getPopups, { platform: "all" });
+  console.log(popups?.data);
   // const { goToLuckyActivity } = useLocationHref();
   // const { data } = useRequestQuery(api.userActivity.getActivityListUsingGet, {
   //   pageNo: 1,
@@ -91,6 +96,13 @@ export default function HomeView() {
         {/* <CardsBox /> */}
         <SmartChatBox />
       </div>
+
+      {popups?.data ? (
+        <ImageQueueModal
+          images={popups?.data as unknown as { imageUrl: string }[]}
+          keyName="imageUrl"
+        />
+      ) : null}
     </ViewLayout>
   );
 }
