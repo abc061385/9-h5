@@ -19,6 +19,7 @@ const DepositView = () => {
     useAssetStore();
 
   const [address, setAddress] = useState("");
+  const [memo, setMemo] = useState("");
   const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
 
   useEffect(() => {
@@ -27,10 +28,12 @@ const DepositView = () => {
       .createAddrTwoUsingPost({ chainEnum: depositChainItem.protocolType })
       .then((res) => {
         setAddress(res.data.addr || "");
+        setMemo(res.data?.memo || "");
       });
   }, [depositChainItem]);
   return (
     <ViewLayout
+      heightFull
       header={
         <HeaderWithBack
           title={
@@ -77,20 +80,36 @@ const DepositView = () => {
           />
           <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" />
         </label>
-        <div className="flex items-center justify-between text-text4 text-xs mb-1 mt-4">
-          <span>Arrived(Tradable)</span>
-          <span>6 Confirmations</span>
-        </div>
-        <div className="flex items-center justify-between text-text4 text-xs">
-          <span>Unlocked(Withdrawable)</span>
-          <span>64 Confirmations</span>
-        </div>
-        <div className="bg-bg2 rounded-lg py-3 px-4 flex gap-2 mt-6">
-          <Icon name="warning-black" className="size-4" />
-          <p className="flex-1 text-xs text-text4 leading-4">
-            {t("depositWarning")}
-          </p>
-        </div>
+        {depositCoinItem?.currencyCode?.toUpperCase() === "XRP" ? (
+          <>
+            <p className="fieldset-legend text-sm font-normal pt-6 pb-4">
+              XRP Tag
+            </p>
+            <div className="rounded-lg bg-bg2 flex items-center justify-between p-4 font-medium text-sm">
+              <p className="max-w-[88%] flex-1 leading-4 wrap-break-word">
+                {memo}
+              </p>
+              <CopyText text={memo} />
+            </div>
+            <div className="text-xs mt-1 text-text4">
+              {t("XRP Tag Recharge")}
+            </div>
+          </>
+        ) : null}
+        {/* <div className="flex items-center justify-between text-text4 text-xs mb-1 mt-4"> */}
+        {/*   <span>Arrived(Tradable)</span> */}
+        {/*   <span>6 Confirmations</span> */}
+        {/* </div> */}
+        {/* <div className="flex items-center justify-between text-text4 text-xs"> */}
+        {/*   <span>Unlocked(Withdrawable)</span> */}
+        {/*   <span>64 Confirmations</span> */}
+        {/* </div> */}
+        {/* <div className="bg-bg2 rounded-lg py-3 px-4 flex gap-2 mt-6"> */}
+        {/*   <Icon name="warning-black" className="size-4" /> */}
+        {/*   <p className="flex-1 text-xs text-text4 leading-4"> */}
+        {/*     {t("depositWarning")} */}
+        {/*   </p> */}
+        {/* </div> */}
         <div className="grid grid-cols-1 gap-2 mt-14">
           {/* <button className="btn btn-neutral">Save QR Code</button> */}
           <button

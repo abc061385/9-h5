@@ -61,7 +61,11 @@ const BannerBox = () => {
           <SwiperSlide key={i}>
             <div onClick={() => goToActivity(v.id.toString())}>
               <Image
-                src={locale === "zh-Hans" ? v.bannerZh : v.bannerEn}
+                src={
+                  ["zh-Hans", "zh-Hant"].indexOf(locale) !== -1
+                    ? v.bannerZh
+                    : v.bannerEn
+                }
                 alt=""
                 width={0}
                 height={0}

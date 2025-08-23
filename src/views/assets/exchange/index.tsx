@@ -10,12 +10,11 @@ import { Icon } from "@/components/icon";
 import { TextError } from "@/components/input/text-error";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
 import { encryptPassword, formatBalance } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
-import axios from "axios";
 import CoinList from "./coin-list";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import toast from "react-hot-toast";
@@ -45,56 +44,22 @@ const AssetsExchangeView = () => {
 
   const { data, isLoading } = useRequestQuery(
     api.currencySettings.protocolListUsingGet,
-    {}
+    {},
   );
+  const { data: priceListRes } = useRequestQuery(
+    api.kline.marketSituationUsingGet,
+    { type: "DAY" },
+  );
+  const lastPrice = useMemo(() => {
+    const _list = priceListRes?.data?.situationVOS || [];
+    if (!_list?.length) return 0;
+    return _list?.slice(-1)[0]?.price || 0;
+  }, [priceListRes]);
   const currencyList = data?.data as CurrencyInfo[];
 
   const { trigger, isMutating } = useRequestMutation(
-    api.member.flashExchangeUsingPost
+    api.member.flashExchangeUsingPost,
   );
-
-  useEffect(() => {
-    getBalanceList();
-  }, [getBalanceList]);
-
-  useEffect(() => {
-    if (!currencyList?.length) return;
-    const res = currencyList.filter((item) =>
-      ["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase())
-    );
-    setFormCoinList(res);
-  }, [currencyList]);
-
-  useEffect(() => {
-    if (!currencyList?.length) return;
-    if (!formCoinItem?.id) return;
-    if (formCoinItem.currencyCode === "USDT") {
-      setToCoinList(
-        currencyList.filter(
-          (item) =>
-            !["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase())
-        )
-      );
-      return;
-    }
-    setToCoinList(
-      currencyList.filter((item) =>
-        ["USDT"].includes(item.currencyCode!.toUpperCase())
-      )
-    );
-  }, [currencyList, formCoinItem]);
-
-  const balance = useCallback(
-    (coin: string | undefined, decimalPlaces: number) => {
-      if (!balanceList?.length) return;
-      return formatBalance(
-        balanceList.find((v) => v.coin === coin)?.balance || "--",
-        decimalPlaces
-      );
-    },
-    [balanceList]
-  );
-
   const Schema = z.object({
     formCoinValue: z.string(),
     toCoinValue: z.string(),
@@ -113,24 +78,71 @@ const AssetsExchangeView = () => {
   });
 
   useEffect(() => {
-    if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
-    if (formCoinItem?.currencyCode !== "USDT") return setPrice("1");
+    getBalanceList();
+  }, [getBalanceList]);
 
-    axios(
-      `https://www.okx.com/api/v5/market/index-tickers?instId=${toCoinItem?.currencyCode}-USDT`
-    ).then((res) => {
-      const price = res?.data?.data?.[0]?.idxPx || 0;
-      setPrice((1 / price).toString());
-    });
-  }, [formCoinItem, toCoinItem]);
+  useEffect(() => {
+    if (!currencyList?.length) return;
+    const res = currencyList.filter((item) =>
+      ["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
+    );
+
+    // const firstSymbol = res[0]?.currencyCode;
+    // setValue("formCoinValue", firstSymbol as string);
+    setFormCoinList(res);
+  }, [currencyList, setValue]);
+
+  useEffect(() => {
+    if (!currencyList?.length) return;
+    if (!formCoinItem?.id) return;
+    if (formCoinItem.currencyCode === "USDT") {
+      setToCoinList(
+        currencyList.filter(
+          (item) =>
+            !["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
+        ),
+      );
+      return;
+    }
+    setToCoinList(
+      currencyList.filter((item) =>
+        ["USDT"].includes(item.currencyCode!.toUpperCase()),
+      ),
+    );
+  }, [currencyList, formCoinItem]);
+
+  const balance = useCallback(
+    (coin: string | undefined, decimalPlaces: number) => {
+      if (!balanceList?.length) return;
+      return formatBalance(
+        balanceList.find((v) => v.coin === coin)?.balance || "--",
+        decimalPlaces,
+      );
+    },
+    [balanceList],
+  );
+
+  useEffect(() => {
+    if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
+    if (formCoinItem?.currencyCode !== "USDT") return setPrice(lastPrice);
+
+    api.currencySettings
+      .protocolExchangeUsingGet({
+        instId: `${toCoinItem?.currencyCode}-${formCoinItem?.currencyCode}`,
+      })
+      .then((res) => {
+        const price = res.data?.idxPx || 1;
+        setPrice((1 / price).toString());
+      });
+  }, [formCoinItem, toCoinItem, lastPrice]);
 
   useEffect(() => {
     setValue(
       "toCoinValue",
       formatBalance(
         Number(getValues().formCoinValue) * Number(price),
-        toCoinItem?.decimalPlaces || 4
-      )
+        toCoinItem?.decimalPlaces || 4,
+      ),
     );
   }, [setValue, getValues, price, toCoinItem]);
 
@@ -143,7 +155,7 @@ const AssetsExchangeView = () => {
         </div>
       );
     },
-    []
+    [],
   );
 
   return (
@@ -200,8 +212,8 @@ const AssetsExchangeView = () => {
                     "toCoinValue",
                     formatBalance(
                       Number(e.target.value) * Number(price),
-                      toCoinItem.decimalPlaces || 4
-                    ).toString()
+                      toCoinItem.decimalPlaces || 4,
+                    ).toString(),
                   );
                 }}
               />
@@ -209,7 +221,7 @@ const AssetsExchangeView = () => {
                 {t("余额")}：
                 {balance(
                   formCoinItem?.currencyCode,
-                  formCoinItem?.decimalPlaces || 2
+                  formCoinItem?.decimalPlaces || 2,
                 )}
               </div>
             </label>
@@ -259,7 +271,7 @@ const AssetsExchangeView = () => {
                 {t("余额")}：{" "}
                 {balance(
                   toCoinItem?.currencyCode,
-                  toCoinItem?.decimalPlaces || 2
+                  toCoinItem?.decimalPlaces || 2,
                 )}
               </div>
             </label>
@@ -352,7 +364,7 @@ const AssetsExchangeView = () => {
                 <b>
                   {formatBalance(
                     getValues().formCoinValue,
-                    formCoinItem?.decimalPlaces || 4
+                    formCoinItem?.decimalPlaces || 4,
                   )}{" "}
                   {formCoinItem?.currencyCode}
                 </b>
@@ -370,15 +382,15 @@ const AssetsExchangeView = () => {
             </div>
             {fieldEl(
               t("channel"),
-              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`
+              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(
               t("兑换价格"),
               `1 ${formCoinItem?.currencyCode} ≈ ${formatBalance(
                 price,
-                toCoinItem?.decimalPlaces || 4
+                toCoinItem?.decimalPlaces || 4,
               )}
-              ${toCoinItem?.currencyCode}`
+              ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
             <div className="grid grid-flow-row-dense grid-cols-3 gap-2 mt-9">
@@ -407,7 +419,7 @@ const AssetsExchangeView = () => {
                         setValue("toCoinValue", "");
                         setConfirmOpen(false);
                       },
-                    }
+                    },
                   );
                 }}
               >
