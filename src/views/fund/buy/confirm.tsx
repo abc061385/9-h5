@@ -26,7 +26,6 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
     api.fundProductConfig.purchaseUsingPost,
   );
 
-  console.log("buyData", buyData);
   return (
     <Drawer
       open={open}
@@ -36,7 +35,8 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
     >
       <h4 className="text-text4 text-sm leading-4">{t("purchase")}</h4>
       <div className="font-bold my-1 leading-5">
-        9M AI Stategy Fund - 360Days
+        {Number(buyData?.productType) === 1 ? t("稳健基金") : t("策略基金")}
+        {buyData?.selectCycle} {t("天")}
       </div>
       <p className="text-sm leading-5">
         {t("日收益率")} ≈ {buyData?.pledge?.dailyYield}%
