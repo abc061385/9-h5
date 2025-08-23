@@ -124,6 +124,7 @@ const AssetsExchangeView = () => {
 
   useEffect(() => {
     if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
+    if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
     if (formCoinItem?.currencyCode !== "USDT") return setPrice(lastPrice);
 
     api.currencySettings
