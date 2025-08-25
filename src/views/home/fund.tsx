@@ -42,7 +42,7 @@ const FundBox = () => {
   }, [getList]);
 
   const hotList = [
-    { label: t("home.database"), icon: "database" },
+    { label: t("home.database"), icon: "database", path: routerMap.faq },
     {
       label: t("home.invite_friend"),
       icon: "invite-friends",
