@@ -24,7 +24,7 @@ export default function ViewLayout({
   useInitToken();
   useSettingChat();
   return (
-    <div data-name="layout" className="size-full relative">
+    <div data-name="layout" className="size-full md-pc:relative">
       <ShowIf condition={!!header}>
         <div
           className={cn([

@@ -1,6 +1,9 @@
 import axiosIn, { createAxiosInstance } from "@/lib/axios";
 import { Api, _ } from "./ApiClient";
-import { Api as NineIndexClient } from "./NineIndexClient";
+import {
+  CommonResultCaptchaValidateRespDTO,
+  Api as NineIndexClient,
+} from "./NineIndexClient";
 
 export class ApiCustom extends Api<string> {
   nineIndex: InstanceType<typeof NineIndexClient>;
@@ -8,6 +11,15 @@ export class ApiCustom extends Api<string> {
     super({ axiosInstance: axiosIn });
     this.nineIndex = new NineIndexClient({
       axiosInstance: createAxiosInstance("/app/nine-index/"),
+    });
+  }
+
+  // 获取平台弹窗
+  // nine-index/popup/list?platform=all
+  getPopups(params?: { platform?: string }) {
+    const request = createAxiosInstance("/app/nine-index/");
+    return request.get<CommonResultCaptchaValidateRespDTO>("/popup/list", {
+      params,
     });
   }
 
