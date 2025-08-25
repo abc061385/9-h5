@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import BaseImage from "./base-image";
 import { Modal } from "./modal";
 import { Icon } from "./icon";
+import Platform from "@/lib/platfrom";
+import Bridge from "@/lib/dsBridge";
+import { useRouter } from "@/i18n/navigation";
 
 type ImageItem = { [key in string]: unknown };
 
@@ -17,6 +20,7 @@ export default function ImageQueueModal({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visible, setVisible] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
+  const { push } = useRouter();
 
   useEffect(() => {
     if (modalRef.current) {
@@ -33,6 +37,15 @@ export default function ImageQueueModal({
       setCurrentIndex(0);
     }
   };
+  const goTo = useCallback(() => {
+    const currentItem = images[currentIndex];
+    if (Platform.isInApp()) {
+      if (currentItem.nativeJumpUrl)
+        Bridge.jumpTo(currentItem.nativeJumpUrl as string);
+    } else {
+      if (currentItem.h5JumpUrl) push(currentItem.h5JumpUrl as string);
+    }
+  }, [currentIndex, images, push]);
   return (
     <Modal
       open={visible}
@@ -42,6 +55,7 @@ export default function ImageQueueModal({
       close={false}
     >
       <BaseImage
+        onClick={goTo}
         src={
           images[currentIndex] ? (images[currentIndex][keyName] as string) : ""
         }
