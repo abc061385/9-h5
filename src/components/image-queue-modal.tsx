@@ -40,10 +40,10 @@ export default function ImageQueueModal({
   const goTo = useCallback(() => {
     const currentItem = images[currentIndex];
     if (Platform.isInApp()) {
-      if (currentItem.nativeJumpUrl)
+      if (currentItem?.nativeJumpUrl)
         Bridge.jumpTo(currentItem.nativeJumpUrl as string);
     } else {
-      if (currentItem.h5JumpUrl) push(currentItem.h5JumpUrl as string);
+      if (currentItem?.h5JumpUrl) push(currentItem.h5JumpUrl as string);
     }
   }, [currentIndex, images, push]);
   return (
