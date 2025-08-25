@@ -9,6 +9,7 @@ interface IModalProps extends PropsWithChildren {
   onClose: () => void;
   wrapClassName?: string;
   titleClassName?: string;
+  className?: string;
   close?: boolean;
   children?: ReactNode;
 }
@@ -19,6 +20,7 @@ export const Modal: React.FC<IModalProps> = ({
   onClose,
   wrapClassName = "",
   titleClassName = "",
+  className = "",
   close = true,
   children,
 }) => {
@@ -33,7 +35,7 @@ export const Modal: React.FC<IModalProps> = ({
         className="modal-toggle"
         onChange={() => onClose?.()}
       />
-      <div className="modal md-pc:absolute" role="dialog">
+      <div className={cn(["modal md-pc:absolute", className])} role="dialog">
         <div className={cn("modal-box rounded-2xl", wrapClassName)}>
           <header className="relative pt-2">
             {title && (

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import BaseImage from "./base-image";
 import { Modal } from "./modal";
+import { Icon } from "./icon";
 
 type ImageItem = { [key in string]: unknown };
 
@@ -33,14 +34,34 @@ export default function ImageQueueModal({
     }
   };
   return (
-    <Modal open={visible} onClose={handleClose}>
-      <BaseImage
-        src={
-          images[currentIndex] ? (images[currentIndex][keyName] as string) : ""
-        }
-        alt={`Image ${currentIndex}`}
-        className="aspect-[4/3] w-full object-cover mt-8"
-      />
+    <Modal
+      open={visible}
+      onClose={handleClose}
+      wrapClassName="bg-transparent shadow-none p-0"
+      className="!bg-transparent"
+      close={false}
+    >
+      <div>
+        <BaseImage
+          src={
+            images[currentIndex]
+              ? (images[currentIndex][keyName] as string)
+              : ""
+          }
+          alt={`Image ${currentIndex}`}
+          className="aspect-[4/3] w-full object-cover  rounded-lg overflow-hidden"
+        />
+
+        <div className="flex justify-center mt-10">
+          <span className="bg-text3 opacity-75  rounded-full size-8 p-1 ">
+            <Icon
+              name="close_white"
+              className="size-6"
+              onClick={() => handleClose()}
+            />
+          </span>
+        </div>
+      </div>
     </Modal>
   );
 }
