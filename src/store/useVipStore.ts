@@ -24,7 +24,7 @@ export const useVipStore = create<VipState>()(
         fetchNextLevel: async () => {
           const userInfo = useUserStore.getState().userInfo;
           try {
-            const { data } = await api.memberVipLevelConfig.listUsingGet({});
+            const { data } = await api.memberVipLevelConfig.listUsingGet1({});
             if (userInfo.vipLevel === null || userInfo.vipLevel === undefined)
               return;
             if (userInfo.vipLevel < 9) {
@@ -49,7 +49,7 @@ export const useVipStore = create<VipState>()(
         fetchNextConfig: async () => {
           const userInfo = useUserStore.getState().userInfo;
 
-          const { data } = await api.memberVipLevelStartConfig.listUsingGet1(
+          const { data } = await api.memberVipLevelStartConfig.listUsingGet2(
             {},
           );
           set(() => ({

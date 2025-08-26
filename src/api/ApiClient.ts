@@ -10,12 +10,45 @@
  * ---------------------------------------------------------------
  */
 
-/** AccountBindDTO */
-export interface AccountBindDTO {
+/** ActivitiesVO */
+export interface ActivitiesVO {
+  content?: string;
+  /** @format date-time */
+  createTime?: string;
+  depositAmount?: number;
+  directTargetPercentage?: string;
+  /** @format date-time */
+  endTime?: string;
   /** @format int64 */
-  childId?: number;
+  id?: number;
+  imageUrl?: string;
+  /** @format int32 */
+  isHome?: number;
+  linkUrl?: string;
+  personalTargetPercentage?: string;
+  remark?: string;
+  /** @format int32 */
+  sortOrder?: number;
+  /** @format date-time */
+  startTime?: string;
+  /** @format int32 */
+  status?: number;
+  teamTargetPercentage?: string;
+  title?: string;
+  /** @format date-time */
+  updateTime?: string;
+}
+
+/** InternalTransferRequest */
+export interface InternalTransferRequest {
+  amount?: number;
+  bizOrderId?: string;
+  bizType?: string;
+  currencyCode?: string;
+  fee?: number;
+  transferType?: string;
   /** @format int64 */
-  parentId?: number;
+  userId?: number;
 }
 
 /** RegistActivityDTO */
@@ -28,10 +61,19 @@ export interface RegistActivityDTO {
   payStatus?: number;
 }
 
-/** UserLoterryDTO */
-export interface UserLoterryDTO {
+/** IPage«ActivitiesVO» */
+export interface IPageActivitiesVO {
   /** @format int64 */
-  activityId?: number;
+  current?: number;
+  hitCount?: boolean;
+  /** @format int64 */
+  pages?: number;
+  records?: ActivitiesVO[];
+  searchCount?: boolean;
+  /** @format int64 */
+  size?: number;
+  /** @format int64 */
+  total?: number;
 }
 
 /** 统一消息返回对象 */
@@ -39,6 +81,30 @@ export interface _ {
   /** @format int32 */
   code: number;
   data: { [key in string]?: any };
+  message: string;
+}
+
+/** 统一消息返回对象«ActivitiesVO» */
+export interface ActivitiesVO {
+  /** @format int32 */
+  code: number;
+  data: ActivitiesVO;
+  message: string;
+}
+
+/** 统一消息返回对象«IPage«ActivitiesVO»» */
+export interface IPageActivitiesVO {
+  /** @format int32 */
+  code: number;
+  data: IPageActivitiesVO;
+  message: string;
+}
+
+/** 统一消息返回对象«List«ActivitiesVO»» */
+export interface ListActivitiesVO {
+  /** @format int32 */
+  code: number;
+  data: ActivitiesVO[];
   message: string;
 }
 
@@ -239,18 +305,18 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<
   SecurityDataType extends unknown,
 > extends HttpClient<SecurityDataType> {
-  apiPrice = {
+  activity = {
     /**
      * No description
      *
-     * @tags C端活动奖品
-     * @name GetUserLoteryCountUsingGet
-     * @summary 获取用户抽奖次数
-     * @request GET:/apiPrice/getUserLoteryCount
+     * @tags 活动管理
+     * @name DetailUsingGet
+     * @summary 活动详情
+     * @request GET:/activity/detail/{id}
      */
-    getUserLoteryCountUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
-        path: `/apiPrice/getUserLoteryCount`,
+    detailUsingGet: (id: string, params: RequestParams = {}) =>
+      this.request<ActivitiesVO, void>({
+        path: `/activity/detail/${id}`,
         method: "GET",
         ...params,
       }),
@@ -258,18 +324,54 @@ export class Api<
     /**
      * No description
      *
-     * @tags C端活动奖品
-     * @name GetPriceListUsingGet
-     * @summary 奖品列表
-     * @request GET:/apiPrice/priceList
+     * @tags 活动管理
+     * @name HomeActivitiesUsingGet
+     * @summary 首页活动列表
+     * @request GET:/activity/home
      */
-    getPriceListUsingGet: (
+    homeActivitiesUsingGet: (params: RequestParams = {}) =>
+      this.request<ListActivitiesVO, void>({
+        path: `/activity/home`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 活动管理
+     * @name ListUsingGet
+     * @summary 活动列表
+     * @request GET:/activity/list
+     */
+    listUsingGet: (
+      query?: {
+        /** 是否首页 0否 1是 */
+        isHome?: string;
+        /** 状态 0禁用 1启用 */
+        status?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ListActivitiesVO, void>({
+        path: `/activity/list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 活动管理
+     * @name PageUsingGet
+     * @summary 活动分页列表
+     * @request GET:/activity/page
+     */
+    pageUsingGet: (
       query: {
-        /**
-         * activityId
-         * @format int64
-         */
-        activityId: number;
+        /** 是否首页 0否 1是 */
+        isHome?: string;
         /** 排序方式 asc/desc */
         order?: string;
         /**
@@ -284,11 +386,15 @@ export class Api<
         pageSize: number;
         /** 排序字段 */
         sort?: string;
+        /** 状态 0禁用 1启用 */
+        status?: string;
+        /** 标题模糊查询 */
+        titleLike?: string;
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
-        path: `/apiPrice/priceList`,
+      this.request<IPageActivitiesVO, void>({
+        path: `/activity/page`,
         method: "GET",
         query: query,
         ...params,
@@ -297,14 +403,17 @@ export class Api<
     /**
      * No description
      *
-     * @tags C端活动奖品
-     * @name UserLotteryUsingPost
-     * @summary 用户抽奖
-     * @request POST:/apiPrice/userLottery
+     * @tags 活动管理
+     * @name RegistrationUsingPost
+     * @summary 用户报名活动
+     * @request POST:/activity/registration
      */
-    userLotteryUsingPost: (dto: UserLoterryDTO, params: RequestParams = {}) =>
+    registrationUsingPost: (
+      dto: RegistActivityDTO,
+      params: RequestParams = {},
+    ) =>
       this.request<_, void>({
-        path: `/apiPrice/userLottery`,
+        path: `/activity/registration`,
         method: "POST",
         body: dto,
         type: ContentType.Json,
@@ -312,55 +421,6 @@ export class Api<
       }),
   };
   auth = {
-    /**
-     * No description
-     *
-     * @tags 登录注册
-     * @name BindAccountUsingPost
-     * @summary 绑定账号
-     * @request POST:/auth/account/bind
-     */
-    bindAccountUsingPost: (dto: AccountBindDTO, params: RequestParams = {}) =>
-      this.request<_, void>({
-        path: `/auth/account/bind`,
-        method: "POST",
-        body: dto,
-        type: ContentType.Json,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 登录注册
-     * @name UnbindAccountUsingPost
-     * @summary 解绑账号
-     * @request POST:/auth/account/unbind
-     */
-    unbindAccountUsingPost: (dto: AccountBindDTO, params: RequestParams = {}) =>
-      this.request<_, void>({
-        path: `/auth/account/unbind`,
-        method: "POST",
-        body: dto,
-        type: ContentType.Json,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 登录注册
-     * @name GetBindListUsingGet
-     * @summary 根据会员ID，查询绑定关系
-     * @request GET:/auth/bind-list/{id}
-     */
-    getBindListUsingGet: (id: ref, params: RequestParams = {}) =>
-      this.request<_, void>({
-        path: `/auth/bind-list/${id}`,
-        method: "GET",
-        ...params,
-      }),
-
     /**
      * No description
      *
@@ -439,6 +499,10 @@ export class Api<
         /** @format date-time */
         googleVerifyTime?: string;
         headUrl?: string;
+        /** @format int32 */
+        highestVipLevel?: number;
+        /** @format int32 */
+        highestVipStar?: number;
         /** @format int64 */
         id?: number;
         /** @format int32 */
@@ -449,10 +513,6 @@ export class Api<
         isDisable?: boolean;
         /** @format int32 */
         isTop?: number;
-        /** @format int32 */
-        isUbx?: number;
-        lastLoginDevice?: string;
-        lastLoginIp?: string;
         /** @format date-time */
         lastLoginTime?: string;
         /** @format int32 */
@@ -492,8 +552,6 @@ export class Api<
         username?: string;
         /** @format int32 */
         vipLevel?: number;
-        /** @format int32 */
-        vipLevelBase?: number;
         /** @format date-time */
         vipLevelUpTime?: string;
         /** @format int32 */
@@ -727,31 +785,6 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/auth/loginByFaBeforeCheck`,
-        method: "POST",
-        query: query,
-        type: ContentType.Json,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 登录注册
-     * @name LoginByTokenUsingPost
-     * @summary 通过token登录系统
-     * @request POST:/auth/loginByToken
-     */
-    loginByTokenUsingPost: (
-      query: {
-        /** 登录账号 */
-        account: string;
-        /** 账号类型；1-邮箱；0-手机 */
-        accountType: ref;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<_, void>({
-        path: `/auth/loginByToken`,
         method: "POST",
         query: query,
         type: ContentType.Json,
@@ -1662,11 +1695,11 @@ export class Api<
      * No description
      *
      * @tags currency-settings-controller
-     * @name PageUsingGet
+     * @name PageUsingGet1
      * @summary 列表
      * @request GET:/currency-settings/list
      */
-    pageUsingGet: (
+    pageUsingGet1: (
       query?: {
         /** currencyCode */
         currencyCode?: string;
@@ -1777,6 +1810,38 @@ export class Api<
       this.request<_, void>({
         path: `/feign/captcha/validate`,
         method: "GET",
+        ...params,
+      }),
+  };
+  file = {
+    /**
+     * No description
+     *
+     * @tags 文件上传管理
+     * @name UploadFileUsingPost
+     * @summary 上传文件
+     * @request POST:/file/upload
+     */
+    uploadFileUsingPost: (
+      query: {
+        /**
+         * 类型：poster
+         * @example "poster"
+         */
+        type: string;
+      },
+      data: {
+        /** 文件 */
+        file: File;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/file/upload`,
+        method: "POST",
+        query: query,
+        body: data,
+        type: ContentType.FormData,
         ...params,
       }),
   };
@@ -1902,11 +1967,11 @@ export class Api<
      * No description
      *
      * @tags fund-product-config-controller
-     * @name DetailUsingGet
+     * @name DetailUsingGet1
      * @summary detail
      * @request GET:/fund-product-config/detail
      */
-    detailUsingGet: (
+    detailUsingGet1: (
       query?: {
         /**
          * id
@@ -2051,11 +2116,11 @@ export class Api<
      * No description
      *
      * @tags fund-product-config-controller
-     * @name PageUsingGet1
+     * @name PageUsingGet2
      * @summary page
      * @request GET:/fund-product-config/page
      */
-    pageUsingGet1: (
+    pageUsingGet2: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;
@@ -2200,7 +2265,107 @@ export class Api<
         ...params,
       }),
   };
+  image = {
+    /**
+     * No description
+     *
+     * @tags 图片上传管理
+     * @name BatchDeleteImagesUsingPost
+     * @summary 批量删除图片
+     * @request POST:/image/batch-delete
+     */
+    batchDeleteImagesUsingPost: (
+      imageUrls: string[],
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/image/batch-delete`,
+        method: "POST",
+        body: imageUrls,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 图片上传管理
+     * @name DeleteImageUsingPost
+     * @summary 删除图片
+     * @request POST:/image/delete
+     */
+    deleteImageUsingPost: (
+      query: {
+        /** 图片URL */
+        imageUrl: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/image/delete`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 图片上传管理
+     * @name UploadImageUsingPost
+     * @summary 上传图片
+     * @request POST:/image/upload
+     */
+    uploadImageUsingPost: (
+      query: {
+        /**
+         * generateThumbnail
+         * @default true
+         */
+        generateThumbnail?: boolean;
+        /**
+         * 图片类型：banner/activity/avatar等
+         * @example "banner"
+         */
+        type: string;
+      },
+      data: {
+        /** 图片文件 */
+        file: File;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/image/upload`,
+        method: "POST",
+        query: query,
+        body: data,
+        type: ContentType.FormData,
+        ...params,
+      }),
+  };
   internal = {
+    /**
+     * No description
+     *
+     * @tags 内部接口
+     * @name TransferUsingPost
+     * @summary 内部转账
+     * @request POST:/internal/transfer
+     */
+    transferUsingPost: (
+      req: InternalTransferRequest,
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/internal/transfer`,
+        method: "POST",
+        body: req,
+        type: ContentType.Json,
+        ...params,
+      }),
+
     /**
      * No description
      *
@@ -2378,11 +2543,11 @@ export class Api<
      * No description
      *
      * @tags member-vip-level-config-controller
-     * @name ListUsingGet
+     * @name ListUsingGet1
      * @summary 会员列表
      * @request GET:/member-vip-level-config/list
      */
-    listUsingGet: (params: RequestParams = {}) =>
+    listUsingGet1: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member-vip-level-config/list`,
         method: "GET",
@@ -2484,11 +2649,11 @@ export class Api<
      * No description
      *
      * @tags member-vip-level-start-config-controller
-     * @name ListUsingGet1
+     * @name ListUsingGet2
      * @summary 会员列表
      * @request GET:/member-vip-level-start-config/list
      */
-    listUsingGet1: (params: RequestParams = {}) =>
+    listUsingGet2: (params: RequestParams = {}) =>
       this.request<_, void>({
         path: `/member-vip-level-start-config/list`,
         method: "GET",
@@ -3249,11 +3414,11 @@ export class Api<
      * No description
      *
      * @tags 订单
-     * @name PageUsingGet2
+     * @name PageUsingGet3
      * @summary 托管列表
      * @request GET:/order/page
      */
-    pageUsingGet2: (
+    pageUsingGet3: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;
@@ -3872,6 +4037,53 @@ export class Api<
         ...params,
       }),
   };
+  publicizeDocVideo = {
+    /**
+     * No description
+     *
+     * @tags 宣传文档/视频
+     * @name GetDocListUsingGet
+     * @summary 宣传资料列表
+     * @request GET:/publicize-doc-video/doc/list
+     */
+    getDocListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/publicize-doc-video/doc/list`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 宣传文档/视频
+     * @name GetVideoListUsingGet
+     * @summary 宣传视频列表
+     * @request GET:/publicize-doc-video/video/list
+     */
+    getVideoListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/publicize-doc-video/video/list`,
+        method: "GET",
+        ...params,
+      }),
+  };
+  publicizePoster = {
+    /**
+     * No description
+     *
+     * @tags 宣传海报
+     * @name GetListUsingGet
+     * @summary 宣传海报分页列表
+     * @request GET:/publicize-poster/list
+     */
+    getListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/publicize-poster/list`,
+        method: "GET",
+        ...params,
+      }),
+  };
   sms = {
     /**
      * No description
@@ -4053,11 +4265,6 @@ export class Api<
          * @format int64
          */
         activityId?: number;
-        /**
-         * activityType
-         * @format int32
-         */
-        activityType?: number;
         /** 排序方式 asc/desc */
         order?: string;
         /**
@@ -4077,36 +4284,6 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/userActivity/getApiActivityList`,
-        method: "GET",
-        query: query,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 用户报名活动
-     * @name GetLotteryActivityListUsingGet
-     * @summary C端抽奖活动列表
-     * @request GET:/userActivity/getLotteryActivityList
-     */
-    getLotteryActivityListUsingGet: (
-      query?: {
-        /**
-         * activityId
-         * @format int64
-         */
-        activityId?: number;
-        /**
-         * activityType
-         * @format int32
-         */
-        activityType?: number;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<_, void>({
-        path: `/userActivity/getLotteryActivityList`,
         method: "GET",
         query: query,
         ...params,
@@ -4235,22 +4412,6 @@ export class Api<
         path: `/wallet/account-details-freeze-list`,
         method: "GET",
         query: query,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 资产
-     * @name CheckTransferLockedUsingPost
-     * @summary 检查账户是否被锁定
-     * @request POST:/wallet/checkTransferLocked
-     */
-    checkTransferLockedUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
-        path: `/wallet/checkTransferLocked`,
-        method: "POST",
-        type: ContentType.Json,
         ...params,
       }),
 
@@ -4710,15 +4871,13 @@ export class Api<
      * No description
      *
      * @tags 资产
-     * @name TransferUsingPost
-     * @summary 内部转账
+     * @name TransferUsingPost1
+     * @summary 转账
      * @request POST:/wallet/transfer
      */
-    transferUsingPost: (
+    transferUsingPost1: (
       query?: {
-        amount?: number;
-        /** @format int64 */
-        code?: number;
+        balance?: number;
         jyPassword?: string;
         receiveTel?: string;
         symbol?: string;
@@ -4762,28 +4921,6 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/wallet/transfer-page`,
-        method: "GET",
-        query: query,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 资产
-     * @name UnlockTransferUsingGet
-     * @summary 通过邮件token解锁账户
-     * @request GET:/wallet/unlockTransfer
-     */
-    unlockTransferUsingGet: (
-      query?: {
-        /** token */
-        token?: string;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<_, void>({
-        path: `/wallet/unlockTransfer`,
         method: "GET",
         query: query,
         ...params,

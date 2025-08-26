@@ -19,7 +19,7 @@ const AssetsListBox = () => {
   }, []);
 
   const getCurrentList = useCallback(async () => {
-    const { data } = await api.currencySettings.pageUsingGet();
+    const { data } = await api.currencySettings.pageUsingGet1();
     setCurrentList(data as CurrencyInfo[]);
   }, []);
 
