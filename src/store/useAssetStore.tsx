@@ -38,7 +38,7 @@ export const useAssetStore = create<AssetState>()(
             }));
           },
           getChainList: async () => {
-            const { data } = await api.currencySettings.pageUsingGet({
+            const { data } = await api.currencySettings.pageUsingGet1({
               currencyCode: get().depositCoinItem.currencyCode,
             });
             set(() => ({
@@ -48,10 +48,10 @@ export const useAssetStore = create<AssetState>()(
           setField: (key, value) => set({ [key]: value }),
         };
       },
-      { enabled: getIsDev() }
+      { enabled: getIsDev() },
     ),
     {
       name: "assets_store",
-    }
-  )
+    },
+  ),
 );
