@@ -51,18 +51,13 @@ const FAQView = () => {
     return detail?.["content" + (langType[locale] || "En")] || "";
   }, [data?.data, locale]);
   return (
-    <ViewLayout
-      header={
-        <div className="p-content">
-          <BaseImage
-            src="/images/common/logo.svg"
-            className="h-[31px] w-[91px] cursor-pointer"
-            onClick={() => push(routerMap.home)}
-          />
-        </div>
-      }
-    >
+    <ViewLayout>
       <div className="p-content">
+        <BaseImage
+          src="/images/common/logo.svg"
+          className="h-[31px] w-[91px] cursor-pointer"
+          onClick={() => push(routerMap.home)}
+        />
         <div className="text-2xl font-bold text-center mb-6">
           {t("平台介绍")}
         </div>
@@ -134,43 +129,62 @@ const FAQView = () => {
         </div>
 
         <div>
-          <button className="btn btn-block bg-primary text-white flex-1 h-[48px] mt-8 ">
+          <button
+            className="btn btn-block bg-primary text-white flex-1 h-[48px] mt-8 "
+            onClick={() => {
+              if (window.location) {
+                window.location.href = "https://app.9mc.org/sebv";
+              }
+            }}
+          >
             9M AI App Download
           </button>
-          <button className="btn btn-block bg-[#A93AFF] text-white flex-1 h-[48px] mt-2">
+          <button
+            className="btn btn-block bg-[#A93AFF] text-white flex-1 h-[48px] mt-2"
+            onClick={() => {
+              if (window.location) {
+                window.location.href = "https://www.9mc.ai/";
+              }
+            }}
+          >
             9M AI Website
           </button>
         </div>
         <div className="text-2xl font-bold mt-12">FAQ</div>
         <div>
-          <div className="collapse collapse-plus bg-base-100 border border-base-300">
+          <div className="collapse collapse-plus  border border-transparent border-b-border2">
             <input type="radio" name="my-accordion-3" defaultChecked />
-            <div className="collapse-title font-semibold">
-              How do I create an account?
-            </div>
+            <div className="collapse-title font-semibold">{t("faq.faq1")}</div>
             <div className="collapse-content text-sm">
-              Click the "Sign Up" button in the top right corner and follow the
-              registration process.
+              {t("faq.faq1Content")}
             </div>
           </div>
-          <div className="collapse collapse-plus bg-base-100 border border-base-300">
+          <div className="collapse collapse-plus  border border-transparent border-b-border2">
             <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title font-semibold">
-              I forgot my password. What should I do?
-            </div>
+            <div className="collapse-title font-semibold">{t("faq.faq2")}</div>
             <div className="collapse-content text-sm">
-              Click on "Forgot Password" on the login page and follow the
-              instructions sent to your email.
+              {t("faq.faq2Content")}
             </div>
           </div>
-          <div className="collapse collapse-plus bg-base-100 border border-base-300">
+          <div className="collapse collapse-plus  border border-transparent border-b-border2">
             <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title font-semibold">
-              How do I update my profile information?
-            </div>
+            <div className="collapse-title font-semibold">{t("faq.faq3")}</div>
             <div className="collapse-content text-sm">
-              Go to "My Account" settings and select "Edit Profile" to make
-              changes.
+              {t("faq.faq3Content")}
+            </div>
+          </div>
+          <div className="collapse collapse-plus  border border-transparent border-b-border2">
+            <input type="radio" name="my-accordion-3" />
+            <div className="collapse-title font-semibold">{t("faq.faq4")}</div>
+            <div className="collapse-content text-sm">
+              {t("faq.faq4Content")}
+            </div>
+          </div>
+          <div className="collapse collapse-plus  border border-transparent border-b-border2">
+            <input type="radio" name="my-accordion-3" />
+            <div className="collapse-title font-semibold">{t("faq.faq5")}</div>
+            <div className="collapse-content text-sm whitespace-pre-line">
+              {t("faq.faq5Content")}
             </div>
           </div>
         </div>
