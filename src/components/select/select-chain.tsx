@@ -17,7 +17,7 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
   ({ value, currencyCode, onChange }, ref) => {
     const t = useTrans();
     const [open, setOpen] = useState(false);
-    const { data } = useRequestQuery(api.currencySettings.pageUsingGet, {
+    const { data } = useRequestQuery(api.currencySettings.pageUsingGet1, {
       currencyCode,
     });
     const chainList = data?.data as CurrencyInfo[];
@@ -80,7 +80,7 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
         </Drawer>
       </div>
     );
-  }
+  },
 );
 
 SelectChain.displayName = "SelectChain";

@@ -9,6 +9,19 @@
     "loading": "Loading...",
     "doSuccess": "Operation successful"
   },
+  "faq": {
+    "title": "FAQ",
+    "faq1": "What is 9M AI?",
+    "faq1Content": "9M AI is a New York–based AI fintech company founded by former Goldman Sachs executives, Columbia University AI scientists, and top quantitative engineers. It delivers fully automated investment and asset-management solutions using proprietary AI trading models.",
+    "faq2": "What is 9M’s mission?",
+    "faq2Content": "To reshape the connection between people and capital through AI, enabling every user to have a 24/7, ever-evolving AI wealth partner.",
+    "faq3": "What makes 9M’s core system special?",
+    "faq3Content": "Its proprietary NovaMind™ AI decision engine integrates market sensing, strategy execution, risk control, and optimization into a closed-loop process for intelligent investing.",
+    "faq4": "What are 9M AI’s core competitive advantages?",
+    "faq4Content": "As a global AI fintech company, 9M AI relies on a proprietary technology framework and unique algorithmic models—integrating market sensing, strategy execution, risk control, and optimization—to create differentiated performance in live trading.",
+    "faq5": "What products does 9M offer?",
+    "faq5Content": "Two main fund types:\nAI Strategy Funds – Stake USDT + major coins to earn USDM\nAI Stable Funds – Stake USDT + USDM to earn 9MC\nBoth offer cycles from short-term to 360 days with principal redemption at maturity."
+  },
   "tabbar": {
     "home": "Home",
     "assets": "Assets"

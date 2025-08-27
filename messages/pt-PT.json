@@ -9,6 +9,19 @@
     "loading": "Carregando...",
     "doSuccess": "Operação bem-sucedida"
   },
+  "faq": {
+    "title": "Pertanyaan Umum",
+    "faq1": "Apa itu 9M AI?",
+    "faq1Content": "9M AI adalah perusahaan fintech AI yang berbasis di New York, didirikan oleh mantan eksekutif Goldman Sachs, ilmuwan AI dari Universitas Columbia, dan insinyur kuantitatif top dunia. Mereka menyediakan solusi investasi dan manajemen aset otomatis berbasis model trading AI eksklusif.",
+    "faq2": "Apa misi dari 9M?",
+    "faq2Content": "Menghubungkan manusia dan modal secara lebih cerdas melalui AI, sehingga setiap pengguna memiliki mitra kekayaan berbasis AI yang terus berkembang dan tersedia 24/7.",
+    "faq3": "Apa yang membuat sistem inti 9M istimewa?",
+    "faq3Content": "Mesin keputusan AI NovaMind™ milik mereka mengintegrasikan analisis pasar, eksekusi strategi, kontrol risiko, dan optimalisasi dalam satu sistem terpadu untuk investasi cerdas.",
+    "faq4": "Apa keunggulan kompetitif utama 9M AI?",
+    "faq4Content": "Sebagai perusahaan fintech AI global, 9M AI mengandalkan arsitektur teknologi eksklusif dan model algoritmik unik untuk menciptakan performa berbeda di pasar nyata.",
+    "faq5": "Produk apa yang ditawarkan 9M?",
+    "faq5Content": "Tersedia dua jenis dana utama:\nAI Strategy Funds – Stake USDT + koin utama untuk mendapatkan USDM\nAI Stable Funds – Stake USDT + USDM untuk mendapatkan 9MC\nKeduanya memiliki periode mulai dari jangka pendek hingga 360 hari, dengan penebusan pokok saat jatuh tempo."
+  },
   "tabbar": {
     "home": "Início",
     "assets": "Ativos"

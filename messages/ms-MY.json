@@ -9,6 +9,19 @@
     "loading": "Memuatkan...",
     "doSuccess": "Operasi berjaya"
   },
+  "faq": {
+    "title": "Soalan Lazim",
+    "faq1": "Apakah itu 9M AI?",
+    "faq1Content": "9M AI ialah syarikat fintech AI yang berpangkalan di New York, diasaskan oleh bekas eksekutif Goldman Sachs, saintis AI dari Universiti Columbia, dan jurutera kuantitatif terbaik. Ia menyediakan penyelesaian pelaburan dan pengurusan aset automatik sepenuhnya menggunakan model dagangan AI milik sendiri.",
+    "faq2": "Apakah misi 9M?",
+    "faq2Content": "Untuk mentransformasikan hubungan antara manusia dan modal melalui AI, membolehkan setiap pengguna memiliki rakan kekayaan AI yang sentiasa beroperasi dan sentiasa berkembang, 24/7.",
+    "faq3": "Apa yang menjadikan sistem teras 9M istimewa?",
+    "faq3Content": "Enjin keputusan AI NovaMind™ milik 9M menggabungkan keupayaan mengesan pasaran, pelaksanaan strategi, kawalan risiko dan pengoptimuman dalam satu proses tertutup untuk pelaburan pintar.",
+    "faq4": "Apakah kelebihan utama 9M AI?",
+    "faq4Content": "Sebagai syarikat fintech AI global, 9M AI menggunakan rangka kerja teknologi milik sendiri dan model algoritma unik yang mengintegrasikan pengesanan pasaran, pelaksanaan strategi, kawalan risiko dan pengoptimuman, menghasilkan prestasi dagangan langsung yang unggul.",
+    "faq5": "Apakah produk yang ditawarkan oleh 9M?",
+    "faq5Content": "erdapat dua jenis dana utama:\nDana Strategi AI – Pertaruhkan USDT + syiling utama untuk menjana USDM\nDana Stabil AI – Pertaruhkan USDT + USDM untuk menjana 9MC\nKedua-duanya menawarkan tempoh dari jangka pendek hingga 360 hari dengan penebusan prinsipal pada tarikh matang."
+  },
   "tabbar": {
     "home": "Laman Utama",
     "assets": "Aset"

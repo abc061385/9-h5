@@ -36,7 +36,7 @@ const ListBox = () => {
 
   const getTokenList = useCallback(
     async (page: number) => {
-      const { data } = await api.fundProductConfig.pageUsingGet1({
+      const { data } = await api.fundProductConfig.pageUsingGet2({
         pageNo: page,
         pageSize: 100,
         productType: tabsValue,

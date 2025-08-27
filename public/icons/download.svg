@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>download</title>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9M-AI-Documentation" transform="translate(-342, -815)" fill="#000000" fill-rule="nonzero">
+            <g id="编组-2备份-2" transform="translate(16, 614)">
+                <g id="编组" transform="translate(0, 185)">
+                    <path d="M327,32 C326.447715,32 326,31.5522847 326,31 L326,26 L328,26 L328,30 L340,30 L340,26 L342,26 L342,31 C342,31.5069748 341.620493,31.9336839 341.117,31.993 L341,32 L327,32 Z M335,16 L335,24.7 L338.375,22 L339.625,23.562 L334.625,27.562 C334.296015,27.8252422 333.837322,27.8540355 333.478,27.634 L333.375,27.562 L328.375,23.562 L329.625,22 L333,24.7 L333,16 L335,16 Z" id="download"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

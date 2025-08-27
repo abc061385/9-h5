@@ -19,7 +19,7 @@ const FundBox = () => {
   const [pledgeDays] = useState(180);
   const [newsList, setNewsList] = useState<NewsDataType[]>([]);
 
-  const { data } = useRequestQuery(api.fundProductConfig.pageUsingGet1, {
+  const { data } = useRequestQuery(api.fundProductConfig.pageUsingGet2, {
     pledgeDays: pledgeDays,
     pageNo: 1,
     pageSize: 6,
@@ -42,7 +42,7 @@ const FundBox = () => {
   }, [getList]);
 
   const hotList = [
-    { label: t("home.database"), icon: "database" },
+    { label: t("home.database"), icon: "database", path: routerMap.faq },
     {
       label: t("home.invite_friend"),
       icon: "invite-friends",

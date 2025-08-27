@@ -9,6 +9,19 @@
     "loading": "Đang tải...",
     "doSuccess": "Thao tác thành công"
   },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "faq1": "9M AI là gì?",
+    "faq1Content": "9M AI là công ty fintech trí tuệ nhân tạo có trụ sở tại New York, được sáng lập bởi các cựu giám đốc Goldman Sachs, nhà khoa học AI của Đại học Columbia và kỹ sư định lượng hàng đầu thế giới. Công ty cung cấp giải pháp đầu tư và quản lý tài sản tự động hóa hoàn toàn dựa trên mô hình giao dịch AI độc quyền.",
+    "faq2": "Sứ mệnh của 9M là gì?",
+    "faq2Content": "Kết nối con người và dòng vốn một cách thông minh hơn thông qua AI, giúp mỗi người dùng có một người bạn đồng hành tài chính ảo 24/7 không ngừng phát triển.",
+    "faq3": "Điều gì làm cho hệ thống lõi của 9M đặc biệt?",
+    "faq3Content": "Công cụ quyết định NovaMind™ tích hợp phân tích thị trường, thực hiện chiến lược, kiểm soát rủi ro và tối ưu hóa trong một quy trình khép kín để đầu tư thông minh.",
+    "faq4": "Lợi thế cạnh tranh cốt lõi của 9M AI là gì?",
+    "faq4Content": "9M AI sở hữu công nghệ và thuật toán độc quyền, tích hợp đầy đủ từ cảm biến thị trường đến kiểm soát rủi ro, giúp tạo ra hiệu suất khác biệt trong giao dịch thực tế.",
+    "faq5": "9M cung cấp những sản phẩm gì?",
+    "faq5Content": "Có hai loại quỹ chính:\nQuỹ Chiến Lược AI – Stake USDT + các đồng coin chính để nhận USDM\nQuỹ Ổn Định AI – Stake USDT + USDM để nhận 9MC\nCả hai loại đều có chu kỳ từ ngắn hạn đến 360 ngày và hoàn trả gốc khi đến hạn."
+  },
   "tabbar": {
     "home": "Trang chủ",
     "assets": "Tài sản"
