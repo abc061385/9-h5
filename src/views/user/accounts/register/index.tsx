@@ -16,7 +16,6 @@ import { useSearchParams } from "next/navigation";
 import { createAxiosInstance } from "@/lib/axios";
 import { useUserStore } from "@/store/useUserStore";
 import { ApiResponse } from "@/lib/axios";
-import { utils } from "@/lib/utils";
 
 const RegisterView = () => {
   const api = createAxiosInstance("/app/");
