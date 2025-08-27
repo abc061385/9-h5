@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { CustomerSupportLang, routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
@@ -9,15 +9,15 @@ import { setRequestLocale } from "next-intl/server";
 import { LayoutRoot } from "@/components/layout/layout-root";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+//
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -38,9 +38,7 @@ export default async function LocaleLayout({
     CustomerSupportLang[locale as keyof typeof CustomerSupportLang] || "en-US";
   return (
     <html className="scroll-smooth" lang={locale} data-theme="light">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`antialiased`}>
         <NextIntlClientProvider>
           <div className="size-full md:bg-gray-100">
             <LayoutRoot>{children}</LayoutRoot>
