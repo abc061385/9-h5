@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
 import getStaticParams from "@/lib/getStaticParams";
 import useInitLocale from "@/hooks/useInitLocale";
-import { generateSEO } from "@/lib/seo";
-import FAQView from "@/views/faq";
+import FAQDocView from "@/views/faq/doc";
 
-export async function generateMetadata({
-  params,
-}: RootProps): Promise<Metadata> {
-  const { locale } = await params;
-  return generateSEO({
+export async function generateMetadata({}: RootProps): Promise<Metadata> {
+  return {
     title: "9M AI Documentation",
-    locale,
-  });
+  };
 }
 export default function AboutUsPage({ params }: RootProps) {
   useInitLocale(params);
 
-  return <FAQView />;
+  return <FAQDocView />;
 }
 
 export function generateStaticParams() {

@@ -51,7 +51,7 @@ const FAQView = () => {
     return detail?.["content" + (langType[locale] || "En")] || "";
   }, [data?.data, locale]);
   return (
-    <ViewLayout>
+    <ViewLayout heightFull>
       <div className="p-content">
         <BaseImage
           src="/images/common/logo.svg"
@@ -93,7 +93,7 @@ const FAQView = () => {
 
         <div className="flex flex-wrap gap-2">
           <div
-            className="bg-black  size-[168px] rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
+            className="bg-black  flex-1 h-[168px] rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
             onClick={() => push(routerMap.faq_posters)}
           >
             <BaseImage
@@ -105,7 +105,7 @@ const FAQView = () => {
             </p>
           </div>
           <div
-            className="bg-black  size-[168px] rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
+            className="bg-black  flex-1  rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
             onClick={() => push(routerMap.faq_doc)}
           >
             <BaseImage

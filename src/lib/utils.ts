@@ -5,6 +5,7 @@ import { AESsecretKey } from "./const";
 import lodash from "./lodash";
 import toBigNumber from "./bignumber";
 import dayjs from "dayjs";
+import axios from "axios";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -151,10 +152,37 @@ function setJwtCookie(token: string, cookieName = "token") {
   }
 }
 
+const downloadFile = (url: string, fileName: string) => {
+  axios({
+    url,
+    method: "GET",
+    responseType: "blob", // 重要：指定响应类型为 Blob
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        const blob = response.data;
+        const link = document.createElement("a");
+        const href = window.URL.createObjectURL(blob);
+
+        link.href = href;
+        link.download = fileName;
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+
+        // 清理资源
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(href);
+      }
+    })
+    .catch(() => {});
+};
+
 export const utils = {
   ...lodash,
   toBigNumber,
   dayjs,
   copyText,
   setJwtCookie,
+  downloadFile,
 };
