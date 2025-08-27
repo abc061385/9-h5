@@ -61,6 +61,9 @@ export const routerMap = {
   aboutUs: "/about-us/",
   protocol: "/protocol/",
   "customer-support": "/customer-support/",
+  accounts: "/user/accounts/",
+  accountsAdd: "/user/accounts/add/",
+  accountsRegister: "/user/accounts/register/",
 };
 
 export const WhiteListPath = [
