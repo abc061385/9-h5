@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import BaseImage from "./base-image";
+// import BaseImage from "./base-image";
 import { Modal } from "./modal";
 import { Icon } from "./icon";
 import Platform from "@/lib/platfrom";
 import Bridge from "@/lib/dsBridge";
 import { useRouter } from "@/i18n/navigation";
+import Image from "next/image";
 
 type ImageItem = { [key in string]: unknown };
 
@@ -54,13 +55,16 @@ export default function ImageQueueModal({
       className="!bg-transparent "
       close={false}
     >
-      <BaseImage
+      <Image
         onClick={goTo}
         src={
           images[currentIndex] ? (images[currentIndex][keyName] as string) : ""
         }
         alt={`Image ${currentIndex}`}
-        className="aspect-[4/3] w-full object-cover  rounded-lg overflow-hidden"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "auto", maxWidth: "90%" }}
+        className="mx-auto rounded-lg"
       />
 
       <div className="flex justify-center mt-10">
