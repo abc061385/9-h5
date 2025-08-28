@@ -98,7 +98,7 @@ const LoginView = () => {
           setConfirmModalOpen(true);
           return;
         }
-        toast.error(res.data.message);
+        toast.error(t(res?.data?.message));
       }
     } catch (err) {
       setLoading(false);
@@ -142,7 +142,7 @@ const LoginView = () => {
           push(routerMap.accounts);
           return;
         }
-        toast.error(res.data.message);
+        toast.error(t(res?.data?.message));
       }
     } catch (error) {
       console.log(error);
