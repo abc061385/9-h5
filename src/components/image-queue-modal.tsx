@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-// import BaseImage from "./base-image";
 import { Modal } from "./modal";
 import { Icon } from "./icon";
 import Platform from "@/lib/platfrom";
@@ -29,14 +28,19 @@ export default function ImageQueueModal({
     }
   }, [visible]);
 
+  useEffect(() => {
+    if (typeof window) {
+      window.sessionStorage.setItem("show_popups", "open");
+    }
+  }, []);
   const handleClose = () => {
     const next = currentIndex + 1;
     if (next < images.length) {
       setCurrentIndex(next);
     } else {
       setVisible(false);
-      setCurrentIndex(0);
     }
+    window.sessionStorage.setItem("show_popups", "open");
   };
   const goTo = useCallback(() => {
     const currentItem = images[currentIndex];
