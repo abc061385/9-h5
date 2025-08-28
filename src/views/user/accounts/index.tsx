@@ -9,27 +9,112 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { createAxiosInstance } from "@/lib/axios";
 import { useUserStore } from "@/store/useUserStore";
 import { useCallback, useEffect, useState } from "react";
+import { ApiResponse } from "@/lib/axios";
+import { cn, formatBalance, utils } from "@/lib/utils";
+import { useVerificationStore } from "@/store/useVerification";
+import { AccountType } from "@/lib/const";
+import { useTrans } from "@/hooks/useTrans";
+
+interface Info extends UserInfo {
+  nickname: string;
+  totalInvestment: string;
+}
 
 const AccountManage = () => {
-  const { userInfo } = useUserStore();
+  const t = useTrans();
+  const { userInfo, setField } = useUserStore();
   const api = createAxiosInstance("/app/");
 
   const { push } = useRouter();
   const [infoModalOpen, setInfoModalOpen] = useState(false);
+  const [accountsList, setAccountsList] = useState<Info[]>([]);
 
-  const getAccountList = useCallback(() => {
-    const res = api.get("/auth/bind-list/", {
-      params: {
-        id: userInfo.id,
-      },
-    });
-    console.log(res);
-  }, [userInfo, api]);
+  const getAccountList = useCallback(async () => {
+    try {
+      const res: ApiResponse<Info[]> = await api.get(
+        `/auth/bind-list/${userInfo?.id}`,
+        {
+          headers: {
+            device: navigator.userAgent,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      if (res.code === 200) {
+        setAccountsList(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo?.id]);
 
   useEffect(() => {
     getAccountList();
   }, [getAccountList]);
-  
+
+  const switchAccount = useCallback(
+    async (item: Info) => {
+      let res: ApiResponse<{
+        loginInfo: UserInfo;
+        status: number;
+        message: string;
+      }>;
+      try {
+        if (item.accountType === 2) {
+          res = await api.post(
+            "/auth/sub-account/login-by-token",
+            {
+              account: item.nickname,
+              motherUserId: userInfo?.id,
+            },
+            {
+              headers: {
+                device: navigator.userAgent,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          );
+        } else {
+          res = await api.post(
+            "/auth/login-by-token",
+            {
+              account: item.nickname,
+              accountType: AccountType.email,
+            },
+            {
+              headers: {
+                device: navigator.userAgent,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          );
+        }
+
+        if (res.code === 200) {
+          if (res.data.status === 0) {
+            setField("userInfo", res.data.loginInfo);
+            setField("token", res.data?.loginInfo?.token || "");
+            window.localStorage.setItem(
+              "token",
+              res.data?.loginInfo?.token || ""
+            );
+            utils.setJwtCookie(res.data?.loginInfo?.token || "");
+            useVerificationStore.persist.clearStorage();
+            push(routerMap.accounts);
+            return;
+          }
+          setField("subAccount", item.nickname);
+          push(routerMap.accountsAdd);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [userInfo?.id]
+  );
+
   return (
     <ViewLayout
       header={
@@ -37,7 +122,7 @@ const AccountManage = () => {
           title={
             <div className="flex-1 flex justify-center items-center relative">
               <span></span>
-              Account Management
+              {t("accountManagement")}
               <Icon
                 name="annotation-black"
                 className="size-11 absolute right-[-30px]"
@@ -46,21 +131,29 @@ const AccountManage = () => {
             </div>
           }
           algin="center"
+          path={routerMap.user}
         />
       }
       heightFull
     >
       <div className="p-content h-full flex flex-col">
         <div className="flex-1">
-          {[...new Array(3)].map((_, i) => {
+          {accountsList?.map((v, i) => {
             return (
               <div
                 key={i}
-                className="p-4 rounded-lg bg-bg3 flex items-center justify-between mb-4 gap-4"
+                className={cn(
+                  "p-4 rounded-lg bg-bg3 flex items-center justify-between mb-4 gap-4",
+                  userInfo.id === v.id && "bg-primary text-white"
+                )}
+                onClick={() => switchAccount(v)}
               >
-                <BaseImage src={"/icons/user-head.svg"} className="size-10" />
-                <b className="flex-1">9MAI555621</b>
-                <b>$0</b>
+                <BaseImage
+                  src={v.headUrl || "/icons/user-head.svg"}
+                  className="size-10"
+                />
+                <b className="flex-1 truncate">{v?.nickname}</b>
+                <b>${formatBalance(v.totalInvestment || 0, 2)}</b>
               </div>
             );
           })}
@@ -69,7 +162,7 @@ const AccountManage = () => {
           className="btn btn-primary w-full"
           onClick={() => push(routerMap.accountsRegister)}
         >
-          Add New Account
+          {t("addNewAccount")}
         </button>
       </div>
       <Modal
@@ -78,12 +171,7 @@ const AccountManage = () => {
         title="Prompt information"
         titleClassName="mt-[-8px]"
       >
-        <p className="text-sm leading-4 mt-6">
-          To ensure account security, password verification is not required when
-          switching accounts on a new device. The binding relationship is valid
-          for 7 days. After the expiration date, you need to re-enter the
-          sub-account password for verification.
-        </p>
+        <p className="text-sm leading-4 mt-6">{t("promptInfo")}</p>
       </Modal>
     </ViewLayout>
   );

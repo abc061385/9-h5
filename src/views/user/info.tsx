@@ -27,7 +27,7 @@ const UserInfoBox = () => {
       icon: "vip-user",
       title: (
         <div className="flex items-center gap-1">
-          {"VIP" + userInfo.vipLevel}{" "}
+          {"VIP" + userInfo?.vipLevel}{" "}
           <StarIcon level={userInfo.vipLevel || 0} star={userInfo.star} />
         </div>
       ),

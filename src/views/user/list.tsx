@@ -40,7 +40,7 @@ const ListBox = () => {
         },
         {
           icon: "accounts",
-          title: "Account Management",
+          title: "accountManagement",
           path: routerMap.accounts,
         },
       ],

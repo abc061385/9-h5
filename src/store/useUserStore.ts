@@ -10,6 +10,7 @@ interface LoginState extends BaseState<LoginState> {
   token: string;
   logOut: () => void;
   fetchUserInfo: () => Promise<void>;
+  subAccount: string;
 }
 
 export const useUserStore = create<LoginState>()(
@@ -19,6 +20,7 @@ export const useUserStore = create<LoginState>()(
         return {
           userInfo: {},
           token: "",
+          subAccount: "",
           logOut() {
             set({ userInfo: {}, token: "" });
             navigateTo(routerMap.login);
@@ -40,10 +42,10 @@ export const useUserStore = create<LoginState>()(
           setField: (key, value) => set({ [key]: value }),
         };
       },
-      { enabled: getIsDev() },
+      { enabled: getIsDev() }
     ),
     {
       name: "user-store",
-    },
-  ),
+    }
+  )
 );

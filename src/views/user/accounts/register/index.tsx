@@ -8,7 +8,7 @@ import { Link, routerMap, useRouter } from "@/i18n/navigation";
 import { InputPassword } from "@/components/input/password";
 import { TextError } from "@/components/input/text-error";
 import z, { useRootReg } from "@/lib/z";
-import { encryptPassword } from "@/lib/utils";
+import { encryptPassword, utils } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import toast from "react-hot-toast";
@@ -16,11 +16,12 @@ import { useSearchParams } from "next/navigation";
 import { createAxiosInstance } from "@/lib/axios";
 import { useUserStore } from "@/store/useUserStore";
 import { ApiResponse } from "@/lib/axios";
+import { useVerificationStore } from "@/store/useVerification";
 
 const RegisterView = () => {
   const api = createAxiosInstance("/app/");
 
-  const { userInfo } = useUserStore();
+  const { userInfo, setField } = useUserStore();
   const { push } = useRouter();
   const t = useTrans();
   const reg = useRootReg();
@@ -30,7 +31,7 @@ const RegisterView = () => {
 
   const Schema = z
     .object({
-      account: z.string().nonempty("请输入账号"),
+      account: z.string().nonempty(t("enterAccount")),
       password: reg.password,
       confirmPassword: z.string(),
       invitationCode: z.string().nonempty(t("login.inputInviteCode")),
@@ -53,7 +54,11 @@ const RegisterView = () => {
   const handleNext = async () => {
     try {
       const data = getValues();
-      const res: ApiResponse<UserInfo> = await api.post(
+      const res: ApiResponse<{
+        loginInfo: UserInfo;
+        status: number;
+        message: string;
+      }> = await api.post(
         "/auth/sub-account/register",
         {
           account: data.account,
@@ -70,8 +75,21 @@ const RegisterView = () => {
         }
       );
       if (res.code === 200) {
+        if (res.data.status === 0) {
+          toast.success(t("alerts.registerSuccess"));
+          setField("userInfo", res.data.loginInfo);
+          setField("token", res.data?.loginInfo?.token || "");
+          window.localStorage.setItem(
+            "token",
+            res.data?.loginInfo?.token || ""
+          );
+          utils.setJwtCookie(res.data?.loginInfo?.token || "");
+          useVerificationStore.persist.clearStorage();
+          push(routerMap.accounts);
+          return;
+        }
+        toast.error(res.data.message);
       }
-      console.log(res);
     } catch {}
   };
 
@@ -89,12 +107,12 @@ const RegisterView = () => {
         <div className="grow">
           <form autoComplete="off">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Account</legend>
+              <legend className="fieldset-legend">{t("account")}</legend>
               <label className="input w-full">
                 <input
                   type="text"
                   {...register("account")}
-                  placeholder="Account"
+                  placeholder={t("account")}
                   className="grow"
                 />
               </label>
@@ -176,14 +194,14 @@ const RegisterView = () => {
         </div>
         <div className="text-center text-sm pb-6">
           <h3 className="text-text4">
-            已有账号？可将原用户名/密码账号
+            {t("existingAccount")}
             <Link
               href={routerMap.accountsAdd}
               className="font-bold text-primary"
             >
-              绑定主账号
+              {t("bindMainAccount")}
             </Link>
-            ，绑定后登录主账号即可切换子账号。
+            ，{t("bindLoginHint")}
           </h3>
         </div>
         {/* <Geetest
