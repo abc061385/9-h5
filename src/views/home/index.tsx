@@ -13,7 +13,7 @@ import { useTrans } from "@/hooks/useTrans";
 import SmartChatBox from "./smart-chat";
 // import { useRequestQuery } from "@/hooks/useRequestQuery";
 // import { api } from "@/api";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { FixedComponent } from "@/components/fixed";
 // import { useLocationHref } from "@/hooks/useLocationHref";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
@@ -24,7 +24,6 @@ export default function HomeView() {
   const t = useTrans();
   const { push } = useRouter();
   const { data: popups } = useRequestQuery(api.getPopups, { platform: "all" });
-  console.log(popups?.data);
   // const { goToLuckyActivity } = useLocationHref();
   // const { data } = useRequestQuery(api.userActivity.getActivityListUsingGet, {
   //   pageNo: 1,
@@ -47,6 +46,12 @@ export default function HomeView() {
         path: "",
       },
     ];
+  }, []);
+  const oneOpen = useMemo(() => {
+    if (window.sessionStorage.getItem("show_popups")) {
+      return false;
+    }
+    return true;
   }, []);
   return (
     <ViewLayout
@@ -97,7 +102,7 @@ export default function HomeView() {
         <SmartChatBox />
       </div>
 
-      {popups?.data ? (
+      {popups?.data && (popups?.data as unknown as [])?.length && oneOpen ? (
         <ImageQueueModal
           images={popups?.data as unknown as { imageUrl: string }[]}
           keyName="imageUrl"
