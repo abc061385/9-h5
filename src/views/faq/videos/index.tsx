@@ -5,12 +5,10 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import BaseImage from "@/components/base-image";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
-import { utils } from "@/lib/utils";
-import { Icon } from "@/components/icon";
 
-const FAQDocView = () => {
+const FAQVideosView = () => {
   const { data } = useRequestQuery(
-    api.publicizeDocVideo.getDocListUsingGet,
+    api.publicizeDocVideo.getVideoListUsingGet,
     {},
   );
   const list = (data?.data || []) as unknown as {
@@ -31,27 +29,17 @@ const FAQDocView = () => {
               key={index + "_posters"}
             >
               <div className="size-full flex items-center [background:var(--color-gradient3)]">
-                {/* <embed */}
-                {/*   src={item.originalUrl} */}
-                {/*   type="application/pdf" */}
-                {/*   width="200px" */}
-                {/*   height="100px" */}
-                {/* /> */}
+                <video controls className="w-full">
+                  <source src={item.originalUrl} type="video/mp4" />
+                  您的浏览器不支援该影片播放。
+                </video>
                 <BaseImage
                   src="/images/common/logo.svg"
                   className="w-full aspect-[100/20]"
                 />
               </div>
-              <div className="flex items-center justify-around w-full bg-white h-11">
-                <p className="truncate w-[60%]">{item.fileName}</p>
-                &nbsp;
-                <Icon
-                  name="download"
-                  className="size-5"
-                  onClick={() =>
-                    utils.downloadFile(item.originalUrl, item.fileName)
-                  }
-                />
+              <div className="flex items-center w-full bg-white h-11 p-4">
+                <p className="truncate w-[100%]">{item.fileName}</p>
               </div>
             </div>
           );
@@ -61,4 +49,4 @@ const FAQDocView = () => {
   );
 };
 
-export default FAQDocView;
+export default FAQVideosView;

@@ -81,4 +81,11 @@ export const WhiteListPath = [
   routerMap.newsDetail,
   routerMap.verification,
   routerMap["customer-support"],
+  routerMap.faq,
+  routerMap.faq_doc,
+  routerMap.faq_video,
+  routerMap.faq_posters,
+  routerMap.faq_msb,
+  routerMap.faq_sec,
+  routerMap.faq_introduction,
 ];
