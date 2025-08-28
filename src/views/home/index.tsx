@@ -13,7 +13,7 @@ import { useTrans } from "@/hooks/useTrans";
 import SmartChatBox from "./smart-chat";
 // import { useRequestQuery } from "@/hooks/useRequestQuery";
 // import { api } from "@/api";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { FixedComponent } from "@/components/fixed";
 // import { useLocationHref } from "@/hooks/useLocationHref";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
