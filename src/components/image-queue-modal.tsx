@@ -48,7 +48,14 @@ export default function ImageQueueModal({
       if (currentItem?.nativeJumpUrl)
         Bridge.jumpTo(currentItem.nativeJumpUrl as string);
     } else {
-      if (currentItem?.h5JumpUrl) push(currentItem.h5JumpUrl as string);
+      if (currentItem?.h5JumpUrl) {
+        const url = currentItem.h5JumpUrl as string;
+        if (/^https?:\/\//.test(url)) {
+          window.location.href = url;
+        } else {
+          push(url);
+        }
+      }
     }
   }, [currentIndex, images, push]);
   return (
