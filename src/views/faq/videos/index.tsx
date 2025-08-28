@@ -5,8 +5,6 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import BaseImage from "@/components/base-image";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
-import { utils } from "@/lib/utils";
-import { Icon } from "@/components/icon";
 import { useLocale } from "next-intl";
 import { useCallback } from "react";
 
@@ -16,13 +14,13 @@ type Item = {
   fileName: string;
   content: string;
 };
-const FAQDocView = () => {
+const FAQVideosView = () => {
   const { data } = useRequestQuery(
-    api.publicizeDocVideo.getDocListUsingGet,
+    api.publicizeDocVideo.getVideoListUsingGet,
     {},
   );
-  const list = (data?.data || []) as unknown as Item[];
   const locale = useLocale();
+  const list = (data?.data || []) as unknown as Item[];
   const getTitle = useCallback(
     (item: Item) => {
       const _content = JSON.parse(item.content || "{}");
@@ -37,7 +35,7 @@ const FAQDocView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="9M AI Documentation" algin="center" />}
+      header={<HeaderWithBack title="Promotional Video" algin="center" />}
     >
       <div className="min-h-full p-content bg-bg3">
         {list.map((item, index) => {
@@ -47,27 +45,20 @@ const FAQDocView = () => {
               key={index + "_posters"}
             >
               <div className="size-full flex items-center [background:var(--color-gradient3)]">
-                {/* <embed */}
-                {/*   src={item.originalUrl} */}
-                {/*   type="application/pdf" */}
-                {/*   width="200px" */}
-                {/*   height="100px" */}
-                {/* /> */}
-                <BaseImage
-                  src="/images/common/logo.svg"
-                  className="w-full aspect-[100/20]"
-                />
+                {item?.originalUrl ? (
+                  <video controls className="w-full h-full">
+                    <source src={item.originalUrl} type="video/mp4" />
+                    您的浏览器不支援该影片播放。
+                  </video>
+                ) : (
+                  <BaseImage
+                    src="/images/common/logo.svg"
+                    className="w-full aspect-[100/20]"
+                  />
+                )}
               </div>
-              <div className="flex items-center justify-around w-full bg-white h-11">
-                <p className="truncate w-[60%]">{getTitle(item)}</p>
-                &nbsp;
-                <Icon
-                  name="download"
-                  className="size-5"
-                  onClick={() =>
-                    utils.downloadFile(item.originalUrl, item.fileName)
-                  }
-                />
+              <div className="flex items-center w-full bg-white h-11 p-4">
+                <p className="truncate w-[100%]">{getTitle(item)}</p>
               </div>
             </div>
           );
@@ -77,4 +68,4 @@ const FAQDocView = () => {
   );
 };
 
-export default FAQDocView;
+export default FAQVideosView;

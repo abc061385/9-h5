@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import getStaticParams from "@/lib/getStaticParams";
 import useInitLocale from "@/hooks/useInitLocale";
-import FAQView from "@/views/faq";
+import FAQSECView from "@/views/faq/sec";
 
 export async function generateMetadata({}: RootProps): Promise<Metadata> {
   return {
@@ -11,7 +11,7 @@ export async function generateMetadata({}: RootProps): Promise<Metadata> {
 export default function AboutUsPage({ params }: RootProps) {
   useInitLocale(params);
 
-  return <FAQView />;
+  return <FAQSECView />;
 }
 
 export function generateStaticParams() {

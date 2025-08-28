@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-// import BaseImage from "./base-image";
 import { Modal } from "./modal";
 import { Icon } from "./icon";
 import Platform from "@/lib/platfrom";
@@ -29,14 +28,19 @@ export default function ImageQueueModal({
     }
   }, [visible]);
 
+  useEffect(() => {
+    if (typeof window) {
+      window.sessionStorage.setItem("show_popups", "open");
+    }
+  }, []);
   const handleClose = () => {
     const next = currentIndex + 1;
     if (next < images.length) {
       setCurrentIndex(next);
     } else {
       setVisible(false);
-      setCurrentIndex(0);
     }
+    window.sessionStorage.setItem("show_popups", "open");
   };
   const goTo = useCallback(() => {
     const currentItem = images[currentIndex];
@@ -44,7 +48,14 @@ export default function ImageQueueModal({
       if (currentItem?.nativeJumpUrl)
         Bridge.jumpTo(currentItem.nativeJumpUrl as string);
     } else {
-      if (currentItem?.h5JumpUrl) push(currentItem.h5JumpUrl as string);
+      if (currentItem?.h5JumpUrl) {
+        const url = currentItem.h5JumpUrl as string;
+        if (/^https?:\/\//.test(url)) {
+          window.location.href = url;
+        } else {
+          push(url);
+        }
+      }
     }
   }, [currentIndex, images, push]);
   return (
