@@ -49,24 +49,24 @@ const FAQDocView = () => {
               <div className="p-content relative">
                 <div className="aspect-[358/185]" key={index + "_posters"}>
                   <div className="size-full flex items-center [background:var(--color-gradient3)]">
-                    {item?.originalUrl ? (
-                      <iframe
-                        src={item.originalUrl}
-                        width="100%"
-                        height="100%"
-                        frameBorder="0"
-                        scrolling="no"
-                        style={{
-                          border: "none", // CSS 方式移除边框
-                          overflow: "hidden", // 隐藏内容溢出的滚动条
-                        }}
-                      />
-                    ) : (
-                      <BaseImage
-                        src="/images/common/logo.svg"
-                        className="w-full aspect-[100/20]"
-                      />
-                    )}
+                    {/* {item?.originalUrl ? ( */}
+                    {/*   <iframe */}
+                    {/*     src={item.originalUrl} */}
+                    {/*     width="100%" */}
+                    {/*     height="100%" */}
+                    {/*     frameBorder="0" */}
+                    {/*     scrolling="no" */}
+                    {/*     style={{ */}
+                    {/*       border: "none", // CSS 方式移除边框 */}
+                    {/*       overflow: "hidden", // 隐藏内容溢出的滚动条 */}
+                    {/*     }} */}
+                    {/*   /> */}
+                    {/* ) : ( */}
+                    <BaseImage
+                      src="/images/common/logo.svg"
+                      className="w-full aspect-[100/20]"
+                    />
+                    {/* )} */}
                   </div>
                   <div className="flex items-center justify-around w-full bg-white h-11">
                     <p className="truncate w-[60%]">{getTitle(item)}</p>
