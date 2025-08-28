@@ -5,21 +5,37 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import BaseImage from "@/components/base-image";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
+import { useLocale } from "next-intl";
+import { useCallback } from "react";
 
+type Item = {
+  thumbnailUrl: string;
+  originalUrl: string;
+  fileName: string;
+  content: string;
+};
 const FAQVideosView = () => {
   const { data } = useRequestQuery(
     api.publicizeDocVideo.getVideoListUsingGet,
     {},
   );
-  const list = (data?.data || []) as unknown as {
-    thumbnailUrl: string;
-    originalUrl: string;
-    fileName: string;
-  }[];
+  const locale = useLocale();
+  const list = (data?.data || []) as unknown as Item[];
+  const getTitle = useCallback(
+    (item: Item) => {
+      const _content = JSON.parse(item.content || "{}");
+      const _title = _content[locale] || _content["en"];
+      if (_title) {
+        return _title;
+      }
+      return "-";
+    },
+    [locale],
+  );
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="Promotional Posters" algin="center" />}
+      header={<HeaderWithBack title="Promotional Video" algin="center" />}
     >
       <div className="min-h-full p-content bg-bg3">
         {list.map((item, index) => {
@@ -29,17 +45,20 @@ const FAQVideosView = () => {
               key={index + "_posters"}
             >
               <div className="size-full flex items-center [background:var(--color-gradient3)]">
-                <video controls className="w-full">
-                  <source src={item.originalUrl} type="video/mp4" />
-                  您的浏览器不支援该影片播放。
-                </video>
-                <BaseImage
-                  src="/images/common/logo.svg"
-                  className="w-full aspect-[100/20]"
-                />
+                {item?.originalUrl ? (
+                  <video controls className="w-full h-full">
+                    <source src={item.originalUrl} type="video/mp4" />
+                    您的浏览器不支援该影片播放。
+                  </video>
+                ) : (
+                  <BaseImage
+                    src="/images/common/logo.svg"
+                    className="w-full aspect-[100/20]"
+                  />
+                )}
               </div>
               <div className="flex items-center w-full bg-white h-11 p-4">
-                <p className="truncate w-[100%]">{item.fileName}</p>
+                <p className="truncate w-[100%]">{getTitle(item)}</p>
               </div>
             </div>
           );
