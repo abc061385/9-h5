@@ -88,7 +88,7 @@ const RegisterView = () => {
           push(routerMap.accounts);
           return;
         }
-        toast.error(res.data.message);
+        toast.error(t(res?.data?.message));
       }
     } catch {}
   };
