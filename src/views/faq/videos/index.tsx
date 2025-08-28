@@ -55,7 +55,7 @@ const FAQVideosView = () => {
                       <video
                         controls
                         muted
-                        autoPlay={!Platform.isDesktop()}
+                        // autoPlay={!Platform.isDesktop()}
                         className="w-full h-full"
                       >
                         <source src={item.originalUrl} type="video/mp4" />
