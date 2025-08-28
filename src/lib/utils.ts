@@ -157,6 +157,7 @@ const downloadFile = (url: string, fileName: string) => {
     url,
     method: "GET",
     responseType: "blob", // 重要：指定响应类型为 Blob
+    headers: { "Cache-Control": "no-cache" },
   })
     .then((response) => {
       if (response.status === 200) {

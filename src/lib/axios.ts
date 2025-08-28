@@ -28,7 +28,9 @@ const createAxiosInstance = (
 
   // 请求拦截器：注入 token
   instance.interceptors.request.use((config) => {
-    const token = useUserStore.getState().token;
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoxNzU1MjQxNDAzODM0LCJpZCI6NTUwMDEsIm9iamVjdCI6IiJ9.KtNt6zimffpYSreT2fZkLn_NLHoj4zJqP41xlEh_sZM";
+    // const token = useUserStore.getState().token;
     const lang = useStore.getState().lang as keyof typeof APILang;
     if (lang) {
       config.headers["Language"] = APILang[lang];
