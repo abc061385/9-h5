@@ -2,6 +2,7 @@ import { Virtuoso, VirtuosoProps } from "react-virtuoso";
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
 import BaseImage from "./base-image";
+import { useTrans } from "@/hooks/useTrans";
 
 type IProps<T, Context> = Pick<
   VirtuosoProps<T, Context>,
@@ -25,6 +26,7 @@ export const InfiniteList = <T, Context>({
   const [items, setItems] = useState(data);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const t = useTrans();
 
   useEffect(() => {
     setItems(data);
@@ -47,10 +49,10 @@ export const InfiniteList = <T, Context>({
   const footerNode = useCallback(() => {
     return (
       <div className="text-center">
-        {loading ? "加载中…" : hasMore ? "下滑加载更多" : ""}
+        {loading ? t("common.loading") : hasMore ? t("common.more") : ""}
       </div>
     );
-  }, [loading, hasMore]);
+  }, [loading, hasMore, t]);
   return (
     <Virtuoso<T, Context>
       className={cn(["size-full", className])}
