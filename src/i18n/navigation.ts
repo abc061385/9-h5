@@ -68,6 +68,9 @@ export const routerMap = {
   faq_posters: "/faq/posters/",
   faq_sec: "/faq/sec/",
   faq_video: "/faq/video/",
+  accounts: "/user/accounts/",
+  accountsAdd: "/user/accounts/add/",
+  accountsRegister: "/user/accounts/register/",
 };
 
 export const WhiteListPath = [

@@ -6,9 +6,10 @@ import { useLocale } from "next-intl";
 import { SupportedLanguages } from "@/i18n/routing";
 import { Drawer } from "@/components/drawer";
 import { cn } from "@/lib/utils";
+import { IconName } from "@/types/icons";
 
 interface MenuType {
-  icon: "team-user" | "language" | "books" | "save" | "about-us";
+  icon: IconName;
   title: string;
   path: string;
   value?: string | ReactNode;
@@ -36,6 +37,11 @@ const ListBox = () => {
           icon: "save",
           title: "user.securitySettings",
           path: routerMap.setting,
+        },
+        {
+          icon: "accounts",
+          title: "accountManagement",
+          path: routerMap.accounts,
         },
       ],
     },
