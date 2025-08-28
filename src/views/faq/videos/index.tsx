@@ -7,7 +7,7 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { useLocale } from "next-intl";
 import { useCallback } from "react";
-import Platform from "@/lib/platfrom";
+// import Platform from "@/lib/platfrom";
 import { InfiniteList } from "@/components/infinite-list";
 
 type Item = {
