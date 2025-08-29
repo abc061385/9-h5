@@ -14,6 +14,7 @@ import { cn, formatBalance, utils } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
 import { AccountType } from "@/lib/const";
 import { useTrans } from "@/hooks/useTrans";
+import { ShowIf } from "@/components/show-if";
 
 interface Info extends UserInfo {
   nickname: string;
@@ -146,7 +147,10 @@ const AccountManage = () => {
                   "p-4 rounded-lg bg-bg3 flex items-center justify-between mb-4 gap-4",
                   userInfo.id === v.id && "bg-primary text-white"
                 )}
-                onClick={() => switchAccount(v)}
+                onClick={() => {
+                  if (userInfo.id === v.id) return;
+                  switchAccount(v);
+                }}
               >
                 <BaseImage
                   src={v.headUrl || "/icons/user-head.svg"}
@@ -158,12 +162,14 @@ const AccountManage = () => {
             );
           })}
         </div>
-        <button
-          className="btn btn-primary w-full"
-          onClick={() => push(routerMap.accountsRegister)}
-        >
-          {t("addNewAccount")}
-        </button>
+        <ShowIf condition={userInfo.accountType !== 2}>
+          <button
+            className="btn btn-primary w-full"
+            onClick={() => push(routerMap.accountsRegister)}
+          >
+            {t("addNewAccount")}
+          </button>
+        </ShowIf>
       </div>
       <Modal
         open={infoModalOpen}
