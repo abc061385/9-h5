@@ -7,7 +7,6 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { useLocale } from "next-intl";
 import { useCallback } from "react";
-// import Platform from "@/lib/platfrom";
 import { InfiniteList } from "@/components/infinite-list";
 
 type Item = {
@@ -15,6 +14,7 @@ type Item = {
   originalUrl: string;
   fileName: string;
   content: string;
+  coverUrl: string;
 };
 const FAQVideosView = () => {
   const { data } = useRequestQuery(
@@ -55,8 +55,8 @@ const FAQVideosView = () => {
                       <video
                         controls
                         muted
-                        // autoPlay={!Platform.isDesktop()}
-                        className="w-full h-full"
+                        className="w-full h-full object-contain"
+                        poster={item.coverUrl}
                       >
                         <source src={item.originalUrl} type="video/mp4" />
                         您的浏览器不支援该影片播放。
