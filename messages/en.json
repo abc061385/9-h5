@@ -679,6 +679,7 @@
   "bindMainAccount": "Bind Main Account",
   "bindLoginHint": "After binding, you can switch sub-accounts by logging into the main account.",
   "accountManagement": "Account Management",
-  "promptInfo": "To ensure account security, password verification is not required when switching accounts on a new device. The binding relationship is valid for 7 days. After expiration, you need to re-enter the sub-account password for verification.",
-  "addNewAccount": "Add New Account"
+  "promptInfo": "To ensure account security, password verification is required when switching accounts on a new device. The binding relationship is valid for 7 days. After expiration, you need to re-enter the sub-account password for verification.",
+  "addNewAccount": "Add New Account",
+  "promptInformation": "Prompt Information"
 }

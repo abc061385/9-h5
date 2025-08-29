@@ -678,6 +678,7 @@
   "bindMainAccount": "Collega Account Principale",
   "bindLoginHint": "Dopo il collegamento, puoi alternare tra i subaccount accedendo all'account principale.",
   "accountManagement": "Gestione Account",
-  "promptInfo": "Per garantire la sicurezza dell'account, la verifica della password non è richiesta quando si alternano account su un nuovo dispositivo. La relazione di collegamento è valida per 7 giorni. Dopo la scadenza, è necessario reinserire la password del subaccount per la verifica.",
-  "addNewAccount": "Aggiungi Nuovo Account"
+  "promptInfo": "Per garantire la sicurezza dell'account, è richiesta la verifica della password quando si alternano account su un nuovo dispositivo. La relazione di collegamento è valida per 7 giorni. Dopo la scadenza, è necessario reinserire la password del subaccount per la verifica.",
+  "addNewAccount": "Aggiungi Nuovo Account",
+  "promptInformation": "Informazioni Prompt"
 }

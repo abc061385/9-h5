@@ -680,6 +680,7 @@
   "bindMainAccount": "Ikat Akaun Utama",
   "bindLoginHint": "Selepas pengikatan, anda boleh menukar akaun sub dengan log masuk ke akaun utama.",
   "accountManagement": "Pengurusan Akaun",
-  "promptInfo": "Untuk memastikan keselamatan akaun, pengesahan kata laluan tidak diperlukan ketika menukar akaun pada peranti baru. Hubungan pengikatan sah selama 7 hari. Selepas tamat tempoh, anda perlu memasukkan semula kata laluan akaun sub untuk pengesahan.",
-  "addNewAccount": "Tambah Akaun Baru"
+  "promptInfo": "Untuk memastikan keselamatan akaun, pengesahan kata laluan diperlukan ketika menukar akaun pada peranti baru. Hubungan pengikatan sah selama 7 hari. Selepas tamat tempoh, anda perlu memasukkan semula kata laluan akaun sub untuk pengesahan.",
+  "addNewAccount": "Tambah Akaun Baru",
+  "promptInformation": "Maklumat Prompt"
 }

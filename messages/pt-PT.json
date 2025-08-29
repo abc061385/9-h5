@@ -680,6 +680,7 @@
   "bindMainAccount": "Vincular Conta Principal",
   "bindLoginHint": "Após vinculação, pode alternar entre subcontas ao fazer login na conta principal.",
   "accountManagement": "Gestão de Contas",
-  "promptInfo": "Para garantir a segurança da conta, a verificação de palavra-passe não é necessária ao alternar contas num novo dispositivo. A relação de vinculação é válida por 7 dias. Após expiração, precisa reinserir a palavra-passe da subconta para verificação.",
-  "addNewAccount": "Adicionar Nova Conta"
+  "promptInfo": "Para garantir a segurança da conta, é necessária a verificação da palavra-passe ao alternar contas num novo dispositivo. A relação de vinculação é válida por 7 dias. Após a expiração, é necessário reinserir a palavra-passe da subconta para verificação.",
+  "addNewAccount": "Adicionar Nova Conta",
+  "promptInformation": "Informação de Prompt"
 }
