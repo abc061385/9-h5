@@ -99,6 +99,8 @@ const LoginView = () => {
           return;
         }
         toast.error(t(res?.data?.message));
+      } else {
+        toast.error(res.message);
       }
     } catch (err) {
       setLoading(false);
@@ -143,6 +145,8 @@ const LoginView = () => {
           return;
         }
         toast.error(t(res?.data?.message));
+      } else {
+        toast.error(res.message);
       }
     } catch (error) {
       console.log(error);
