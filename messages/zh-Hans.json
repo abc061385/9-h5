@@ -694,6 +694,7 @@
   "bindMainAccount": "绑定主账号",
   "bindLoginHint": "绑定后登录主账号即可切换子账号。",
   "accountManagement": "账号管理",
-  "promptInfo": "为确保账号安全，新设备切换账号无需密码验证。绑定关系有效期为7天，过期后需要重新输入子账号密码验证。",
-  "addNewAccount": "添加新账号"
+  "promptInfo": "为保障账号安全，在新设备进行切换账号需进行密码验证。绑定关系有效期7天，过期需重新输入子账号密码进行验证。",
+  "addNewAccount": "添加新账号",
+  "promptInformation": "提示信息"
 }

@@ -694,6 +694,7 @@
   "bindMainAccount": "綁定主賬號",
   "bindLoginHint": "綁定後登錄主賬號即可切換子賬號。",
   "accountManagement": "賬號管理",
-  "promptInfo": "為確保賬號安全，新設備切換賬號無需密碼驗證。綁定關係有效期為7天，過期後需要重新輸入子賬號密碼驗證。",
-  "addNewAccount": "添加新賬號"
+  "promptInfo": "為保障賬號安全，在新設備進行切換賬號需進行密碼驗證。綁定關係有效期7天，過期需重新輸入子賬號密碼進行驗證。",
+  "addNewAccount": "添加新賬號",
+  "promptInformation": "提示信息"
 }

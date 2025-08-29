@@ -168,7 +168,7 @@ const AccountManage = () => {
       <Modal
         open={infoModalOpen}
         onClose={() => setInfoModalOpen(false)}
-        title="Prompt information"
+        title={t("promptInformation")}
         titleClassName="mt-[-8px]"
       >
         <p className="text-sm leading-4 mt-6">{t("promptInfo")}</p>
