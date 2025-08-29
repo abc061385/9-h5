@@ -686,6 +686,7 @@
   "parentAccountNoEmail": "Tài khoản mẹ chưa liên kết email",
   "subAccountAlreadyBound": "Tài khoản con đã được liên kết với tài khoản mẹ",
   "boundParentIsSubAccount": "Tài khoản mẹ được liên kết là tài khoản con, không thể liên kết lại",
+  "parentIsOtherSubAccount": "Tài khoản mẹ này là tài khoản con của một tài khoản khác",
   "bind": "Liên kết",
   "bindConfirmation": "Tài khoản này đã được liên kết email. Bạn có chắc chắn muốn liên kết nó làm tài khoản con? Sau khi xác nhận, thông tin email của tài khoản này sẽ bị xóa.",
   "account": "Tài khoản",

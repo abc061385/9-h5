@@ -197,7 +197,7 @@ const RegisterView = () => {
             {t("existingAccount")}
             <Link
               href={routerMap.accountsAdd}
-              className="font-bold text-primary"
+              className="font-bold text-primary mx-0.5"
             >
               {t("bindMainAccount")}
             </Link>

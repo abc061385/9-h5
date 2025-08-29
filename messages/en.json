@@ -687,6 +687,7 @@
   "boundParentIsSubAccount": "The bound parent account is a sub-account and cannot be bound again",
   "bind": "Bind",
   "bindConfirmation": "This account is already bound to an email. Are you sure you want to bind it as a sub-account? After confirmation, the email information of this account will be cleared.",
+  "parentIsOtherSubAccount": "This parent account is a sub-account of another account",
   "account": "Account",
   "enterAccount": "Please enter account",
   "existingAccount": "Already have an account? You can bind the original username/password account",

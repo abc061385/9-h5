@@ -686,6 +686,7 @@
   "parentAccountNoEmail": "A conta principal não tem email vinculado",
   "subAccountAlreadyBound": "A subconta já está vinculada a uma conta principal",
   "boundParentIsSubAccount": "A conta principal vinculada é uma subconta e não pode ser vinculada novamente",
+  "parentIsOtherSubAccount": "Esta conta principal é uma subconta de outra conta",
   "bind": "Vincular",
   "bindConfirmation": "Esta conta já está vinculada a um e-mail. Tem a certeza que deseja vinculá-la como subconta? Após confirmação, as informações de e-mail desta conta serão apagadas.",
   "account": "Conta",

@@ -137,8 +137,8 @@ const AccountManage = () => {
       }
       heightFull
     >
-      <div className="p-content h-full flex flex-col">
-        <div className="flex-1">
+      <div className="p-content h-full flex flex-col gap-5">
+        <div className="flex-1 overflow-scroll no-scrollbar">
           {accountsList?.map((v, i) => {
             return (
               <div
