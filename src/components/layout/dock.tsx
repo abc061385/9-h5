@@ -1,6 +1,6 @@
 "use client";
 import { useTrans } from "@/hooks/useTrans";
-import { Link, routerMap, usePathname, useRouter } from "@/i18n/navigation";
+import { routerMap, usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Icon } from "../icon";
 import { IconName } from "@/types/icons";
