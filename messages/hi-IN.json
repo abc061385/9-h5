@@ -636,5 +636,6 @@
   "googleAuthenticatorValidTime": "Google Authenticator की कुंजी 30 सेकंड के लिए वैध होती है। कृपया वैध समय के भीतर सही कुंजी दर्ज करें।",
   "myAssets": "मेरी संपत्ति",
   "confirmInfo": "जानकारी की पुष्टि करें",
+  "spot": "स्पॉट",
   "results": "परिणाम"
 }

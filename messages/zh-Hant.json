@@ -670,5 +670,6 @@
   "excludedEarningsNote": "不包含用戶通過購買基金產品所獲得的收益",
   "verificationCodeMustBe6Digits": "驗證碼必須為6位數字",
   "resend": "重新發送",
+  "spot": "現貨",
   "googleAuthenticatorValidTime": "Google身份驗證器的密鑰有效期為30秒。請在有效期內輸入正確的密鑰。"
 }

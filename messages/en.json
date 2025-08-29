@@ -669,5 +669,6 @@
   "excludedEarningsNote": "Does not include earnings obtained by users through purchasing fund products",
   "verificationCodeMustBe6Digits": "Verification code must be 6 digits",
   "resend": "Resend",
+  "spot": "Spot",
   "googleAuthenticatorValidTime": "The key of Google Authenticator is valid for 30 seconds. Please enter the correct key within the valid time."
 }

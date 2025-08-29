@@ -670,5 +670,6 @@
   "excludedEarningsNote": "Tidak termasuk pendapatan yang diperoleh pengguna melalui pembelian produk dana",
   "verificationCodeMustBe6Digits": "Kod pengesahan mestilah 6 digit",
   "resend": "Kemaskini",
+  "spot": "Spot",
   "googleAuthenticatorValidTime": "Kunci Google Authenticator adalah sah selama 30 detik. Sila masukkan kunci yang betul dalam masa yang sah."
 }

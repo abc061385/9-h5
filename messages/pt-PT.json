@@ -670,5 +670,6 @@
   "excludedEarningsNote": "Não inclui ganhos obtidos pelos usuários através da compra de produtos de fundos",
   "verificationCodeMustBe6Digits": "O código de verificação deve ter 6 dígitos",
   "resend": "Reenviar",
+  "spot": "Spot",
   "googleAuthenticatorValidTime": "A chave do Google Authenticator é válida por 30 segundos. Por favor, insira a chave correta dentro do período válido."
 }

@@ -670,5 +670,6 @@
   "excludedEarningsNote": "ユーザーがファンド商品購入で得た収益は含まれません",
   "verificationCodeMustBe6Digits": "確認コードは6桁の数字でなければなりません",
   "resend": "再送信",
+  "spot": "現物",
   "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。"
 }

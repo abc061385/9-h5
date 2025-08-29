@@ -670,5 +670,6 @@
   "excludedEarningsNote": "사용자가 펀드 상품 구매를 통해 얻은 수익은 포함되지 않습니다",
   "verificationCodeMustBe6Digits": "인증번호는 6자리 숫자여야 합니다",
   "resend": "다시 보내기",
+  "spot": "현물",
   "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요."
 }

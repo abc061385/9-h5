@@ -670,5 +670,6 @@
   "excludedEarningsNote": "Không bao gồm thu nhập người dùng nhận được thông qua việc mua sản phẩm quỹ",
   "verificationCodeMustBe6Digits": "Mã xác minh phải là 6 chữ số",
   "resend": "Gửi lại",
+  "spot": "Spot",
   "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này."
 }
