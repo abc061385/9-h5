@@ -686,7 +686,7 @@
   "parentAccountNoEmail": "상위 계정에 이메일이 연결되지 않았습니다",
   "subAccountAlreadyBound": "해당 하위 계정은 이미 상위 계정과 연결되었습니다",
   "boundParentIsSubAccount": "연결된 상위 계정이 하위 계정이므로 다시 연결할 수 없습니다",
-  "parentIsOtherSubAccount": "이 상위 계정은 다른 계정의 하위 계정입니다",
+  "parentIsOtherSubAccount": "이 계정은 이미 바인딩 관계가 있어 다른 메인 계정에 바인딩할 수 없습니다",
   "bind": "바인딩",
   "bindConfirmation": "이 계정은 이미 이메일이 바인딩되어 있습니다. 서브 계정으로 바인딩하시겠습니까? 확인 후 이 계정의 이메일 정보는 삭제됩니다.",
   "account": "계정",

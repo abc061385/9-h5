@@ -686,6 +686,7 @@
   "parentAccountNoEmail": "母账号没有绑定邮箱",
   "subAccountAlreadyBound": "该子账号已经绑定过母账号",
   "boundParentIsSubAccount": "被绑定的母账号属于子账号，不能再次绑定",
+  "parentIsOtherSubAccount": "此账号已有绑定关系，不能再绑定其他主账号",
   "bind": "绑定",
   "bindConfirmation": "该账号已绑定邮箱，是否确认将其绑定为子账号？确认后，该账号的邮箱信息将被清除。",
   "account": "账号",
@@ -696,6 +697,5 @@
   "accountManagement": "账号管理",
   "promptInfo": "为保障账号安全，在新设备进行切换账号需进行密码验证。绑定关系有效期7天，过期需重新输入子账号密码进行验证。",
   "addNewAccount": "添加新账号",
-  "promptInformation": "提示信息",
-  "parentIsOtherSubAccount": "该母账号是其他账户的子账号"
+  "promptInformation": "提示信息"
 }
