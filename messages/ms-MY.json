@@ -697,5 +697,7 @@
   "accountManagement": "Pengurusan Akaun",
   "promptInfo": "Untuk memastikan keselamatan akaun, pengesahan kata laluan diperlukan ketika menukar akaun pada peranti baru. Hubungan pengikatan sah selama 7 hari. Selepas tamat tempoh, anda perlu memasukkan semula kata laluan akaun sub untuk pengesahan.",
   "addNewAccount": "Tambah Akaun Baru",
-  "promptInformation": "Maklumat Prompt"
+  "promptInformation": "Maklumat Prompt",
+  "spot": "Spot",
+  "googleAuthenticatorValidTime": "Kunci Google Authenticator adalah sah selama 30 detik. Sila masukkan kunci yang betul dalam masa yang sah."
 }

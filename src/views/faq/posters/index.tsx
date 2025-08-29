@@ -6,8 +6,12 @@ import BaseImage from "@/components/base-image";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { utils } from "@/lib/utils";
+import { useState } from "react";
+import { Modal } from "@/components/modal";
 
 const FAQPostersView = () => {
+  const [open, setOpen] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
   const { data } = useRequestQuery(api.publicizePoster.getListUsingGet, {});
   const list = (data?.data || []) as unknown as {
     thumbnailUrl: string;
@@ -19,10 +23,25 @@ const FAQPostersView = () => {
       heightFull
       header={<HeaderWithBack title="Promotional Posters" algin="center" />}
     >
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+          setCurrentUrl("");
+        }}
+      >
+        <div className="pt-6 flex items-center justify-center">
+          <img src={currentUrl} />
+        </div>
+      </Modal>
       <div className="grid grid-cols-2 gap-4 p-content">
         {list.map((item, index) => {
           return (
             <div
+              onClick={() => {
+                setCurrentUrl(item.originalUrl);
+                setOpen(true);
+              }}
               style={
                 { "--img": `url(${item.thumbnailUrl})` } as React.CSSProperties
               }
@@ -30,9 +49,10 @@ const FAQPostersView = () => {
               key={index + "_posters"}
             >
               <BaseImage
-                onClick={() =>
-                  utils.downloadFile(item.originalUrl, item.fileName)
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  utils.downloadFile(item.originalUrl, item.fileName);
+                }}
                 src="/images/faq/download_icon.png"
                 className="size-9 absolute bottom-4 left-0 right-0 m-auto"
               />

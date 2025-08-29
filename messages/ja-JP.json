@@ -697,5 +697,7 @@
   "accountManagement": "アカウント管理",
   "promptInfo": "アカウントの安全性を確保するため、新しいデバイスでアカウントを切り替える際にはパスワード認証が必要です。バインディング関係の有効期間は7日間です。有効期限後は、サブアカウントのパスワードを再入力して認証を行う必要があります。",
   "addNewAccount": "新しいアカウントを追加",
-  "promptInformation": "プロンプト情報"
+  "promptInformation": "プロンプト情報",
+  "spot": "現物",
+  "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。"
 }

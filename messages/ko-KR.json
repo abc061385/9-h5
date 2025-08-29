@@ -697,5 +697,7 @@
   "accountManagement": "계정 관리",
   "promptInfo": "계정 보안을 위해 새 기기에서 계정 전환 시 비밀번호 확인이 필요합니다. 바인딩 관계는 7일 동안 유효합니다. 만료 후에는 서브 계정 비밀번호를 다시 입력하여 확인해야 합니다.",
   "addNewAccount": "새 계정 추가",
-  "promptInformation": "프롬프트 정보"
+  "promptInformation": "프롬프트 정보",
+  "spot": "현물",
+  "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요."
 }

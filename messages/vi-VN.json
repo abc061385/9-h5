@@ -697,5 +697,7 @@
   "accountManagement": "Quản lý Tài khoản",
   "promptInfo": "Để đảm bảo an toàn tài khoản, cần xác minh mật khẩu khi chuyển đổi tài khoản trên thiết bị mới. Mối quan hệ liên kết có hiệu lực trong 7 ngày. Sau khi hết hạn, bạn cần nhập lại mật khẩu tài khoản phụ để xác minh.",
   "addNewAccount": "Thêm Tài khoản Mới",
-  "promptInformation": "Thông tin Nhắc nhở"
+  "promptInformation": "Thông tin Nhắc nhở",
+  "spot": "Spot",
+  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này."
 }
