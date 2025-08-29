@@ -682,5 +682,6 @@
   "accountManagement": "賬號管理",
   "promptInfo": "為保障賬號安全，在新設備進行切換賬號需進行密碼驗證。綁定關係有效期7天，過期需重新輸入子賬號密碼進行驗證。",
   "addNewAccount": "添加新賬號",
-  "promptInformation": "提示信息"
+  "promptInformation": "提示信息",
+  "parentIsOtherSubAccount": "該母賬號是其他賬戶的子賬號"
 }

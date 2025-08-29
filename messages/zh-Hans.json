@@ -682,5 +682,6 @@
   "accountManagement": "账号管理",
   "promptInfo": "为保障账号安全，在新设备进行切换账号需进行密码验证。绑定关系有效期7天，过期需重新输入子账号密码进行验证。",
   "addNewAccount": "添加新账号",
-  "promptInformation": "提示信息"
+  "promptInformation": "提示信息",
+  "parentIsOtherSubAccount": "该母账号是其他账户的子账号"
 }

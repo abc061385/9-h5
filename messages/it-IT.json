@@ -670,6 +670,7 @@
   "parentAccountNoEmail": "L'account principale non ha email associata",
   "subAccountAlreadyBound": "Il subaccount è già associato a un account principale",
   "boundParentIsSubAccount": "L'account principale associato è un subaccount e non può essere associato nuovamente",
+  "parentIsOtherSubAccount": "Questo account principale è un subaccount di un altro account",
   "bind": "Collega",
   "bindConfirmation": "Questo account è già associato a un'email. Sei sicuro di volerlo collegare come subaccount? Dopo la conferma, le informazioni email di questo account verranno cancellate.",
   "account": "Account",

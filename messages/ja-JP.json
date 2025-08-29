@@ -672,6 +672,7 @@
   "parentAccountNoEmail": "親アカウントにメールがバインドされていません",
   "subAccountAlreadyBound": "このサブアカウントは既に親アカウントにバインドされています",
   "boundParentIsSubAccount": "バインドされた親アカウントはサブアカウントであるため、再度バインドできません",
+  "parentIsOtherSubAccount": "この親アカウントは他のアカウントのサブアカウントです",
   "bind": "バインド",
   "bindConfirmation": "このアカウントは既にメールにバインドされています。サブアカウントとしてバインドしますか？確認後、このアカウントのメール情報は削除されます。",
   "account": "アカウント",
