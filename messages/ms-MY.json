@@ -672,7 +672,7 @@
   "parentAccountNoEmail": "Akaun induk tidak mempunyai e-mel terikat",
   "subAccountAlreadyBound": "Akaun sub sudah terikat dengan akaun induk",
   "boundParentIsSubAccount": "Akaun induk yang terikat adalah akaun sub, tidak boleh diikat lagi",
-  "parentIsOtherSubAccount": "Akaun induk ini adalah akaun sub bagi akaun lain",
+  "parentIsOtherSubAccount": "Akaun ini sudah mempunyai hubungan pengikatan dan tidak boleh diikat dengan akaun utama lain",
   "bind": "Ikatan",
   "bindConfirmation": "Akaun ini telah terikat dengan e-mel. Adakah anda pasti mahu mengikatnya sebagai akaun sub? Selepas pengesahan, maklumat e-mel akaun ini akan dipadamkan.",
   "account": "Akaun",

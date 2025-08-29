@@ -672,6 +672,7 @@
   "parentAccountNoEmail": "母賬號沒有綁定郵箱",
   "subAccountAlreadyBound": "該子賬號已經綁定過母賬號",
   "boundParentIsSubAccount": "被綁定的母賬號屬於子賬號，不能再次綁定",
+  "parentIsOtherSubAccount": "此賬號已有綁定關係，不能再綁定其他主賬號",
   "bind": "綁定",
   "bindConfirmation": "該賬號已綁定郵箱，是否確認將其綁定為子賬號？確認後，該賬號的郵箱信息將被清除。",
   "account": "賬號",
@@ -682,6 +683,5 @@
   "accountManagement": "賬號管理",
   "promptInfo": "為保障賬號安全，在新設備進行切換賬號需進行密碼驗證。綁定關係有效期7天，過期需重新輸入子賬號密碼進行驗證。",
   "addNewAccount": "添加新賬號",
-  "promptInformation": "提示信息",
-  "parentIsOtherSubAccount": "該母賬號是其他賬戶的子賬號"
+  "promptInformation": "提示信息"
 }
