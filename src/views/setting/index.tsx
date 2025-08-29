@@ -30,7 +30,9 @@ const SettingView = () => {
 
   useEffect(() => {
     if (!userInfo.googleVerify) return setGoogleModalOpen(true);
-    if (!userInfo?.bindEmail) return setModalOpen(true);
+    if (!userInfo?.bindEmail && userInfo.accountType !== 2)
+      //accountType = 2 为子账号，子账号没有邮箱。所以不弹这个提示
+      return setModalOpen(true);
   }, [userInfo]);
   return (
     <ViewLayout

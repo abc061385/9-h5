@@ -29,6 +29,10 @@ const RegisterView = () => {
 
   const [isAgreement, setIsAgreement] = useState(false);
 
+  useEffect(() => {
+    setField("subAccount", "");
+  }, [setField]);
+
   const Schema = z
     .object({
       account: z.string().nonempty(t("enterAccount")),
@@ -89,6 +93,8 @@ const RegisterView = () => {
           return;
         }
         toast.error(t(res?.data?.message));
+      } else {
+        toast.error(res.message);
       }
     } catch {}
   };
@@ -197,7 +203,7 @@ const RegisterView = () => {
             {t("existingAccount")}
             <Link
               href={routerMap.accountsAdd}
-              className="font-bold text-primary mx-0.5"
+              className="font-bold text-primary mx-1"
             >
               {t("bindMainAccount")}
             </Link>

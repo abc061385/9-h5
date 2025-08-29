@@ -15,6 +15,7 @@ import { useVerificationStore } from "@/store/useVerification";
 import { AccountType } from "@/lib/const";
 import { useTrans } from "@/hooks/useTrans";
 import { ShowIf } from "@/components/show-if";
+import toast from "react-hot-toast";
 
 interface Info extends UserInfo {
   nickname: string;
@@ -43,6 +44,8 @@ const AccountManage = () => {
       );
       if (res.code === 200) {
         setAccountsList(res.data);
+      } else {
+        toast.error(res.message);
       }
     } catch (error) {
       console.log(error);
@@ -107,6 +110,8 @@ const AccountManage = () => {
           }
           setField("subAccount", item.nickname);
           push(routerMap.accountsAdd);
+        } else {
+          toast.error(res.message);
         }
       } catch (error) {
         console.log(error);
