@@ -5,7 +5,7 @@ interface IBaseImageProps {
   src: string;
   alt?: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
 }
 
 const BaseImage: React.FC<IBaseImageProps> = ({
@@ -17,7 +17,7 @@ const BaseImage: React.FC<IBaseImageProps> = ({
   return (
     <span
       className={cn("relative inline-block", className)}
-      onClick={() => onClick?.()}
+      onClick={(e) => onClick?.(e)}
     >
       {src ? <Image src={src} alt={alt} fill /> : alt}
     </span>
