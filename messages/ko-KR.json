@@ -165,10 +165,10 @@
     "securityWarning": "자산 보안을 위해 계정 연동 인증 앱 변경 후 8시간 동안 출금이 제한됩니다."
   },
   "home": {
-    "invite_friend":"친구 초대",
-    "database":"데이터베이스",
-    "ranking":"랭킹",
-    "challenge":"챌린지",
+    "invite_friend": "친구 초대",
+    "database": "데이터베이스",
+    "ranking": "랭킹",
+    "challenge": "챌린지",
     "welcome": "9M 투자 플랫폼에 오신 것을 환영합니다",
     "subtitle": "스마트한 투자, AI로 자산을 빠르게 증대하세요",
     "startNow": "지금 시작하기",
@@ -671,5 +671,6 @@
   "verificationCodeMustBe6Digits": "인증번호는 6자리 숫자여야 합니다",
   "resend": "다시 보내기",
   "spot": "현물",
-  "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요."
+  "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요.",
+  "spot_click_tip": "아직 사용할 수 없습니다. 최신 앱에 로그인하여 이 기능을 사용하세요."
 }

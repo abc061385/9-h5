@@ -165,10 +165,10 @@
     "securityWarning": "为了您的资产安全，您在更改账号关联的身份验证应用之后的8小时内，将无法进行提币操作。"
   },
   "home": {
-    "invite_friend":"邀请好友",
-    "database":"数据库",
-    "ranking":"排行榜",
-    "challenge":"挑战",
+    "invite_friend": "邀请好友",
+    "database": "数据库",
+    "ranking": "排行榜",
+    "challenge": "挑战",
     "welcome": "欢迎来到 9M 投资平台",
     "subtitle": "智投未来，AI 为您的财富加速",
     "startNow": "立刻开始",
@@ -671,5 +671,6 @@
   "verificationCodeMustBe6Digits": "验证码必须为6位数字",
   "resend": "重新发送",
   "spot": "现货",
-  "googleAuthenticatorValidTime": "Google身份验证器的密钥有效期为30秒。请在有效期内输入正确的密钥。"
+  "googleAuthenticatorValidTime": "Google身份验证器的密钥有效期为30秒。请在有效期内输入正确的密钥。",
+  "spot_click_tip": "尚未开放，请登录最新APP使用此功能"
 }

@@ -165,10 +165,10 @@
     "securityWarning": "Para a segurança dos seus ativos"
   },
   "home": {
-    "invite_friend":"Convidar amigos",
-    "database":"Base de dados",
-    "ranking":"Classificação",
-    "challenge":"Desafio",
+    "invite_friend": "Convidar amigos",
+    "database": "Base de dados",
+    "ranking": "Classificação",
+    "challenge": "Desafio",
     "welcome": "Bem-vindo à Plataforma 9M Investments",
     "subtitle": "O futuro inteligente dos investimentos",
     "startNow": "Comece agora",
@@ -671,5 +671,6 @@
   "verificationCodeMustBe6Digits": "O código de verificação deve ter 6 dígitos",
   "resend": "Reenviar",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "A chave do Google Authenticator é válida por 30 segundos. Por favor, insira a chave correta dentro do período válido."
+  "googleAuthenticatorValidTime": "A chave do Google Authenticator é válida por 30 segundos. Por favor, insira a chave correta dentro do período válido.",
+  "spot_click_tip": "Ainda não disponível. Faça login no aplicativo mais recente para usar este recurso."
 }

@@ -165,10 +165,10 @@
     "securityWarning": "เพื่อความปลอดภัยของสินทรัพย์คุณ"
   },
   "home": {
-    "invite_friend":"เชิญเพื่อน",
-    "database":"ฐานข้อมูล",
-    "ranking":"การจัดอันดับ",
-    "challenge":"ความท้าทาย",
+    "invite_friend": "เชิญเพื่อน",
+    "database": "ฐานข้อมูล",
+    "ranking": "การจัดอันดับ",
+    "challenge": "ความท้าทาย",
     "welcome": "ยินดีต้อนรับสู่แพลตฟอร์มลงทุน 9M",
     "subtitle": "อนาคตการลงทุนอัจฉริยะ",
     "startNow": "เริ่มต้นตอนนี้",
@@ -671,5 +671,6 @@
   "verificationCodeMustBe6Digits": "รหัสยืนยันต้องเป็นตัวเลข 6 หลัก",
   "resend": "ส่ง lại",
   "spot": "สปอต",
-  "googleAuthenticatorValidTime": "ключ Google Authenticator ถูกต้อง selama 30 วินาที โปรดใส่ключที่ถูกต้องภายในช่วงเวลาที่กำหนด"
+  "googleAuthenticatorValidTime": "ключ Google Authenticator ถูกต้อง selama 30 วินาที โปรดใส่ключที่ถูกต้องภายในช่วงเวลาที่กำหนด",
+  "spot_click_tip": "ยังไม่สามารถใช้งานได้ โปรดเข้าสู่ระบบแอปพลิเคชันล่าสุดเพื่อใช้ฟีเจอร์นี้"
 }

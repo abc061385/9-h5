@@ -165,10 +165,10 @@
     "securityWarning": "Vì sự an toàn tài sản của bạn"
   },
   "home": {
-    "invite_friend":"Mời Bạn bè",
-    "database":"Cơ sở dữ liệu",
-    "ranking":"Bảng xếp hạng",
-    "challenge":"Thử thách",
+    "invite_friend": "Mời Bạn bè",
+    "database": "Cơ sở dữ liệu",
+    "ranking": "Bảng xếp hạng",
+    "challenge": "Thử thách",
     "welcome": "Chào mừng đến với Nền tảng Đầu tư 9M",
     "subtitle": "Tương lai đầu tư thông minh",
     "startNow": "Bắt đầu ngay",
@@ -671,5 +671,6 @@
   "verificationCodeMustBe6Digits": "Mã xác minh phải là 6 chữ số",
   "resend": "Gửi lại",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này."
+  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này.",
+  "spot_click_tip": "Chưa có sẵn. Vui lòng đăng nhập vào ứng dụng mới nhất để sử dụng tính năng này."
 }

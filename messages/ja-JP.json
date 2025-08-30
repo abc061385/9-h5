@@ -165,10 +165,10 @@
     "securityWarning": "資産の安全を確保するため、アカウントの認証アプリを変更した後8時間は出金ができません"
   },
   "home": {
-    "invite_friend":"友達を招待する",
-    "database":"データベース",
-    "ranking":"ランキング",
-    "challenge":"チャレンジ",
+    "invite_friend": "友達を招待する",
+    "database": "データベース",
+    "ranking": "ランキング",
+    "challenge": "チャレンジ",
     "welcome": "9M投資プラットフォームへようこそ",
     "subtitle": "スマートな投資、AIで資産を加速",
     "startNow": "今すぐ始める",
@@ -671,5 +671,6 @@
   "verificationCodeMustBe6Digits": "確認コードは6桁の数字でなければなりません",
   "resend": "再送信",
   "spot": "現物",
-  "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。"
+  "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。",
+  "spot_click_tip": "まだ利用できません。最新のアプリにログインしてこの機能を使用してください。"
 }
