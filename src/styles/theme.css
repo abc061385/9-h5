@@ -91,3 +91,19 @@ body {
 .layout {
   background-color: var(--color-white);
 }
+
+
+.collapse-content,
+.collapse-title {
+  padding-left: 0;
+}
+.collapse.collapse-plus:not(.collapse-close) > input:is([type="checkbox"], [type="radio"]):checked ~ .collapse-title:after {
+    content: url("/images/common/close.svg");
+}
+
+.collapse-plus > .collapse-title::after {
+  top: 6px;
+  width: 30px;
+  display: inline-block;
+  content: url("/images/common/open.svg");
+}
