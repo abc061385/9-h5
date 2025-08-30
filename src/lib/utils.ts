@@ -124,6 +124,7 @@ function copyText(text: string) {
  * @param cookieName Cookie 名称，默认 "token"
  */
 function setJwtCookie(token: string, cookieName = "token") {
+  if (!token) return;
   try {
     // 拆分 JWT
     const payloadBase64 = token.split(".")[1];
