@@ -106,7 +106,7 @@ const HeaderBox = () => {
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
       <h4 className="text-sm text-text4 mb-1">{t("assets.balance")}</h4>
       <h4 className="text-[28px] font-bold leading-8">
-        ${formatBalance(totalAmount, 4)}
+        ${formatBalance(totalAmount, 2)}
       </h4>
       {totalInvestment?.frozenUbx ? (
         <div className="text-text4 text-sm mt-2">
