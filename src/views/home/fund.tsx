@@ -10,7 +10,7 @@ import BaseImage from "@/components/base-image";
 import toast from "react-hot-toast";
 import { useLocale } from "next-intl";
 import { langType } from "../news";
-// import ChartBox from "./chart";
+import ChartBox from "./chart";
 
 const FundBox = () => {
   const t = useTrans();
@@ -85,7 +85,7 @@ const FundBox = () => {
         })}
       </div>
 
-      {/* <ChartBox /> */}
+      <ChartBox />
       <h2 className="mb-4 font-medium text-base mt-6">{t("9M基金推荐")}</h2>
       <div className="grid grid-cols-2 gap-2 mt-4">
         {list.map((item) => (
