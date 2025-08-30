@@ -699,6 +699,13 @@
   "addNewAccount": "새 계정 추가",
   "promptInformation": "프롬프트 정보",
   "spot": "현물",
-  "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요.",
-  "spot_click_tip": "아직 사용할 수 없습니다. 최신 앱에 로그인하여 이 기능을 사용하세요."
+  "spot_click_tip": "아직 사용할 수 없습니다. 최신 앱에 로그인하여 이 기능을 사용하세요.",
+  "msb_license": "MSB 라이선스",
+  "sec_license": "SEC 라이선스",
+  "9m_ai_resource": "9M AI 자료실",
+  "faq_posters": "홍보 포스터",
+  "faq_document": "9M AI 문서",
+  "faq_videos": "홍보 영상",
+  "faq_app_download": "9M AI 앱 다운로드",
+  "faq_website": "9M AI 공식 웹사이트"
 }

@@ -6,8 +6,10 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useLocale } from "next-intl";
 import { langType } from "@/views/news";
 import { HeaderWithBack } from "@/components/header-with-back";
+import { useTrans } from "@/hooks/useTrans";
 
 const FAQMSBView = () => {
+  const t = useTrans();
   const locale = useLocale();
 
   const { data } = useRequestQuery(api.cms.getByTypeUsingGet, { type: 6 });
@@ -15,8 +17,8 @@ const FAQMSBView = () => {
 
   return (
     <ViewLayout
-    heightFull
-    header={<HeaderWithBack title={"MSB License"} algin="center" />}
+      heightFull
+      header={<HeaderWithBack title={t("msb_license")} algin="center" />}
     >
       <div
         className="p-content"

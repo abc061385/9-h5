@@ -699,6 +699,13 @@
   "addNewAccount": "Thêm Tài khoản Mới",
   "promptInformation": "Thông tin Nhắc nhở",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này.",
-  "spot_click_tip": "Chưa có sẵn. Vui lòng đăng nhập vào ứng dụng mới nhất để sử dụng tính năng này."
+  "spot_click_tip": "Chưa có sẵn. Vui lòng đăng nhập vào ứng dụng mới nhất để sử dụng tính năng này.",
+  "msb_license": "Giấy phép MSB",
+  "sec_license": "Giấy phép SEC",
+  "9m_ai_resource": "Thư viện tài nguyên 9M AI",
+  "faq_posters": "Áp phích quảng bá",
+  "faq_document": "Tài liệu 9M AI",
+  "faq_videos": "Video quảng bá",
+  "faq_app_download": "Tải xuống ứng dụng 9M AI",
+  "faq_website": "Trang web chính thức 9M AI"
 }

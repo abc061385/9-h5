@@ -699,6 +699,13 @@
   "addNewAccount": "เพิ่มบัญชีใหม่",
   "promptInformation": "ข้อมูลคำแนะนำ",
   "spot": "สปอต",
-  "googleAuthenticatorValidTime": "ключ Google Authenticator ถูกต้อง selama 30 วินาที โปรดใส่ключที่ถูกต้องภายในช่วงเวลาที่กำหนด",
-  "spot_click_tip": "ยังไม่สามารถใช้งานได้ โปรดเข้าสู่ระบบแอปพลิเคชันล่าสุดเพื่อใช้ฟีเจอร์นี้"
+  "spot_click_tip": "ยังไม่สามารถใช้งานได้ โปรดเข้าสู่ระบบแอปพลิเคชันล่าสุดเพื่อใช้ฟีเจอร์นี้",
+  "msb_license": "ใบอนุญาต MSB",
+  "sec_license": "ใบอนุญาต SEC",
+  "9m_ai_resource": "ห้องสมุดข้อมูล 9M AI",
+  "faq_posters": "โปสเตอร์ประชาสัมพันธ์",
+  "faq_document": "เอกสารข้อมูล 9M AI",
+  "faq_videos": "วิดีโอโฆษณา",
+  "faq_app_download": "ดาวน์โหลดแอป 9M AI",
+  "faq_website": "เว็บไซต์ 9M AI"
 }

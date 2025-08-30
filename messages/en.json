@@ -698,6 +698,13 @@
   "addNewAccount": "Add New Account",
   "promptInformation": "Prompt Information",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "The key of Google Authenticator is valid for 30 seconds. Please enter the correct key within the valid time.",
-  "spot_click_tip": "Not yet available. Please log in to the latest app to use this feature."
+  "spot_click_tip": "Not yet available. Please log in to the latest app to use this feature.",
+  "msb_license": "MSB License",
+  "sec_license": "SEC License",
+  "9m_ai_resource": "9M AI Resource Library",
+  "faq_posters": "Promotional Posters",
+  "faq_document": "9M AI Documentation",
+  "faq_videos": "Promotional Videos",
+  "faq_app_download": "9M AI App Download",
+  "faq_website": "9M AI Website"
 }

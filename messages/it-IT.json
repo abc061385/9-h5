@@ -697,6 +697,13 @@
   "addNewAccount": "Aggiungi Nuovo Account",
   "promptInformation": "Informazioni Prompt",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "La chiave di Google Authenticator è valida per 30 secondi. Inserisci la chiave corretta entro il periodo valido.",
-  "spot_click_tip": "Non ancora disponibile. Accedi all'ultima app per utilizzare questa funzione."
+  "spot_click_tip": "Non ancora disponibile. Accedi all'ultima app per utilizzare questa funzione.",
+  "msb_license": "Licenza MSB",
+  "sec_license": "Licenza SEC",
+  "9m_ai_resource": "Libreria Risorse di 9M AI",
+  "faq_posters": "Poster Promozionali",
+  "faq_document": "Documentazione 9M AI",
+  "faq_videos": "Video Promozionali",
+  "faq_app_download": "Scarica App 9M AI",
+  "faq_website": "Sito Web 9M AI"
 }

@@ -78,17 +78,17 @@ const FAQView = () => {
             className="btn bg-black text-white flex-1 h-[48px]"
             onClick={() => push(routerMap.faq_msb)}
           >
-            MSB License
+            {t("msb_license")}
           </button>
           <button
             className="btn bg-black text-white flex-1 h-[48px]"
             onClick={() => push(routerMap.faq_sec)}
           >
-            SEC License
+            {t("sec_license")}
           </button>
         </div>
         <div className="text-2xl font-bold text-center mb-8 mt-16">
-          9M AI Resource Library
+          {t("9m_ai_resource")}
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -101,7 +101,7 @@ const FAQView = () => {
               className="size-[40px]"
             />
             <p className="max-w-[80%] text-wrap text-center mt-6">
-              Promotional Posters
+              {t("faq_posters")}
             </p>
           </div>
           <div
@@ -113,7 +113,7 @@ const FAQView = () => {
               className="size-[40px]"
             />
             <p className="max-w-[80%] text-wrap text-center mt-6">
-              9M AI Documentation
+              {t("faq_document")}
             </p>
           </div>
           <div
@@ -124,7 +124,7 @@ const FAQView = () => {
               src="/images/faq/Promotional Videos@2x.png"
               className="size-[40px]"
             />
-            <p className="mt-6">Promotional Videos</p>
+            <p className="mt-6">{t("faq_videos")}</p>
           </div>
         </div>
 
@@ -137,7 +137,7 @@ const FAQView = () => {
               }
             }}
           >
-            9M AI App Download
+            {t("faq_app_download")}
           </button>
           <button
             className="btn btn-block bg-[#A93AFF] text-white flex-1 h-[48px] mt-2"
@@ -147,7 +147,7 @@ const FAQView = () => {
               }
             }}
           >
-            9M AI Website
+            {t("faq_website")}
           </button>
         </div>
         <div className="text-2xl font-bold mt-12">FAQ</div>

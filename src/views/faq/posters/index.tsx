@@ -8,11 +8,13 @@ import { api } from "@/api";
 import { utils } from "@/lib/utils";
 import { useState } from "react";
 import { Modal } from "@/components/modal";
+import { useTrans } from "@/hooks/useTrans";
 
 const FAQPostersView = () => {
   const [open, setOpen] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const { data } = useRequestQuery(api.publicizePoster.getListUsingGet, {});
+  const t = useTrans();
   const list = (data?.data || []) as unknown as {
     thumbnailUrl: string;
     originalUrl: string;
@@ -21,7 +23,7 @@ const FAQPostersView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="Promotional Posters" algin="center" />}
+      header={<HeaderWithBack title={t("faq_posters")} algin="center" />}
     >
       <Modal
         open={open}

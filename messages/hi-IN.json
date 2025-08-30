@@ -665,6 +665,13 @@
   "addNewAccount": "नया खाता जोड़ें",
   "promptInformation": "प्रॉम्प्ट सूचना",
   "spot": "स्पॉट",
-  "results": "परिणाम",
-  "spot_click_tip": "अभी उपलब्ध नहीं है। कृपया इस सुविधा का उपयोग करने के लिए नवीनतम ऐप में लॉग इन करें।"
+  "spot_click_tip": "अभी उपलब्ध नहीं है। कृपया इस सुविधा का उपयोग करने के लिए नवीनतम ऐप में लॉग इन करें।",
+  "msb_license": "MSB लाइसेंस",
+  "sec_license": "SEC लाइसेंस",
+  "9m_ai_resource": "9M AI संसाधन पुस्तकालय",
+  "faq_posters": "प्रचार पोस्टर",
+  "faq_document": "9M AI दस्तावेज़",
+  "faq_videos": "प्रचार वीडियो",
+  "faq_app_download": "9M AI ऐप डाउनलोड करें",
+  "faq_website": "9M AI वेबसाइट"
 }

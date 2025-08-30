@@ -11,6 +11,7 @@ import { useLocale } from "next-intl";
 import { useCallback, useState } from "react";
 import { InfiniteList } from "@/components/infinite-list";
 import { Modal } from "@/components/modal";
+import { useTrans } from "@/hooks/useTrans";
 // import { Page, Document } from "react-pdf";
 // import { pdfjs } from "react-pdf";
 // pdfjs.GlobalWorkerOptions.workerSrc = "/js/pdf.worker.min.mjs";
@@ -27,6 +28,7 @@ const FAQDocView = () => {
     api.publicizeDocVideo.getDocListUsingGet,
     {},
   );
+  const t = useTrans();
   // const [currentUrl, setCurrentUrl] = useState("");
   const [open, setOpen] = useState(false);
   const list = (data?.data || []) as unknown as Item[];
@@ -49,7 +51,7 @@ const FAQDocView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="9M AI Documentation" algin="center" />}
+      header={<HeaderWithBack title={t("faq_document")} algin="center" />}
     >
       <Modal open={open} onClose={() => setOpen(false)}>
         <div className="pt-6">

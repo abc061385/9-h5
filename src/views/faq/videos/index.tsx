@@ -8,6 +8,7 @@ import { api } from "@/api";
 import { useLocale } from "next-intl";
 import { useCallback } from "react";
 import { InfiniteList } from "@/components/infinite-list";
+import { useTrans } from "@/hooks/useTrans";
 
 type Item = {
   thumbnailUrl: string;
@@ -17,6 +18,7 @@ type Item = {
   coverUrl: string;
 };
 const FAQVideosView = () => {
+  const t = useTrans();
   const { data } = useRequestQuery(
     api.publicizeDocVideo.getVideoListUsingGet,
     {},
@@ -37,7 +39,7 @@ const FAQVideosView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="Promotional Video" algin="center" />}
+      header={<HeaderWithBack title={t("faq_videos")} algin="center" />}
     >
       <div className="min-h-full bg-bg3 relative">
         <div className="absolute top-0 bottom-0 size-full ">

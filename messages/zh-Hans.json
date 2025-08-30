@@ -699,6 +699,13 @@
   "addNewAccount": "添加新账号",
   "promptInformation": "提示信息",
   "spot": "现货",
-  "googleAuthenticatorValidTime": "Google身份验证器的密钥有效期为30秒。请在有效期内输入正确的密钥。",
-  "spot_click_tip": "尚未开放，请登录最新APP使用此功能"
+  "spot_click_tip": "尚未开放，请登录最新APP使用此功能",
+  "msb_license": "MSB 牌照",
+  "sec_license": "SEC 牌照",
+  "9m_ai_resource": "9M AI 资源库",
+  "faq_posters": "宣传海报",
+  "faq_document": "9M AI 文档资料",
+  "faq_videos": "宣传视频",
+  "faq_app_download": "下载 9M AI 应用",
+  "faq_website": "访问 9M AI 官网"
 }

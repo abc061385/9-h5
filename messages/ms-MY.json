@@ -699,6 +699,13 @@
   "addNewAccount": "Tambah Akaun Baru",
   "promptInformation": "Maklumat Prompt",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "Kunci Google Authenticator adalah sah selama 30 detik. Sila masukkan kunci yang betul dalam masa yang sah.",
-  "spot_click_tip": "Belum tersedia. Sila log masuk ke aplikasi terkini untuk menggunakan ciri ini."
+  "spot_click_tip": "Belum tersedia. Sila log masuk ke aplikasi terkini untuk menggunakan ciri ini.",
+  "msb_license": "Lesen MSB",
+  "sec_license": "Lesen SEC",
+  "9m_ai_resource": "Perpustakaan Sumber 9M AI",
+  "faq_posters": "Poster Promosi",
+  "faq_document": "Dokumentasi 9M AI",
+  "faq_videos": "Video Promosi",
+  "faq_app_download": "Muat Turun Aplikasi 9M AI",
+  "faq_website": "Laman Web 9M AI"
 }
