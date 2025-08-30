@@ -697,5 +697,6 @@
   "addNewAccount": "Aggiungi Nuovo Account",
   "promptInformation": "Informazioni Prompt",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "La chiave di Google Authenticator è valida per 30 secondi. Inserisci la chiave corretta entro il periodo valido."
+  "googleAuthenticatorValidTime": "La chiave di Google Authenticator è valida per 30 secondi. Inserisci la chiave corretta entro il periodo valido.",
+  "spot_click_tip": "Non ancora disponibile. Accedi all'ultima app per utilizzare questa funzione."
 }

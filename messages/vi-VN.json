@@ -699,5 +699,6 @@
   "addNewAccount": "Thêm Tài khoản Mới",
   "promptInformation": "Thông tin Nhắc nhở",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này."
+  "googleAuthenticatorValidTime": "Mã xác minh Google Authenticator có hiệu lực trong 30 giây. Vui lòng nhập mã xác minh đúng trong khoảng thời gian này.",
+  "spot_click_tip": "Chưa có sẵn. Vui lòng đăng nhập vào ứng dụng mới nhất để sử dụng tính năng này."
 }

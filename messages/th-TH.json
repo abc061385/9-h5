@@ -699,5 +699,6 @@
   "addNewAccount": "เพิ่มบัญชีใหม่",
   "promptInformation": "ข้อมูลคำแนะนำ",
   "spot": "สปอต",
-  "googleAuthenticatorValidTime": "ключ Google Authenticator ถูกต้อง selama 30 วินาที โปรดใส่ключที่ถูกต้องภายในช่วงเวลาที่กำหนด"
+  "googleAuthenticatorValidTime": "ключ Google Authenticator ถูกต้อง selama 30 วินาที โปรดใส่ключที่ถูกต้องภายในช่วงเวลาที่กำหนด",
+  "spot_click_tip": "ยังไม่สามารถใช้งานได้ โปรดเข้าสู่ระบบแอปพลิเคชันล่าสุดเพื่อใช้ฟีเจอร์นี้"
 }

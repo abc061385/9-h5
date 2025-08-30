@@ -699,5 +699,6 @@
   "addNewAccount": "新しいアカウントを追加",
   "promptInformation": "プロンプト情報",
   "spot": "現物",
-  "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。"
+  "googleAuthenticatorValidTime": "Google Authenticatorのキーは30秒間有効です。有効期限内に正しいキーを入力してください。",
+  "spot_click_tip": "まだ利用できません。最新のアプリにログインしてこの機能を使用してください。"
 }

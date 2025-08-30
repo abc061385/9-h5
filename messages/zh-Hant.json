@@ -699,5 +699,6 @@
   "addNewAccount": "添加新賬號",
   "promptInformation": "提示信息",
   "spot": "現貨",
-  "googleAuthenticatorValidTime": "Google身份驗證器的密鑰有效期為30秒。請在有效期內輸入正確的密鑰。"
+  "googleAuthenticatorValidTime": "Google身份驗證器的密鑰有效期為30秒。請在有效期內輸入正確的密鑰。",
+  "spot_click_tip": "尚未開放，請登錄最新APP使用此功能"
 }

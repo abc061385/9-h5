@@ -699,5 +699,6 @@
   "addNewAccount": "Tambah Akaun Baru",
   "promptInformation": "Maklumat Prompt",
   "spot": "Spot",
-  "googleAuthenticatorValidTime": "Kunci Google Authenticator adalah sah selama 30 detik. Sila masukkan kunci yang betul dalam masa yang sah."
+  "googleAuthenticatorValidTime": "Kunci Google Authenticator adalah sah selama 30 detik. Sila masukkan kunci yang betul dalam masa yang sah.",
+  "spot_click_tip": "Belum tersedia. Sila log masuk ke aplikasi terkini untuk menggunakan ciri ini."
 }

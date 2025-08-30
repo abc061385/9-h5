@@ -699,5 +699,6 @@
   "addNewAccount": "새 계정 추가",
   "promptInformation": "프롬프트 정보",
   "spot": "현물",
-  "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요."
+  "googleAuthenticatorValidTime": "Google Authenticator의 키는 30초간 유효합니다. 유효 기간 내에 올바른 키를 입력하세요.",
+  "spot_click_tip": "아직 사용할 수 없습니다. 최신 앱에 로그인하여 이 기능을 사용하세요."
 }

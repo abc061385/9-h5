@@ -29,7 +29,7 @@ export const LayoutDock = () => {
     if (link) {
       push(link);
     } else {
-      toast.error(t("notOpenYet"));
+      toast.error(t("spot_click_tip"));
     }
   };
 
