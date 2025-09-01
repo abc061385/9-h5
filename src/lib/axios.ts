@@ -73,5 +73,9 @@ const axiosIn = createAxiosInstance("/app/", (config) => {
   config.params = {};
 });
 
+export const spotAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_SPOT_API as string,
+);
+
 export { createAxiosInstance };
 export default axiosIn;

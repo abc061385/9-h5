@@ -124,15 +124,20 @@ const AssetsExchangeView = () => {
 
   useEffect(() => {
     if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
+    if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
 
-    api.currencySettings
-      .protocolExchangeUsingGet({
-        instId: `${toCoinItem?.currencyCode}-USDT`,
-      })
-      .then((res) => {
-        const price = res.data?.idxPx || 1;
-        setPrice(utils.toBigNumber(1).div(price).toString());
-      });
+    api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
+      const price = res.data?.price || 1;
+      setPrice(utils.toBigNumber(1).div(price).toString());
+    });
+    // api.currencySettings
+    //   .protocolExchangeUsingGet({
+    //     instId: `${toCoinItem?.currencyCode}-USDT`,
+    //   })
+    //   .then((res) => {
+    //     const price = res.data?.idxPx || 1;
+    //     setPrice(utils.toBigNumber(1).div(price).toString());
+    //   });
   }, [formCoinItem, toCoinItem, lastPrice]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import axiosIn, { createAxiosInstance } from "@/lib/axios";
+import axiosIn, { createAxiosInstance, spotAxios } from "@/lib/axios";
 import { Api, _ } from "./ApiClient";
 import {
   CommonResultCaptchaValidateRespDTO,
@@ -28,5 +28,13 @@ export class ApiCustom extends Api<string> {
       case 200:
         return response.data;
     }
+  }
+
+  // 获取币种汇率
+  // BTCUSDT,ETHUSDT
+  getTickerPrice(symbol: string) {
+    return spotAxios.get<{ id: number; symbol: string; price: string }>(
+      `/v1/ticker/price;symbol=${symbol}`,
+    );
   }
 }
