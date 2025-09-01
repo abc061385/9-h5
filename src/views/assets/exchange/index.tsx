@@ -124,20 +124,25 @@ const AssetsExchangeView = () => {
 
   useEffect(() => {
     if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
-    if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
+    // if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
 
-    api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
-      const price = res.data?.length ? Number(res.data[0]?.price) || 1 : 1;
-      setPrice(utils.toBigNumber(1).div(price).toString());
-    });
-    // api.currencySettings
-    //   .protocolExchangeUsingGet({
-    //     instId: `${toCoinItem?.currencyCode}-USDT`,
-    //   })
-    //   .then((res) => {
-    //     const price = res.data?.idxPx || 1;
-    //     setPrice(utils.toBigNumber(1).div(price).toString());
-    //   });
+    // api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
+    //   const price = res.data?.length ? Number(res.data[0]?.price) || 1 : 1;
+    //   setPrice(utils.toBigNumber(1).div(price).toString());
+    // });
+    const currentToken =
+      formCoinItem?.currencyCode !== "USDT"
+        ? formCoinItem?.currencyCode
+        : toCoinItem.currencyCode;
+
+    api.currencySettings
+      .protocolExchangeUsingGet({
+        instId: `${currentToken}-USDT`,
+      })
+      .then((res) => {
+        const price = res.data?.idxPx || 1;
+        setPrice(utils.toBigNumber(1).div(price).toString());
+      });
   }, [formCoinItem, toCoinItem, lastPrice]);
 
   useEffect(() => {
@@ -148,7 +153,7 @@ const AssetsExchangeView = () => {
         toCoinItem?.decimalPlaces || 4,
       ),
     );
-  }, [setValue, getValues, price, toCoinItem]);
+  }, [setValue, getValues, price, toCoinItem, formCoinItem]);
 
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
