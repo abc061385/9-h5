@@ -73,9 +73,38 @@ const axiosIn = createAxiosInstance("/app/", (config) => {
   config.params = {};
 });
 
-export const spotAxios = createAxiosInstance(
-  process.env.NEXT_PUBLIC_SPOT_API as string,
-);
+export const spotAxios = (() => {
+  const instance = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_SPOT_API,
+    timeout: 100_000,
+    headers: { "Content-Type": "application/json" },
+  });
+  // 请求拦截器：注入 token
+  instance.interceptors.request.use((config) => {
+    const token = useUserStore.getState().token;
+    const lang = useStore.getState().lang as keyof typeof APILang;
+    if (lang) {
+      config.headers["Language"] = APILang[lang];
+    }
+    if (token && config.headers) {
+      config.headers["auth-token"] = token;
+    }
 
+    return config;
+  });
+  instance.interceptors.response.use(
+    (res) => {
+      if (res.status === 200) {
+        return res?.data;
+      }
+    },
+    (err) => {
+      console.error("API Error", err);
+      return Promise.reject(err);
+    },
+  );
+
+  return instance;
+})();
 export { createAxiosInstance };
 export default axiosIn;

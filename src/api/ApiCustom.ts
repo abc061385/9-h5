@@ -33,7 +33,7 @@ export class ApiCustom extends Api<string> {
   // 获取币种汇率
   // BTCUSDT,ETHUSDT
   getTickerPrice(symbol: string) {
-    return spotAxios.get<{ id: number; symbol: string; price: string }>(
+    return spotAxios.get<{ id: number; symbol: string; price: string }[]>(
       `/v1/ticker/price;symbol=${symbol}`,
     );
   }

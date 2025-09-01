@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
             // destination: "https://www.9mc.org/app/:path*",
             destination: "https://www.9mc.one/app/:path*",
           },
+          {
+            source: "/api-spot/:path*",
+            destination: "https://api-spot.9mc.one/api/:path*",
+          },
         ]
       : [];
   },

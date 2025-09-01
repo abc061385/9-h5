@@ -127,7 +127,7 @@ const AssetsExchangeView = () => {
     if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
 
     api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
-      const price = res.data?.price || 1;
+      const price = res.data?.length ? Number(res.data[0]?.price) || 1 : 1;
       setPrice(utils.toBigNumber(1).div(price).toString());
     });
     // api.currencySettings
