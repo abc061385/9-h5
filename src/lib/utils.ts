@@ -180,6 +180,11 @@ const downloadFile = (url: string, fileName: string) => {
     .catch(() => {});
 };
 
+const toFixed = (n: number | string, fixed: number): string => {
+  const match = `${n}`.match(new RegExp(`^-?\\d+(?:\\.\\d{0,${fixed}})?`));
+  return match ? match[0] : "";
+};
+
 export const utils = {
   ...lodash,
   toBigNumber,
@@ -187,4 +192,5 @@ export const utils = {
   copyText,
   setJwtCookie,
   downloadFile,
+  toFixed,
 };

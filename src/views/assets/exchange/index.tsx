@@ -12,7 +12,7 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
-import { encryptPassword, formatBalance } from "@/lib/utils";
+import { encryptPassword, formatBalance, utils } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import CoinList from "./coin-list";
@@ -124,16 +124,14 @@ const AssetsExchangeView = () => {
 
   useEffect(() => {
     if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
-    if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
-    if (formCoinItem?.currencyCode === "9MC") return setPrice(lastPrice);
 
     api.currencySettings
       .protocolExchangeUsingGet({
-        instId: `${toCoinItem?.currencyCode}-${formCoinItem?.currencyCode}`,
+        instId: `${toCoinItem?.currencyCode}-USDT`,
       })
       .then((res) => {
         const price = res.data?.idxPx || 1;
-        setPrice((1 / price).toString());
+        setPrice(utils.toBigNumber(1).div(price).toString());
       });
   }, [formCoinItem, toCoinItem, lastPrice]);
 
