@@ -141,7 +141,12 @@ const AssetsExchangeView = () => {
       })
       .then((res) => {
         const price = res.data?.idxPx || 1;
-        setPrice(utils.toBigNumber(1).div(price).toString());
+
+        if (formCoinItem?.currencyCode !== "USDT") {
+          setPrice(price);
+        } else {
+          setPrice(utils.toBigNumber(1).div(price).toString());
+        }
       });
   }, [formCoinItem, toCoinItem, lastPrice]);
 
