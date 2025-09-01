@@ -59,6 +59,11 @@ const ListBox = () => {
       title: "Other Settings",
       list: [
         {
+          icon: "card",
+          title: "Level Certificate",
+          path: routerMap.certificate,
+        },
+        {
           icon: "language",
           title: "user.language",
           path: routerMap.lang,
