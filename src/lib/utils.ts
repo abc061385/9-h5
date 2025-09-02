@@ -6,6 +6,8 @@ import lodash from "./lodash";
 import toBigNumber from "./bignumber";
 import dayjs from "dayjs";
 import axios from "axios";
+import * as htmlToImage from "html-to-image";
+import toast from "react-hot-toast";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -180,6 +182,41 @@ const downloadFile = (url: string, fileName: string) => {
     .catch(() => {});
 };
 
+async function handleCapture(node: HTMLElement, fileName: string) {
+  try {
+    const dataUrl = await htmlToImage.toPng(node);
+    const link = document.createElement("a");
+    link.download = fileName;
+    link.href = dataUrl;
+    link.click();
+  } catch {
+    toast("Download failed");
+  }
+}
+
+const handleShare = async (
+  node: HTMLElement,
+  fileName: string,
+  onError?: () => void,
+) => {
+  try {
+    const blob = await htmlToImage.toBlob(node);
+    const file = new File([blob as Blob], fileName, {
+      type: (blob as Blob).type,
+      lastModified: Date.now(),
+    });
+
+    const shareData = { files: [file] };
+    if (navigator.canShare && navigator.canShare(shareData)) {
+      await navigator.share(shareData);
+    } else {
+      if (onError) onError();
+    }
+  } catch {
+    if (onError) onError();
+  }
+};
+
 export const utils = {
   ...lodash,
   toBigNumber,
@@ -187,4 +224,6 @@ export const utils = {
   copyText,
   setJwtCookie,
   downloadFile,
+  handleCapture,
+  handleShare,
 };
