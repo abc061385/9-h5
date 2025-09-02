@@ -12,7 +12,7 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
-import { encryptPassword, formatBalance } from "@/lib/utils";
+import { encryptPassword, formatBalance, utils } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import CoinList from "./coin-list";
@@ -124,16 +124,29 @@ const AssetsExchangeView = () => {
 
   useEffect(() => {
     if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
-    if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
-    if (formCoinItem?.currencyCode === "9MC") return setPrice(lastPrice);
+    // if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
+
+    // api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
+    //   const price = res.data?.length ? Number(res.data[0]?.price) || 1 : 1;
+    //   setPrice(utils.toBigNumber(1).div(price).toString());
+    // });
+    const currentToken =
+      formCoinItem?.currencyCode !== "USDT"
+        ? formCoinItem?.currencyCode
+        : toCoinItem.currencyCode;
 
     api.currencySettings
       .protocolExchangeUsingGet({
-        instId: `${toCoinItem?.currencyCode}-${formCoinItem?.currencyCode}`,
+        instId: `${currentToken}-USDT`,
       })
       .then((res) => {
         const price = res.data?.idxPx || 1;
-        setPrice((1 / price).toString());
+
+        if (formCoinItem?.currencyCode !== "USDT") {
+          setPrice(price);
+        } else {
+          setPrice(utils.toBigNumber(1).div(price).toString());
+        }
       });
   }, [formCoinItem, toCoinItem, lastPrice]);
 
@@ -145,7 +158,7 @@ const AssetsExchangeView = () => {
         toCoinItem?.decimalPlaces || 4,
       ),
     );
-  }, [setValue, getValues, price, toCoinItem]);
+  }, [setValue, getValues, price, toCoinItem, formCoinItem]);
 
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {

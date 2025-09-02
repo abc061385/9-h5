@@ -182,6 +182,11 @@ const downloadFile = (url: string, fileName: string) => {
     .catch(() => {});
 };
 
+const toFixed = (n: number | string, fixed: number): string => {
+  const match = `${n}`.match(new RegExp(`^-?\\d+(?:\\.\\d{0,${fixed}})?`));
+  return match ? match[0] : "";
+};
+
 async function handleCapture(node: HTMLElement, fileName: string) {
   try {
     const dataUrl = await htmlToImage.toPng(node);
@@ -224,6 +229,7 @@ export const utils = {
   copyText,
   setJwtCookie,
   downloadFile,
+  toFixed,
   handleCapture,
   handleShare,
 };
