@@ -9,10 +9,12 @@ import { useTrans } from "@/hooks/useTrans";
 
 interface AvatarUploaderProps {
   className?: string;
+  showIcon?: boolean;
   onUploadSuccess?: () => void; // 外部回调
 }
 export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
   className,
+  showIcon = false,
   onUploadSuccess,
 }) => {
   const t = useTrans();
@@ -23,12 +25,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
     [userInfo],
   );
   return (
-    <div
-      className={cn([
-        "size-[160px] absolute top-[212px] left-1/2 translate-x-[-50%] z-10 rounded-full",
-        className,
-      ])}
-    >
+    <div className={cn(["size-[160px] rounded-full relative", className])}>
       <ImageUploader
         roundedFull
         defaultUrl={avatar}
@@ -48,10 +45,12 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
           }
         }}
       >
-        <BaseImage
-          src="/images/certificate/camera.png"
-          className="size-8 absolute bottom-[-16px] left-1/2 translate-x-[-50%]"
-        />
+        {showIcon ? (
+          <BaseImage
+            src="/images/certificate/camera.png"
+            className="size-8 absolute bottom-[-16px] left-1/2 translate-x-[-50%]"
+          />
+        ) : null}
       </ImageUploader>
     </div>
   );

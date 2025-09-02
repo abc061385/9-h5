@@ -67,7 +67,10 @@ const CertificateView = () => {
               <StarIcon level={userInfo?.vipLevel || 0} star={userInfo.star} />
             </div>
           </div>
-          <AvatarUploader></AvatarUploader>
+          <AvatarUploader
+            className="absolute top-[212px] left-1/2 translate-x-[-50%] z-10"
+            showIcon={true}
+          ></AvatarUploader>
           <div className="absolute left-[50%] bottom-[190px]  translate-x-[-50%] z-10 text-white">
             <div className="text-xl font-medium">{userInfo.invitationCode}</div>
           </div>

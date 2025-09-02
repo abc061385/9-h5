@@ -7,6 +7,7 @@ import StarIcon from "../vip/star-icon";
 import CopyText from "@/components/copy-text";
 import BaseImage from "@/components/base-image";
 import { Drawer } from "@/components/drawer";
+import { AvatarUploader } from "@/components/avatar-uploader";
 
 interface CardType {
   icon: "vip-user" | "invite-user";
@@ -44,15 +45,17 @@ const UserInfoBox = () => {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <BaseImage
-          src="/icons/user-head.svg"
-          className="size-16"
-          // onClick={() => setEditUserHead(true)}
-        />
+        {/* <BaseImage */}
+        {/*   src="/icons/user-head.svg" */}
+        {/*   className="size-16" */}
+        {/*   onClick={() => setEditUserHead(true)} */}
+        {/* /> */}
+        <AvatarUploader className="size-16" />
         <div className="font-bold text-xl mt-4 mb-2">
-          {userInfo?.emailAccount ||
+          {userInfo?.tel ||
+            userInfo?.nick ||
+            userInfo?.emailAccount ||
             userInfo?.bindEmail ||
-            userInfo?.tel ||
             "--"}
         </div>
         <div className="flex justify-center text-sm gap-2 text-center">
