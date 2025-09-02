@@ -24,7 +24,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   children,
 }) => {
   const [preview, setPreview] = useState<string | null>(defaultUrl);
-  const [isUploading, setIsUploading] = useState(false);
+  // const [isUploading, setIsUploading] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -37,7 +37,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   const handleUpload = async (image: File) => {
     if (!image) return;
 
-    setIsUploading(true);
+    // setIsUploading(true);
     const formData = new FormData();
     formData.append("file", image);
 
@@ -56,7 +56,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
         onUploadError("上傳失敗，請稍後再試。");
       }
     } finally {
-      setIsUploading(false);
+      // setIsUploading(false);
     }
   };
 

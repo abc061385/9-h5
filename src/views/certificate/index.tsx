@@ -2,13 +2,13 @@
 
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
-import ImageUploader from "@/components/img-uploader";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import { utils } from "@/lib/utils";
 import { useUserStore } from "@/store/useUserStore";
 import { useMemo, useRef } from "react";
 import StarIcon from "../vip/star-icon";
+import { AvatarUploader } from "@/components/avatar-uploader";
 
 const CertificateView = () => {
   const t = useTrans();
@@ -44,10 +44,6 @@ const CertificateView = () => {
     }
     return "";
   }, [userInfo, t]);
-  const avatar = useMemo(
-    () => userInfo?.headUrl || "/images/user/head.png",
-    [userInfo],
-  );
 
   return (
     <ViewLayout
@@ -71,14 +67,7 @@ const CertificateView = () => {
               <StarIcon level={userInfo?.vipLevel || 0} star={userInfo.star} />
             </div>
           </div>
-          <div className="size-[160px] absolute top-[212px] left-1/2 translate-x-[-50%] z-10 rounded-full">
-            <ImageUploader roundedFull defaultUrl={avatar}>
-              <BaseImage
-                src="/images/certificate/camera.png"
-                className="size-8 absolute bottom-[-16px] left-1/2 translate-x-[-50%]"
-              />
-            </ImageUploader>
-          </div>
+          <AvatarUploader></AvatarUploader>
           <div className="absolute left-[50%] bottom-[190px]  translate-x-[-50%] z-10 text-white">
             <div className="text-xl font-medium">{userInfo.invitationCode}</div>
           </div>
