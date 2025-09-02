@@ -86,7 +86,7 @@ const CertificateView = () => {
             <div className="text-xl font-bold">{t("my_level_slogan")}</div>
           </div>
         </div>
-        <div className="w-full p-6">
+        <div className="w-full p-6 bg-black">
           <button
             className="w-full btn h-[48px] btn-primary flex-1"
             onClick={() => {

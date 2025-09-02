@@ -45,8 +45,8 @@ export const LayoutRoot = ({ children }: PropsWithChildren) => {
   return (
     <div
       className={cn([
-        "relative layout-warp mx-auto not-md-pc:min-h-full",
-        "md-pc:h-full md-pc:border md-pc:border-gray-500 md-pc:rounded-2xl md-pc:overflow-hidden md-pc:aspect-[9/16] md-pc:max-h-[800PX]",
+        "relative layout-warp mx-auto h-full",
+        "md-pc:border md-pc:border-gray-500 md-pc:rounded-2xl md-pc:overflow-hidden md-pc:aspect-[9/16] md-pc:max-h-[800PX]",
       ])}
     >
       <Launch>{children}</Launch>
