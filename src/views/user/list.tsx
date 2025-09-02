@@ -60,7 +60,7 @@ const ListBox = () => {
       list: [
         {
           icon: "card",
-          title: "Level Certificate",
+          title: "level_certificate",
           path: routerMap.certificate,
         },
         {

@@ -707,5 +707,14 @@
   "faq_document": "Dokumentasi 9M AI",
   "faq_videos": "Video Promosi",
   "faq_app_download": "Muat Turun Aplikasi 9M AI",
-  "faq_website": "Laman Web 9M AI"
+  "faq_website": "Laman Web 9M AI",
+  "level_certificate": "Sijil Tahap",
+  "shared_success": "Berkongsi Berjaya",
+  "download": "Muat Turun",
+  "share": "Berkongsi",
+  "my_level": "Tahap Saya",
+  "my_highest_level": "Tahap Tertinggi Saya: {vip}",
+  "my_highest_level_star": "({star} Bintang)",
+  "my_level_slogan": "Sertai kami dan menang bersama!",
+  "download_and_share": "Muat turun dan kongsikan"
 }

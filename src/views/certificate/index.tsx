@@ -29,22 +29,31 @@ const CertificateView = () => {
     } as { [key in string]: string };
     return imgMap[`vip${userInfo.vipLevel || 0}`];
   }, [userInfo]);
+  // const currentImg = useMemo(() => {
+  //   return userInfo.cardBackgroundUrl;
+  // }, [userInfo]);
 
   // const userName = useMemo(() => {
   //   return userInfo?.emailAccount || userInfo?.bindEmail || userInfo?.tel;
   // }, [userInfo]);
   const starText = useMemo(() => {
-    if ((userInfo?.highestVipStar || 0) > 0) {
-      return `(${userInfo.highestVipStar} star)`;
+    if (userInfo?.highestVipStar && userInfo?.highestVipStar > 0) {
+      return t("my_highest_level_star", {
+        star: userInfo?.highestVipStar,
+      });
     }
     return "";
-  }, [userInfo]);
+  }, [userInfo, t]);
+  const avatar = useMemo(
+    () => userInfo?.headUrl || "/images/user/head.png",
+    [userInfo],
+  );
 
   return (
     <ViewLayout
       header={
         <HeaderWithBack
-          title={t("CertificateView")}
+          title={t("level_certificate")}
           algin="center"
           theme="dark"
         />
@@ -52,7 +61,7 @@ const CertificateView = () => {
     >
       <div className="size-full bg-black pb-6">
         <div className="relative" ref={ref}>
-          <BaseImage src={currentImg} className="w-full h-[626px]" />
+          <BaseImage src={currentImg as string} className="w-full h-[626px]" />
           <div className="absolute right-[24px] top-[30px] z-10 text-white text-right w-[80px]">
             <div className="text-sm">My Level</div>
             <div className="text-2xl font-bold flex items-center justify-end">
@@ -63,7 +72,7 @@ const CertificateView = () => {
             </div>
           </div>
           <div className="size-[160px] absolute top-[212px] left-1/2 translate-x-[-50%] z-10 rounded-full">
-            <ImageUploader roundedFull defaultUrl="/images/user/head.png">
+            <ImageUploader roundedFull defaultUrl={avatar}>
               <BaseImage
                 src="/images/certificate/camera.png"
                 className="size-8 absolute bottom-[-16px] left-1/2 translate-x-[-50%]"
@@ -75,9 +84,12 @@ const CertificateView = () => {
           </div>
           <div className="absolute left-0 bottom-[96px] z-50 text-white w-full flex flex-col items-center">
             <div className="text-xl font-bold">
-              My highest level is:Vip{userInfo.highestVipLevel} {starText}
+              {t("my_highest_level", {
+                vip: `VIP${userInfo?.highestVipLevel}`,
+              })}
+              {starText}
             </div>
-            <div className="text-xl font-bold">Join us and win together!</div>
+            <div className="text-xl font-bold">{t("my_level_slogan")}</div>
           </div>
         </div>
         <div className="w-full p-6">
@@ -96,7 +108,7 @@ const CertificateView = () => {
               // }
             }}
           >
-            Download And Share
+            {t("download_and_share")}
           </button>
         </div>
       </div>

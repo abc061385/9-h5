@@ -707,5 +707,14 @@
   "faq_document": "9M AI 文件資料",
   "faq_videos": "宣傳影片",
   "faq_app_download": "下載 9M AI 應用程式",
-  "faq_website": "前往 9M AI 官方網站"
+  "faq_website": "前往 9M AI 官方網站",
+  "level_certificate": "等級證書",
+  "shared_success": "分享成功",
+  "download": "下載",
+  "share": "分享",
+  "my_level": "我的等級",
+  "my_highest_level": "我的最高等級：{vip}",
+  "my_highest_level_star": "（{star}星）",
+  "my_level_slogan": "加入我們，一起贏！",
+  "download_and_share": "下載並分享"
 }

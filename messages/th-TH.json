@@ -707,5 +707,14 @@
   "faq_document": "เอกสารข้อมูล 9M AI",
   "faq_videos": "วิดีโอโฆษณา",
   "faq_app_download": "ดาวน์โหลดแอป 9M AI",
-  "faq_website": "เว็บไซต์ 9M AI"
+  "faq_website": "เว็บไซต์ 9M AI",
+  "level_certificate": "ใบรับรองระดับ",
+  "shared_success": "แชร์สำเร็จ",
+  "download": "ดาวน์โหลด",
+  "share": "แชร์",
+  "my_level": "ระดับของฉัน",
+  "my_highest_level": "ระดับสูงสุดของฉัน: {vip}",
+  "my_highest_level_star": "({star} ดาว)",
+  "my_level_slogan": "เข้าร่วมกับเราและชนะไปด้วยกัน!",
+  "download_and_share": "ดาวน์โหลดและแชร์"
 }

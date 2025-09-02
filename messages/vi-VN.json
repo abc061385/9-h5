@@ -707,5 +707,14 @@
   "faq_document": "Tài liệu 9M AI",
   "faq_videos": "Video quảng bá",
   "faq_app_download": "Tải xuống ứng dụng 9M AI",
-  "faq_website": "Trang web chính thức 9M AI"
+  "faq_website": "Trang web chính thức 9M AI",
+  "level_certificate": "Chứng chỉ cấp độ",
+  "shared_success": "Chia sẻ thành công",
+  "download": "Tải xuống",
+  "share": "Chia sẻ",
+  "my_level": "Cấp độ của tôi",
+  "my_highest_level": "Cấp độ cao nhất của tôi: {vip}",
+  "my_highest_level_star": "({star} Sao)",
+  "my_level_slogan": "Tham gia cùng chúng tôi và cùng chiến thắng!",
+  "download_and_share": "Tải xuống và chia sẻ"
 }

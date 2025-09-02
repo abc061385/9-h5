@@ -673,5 +673,14 @@
   "faq_document": "9M AI दस्तावेज़",
   "faq_videos": "प्रचार वीडियो",
   "faq_app_download": "9M AI ऐप डाउनलोड करें",
-  "faq_website": "9M AI वेबसाइट"
+  "faq_website": "9M AI वेबसाइट",
+  "level_certificate": "स्तर प्रमाणपत्र",
+  "shared_success": "साझा सफल",
+  "download": "डाउनलोड",
+  "share": "साझा करें",
+  "my_level": "मेरा स्तर",
+  "my_highest_level": "मेरा उच्चतम स्तर: {vip}",
+  "my_highest_level_star": "({star} सितारे)",
+  "my_level_slogan": "हमारे साथ जुड़ें और साथ में जीतें!",
+  "download_and_share": "डाउनलोड और साझा करें"
 }

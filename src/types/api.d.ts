@@ -18,6 +18,7 @@ type UserInfo = Partial<{
   bindEmail: string;
   highestVipLevel: number;
   highestVipStar: number;
+  cardBackgroundUrl: string;
 }>;
 
 type VipInfoType = Partial<{

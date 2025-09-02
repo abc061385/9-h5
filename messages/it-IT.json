@@ -705,5 +705,14 @@
   "faq_document": "Documentazione 9M AI",
   "faq_videos": "Video Promozionali",
   "faq_app_download": "Scarica App 9M AI",
-  "faq_website": "Sito Web 9M AI"
+  "faq_website": "Sito Web 9M AI",
+  "level_certificate": "Certificato di Livello",
+  "shared_success": "Condivisione riuscita",
+  "download": "Scarica",
+  "share": "Condividi",
+  "my_level": "Il mio Livello",
+  "my_highest_level": "Il mio Livello più Alto: {vip}",
+  "my_highest_level_star": "({star} Stelle)",
+  "my_level_slogan": "Unisciti a noi e vinci insieme!",
+  "download_and_share": "Scarica e condividi"
 }
