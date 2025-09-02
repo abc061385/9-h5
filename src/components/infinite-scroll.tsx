@@ -31,7 +31,7 @@ export function InfiniteVirtuosoList<T>({
   const t = useTrans();
   const [items, setItems] = useState<T[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
   // 防止重复加载

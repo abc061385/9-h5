@@ -12,6 +12,7 @@ interface HorizontalTabsProps {
   value: string | number;
   onChange: (value: string | number) => void;
   type?: "border" | "box";
+  gap?: string;
 }
 
 const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
@@ -19,10 +20,13 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
   value,
   onChange,
   type = "box",
+  gap = "2",
 }) => {
   return (
     <div className="overflow-x-auto whitespace-nowrap no-scrollbar w-[100vw] left-6 pr-12">
-      <div className="tabs tabs-boxed inline-flex flex-nowrap gap-2">
+      <div
+        className={cn("tabs tabs-boxed inline-flex flex-nowrap", `gap-${gap}`)}
+      >
         {tabs.map((tab) => {
           const isActive = tab.value === value;
           return (
@@ -36,7 +40,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                   : "",
                 isActive && type === "border"
                   ? "tab-active text-primary font-bold"
-                  : "",
+                  : ""
               )}
               onClick={() => onChange(tab.value)}
             >
@@ -45,7 +49,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                 <div
                   className={cn(
                     "w-5 h-[3px] mx-auto",
-                    isActive && "bg-primary",
+                    isActive && "bg-primary"
                   )}
                 ></div>
               </ShowIf>

@@ -2,13 +2,15 @@
 
 import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
-// import { Icon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
+import Tabs from "@/components/tabs/tabs";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { useEffect, useState } from "react";
+import SubCardBox from "../sub-card";
 
 interface AreaData {
   area: string;
@@ -24,7 +26,7 @@ interface AreaStatData {
 const TeamsNextView = () => {
   const t = useTrans();
 
-  // const [, setSearchValue] = useState("");
+  const [, setSearchValue] = useState("");
   const [areaList, setAreaList] = useState<
     {
       label: string;
@@ -33,6 +35,7 @@ const TeamsNextView = () => {
   >([]);
   const [tabsValue, setTabsValue] = useState<string | number>("");
   const [areaStatList, setAreaStatList] = useState<AreaStatData[]>([]);
+  const [userTabValue, setUserTabValue] = useState(0);
 
   const { data } = useRequestQuery(api.member.memberTeamAreaUsingGet, {});
   const { trigger } = useRequestMutation(api.member.memberTeamAreaStatUsingGet);
@@ -61,6 +64,17 @@ const TeamsNextView = () => {
     );
   }, [tabsValue, trigger]);
 
+  const userTabs = [
+    {
+      label: "Highest level user",
+      value: 0,
+    },
+    {
+      label: "Highest performing users",
+      value: 1,
+    },
+  ];
+
   return (
     <ViewLayout
       heightFull
@@ -68,7 +82,7 @@ const TeamsNextView = () => {
       className="h-max md-pc:h-full overflow-hidden"
     >
       <div className="p-content">
-        {/* <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
+        <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
           <Icon name="search" className="w-4 h-4" />
           <input
             type="search"
@@ -90,13 +104,14 @@ const TeamsNextView = () => {
               className="checkbox checkbox-neutral w-4 h-4"
             />
           </label>
-        </div> */}
+        </div>
 
         <HorizontalTabs
           tabs={areaList}
           value={tabsValue!}
           onChange={(e) => setTabsValue(e)}
           type="border"
+          gap="4"
         />
         <div className="mt-4 grid grid-cols-4 gap-2">
           {areaStatList.map((item, index) => {
@@ -111,6 +126,23 @@ const TeamsNextView = () => {
             );
           })}
         </div>
+        <div className="flex items-center justify-between text-sm border-y border-border2 py-6 my-6">
+          <span>My direct referrals</span>
+          <span className="flex gap-2 items-center font-medium">
+            584
+            <Icon name="right-enter" className="w-1.5 h-2.5" />
+          </span>
+        </div>
+        <Tabs
+          tabs={userTabs}
+          value={userTabValue}
+          onChange={(e) => setUserTabValue(Number(e))}
+          type="text"
+          className="text-base mb-4"
+          activeClassName="text-text1 font-medium"
+          between={false}
+        />
+        <SubCardBox />
       </div>
     </ViewLayout>
   );
