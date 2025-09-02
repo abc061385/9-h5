@@ -21,7 +21,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
   const userInfo = useUserStore((s) => s.userInfo);
   const fetchUserInfo = useUserStore((s) => s.fetchUserInfo);
   const avatar = useMemo(
-    () => userInfo?.headUrl || "/images/user/head.png",
+    () => userInfo?.headUrl || "/icons/user-head.svg",
     [userInfo],
   );
   return (
