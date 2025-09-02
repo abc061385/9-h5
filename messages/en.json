@@ -706,5 +706,14 @@
   "faq_document": "9M AI Documentation",
   "faq_videos": "Promotional Videos",
   "faq_app_download": "9M AI App Download",
-  "faq_website": "9M AI Website"
+  "faq_website": "9M AI Website",
+  "level_certificate": "Level Certificate",
+  "shared_success": "Share Successful",
+  "download": "Download",
+  "share": "Share",
+  "my_level": "My Level",
+  "my_highest_level": "My Highest Level: {vip}",
+  "my_highest_level_star": "({star} Stars)",
+  "my_level_slogan": "Join us and win together!",
+  "download_and_share": "Download and share"
 }

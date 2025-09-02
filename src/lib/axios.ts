@@ -69,7 +69,9 @@ const createAxiosInstance = (
 // 默认导出一个主实例（默认 baseURL）
 const axiosIn = createAxiosInstance("/app/", (config) => {
   config.headers["Content-Type"] = ContentType.FormData;
-  config.data = config.params;
+  config.data = config.data
+    ? { ...Object.fromEntries(config.data.entries()), ...config.params }
+    : config.params;
   config.params = {};
 });
 

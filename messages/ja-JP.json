@@ -707,5 +707,14 @@
   "faq_document": "9M AIドキュメント",
   "faq_videos": "プロモーション動画",
   "faq_app_download": "9M AIアプリをダウンロード",
-  "faq_website": "9M AI公式サイト"
+  "faq_website": "9M AI公式サイト",
+  "level_certificate": "レベル証明書",
+  "shared_success": "共有成功",
+  "download": "ダウンロード",
+  "share": "共有",
+  "my_level": "マイレベル",
+  "my_highest_level": "マイ最高レベル: {vip}",
+  "my_highest_level_star": "（{star}スター）",
+  "my_level_slogan": "私たちと一緒に勝利を掴みましょう！",
+  "download_and_share": "ダウンロードして共有"
 }

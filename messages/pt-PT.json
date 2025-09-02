@@ -707,5 +707,14 @@
   "faq_document": "Dokumentasi 9M AI",
   "faq_videos": "Video Promosi",
   "faq_app_download": "Unduh Aplikasi 9M AI",
-  "faq_website": "Situs Web 9M AI"
+  "faq_website": "Situs Web 9M AI",
+  "level_certificate": "Certificado de Nível",
+  "shared_success": "Compartilhamento bem-sucedido",
+  "download": "Baixar",
+  "share": "Compartilhar",
+  "my_level": "Meu nível",
+  "my_highest_level": "Meu nível máximo: {vip}",
+  "my_highest_level_star": "({star} Estrelas)",
+  "my_level_slogan": "Junte-se a nós e vença juntos!",
+  "download_and_share": "Descarregar e partilhar"
 }
