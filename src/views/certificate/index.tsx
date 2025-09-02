@@ -47,6 +47,8 @@ const CertificateView = () => {
 
   return (
     <ViewLayout
+      heightFull
+      className="bg-black"
       header={
         <HeaderWithBack
           title={t("level_certificate")}
@@ -55,7 +57,7 @@ const CertificateView = () => {
         />
       }
     >
-      <div className="size-full bg-black pb-6">
+      <div className="size-full pb-6">
         <div className="relative" ref={ref}>
           <BaseImage src={currentImg as string} className="w-full h-[626px]" />
           <div className="absolute right-[24px] top-[30px] z-10 text-white text-right w-[80px]">

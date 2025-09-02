@@ -42,7 +42,7 @@ export default function ViewLayout({
           {
             "pt-11": header,
             "pb-16": dock,
-            "h-full": heightFull,
+            "md-pc:h-full": heightFull,
           },
           className,
         ])}
