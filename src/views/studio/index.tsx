@@ -11,6 +11,11 @@ import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import ChainSelectDrawer from "./select/chain";
+import VenueSelectDrawer from "./select/venue";
+import ContactSelectDrawer from "./select/contact";
+import CountrySelectDrawer from "./select/country";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 type FormData = {
   googleCode: string;
@@ -21,12 +26,17 @@ type FormData = {
 
 const StudioView = () => {
   const t = useTrans();
+  const { push } = useRouter();
   const reg = useRootReg();
   const imageRefs = useRef<(HTMLInputElement | null)[]>([]);
   const videoRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const [needLecturer, setNeedLecturer] = useState(0);
   const [isAgreement, setIsAgreement] = useState(false);
+  const [chainSelectOpen, setChainSelectOpen] = useState(false);
+  const [venueSelectOpen, setVenueSelectOpen] = useState(false);
+  const [contactSelectOpen, setContactSelectOpen] = useState(false);
+  const [countrySelectOpen, setCountrySelectOpen] = useState(false);
 
   const Schema = z.object({
     googleCode: reg.googleVerifyCode,
@@ -46,7 +56,6 @@ const StudioView = () => {
 
   return (
     <ViewLayout
-      heightFull
       header={
         <HeaderWithBack
           title={
@@ -54,7 +63,7 @@ const StudioView = () => {
               <span></span>
               Studio Application
               <span
-                onClick={() => alert(1)}
+                onClick={() => push(routerMap.studioRecords)}
                 className="absolute right-[-24px] font-medium text-base text-primary"
               >
                 Records
@@ -64,9 +73,10 @@ const StudioView = () => {
           algin="center"
         />
       }
+      className="h-max"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
-      <div className="p-content">
+      <div className="p-content pb-10">
         <h2 className="font-bold text-xl leading-5 mb-2">Basic Information</h2>
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
@@ -74,7 +84,10 @@ const StudioView = () => {
               Phone number
             </legend>
             <label className="input w-full h-12">
-              <div className="h-6 border-r border-border2 pr-2.5">
+              <div
+                className="h-6 border-r border-border2 pr-2.5"
+                onClick={() => setCountrySelectOpen(true)}
+              >
                 <b>+852</b>
                 <Icon
                   name="right-enter"
@@ -128,7 +141,10 @@ const StudioView = () => {
               Contact
             </legend>
             <label className="input w-full h-12">
-              <div className="h-6 border-r border-border2 pr-2.5">
+              <div
+                className="h-6 border-r border-border2 pr-2.5"
+                onClick={() => setContactSelectOpen(true)}
+              >
                 <b>TG</b>
                 <Icon
                   name="right-enter"
@@ -154,6 +170,8 @@ const StudioView = () => {
                 {...register("email")}
                 placeholder="Please select venue type"
                 className="grow placeholder:text-sm"
+                readOnly
+                onClick={() => setVenueSelectOpen(true)}
               />
               <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
@@ -292,7 +310,6 @@ const StudioView = () => {
                 placeholder="Please enter the language of instruction"
                 className="grow placeholder:text-sm"
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
             <TextError>{errors?.email?.message}</TextError>
           </fieldset>
@@ -305,10 +322,24 @@ const StudioView = () => {
               <input
                 type="text"
                 {...register("email")}
+                placeholder="Please select chain"
+                className="grow placeholder:text-sm"
+                readOnly
+                onClick={() => setChainSelectOpen(true)}
+              />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+            </label>
+            <TextError>{errors?.email?.message}</TextError>
+          </fieldset>
+
+          <fieldset className="fieldset">
+            <label className="input w-full h-12">
+              <input
+                type="text"
+                {...register("email")}
                 placeholder="Please enter the  address"
                 className="grow placeholder:text-sm"
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
             <TextError>{errors?.email?.message}</TextError>
           </fieldset>
@@ -331,6 +362,22 @@ const StudioView = () => {
         <button className="btn btn-primary w-full mt-4">
           Submit your application
         </button>
+        <ChainSelectDrawer
+          open={chainSelectOpen}
+          onClose={() => setChainSelectOpen(false)}
+        />
+        <VenueSelectDrawer
+          open={venueSelectOpen}
+          onClose={() => setVenueSelectOpen(false)}
+        />
+        <ContactSelectDrawer
+          open={contactSelectOpen}
+          onClose={() => setContactSelectOpen(false)}
+        />
+        <CountrySelectDrawer
+          open={countrySelectOpen}
+          onClose={() => setCountrySelectOpen(false)}
+        />
       </div>
     </ViewLayout>
   );
