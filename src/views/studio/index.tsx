@@ -16,7 +16,6 @@ import VenueSelectDrawer from "./select/venue";
 import ContactSelectDrawer from "./select/contact";
 import CountrySelectDrawer from "./select/country";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { useUserStore } from "@/store/useUserStore";
 import Bridge from "@/lib/dsBridge";
 
 type FormData = {
@@ -32,7 +31,6 @@ const StudioView = () => {
   const reg = useRootReg();
   const imageRefs = useRef<(HTMLInputElement | null)[]>([]);
   const videoRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const userInfo = useUserStore((s) => s.userInfo);
 
   const [needLecturer, setNeedLecturer] = useState(0);
   const [isAgreement, setIsAgreement] = useState(false);
@@ -81,8 +79,6 @@ const StudioView = () => {
       }
       className="h-max"
     >
-      <div>tel: {userInfo.tel}</div>
-      <div>token: {userInfo.token}</div>
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
       <div className="p-content pb-10">
         <h2 className="font-bold text-xl leading-5 mb-2">Basic Information</h2>

@@ -4,6 +4,8 @@ import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { useWithdrawalStore } from "./useWithdrawal";
+import Platform from "@/lib/platfrom";
+import Bridge from "@/lib/dsBridge";
 
 interface LoginState extends BaseState<LoginState> {
   userInfo: UserInfo;
@@ -29,7 +31,11 @@ export const useUserStore = create<LoginState>()(
           },
           fetchUserInfo: async () => {
             if (!get().token) {
-              navigateTo(routerMap.login);
+              if (Platform.isInApp()) {
+                Bridge.jumpTo("/login");
+              } else {
+                navigateTo(routerMap.login);
+              }
               return;
             }
             try {
