@@ -71,6 +71,8 @@ export const routerMap = {
   accounts: "/user/accounts/",
   accountsAdd: "/user/accounts/add/",
   accountsRegister: "/user/accounts/register/",
+  VIPChallengeRecord: "/vip-challenge/records",
+  VIPChallenge: "/vip-challenge/",
 };
 
 export const WhiteListPath = [

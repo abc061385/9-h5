@@ -2,10 +2,17 @@ import { useState } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { ShowIf } from "@/components/show-if";
 import ChallengeProgress from "./progress";
+import { Icon } from "@/components/icon";
+import { Modal } from "@/components/modal";
+import StatusModal from "./status-modal";
 
 const ChallengeStatusBox = () => {
   const { push } = useRouter();
+
   const [isAgreement, setIsAgreement] = useState(false);
+  const [towardsStandardsTipsOpen, setTowardsStandardsTipsOpen] =
+    useState(false);
+  const [statusModalOpen, setStatusModalOpen] = useState(false);
   return (
     <div>
       <ShowIf condition={false}>
@@ -46,6 +53,15 @@ const ChallengeStatusBox = () => {
 
         <div className="divider"></div>
 
+        <h3 className="font-medium leading-6 mb-4">
+          Progress towards achieving the target
+          <Icon
+            name="annotation"
+            className="size-3 ml-2"
+            onClick={() => setTowardsStandardsTipsOpen(true)}
+          />
+        </h3>
+
         <p className="text-sm mb-2">Team investment completion status</p>
         <ChallengeProgress value={45} max={89} />
         <p className="text-sm">
@@ -58,6 +74,21 @@ const ChallengeStatusBox = () => {
           <span className="text-primary">V3</span>/V6
         </p>
       </ShowIf>
+      <Modal
+        title="Progress towards standards"
+        open={towardsStandardsTipsOpen}
+        onClose={() => setTowardsStandardsTipsOpen(false)}
+      >
+        <p className="text-sm mt-2 text-center">
+          Only investment amounts for products with an investment period of 180
+          days or longer are displayed.
+        </p>
+      </Modal>
+      <StatusModal
+        status={1}
+        open={statusModalOpen}
+        onClose={() => setStatusModalOpen(false)}
+      />
     </div>
   );
 };

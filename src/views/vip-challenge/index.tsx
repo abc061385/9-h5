@@ -5,11 +5,30 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import ChallengeRewardRules from "./rules";
 import ChallengeStatusBox from "./status";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 const VIPLevelUpChallengeView = () => {
+  const { push } = useRouter();
+
   return (
     <ViewLayout
-      header={<HeaderWithBack title="VIP Level Up Challenge" algin="center" />}
+      header={
+        <HeaderWithBack
+          title={
+            <div className="flex-1 flex justify-center items-center relative">
+              <span></span>
+              VIP Level Up Challenge
+              <span
+                onClick={() => push(routerMap.VIPChallengeRecord)}
+                className="absolute right-[-24px] font-medium text-base text-primary"
+              >
+                Records
+              </span>
+            </div>
+          }
+          algin="center"
+        />
+      }
     >
       <BaseImage
         src="/images/vip-challenge/banner.png"
