@@ -16,7 +16,7 @@ const FundBox = () => {
   const t = useTrans();
   const { push } = useRouter();
   const locale = useLocale();
-  const [pledgeDays] = useState(180);
+  const [pledgeDays] = useState(360);
   const [newsList, setNewsList] = useState<NewsDataType[]>([]);
 
   const { data } = useRequestQuery(api.fundProductConfig.pageUsingGet2, {

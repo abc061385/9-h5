@@ -61,7 +61,7 @@ const CertificateView = () => {
         <div className="relative" ref={ref}>
           <BaseImage src={currentImg as string} className="w-full h-[626px]" />
           <div className="absolute right-[24px] top-[30px] z-10 text-white text-right w-[80px]">
-            <div className="text-sm">My Level</div>
+            <div className="text-sm">{t("my_level")}</div>
             <div className="text-2xl font-bold flex items-center justify-end">
               {(userInfo?.vipLevel || 0) > 0
                 ? `VIP${userInfo.vipLevel}`
