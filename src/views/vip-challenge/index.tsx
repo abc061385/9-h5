@@ -1,0 +1,83 @@
+"use client";
+
+import BaseImage from "@/components/base-image";
+import { HeaderWithBack } from "@/components/header-with-back";
+import ViewLayout from "@/components/layout";
+import ChallengeRewardRules from "./rules";
+
+const VIPLevelUpChallengeView = () => {
+  return (
+    <ViewLayout
+      header={<HeaderWithBack title="VIP Level Up Challenge" algin="center" />}
+    >
+      <BaseImage
+        src="/images/vip-challenge/banner.png"
+        className="w-full h-42 mt-2"
+      />
+      <div className="p-content">
+        <h2 className="font-bold text-xl leading-5 mb-4">
+          9M AI | VIP Level Up Challenge
+        </h2>
+        <h3 className="font-medium text-sm leading-6">
+          Event Duration: Open permanently
+        </h3>
+        <p className="text-text4 text-sm">
+          (Challenge period starts at registration date)
+        </p>
+
+        <div className="divider"></div>
+
+        <div>
+          <h3 className="font-bold leading-6 mb-4">Event Overview</h3>
+          <p className="text-sm leading-5">
+            The &quot;VIP Level Up Challenge&quot; is a long-term incentive
+            mechanism open to all 9M AI users.
+          </p>
+          <p className="text-sm text-primary leading-5">
+            Users who achieve VIP level advancement and team staking goals
+            within the specified timeframe will win USDM rewards equivalent to
+            USDT, and even have the chance to win a luxury car!
+          </p>
+        </div>
+
+        <div className="divider"></div>
+
+        <div>
+          <h3 className="font-bold leading-6 mb-4">How to Participate</h3>
+          <p className="text-sm leading-5">
+            Go to [VIP Challenge Zone] Click the Register for Challenge button
+            to start the timer. Each user can only participate in one challenge
+            at a time. You can only start the next challenge after completing or
+            failing the current challenge.
+          </p>
+        </div>
+
+        <div className="divider"></div>
+
+        <h3 className="font-bold leading-6 mb-4">Challenge Requirements</h3>
+        <p className="text-sm leading-5">
+          During the challenge period, your VIP level must be increased by 3 or
+          more levels. And your team is performance must meet the corresponding
+          threshold. Once achieved, the system will consider you successful and
+          rewards will be distributed immediately.
+        </p>
+
+        <div className="divider"></div>
+
+        <h3 className="font-bold leading-6 mb-4">Special Notes</h3>
+        <p className="text-sm leading-5">
+          You must click Register for Challenge to officially participate. If
+          you are demoted to a level lower than the completed challenge, you
+          must re-upgrade before registering again. Each challenge level can
+          only be completed once.
+        </p>
+
+        <div className="divider"></div>
+
+        <ChallengeRewardRules />
+      </div>
+    </ViewLayout>
+  );
+};
+
+export default VIPLevelUpChallengeView;
