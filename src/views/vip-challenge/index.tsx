@@ -4,6 +4,7 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import ChallengeRewardRules from "./rules";
+import ChallengeStatusBox from "./status";
 
 const VIPLevelUpChallengeView = () => {
   return (
@@ -75,6 +76,32 @@ const VIPLevelUpChallengeView = () => {
         <div className="divider"></div>
 
         <ChallengeRewardRules />
+
+        <div className="divider"></div>
+
+        <h3 className="font-bold leading-6 mb-4">Reward Details</h3>
+        <p className="text-sm leading-5">
+          All rewards will be issued in USDM tokens, and the equivalent
+          conversion will be based on the market price on the issuance date.
+          Users can choose to deposit directly into their account or withdraw
+          on-chain. Physical rewards (such as a Mercedes-Benz) will be redeemed
+          through dedicated customer service.
+        </p>
+
+        <div className="divider"></div>
+
+        <h3 className="mb-6 font-medium text-primary leading-6">
+          Register for the challenge now to activate exclusive promotion
+          incentives.
+        </h3>
+        <h3 className="font-medium leading-6">
+          Grasp the USDM wealth theme and win your prestigious spot with your
+          strength!
+        </h3>
+
+        <div className="divider"></div>
+
+        <ChallengeStatusBox />
       </div>
     </ViewLayout>
   );

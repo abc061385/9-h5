@@ -1,0 +1,64 @@
+import { useState } from "react";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import { ShowIf } from "@/components/show-if";
+import ChallengeProgress from "./progress";
+
+const ChallengeStatusBox = () => {
+  const { push } = useRouter();
+  const [isAgreement, setIsAgreement] = useState(false);
+  return (
+    <div>
+      <ShowIf condition={false}>
+        <button className="btn btn-primary w-full mb-4">Sign up</button>
+        <div className="pl-5">
+          <label className="label ml-[-20px]">
+            <input
+              type="checkbox"
+              checked={isAgreement}
+              onChange={(e) => setIsAgreement(e.target.checked)}
+              className="checkbox checkbox-neutral size-4 mt-0.5"
+            />
+            <div className="text-text4 text-xs flex">
+              I have read and agree to the
+            </div>
+          </label>
+          <a
+            className="text-text1 text-xs relative top-[-6px]"
+            onClick={() => {
+              push(`${routerMap.protocol}?type=8`);
+            }}
+          >
+            《 VIP Level Up Challenge Rules 》
+          </a>
+          <div className="divider"></div>
+          <p className="text-sm">
+            Your current level is <span className="text-primary">VIP3</span>, so
+            you can only sign up for VIP3 corresponding activities
+          </p>
+        </div>
+      </ShowIf>
+      <ShowIf condition={true}>
+        <button className="btn btn-outline w-full mb-4">In progress</button>
+        <p className="text-sm leading-5">
+          Please complete the challenge before
+        </p>
+        <p className="text-sm text-primary leading-5">2025-03-23 16:12</p>
+
+        <div className="divider"></div>
+
+        <p className="text-sm mb-2">Team investment completion status</p>
+        <ChallengeProgress value={45} max={89} />
+        <p className="text-sm">
+          <span className="text-primary">450,000.00</span>/1,000,000 USDT
+        </p>
+
+        <p className="text-sm mb-2 mt-6">VIP upgrade progress</p>
+        <ChallengeProgress value={80} max={89} />
+        <p className="text-sm">
+          <span className="text-primary">V3</span>/V6
+        </p>
+      </ShowIf>
+    </div>
+  );
+};
+export default ChallengeStatusBox;
