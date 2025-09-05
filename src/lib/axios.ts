@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useStore } from "@/store";
 import { APILang } from "@/i18n/routing";
 import { navigateTo, routerMap } from "@/i18n/navigation";
+import Platform from "./platfrom";
+import Bridge from "./dsBridge";
 
 // 响应统一数据格式
 export interface ApiResponse<T> {
@@ -50,7 +52,11 @@ const createAxiosInstance = (
       if (res.data.code === 200) {
         return res?.data;
       } else if (res.data.code === 401) {
-        navigateTo(routerMap.login);
+        if (Platform.isInApp()) {
+          Bridge.jumpTo("/login");
+        } else {
+          navigateTo(routerMap.login);
+        }
       } else {
         if (res.data?.message) toast.error(res.data?.message);
         if (res.data?.msg) toast.error(res.data?.msg);

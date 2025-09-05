@@ -9,13 +9,15 @@ import z, { useRootReg } from "@/lib/z";
 import { TextError } from "@/components/input/text-error";
 import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import ChainSelectDrawer from "./select/chain";
 import VenueSelectDrawer from "./select/venue";
 import ContactSelectDrawer from "./select/contact";
 import CountrySelectDrawer from "./select/country";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { useUserStore } from "@/store/useUserStore";
+import Bridge from "@/lib/dsBridge";
 
 type FormData = {
   googleCode: string;
@@ -30,6 +32,7 @@ const StudioView = () => {
   const reg = useRootReg();
   const imageRefs = useRef<(HTMLInputElement | null)[]>([]);
   const videoRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const userInfo = useUserStore((s) => s.userInfo);
 
   const [needLecturer, setNeedLecturer] = useState(0);
   const [isAgreement, setIsAgreement] = useState(false);
@@ -53,6 +56,9 @@ const StudioView = () => {
     mode: "onChange",
     reValidateMode: "onChange",
   });
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   return (
     <ViewLayout
@@ -75,6 +81,8 @@ const StudioView = () => {
       }
       className="h-max"
     >
+      <div>tel: {userInfo.tel}</div>
+      <div>token: {userInfo.token}</div>
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
       <div className="p-content pb-10">
         <h2 className="font-bold text-xl leading-5 mb-2">Basic Information</h2>
@@ -287,7 +295,7 @@ const StudioView = () => {
                         "border-2 rounded-full size-6 flex items-center justify-center",
                         needLecturer === i
                           ? "!bg-primary !border-primary"
-                          : " !border-border1 !bg-transparent"
+                          : " !border-border1 !bg-transparent",
                       )}
                     >
                       <Icon name="duigou" />

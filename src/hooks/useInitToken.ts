@@ -5,6 +5,7 @@ import { utils } from "@/lib/utils";
 import { useStore } from "@/store";
 import { useUserStore } from "@/store/useUserStore";
 import { useCallback, useEffect } from "react";
+import Vconsole from "vconsole";
 
 // init token
 export const useInitToken = () => {
@@ -14,11 +15,13 @@ export const useInitToken = () => {
 
   const setToken = useCallback(async () => {
     if (Platform.isInApp()) {
+      new Vconsole();
       Bridge.setFull(false);
       const token =
         Bridge?.getToken() || window.localStorage.getItem("token") || "";
       utils.setJwtCookie(token);
       setUserField("token", token);
+      console.log("token", token);
     } else {
       const token = window.localStorage.getItem("token") || "";
       utils.setJwtCookie(token);

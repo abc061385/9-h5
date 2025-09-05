@@ -42,10 +42,10 @@ export const useUserStore = create<LoginState>()(
           setField: (key, value) => set({ [key]: value }),
         };
       },
-      { enabled: getIsDev() }
+      { enabled: getIsDev() },
     ),
     {
       name: "user-store",
-    }
-  )
+    },
+  ),
 );
