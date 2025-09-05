@@ -1,23 +1,29 @@
 import { Drawer } from "@/views/studio/select/drawer-long";
 import { useTrans } from "@/hooks/useTrans";
 import { FC } from "react";
+import { VenueListType } from "../type";
 
 interface IVenueSelectProps {
   open: boolean;
   onClose: () => void;
+  onConfirm: (value: VenueListType) => void;
 }
 
-const VenueSelectDrawer: FC<IVenueSelectProps> = ({ open, onClose }) => {
+const VenueSelectDrawer: FC<IVenueSelectProps> = ({
+  open,
+  onClose,
+  onConfirm,
+}) => {
   const t = useTrans();
 
-  const list = [
+  const list: VenueListType[] = [
     {
       label: "Training Hub (Site Area ≥ 50m)",
-      value: 0,
+      value: "1",
     },
     {
       label: "Training Center (Site Area ≥ 100m)",
-      value: 1,
+      value: "2",
     },
   ];
 
@@ -34,7 +40,10 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({ open, onClose }) => {
             <div
               key={v.value}
               className="flex items-center justify-between py-3.5 border-b border-border2"
-              onClick={() => {}}
+              onClick={() => {
+                onConfirm?.(v);
+                onClose?.();
+              }}
             >
               <span className="font-bold flex-1">{v.label}</span>
             </div>

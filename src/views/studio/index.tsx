@@ -17,12 +17,20 @@ import ContactSelectDrawer from "./select/contact";
 import CountrySelectDrawer from "./select/country";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import Bridge from "@/lib/dsBridge";
+import { CountryListType } from "./type";
 
 type FormData = {
-  googleCode: string;
   email: string;
-  emailCode: string;
-  oldEmailCode: string;
+
+  emailAccount: string;
+  phoneNumber: string;
+  address: string;
+  contactInformation: string;
+  operationPlan: string;
+  participantNumber: string;
+  teachLanguage: string;
+  receiveAddress: string;
+  siteType: string;
 };
 
 const StudioView = () => {
@@ -39,15 +47,31 @@ const StudioView = () => {
   const [contactSelectOpen, setContactSelectOpen] = useState(false);
   const [countrySelectOpen, setCountrySelectOpen] = useState(false);
 
+  const [prefixId, setPrefixId] = useState<CountryListType>({
+    code: "HK",
+    country: "香港(中国)",
+    id: 48,
+    phonePrefix: "+852",
+  });
+  const [, setSiteTypeValue] = useState("");
+
   const Schema = z.object({
-    googleCode: reg.googleVerifyCode,
-    email: reg.email,
-    emailCode: reg.googleVerifyCode,
-    oldEmailCode: z.any().nullable(),
+    email: z.any().nullable(),
+    emailAccount: reg.email,
+    phoneNumber: reg.countryPhone,
+    address: reg.studioAddress,
+    contactInformation: reg.studioContactType,
+    operationPlan: reg.studioOperationPlan,
+    participantNumber: reg.studioParticipantNumber,
+    teachLanguage: reg.studioTeachLanguage,
+    receiveAddress: reg.studioReceiveAddress,
+    siteType: reg.studioSiteType,
   });
 
   const {
     register,
+    setValue,
+    handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(Schema),
@@ -92,7 +116,7 @@ const StudioView = () => {
                 className="h-6 border-r border-border2 pr-2.5"
                 onClick={() => setCountrySelectOpen(true)}
               >
-                <b>+852</b>
+                <b>{prefixId?.phonePrefix}</b>
                 <Icon
                   name="right-enter"
                   className="w-1.5 h-2.5 rotate-90 ml-3"
@@ -100,12 +124,12 @@ const StudioView = () => {
               </div>
               <input
                 type="text"
-                {...register("email")}
+                {...register("phoneNumber")}
                 placeholder="Please enter your phone number"
                 className="grow placeholder:text-sm"
               />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.phoneNumber?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
@@ -114,12 +138,12 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="email"
-                {...register("email")}
+                {...register("emailAccount")}
                 placeholder={t("请输入要绑定的邮箱账号")}
                 className="grow placeholder:text-sm"
               />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.emailAccount?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend flex-col items-start gap-1">
@@ -133,12 +157,12 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
+                {...register("address")}
                 placeholder="Please enter the venue address"
                 className="grow placeholder:text-sm"
               />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.address?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
@@ -157,12 +181,12 @@ const StudioView = () => {
               </div>
               <input
                 type="text"
-                {...register("email")}
+                {...register("contactInformation")}
                 placeholder="Please enter contact information"
                 className="grow placeholder:text-sm"
               />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.contactInformation?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
@@ -171,7 +195,7 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
+                {...register("siteType")}
                 placeholder="Please select venue type"
                 className="grow placeholder:text-sm"
                 readOnly
@@ -179,7 +203,7 @@ const StudioView = () => {
               />
               <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.siteType?.message}</TextError>
           </fieldset>
 
           <h3 className="text-lg font-bold mt-11 mb-6">
@@ -252,13 +276,12 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
+                {...register("operationPlan")}
                 placeholder="Please enter your operating plan"
                 className="grow placeholder:text-sm"
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.operationPlan?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
@@ -267,13 +290,12 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
+                {...register("participantNumber")}
                 placeholder="Please enter the number of participants"
                 className="grow placeholder:text-sm"
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.participantNumber?.message}</TextError>
           </fieldset>
 
           <div className="flex items-center justify-between mt-4 mb-2">
@@ -291,7 +313,7 @@ const StudioView = () => {
                         "border-2 rounded-full size-6 flex items-center justify-center",
                         needLecturer === i
                           ? "!bg-primary !border-primary"
-                          : " !border-border1 !bg-transparent",
+                          : " !border-border1 !bg-transparent"
                       )}
                     >
                       <Icon name="duigou" />
@@ -310,12 +332,12 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
+                {...register("teachLanguage")}
                 placeholder="Please enter the language of instruction"
                 className="grow placeholder:text-sm"
               />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.teachLanguage?.message}</TextError>
           </fieldset>
 
           <fieldset className="fieldset">
@@ -325,7 +347,6 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
                 placeholder="Please select chain"
                 className="grow placeholder:text-sm"
                 readOnly
@@ -333,19 +354,18 @@ const StudioView = () => {
               />
               <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
           </fieldset>
 
           <fieldset className="fieldset">
             <label className="input w-full h-12">
               <input
                 type="text"
-                {...register("email")}
+                {...register("receiveAddress")}
                 placeholder="Please enter the  address"
                 className="grow placeholder:text-sm"
               />
             </label>
-            <TextError>{errors?.email?.message}</TextError>
+            <TextError>{errors?.receiveAddress?.message}</TextError>
           </fieldset>
         </form>
         <div className="flex items-center text-xs text-text4 mt-8">
@@ -363,7 +383,12 @@ const StudioView = () => {
             《 Training Center/Studio Program Rules 》
           </span>
         </div>
-        <button className="btn btn-primary w-full mt-4">
+        <button
+          className="btn btn-primary w-full mt-4"
+          onClick={handleSubmit((e) => {
+            console.log(e);
+          })}
+        >
           Submit your application
         </button>
         <ChainSelectDrawer
@@ -373,6 +398,10 @@ const StudioView = () => {
         <VenueSelectDrawer
           open={venueSelectOpen}
           onClose={() => setVenueSelectOpen(false)}
+          onConfirm={(e) => {
+            setValue("siteType", e.label);
+            setSiteTypeValue(e.value);
+          }}
         />
         <ContactSelectDrawer
           open={contactSelectOpen}
@@ -381,6 +410,7 @@ const StudioView = () => {
         <CountrySelectDrawer
           open={countrySelectOpen}
           onClose={() => setCountrySelectOpen(false)}
+          onConfirm={(e) => setPrefixId(e)}
         />
       </div>
     </ViewLayout>

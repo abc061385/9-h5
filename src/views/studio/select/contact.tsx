@@ -13,11 +13,11 @@ const ContactSelectDrawer: FC<IContactSelectProps> = ({ open, onClose }) => {
   const list = [
     {
       label: "Whatsapp",
-      value: 0,
+      value: "1",
     },
     {
       label: "Tg",
-      value: 1,
+      value: "2",
     },
   ];
 
