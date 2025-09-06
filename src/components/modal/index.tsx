@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import { PropsWithChildren, ReactNode, useId } from "react";
 import { Icon } from "../icon";
-
-interface IModalProps extends PropsWithChildren {
+export interface IModalProps extends PropsWithChildren {
   open: boolean;
   title?: string | ReactNode;
   onChange?: (open: boolean) => void;
