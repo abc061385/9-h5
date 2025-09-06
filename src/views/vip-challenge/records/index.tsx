@@ -2,8 +2,23 @@
 
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { useCallback, useEffect } from "react";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 
 const VIPLevelUpChallengeRecordsView = () => {
+  const api = createAxiosInstance("/app/");
+
+  const getList = useCallback(async () => {
+    const res: ApiResponse<unknown> = await api.get(
+      "/level-race/registration-record"
+    );
+    console.log(res);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getList();
+  }, [getList]);
   return (
     <ViewLayout
       header={<HeaderWithBack title="Challenge Records" algin="center" />}

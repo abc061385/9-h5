@@ -1,22 +1,48 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { ShowIf } from "@/components/show-if";
 import ChallengeProgress from "./progress";
 import { Icon } from "@/components/icon";
 import { Modal } from "@/components/modal";
 import StatusModal from "./status-modal";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 
 const ChallengeStatusBox = () => {
+  const api = createAxiosInstance("/app/");
   const { push } = useRouter();
 
   const [isAgreement, setIsAgreement] = useState(false);
   const [towardsStandardsTipsOpen, setTowardsStandardsTipsOpen] =
     useState(false);
   const [statusModalOpen, setStatusModalOpen] = useState(false);
+
+  const getResults = useCallback(async () => {
+    const res = await api.post("/level-race/check-finish");
+    console.log(res);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getResults();
+  }, [getResults]);
+
+  const signUp = useCallback(async () => {
+    const res: ApiResponse<unknown> = await api.post(
+      "/level-race/registration"
+    );
+    console.log(res);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
-      <ShowIf condition={false}>
-        <button className="btn btn-primary w-full mb-4">Sign up</button>
+      <ShowIf condition={true}>
+        <button
+          className="btn btn-primary w-full mb-4"
+          onClick={() => signUp()}
+        >
+          Sign up
+        </button>
         <div className="pl-5">
           <label className="label ml-[-20px]">
             <input
@@ -44,7 +70,7 @@ const ChallengeStatusBox = () => {
           </p>
         </div>
       </ShowIf>
-      <ShowIf condition={true}>
+      <ShowIf condition={false}>
         <button className="btn btn-outline w-full mb-4">In progress</button>
         <p className="text-sm leading-5">
           Please complete the challenge before
