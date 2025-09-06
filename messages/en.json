@@ -720,7 +720,7 @@
   "venue_rental_certificate": "Venue rental certificate",
   "upload_rental_certificate_photos": "Click to upload photos",
   "live_video_upload": "Live video",
-  "upload_live_video": "Please upload a live video. Each video should be",
+  "upload_live_video": "Please upload a live video. Each video should be 10 minutes long and have more than 20 participants. The video should clearly show the scene and the teaching situation.",
   "upload_videos": "Click to upload videos",
   "operational_plan": "Operational Plan",
   "enter_operational_plan": "Please enter your operating plan",

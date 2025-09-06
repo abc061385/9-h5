@@ -687,7 +687,7 @@
   "venue_rental_certificate": "स्थल किराये प्रमाणपत्र",
   "upload_rental_certificate_photos": "Cliquez pour télécharger des photos",
   "live_video_upload": "लाइव वीडियो",
-  "upload_live_video": "कृपया एक लाइव वीडियो अपलोड करें। प्रत्येक वीडियो होना चाहिए",
+  "upload_live_video": "कृपया एक लाइव वीडियो अपलोड करें। प्रत्येक वीडियो की लंबाई 10 मिनट होनी चाहिए और इसमें 20 से अधिक प्रतिभागी होने चाहिए। वीडियो को दृश्य और शिक्षण स्थिति को स्पष्ट रूप से दिखाना चाहिए।",
   "upload_videos": "Cliquez pour télécharger les vidéos",
   "operational_plan": "प्रचालन योजना",
   "enter_operational_plan": "कृपया अपनी संचालन योजना दर्ज करें",

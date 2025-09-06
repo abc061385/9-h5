@@ -721,7 +721,7 @@
   "venue_rental_certificate": "会場のレンタル証明書",
   "upload_rental_certificate_photos": "写真をアップロードするにはクリックしてください",
   "live_video_upload": "ライブ動画",
-  "upload_live_video": "envie um vídeo ao vivo. Cada vídeo deve ser",
+  "upload_live_video": "ライブビデオをアップロードしてください。各ビデオは10分以上で、参加者が20人以上である必要があります。ビデオは、シーンと授業の状況を明確に示す必要があります。",
   "upload_videos": "ビデオをアップロードするにはクリックしてください",
   "operational_plan": "運営計画",
   "enter_operational_plan": "運営計画を入力してください",

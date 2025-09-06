@@ -721,7 +721,7 @@
   "venue_rental_certificate": "場地租賃憑證",
   "upload_rental_certificate_photos": "點擊上傳照片",
   "live_video_upload": "直播影片",
-  "upload_live_video": "請上傳一段直播影片。每個影片應為",
+  "upload_live_video": "請上傳直播視頻。每個視頻應為10分鐘長，且有20人以上參與。視頻應清晰展示現場與教學情況。",
   "upload_videos": "點擊上傳影片",
   "operational_plan": "營運計劃",
   "enter_operational_plan": "請輸入您的營運計劃",
