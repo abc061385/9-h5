@@ -1,10 +1,9 @@
 import { api } from "@/api";
 import React, { PropsWithChildren, useState } from "react";
 import { cn } from "@/lib/utils";
-import BaseImage from "@/components/base-image";
 import { ImageMetadata } from "./type";
 
-interface ImageUploaderProps {
+interface VideoUploaderProps {
   onUploadSuccess?: (imgMeta: ImageMetadata) => void;
   onUploadError?: (error: string) => void;
   type?: string;
@@ -14,7 +13,7 @@ interface ImageUploaderProps {
   roundedFull?: boolean;
 }
 
-const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
+const VideoUploader: React.FC<PropsWithChildren<VideoUploaderProps>> = ({
   onUploadSuccess,
   onUploadError,
   className = "",
@@ -35,19 +34,19 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
     }
   };
 
-  const handleUpload = async (image: File) => {
-    if (!image) return;
+  const handleUpload = async (video: File) => {
+    if (!video) return;
 
     // setIsUploading(true);
     const formData = new FormData();
-    formData.append("file", image);
+    formData.append("file", video);
 
     try {
-      const response = await api.image.uploadImageUsingPost(
+      const response = await api.file.uploadFileUsingPost(
         {
           type,
         },
-        { file: image }
+        { file: video }
       );
       if (response.code === 200 && onUploadSuccess) {
         onUploadSuccess(response.data as unknown as ImageMetadata);
@@ -64,9 +63,9 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   const renderPreview = setPreviewDom
     ? setPreviewDom(preview || "")
     : preview && (
-        <BaseImage
+        <video
+          controls
           src={preview as string}
-          alt="preview"
           className={cn([
             "w-full h-full object-cover object-center",
             roundedFull ? "rounded-lg overflow-hidden" : "",
@@ -79,7 +78,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
         <input
           type="file"
           className="hidden"
-          accept="image/*"
+          accept="video/*"
           onChange={handleFileChange}
         />
         {renderPreview || children}
@@ -88,4 +87,4 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   );
 };
 
-export default ImageUploader;
+export default VideoUploader;

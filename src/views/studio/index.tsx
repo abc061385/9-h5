@@ -9,7 +9,7 @@ import z, { useRootReg } from "@/lib/z";
 import { TextError } from "@/components/input/text-error";
 import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import ChainSelectDrawer from "./select/chain";
 import VenueSelectDrawer from "./select/venue";
@@ -17,9 +17,12 @@ import ContactSelectDrawer from "./select/contact";
 import CountrySelectDrawer from "./select/country";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import Bridge from "@/lib/dsBridge";
-import { CountryListType, SelectListType } from "./type";
+import { CountryListType, FileType, SelectListType } from "./type";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import ImageUploader from "./img-uploader";
+import { ShowIf } from "@/components/show-if";
+import VideoUploader from "./video-uploader";
+import toast from "react-hot-toast";
 
 type FormData = {
   emailAccount: string;
@@ -40,15 +43,16 @@ const StudioView = () => {
   const t = useTrans();
   const { push } = useRouter();
   const reg = useRootReg();
-  const imageRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const videoRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const [needLecturer, setNeedLecturer] = useState("YES");
+  const [needLecturer, setNeedLecturer] = useState("NO");
   const [isAgreement, setIsAgreement] = useState(false);
   const [chainSelectOpen, setChainSelectOpen] = useState(false);
   const [venueSelectOpen, setVenueSelectOpen] = useState(false);
   const [contactSelectOpen, setContactSelectOpen] = useState(false);
   const [countrySelectOpen, setCountrySelectOpen] = useState(false);
+  const [parNumber, setParNumber] = useState("");
+
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const [prefixId, setPrefixId] = useState<CountryListType>({
     code: "HK",
@@ -62,6 +66,21 @@ const StudioView = () => {
     value: "1",
   });
 
+  const imageFileList: FileType[] = useMemo(
+    () => [
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    ],
+    []
+  );
+  const videoFileList: FileType[] = useMemo(
+    () => [
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    ],
+    []
+  );
+
   const Schema = z.object({
     emailAccount: reg.email,
     phoneNumber: reg.countryPhone,
@@ -69,7 +88,7 @@ const StudioView = () => {
     contactInformation: reg.studioContactType,
     operationPlan: reg.studioOperationPlan,
     participantNumber: reg.studioParticipantNumber,
-    teachLanguage: reg.studioTeachLanguage,
+    teachLanguage: z.any(),
     receiveAddress: reg.studioReceiveAddress,
     siteType: reg.studioSiteType,
     receiveNetwork: z.string(),
@@ -91,19 +110,113 @@ const StudioView = () => {
 
   const submit = useCallback(
     async (e: FormData) => {
-      const res: ApiResponse<unknown> = await api.post("/workroom/apply", {
-        ...e,
-        prefixId: prefixId.id,
-        siteType: siteType,
-        contactType: contactType.value,
-        lecturer: needLecturer === "YES" ? "1" : "0",
-        receiveNetwork: e.receiveNetwork === "TRX" ? "1" : "2",
-      });
-      console.log(res);
+      console.log(imageFileList, videoFileList);
+      try {
+        if (!imageFileList[0].fileUrl || !imageFileList[1].fileUrl) {
+          toast.error("请上传场地租赁凭证图片");
+          return;
+        }
+        if (!videoFileList[0].fileUrl || !videoFileList[1].fileUrl) {
+          toast.error("请上传直播视频");
+          return;
+        }
+        if (!isAgreement) {
+          toast.error("请阅读并同意工作室项目规则");
+          return;
+        }
+        setSubmitLoading(true);
+        const res: ApiResponse<unknown> = await api.post("/workroom/apply", {
+          ...e,
+          prefixId: prefixId.id,
+          siteType: siteType,
+          contactType: contactType.value,
+          lecturer: needLecturer === "YES" ? "1" : "0",
+          receiveNetwork: e.receiveNetwork === "TRX" ? "1" : "2",
+          attachmentList: [...imageFileList, ...videoFileList],
+        });
+        if (res.code === 200) {
+          setSubmitLoading(false);
+          toast.success("提交成功");
+          push(routerMap.studioRecords);
+        }
+      } catch (error) {
+        console.log(error);
+        setSubmitLoading(false);
+      }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [prefixId, siteType, contactType, needLecturer]
+    [
+      prefixId,
+      siteType,
+      contactType,
+      needLecturer,
+      imageFileList,
+      videoFileList,
+      isAgreement,
+    ]
   );
+
+  const imageUploadDom = useMemo(() => {
+    return imageFileList.map((v, i) => {
+      return (
+        <div key={i} className="h-50">
+          <ImageUploader
+            roundedFull
+            onUploadSuccess={(d) => {
+              if (d.originalUrl) {
+                imageFileList[i] = {
+                  fileName: d.fileName,
+                  fileUrl: d.originalUrl,
+                  thumbnailUrl: d.thumbnailUrl,
+                  fileType: 1,
+                };
+              }
+            }}
+          >
+            <ShowIf condition={!v.fileName}>
+              <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
+                <Icon name="add" className="size-6" />
+                <span className="text-text4 text-sm">
+                  Click to upload photos
+                </span>
+              </div>
+            </ShowIf>
+          </ImageUploader>
+        </div>
+      );
+    });
+  }, [imageFileList]);
+
+  const videoUploadDom = useMemo(() => {
+    return videoFileList.map((v, i) => {
+      return (
+        <div key={i} className="h-50">
+          <VideoUploader
+            roundedFull
+            onUploadSuccess={(d) => {
+              if (d.originalUrl) {
+                videoFileList[i] = {
+                  fileName: d.fileName,
+                  fileUrl: d.originalUrl,
+                  thumbnailUrl: "",
+                  fileType: 2,
+                };
+              }
+            }}
+          >
+            <ShowIf condition={!v.fileName}>
+              <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
+                <Icon name="add" className="size-6" />
+                <span className="text-text4 text-sm">
+                  Click to upload photos
+                </span>
+              </div>
+            </ShowIf>
+          </VideoUploader>
+        </div>
+      );
+    });
+  }, [videoFileList]);
 
   return (
     <ViewLayout
@@ -124,7 +237,7 @@ const StudioView = () => {
           algin="center"
         />
       }
-      className="h-max"
+      className="h-max mt-2"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
       <div className="p-content pb-10">
@@ -232,41 +345,7 @@ const StudioView = () => {
           <h3 className="text-lg font-bold mt-11 mb-6">
             Venue rental certificate
           </h3>
-          <div className="grid grid-cols-2 gap-2">
-            <ImageUploader
-              roundedFull
-              defaultUrl={""}
-              onUploadSuccess={(d) => {
-                console.log(d);
-                if (d.originalUrl) {
-                }
-              }}
-            ></ImageUploader>
-            {[...new Array(2)].map((_, i) => {
-              return (
-                <div key={i}>
-                  <div
-                    className="h-50 bg-bg3 rounded-lg flex flex-col gap-4 items-center justify-center cursor-pointer"
-                    onClick={() => imageRefs.current[i]?.click()}
-                  >
-                    <Icon name="add" className="size-6" />
-                    <span className="text-text4 text-sm">
-                      Click to upload photos
-                    </span>
-                  </div>
-                  <input
-                    type="file"
-                    accept="image/png,image/jpeg"
-                    ref={(el) => {
-                      imageRefs.current[i] = el;
-                    }}
-                    style={{ display: "none" }}
-                    onChange={(e) => console.log(e)}
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <div className="grid grid-cols-2 gap-2">{imageUploadDom}</div>
 
           <h3 className="text-lg font-bold mt-11">Live video</h3>
           <p className="text-text4 text-sm my-4">
@@ -274,32 +353,7 @@ const StudioView = () => {
             and have more than 20 participants. The video should clearly show
             the scene and the teaching situation.
           </p>
-          <div className="grid grid-cols-2 gap-2">
-            {[...new Array(2)].map((_, i) => {
-              return (
-                <div key={i}>
-                  <div
-                    className="h-50 bg-bg3 rounded-lg flex flex-col gap-4 items-center justify-center cursor-pointer"
-                    onClick={() => videoRefs.current[i]?.click()}
-                  >
-                    <Icon name="add" className="size-6" />
-                    <span className="text-text4 text-sm">
-                      Click to upload videos
-                    </span>
-                  </div>
-                  <input
-                    type="file"
-                    accept="video/mp4"
-                    ref={(el) => {
-                      videoRefs.current[i] = el;
-                    }}
-                    style={{ display: "none" }}
-                    onChange={(e) => console.log(e)}
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <div className="grid grid-cols-2 gap-2">{videoUploadDom}</div>
 
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
@@ -325,52 +379,57 @@ const StudioView = () => {
                 {...register("participantNumber")}
                 placeholder="Please enter the number of participants"
                 className="grow placeholder:text-sm"
+                onChange={(e) => setParNumber(e.target.value)}
               />
             </label>
             <TextError>{errors?.participantNumber?.message}</TextError>
           </fieldset>
 
-          <div className="flex items-center justify-between mt-4 mb-2">
-            <h4 className="font-medium text-sm">Do you need a lecturer?</h4>
-            <div className="flex items-center gap-6">
-              {["YES", "NO"].map((v) => {
-                return (
-                  <div
-                    key={v}
-                    className="flex gap-2"
-                    onClick={() => setNeedLecturer(v)}
-                  >
+          <ShowIf condition={Number(parNumber || 0) > 25}>
+            <div className="flex items-center justify-between mt-4 mb-2">
+              <h4 className="font-medium text-sm">Do you need a lecturer?</h4>
+              <div className="flex items-center gap-6">
+                {["YES", "NO"].map((v) => {
+                  return (
                     <div
-                      className={cn(
-                        "border-2 rounded-full size-6 flex items-center justify-center",
-                        needLecturer === v
-                          ? "!bg-primary !border-primary"
-                          : " !border-border1 !bg-transparent"
-                      )}
+                      key={v}
+                      className="flex gap-2"
+                      onClick={() => setNeedLecturer(v)}
                     >
-                      <Icon name="duigou" />
+                      <div
+                        className={cn(
+                          "border-2 rounded-full size-6 flex items-center justify-center",
+                          needLecturer === v
+                            ? "!bg-primary !border-primary"
+                            : " !border-border1 !bg-transparent"
+                        )}
+                      >
+                        <Icon name="duigou" />
+                      </div>
+                      <span className="font-medium">{v}</span>
                     </div>
-                    <span className="font-medium">{v}</span>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Language of Instruction
-            </legend>
-            <label className="input w-full h-12">
-              <input
-                type="text"
-                {...register("teachLanguage")}
-                placeholder="Please enter the language of instruction"
-                className="grow placeholder:text-sm"
-              />
-            </label>
-            <TextError>{errors?.teachLanguage?.message}</TextError>
-          </fieldset>
+            <ShowIf condition={needLecturer === "YES"}>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend font-medium text-sm py-3.5">
+                  Language of Instruction
+                </legend>
+                <label className="input w-full h-12">
+                  <input
+                    type="text"
+                    {...register("teachLanguage")}
+                    placeholder="Please enter the language of instruction"
+                    className="grow placeholder:text-sm"
+                  />
+                </label>
+                <TextError>{errors?.teachLanguage?.message}</TextError>
+              </fieldset>
+            </ShowIf>
+          </ShowIf>
 
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
@@ -412,17 +471,28 @@ const StudioView = () => {
 
             {t("我已阅读")}
           </label>
-          <span className="text-text1">
+          <span
+            className="text-text1"
+            onClick={() => {
+              push(`${routerMap.protocol}?type=9`);
+            }}
+          >
             《 Training Center/Studio Program Rules 》
           </span>
         </div>
         <button
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
+            console.log(e);
             submit(e);
           })}
+          disabled={submitLoading}
         >
-          Submit your application
+          {submitLoading ? (
+            <span className="loading"></span>
+          ) : (
+            "Submit your application"
+          )}
         </button>
         <ChainSelectDrawer
           open={chainSelectOpen}

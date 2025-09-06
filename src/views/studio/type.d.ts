@@ -20,3 +20,18 @@ export interface ImageMetadata {
   uploadTime: string; // 圖片的上傳時間，格式為 "YYYY-MM-DD HH:mm:ss"
   width: number; // 圖片的寬度（以像素為單位）
 }
+
+export interface FileType {
+  fileName: string;
+  fileUrl: string;
+  thumbnailUrl?: string;
+  fileType: 1 | 2;
+}
+
+export interface StudioRecordsListType {
+  id: number;
+  status: 0 | 1 | 2;
+  siteType: 1 | 2;
+  createTime: string;
+  participantNumber: number;
+}
