@@ -7,6 +7,10 @@ import { useCallback, useEffect, useState } from "react";
 import { StudioRecordsListType } from "../type";
 import { ShowIf } from "@/components/show-if";
 import { cn } from "@/lib/utils";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 const StudioRecordsView = () => {
   const api = createAxiosInstance("/app/");
@@ -20,7 +24,6 @@ const StudioRecordsView = () => {
       const res: ApiResponse<{ list: StudioRecordsListType[] }> = await api.get(
         "/workroom/page-list"
       );
-      console.log(res);
       if (res.code === 200) {
         setList(res?.data?.list || []);
         setLoading(false);
@@ -38,6 +41,7 @@ const StudioRecordsView = () => {
 
   const statusText = ["审核中", "已通过", "未通过"];
   const statusTextColor = ["text-text1", "text-rise", "text-fall"];
+
   return (
     <ViewLayout
       header={<HeaderWithBack title="Submit Records" algin="center" />}
@@ -62,7 +66,12 @@ const StudioRecordsView = () => {
                   </div>
                   <div className="flex items-center justify-between text-sm mb-2">
                     <span className="text-text3">Date:</span>
-                    <span>{v.createTime}</span>
+                    <span>
+                      {dayjs(v.createTime)
+                        .utc()
+                        .local()
+                        .format("YYYY-MM-DD HH:mm:ss")}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-text3">Number of participants</span>
