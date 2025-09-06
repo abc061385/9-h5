@@ -1,12 +1,12 @@
 import { Drawer } from "@/views/studio/select/drawer-long";
 import { useTrans } from "@/hooks/useTrans";
 import { FC } from "react";
-import { VenueListType } from "../type";
+import { SelectListType } from "../type";
 
 interface IVenueSelectProps {
   open: boolean;
   onClose: () => void;
-  onConfirm: (value: VenueListType) => void;
+  onConfirm: (value: SelectListType) => void;
 }
 
 const VenueSelectDrawer: FC<IVenueSelectProps> = ({
@@ -16,7 +16,7 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({
 }) => {
   const t = useTrans();
 
-  const list: VenueListType[] = [
+  const list: SelectListType[] = [
     {
       label: "Training Hub (Site Area ≥ 50m)",
       value: "1",

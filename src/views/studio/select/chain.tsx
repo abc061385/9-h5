@@ -1,20 +1,25 @@
 import { Drawer } from "@/views/studio/select/drawer-long";
 import { useTrans } from "@/hooks/useTrans";
-import { useAssetStore } from "@/store/useAssetStore";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 
 interface IChainSelectProps {
   open: boolean;
   onClose: () => void;
+  onConfirm: (chain: string) => void;
 }
 
-const ChainSelectDrawer: FC<IChainSelectProps> = ({ open, onClose }) => {
+const ChainSelectDrawer: FC<IChainSelectProps> = ({
+  open,
+  onClose,
+  onConfirm,
+}) => {
   const t = useTrans();
-  const { getChainList, chainList } = useAssetStore();
+
+  const chainList = useMemo(() => ["TRX", "BSC"], []);
 
   useEffect(() => {
-    getChainList();
-  }, [getChainList]);
+    onConfirm?.(chainList[0]);
+  }, [onConfirm, chainList]);
 
   return (
     <Drawer
@@ -27,11 +32,14 @@ const ChainSelectDrawer: FC<IChainSelectProps> = ({ open, onClose }) => {
         {chainList?.map((v) => {
           return (
             <div
-              key={v.id}
+              key={v}
               className="flex items-center justify-between py-3.5 border-b border-border2"
-              onClick={() => {}}
+              onClick={() => {
+                onConfirm?.(v);
+                onClose?.();
+              }}
             >
-              <span className="font-bold flex-1">{v.protocolType}</span>
+              <span className="font-bold flex-1">{v}</span>
             </div>
           );
         })}

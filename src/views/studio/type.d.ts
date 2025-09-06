@@ -5,7 +5,7 @@ export interface CountryListType {
   phonePrefix: string;
 }
 
-export interface VenueListType {
+export interface SelectListType {
   label: string;
   value: string;
 }

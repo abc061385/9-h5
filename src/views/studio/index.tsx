@@ -9,7 +9,7 @@ import z, { useRootReg } from "@/lib/z";
 import { TextError } from "@/components/input/text-error";
 import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import ChainSelectDrawer from "./select/chain";
 import VenueSelectDrawer from "./select/venue";
@@ -17,11 +17,10 @@ import ContactSelectDrawer from "./select/contact";
 import CountrySelectDrawer from "./select/country";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import Bridge from "@/lib/dsBridge";
-import { CountryListType } from "./type";
+import { CountryListType, SelectListType } from "./type";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 
 type FormData = {
-  email: string;
-
   emailAccount: string;
   phoneNumber: string;
   address: string;
@@ -31,16 +30,19 @@ type FormData = {
   teachLanguage: string;
   receiveAddress: string;
   siteType: string;
+  receiveNetwork: string;
 };
 
 const StudioView = () => {
+  const api = createAxiosInstance("/app/");
+
   const t = useTrans();
   const { push } = useRouter();
   const reg = useRootReg();
   const imageRefs = useRef<(HTMLInputElement | null)[]>([]);
   const videoRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const [needLecturer, setNeedLecturer] = useState(0);
+  const [needLecturer, setNeedLecturer] = useState("YES");
   const [isAgreement, setIsAgreement] = useState(false);
   const [chainSelectOpen, setChainSelectOpen] = useState(false);
   const [venueSelectOpen, setVenueSelectOpen] = useState(false);
@@ -53,10 +55,13 @@ const StudioView = () => {
     id: 48,
     phonePrefix: "+852",
   });
-  const [, setSiteTypeValue] = useState("");
+  const [siteType, setSiteTypeValue] = useState("");
+  const [contactType, setContactType] = useState<SelectListType>({
+    label: "Whatsapp",
+    value: "1",
+  });
 
   const Schema = z.object({
-    email: z.any().nullable(),
     emailAccount: reg.email,
     phoneNumber: reg.countryPhone,
     address: reg.studioAddress,
@@ -66,6 +71,7 @@ const StudioView = () => {
     teachLanguage: reg.studioTeachLanguage,
     receiveAddress: reg.studioReceiveAddress,
     siteType: reg.studioSiteType,
+    receiveNetwork: z.string(),
   });
 
   const {
@@ -81,6 +87,22 @@ const StudioView = () => {
   useEffect(() => {
     Bridge.setFull(true);
   }, []);
+
+  const submit = useCallback(
+    async (e: FormData) => {
+      const res: ApiResponse<unknown> = await api.post("/workroom/apply", {
+        ...e,
+        prefixId: prefixId.id,
+        siteType: siteType,
+        contactType: contactType.value,
+        lecturer: needLecturer === "YES" ? "1" : "0",
+        receiveNetwork: e.receiveNetwork === "TRX" ? "1" : "2",
+      });
+      console.log(res);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [prefixId, siteType, contactType, needLecturer]
+  );
 
   return (
     <ViewLayout
@@ -173,7 +195,7 @@ const StudioView = () => {
                 className="h-6 border-r border-border2 pr-2.5"
                 onClick={() => setContactSelectOpen(true)}
               >
-                <b>TG</b>
+                <b>{contactType.label}</b>
                 <Icon
                   name="right-enter"
                   className="w-1.5 h-2.5 rotate-90 ml-3"
@@ -301,17 +323,17 @@ const StudioView = () => {
           <div className="flex items-center justify-between mt-4 mb-2">
             <h4 className="font-medium text-sm">Do you need a lecturer?</h4>
             <div className="flex items-center gap-6">
-              {["YES", "NO"].map((v, i) => {
+              {["YES", "NO"].map((v) => {
                 return (
                   <div
-                    key={i}
+                    key={v}
                     className="flex gap-2"
-                    onClick={() => setNeedLecturer(i)}
+                    onClick={() => setNeedLecturer(v)}
                   >
                     <div
                       className={cn(
                         "border-2 rounded-full size-6 flex items-center justify-center",
-                        needLecturer === i
+                        needLecturer === v
                           ? "!bg-primary !border-primary"
                           : " !border-border1 !bg-transparent"
                       )}
@@ -350,6 +372,7 @@ const StudioView = () => {
                 placeholder="Please select chain"
                 className="grow placeholder:text-sm"
                 readOnly
+                {...register("receiveNetwork")}
                 onClick={() => setChainSelectOpen(true)}
               />
               <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
@@ -386,7 +409,7 @@ const StudioView = () => {
         <button
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
-            console.log(e);
+            submit(e);
           })}
         >
           Submit your application
@@ -394,6 +417,9 @@ const StudioView = () => {
         <ChainSelectDrawer
           open={chainSelectOpen}
           onClose={() => setChainSelectOpen(false)}
+          onConfirm={(chain) => {
+            setValue("receiveNetwork", chain);
+          }}
         />
         <VenueSelectDrawer
           open={venueSelectOpen}
@@ -406,6 +432,7 @@ const StudioView = () => {
         <ContactSelectDrawer
           open={contactSelectOpen}
           onClose={() => setContactSelectOpen(false)}
+          onConfirm={(v) => setContactType(v)}
         />
         <CountrySelectDrawer
           open={countrySelectOpen}

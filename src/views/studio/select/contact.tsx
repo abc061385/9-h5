@@ -1,13 +1,19 @@
 import { Drawer } from "@/views/studio/select/drawer-long";
 import { useTrans } from "@/hooks/useTrans";
 import { FC } from "react";
+import { SelectListType } from "../type";
 
 interface IContactSelectProps {
   open: boolean;
   onClose: () => void;
+  onConfirm: (v: SelectListType) => void;
 }
 
-const ContactSelectDrawer: FC<IContactSelectProps> = ({ open, onClose }) => {
+const ContactSelectDrawer: FC<IContactSelectProps> = ({
+  open,
+  onClose,
+  onConfirm,
+}) => {
   const t = useTrans();
 
   const list = [
@@ -16,7 +22,7 @@ const ContactSelectDrawer: FC<IContactSelectProps> = ({ open, onClose }) => {
       value: "1",
     },
     {
-      label: "Tg",
+      label: "Telegram",
       value: "2",
     },
   ];
@@ -34,7 +40,10 @@ const ContactSelectDrawer: FC<IContactSelectProps> = ({ open, onClose }) => {
             <div
               key={v.value}
               className="flex items-center justify-between py-3.5 border-b border-border2"
-              onClick={() => {}}
+              onClick={() => {
+                onConfirm?.(v);
+                onClose();
+              }}
             >
               <span className="font-bold flex-1">{v.label}</span>
             </div>
