@@ -291,6 +291,14 @@ type AwardInfoType = {
   yesterdayVipReward: number;
   yesterdayCurrencyReward: number;
   chuJuAmount: number;
+  coinQuotaStatsMap: {
+    [key: string]: {
+      coin: string;
+      remainQuota: number;
+      totalQuota: number;
+      usedQuota: number;
+    };
+  };
 };
 
 type AwardListType = {
