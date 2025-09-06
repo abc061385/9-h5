@@ -30,8 +30,8 @@ export const useRootReg = () => {
     studioOperationPlan: z.string().regex(/^.+$/, {
       message: "请输入运营计划",
     }),
-    studioParticipantNumber: z.string().regex(/^.+$/, {
-      message: "请输入参训人数",
+    studioParticipantNumber: z.string().regex(/^[1-9]\d*$/, {
+      message: "请输入正确的参训人数",
     }),
     studioTeachLanguage: z.string().regex(/^.+$/, {
       message: "请输入授课语言",
