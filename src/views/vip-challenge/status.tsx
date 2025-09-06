@@ -8,6 +8,7 @@ import StatusModal from "./status-modal";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { formatBalance } from "@/lib/utils";
 import dayjs from "dayjs";
+import toast from "react-hot-toast";
 
 interface IntroduceType {
   orderId: number;
@@ -27,9 +28,9 @@ const ChallengeStatusBox = () => {
   const [isAgreement, setIsAgreement] = useState(false);
   const [towardsStandardsTipsOpen, setTowardsStandardsTipsOpen] =
     useState(false);
-  const [statusModalOpen, setStatusModalOpen] = useState(false);
 
   const [introduce, setIntroduce] = useState<IntroduceType>();
+  const [confirmLoading, setConfirmLoading] = useState(false);
 
   const getIntroduce = useCallback(async () => {
     try {
@@ -50,32 +51,37 @@ const ChallengeStatusBox = () => {
     getIntroduce();
   }, [getIntroduce]);
 
-  const getResults = useCallback(async () => {
-    const res = await api.post("/level-race/check-finish");
-    console.log(res);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    getResults();
-  }, [getResults]);
-
   const signUp = useCallback(async () => {
-    const res: ApiResponse<unknown> = await api.post(
-      "/level-race/registration"
-    );
-    console.log(res);
+    if (!isAgreement) {
+      toast.error("请阅读并同意VIP升级挑战规则");
+      return;
+    }
+    setConfirmLoading(true);
+    try {
+      const res: ApiResponse<unknown> = await api.post(
+        "/level-race/registration"
+      );
+      if (res.code === 200) {
+        setConfirmLoading(false);
+        toast.success("报名成功");
+        push(routerMap.VIPChallengeRecord);
+      }
+    } catch (error) {
+      console.log(error);
+      setConfirmLoading(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAgreement]);
 
   return (
     <div>
-      <ShowIf condition={introduce?.orderId === 1}>
+      <ShowIf condition={introduce?.orderStatus !== 0}>
         <button
           className="btn btn-primary w-full mb-4"
           onClick={() => signUp()}
+          disabled={confirmLoading}
         >
-          Sign up
+          {confirmLoading ? <span className="loading"></span> : "Sign up"}
         </button>
         <div className="pl-5">
           <label className="label ml-[-20px]">
@@ -99,8 +105,10 @@ const ChallengeStatusBox = () => {
           </a>
           <div className="divider"></div>
           <p className="text-sm">
-            Your current level is <span className="text-primary">VIP3</span>, so
-            you can only sign up for VIP3 corresponding activities
+            Your current level is{" "}
+            <span className="text-primary">VIP{introduce?.vipLevel}</span>, so
+            you can only sign up for VIP{introduce?.vipLevel} corresponding
+            activities
           </p>
         </div>
       </ShowIf>
@@ -158,11 +166,7 @@ const ChallengeStatusBox = () => {
           days or longer are displayed.
         </p>
       </Modal>
-      <StatusModal
-        status={1}
-        open={statusModalOpen}
-        onClose={() => setStatusModalOpen(false)}
-      />
+      <StatusModal />
     </div>
   );
 };
