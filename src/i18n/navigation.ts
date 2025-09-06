@@ -72,6 +72,8 @@ export const routerMap = {
   accountsAdd: "/user/accounts/add/",
   accountsRegister: "/user/accounts/register/",
   certificate: "/certificate/",
+  studio: "/studio/",
+  studioRecords: "/studio/records",
 };
 
 export const WhiteListPath = [

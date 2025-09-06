@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import { ReactNode, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { Icon } from "./icon";
 import { useRouter as useI18nRouter } from "@/i18n/navigation";
+import { useBack } from "@/hooks/useBack";
 
 type IProps = {
   title?: ReactNode;
@@ -27,14 +27,14 @@ export const HeaderWithBack = ({
     theme === "light" ? "bg-white" : "bg-black text-white",
     className,
   ]);
-  const router = useRouter();
   const { push } = useI18nRouter();
+  const back = useBack();
 
   const handleBack = () => {
     onChange?.();
     if (onClick) return onClick();
     if (path) return push(path);
-    router.back();
+    back();
   };
 
   const notHistory = useMemo(() => {
