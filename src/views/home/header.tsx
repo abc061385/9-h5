@@ -16,7 +16,7 @@ const HomeHeaderBox = () => {
     <div className="flex items-center justify-between py-2 px-3.5 bg-white">
       <BaseImage
         src="/images/common/logo.svg"
-        className="h-[31px] w-[91px] cursor-pointer"
+        className="h-[34px] w-[90px] cursor-pointer"
         onClick={() => push(routerMap.user)}
       />
       <div className="flex">
