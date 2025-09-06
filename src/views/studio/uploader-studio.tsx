@@ -1,11 +1,11 @@
 import { useUserStore } from "@/store/useUserStore";
-import ImageUploader from "./img-uploader";
 import { useMemo } from "react";
 import { api } from "@/api";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { useTrans } from "@/hooks/useTrans";
 import BaseImage from "@/components/base-image";
+import ImageUploader from "./img-uploader";
 
 interface AvatarUploaderProps {
   className?: string;
