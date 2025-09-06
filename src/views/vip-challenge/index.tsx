@@ -6,22 +6,9 @@ import ViewLayout from "@/components/layout";
 import ChallengeRewardRules from "./rules";
 import ChallengeStatusBox from "./status";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { createAxiosInstance, ApiResponse } from "@/lib/axios";
-import { useCallback, useEffect } from "react";
 
 const VIPLevelUpChallengeView = () => {
-  const api = createAxiosInstance("/app/");
   const { push } = useRouter();
-
-  const getIntroduce = useCallback(async () => {
-    const res: ApiResponse<unknown> = await api.get("/level-race/introduce");
-    console.log(res);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    getIntroduce();
-  }, [getIntroduce]);
 
   return (
     <ViewLayout

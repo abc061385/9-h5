@@ -6,6 +6,19 @@ import { Icon } from "@/components/icon";
 import { Modal } from "@/components/modal";
 import StatusModal from "./status-modal";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { formatBalance } from "@/lib/utils";
+import dayjs from "dayjs";
+
+interface IntroduceType {
+  orderId: number;
+  orderStatus: 0 | 1 | 2;
+  raceIntroduce?: string;
+  targetInvestment: number;
+  targetVipLevel: number;
+  teamInvestment: number;
+  vipLevel: number;
+  endTime: string;
+}
 
 const ChallengeStatusBox = () => {
   const api = createAxiosInstance("/app/");
@@ -16,10 +29,31 @@ const ChallengeStatusBox = () => {
     useState(false);
   const [statusModalOpen, setStatusModalOpen] = useState(false);
 
+  const [introduce, setIntroduce] = useState<IntroduceType>();
+
+  const getIntroduce = useCallback(async () => {
+    try {
+      const res: ApiResponse<IntroduceType> = await api.get(
+        "/level-race/introduce"
+      );
+      if (res.code === 200) {
+        setIntroduce(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getIntroduce();
+  }, [getIntroduce]);
+
   const getResults = useCallback(async () => {
     const res = await api.post("/level-race/check-finish");
     console.log(res);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -36,7 +70,7 @@ const ChallengeStatusBox = () => {
 
   return (
     <div>
-      <ShowIf condition={true}>
+      <ShowIf condition={introduce?.orderId === 1}>
         <button
           className="btn btn-primary w-full mb-4"
           onClick={() => signUp()}
@@ -70,12 +104,16 @@ const ChallengeStatusBox = () => {
           </p>
         </div>
       </ShowIf>
-      <ShowIf condition={false}>
+      <ShowIf condition={introduce?.orderStatus === 0}>
         <button className="btn btn-outline w-full mb-4">In progress</button>
         <p className="text-sm leading-5">
           Please complete the challenge before
         </p>
-        <p className="text-sm text-primary leading-5">2025-03-23 16:12</p>
+        <p className="text-sm text-primary leading-5">
+          {dayjs(new Date(introduce?.endTime ?? "").getTime()).format(
+            "YYYY-MM-DD HH:mm"
+          )}
+        </p>
 
         <div className="divider"></div>
 
@@ -89,15 +127,25 @@ const ChallengeStatusBox = () => {
         </h3>
 
         <p className="text-sm mb-2">Team investment completion status</p>
-        <ChallengeProgress value={45} max={89} />
+        <ChallengeProgress
+          value={introduce?.teamInvestment || 0}
+          max={introduce?.targetInvestment || 1}
+        />
         <p className="text-sm">
-          <span className="text-primary">450,000.00</span>/1,000,000 USDT
+          <span className="text-primary">
+            {formatBalance(introduce?.teamInvestment || 0, 2)}
+          </span>{" "}
+          / {formatBalance(introduce?.targetInvestment || 0, 2)} USDT
         </p>
 
         <p className="text-sm mb-2 mt-6">VIP upgrade progress</p>
-        <ChallengeProgress value={80} max={89} />
+        <ChallengeProgress
+          value={introduce?.vipLevel || 0}
+          max={introduce?.targetVipLevel || 1}
+        />
         <p className="text-sm">
-          <span className="text-primary">V3</span>/V6
+          <span className="text-primary">V{introduce?.vipLevel}</span> / V
+          {introduce?.targetVipLevel}
         </p>
       </ShowIf>
       <Modal
