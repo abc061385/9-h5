@@ -19,6 +19,7 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import Bridge from "@/lib/dsBridge";
 import { CountryListType, SelectListType } from "./type";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import ImageUploader from "./img-uploader";
 
 type FormData = {
   emailAccount: string;
@@ -232,6 +233,15 @@ const StudioView = () => {
             Venue rental certificate
           </h3>
           <div className="grid grid-cols-2 gap-2">
+            <ImageUploader
+              roundedFull
+              defaultUrl={""}
+              onUploadSuccess={(d) => {
+                console.log(d);
+                if (d.originalUrl) {
+                }
+              }}
+            ></ImageUploader>
             {[...new Array(2)].map((_, i) => {
               return (
                 <div key={i}>

@@ -2,6 +2,7 @@ import { api } from "@/api";
 import React, { PropsWithChildren, useState } from "react";
 import { cn } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
+import { ImageMetadata } from "./type";
 
 interface ImageUploaderProps {
   onUploadSuccess?: (imgMeta: ImageMetadata) => void;
