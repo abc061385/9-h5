@@ -9,7 +9,7 @@ export async function generateMetadata({
 }: RootProps): Promise<Metadata> {
   const { locale } = await params;
   return generateSEO({
-    title: "",
+    title: "submitRecords",
     locale,
   });
 }
