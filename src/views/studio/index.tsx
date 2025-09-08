@@ -113,15 +113,15 @@ const StudioView = () => {
       console.log(imageFileList, videoFileList);
       try {
         if (!imageFileList[0].fileUrl || !imageFileList[1].fileUrl) {
-          toast.error("请上传场地租赁凭证图片");
+          toast.error(t("uploadLeaseCertificate"));
           return;
         }
         if (!videoFileList[0].fileUrl || !videoFileList[1].fileUrl) {
-          toast.error("请上传直播视频");
+          toast.error(t("uploadOnsiteVideo"));
           return;
         }
         if (!isAgreement) {
-          toast.error("请阅读并同意工作室项目规则");
+          toast.error(t("agreeToRules"));
           return;
         }
         setSubmitLoading(true);
@@ -136,7 +136,7 @@ const StudioView = () => {
         });
         if (res.code === 200) {
           setSubmitLoading(false);
-          toast.success("提交成功");
+          toast.success(t("submitSuccess"));
           push(routerMap.studioRecords);
         }
       } catch (error) {
@@ -176,16 +176,14 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm">
-                  Click to upload photos
-                </span>
+                <span className="text-text4 text-sm">{t("uploadPhotos")}</span>
               </div>
             </ShowIf>
           </ImageUploader>
         </div>
       );
     });
-  }, [imageFileList]);
+  }, [imageFileList, t]);
 
   const videoUploadDom = useMemo(() => {
     return videoFileList.map((v, i) => {
@@ -207,16 +205,19 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm">
-                  Click to upload photos
-                </span>
+                <span className="text-text4 text-sm">{t("uploadVideos")}</span>
               </div>
             </ShowIf>
           </VideoUploader>
         </div>
       );
     });
-  }, [videoFileList]);
+  }, [videoFileList, t]);
+
+  const needLecturerList = [
+    { label: t("yes"), value: "YES" },
+    { label: t("no"), value: "NO" },
+  ];
 
   return (
     <ViewLayout
@@ -225,12 +226,12 @@ const StudioView = () => {
           title={
             <div className="flex-1 flex justify-center items-center relative">
               <span></span>
-              Studio Application
+              {t("studio_application")}
               <span
                 onClick={() => push(routerMap.studioRecords)}
                 className="absolute right-[-24px] font-medium text-base text-primary"
               >
-                Records
+                {t("records")}
               </span>
             </div>
           }
@@ -241,11 +242,11 @@ const StudioView = () => {
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
       <div className="p-content pb-10">
-        <h2 className="font-bold text-xl leading-5 mb-2">Basic Information</h2>
+        <h2 className="font-bold text-xl leading-5 mb-2">{t("basic_info")}</h2>
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Phone number
+              {t("phone_number")}
             </legend>
             <label className="input w-full h-12">
               <div
@@ -261,7 +262,7 @@ const StudioView = () => {
               <input
                 type="text"
                 {...register("phoneNumber")}
-                placeholder="Please enter your phone number"
+                placeholder={t("enter_phone_number")}
                 className="grow placeholder:text-sm"
               />
             </label>
@@ -269,13 +270,13 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Email
+              {t("login.email")}
             </legend>
             <label className="input w-full h-12">
               <input
                 type="email"
                 {...register("emailAccount")}
-                placeholder={t("请输入要绑定的邮箱账号")}
+                placeholder={t("enter_email_address")}
                 className="grow placeholder:text-sm"
               />
             </label>
@@ -283,18 +284,16 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend flex-col items-start gap-1">
-              <h3 className="font-medium text-base">Venue Address</h3>
+              <h3 className="font-medium text-base">{t("venue_address")}</h3>
               <p className="text-sm text-text4 font-normal">
-                Please provide as detailed an address as possible (country,
-                city, and specific address, including venue name, street number,
-                and street name) for subsequent verification.
+                {t("venue_address_detail")}
               </p>
             </legend>
             <label className="input w-full h-12">
               <input
                 type="text"
                 {...register("address")}
-                placeholder="Please enter the venue address"
+                placeholder={t("enter_venue_address")}
                 className="grow placeholder:text-sm"
               />
             </label>
@@ -302,7 +301,7 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Contact
+              {t("contact_info")}
             </legend>
             <label className="input w-full h-12">
               <div
@@ -318,7 +317,7 @@ const StudioView = () => {
               <input
                 type="text"
                 {...register("contactInformation")}
-                placeholder="Please enter contact information"
+                placeholder={t("enter_contact_info")}
                 className="grow placeholder:text-sm"
               />
             </label>
@@ -326,13 +325,13 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Venue Type
+              {t("venue_type")}
             </legend>
             <label className="input w-full h-12">
               <input
                 type="text"
                 {...register("siteType")}
-                placeholder="Please select venue type"
+                placeholder={t("select_venue_type")}
                 className="grow placeholder:text-sm"
                 readOnly
                 onClick={() => setVenueSelectOpen(true)}
@@ -343,27 +342,23 @@ const StudioView = () => {
           </fieldset>
 
           <h3 className="text-lg font-bold mt-11 mb-6">
-            Venue rental certificate
+            {t("venue_rental_certificate")}
           </h3>
           <div className="grid grid-cols-2 gap-2">{imageUploadDom}</div>
 
-          <h3 className="text-lg font-bold mt-11">Live video</h3>
-          <p className="text-text4 text-sm my-4">
-            Please upload a live video. Each video should be ≥ 10 minutes long
-            and have more than 20 participants. The video should clearly show
-            the scene and the teaching situation.
-          </p>
+          <h3 className="text-lg font-bold mt-11">{t("live_video_upload")}</h3>
+          <p className="text-text4 text-sm my-4">{t("upload_live_video")}</p>
           <div className="grid grid-cols-2 gap-2">{videoUploadDom}</div>
 
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Operational Plan
+              {t("operational_plan")}
             </legend>
             <label className="input w-full h-12">
               <input
                 type="text"
                 {...register("operationPlan")}
-                placeholder="Please enter your operating plan"
+                placeholder={t("enter_operational_plan")}
                 className="grow placeholder:text-sm"
               />
             </label>
@@ -371,13 +366,13 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Number of participants
+              {t("number_of_participants")}
             </legend>
             <label className="input w-full h-12">
               <input
                 type="text"
                 {...register("participantNumber")}
-                placeholder="Please enter the number of participants"
+                placeholder={t("enter_participants_number")}
                 className="grow placeholder:text-sm"
                 onChange={(e) => setParNumber(e.target.value)}
               />
@@ -385,28 +380,28 @@ const StudioView = () => {
             <TextError>{errors?.participantNumber?.message}</TextError>
           </fieldset>
 
-          <ShowIf condition={Number(parNumber || 0) > 25}>
+          <ShowIf condition={Number(parNumber || 0) >= 25}>
             <div className="flex items-center justify-between mt-4 mb-2">
-              <h4 className="font-medium text-sm">Do you need a lecturer?</h4>
+              <h4 className="font-medium text-sm">{t("need_lecturer")}</h4>
               <div className="flex items-center gap-6">
-                {["YES", "NO"].map((v) => {
+                {needLecturerList.map((v) => {
                   return (
                     <div
-                      key={v}
+                      key={v.value}
                       className="flex gap-2"
-                      onClick={() => setNeedLecturer(v)}
+                      onClick={() => setNeedLecturer(v.value)}
                     >
                       <div
                         className={cn(
                           "border-2 rounded-full size-6 flex items-center justify-center",
-                          needLecturer === v
+                          needLecturer === v.value
                             ? "!bg-primary !border-primary"
                             : " !border-border1 !bg-transparent"
                         )}
                       >
                         <Icon name="duigou" />
                       </div>
-                      <span className="font-medium">{v}</span>
+                      <span className="font-medium">{v.label}</span>
                     </div>
                   );
                 })}
@@ -416,13 +411,13 @@ const StudioView = () => {
             <ShowIf condition={needLecturer === "YES"}>
               <fieldset className="fieldset">
                 <legend className="fieldset-legend font-medium text-sm py-3.5">
-                  Language of Instruction
+                  {t("language_of_instruction")}
                 </legend>
                 <label className="input w-full h-12">
                   <input
                     type="text"
                     {...register("teachLanguage")}
-                    placeholder="Please enter the language of instruction"
+                    placeholder={t("enter_language_of_instruction")}
                     className="grow placeholder:text-sm"
                   />
                 </label>
@@ -433,12 +428,12 @@ const StudioView = () => {
 
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Receiving address
+              {t("receiving_address")}
             </legend>
             <label className="input w-full h-12">
               <input
                 type="text"
-                placeholder="Please select chain"
+                placeholder={t("withdraw.selectChain")}
                 className="grow placeholder:text-sm"
                 readOnly
                 {...register("receiveNetwork")}
@@ -453,7 +448,7 @@ const StudioView = () => {
               <input
                 type="text"
                 {...register("receiveAddress")}
-                placeholder="Please enter the  address"
+                placeholder={t("enter_receiving_address")}
                 className="grow placeholder:text-sm"
               />
             </label>
@@ -469,7 +464,7 @@ const StudioView = () => {
               onChange={(e) => setIsAgreement(e.target.checked)}
             />
 
-            {t("我已阅读")}
+            {t("agree_to_rules")}
           </label>
           <span
             className="text-text1"
@@ -477,13 +472,12 @@ const StudioView = () => {
               push(`${routerMap.protocol}?type=9`);
             }}
           >
-            《 Training Center/Studio Program Rules 》
+            《 {t("training_center_rules")} 》
           </span>
         </div>
         <button
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
-            console.log(e);
             submit(e);
           })}
           disabled={submitLoading}
@@ -491,7 +485,7 @@ const StudioView = () => {
           {submitLoading ? (
             <span className="loading"></span>
           ) : (
-            "Submit your application"
+            t("submitApplication")
           )}
         </button>
         <ChainSelectDrawer

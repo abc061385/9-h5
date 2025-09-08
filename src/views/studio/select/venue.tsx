@@ -18,11 +18,11 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({
 
   const list: SelectListType[] = [
     {
-      label: "Training Hub (Site Area ≥ 50m)",
+      label: `Training Hub (${t("siteArea")} ≥ 50m)`,
       value: "1",
     },
     {
-      label: "Training Center (Site Area ≥ 100m)",
+      label: `Training Center (${t("siteArea")} ≥ 100m)`,
       value: "2",
     },
   ];
@@ -30,7 +30,7 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({
   return (
     <Drawer
       className="h-auto"
-      title={"Please select venue type"}
+      title={t("select_venue_type")}
       open={open}
       onChange={() => onClose?.()}
     >

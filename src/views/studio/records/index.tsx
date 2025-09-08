@@ -10,10 +10,12 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { ListNoData } from "@/components/nodata/list-nodata";
+import { useTrans } from "@/hooks/useTrans";
 
 dayjs.extend(utc);
 
 const StudioRecordsView = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app/");
 
   const [list, setList] = useState<StudioRecordsListType[]>();
@@ -40,12 +42,12 @@ const StudioRecordsView = () => {
     getList();
   }, [getList]);
 
-  const statusText = ["审核中", "已通过", "未通过"];
+  const statusText = [t("underReview"), t("approved"), t("rejected")];
   const statusTextColor = ["text-text1", "text-rise", "text-fall"];
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Submit Records" algin="center" />}
+      header={<HeaderWithBack title={t("submitRecords")} algin="center" />}
     >
       <div className="p-content">
         {
@@ -58,7 +60,7 @@ const StudioRecordsView = () => {
                 return (
                   <div key={v.id} className="bg-bg2 rounded-lg p-4 mt-4">
                     <div className="flex items-center justify-between leading-6">
-                      <b>Application Type:</b>
+                      <b>{t("applicationType")}:</b>
                       <span className={cn(statusTextColor[v.status])}>
                         {statusText[v.status] || "--"}
                       </span>

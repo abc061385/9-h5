@@ -60,7 +60,7 @@ const CountrySelectDrawer: FC<ICountrySelectProps> = ({
   return (
     <Drawer
       className="h-auto"
-      title="Please select your country"
+      title={t("selectCountry")}
       open={open}
       onChange={() => onClose?.()}
     >

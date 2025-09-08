@@ -16,28 +16,28 @@ export const useRootReg = () => {
       message: t("editPassword.enterSixDigit"),
     }),
     countryPhone: z.string().regex(/^\+?[1-9]\d{1,14}$/, {
-      message: "请输入正确的电话号码",
+      message: t("validPhone"),
     }),
     studioAddress: z.string().regex(/^.+$/, {
-      message: "请输入详细地址",
+      message: t("enter_venue_address"),
     }),
     studioContactType: z.string().regex(/^.+$/, {
-      message: "请输入联系方式",
+      message: t("enter_contact_info"),
     }),
     studioSiteType: z.string().regex(/^.+$/, {
-      message: "请选择申请类型",
+      message: t("select_venue_type"),
     }),
     studioOperationPlan: z.string().regex(/^.+$/, {
-      message: "请输入运营计划",
+      message: t("enter_operational_plan"),
     }),
     studioParticipantNumber: z.string().regex(/^[1-9]\d*$/, {
-      message: "请输入正确的参训人数",
+      message: t("validTraineeCount"),
     }),
     studioTeachLanguage: z.string().regex(/^.+$/, {
-      message: "请输入授课语言",
+      message: t("enter_language_of_instruction"),
     }),
     studioReceiveAddress: z.string().regex(/^.+$/, {
-      message: "请输入收款地址",
+      message: t("enter_receiving_address"),
     }),
   };
 };
