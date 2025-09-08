@@ -9,6 +9,7 @@ import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { formatBalance } from "@/lib/utils";
 import dayjs from "dayjs";
 import toast from "react-hot-toast";
+import { useTrans } from "@/hooks/useTrans";
 
 interface IntroduceType {
   orderId: number;
@@ -22,6 +23,7 @@ interface IntroduceType {
 }
 
 const ChallengeStatusBox = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app/");
   const { push } = useRouter();
 
@@ -53,7 +55,7 @@ const ChallengeStatusBox = () => {
 
   const signUp = useCallback(async () => {
     if (!isAgreement) {
-      toast.error("请阅读并同意VIP升级挑战规则");
+      toast.error(t("agreeToRules"));
       return;
     }
     setConfirmLoading(true);
@@ -63,7 +65,7 @@ const ChallengeStatusBox = () => {
       );
       if (res.code === 200) {
         setConfirmLoading(false);
-        toast.success("报名成功");
+        toast.success(t("registrationSuccess"));
         push(routerMap.VIPChallengeRecord);
       }
     } catch (error) {
@@ -81,7 +83,7 @@ const ChallengeStatusBox = () => {
           onClick={() => signUp()}
           disabled={confirmLoading}
         >
-          {confirmLoading ? <span className="loading"></span> : "Sign up"}
+          {confirmLoading ? <span className="loading"></span> : t("register")}
         </button>
         <div className="pl-5">
           <label className="label ml-[-20px]">
@@ -91,9 +93,7 @@ const ChallengeStatusBox = () => {
               onChange={(e) => setIsAgreement(e.target.checked)}
               className="checkbox checkbox-neutral size-4 mt-0.5"
             />
-            <div className="text-text4 text-xs flex">
-              I have read and agree to the
-            </div>
+            <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
           </label>
           <a
             className="text-text1 text-xs relative top-[-6px]"
@@ -101,21 +101,25 @@ const ChallengeStatusBox = () => {
               push(`${routerMap.protocol}?type=8`);
             }}
           >
-            《 VIP Level Up Challenge Rules 》
+            《 {t("programRules")} 》
           </a>
           <div className="divider"></div>
-          <p className="text-sm">
-            Your current level is{" "}
-            <span className="text-primary">VIP{introduce?.vipLevel}</span>, so
-            you can only sign up for VIP{introduce?.vipLevel} corresponding
-            activities
-          </p>
+          <p
+            className="text-sm"
+            dangerouslySetInnerHTML={{
+              __html: t("currentLevelMessage", {
+                vip: `<span style="color:#6E2AFE;">VIP${introduce?.vipLevel}</span>`,
+              }),
+            }}
+          ></p>
         </div>
       </ShowIf>
       <ShowIf condition={introduce?.orderStatus === 0}>
-        <button className="btn btn-outline w-full mb-4">In progress</button>
+        <button className="btn btn-outline w-full mb-4">
+          {t("challengeInProgress")}
+        </button>
         <p className="text-sm leading-5">
-          Please complete the challenge before
+          {t("challengeDeadline", { time: "" })}
         </p>
         <p className="text-sm text-primary leading-5">
           {dayjs(new Date(introduce?.endTime ?? "").getTime()).format(
@@ -126,7 +130,7 @@ const ChallengeStatusBox = () => {
         <div className="divider"></div>
 
         <h3 className="font-medium leading-6 mb-4">
-          Progress towards achieving the target
+          {t("progressStatus")}
           <Icon
             name="annotation"
             className="size-3 ml-2"
@@ -134,7 +138,7 @@ const ChallengeStatusBox = () => {
           />
         </h3>
 
-        <p className="text-sm mb-2">Team investment completion status</p>
+        <p className="text-sm mb-2">{t("teamInvestmentProgress")}</p>
         <ChallengeProgress
           value={introduce?.teamInvestment || 0}
           max={introduce?.targetInvestment || 1}
@@ -146,7 +150,7 @@ const ChallengeStatusBox = () => {
           / {formatBalance(introduce?.targetInvestment || 0, 2)} USDT
         </p>
 
-        <p className="text-sm mb-2 mt-6">VIP upgrade progress</p>
+        <p className="text-sm mb-2 mt-6">{t("vipUpgradeProgress")}</p>
         <ChallengeProgress
           value={introduce?.vipLevel || 0}
           max={introduce?.targetVipLevel || 1}
@@ -157,14 +161,11 @@ const ChallengeStatusBox = () => {
         </p>
       </ShowIf>
       <Modal
-        title="Progress towards standards"
+        title={t("progressStatus")}
         open={towardsStandardsTipsOpen}
         onClose={() => setTowardsStandardsTipsOpen(false)}
       >
-        <p className="text-sm mt-2 text-center">
-          Only investment amounts for products with an investment period of 180
-          days or longer are displayed.
-        </p>
+        <p className="text-sm mt-2 text-center">{t("investmentNote")}</p>
       </Modal>
       <StatusModal />
     </div>
