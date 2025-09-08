@@ -60,10 +60,16 @@ const ChallengeStatusBox = () => {
     }
     setConfirmLoading(true);
     try {
-      const res: ApiResponse<unknown> = await api.post(
-        "/level-race/registration"
-      );
+      const res: ApiResponse<{
+        code: number;
+        message: string;
+      }> = await api.post("/level-race/registration");
       if (res.code === 200) {
+        if (res?.data?.code === 500) {
+          toast.error(res.data.message);
+          setConfirmLoading(false);
+          return;
+        }
         setConfirmLoading(false);
         toast.success(t("registrationSuccess"));
         push(routerMap.VIPChallengeRecord);
@@ -103,15 +109,21 @@ const ChallengeStatusBox = () => {
           >
             《 {t("programRules")} 》
           </a>
-          <div className="divider"></div>
-          <p
-            className="text-sm"
-            dangerouslySetInnerHTML={{
-              __html: t("currentLevelMessage", {
-                vip: `<span style="color:#6E2AFE;">VIP${introduce?.vipLevel}</span>`,
-              }),
-            }}
-          ></p>
+          <ShowIf
+            condition={introduce?.vipLevel !== 0 && introduce?.vipLevel !== 9}
+          >
+            <div className="divider"></div>
+            <p
+              className="text-sm"
+              dangerouslySetInnerHTML={{
+                __html: t("currentLevelMessage", {
+                  vip: `<span style="color:#6E2AFE;">VIP${
+                    introduce?.vipLevel || 0
+                  }</span>`,
+                }),
+              }}
+            ></p>
+          </ShowIf>
         </div>
       </ShowIf>
       <ShowIf condition={introduce?.orderStatus === 0}>

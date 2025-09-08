@@ -31,6 +31,7 @@ const VIPLevelUpChallengeView = () => {
           algin="center"
         />
       }
+      heightFull
     >
       <BaseImage
         src="/images/vip-challenge/banner.png"
@@ -48,7 +49,7 @@ const VIPLevelUpChallengeView = () => {
         <div className="divider"></div>
 
         <div>
-          <h3 className="font-bold leading-6 mb-4">{t("活动简介")}</h3>
+          <h3 className="font-bold leading-6 mb-4">{t("eventIntro")}</h3>
           <p className="text-sm leading-5">{t("eventMechanics")}</p>
         </div>
 
