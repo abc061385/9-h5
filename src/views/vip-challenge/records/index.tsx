@@ -8,6 +8,7 @@ import { ShowIf } from "@/components/show-if";
 import dayjs from "dayjs";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { cn } from "@/lib/utils";
+import { useTrans } from "@/hooks/useTrans";
 
 interface ListType {
   endTime: string;
@@ -20,6 +21,7 @@ interface ListType {
 }
 
 const VIPLevelUpChallengeRecordsView = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app/");
 
   const [list, setList] = useState<ListType[]>([]);
@@ -47,11 +49,15 @@ const VIPLevelUpChallengeRecordsView = () => {
     getList();
   }, [getList]);
 
-  const statusText = ["In Progress", "Successful", "Failed"];
+  const statusText = [
+    t("challengeInProgress"),
+    t("challengeSuccess"),
+    t("challengeFailed"),
+  ];
   const statusTextColor = ["text-text1", "text-rise", "text-fall"];
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Challenge Records" algin="center" />}
+      header={<HeaderWithBack title={t("competitionRecords")} algin="center" />}
     >
       <div className="p-content">
         <ShowIf
@@ -63,13 +69,17 @@ const VIPLevelUpChallengeRecordsView = () => {
               return (
                 <div className="bg-bg2 p-4 rounded-2xl mb-4" key={v.id}>
                   <div className="flex justify-between items-center mb-4">
-                    <b>Target level: VIP{v.targetVipLevel}</b>
+                    <b>
+                      {t("finalTargetLevel")}: VIP{v.targetVipLevel}
+                    </b>
                     <span className={cn(statusTextColor[v.status])}>
                       {statusText[v.status]}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-text3">Date:</span>
+                    <span className="text-text3">
+                      {t("transactionDetail.time")}:
+                    </span>
                     <span>
                       {dayjs(v.startTime).format("YYYY-MM-DD HH:mm")} ~{" "}
                       {dayjs(v.endTime).format("YYYY-MM-DD HH:mm")}
