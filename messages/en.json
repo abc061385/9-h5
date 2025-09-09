@@ -818,5 +818,6 @@
   "spot_frozen": "Frozen Funds (Spot)",
   "spot_frozen_tip": "The portion of your spot trade orders that are pending and not yet filled will be frozen by the system based on their USDT equivalent value. Once the order is executed or cancelled, the frozen amount will be automatically released.",
   "funds_frozen": "Frozen Funds (Fund)",
-  "funds_frozen_tip": "The frozen amount for your event participation, amount pending withdrawal, and the principal currently locked in fund products."
+  "funds_frozen_tip": "The frozen amount for your event participation, amount pending withdrawal, and the principal currently locked in fund products.",
+  "VIP报名赛奖金": "VIP Registration Race Bonus"
 }

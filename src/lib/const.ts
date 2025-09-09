@@ -36,6 +36,7 @@ export const typeMap: { [key: string]: string } = {
   USDM_USDT_FLASH_EXCHANGE_TRANSACTION_FEE: "闪兑手续费扣除",
   CLAIM_STATIC_EARNINGS: "领取静态收益",
   CLAIM_DYNAMIC_REWARDS: "领取动态收益",
+  VIP_RACE_REWARD: "VIP报名赛奖金",
 };
 
 export type GAPreviousPageType = "withdraw" | "";
