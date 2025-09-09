@@ -82,7 +82,7 @@
     "securitySettings": "Cài đặt bảo mật",
     "logout": "Đăng xuất",
     "confirmLogout": "Bạn có chắc chắn muốn đăng xuất không?",
-    "normalUser": "Người dùng thông thường",
+    "normalUser": "Thường",
     "takePhoto": "Chụp ảnh",
     "chooseFromAlbum": "Chọn từ Album",
     "cancel": "Hủy",
@@ -815,5 +815,6 @@
   "eventMechanics": "Người dùng có thể giành phần thưởng USDM tương đương USDT bằng cách hoàn thành việc thăng cấp VIP và mục tiêu staking đội trong thời gian quy định, với cơ hội nhận danh dự xe hạng sang!",
   "competitionRecords": "Hồ sơ thi đấu",
   "agreeToRules1": "Vui lòng đọc và đồng ý với Quy định Trung tâm Đào tạo/Chương trình Studio",
-  "registrationSuccess": "Đăng ký thành công"
+  "registrationSuccess": "Đăng ký thành công",
+  "download_and_share": "Tải xuống và chia sẻ"
 }
