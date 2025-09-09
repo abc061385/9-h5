@@ -758,5 +758,6 @@
   "eventMechanics": "ユーザーは指定時間内にVIPレベル昇格とチームステーキング目標を達成することで、等価USDTのUSDM報酬を獲得でき、高級車荣誉を得るチャンスもあります！",
   "competitionRecords": "参加記録",
   "agreeToRules1": "VIPレベルアップチャレンジ規則",
-  "registrationSuccess": "登録成功"
+  "registrationSuccess": "登録成功",
+  "VIP报名赛奖金": "VIP登録レース報酬"
 }
