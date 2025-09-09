@@ -30,7 +30,7 @@ const ProtocolView = () => {
     <ViewLayout
       header={
         <HeaderWithBack
-          title={t(detail?.title || "common.loading")}
+          title={detail?.title || t("common.loading")}
           algin="center"
         />
       }
