@@ -60,12 +60,12 @@ const CertificateView = () => {
       <div className="size-full pb-6">
         <div className="relative" ref={ref}>
           <BaseImage src={currentImg as string} className="w-full h-[626px]" />
-          <div className="absolute right-[24px] top-[30px] z-10 text-white text-right w-[80px]">
+          <div className="absolute right-[24px] top-[30px] z-10 text-white text-right min-w-[80px]">
             <div className="text-sm">{t("my_level")}</div>
             <div className="text-2xl font-bold flex items-center justify-end">
               {(userInfo?.vipLevel || 0) > 0
                 ? `VIP${userInfo.vipLevel}`
-                : "Normal"}
+                : t("user.normalUser")}
               <StarIcon level={userInfo?.vipLevel || 0} star={userInfo.star} />
             </div>
           </div>
@@ -83,7 +83,9 @@ const CertificateView = () => {
               })}
               {starText}
             </div>
-            <div className="text-xl font-bold">{t("my_level_slogan")}</div>
+            <div className="text-xl font-bold text-center">
+              {t("my_level_slogan")}
+            </div>
           </div>
         </div>
         <div className="w-full p-6 bg-black">
