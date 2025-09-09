@@ -455,25 +455,24 @@ const StudioView = () => {
             <TextError>{errors?.receiveAddress?.message}</TextError>
           </fieldset>
         </form>
-        <div className="flex items-center text-xs text-text4 mt-8">
-          <label className="label">
+        <div className="pl-5 mt-4">
+          <label className="label ml-[-20px]">
             <input
               type="checkbox"
-              className="checkbox checkbox-neutral"
               checked={isAgreement}
               onChange={(e) => setIsAgreement(e.target.checked)}
+              className="checkbox checkbox-neutral size-4 mt-0.5"
             />
-
-            {t("agree_to_rules")}
+            <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
           </label>
-          <span
-            className="text-text1"
+          <a
+            className="text-text1 text-xs relative top-[-6px]"
             onClick={() => {
               push(`${routerMap.protocol}?type=9`);
             }}
           >
             《 {t("training_center_rules")} 》
-          </span>
+          </a>
         </div>
         <button
           className="btn btn-primary w-full mt-4"
@@ -492,6 +491,7 @@ const StudioView = () => {
           open={chainSelectOpen}
           onClose={() => setChainSelectOpen(false)}
           onConfirm={(chain) => {
+            console.log(chain);
             setValue("receiveNetwork", chain);
           }}
         />

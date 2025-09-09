@@ -19,7 +19,8 @@ const ChainSelectDrawer: FC<IChainSelectProps> = ({
 
   useEffect(() => {
     onConfirm?.(chainList[0]);
-  }, [onConfirm, chainList]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Drawer
