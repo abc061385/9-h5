@@ -815,5 +815,9 @@
   "eventMechanics": "Os usuários podem ganhar recompensas USDM equivalentes a USDT, completando o avanço do nível VIP e os objetivos de staking da equipe dentro do tempo especificado, com a chance de ganhar honras de carro de luxo!",
   "competitionRecords": "Registos de Competição",
   "registrationSuccess": "Registo Bem-sucedido",
-  "agreeToRules1": "Por favor leia e concorde com as Regras do Desafio de Subida de Nível"
+  "agreeToRules1": "Por favor leia e concorde com as Regras do Desafio de Subida de Nível",
+  "spot_frozen": "Dana yang Dibekukan (Spot)",
+  "spot_frozen_tip": "Bagian dari pesanan perdagangan spot Anda yang masih tertunda dan belum tereksekusi akan dibekukan berdasarkan nilai ekuivalen dalam USDT. Setelah pesanan selesai atau dibatalkan, dana yang dibekukan akan otomatis dilepas.",
+  "funds_frozen": "Dana yang Dibekukan (Dana)",
+  "funds_frozen_tip": "Jumlah yang dibekukan untuk partisipasi dalam kegiatan, jumlah yang sedang dalam proses penarikan, serta pokok dana yang sedang dibekukan."
 }

@@ -815,5 +815,9 @@
   "eventMechanics": "用户通过在规定时间内完成 VIP 等级晋升与团队质押目标，即可赢取等值 USDT 的 USDM奖励，更有机会获得豪车荣誉！",
   "competitionRecords": "参赛记录",
   "agreeToRules1": "请阅读并同意等级挑战规则",
-  "registrationSuccess": "报名成功"
+  "registrationSuccess": "报名成功",
+  "spot_frozen": "现货冻结金额",
+  "spot_frozen_tip": "指您在现货交易中挂单但未成交的部分，系统会按挂单对应的币种折算为USDT价值进行冻结。订单成交或取消后，该部分金额会自动解冻。",
+  "funds_frozen": "基金冻结金额",
+  "funds_frozen_tip": "您报名参加活动的冻结金额、提现处理中金额，以及基金处于冻结中的本金。"
 }

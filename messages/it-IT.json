@@ -813,5 +813,9 @@
   "eventMechanics": "Gli utenti possono vincere ricompense USDM equivalenti a USDT completando l'avanzamento del livello VIP e gli obiettivi di staking della squadra entro il tempo specificato, con la possibilità di guadagnare onori di auto di lusso!",
   "competitionRecords": "Registri di Gara",
   "agreeToRules1": "Si prega di leggere e accettare le Regole della Sfida di Avanzamento",
-  "registrationSuccess": "Registrazione Riuscita"
+  "registrationSuccess": "Registrazione Riuscita",
+  "spot_frozen": "Fondi Congelati (Spot)",
+  "spot_frozen_tip": "La parte degli ordini spot che hai inserito ma non ancora eseguiti verrà congelata dal sistema in base al loro valore equivalente in USDT. Una volta che l’ordine viene eseguito o annullato, l’importo congelato verrà sbloccato automaticamente.",
+  "funds_frozen": "Fondi Congelati (Fondo)",
+  "funds_frozen_tip": "L’importo congelato per la partecipazione all’attività, l’importo in fase di prelievo e il capitale bloccato nei prodotti del fondo."
 }

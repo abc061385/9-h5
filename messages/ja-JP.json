@@ -815,5 +815,9 @@
   "eventMechanics": "ユーザーは指定時間内にVIPレベル昇格とチームステーキング目標を達成することで、等価USDTのUSDM報酬を獲得でき、高級車荣誉を得るチャンスもあります！",
   "competitionRecords": "参加記録",
   "agreeToRules1": "VIPレベルアップチャレンジ規則",
-  "registrationSuccess": "登録成功"
+  "registrationSuccess": "登録成功",
+  "spot_frozen": "凍結資金（スポット取引）",
+  "spot_frozen_tip": "現物取引で未約定の注文部分は、システムによってその通貨をUSDTに換算した金額として凍結されます。注文が約定またはキャンセルされると、自動的に解除されます。",
+  "funds_frozen": "凍結資金（ファンド）",
+  "funds_frozen_tip": "イベント参加によって凍結された金額、出金処理中の金額、およびファンド内で凍結中の元本です。"
 }

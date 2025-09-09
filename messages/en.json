@@ -814,5 +814,9 @@
   "eventMechanics": "Users can win USDM rewards equivalent to USDT by completing VIP level advancement and team staking targets within specified time, with the chance to earn luxury car honors!",
   "competitionRecords": "Competition Records",
   "agreeToRules1": "Please read and agree to the Level Up Challenge Rules",
-  "registrationSuccess": "Registration Successful"
+  "registrationSuccess": "Registration Successful",
+  "spot_frozen": "Frozen Funds (Spot)",
+  "spot_frozen_tip": "The portion of your spot trade orders that are pending and not yet filled will be frozen by the system based on their USDT equivalent value. Once the order is executed or cancelled, the frozen amount will be automatically released.",
+  "funds_frozen": "Frozen Funds (Fund)",
+  "funds_frozen_tip": "The frozen amount for your event participation, amount pending withdrawal, and the principal currently locked in fund products."
 }
