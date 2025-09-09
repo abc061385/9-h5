@@ -743,7 +743,7 @@
   "callToAction": "지금 챌린지에 등록하고 전속 승급 인센티브 활성화!",
   "usdmOpportunity": "USDM 부메인 라인把握, 실력으로 당신의尊貴한 자리 획득!",
   "register": "등록",
-  "programRules": "교육 센터/스튜디오 계획 규칙",
+  "programRules": "VIP 레벨업 챌린지 규칙",
   "currentLevelMessage": "현재 레벨은 {vip}이므로 {vip} 해당 활동만 등록 가능",
   "challengeDeadline": "지정된 시간 내에 경기를 완료해 주세요",
   "progressStatus": "달성 진행률",
@@ -757,6 +757,6 @@
   "eventDescription": "「VIP 승급 챌린지」는 전체 9M AI 사용자에게 개방된 장기 챌린지激励 메커니즘입니다.",
   "eventMechanics": "사용자는 지정 시간 내 VIP 레벨 승급 및 팀 스테이킹 목표 완료 통해 등가 USDT의 USDM 보상 획득 가능, 고급차 영예 획득 기회도 있습니다!",
   "competitionRecords": "참가 기록",
-  "agreeToRules": "교육 센터/스튜디오 프로그램 규칙을 읽고 동의해 주세요",
+  "agreeToRules": "레벨업 챌린지 규칙을 읽고 동의해 주세요",
   "registrationSuccess": "등록 성공"
 }

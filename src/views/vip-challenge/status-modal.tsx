@@ -3,6 +3,7 @@ import { Modal } from "@/components/modal";
 import { Icon } from "@/components/icon";
 import { IconName } from "@/types/icons";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { useTrans } from "@/hooks/useTrans";
 
 interface ResultType {
   orderId: number;
@@ -12,6 +13,7 @@ interface ResultType {
 }
 
 const StatusModal = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app/");
 
   const [statusModalOpen, setStatusModalOpen] = useState(false);
@@ -59,7 +61,7 @@ const StatusModal = () => {
           className="btn btn-neutral w-50"
           onClick={() => setStatusModalOpen(false)}
         >
-          Confirm
+          {t("common.confirm")}
         </button>
       </div>
     </Modal>

@@ -743,7 +743,7 @@
   "callToAction": "Daftar untuk cabaran sekarang, aktifkan insentif kenaikan pangkat eksklusif!",
   "usdmOpportunity": "Rai peluang kekayaan USDM, dengan kekuatan menang席位的尊贵 anda!",
   "register": "Daftar",
-  "programRules": "Peraturan Program Pusat Latihan/Studio",
+  "programRules": "Peraturan Cabaran Naik Taraf VIP",
   "currentLevelMessage": "Peringkat semasa anda ialah {vip}, jadi anda hanya boleh mendaftar untuk aktiviti yang sepadan dengan {vip}",
   "challengeDeadline": "Sila selesaikan pertandingan dalam masa yang ditetapkan",
   "progressStatus": "Kemajuan Pencapaian",
@@ -757,6 +757,6 @@
   "eventDescription": "「Cabaran Kenaikan Pangkat VIP」 adalah mekanisme insentif cabaran长期 yang terbuka kepada semua pengguna 9M AI.",
   "eventMechanics": "Pengguna boleh memenangi hadiah USDM setara dengan USDT dengan menyelesaikan kenaikan peringkat VIP dan sasaran staking pasukan dalam masa yang ditetapkan, dengan peluang untuk獲得荣誉 kereta mewah!",
   "competitionRecords": "Rekod Penyertaan",
-  "agreeToRules": "Sila baca dan setuju dengan Peraturan Pusat Latihan/Program Studio",
+  "agreeToRules": "Sila baca dan setuju dengan Peraturan Cabaran Naik Taraf",
   "registrationSuccess": "Pendaftaran Berjaya"
 }

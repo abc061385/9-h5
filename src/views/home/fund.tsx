@@ -49,7 +49,11 @@ const FundBox = () => {
       path: routerMap.invite,
     },
     { label: t("home.ranking"), icon: "ranking" },
-    { label: t("home.challenge"), icon: "challenge" },
+    {
+      label: t("home.challenge"),
+      icon: "challenge",
+      path: routerMap.VIPChallenge,
+    },
   ];
 
   return (
@@ -94,7 +98,7 @@ const FundBox = () => {
             className="bg-bg2 rounded-2xl p-4"
             onClick={() =>
               push(
-                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`,
+                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
               )
             }
           >

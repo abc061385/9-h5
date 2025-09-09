@@ -4,13 +4,37 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import ChallengeRewardRules from "./rules";
-import ChallengeStatusBox from "./status";
+import ChallengeStatusBox, { IntroduceType } from "./status";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useTrans } from "@/hooks/useTrans";
+import { useCallback, useEffect, useState } from "react";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 
 const VIPLevelUpChallengeView = () => {
+  const api = createAxiosInstance("/app/");
   const t = useTrans();
   const { push } = useRouter();
+
+  const [introduce, setIntroduce] = useState<IntroduceType>();
+
+  const getIntroduce = useCallback(async () => {
+    try {
+      const res: ApiResponse<IntroduceType> = await api.get(
+        "/level-race/introduce"
+      );
+      if (res.code === 200) {
+        setIntroduce(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getIntroduce();
+  }, [getIntroduce]);
 
   return (
     <ViewLayout
@@ -22,7 +46,7 @@ const VIPLevelUpChallengeView = () => {
               {t("vipChallengeTitle")}
               <span
                 onClick={() => push(routerMap.VIPChallengeRecord)}
-                className="absolute right-[-24px] font-medium text-base text-primary"
+                className="absolute right-[-28px] font-medium text-base text-primary"
               >
                 {t("records")}
               </span>
@@ -50,7 +74,9 @@ const VIPLevelUpChallengeView = () => {
 
         <div>
           <h3 className="font-bold leading-6 mb-4">{t("eventIntro")}</h3>
-          <p className="text-sm leading-5">{t("eventMechanics")}</p>
+          <p className="text-sm leading-5">
+            {introduce?.raceIntroduce || t("eventMechanics")}
+          </p>
         </div>
 
         <div className="divider"></div>
