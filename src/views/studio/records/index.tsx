@@ -69,7 +69,9 @@ const StudioRecordsView = () => {
                       {v.siteType === 1 ? "Training Hub" : "Training Center"}
                     </div>
                     <div className="flex items-center justify-between text-sm mb-2">
-                      <span className="text-text3">Date:</span>
+                      <span className="text-text3">
+                        {t("transactionDetail.time")}:
+                      </span>
                       <span>
                         {dayjs(v.createTime)
                           .utc()
@@ -78,7 +80,9 @@ const StudioRecordsView = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-text3">Number of participants</span>
+                      <span className="text-text3">
+                        {t("number_of_participants")}
+                      </span>
                       <span>{v.participantNumber}</span>
                     </div>
                   </div>
