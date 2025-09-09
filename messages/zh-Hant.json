@@ -716,5 +716,9 @@
   "my_highest_level": "我的最高等級：{vip}",
   "my_highest_level_star": "（{star}星）",
   "my_level_slogan": "加入我們，一起贏！",
-  "download_and_share": "下載並分享"
+  "download_and_share": "下載並分享",
+  "spot_frozen": "凍結資金（現貨）",
+  "spot_frozen_tip": "指您在現貨交易中掛單但未成交的部分，系統會依掛單對應的幣種折算為 USDT 價值進行凍結。當訂單成交或取消後，該部分金額將自動解凍。",
+  "funds_frozen": "凍結資金（基金）",
+  "funds_frozen_tip": "您報名參加活動的凍結金額、提現處理中的金額，以及基金處於凍結中的本金。"
 }

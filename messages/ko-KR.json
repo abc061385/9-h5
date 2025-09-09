@@ -716,5 +716,9 @@
   "my_highest_level": "내 최고 레벨: {vip}",
   "my_highest_level_star": "({star}개 별)",
   "my_level_slogan": "함께 참여하고 승리하세요!",
-  "download_and_share": "다운로드 및 공유"
+  "download_and_share": "다운로드 및 공유",
+  "spot_frozen": "동결 자금 (현물)",
+  "spot_frozen_tip": "현물 거래에서 체결되지 않은 주문 금액은 해당 코인의 USDT 환산 가치 기준으로 시스템에 의해 동결됩니다. 주문이 체결되거나 취소되면 해당 금액은 자동으로 해제됩니다.",
+  "funds_frozen": "동결 자금 (펀드)",
+  "funds_frozen_tip": "활동 참여를 위한 동결 금액, 출금 처리 중인 금액, 그리고 펀드 상품에 잠겨 있는 원금입니다."
 }

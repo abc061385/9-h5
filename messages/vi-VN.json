@@ -716,5 +716,9 @@
   "my_highest_level": "Cấp độ cao nhất của tôi: {vip}",
   "my_highest_level_star": "({star} Sao)",
   "my_level_slogan": "Tham gia cùng chúng tôi và cùng chiến thắng!",
-  "download_and_share": "Tải xuống và chia sẻ"
+  "download_and_share": "Tải xuống và chia sẻ",
+  "spot_frozen": "Quỹ bị đóng băng (Giao ngay)",
+  "spot_frozen_tip": "Phần lệnh giao dịch giao ngay chưa được khớp sẽ bị hệ thống đóng băng theo giá trị quy đổi sang USDT. Khi lệnh được thực hiện hoặc hủy bỏ, số tiền bị đóng băng sẽ được giải phóng tự động.",
+  "funds_frozen": "Quỹ bị đóng băng (Quỹ)",
+  "funds_frozen_tip": "Số tiền bị đóng băng khi đăng ký tham gia sự kiện, số tiền đang xử lý rút, và số vốn gốc đang bị khóa trong quỹ."
 }

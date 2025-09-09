@@ -716,5 +716,9 @@
   "my_highest_level": "Meu nível máximo: {vip}",
   "my_highest_level_star": "({star} Estrelas)",
   "my_level_slogan": "Junte-se a nós e vença juntos!",
-  "download_and_share": "Descarregar e partilhar"
+  "download_and_share": "Descarregar e partilhar",
+  "spot_frozen": "Dana yang Dibekukan (Spot)",
+  "spot_frozen_tip": "Bagian dari pesanan perdagangan spot Anda yang masih tertunda dan belum tereksekusi akan dibekukan berdasarkan nilai ekuivalen dalam USDT. Setelah pesanan selesai atau dibatalkan, dana yang dibekukan akan otomatis dilepas.",
+  "funds_frozen": "Dana yang Dibekukan (Dana)",
+  "funds_frozen_tip": "Jumlah yang dibekukan untuk partisipasi dalam kegiatan, jumlah yang sedang dalam proses penarikan, serta pokok dana yang sedang dibekukan."
 }

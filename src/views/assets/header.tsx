@@ -6,7 +6,7 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { formatBalance } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAssetStore } from "@/store/useAssetStore";
 import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
@@ -43,8 +43,11 @@ const HeaderBox = () => {
   const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
 
   const { data } = useRequestQuery(api.wallet.listUsingPost, {});
-  const totalAmount = data?.data.total;
   const { trigger } = useRequestMutation(api.wallet.getTotalInvestmentUsingGet);
+
+  const [totalAmount, frozenTotal] = useMemo(() => {
+    return [data?.data?.total ?? 0, data?.data?.frozenTotal ?? 0];
+  }, [data?.data]);
 
   useEffect(() => {
     trigger(
@@ -98,9 +101,9 @@ const HeaderBox = () => {
     },
   ];
 
-  const handleTip = () => {
-    toast(t("老数据总资产"));
-  };
+  // const handleTip = () => {
+  //   toast(t("老数据总资产"));
+  // };
   return (
     <div className="">
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
@@ -108,23 +111,33 @@ const HeaderBox = () => {
       <h4 className="text-[28px] font-bold leading-8">
         ${formatBalance(totalAmount, 2)}
       </h4>
-      {totalInvestment?.frozenUbx ? (
-        <div className="text-text4 text-sm mt-2">
-          <div className="flex items-center">
-            <span className="text-xs">{t("冻结金额")}</span>：
-            <span>
-              {formatBalance(totalInvestment?.frozenUbx || 0, 2)} USDT
-            </span>
-            <Icon name="warning-black" onClick={handleTip} />
-          </div>
-        </div>
-      ) : null}
+      {/* {totalInvestment?.frozenUbx ? ( */}
+      {/*   <div className="text-text4 text-sm mt-2"> */}
+      {/*     <div className="flex items-center"> */}
+      {/*       <span className="text-xs">{t("冻结金额")}</span>： */}
+      {/*       <span> */}
+      {/*         {formatBalance(totalInvestment?.frozenUbx || 0, 2)} USDT */}
+      {/*       </span> */}
+      {/*       <Icon name="warning-black" onClick={handleTip} /> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/* ) : null} */}
       <div className="text-text4 text-sm mt-2">
         <span className="mb-2 text-xs">{t("投资总额")}</span>：
         <span>
           {formatBalance(totalInvestment?.personalFundInvestment || 0, 2)} USDT
         </span>
       </div>
+      {frozenTotal ? (
+        <div className="text-text4 text-sm flex items-center">
+          <span className="text-xs">{t("funds_frozen")}</span>：
+          <span>{formatBalance(frozenTotal, 2)} USDT</span>
+          <Icon
+            name="warning-black"
+            onClick={() => toast(t("funds_frozen_tip"))}
+          />
+        </div>
+      ) : null}
       <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
         {cardList.map((item, index) => (
           <div
