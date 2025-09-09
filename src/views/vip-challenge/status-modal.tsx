@@ -3,6 +3,7 @@ import { Modal } from "@/components/modal";
 import { Icon } from "@/components/icon";
 import { IconName } from "@/types/icons";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { useTrans } from "@/hooks/useTrans";
 
 interface ResultType {
   orderId: number;
@@ -12,6 +13,7 @@ interface ResultType {
 }
 
 const StatusModal = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app/");
 
   const [statusModalOpen, setStatusModalOpen] = useState(false);
@@ -34,6 +36,24 @@ const StatusModal = () => {
     getResults();
   }, [getResults]);
 
+  const checkStatus = useCallback(async () => {
+    const res: ApiResponse<{ status: number }> = await api.post(
+      "/level-race/set-read",
+      {
+        orderId: challengeResults?.orderId,
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    if (res.code === 200) {
+      setStatusModalOpen(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [challengeResults]);
+
   const content: {
     icon: IconName;
   }[] = [
@@ -44,7 +64,7 @@ const StatusModal = () => {
   return (
     <Modal
       open={statusModalOpen}
-      onClose={() => setStatusModalOpen(false)}
+      onClose={() => {}}
       title={challengeResults?.resultTitle}
       close={false}
       wrapClassName="bg-gradient-to-t form-[rgba(255,247,254,0)] to-[rgba(227,205,255,1)]"
@@ -57,9 +77,11 @@ const StatusModal = () => {
         <p className="text-center leading-5">{challengeResults?.resultStr}</p>
         <button
           className="btn btn-neutral w-50"
-          onClick={() => setStatusModalOpen(false)}
+          onClick={() => {
+            checkStatus();
+          }}
         >
-          Confirm
+          {t("common.confirm")}
         </button>
       </div>
     </Modal>

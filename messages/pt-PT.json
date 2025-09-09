@@ -800,7 +800,7 @@
   "callToAction": "Registe-se para o desafio agora, ative incentivos exclusivos de avanço!",
   "usdmOpportunity": "Aproveite a oportunidade de riqueza USDM, com força ganhe seu assento prestigioso!",
   "register": "Registrar",
-  "programRules": "Regras do Programa do Centro de Treinamento/Estúdio",
+  "programRules": "Regras do Desafio de Subida de Nível VIP",
   "currentLevelMessage": "Seu nível atual é {vip}, então você só pode se registrar para atividades correspondentes a {vip}",
   "challengeDeadline": "Por favor, complete a competição dentro do tempo especificado",
   "progressStatus": "Progresso de Qualificação",
@@ -814,7 +814,6 @@
   "eventDescription": "O 'Desafio de Avanço VIP' é um mecanismo de incentivo de desafio长期 aberto a todos os usuários 9M AI.",
   "eventMechanics": "Os usuários podem ganhar recompensas USDM equivalentes a USDT, completando o avanço do nível VIP e os objetivos de staking da equipe dentro do tempo especificado, com a chance de ganhar honras de carro de luxo!",
   "competitionRecords": "Registos de Competição",
-  "agreeToRules1": "Por favor leia e concorde com as Regras do Centro de Formação/Programa de Estúdio",
   "registrationSuccess": "Registo Bem-sucedido",
-  "download_and_share": "Descarregar e partilhar"
+  "agreeToRules1": "Por favor leia e concorde com as Regras do Desafio de Subida de Nível"
 }

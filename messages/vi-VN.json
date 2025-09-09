@@ -800,7 +800,7 @@
   "callToAction": "Đăng ký thử thách ngay bây giờ, kích hoạt ưu đãi thăng tiến độc quyền!",
   "usdmOpportunity": "Nắm bắt cơ hội giàu có USDM, dùng thực lực để giành lấy vị trí danh giá của bạn!",
   "register": "Đăng Ký",
-  "programRules": "Quy Tắc Chương Trình Trung Tâm Đào Tạo/Xưởng",
+  "programRules": "Quy Tắc Thử Thách Nâng Cấp VIP",
   "currentLevelMessage": "Cấp độ hiện tại của bạn là {vip}, vì vậy bạn chỉ có thể đăng ký các hoạt động tương ứng với {vip}",
   "challengeDeadline": "Vui lòng hoàn thành cuộc thi trong thời gian quy định",
   "progressStatus": "Tiến Độ Đạt Chuẩn",
@@ -814,7 +814,6 @@
   "eventDescription": "「Thử Thách Thăng Hạng VIP」 là cơ chế khuyến khích thử thách dài hạn mở cho tất cả người dùng 9M AI.",
   "eventMechanics": "Người dùng có thể giành phần thưởng USDM tương đương USDT bằng cách hoàn thành việc thăng cấp VIP và mục tiêu staking đội trong thời gian quy định, với cơ hội nhận danh dự xe hạng sang!",
   "competitionRecords": "Hồ sơ thi đấu",
-  "agreeToRules1": "Vui lòng đọc và đồng ý với Quy định Trung tâm Đào tạo/Chương trình Studio",
   "registrationSuccess": "Đăng ký thành công",
-  "download_and_share": "Tải xuống và chia sẻ"
+  "agreeToRules1": "Vui lòng đọc và đồng ý với Quy Tắc Thử Thách Nâng Cấp"
 }

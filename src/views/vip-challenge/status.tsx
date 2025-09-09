@@ -10,8 +10,9 @@ import { formatBalance } from "@/lib/utils";
 import dayjs from "dayjs";
 import toast from "react-hot-toast";
 import { useTrans } from "@/hooks/useTrans";
+import { useUserStore } from "@/store/useUserStore";
 
-interface IntroduceType {
+export interface IntroduceType {
   orderId: number;
   orderStatus: 0 | 1 | 2;
   raceIntroduce?: string;
@@ -26,6 +27,8 @@ const ChallengeStatusBox = () => {
   const t = useTrans();
   const api = createAxiosInstance("/app/");
   const { push } = useRouter();
+
+  const { userInfo } = useUserStore();
 
   const [isAgreement, setIsAgreement] = useState(false);
   const [towardsStandardsTipsOpen, setTowardsStandardsTipsOpen] =
@@ -109,22 +112,22 @@ const ChallengeStatusBox = () => {
           >
             《 {t("programRules")} 》
           </a>
-          <ShowIf
-            condition={introduce?.vipLevel !== 0 && introduce?.vipLevel !== 9}
-          >
-            <div className="divider"></div>
-            <p
-              className="text-sm"
-              dangerouslySetInnerHTML={{
-                __html: t("currentLevelMessage", {
-                  vip: `<span style="color:#6E2AFE;">VIP${
-                    introduce?.vipLevel || 0
-                  }</span>`,
-                }),
-              }}
-            ></p>
-          </ShowIf>
         </div>
+        <ShowIf
+          condition={userInfo?.vipLevel !== 0 && userInfo?.vipLevel !== 9}
+        >
+          <div className="divider"></div>
+          <p
+            className="text-sm"
+            dangerouslySetInnerHTML={{
+              __html: t("currentLevelMessage", {
+                vip: `<span style="color:#6E2AFE;">VIP${
+                  introduce?.vipLevel || 0
+                }</span>`,
+              }),
+            }}
+          ></p>
+        </ShowIf>
       </ShowIf>
       <ShowIf condition={introduce?.orderStatus === 0}>
         <button className="btn btn-outline w-full mb-4">

@@ -800,7 +800,7 @@
   "callToAction": "今すぐチャレンジに登録し、専用昇格インセンティブを活性化！",
   "usdmOpportunity": "USDM富の主線を把握し、実力で尊貴な席を勝ち取れ！",
   "register": "登録",
-  "programRules": "トレーニングセンター/スタジオ計画規則",
+  "programRules": "VIPレベルアップチャレンジ規則",
   "currentLevelMessage": "現在のレベルは{vip}ですので、{vip}対応の活動のみ登録可能",
   "challengeDeadline": "指定時間内に試合を完了してください",
   "progressStatus": "達成進捗",
@@ -814,6 +814,6 @@
   "eventDescription": "「VIP昇格チャレンジ」は全ての9M AIユーザーに開放された長期チャレンジ激励メカニズムです。",
   "eventMechanics": "ユーザーは指定時間内にVIPレベル昇格とチームステーキング目標を達成することで、等価USDTのUSDM報酬を獲得でき、高級車荣誉を得るチャンスもあります！",
   "competitionRecords": "参加記録",
-  "agreeToRules1": "トレーニングセンター/スタジオプログラム規則をお読みになり同意してください",
+  "agreeToRules1": "VIPレベルアップチャレンジ規則",
   "registrationSuccess": "登録成功"
 }

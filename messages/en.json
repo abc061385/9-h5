@@ -799,7 +799,7 @@
   "callToAction": "Register for the challenge now, activate exclusive advancement incentives!",
   "usdmOpportunity": "Seize the USDM wealth opportunity, win your prestigious seat with strength!",
   "register": "Register",
-  "programRules": "Training Center/Studio Program Rules",
+  "programRules": "VIP Level Up Challenge Rules",
   "currentLevelMessage": "Your current level is VIP {vip}, so you can only register for activities corresponding to VIP {vip}",
   "challengeDeadline": "Please complete the competition within the specified time",
   "progressStatus": "Qualification Progress",
@@ -813,7 +813,6 @@
   "eventDescription": "The 'VIP Advancement Challenge' is a long-term challenge incentive mechanism open to all 9M AI users.",
   "eventMechanics": "Users can win USDM rewards equivalent to USDT by completing VIP level advancement and team staking targets within specified time, with the chance to earn luxury car honors!",
   "competitionRecords": "Competition Records",
-  "agreeToRules1": "Please read and agree to the Training Center/Studio Program Rules",
-  "registrationSuccess": "Registration Successful",
-  "download_and_share": "Download and share"
+  "agreeToRules1": "Please read and agree to the Level Up Challenge Rules",
+  "registrationSuccess": "Registration Successful"
 }

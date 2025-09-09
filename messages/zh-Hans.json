@@ -800,7 +800,7 @@
   "callToAction": "立即报名挑战，激活专属晋升激励！",
   "usdmOpportunity": "把握USDM财富主线，用实力赢下你的尊贵席位！",
   "register": "报名",
-  "programRules": "培训中心/工作室计划规则",
+  "programRules": "VIP等级挑战规则",
   "currentLevelMessage": "您当前的等级是{vip}，所以只能报名参加{vip}对应的活动",
   "challengeDeadline": "请在规定时间内完成挑战",
   "progressStatus": "达标进度",
@@ -814,6 +814,6 @@
   "eventDescription": "「VIP晋级挑战赛」是为全体 9M AI 用户开放的长期挑战激励机制。",
   "eventMechanics": "用户通过在规定时间内完成 VIP 等级晋升与团队质押目标，即可赢取等值 USDT 的 USDM奖励，更有机会获得豪车荣誉！",
   "competitionRecords": "参赛记录",
-  "agreeToRules1": "请阅读并同意培训中心/工作室计划规则",
+  "agreeToRules1": "请阅读并同意等级挑战规则",
   "registrationSuccess": "报名成功"
 }
