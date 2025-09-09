@@ -58,7 +58,7 @@ const ChallengeStatusBox = () => {
 
   const signUp = useCallback(async () => {
     if (!isAgreement) {
-      toast.error(t("agreeToRules"));
+      toast.error(t("agreeToRules1"));
       return;
     }
     setConfirmLoading(true);
