@@ -31,8 +31,8 @@ export const useStudioStore = create<StudioState>()(
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
         ],
         formVideoFileList: [
-          { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-          { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+          { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
+          { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
         ],
         setField: (key, value) => set({ [key]: value }),
       };

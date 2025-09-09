@@ -51,7 +51,7 @@ const StudioView = () => {
   } = useStudioStore();
 
   const t = useTrans();
-  const { push } = useRouter();
+  const { push, back } = useRouter();
   const reg = useRootReg();
 
   const [needLecturer, setNeedLecturer] = useState("NO");
@@ -127,13 +127,6 @@ const StudioView = () => {
   });
 
   useEffect(() => {
-    return () => {
-      const values = getValues();
-      setField("formData", values);
-    };
-  }, [getValues, setField]);
-
-  useEffect(() => {
     reset(formData);
   }, [formData, reset]);
 
@@ -143,7 +136,6 @@ const StudioView = () => {
     setSiteTypeValue(formSiteType);
     setImageFileList((prev) =>
       prev.map((file, index) => {
-        console.log(formImageFileList[index] || file);
         return formImageFileList[index] || file;
       })
     );
@@ -190,6 +182,7 @@ const StudioView = () => {
         if (res.code === 200) {
           setSubmitLoading(false);
           toast.success(t("submitSuccess"));
+          handleReset();
           push(routerMap.studioRecords);
         }
       } catch (error) {
@@ -235,7 +228,7 @@ const StudioView = () => {
                   fileName: d.fileName,
                   fileUrl: d.originalUrl,
                   thumbnailUrl: "",
-                  fileType: 2,
+                  fileType: 1,
                 };
                 setField("formImageFileList", formImageFileList);
               }
@@ -303,6 +296,22 @@ const StudioView = () => {
     { label: t("no"), value: "NO" },
   ];
 
+  const handleReset = () => {
+    reset();
+    setField("formData", {});
+    setField("formImageFileList", [
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    ]);
+    setField("formVideoFileList", [
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
+    ]);
+    setField("formNeedLecturer", "NO");
+    setField("formIsAgreement", false);
+    setField("formSiteType", "");
+  };
+
   return (
     <ViewLayout
       header={
@@ -312,7 +321,11 @@ const StudioView = () => {
               <span></span>
               {t("studio_application")}
               <span
-                onClick={() => push(routerMap.studioRecords)}
+                onClick={() => {
+                  const values = getValues();
+                  setField("formData", values);
+                  push(routerMap.studioRecords);
+                }}
                 className="absolute right-[-24px] font-medium text-base text-primary"
               >
                 {t("records")}
@@ -320,6 +333,10 @@ const StudioView = () => {
             </div>
           }
           algin="center"
+          onClick={() => {
+            handleReset();
+            back();
+          }}
         />
       }
       className="h-max mt-2"
@@ -564,6 +581,8 @@ const StudioView = () => {
           <a
             className="text-text1 text-xs relative top-[-6px]"
             onClick={() => {
+              const values = getValues();
+              setField("formData", values);
               push(`${routerMap.protocol}?type=9`);
             }}
           >
