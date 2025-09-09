@@ -172,6 +172,7 @@ const StudioView = () => {
                 };
               }
             }}
+            className="bg-bg3 rounded-lg"
           >
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
@@ -201,6 +202,7 @@ const StudioView = () => {
                 };
               }
             }}
+            className="bg-bg3 rounded-lg"
           >
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">

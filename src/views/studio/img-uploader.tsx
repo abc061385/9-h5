@@ -3,6 +3,7 @@ import React, { PropsWithChildren, useState } from "react";
 import { cn } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { ImageMetadata } from "./type";
+import { ShowIf } from "@/components/show-if";
 
 interface ImageUploaderProps {
   onUploadSuccess?: (imgMeta: ImageMetadata) => void;
@@ -25,12 +26,11 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   children,
 }) => {
   const [preview, setPreview] = useState<string | null>(defaultUrl);
-  // const [isUploading, setIsUploading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setPreview(URL.createObjectURL(file));
       handleUpload(file);
     }
   };
@@ -38,7 +38,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   const handleUpload = async (image: File) => {
     if (!image) return;
 
-    // setIsUploading(true);
+    setIsUploading(true);
     const formData = new FormData();
     formData.append("file", image);
 
@@ -50,14 +50,17 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
         { file: image }
       );
       if (response.code === 200 && onUploadSuccess) {
+        setIsUploading(false);
+        setPreview(URL.createObjectURL(image));
         onUploadSuccess(response.data as unknown as ImageMetadata);
       }
     } catch {
       if (onUploadError) {
+        setIsUploading(false);
         onUploadError("上傳失敗，請稍後再試。");
       }
     } finally {
-      // setIsUploading(false);
+      setIsUploading(false);
     }
   };
 
@@ -75,15 +78,20 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
       );
   return (
     <div className={`size-full ${className}`}>
-      <label className="size-full inline-block">
-        <input
-          type="file"
-          className="hidden"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        {renderPreview || children}
-      </label>
+      <ShowIf
+        condition={!isUploading}
+        elseEl={<span className="loading flex mx-auto pt-50 loading-xl"></span>}
+      >
+        <label className="size-full inline-block">
+          <input
+            type="file"
+            className="hidden"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          {renderPreview || children}
+        </label>
+      </ShowIf>
     </div>
   );
 };
