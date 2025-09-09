@@ -1,5 +1,5 @@
 import { api } from "@/api";
-import React, { PropsWithChildren, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ImageMetadata } from "./type";
 import { ShowIf } from "@/components/show-if";
@@ -26,6 +26,12 @@ const VideoUploader: React.FC<PropsWithChildren<VideoUploaderProps>> = ({
 }) => {
   const [preview, setPreview] = useState<string | null>(defaultUrl);
   const [isUploading, setIsUploading] = useState(false);
+
+  useEffect(() => {
+    if (defaultUrl) {
+      setPreview(defaultUrl);
+    }
+  }, [defaultUrl]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

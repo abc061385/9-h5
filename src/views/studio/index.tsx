@@ -23,6 +23,7 @@ import ImageUploader from "./img-uploader";
 import { ShowIf } from "@/components/show-if";
 import VideoUploader from "./video-uploader";
 import toast from "react-hot-toast";
+import { useStudioStore } from "@/store/useStudioStore";
 
 type FormData = {
   emailAccount: string;
@@ -39,6 +40,15 @@ type FormData = {
 
 const StudioView = () => {
   const api = createAxiosInstance("/app/");
+  const {
+    setField,
+    formData,
+    formImageFileList,
+    formVideoFileList,
+    formNeedLecturer,
+    formIsAgreement,
+    formSiteType,
+  } = useStudioStore();
 
   const t = useTrans();
   const { push } = useRouter();
@@ -50,9 +60,18 @@ const StudioView = () => {
   const [venueSelectOpen, setVenueSelectOpen] = useState(false);
   const [contactSelectOpen, setContactSelectOpen] = useState(false);
   const [countrySelectOpen, setCountrySelectOpen] = useState(false);
-  const [parNumber, setParNumber] = useState("");
 
   const [submitLoading, setSubmitLoading] = useState(false);
+
+  const [imageFileList, setImageFileList] = useState<FileType[]>([
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+  ]);
+
+  const [videoFileList, setVideoFileList] = useState<FileType[]>([
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+  ]);
 
   const [prefixId, setPrefixId] = useState<CountryListType>({
     code: "HK",
@@ -66,51 +85,85 @@ const StudioView = () => {
     value: "1",
   });
 
-  const imageFileList: FileType[] = useMemo(
-    () => [
-      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-    ],
-    []
-  );
-  const videoFileList: FileType[] = useMemo(
-    () => [
-      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-    ],
-    []
-  );
-
-  const Schema = z.object({
-    emailAccount: reg.email,
-    phoneNumber: reg.countryPhone,
-    address: reg.studioAddress,
-    contactInformation: reg.studioContactType,
-    operationPlan: reg.studioOperationPlan,
-    participantNumber: reg.studioParticipantNumber,
-    teachLanguage: z.any(),
-    receiveAddress: reg.studioReceiveAddress,
-    siteType: reg.studioSiteType,
-    receiveNetwork: z.string(),
-  });
+  const Schema = z
+    .object({
+      emailAccount: reg.email,
+      phoneNumber: reg.countryPhone,
+      address: reg.studioAddress,
+      contactInformation: reg.studioContactType,
+      operationPlan: reg.studioOperationPlan,
+      participantNumber: reg.studioParticipantNumber,
+      teachLanguage: z.any(),
+      receiveAddress: reg.studioReceiveAddress,
+      siteType: reg.studioSiteType,
+      receiveNetwork: z.string(),
+    })
+    .refine(
+      (data) => {
+        if (
+          Number(data.participantNumber || 0) >= 25 &&
+          needLecturer === "YES" &&
+          !Boolean(data.teachLanguage)
+        ) {
+          return false;
+        }
+        return true;
+      },
+      { message: t("enter_language_of_instruction"), path: ["teachLanguage"] }
+    );
 
   const {
     register,
     setValue,
     handleSubmit,
+    watch,
+    getValues,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(Schema),
     mode: "onChange",
     reValidateMode: "onChange",
   });
+
+  useEffect(() => {
+    return () => {
+      const values = getValues();
+      setField("formData", values);
+    };
+  }, [getValues, setField]);
+
+  useEffect(() => {
+    reset(formData);
+  }, [formData, reset]);
+
+  useEffect(() => {
+    setNeedLecturer(formNeedLecturer || "NO");
+    setIsAgreement(formIsAgreement);
+    setSiteTypeValue(formSiteType);
+    setImageFileList((prev) =>
+      prev.map((file, index) => {
+        console.log(formImageFileList[index] || file);
+        return formImageFileList[index] || file;
+      })
+    );
+    setVideoFileList((prev) =>
+      prev.map((file, index) => formVideoFileList[index] || file)
+    );
+  }, [
+    formImageFileList,
+    formVideoFileList,
+    formNeedLecturer,
+    formIsAgreement,
+    formSiteType,
+  ]);
+
   useEffect(() => {
     Bridge.setFull(true);
   }, []);
 
   const submit = useCallback(
     async (e: FormData) => {
-      console.log(imageFileList, videoFileList);
       try {
         if (!imageFileList[0].fileUrl || !imageFileList[1].fileUrl) {
           toast.error(t("uploadLeaseCertificate"));
@@ -158,18 +211,33 @@ const StudioView = () => {
 
   const imageUploadDom = useMemo(() => {
     return imageFileList.map((v, i) => {
+      console.log(v.fileUrl);
       return (
         <div key={i} className="h-50">
           <ImageUploader
+            defaultUrl={v.fileUrl}
             roundedFull
             onUploadSuccess={(d) => {
               if (d.originalUrl) {
-                imageFileList[i] = {
+                setImageFileList((prev) =>
+                  prev.map((file, index) =>
+                    i === index
+                      ? {
+                          fileName: d.fileName,
+                          fileUrl: d.originalUrl,
+                          thumbnailUrl: d.thumbnailUrl,
+                          fileType: 1,
+                        }
+                      : file
+                  )
+                );
+                formImageFileList[i] = {
                   fileName: d.fileName,
                   fileUrl: d.originalUrl,
-                  thumbnailUrl: d.thumbnailUrl,
-                  fileType: 1,
+                  thumbnailUrl: "",
+                  fileType: 2,
                 };
+                setField("formImageFileList", formImageFileList);
               }
             }}
             className="bg-bg3 rounded-lg"
@@ -184,22 +252,36 @@ const StudioView = () => {
         </div>
       );
     });
-  }, [imageFileList, t]);
+  }, [formImageFileList, imageFileList, setField, t]);
 
   const videoUploadDom = useMemo(() => {
     return videoFileList.map((v, i) => {
       return (
         <div key={i} className="h-50">
           <VideoUploader
+            defaultUrl={v.fileUrl}
             roundedFull
             onUploadSuccess={(d) => {
               if (d.originalUrl) {
-                videoFileList[i] = {
+                setVideoFileList((prev) =>
+                  prev.map((file, index) =>
+                    i === index
+                      ? {
+                          fileName: d.fileName,
+                          fileUrl: d.originalUrl,
+                          thumbnailUrl: "",
+                          fileType: 2,
+                        }
+                      : file
+                  )
+                );
+                formVideoFileList[i] = {
                   fileName: d.fileName,
                   fileUrl: d.originalUrl,
                   thumbnailUrl: "",
                   fileType: 2,
                 };
+                setField("formVideoFileList", formVideoFileList);
               }
             }}
             className="bg-bg3 rounded-lg"
@@ -214,7 +296,7 @@ const StudioView = () => {
         </div>
       );
     });
-  }, [videoFileList, t]);
+  }, [videoFileList, t, formVideoFileList, setField]);
 
   const needLecturerList = [
     { label: t("yes"), value: "YES" },
@@ -329,14 +411,16 @@ const StudioView = () => {
             <legend className="fieldset-legend font-medium text-sm py-3.5">
               {t("venue_type")}
             </legend>
-            <label className="input w-full h-12">
+            <label
+              className="input w-full h-12"
+              onClick={() => setVenueSelectOpen(true)}
+            >
               <input
                 type="text"
                 {...register("siteType")}
                 placeholder={t("select_venue_type")}
                 className="grow placeholder:text-sm"
                 readOnly
-                onClick={() => setVenueSelectOpen(true)}
               />
               <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
@@ -376,13 +460,11 @@ const StudioView = () => {
                 {...register("participantNumber")}
                 placeholder={t("enter_participants_number")}
                 className="grow placeholder:text-sm"
-                onChange={(e) => setParNumber(e.target.value)}
               />
             </label>
             <TextError>{errors?.participantNumber?.message}</TextError>
           </fieldset>
-
-          <ShowIf condition={Number(parNumber || 0) >= 25}>
+          <ShowIf condition={Number(watch().participantNumber || 0) >= 25}>
             <div className="flex items-center justify-between mt-4 mb-2">
               <h4 className="font-medium text-sm">{t("need_lecturer")}</h4>
               <div className="flex items-center gap-6">
@@ -391,7 +473,11 @@ const StudioView = () => {
                     <div
                       key={v.value}
                       className="flex gap-2"
-                      onClick={() => setNeedLecturer(v.value)}
+                      onClick={() => {
+                        setNeedLecturer(v.value);
+                        setField("formNeedLecturer", v.value);
+                        setValue("teachLanguage", "", { shouldValidate: true });
+                      }}
                     >
                       <div
                         className={cn(
@@ -418,7 +504,12 @@ const StudioView = () => {
                 <label className="input w-full h-12">
                   <input
                     type="text"
-                    {...register("teachLanguage")}
+                    {...register("teachLanguage", {
+                      required:
+                        needLecturer === "YES"
+                          ? t("enter_language_of_instruction")
+                          : false,
+                    })}
                     placeholder={t("enter_language_of_instruction")}
                     className="grow placeholder:text-sm"
                   />
@@ -462,7 +553,10 @@ const StudioView = () => {
             <input
               type="checkbox"
               checked={isAgreement}
-              onChange={(e) => setIsAgreement(e.target.checked)}
+              onChange={(e) => {
+                setIsAgreement(e.target.checked);
+                setField("formIsAgreement", e.target.checked);
+              }}
               className="checkbox checkbox-neutral size-4 mt-0.5"
             />
             <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
@@ -493,7 +587,6 @@ const StudioView = () => {
           open={chainSelectOpen}
           onClose={() => setChainSelectOpen(false)}
           onConfirm={(chain) => {
-            console.log(chain);
             setValue("receiveNetwork", chain);
           }}
         />
@@ -501,8 +594,9 @@ const StudioView = () => {
           open={venueSelectOpen}
           onClose={() => setVenueSelectOpen(false)}
           onConfirm={(e) => {
-            setValue("siteType", e.label);
+            setValue("siteType", e.label, { shouldValidate: true });
             setSiteTypeValue(e.value);
+            setField("formSiteType", e.value);
           }}
         />
         <ContactSelectDrawer
