@@ -71,6 +71,7 @@ const VIPLevelUpChallengeRecordsView = () => {
           onClick={() => back()}
         />
       }
+      heightFull
     >
       <div className="p-content">
         <ShowIf
