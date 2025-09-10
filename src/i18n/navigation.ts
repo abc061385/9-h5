@@ -73,6 +73,8 @@ export const routerMap = {
   accountsRegister: "/user/accounts/register/",
   studio: "/studio/",
   studioRecords: "/studio/records",
+  meetup: "/meetup/",
+  meetupRecords: "/meetup/records",
 };
 
 export const WhiteListPath = [
