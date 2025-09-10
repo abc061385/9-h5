@@ -71,6 +71,7 @@ const VIPLevelUpChallengeView = () => {
 
       <div className="p-content">
         <div
+          className="embed-html"
           dangerouslySetInnerHTML={{
             __html: introduce?.raceIntroduce || "",
           }}
