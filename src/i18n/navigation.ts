@@ -76,6 +76,8 @@ export const routerMap = {
   studioRecords: "/studio/records",
   VIPChallengeRecord: "/vip-challenge/records",
   VIPChallenge: "/vip-challenge/",
+  meetup: "/meetup/",
+  meetupRecords: "/meetup/records",
 };
 
 export const WhiteListPath = [
