@@ -182,7 +182,7 @@ const ChallengeStatusBox = () => {
               : introduce?.targetVipLevel) || 1
           }
         />
-        <p className="text-sm flex items-center gap-1">
+        <div className="text-sm flex items-center gap-1">
           <span className="text-primary flex items-center gap-1">
             V{introduce?.vipLevel}{" "}
             <StarIcon
@@ -198,7 +198,7 @@ const ChallengeStatusBox = () => {
               star={introduce?.targetV9Star || 0}
             />
           </span>
-        </p>
+        </div>
       </ShowIf>
       <Modal
         title={t("progressStatus")}
