@@ -8,6 +8,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { langType } from "@/views/news";
 import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
+import Bridge from "@/lib/dsBridge";
 
 const ProtocolView = () => {
   const t = useTrans();
@@ -26,6 +27,10 @@ const ProtocolView = () => {
   useEffect(() => {
     getDetail();
   }, [getDetail]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
   return (
     <ViewLayout
       header={

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { useTrans } from "@/hooks/useTrans";
 import Bridge from "@/lib/dsBridge";
 import { useRouter } from "@/i18n/navigation";
+import StarIcon from "@/views/vip/star-icon";
 
 interface ListType {
   endTime: string;
@@ -20,6 +21,7 @@ interface ListType {
   statusStr: string;
   targetVipLevel: number;
   targetVipLevelStr: string;
+  targetV9Star: number;
 }
 
 const VIPLevelUpChallengeRecordsView = () => {
@@ -82,11 +84,18 @@ const VIPLevelUpChallengeRecordsView = () => {
             list?.map((v) => {
               return (
                 <div className="bg-bg2 p-4 rounded-2xl mb-4" key={v.id}>
-                  <div className="flex justify-between items-center mb-4">
-                    <b>
-                      {t("finalTargetLevel")}: VIP{v.targetVipLevel}
-                    </b>
-                    <span className={cn(statusTextColor[v.status])}>
+                  <div className="flex justify-between mb-4">
+                    <div className="flex flex-wrap flex-1">
+                      <b>{t("finalTargetLevel")}:</b>
+                      <span className="flex items-center gap-1">
+                        <b>VIP{v.targetVipLevel}</b>
+                        <StarIcon
+                          level={v?.targetVipLevel || 0}
+                          star={v?.targetV9Star || 0}
+                        />
+                      </span>
+                    </div>
+                    <span className={cn("flex-1 text-right", statusTextColor[v.status])}>
                       {statusText[v.status]}
                     </span>
                   </div>
