@@ -9,6 +9,7 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { useTrans } from "@/hooks/useTrans";
 import { useCallback, useEffect, useState } from "react";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import Bridge from "@/lib/dsBridge";
 
 const VIPLevelUpChallengeView = () => {
   const api = createAxiosInstance("/app/");
@@ -35,6 +36,10 @@ const VIPLevelUpChallengeView = () => {
   useEffect(() => {
     getIntroduce();
   }, [getIntroduce]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   return (
     <ViewLayout
