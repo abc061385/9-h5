@@ -52,6 +52,7 @@ const StudioRecordsView = () => {
 
   return (
     <ViewLayout
+      heightFull
       header={<HeaderWithBack title={t("submitRecords")} algin="center" />}
     >
       <div className="p-content">
