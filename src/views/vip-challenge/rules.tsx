@@ -59,7 +59,7 @@ const ChallengeRewardRules = () => {
     },
     {
       currentLevel: "VIP7",
-      targetLevel: "VIP9",
+      targetLevel: "VIP9⭐️",
       challengeCycle: "60",
       pledge: "≥ 30,000,000 USDT",
       award: `300,000 USDT ${t("equivalentValue")} USDM`,
@@ -67,7 +67,7 @@ const ChallengeRewardRules = () => {
     },
     {
       currentLevel: "VIP8",
-      targetLevel: "VIP9",
+      targetLevel: "VIP9⭐️⭐️",
       challengeCycle: "90",
       pledge: "≥ 50,000,000 USDT",
       award: `300,000 USDT ${t("equivalentValue")} USDM`,

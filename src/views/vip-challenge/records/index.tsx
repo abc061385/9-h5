@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { cn } from "@/lib/utils";
 import { useTrans } from "@/hooks/useTrans";
+import Bridge from "@/lib/dsBridge";
 
 interface ListType {
   endTime: string;
@@ -48,6 +49,10 @@ const VIPLevelUpChallengeRecordsView = () => {
   useEffect(() => {
     getList();
   }, [getList]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   const statusText = [
     t("challengeInProgress"),
