@@ -10,6 +10,7 @@ import { ListNoData } from "@/components/nodata/list-nodata";
 import { cn } from "@/lib/utils";
 import { useTrans } from "@/hooks/useTrans";
 import Bridge from "@/lib/dsBridge";
+import { useRouter } from "@/i18n/navigation";
 
 interface ListType {
   endTime: string;
@@ -22,6 +23,7 @@ interface ListType {
 }
 
 const VIPLevelUpChallengeRecordsView = () => {
+  const { back } = useRouter();
   const t = useTrans();
   const api = createAxiosInstance("/app/");
 
@@ -62,7 +64,13 @@ const VIPLevelUpChallengeRecordsView = () => {
   const statusTextColor = ["text-text1", "text-rise", "text-fall"];
   return (
     <ViewLayout
-      header={<HeaderWithBack title={t("competitionRecords")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={t("competitionRecords")}
+          algin="center"
+          onClick={() => back()}
+        />
+      }
     >
       <div className="p-content">
         <ShowIf

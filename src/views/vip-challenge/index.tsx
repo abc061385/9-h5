@@ -10,8 +10,10 @@ import { useTrans } from "@/hooks/useTrans";
 import { useCallback, useEffect, useState } from "react";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
+import { useBack } from "@/hooks/useBack";
 
 const VIPLevelUpChallengeView = () => {
+  const back = useBack();
   const api = createAxiosInstance("/app/");
   const t = useTrans();
   const { push } = useRouter();
@@ -58,6 +60,7 @@ const VIPLevelUpChallengeView = () => {
             </div>
           }
           algin="center"
+          onClick={() => back()}
         />
       }
       heightFull
