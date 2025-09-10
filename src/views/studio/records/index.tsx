@@ -11,6 +11,8 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { useTrans } from "@/hooks/useTrans";
+import Bridge from "@/lib/dsBridge";
+import { routerMap } from "@/i18n/navigation";
 
 dayjs.extend(utc);
 
@@ -42,12 +44,22 @@ const StudioRecordsView = () => {
     getList();
   }, [getList]);
 
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
+
   const statusText = [t("underReview"), t("approved"), t("rejected")];
   const statusTextColor = ["text-text1", "text-rise", "text-fall"];
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title={t("submitRecords")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={t("submitRecords")}
+          algin="center"
+          path={routerMap.studio}
+        />
+      }
     >
       <div className="p-content">
         {

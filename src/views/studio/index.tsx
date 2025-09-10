@@ -204,7 +204,6 @@ const StudioView = () => {
 
   const imageUploadDom = useMemo(() => {
     return imageFileList.map((v, i) => {
-      console.log(v.fileUrl);
       return (
         <div key={i} className="h-50">
           <ImageUploader
@@ -335,6 +334,7 @@ const StudioView = () => {
           algin="center"
           onClick={() => {
             handleReset();
+            Bridge.goBack();
             back();
           }}
         />
