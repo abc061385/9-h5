@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import { ReactNode, useMemo } from "react";
 import { Icon } from "./icon";
 import { useRouter as useI18nRouter } from "@/i18n/navigation";
-import { useBack } from "@/hooks/useBack";
 
 type IProps = {
   title?: ReactNode;
@@ -27,8 +26,7 @@ export const HeaderWithBack = ({
     theme === "light" ? "bg-white" : "bg-black text-white",
     className,
   ]);
-  const { push } = useI18nRouter();
-  const back = useBack();
+  const { push, back } = useI18nRouter();
 
   const handleBack = () => {
     onChange?.();
