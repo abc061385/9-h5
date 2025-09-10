@@ -313,6 +313,7 @@ const StudioView = () => {
 
   return (
     <ViewLayout
+      heightFull
       header={
         <HeaderWithBack
           title={
@@ -339,7 +340,7 @@ const StudioView = () => {
           }}
         />
       }
-      className="h-max mt-2"
+      className="mt-2"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
       <div className="p-content pb-10">

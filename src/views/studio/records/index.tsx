@@ -61,6 +61,7 @@ const StudioRecordsView = () => {
           onClick={() => back()}
         />
       }
+      heightFull
     >
       <div className="p-content">
         {
