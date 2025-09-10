@@ -13,7 +13,7 @@ interface MeetupState extends BaseState<MeetupState> {
   formData: Record<string, string>;
   formImageFileList: FileType[];
   formVideoFileList: FileType[];
-  arrangeImageFileList: FileType[];
+  formArrangeImageFileList: FileType[];
   formNeedLecturer: string;
   formIsAgreement: boolean;
   formSiteType: string;
@@ -36,6 +36,7 @@ export const useMeetupStore = create<MeetupState>()(
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 3 },
         ],
         formVideoFileList: [
+          { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
         ],

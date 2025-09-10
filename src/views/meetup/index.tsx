@@ -70,13 +70,14 @@ const StudioView = () => {
   ]);
 
   const [arrangeImageFileList, setArrangeImageFileList] = useState<FileType[]>([
-    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 3 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 3 },
   ]);
 
   const [videoFileList, setVideoFileList] = useState<FileType[]>([
-    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
-    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
+    { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
   ]);
 
   const [prefixId, setPrefixId] = useState<CountryListType>({
@@ -145,11 +146,17 @@ const StudioView = () => {
         return formImageFileList[index] || file;
       })
     );
+    setArrangeImageFileList((prev) =>
+      prev.map((file, index) => {
+        return formArrangeImageFileList[index] || file;
+      })
+    );
     setVideoFileList((prev) =>
       prev.map((file, index) => formVideoFileList[index] || file)
     );
   }, [
     formImageFileList,
+    formArrangeImageFileList,
     formVideoFileList,
     formNeedLecturer,
     formIsAgreement,
@@ -183,7 +190,11 @@ const StudioView = () => {
           contactType: contactType.value,
           lecturer: needLecturer === "YES" ? "1" : "0",
           receiveNetwork: e.receiveNetwork === "TRX" ? "1" : "2",
-          attachmentList: [...imageFileList, ...videoFileList],
+          attachmentList: [
+            ...imageFileList,
+            ...arrangeImageFileList,
+            ...videoFileList,
+          ],
         });
         if (res.code === 200) {
           setSubmitLoading(false);
@@ -352,7 +363,12 @@ const StudioView = () => {
       { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
       { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
     ]);
+    setField("formArrangeImageFileList", [
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 3 },
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 3 },
+    ]);
     setField("formVideoFileList", [
+      { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
       { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
       { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 2 },
     ]);
@@ -644,7 +660,7 @@ const StudioView = () => {
             onClick={() => {
               const values = getValues();
               setField("formData", values);
-              push(`${routerMap.protocol}?type=9`);
+              push(`${routerMap.protocol}?type=10`);
             }}
           >
             《Meetup 补贴活动规则》

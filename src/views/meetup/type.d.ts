@@ -31,7 +31,7 @@ export interface FileType {
 export interface StudioRecordsListType {
   id: number;
   status: 0 | 1 | 2;
-  siteType: 1 | 2;
+  meetType: 1 | 2;
   createTime: string;
   participantNumber: number;
 }
