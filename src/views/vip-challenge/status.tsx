@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import toast from "react-hot-toast";
 import { useTrans } from "@/hooks/useTrans";
 import { useUserStore } from "@/store/useUserStore";
+import StarIcon from "../vip/star-icon";
 
 export interface IntroduceType {
   orderId: number;
@@ -21,6 +22,8 @@ export interface IntroduceType {
   teamInvestment: number;
   vipLevel: number;
   endTime: string;
+  v9Star: number;
+  targetV9Star: number;
 }
 
 const ChallengeStatusBox = () => {
@@ -167,12 +170,34 @@ const ChallengeStatusBox = () => {
 
         <p className="text-sm mb-2 mt-6">{t("vipUpgradeProgress")}</p>
         <ChallengeProgress
-          value={introduce?.vipLevel || 0}
-          max={introduce?.targetVipLevel || 1}
+          // value={introduce?.vipLevel || 0}
+          value={
+            (introduce?.vipLevel === 9
+              ? introduce?.vipLevel + (introduce?.v9Star || 0)
+              : introduce?.vipLevel) || 0
+          }
+          max={
+            (introduce?.targetVipLevel === 9
+              ? introduce?.targetVipLevel + (introduce?.targetV9Star || 0)
+              : introduce?.targetVipLevel) || 1
+          }
         />
-        <p className="text-sm">
-          <span className="text-primary">V{introduce?.vipLevel}</span> / V
-          {introduce?.targetVipLevel}
+        <p className="text-sm flex items-center gap-1">
+          <span className="text-primary flex items-center gap-1">
+            V{introduce?.vipLevel}{" "}
+            <StarIcon
+              level={introduce?.targetVipLevel || 0}
+              star={introduce?.v9Star || 0}
+            />
+          </span>{" "}
+          /{" "}
+          <span className="flex items-center gap-1">
+            V{introduce?.targetVipLevel}
+            <StarIcon
+              level={introduce?.targetVipLevel || 0}
+              star={introduce?.targetV9Star || 0}
+            />
+          </span>
         </p>
       </ShowIf>
       <Modal
