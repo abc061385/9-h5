@@ -1,4 +1,4 @@
-import { Drawer } from "@/views/studio/select/drawer-long";
+import { Drawer } from "./drawer-long";
 import { useTrans } from "@/hooks/useTrans";
 import { FC, useEffect, useMemo } from "react";
 

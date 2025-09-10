@@ -63,6 +63,7 @@ const StudioView = () => {
   const [countrySelectOpen, setCountrySelectOpen] = useState(false);
 
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [remainingNumber, setRemainingNumber] = useState(0);
 
   const [imageFileList, setImageFileList] = useState<FileType[]>([
     { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
@@ -218,6 +219,23 @@ const StudioView = () => {
       isAgreement,
     ]
   );
+
+  const getRemainingNumber = useCallback(async () => {
+    try {
+      const res: ApiResponse<number> = await api.get("/meetup/rest-count");
+      if (res.code === 200) {
+        setRemainingNumber(res.data || 0);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getRemainingNumber();
+  }, [getRemainingNumber]);
 
   const imageUploadDom = useMemo(() => {
     return imageFileList.map((v, i) => {
@@ -679,6 +697,9 @@ const StudioView = () => {
             t("submitApplication")
           )}
         </button>
+        <p className="text-center mt-4 text-sm">
+          本账号剩余可申请次数：{remainingNumber}
+        </p>
         <ChainSelectDrawer
           open={chainSelectOpen}
           onClose={() => setChainSelectOpen(false)}
