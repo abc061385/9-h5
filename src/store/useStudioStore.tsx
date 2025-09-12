@@ -1,4 +1,5 @@
 import { getIsDev } from "@/lib/utils";
+import { CountryListType, SelectListType } from "@/views/studio/type";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -16,6 +17,8 @@ interface StudioState extends BaseState<StudioState> {
   formNeedLecturer: string;
   formIsAgreement: boolean;
   formSiteType: string;
+  formContactType: SelectListType;
+  formPrefixId: CountryListType;
 }
 
 export const useStudioStore = create<StudioState>()(
@@ -26,6 +29,8 @@ export const useStudioStore = create<StudioState>()(
         formNeedLecturer: "",
         formIsAgreement: false,
         formSiteType: "",
+        formContactType: "",
+        formPrefixId: "",
         formImageFileList: [
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },

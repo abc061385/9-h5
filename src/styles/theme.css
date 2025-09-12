@@ -10,7 +10,7 @@
     #3400f2 100%
   );
   --color-gradient2: linear-gradient(90deg, #6e2afe 0%, #a93aff 100%);
-  --color-gradient3: linear-gradient(135deg, #FFFFFF 0%, #F2ECFF 100%);
+  --color-gradient3: linear-gradient(135deg, #ffffff 0%, #f2ecff 100%);
 
   /* var */
   --color-op-primary: var(--color-primary);
@@ -92,18 +92,34 @@ body {
   background-color: var(--color-white);
 }
 
-
 .collapse-content,
 .collapse-title {
   padding-left: 0;
 }
-.collapse.collapse-plus:not(.collapse-close) > input:is([type="checkbox"], [type="radio"]):checked ~ .collapse-title:after {
-    content: url("/images/common/close.svg");
+.collapse.collapse-plus:not(.collapse-close)
+  > input:is([type="checkbox"], [type="radio"]):checked
+  ~ .collapse-title:after {
+  content: url("/images/common/close.svg");
 }
 
 .collapse-plus > .collapse-title::after {
   top: 6px;
-  width: 30px;
   display: inline-block;
+  width: 30px;
   content: url("/images/common/open.svg");
+}
+
+.embed-html table {
+  width: 100%;
+  max-width: 100% !important;
+  table-layout: fixed; /* 固定布局，按比例分配 */
+}
+
+.embed-html table,
+th,
+td {
+  width: auto !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  word-break: break-word;
 }

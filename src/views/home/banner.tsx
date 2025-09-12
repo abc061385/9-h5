@@ -7,28 +7,35 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTrans } from "@/hooks/useTrans";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
-import { useLocationHref } from "@/hooks/useLocationHref";
+import { api } from "@/api";
+import { BannerRespDTO } from "@/api/NineIndexClient";
+import { useRouter } from "@/i18n/navigation";
 
 const BannerBox = () => {
   const t = useTrans();
+  const { push } = useRouter();
   const locale = useLocale();
-  const { goToActivity } = useLocationHref();
+  const [bannerList, setBannerList] = useState<BannerRespDTO[]>();
 
-  const [activityList, setActivityList] = useState<ActivityList[]>([]);
-
-  useEffect(() => {
-    getActivityList();
+  const getBannerList = useCallback(async () => {
+    try {
+      const res = await api.nineIndex.banner.getBanners({ platform: "all" });
+      console.log(res);
+      if (res.code === 200) {
+        setBannerList(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
-  const getActivityList = async () => {
-    const { data } = await axios.get("/app/userActivity/getApiActivityList");
-    const list = data?.data?.list || [];
-    setActivityList(list);
-  };
+  useEffect(() => {
+    getBannerList();
+  }, [getBannerList]);
+
   return (
     <Swiper
       modules={[Autoplay, Pagination]}
@@ -42,10 +49,10 @@ const BannerBox = () => {
         el: ".custom-pagination",
         clickable: true,
         bulletClass:
-          "swiper-pagination-bullet !rounded-none !w-3 !h-0.5 transition-all duration-300 ease-in-out",
+          "swiper-pagination-bullet !rounded-none !w-3 !h-0.5 transition-all duration-300 ease-in-out z-10",
         bulletActiveClass: "swiper-pagination-bullet-active !bg-primary",
       }}
-      className="h-[174px]"
+      className="h-[178px]"
     >
       <SwiperSlide>
         <div className="flex h-full justify-between bg-[url('/images/home/home_banner.png')] bg-contain bg-no-repeat p-content !py-7">
@@ -55,31 +62,35 @@ const BannerBox = () => {
           </div>
         </div>
       </SwiperSlide>
-
-      {activityList.map((v, i) => {
+      {bannerList?.map((v) => {
         return (
-          <SwiperSlide key={i}>
-            <div onClick={() => goToActivity(v.id.toString())}>
-              <Image
-                src={
-                  ["zh-Hans", "zh-Hant"].indexOf(locale) !== -1
-                    ? v.bannerZh
-                    : v.bannerEn
+          <SwiperSlide key={v.id}>
+            <div
+              onClick={() => {
+                if (v?.linkUrl) {
+                  const url = v.linkUrl as string;
+                  if (/^https?:\/\//.test(url)) {
+                    window.location.href = url.replace("{lang}", locale);
+                  } else {
+                    push(url);
+                  }
                 }
+              }}
+              className="h-[163px] overflow-hidden relative"
+            >
+              <Image
+                src={v.imageUrl || ""}
                 alt=""
-                width={0}
-                height={0}
-                sizes="100vw"
                 style={{
-                  width: "100%",
-                  height: "auto",
-                  position: "relative",
+                  objectFit: "cover",
                 }}
+                fill
               />
             </div>
           </SwiperSlide>
         );
       })}
+
       <div className="custom-pagination absolute bottom-0 left-0 w-full flex justify-center items-center"></div>
     </Swiper>
   );

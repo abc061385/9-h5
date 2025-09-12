@@ -37,8 +37,8 @@ const AwardDetail: FC<{ tabsValue: string }> = ({ tabsValue }) => {
         renderItem={(item: IncomeListType) => (
           <div key={item.id} className="border-b border-border2 pb-4 mb-4">
             <div className="flex items-center justify-between text-sm mb-1">
-              <span>{t(typeMap[item.type])}</span>
-              <span>
+              <span className="flex-1">{t(typeMap[item.type])}</span>
+              <span className="text-right flex-1">
                 + {formatBalance(item.amount, tabsValue)} {tabsValue}
               </span>
             </div>

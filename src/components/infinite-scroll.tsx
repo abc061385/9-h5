@@ -45,7 +45,6 @@ export function InfiniteVirtuosoList<T>({
     if (!hasMore || lockRef.current) return;
     lockRef.current = true;
     setLoading(true);
-    console.log(page, "page");
 
     try {
       const res = await fetchData(page);
@@ -59,10 +58,10 @@ export function InfiniteVirtuosoList<T>({
   }, [fetchData, page, hasMore]);
 
   const reload = useCallback(async () => {
-    const { data } = await fetchData(1);
-    setItems(data);
+    const res = await fetchData(1);
+    setItems(res.data);
     setPage(1);
-    setHasMore(true);
+    setHasMore(res.hasMore);
   }, [fetchData]);
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export function InfiniteVirtuosoList<T>({
   }, [reload, fetchData]);
 
   useEffect(() => {
-    if (page === 1 || items.length === 0) {
+    if (page === 1 && items.length === 0) {
       loadMore();
     }
   }, [loadMore, page, items]);
@@ -89,8 +88,8 @@ export function InfiniteVirtuosoList<T>({
       {loading
         ? t("common.loading")
         : hasMore
-          ? t("walletDetail.loadMore")
-          : t("walletDetail.noMoreData")}
+        ? t("walletDetail.loadMore")
+        : t("walletDetail.noMoreData")}
     </div>
   );
 

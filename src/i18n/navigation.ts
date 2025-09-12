@@ -71,8 +71,11 @@ export const routerMap = {
   accounts: "/user/accounts/",
   accountsAdd: "/user/accounts/add/",
   accountsRegister: "/user/accounts/register/",
+  certificate: "/certificate/",
   studio: "/studio/",
   studioRecords: "/studio/records",
+  VIPChallengeRecord: "/vip-challenge/records",
+  VIPChallenge: "/vip-challenge/",
   meetup: "/meetup/",
   meetupRecords: "/meetup/records",
 };

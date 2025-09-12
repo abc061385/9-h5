@@ -48,6 +48,8 @@ const StudioView = () => {
     formNeedLecturer,
     formIsAgreement,
     formSiteType,
+    formContactType,
+    formPrefixId,
   } = useStudioStore();
 
   const t = useTrans();
@@ -134,6 +136,15 @@ const StudioView = () => {
     setNeedLecturer(formNeedLecturer || "NO");
     setIsAgreement(formIsAgreement);
     setSiteTypeValue(formSiteType);
+    setContactType(formContactType || { label: "Whatsapp", value: "1" });
+    setPrefixId(
+      formPrefixId || {
+        code: "HK",
+        country: "香港(中国)",
+        id: 48,
+        phonePrefix: "+852",
+      }
+    );
     setImageFileList((prev) =>
       prev.map((file, index) => {
         return formImageFileList[index] || file;
@@ -148,6 +159,8 @@ const StudioView = () => {
     formNeedLecturer,
     formIsAgreement,
     formSiteType,
+    formContactType,
+    formPrefixId,
   ]);
 
   useEffect(() => {
@@ -309,10 +322,18 @@ const StudioView = () => {
     setField("formNeedLecturer", "NO");
     setField("formIsAgreement", false);
     setField("formSiteType", "");
+    setField("formContactType", { label: "Whatsapp", value: "1" });
+    setField("formPrefixId", {
+      code: "HK",
+      country: "香港(中国)",
+      id: 48,
+      phonePrefix: "+852",
+    });
   };
 
   return (
     <ViewLayout
+      heightFull
       header={
         <HeaderWithBack
           title={
@@ -339,7 +360,7 @@ const StudioView = () => {
           }}
         />
       }
-      className="h-max mt-2"
+      className="mt-2"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
       <div className="p-content pb-10">
@@ -352,7 +373,10 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <div
                 className="h-6 border-r border-border2 pr-2.5"
-                onClick={() => setCountrySelectOpen(true)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCountrySelectOpen(true);
+                }}
               >
                 <b>{prefixId?.phonePrefix}</b>
                 <Icon
@@ -407,7 +431,10 @@ const StudioView = () => {
             <label className="input w-full h-12">
               <div
                 className="h-6 border-r border-border2 pr-2.5"
-                onClick={() => setContactSelectOpen(true)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setContactSelectOpen(true);
+                }}
               >
                 <b>{contactType.label}</b>
                 <Icon
@@ -621,12 +648,18 @@ const StudioView = () => {
         <ContactSelectDrawer
           open={contactSelectOpen}
           onClose={() => setContactSelectOpen(false)}
-          onConfirm={(v) => setContactType(v)}
+          onConfirm={(v) => {
+            setContactType(v);
+            setField("formContactType", v);
+          }}
         />
         <CountrySelectDrawer
           open={countrySelectOpen}
           onClose={() => setCountrySelectOpen(false)}
-          onConfirm={(e) => setPrefixId(e)}
+          onConfirm={(e) => {
+            setPrefixId(e);
+            setField("formPrefixId", e);
+          }}
         />
       </div>
     </ViewLayout>

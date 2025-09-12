@@ -12,11 +12,12 @@ import utc from "dayjs/plugin/utc";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { useTrans } from "@/hooks/useTrans";
 import Bridge from "@/lib/dsBridge";
-import { routerMap } from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 dayjs.extend(utc);
 
 const StudioRecordsView = () => {
+  const { back } = useRouter();
   const t = useTrans();
   const api = createAxiosInstance("/app/");
 
@@ -57,9 +58,10 @@ const StudioRecordsView = () => {
         <HeaderWithBack
           title={t("submitRecords")}
           algin="center"
-          path={routerMap.studio}
+          onClick={() => back()}
         />
       }
+      heightFull
     >
       <div className="p-content">
         {

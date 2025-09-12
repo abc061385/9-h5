@@ -137,6 +137,11 @@
     border-radius: 0;
   }
 
+  .progress-gradient1::-webkit-progress-value {
+    background: linear-gradient(90deg, #a754ff 0%, #6e2afe 100%);
+    border-radius: 14px;
+  }
+
   .badge-primary2 {
     color: var(--color-primary2);
     background-color: color-mix(
