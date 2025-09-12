@@ -820,5 +820,6 @@
   "spot_frozen_tip": "Phần lệnh giao dịch giao ngay chưa được khớp sẽ bị hệ thống đóng băng theo giá trị quy đổi sang USDT. Khi lệnh được thực hiện hoặc hủy bỏ, số tiền bị đóng băng sẽ được giải phóng tự động.",
   "funds_frozen": "Quỹ bị đóng băng (Quỹ)",
   "funds_frozen_tip": "Số tiền bị đóng băng khi đăng ký tham gia sự kiện, số tiền đang xử lý rút, và số vốn gốc đang bị khóa trong quỹ.",
-  "VIP报名赛奖金": "Tiền thưởng cuộc đua đăng ký VIP"
+  "VIP报名赛奖金": "Tiền thưởng cuộc đua đăng ký VIP",
+  "activityCenter": "Trung tâm Hoạt động"
 }

@@ -78,6 +78,7 @@ export const routerMap = {
   VIPChallenge: "/vip-challenge/",
   meetup: "/meetup/",
   meetupRecords: "/meetup/records",
+  activity: "/activitys/",
 };
 
 export const WhiteListPath = [
