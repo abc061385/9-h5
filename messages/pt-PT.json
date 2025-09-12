@@ -755,5 +755,18 @@
   "approved": "Aprovado",
   "rejected": "Rejeitado",
   "applicationType": "Tipo de Candidatura",
-  "uploadOnsiteVideo": "Por favor, carregue vídeo no local"
+  "uploadOnsiteVideo": "Por favor, carregue vídeo no local",
+  "meetupApplication": "Candidatura a Meetup",
+  "subsidyRules": "Regras de Atividade de Subsídio de Meetup",
+  "meetupType": "Tipo de Meetup",
+  "selectMeetupType": "Por favor selecione o tipo de Meetup",
+  "smallScale": "Pequena escala (25-50 participantes)",
+  "mediumScale": "Média escala (51-100 participantes)",
+  "uploadVenueProof": "Carregar comprovativo de pagamento de aluguer de local ou despesas relacionadas (fatura ou captura de ecrã de transferência)",
+  "venueSetupPhotos": "Fotos de disposição no local",
+  "uploadSetupPhotos": "Carregar fotos de disposição no local contendo cartazes/banners roll-up",
+  "uploadVideos1": "Por favor carregue três vídeos no local de tempos diferentes, cada um ≥5 minutos",
+  "remainingApplications": "Número de candidaturas restantes desta conta",
+  "readAndAgree": "Por favor leia e concorde",
+  "uploadVenueSetupPhotos": "Por favor carregue fotos de disposição no local"
 }

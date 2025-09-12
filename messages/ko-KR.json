@@ -755,5 +755,18 @@
   "approved": "승인됨",
   "rejected": "승인 거부",
   "applicationType": "신청 유형",
-  "uploadOnsiteVideo": "현장 영상을 업로드해 주세요"
+  "uploadOnsiteVideo": "현장 영상을 업로드해 주세요",
+  "meetupApplication": "Meetup 신청",
+  "subsidyRules": "Meetup 보조 활동 규칙",
+  "meetupType": "Meetup 유형",
+  "selectMeetupType": "Meetup 유형을 선택해 주세요",
+  "smallScale": "소규모 (25-50명 참여)",
+  "mediumScale": "중규모 (51-100명 참여)",
+  "uploadVenueProof": "장소 대여 또는 관련 비용 지불 증빙 업로드 (인보이스 또는 이체 스크린샷)",
+  "venueSetupPhotos": "현장布置사진",
+  "uploadSetupPhotos": "포스터/롤업 배너가 포함된 현장布置사진 업로드",
+  "uploadVideos1": "서로 다른 시간대 현장 영상 3개를 업로드해 주세요 각 ≥5분",
+  "remainingApplications": "본 계정 잔여 신청 가능 횟수",
+  "readAndAgree": "읽고 동의해 주세요",
+  "uploadVenueSetupPhotos": "현장布置사진을 업로드해 주세요"
 }

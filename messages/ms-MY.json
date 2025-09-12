@@ -755,5 +755,18 @@
   "approved": "Diluluskan",
   "rejected": "Tidak diluluskan",
   "applicationType": "Jenis Permohonan",
-  "uploadOnsiteVideo": "Sila muat naik video di lokasi"
+  "uploadOnsiteVideo": "Sila muat naik video di lokasi",
+  "meetupApplication": "Permohonan Meetup",
+  "subsidyRules": "Peraturan Aktiviti Subsidi Meetup",
+  "meetupType": "Jenis Meetup",
+  "selectMeetupType": "Sila pilih jenis Meetup",
+  "smallScale": "Berskala kecil (25-50 peserta)",
+  "mediumScale": "Berskala sederhana (51-100 peserta)",
+  "uploadVenueProof": "Muat naik bukti pembayaran sewa tempat atau perbelanjaan berkaitan (invois atau screenshot pemindahan)",
+  "venueSetupPhotos": "Gambar penyediaan di tapak",
+  "uploadSetupPhotos": "Muat naik gambar penyediaan di tapak yang mengandungi poster/banner roll-up",
+  "uploadVideos1": "Sila muat naik tiga video di tapak masa berbeza, setiap satu ≥5 minit",
+  "remainingApplications": "Bilangan permohonan tinggal untuk akaun ini",
+  "readAndAgree": "Sila baca dan setuju",
+  "uploadVenueSetupPhotos": "Sila muat naik gambar penyediaan di tapak"
 }

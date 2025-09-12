@@ -755,5 +755,18 @@
   "approved": "Đã được chấp thuận",
   "rejected": "Không được chấp thuận",
   "applicationType": "Loại đơn đăng ký",
-  "uploadOnsiteVideo": "Vui lòng tải lên video hiện trường"
+  "uploadOnsiteVideo": "Vui lòng tải lên video hiện trường",
+  "meetupApplication": "Đơn đăng ký Meetup",
+  "subsidyRules": "Quy tắc hoạt động trợ cấp Meetup",
+  "meetupType": "Loại Meetup",
+  "selectMeetupType": "Vui lòng chọn loại Meetup",
+  "smallScale": "Quy mô nhỏ (25-50 người tham gia)",
+  "mediumScale": "Quy mô trung bình (51-100 người tham gia)",
+  "uploadVenueProof": "Tải lên bằng chứng thanh toán chi phí thuê địa điểm hoặc chi phí liên quan (hóa đơn hoặc ảnh chụp chuyển khoản)",
+  "venueSetupPhotos": "Ảnh bố trí hiện trường",
+  "uploadSetupPhotos": "Tải lên ảnh bố trí hiện trường có chứa áp phích/băng rôn cuộn",
+  "uploadVideos1": "Vui lòng tải lên ba video hiện trường thời gian khác nhau, mỗi video ≥5 phút",
+  "remainingApplications": "Số lần đăng ký còn lại của tài khoản này",
+  "readAndAgree": "Vui lòng đọc và đồng ý",
+  "uploadVenueSetupPhotos": "Vui lòng tải lên ảnh bố trí hiện trường"
 }

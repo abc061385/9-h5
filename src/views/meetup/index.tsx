@@ -103,7 +103,7 @@ const StudioView = () => {
       participantNumber: reg.studioParticipantNumber,
       teachLanguage: z.any(),
       receiveAddress: reg.studioReceiveAddress,
-      siteType: reg.studioSiteType,
+      siteType: reg.selectMeetupType,
       receiveNetwork: z.string(),
     })
     .refine(
@@ -175,12 +175,19 @@ const StudioView = () => {
           toast.error(t("uploadLeaseCertificate"));
           return;
         }
+        if (
+          !arrangeImageFileList[0].fileUrl ||
+          !arrangeImageFileList[1].fileUrl
+        ) {
+          toast.error(t("uploadVenueSetupPhotos"));
+          return;
+        }
         if (!videoFileList[0].fileUrl || !videoFileList[1].fileUrl) {
           toast.error(t("uploadOnsiteVideo"));
           return;
         }
         if (!isAgreement) {
-          toast.error(t("agreeToRules"));
+          toast.error(t("readAndAgree") + t("subsidyRules"));
           return;
         }
         setSubmitLoading(true);
@@ -403,7 +410,7 @@ const StudioView = () => {
           title={
             <div className="flex-1 flex justify-center items-center relative">
               <span></span>
-              Meetup申请
+              {t("meetupApplication")}
               <span
                 onClick={() => {
                   const values = getValues();
@@ -511,7 +518,7 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              Meetup类型
+              {t("meetupType")}
             </legend>
             <label
               className="input w-full h-12"
@@ -520,7 +527,7 @@ const StudioView = () => {
               <input
                 type="text"
                 {...register("siteType")}
-                placeholder="请选择Meetup类型"
+                placeholder={t("selectMeetupType")}
                 className="grow placeholder:text-sm"
                 readOnly
               />
@@ -532,21 +539,17 @@ const StudioView = () => {
           <h3 className="text-lg font-bold mt-11 mb-6">
             {t("venue_rental_certificate")}
           </h3>
-          <p className="text-text4 text-sm my-4">
-            上传场地租赁或相关费用支付凭证（发票或转账截图）
-          </p>
+          <p className="text-text4 text-sm my-4">{t("uploadVenueProof")}</p>
           <div className="grid grid-cols-2 gap-2">{imageUploadDom}</div>
 
-          <h3 className="text-lg font-bold mt-11 mb-6">现场布置照片</h3>
-          <p className="text-text4 text-sm my-4">
-            上传包含海报/易拉宝的现场布置照片
-          </p>
+          <h3 className="text-lg font-bold mt-11 mb-6">
+            {t("venueSetupPhotos")}
+          </h3>
+          <p className="text-text4 text-sm my-4">{t("uploadSetupPhotos")}</p>
           <div className="grid grid-cols-2 gap-2">{arrangeImageUploadDom}</div>
 
           <h3 className="text-lg font-bold mt-11">{t("live_video_upload")}</h3>
-          <p className="text-text4 text-sm my-4">
-            请上传三段不同时间现场视频 每条≥5分钟
-          </p>
+          <p className="text-text4 text-sm my-4">{t("uploadVideos1")}</p>
           <div className="grid grid-cols-2 gap-2">{videoUploadDom}</div>
 
           <fieldset className="fieldset">
@@ -682,7 +685,7 @@ const StudioView = () => {
               push(`${routerMap.protocol}?type=10`);
             }}
           >
-            《Meetup 补贴活动规则》
+            《{t("subsidyRules")}》
           </a>
         </div>
         <button
@@ -690,7 +693,7 @@ const StudioView = () => {
           onClick={handleSubmit((e) => {
             submit(e);
           })}
-          disabled={submitLoading}
+          disabled={submitLoading || !isAgreement}
         >
           {submitLoading ? (
             <span className="loading"></span>
@@ -699,7 +702,7 @@ const StudioView = () => {
           )}
         </button>
         <p className="text-center mt-4 text-sm">
-          本账号剩余可申请次数：{remainingNumber}
+          {t("remainingApplications")}：{remainingNumber}
         </p>
         <ChainSelectDrawer
           open={chainSelectOpen}

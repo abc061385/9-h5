@@ -39,6 +39,9 @@ export const useRootReg = () => {
     studioReceiveAddress: z.string().regex(/^.+$/, {
       message: t("enter_receiving_address"),
     }),
+    selectMeetupType: z.string().regex(/^.+$/, {
+      message: t("selectMeetupType"),
+    }),
   };
 };
 

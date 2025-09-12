@@ -755,5 +755,18 @@
   "approved": "已通過",
   "rejected": "未通過",
   "applicationType": "申請類型",
-  "uploadOnsiteVideo": "請上傳現場影片"
+  "uploadOnsiteVideo": "請上傳現場影片",
+  "meetupApplication": "Meetup申請",
+  "subsidyRules": "Meetup 補貼活動規則",
+  "meetupType": "Meetup類型",
+  "selectMeetupType": "請選擇Meetup類型",
+  "smallScale": "小型（25-50人參與）",
+  "mediumScale": "中型（51-100人參與）",
+  "uploadVenueProof": "上傳場地租賃或相關費用支付憑證（發票或轉賬截圖）",
+  "venueSetupPhotos": "現場佈置照片",
+  "uploadSetupPhotos": "上傳包含海報/易拉寶的現場佈置照片",
+  "uploadVideos1": "請上傳三段不同時間現場視頻 每條≥5分鐘",
+  "remainingApplications": "本賬號剩餘可申請次數",
+  "readAndAgree": "請閱讀並同意",
+  "uploadVenueSetupPhotos": "請上傳現場佈置照片"
 }

@@ -754,5 +754,18 @@
   "approved": "Approved",
   "rejected": "Rejected",
   "applicationType": "Application Type",
-  "uploadOnsiteVideo": "Please upload on-site video"
+  "uploadOnsiteVideo": "Please upload on-site video",
+  "meetupApplication": "Meetup Application",
+  "subsidyRules": "Meetup Subsidy Activity Rules",
+  "meetupType": "Meetup Type",
+  "selectMeetupType": "Please select Meetup type",
+  "smallScale": "Small (25-50 participants)",
+  "mediumScale": "Medium (51-100 participants)",
+  "uploadVenueProof": "Upload venue rental or related expense payment proof (invoice or transfer screenshot)",
+  "venueSetupPhotos": "On-site setup photos",
+  "uploadSetupPhotos": "Upload on-site setup photos containing posters/roll-up banners",
+  "uploadVideos1": "Please upload three different time on-site videos, each ≥5 minutes",
+  "remainingApplications": "Remaining application times for this account",
+  "readAndAgree": "Please read and agree",
+  "uploadVenueSetupPhotos": "Please upload on-site setup photos"
 }

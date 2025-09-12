@@ -753,5 +753,18 @@
   "approved": "Approvato",
   "rejected": "Rifiutato",
   "applicationType": "Tipo di applicazione",
-  "uploadOnsiteVideo": "Si prega di caricare video in loco"
+  "uploadOnsiteVideo": "Si prega di caricare video in loco",
+  "meetupApplication": "Domanda di Meetup",
+  "subsidyRules": "Regole Attività Sussidio Meetup",
+  "meetupType": "Tipo di Meetup",
+  "selectMeetupType": "Si prega di selezionare il tipo di Meetup",
+  "smallScale": "Piccola scala (25-50 partecipanti)",
+  "mediumScale": "Media scala (51-100 partecipanti)",
+  "uploadVenueProof": "Carica prova di pagamento affitto luogo o spese correlate (fattura o screenshot bonifico)",
+  "venueSetupPhotos": "Foto allestimento in loco",
+  "uploadSetupPhotos": "Carica foto allestimento in loco contenenti poster/roll-up banner",
+  "uploadVideos1": "Si prega di caricare tre video in loco di tempi diversi, ciascuno ≥5 minuti",
+  "remainingApplications": "Numero di applicazioni rimanenti per questo account",
+  "readAndAgree": "Si prega di leggere e accettare",
+  "uploadVenueSetupPhotos": "Si prega di caricare foto dell'allestimento in loco"
 }

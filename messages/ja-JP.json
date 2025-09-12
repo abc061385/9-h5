@@ -755,5 +755,18 @@
   "approved": "承認済み",
   "rejected": "承認却下",
   "applicationType": "申請タイプ",
-  "uploadOnsiteVideo": "現場の動画をアップロードしてください"
+  "uploadOnsiteVideo": "現場の動画をアップロードしてください",
+  "meetupApplication": "Meetup申請",
+  "subsidyRules": "Meetup補助活動規則",
+  "meetupType": "Meetupタイプ",
+  "selectMeetupType": "Meetupタイプを選択してください",
+  "smallScale": "小規模（25-50人参加）",
+  "mediumScale": "中規模（51-100人参加）",
+  "uploadVenueProof": "会場レンタルまたは関連費用の支払い証明をアップロード（請求書または振込スクリーンショット）",
+  "venueSetupPhotos": "現場設営写真",
+  "uploadSetupPhotos": "ポスター/ロールアップバナーを含む現場設営写真をアップロード",
+  "uploadVideos1": "異なる時間帯の現場動画を3本アップロードしてください 各≥5分",
+  "remainingApplications": "本アカウントの残申請可能回数",
+  "readAndAgree": "ご確認の上、同意してください",
+  "uploadVenueSetupPhotos": "現場設営写真をアップロードしてください"
 }

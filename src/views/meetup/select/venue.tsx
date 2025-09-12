@@ -18,11 +18,11 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({
 
   const list: SelectListType[] = [
     {
-      label: `小型（25-50人参与）`,
+      label: t("smallScale"),
       value: "1",
     },
     {
-      label: `中型（51-100人参与）`,
+      label: t("mediumScale"),
       value: "2",
     },
   ];
@@ -30,7 +30,7 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({
   return (
     <Drawer
       className="h-auto"
-      title="Meetup 类型"
+      title={t("meetupType")}
       open={open}
       onChange={() => onClose?.()}
     >

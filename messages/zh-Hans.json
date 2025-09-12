@@ -755,5 +755,18 @@
   "approved": "已通过",
   "rejected": "未通过",
   "applicationType": "申请类型",
-  "uploadOnsiteVideo": "请上传现场视频"
+  "uploadOnsiteVideo": "请上传现场视频",
+  "meetupApplication": "Meetup申请",
+  "subsidyRules": "Meetup 补贴活动规则",
+  "meetupType": "Meetup类型",
+  "selectMeetupType": "请选择Meetup类型",
+  "smallScale": "小型（25-50人参与）",
+  "mediumScale": "中型（51-100人参与）",
+  "uploadVenueProof": "上传场地租赁或相关费用支付凭证（发票或转账截图）",
+  "venueSetupPhotos": "现场布置照片",
+  "uploadSetupPhotos": "上传包含海报/易拉宝的现场布置照片",
+  "uploadVideos1": "请上传三段不同时间现场视频 每条≥5分钟",
+  "remainingApplications": "本账号剩余可申请次数",
+  "readAndAgree": "请阅读并同意",
+  "uploadVenueSetupPhotos": "请上传现场布置照片"
 }

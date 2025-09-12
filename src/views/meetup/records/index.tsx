@@ -72,9 +72,7 @@ const StudioRecordsView = () => {
                       </span>
                     </div>
                     <div className="font-bold mb-4">
-                      {v.meetType === 1
-                        ? "小型（25-50人参与）"
-                        : "中型（51-100人参与）"}
+                      {v.meetType === 1 ? t("smallScale") : t("mediumScale")}
                     </div>
                     <div className="flex items-center justify-between text-sm mb-2">
                       <span className="text-text3">
