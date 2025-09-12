@@ -1,4 +1,5 @@
 import { getIsDev } from "@/lib/utils";
+import { CountryListType, SelectListType } from "@/views/meetup/type";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -17,6 +18,8 @@ interface MeetupState extends BaseState<MeetupState> {
   formNeedLecturer: string;
   formIsAgreement: boolean;
   formSiteType: string;
+  formContactType: SelectListType;
+  formPrefixId: CountryListType;
 }
 
 export const useMeetupStore = create<MeetupState>()(
@@ -27,6 +30,8 @@ export const useMeetupStore = create<MeetupState>()(
         formNeedLecturer: "",
         formIsAgreement: false,
         formSiteType: "",
+        formContactType: "",
+        formPrefixId: "",
         formImageFileList: [
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
           { fileName: "", fileUrl: "", thumbnailUrl: "", fileType: 1 },
