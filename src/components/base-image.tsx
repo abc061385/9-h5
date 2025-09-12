@@ -6,12 +6,14 @@ interface IBaseImageProps {
   alt?: string;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  cover?: boolean;
 }
 
 const BaseImage: React.FC<IBaseImageProps> = ({
   src,
   alt = "",
   className = "",
+  cover = true,
   onClick,
 }) => {
   return (
@@ -20,7 +22,12 @@ const BaseImage: React.FC<IBaseImageProps> = ({
       onClick={(e) => onClick?.(e)}
     >
       {src ? (
-        <Image src={src} alt={alt} fill style={{ objectFit: "cover" }} />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          style={cover ? { objectFit: "cover" } : {}}
+        />
       ) : (
         alt
       )}

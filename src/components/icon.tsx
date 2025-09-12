@@ -16,6 +16,7 @@ export const Icon: FC<IconProps> = ({ name, className, onClick }) => {
       alt={name}
       src={`/icons/${name}.svg`}
       className={cn(["inline-block", "size-4", className])}
+      cover={false}
       onClick={onClick}
     />
   );
