@@ -833,5 +833,6 @@
   "spot_frozen_tip": "Bagian dari pesanan perdagangan spot Anda yang masih tertunda dan belum tereksekusi akan dibekukan berdasarkan nilai ekuivalen dalam USDT. Setelah pesanan selesai atau dibatalkan, dana yang dibekukan akan otomatis dilepas.",
   "funds_frozen": "Dana yang Dibekukan (Dana)",
   "funds_frozen_tip": "Jumlah yang dibekukan untuk partisipasi dalam kegiatan, jumlah yang sedang dalam proses penarikan, serta pokok dana yang sedang dibekukan.",
-  "VIP报名赛奖金": "Bónus de Corrida de Inscrição VIP"
+  "VIP报名赛奖金": "Bónus de Corrida de Inscrição VIP",
+  "activityCenter": "Centro de Atividades"
 }
