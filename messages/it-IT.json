@@ -832,5 +832,7 @@
   "funds_frozen": "Fondi Congelati (Fondo)",
   "funds_frozen_tip": "L’importo congelato per la partecipazione all’attività, l’importo in fase di prelievo e il capitale bloccato nei prodotti del fondo.",
   "VIP报名赛奖金": "Bonus Gara di Iscrizione VIP",
-  "activityCenter": "Centro Attività"
+  "activityCenter": "Centro Attività",
+  "videoSizeLimit": "La dimensione del video non può superare 400MB",
+  "imageSizeLimit": "La dimensione dell'immagine non può superare 5MB"
 }

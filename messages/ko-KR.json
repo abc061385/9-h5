@@ -834,5 +834,7 @@
   "funds_frozen": "동결 자금 (펀드)",
   "funds_frozen_tip": "활동 참여를 위한 동결 금액, 출금 처리 중인 금액, 그리고 펀드 상품에 잠겨 있는 원금입니다.",
   "VIP报名赛奖金": "VIP 등록 레이스 보너스",
-  "activityCenter": "활동 센터"
+  "activityCenter": "활동 센터",
+  "videoSizeLimit": "동영상 크기는 400MB를 초과할 수 없습니다",
+  "imageSizeLimit": "이미지 크기는 5MB를 초과할 수 없습니다"
 }

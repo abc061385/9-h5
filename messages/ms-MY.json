@@ -834,5 +834,7 @@
   "funds_frozen": "Dana Dibekukan (Dana)",
   "funds_frozen_tip": "Amaun yang dibekukan untuk penyertaan aktiviti, amaun dalam proses pengeluaran, serta prinsipal yang sedang dibekukan dalam produk dana.",
   "VIP报名赛奖金": "Bonus Perlumbaan Pendaftaran VIP",
-  "activityCenter": "Pusat Aktiviti"
+  "activityCenter": "Pusat Aktiviti",
+  "videoSizeLimit": "Saiz video tidak boleh melebihi 400MB",
+  "imageSizeLimit": "Saiz gambar tidak boleh melebihi 5MB"
 }

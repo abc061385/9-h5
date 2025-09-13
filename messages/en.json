@@ -833,5 +833,7 @@
   "funds_frozen": "Frozen Funds (Fund)",
   "funds_frozen_tip": "The frozen amount for your event participation, amount pending withdrawal, and the principal currently locked in fund products.",
   "VIP报名赛奖金": "VIP Registration Race Bonus",
-  "activityCenter": "Activity Center"
+  "activityCenter": "Activity Center",
+  "videoSizeLimit": "Video size cannot exceed 400MB",
+  "imageSizeLimit": "Image size cannot exceed 5MB"
 }

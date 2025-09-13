@@ -834,5 +834,7 @@
   "funds_frozen": "Dana yang Dibekukan (Dana)",
   "funds_frozen_tip": "Jumlah yang dibekukan untuk partisipasi dalam kegiatan, jumlah yang sedang dalam proses penarikan, serta pokok dana yang sedang dibekukan.",
   "VIP报名赛奖金": "Bónus de Corrida de Inscrição VIP",
-  "activityCenter": "Centro de Atividades"
+  "activityCenter": "Centro de Atividades",
+  "videoSizeLimit": "O tamanho do vídeo não pode exceder 400MB",
+  "imageSizeLimit": "O tamanho da imagem não pode exceder 5MB"
 }
