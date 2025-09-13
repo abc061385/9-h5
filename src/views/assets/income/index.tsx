@@ -16,6 +16,8 @@ import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
+import { ShowIf } from "@/components/show-if";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 
 const IncomeView = () => {
   const t = useTrans();
@@ -28,13 +30,21 @@ const IncomeView = () => {
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [pageSize] = useState(20);
+  const [detailTabsValue, setDetailTabsValue] = useState("all");
+  const [withDrawNum, setWithDrawNum] = useState<string>("");
+
+  const detailTabs = [
+    { label: "All Details", value: "all" },
+    { label: "Investment", value: "withdrawn" },
+    { label: "Smart Yield Wallet", value: "unWithdrawn" },
+  ];
 
   const { trigger } = useRequestMutation(
-    api.fundProductConfig.claimedProfitUsingGet,
+    api.fundProductConfig.claimedProfitUsingGet
   );
 
   const { trigger: postExtract, isMutating } = useRequestMutation(
-    api.fundProductConfig.extractUsingPost,
+    api.fundProductConfig.extractUsingPost
   );
 
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
@@ -54,7 +64,7 @@ const IncomeView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, pageSize],
+    [tabsValue, pageSize]
   );
 
   const getInfo = useCallback(() => {
@@ -66,7 +76,7 @@ const IncomeView = () => {
         onSuccess: ({ data }) => {
           setIncomeInfo(data as AssetsIncomeType);
         },
-      },
+      }
     );
   }, [trigger, tabsValue]);
 
@@ -80,7 +90,7 @@ const IncomeView = () => {
     const balanceString = formatBalance(
       (incomeInfo.unWithdrawnReturn * (100 - withdrawConfig.managementFee)) /
         100,
-      tabsValue,
+      tabsValue
     );
     const index = balanceString.indexOf(".");
     return balanceString.substring(0, index + 3);
@@ -95,7 +105,7 @@ const IncomeView = () => {
     (coin: string) => {
       return coinList.find((v) => v.currencyCode === coin)?.logo || "";
     },
-    [coinList],
+    [coinList]
   );
   return (
     <ViewLayout
@@ -103,14 +113,14 @@ const IncomeView = () => {
       header={<HeaderWithBack title={t("投资收益")} algin="center" />}
       className="flex flex-col"
     >
-      <div className="p-content">
+      <div className="p-content overflow-x-hidden h-max">
         <div role="tablist" className="tabs">
           {tabs.map((tab) => (
             <a
               role="tab"
               className={cn(
                 "tab flex-1 text-lg leading-5",
-                tab.value === tabsValue && "tab-active font-bold",
+                tab.value === tabsValue && "tab-active font-bold"
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}
@@ -136,35 +146,100 @@ const IncomeView = () => {
               USDT
             </div>
           </div>
-          <div className="text-center mt-4">
-            <p className="text-xs mb-0,5 text-text4">{t("基金投资总收益")}</p>
-            <div>
-              {formatBalance(incomeInfo?.totalFundReturn || "0", tabsValue)}{" "}
-              {tabsValue}
+
+          <ShowIf condition={tabsValue === "9MC"}>
+            <div className="flex py-4">
+              <div className="flex-1 flex flex-col gap-0.5 items-start">
+                <span className="text-xs text-text4">
+                  {t("基金投资总收益")}
+                </span>
+                <span className="text-sm">
+                  {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
+                  {tabsValue}
+                </span>
+              </div>
+              <div className="flex-1 flex flex-col gap-0.5 items-end">
+                <span className="text-xs text-text4 text-right">
+                  Smart Yield Wallet total income
+                </span>
+                <span className="text-sm">
+                  {formatBalance(
+                    incomeInfo?.unWithdrawnReturn || "0",
+                    tabsValue
+                  )}{" "}
+                  {tabsValue}
+                </span>
+              </div>
             </div>
-          </div>
-          <div className="flex py-4">
-            <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">{t("已提取收益")}</span>
-              <span className="text-sm">
-                {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
+            <div className="flex py-4">
+              <div className="flex-1 flex flex-col gap-0.5 items-start">
+                <span className="text-xs text-text4">{t("已提取收益")}</span>
+                <span className="text-sm">
+                  {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
+                  {tabsValue}
+                </span>
+              </div>
+              <div className="flex-1 flex flex-col gap-0.5 items-end">
+                <span className="text-xs text-text4 text-right">
+                  Smart Yield Wallet balance
+                </span>
+                <span className="text-sm">
+                  {formatBalance(
+                    incomeInfo?.unWithdrawnReturn || "0",
+                    tabsValue
+                  )}{" "}
+                  {tabsValue}
+                </span>
+              </div>
+            </div>
+          </ShowIf>
+          <ShowIf condition={tabsValue === "USDM"}>
+            <div className="text-center mt-4">
+              <p className="text-xs mb-0,5 text-text4">{t("基金投资总收益")}</p>
+              <div>
+                {formatBalance(incomeInfo?.totalFundReturn || "0", tabsValue)}{" "}
+                {tabsValue}
+              </div>
+            </div>
+            <div className="flex py-4">
+              <div className="flex-1 flex flex-col gap-0.5 items-start">
+                <span className="text-xs text-text4">{t("已提取收益")}</span>
+                <span className="text-sm">
+                  {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
+                  {tabsValue}
+                </span>
+              </div>
+              <div className="flex-1 flex flex-col gap-0.5 items-end">
+                <span className="text-xs text-text4">{t("未提取收益")}</span>
+                <span className="text-sm">
+                  {formatBalance(
+                    incomeInfo?.unWithdrawnReturn || "0",
+                    tabsValue
+                  )}{" "}
+                  {tabsValue}
+                </span>
+              </div>
+            </div>
+          </ShowIf>
+          <div className="bg-white rounded-lg py-3.5 px-4">
+            <div className="flex items-center justify-between ">
+              <span className="text-xs text-text4">{t("昨日投资收益")}</span>
+              <span className="text-primary text-sm text-right">
+                {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
-            <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">{t("未提取收益")}</span>
-              <span className="text-sm">
-                {formatBalance(incomeInfo?.unWithdrawnReturn || "0", tabsValue)}{" "}
-                {tabsValue}
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center justify-between bg-white rounded-lg h-12 px-4">
-            <span className="text-xs text-text4">{t("昨日投资收益")}</span>
-            <span className="text-primary text-sm text-right">
-              {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
-              {tabsValue}
-            </span>
+            <ShowIf condition={tabsValue === "9MC"}>
+              <div className="flex justify-between mt-2">
+                <span className="text-xs text-text4 flex-1">
+                  Yesterday’s Smart Yield Wallet Income
+                </span>
+                <span className="text-primary text-sm text-right">
+                  {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
+                  {tabsValue}
+                </span>
+              </div>
+            </ShowIf>
           </div>
           <button
             className="btn btn-primary w-full mt-6"
@@ -178,15 +253,29 @@ const IncomeView = () => {
           </button>
         </div>
 
-        <h2 className="font-medium mt-6 mb-4">{t("收益明细")}</h2>
-        <InfiniteVirtuosoList<IncomeListType>
-          fetchData={getIncomeList}
-          className="h-[100vh]"
-          columns={1}
-          renderItem={(item: IncomeListType) => (
-            <CardBox key={item.id} data={item} symbol={tabsValue} />
-          )}
-        />
+        <ShowIf condition={tabsValue === "USDM"}>
+          <h2 className="font-medium mt-6 mb-4">{t("收益明细")}</h2>
+        </ShowIf>
+
+        <ShowIf condition={tabsValue === "9MC"}>
+          <HorizontalTabs
+            type="border"
+            tabs={detailTabs}
+            value={detailTabsValue}
+            onChange={(e) => setDetailTabsValue(e as string)}
+            className="text-base mt-6 mb-4 gap-6"
+          />
+        </ShowIf>
+
+        <div className="h-[100vh]">
+          <InfiniteVirtuosoList<IncomeListType>
+            fetchData={getIncomeList}
+            columns={1}
+            renderItem={(item: IncomeListType) => (
+              <CardBox key={item.id} data={item} symbol={tabsValue} />
+            )}
+          />
+        </div>
       </div>
       <Drawer
         open={openWithdraw}
@@ -195,12 +284,25 @@ const IncomeView = () => {
         onChange={(e) => setOpenWithdraw(e)}
       >
         <p className="text-text4 mb-6">{t("withdrawNotice")}</p>
-        <div className="bg-bg1 rounded-md px-3.5 py-4 text-center">
-          <p className="mb-1">{t("预计到账")}</p>
-          <div className="text-primary text-xl font-medium">
-            {expectIncome()} {tabsValue}
-          </div>
-        </div>
+
+        <label className="input w-full h-12">
+          <input
+            value={withDrawNum}
+            type="number"
+            onChange={(e) => setWithDrawNum(e.target.value)}
+          />
+          <span className="text-text4 text-sm">{tabsValue}</span>
+          <span className="font-bold text-sm ml-2">All</span>
+        </label>
+        <ShowIf
+          condition={
+            !!withDrawNum &&
+            Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
+          }
+        >
+          <div className="text-xs text-primary mt-1">可用余额不足</div>
+        </ShowIf>
+
         <div className="flex items-center justify-between text-sm mt-4">
           <span className=" text-text4">{t("提取数量")}</span>
           <span>
@@ -211,6 +313,15 @@ const IncomeView = () => {
           <span className=" text-text4">{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
+        <ShowIf condition={tabsValue === "9MC"}>
+          <div className="flex items-center justify-between mt-2 text-sm">
+            <span className=" text-text4">Expected amount to be received</span>
+            <span>
+              {expectIncome()} {tabsValue}
+            </span>
+          </div>
+        </ShowIf>
+
         <button
           className="btn btn-primary w-full mt-4"
           disabled={isMutating}
@@ -225,15 +336,15 @@ const IncomeView = () => {
                     "incomeWithdrawAmount",
                     `${formatBalance(
                       incomeInfo?.unWithdrawnReturn || 0,
-                      tabsValue,
-                    )} ${tabsValue}`,
+                      tabsValue
+                    )} ${tabsValue}`
                   );
                   push(routerMap.incomeResult);
                   // getInfo();
                   // getIncomeList();
                   // setOpenWithdraw(false);
                 },
-              },
+              }
             );
           }}
         >
