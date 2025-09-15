@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "VIP 등록 레이스 보너스",
   "activityCenter": "활동 센터",
   "videoSizeLimit": "동영상 크기는 400MB를 초과할 수 없습니다",
-  "imageSizeLimit": "이미지 크기는 5MB를 초과할 수 없습니다"
+  "imageSizeLimit": "이미지 크기는 5MB를 초과할 수 없습니다",
+  "contactMethod": "연락처",
+  "selectContactMethod": "연락처를 선택해 주세요",
+  "searchCountry": "국가 검색"
 }

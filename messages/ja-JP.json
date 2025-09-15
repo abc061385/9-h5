@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "VIP登録レース報酬",
   "activityCenter": "アクティビティセンター",
   "videoSizeLimit": "動画サイズは400MBを超えることはできません",
-  "imageSizeLimit": "画像サイズは5MBを超えることはできません"
+  "imageSizeLimit": "画像サイズは5MBを超えることはできません",
+  "contactMethod": "連絡方法",
+  "selectContactMethod": "連絡方法を選択してください",
+  "searchCountry": "国を検索"
 }

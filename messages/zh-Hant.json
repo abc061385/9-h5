@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "VIP報名賽獎金",
   "activityCenter": "活動中心",
   "videoSizeLimit": "影片大小不能超過 400MB",
-  "imageSizeLimit": "圖片大小不能超過 5MB"
+  "imageSizeLimit": "圖片大小不能超過 5MB",
+  "contactMethod": "聯繫方式",
+  "selectContactMethod": "請選擇聯繫方式",
+  "searchCountry": "搜尋國家"
 }

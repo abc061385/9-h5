@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "Bonus Perlumbaan Pendaftaran VIP",
   "activityCenter": "Pusat Aktiviti",
   "videoSizeLimit": "Saiz video tidak boleh melebihi 400MB",
-  "imageSizeLimit": "Saiz gambar tidak boleh melebihi 5MB"
+  "imageSizeLimit": "Saiz gambar tidak boleh melebihi 5MB",
+  "contactMethod": "Kaedah hubungan",
+  "selectContactMethod": "Sila pilih kaedah hubungan",
+  "searchCountry": "Cari negara"
 }

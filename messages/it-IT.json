@@ -834,5 +834,8 @@
   "VIP报名赛奖金": "Bonus Gara di Iscrizione VIP",
   "activityCenter": "Centro Attività",
   "videoSizeLimit": "La dimensione del video non può superare 400MB",
-  "imageSizeLimit": "La dimensione dell'immagine non può superare 5MB"
+  "imageSizeLimit": "La dimensione dell'immagine non può superare 5MB",
+  "contactMethod": "Metodo di contatto",
+  "selectContactMethod": "Si prega di selezionare il metodo di contatto",
+  "searchCountry": "Cerca paese"
 }

@@ -835,5 +835,8 @@
   "VIP报名赛奖金": "VIP Registration Race Bonus",
   "activityCenter": "Activity Center",
   "videoSizeLimit": "Video size cannot exceed 400MB",
-  "imageSizeLimit": "Image size cannot exceed 5MB"
+  "imageSizeLimit": "Image size cannot exceed 5MB",
+  "contactMethod": "Contact Method",
+  "selectContactMethod": "Please select contact method",
+  "searchCountry": "Search country"
 }

@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "VIP报名赛奖金",
   "activityCenter": "活动中心",
   "videoSizeLimit": "视频大小不能超过 400MB",
-  "imageSizeLimit": "图片大小不能超过 5MB"
+  "imageSizeLimit": "图片大小不能超过 5MB",
+  "contactMethod": "联系方式",
+  "selectContactMethod": "请选择联系方式",
+  "searchCountry": "搜索国家"
 }

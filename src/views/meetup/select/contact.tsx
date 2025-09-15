@@ -30,7 +30,7 @@ const ContactSelectDrawer: FC<IContactSelectProps> = ({
   return (
     <Drawer
       className="h-auto"
-      title={t("selectContact")}
+      title={t("selectContactMethod")}
       open={open}
       onChange={() => onClose?.()}
     >

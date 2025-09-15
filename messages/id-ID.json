@@ -761,5 +761,8 @@
   "VIP报名赛奖金": "VIP पंजीकरण रेस बोनस",
   "activityCenter": "गतिविधि केंद्र",
   "videoSizeLimit": "वीडियो का आकार 400MB से अधिक नहीं हो सकता",
-  "imageSizeLimit": "छवि का आकार 5MB से अधिक नहीं हो सकता"
+  "imageSizeLimit": "छवि का आकार 5MB से अधिक नहीं हो सकता",
+  "contactMethod": "संपर्क विधि",
+  "selectContactMethod": "कृपया संपर्क विधि चुनें",
+  "searchCountry": "देश खोजें"
 }
