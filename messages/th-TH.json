@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "โบนัสการแข่งขันสมัคร VIP",
   "activityCenter": "ศูนย์กิจกรรม",
   "videoSizeLimit": "ขนาดวิดีโอต้องไม่เกิน 400MB",
-  "imageSizeLimit": "ขนาดภาพต้องไม่เกิน 5MB"
+  "imageSizeLimit": "ขนาดภาพต้องไม่เกิน 5MB",
+  "contactMethod": "วิธีการติดต่อ",
+  "selectContactMethod": "กรุณาเลือกวิธีการติดต่อ",
+  "searchCountry": "ค้นหาประเทศ"
 }

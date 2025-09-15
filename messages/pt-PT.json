@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "Bónus de Corrida de Inscrição VIP",
   "activityCenter": "Centro de Atividades",
   "videoSizeLimit": "O tamanho do vídeo não pode exceder 400MB",
-  "imageSizeLimit": "O tamanho da imagem não pode exceder 5MB"
+  "imageSizeLimit": "O tamanho da imagem não pode exceder 5MB",
+  "contactMethod": "Método de contacto",
+  "selectContactMethod": "Por favor selecione método de contacto",
+  "searchCountry": "Pesquisar país"
 }

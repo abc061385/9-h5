@@ -836,5 +836,8 @@
   "VIP报名赛奖金": "Tiền thưởng cuộc đua đăng ký VIP",
   "activityCenter": "Trung tâm Hoạt động",
   "videoSizeLimit": "Kích thước video không được vượt quá 400MB",
-  "imageSizeLimit": "Kích thước hình ảnh không được vượt quá 5MB"
+  "imageSizeLimit": "Kích thước hình ảnh không được vượt quá 5MB",
+  "contactMethod": "Phương thức liên hệ",
+  "selectContactMethod": "Vui lòng chọn phương thức liên hệ",
+  "searchCountry": "Tìm kiếm quốc gia"
 }
