@@ -820,5 +820,18 @@
   "spot_frozen_tip": "Bezieht sich auf den Teil Ihrer offenen Spot-Orders, der nicht ausgeführt wurde. Dieser Betrag wird auf Basis des Orderwerts in USDT eingefroren. Erfolgt ein Abschluss oder eine Stornierung, wird der Betrag automatisch freigegeben.",
   "funds_frozen": "Eingefrorener Fondsbetrag",
   "funds_frozen_tip": "Der eingefrorene Betrag für die Teilnahme an Aktivitäten, laufende Auszahlungen oder noch eingefrorenes Kapital in Fonds.",
-  "VIP报名赛奖金": "VIP-Wettbewerbsprämie"
+  "VIP报名赛奖金": "VIP-Wettbewerbsprämie",
+  "meetupApplication": "Meetup-Anwendung",
+  "subsidyRules": "Meetup-Förderprogramm-Regeln",
+  "meetupType": "Meetup-Typ",
+  "selectMeetupType": "Bitte wählen Sie den Meetup-Typ",
+  "smallScale": "Klein (25-50 Teilnehmer)",
+  "mediumScale": "Mittel (51-100 Teilnehmer)",
+  "uploadVenueProof": "Upload des Veranstaltungsortmietvertrags oder Zahlungsnachweis (Rechnung oder Überweisungscreenshot)",
+  "venueSetupPhotos": "Fotos vom Veranstaltungsaufbau",
+  "uploadSetupPhotos": "Upload von Fotos vom Veranstaltungsaufbau mit Postern/Roll-Up-Bannern",
+  "uploadVideos1": "Bitte laden Sie drei Videos von verschiedenen Zeiten hoch, jedes ≥5 Minuten",
+  "remainingApplications": "Verbleibende Anträge für dieses Konto",
+  "readAndAgree": "Bitte lesen und zustimmen",
+  "uploadVenueSetupPhotos": "Bitte laden Sie Fotos vom Veranstaltungsaufbau hoch"
 }

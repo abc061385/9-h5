@@ -1,11 +1,19 @@
 import { cn } from "@/lib/utils";
-import { FC, PropsWithChildren, useId } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  ReactNode,
+  useEffect,
+  useId,
+  useState,
+} from "react";
 
 type IProps = PropsWithChildren<{
   open?: boolean;
   onChange?: (open: boolean) => void;
   title?: string;
   className?: string;
+  target?: ReactNode;
 }>;
 export const Drawer: FC<IProps> = ({
   children,
@@ -13,9 +21,19 @@ export const Drawer: FC<IProps> = ({
   onChange,
   title,
   className,
+  target,
 }) => {
   const id = useId();
   const inputId = `drawer-${id}`;
+  const [targetHeight, setTargetHeight] = useState<number>(1940);
+
+  useEffect(() => {
+    if (target) {
+      setTargetHeight(
+        (target as unknown as { offsetHeight: number }).offsetHeight + 200
+      );
+    }
+  }, [target]);
   return (
     <div
       className="drawer drawer-bottom"
@@ -30,7 +48,12 @@ export const Drawer: FC<IProps> = ({
         onChange={(e) => onChange && onChange(e.target.checked)}
         className="drawer-toggle"
       />
-      <div className="drawer-side h-[1940px] md-pc:h-full !bottom-0 !top-[-10px]">
+      <div
+        className="drawer-side h-[1940px] md-pc:h-full !bottom-0 !top-[-10px]"
+        style={{
+          height: `${targetHeight}px`,
+        }}
+      >
         <label
           htmlFor={inputId}
           aria-label="close sidebar"
