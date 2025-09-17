@@ -23,9 +23,9 @@ const content = fs.readFileSync(csvPath, "utf8");
 const rows = parse(content, {
   columns: true,
   skip_empty_lines: true,
-  relax_column_count: true, // 宽松模式，允许列数不一致
-  relax_column_count_less: true, // 允许有少列
-  relax_column_count_more: true, // 允许有多列
+  relax_column_count: true,
+  relax_column_count_less: true,
+  relax_column_count_more: true,
 });
 
 if (rows.length === 0) {
@@ -46,6 +46,20 @@ for (const lang of langs) {
   }
 }
 
+// 工具函数：把 "a.b.c" 的 key 转换为嵌套对象
+function setDeep(obj, path, value) {
+  const parts = path.split(".");
+  let cur = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const p = parts[i];
+    if (!cur[p] || typeof cur[p] !== "object") {
+      cur[p] = {};
+    }
+    cur = cur[p];
+  }
+  cur[parts[parts.length - 1]] = value;
+}
+
 // 提取内容，按语言生成对象
 const output = {};
 for (const lang of langs) output[lang] = {};
@@ -53,14 +67,14 @@ for (const lang of langs) output[lang] = {};
 for (const row of rows) {
   const k = row.key;
   for (const lang of langs) {
-    output[lang][k] = row[lang];
+    setDeep(output[lang], k, row[lang]);
   }
 }
 
 // 写入 JSON 文件
 for (const lang of langs) {
   const json = JSON.stringify(output[lang], null, 2);
-  const fileName = `${lang}.json`;
+  const fileName = path.join(__dirname,`../messages/${lang}.json`) ;
   fs.writeFileSync(fileName, json, "utf8");
   console.log(`✅ 已生成 ${fileName}`);
 }

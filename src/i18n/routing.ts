@@ -7,14 +7,17 @@ export const routing = defineRouting({
     "zh-Hans",
     "zh-Hant",
     // "id-ID", // 印尼语
-    "it-IT",
     "ja-JP",
     "ko-KR",
     "ms-MY",
-    "pt-PT",
     "th-TH",
     "vi-VN",
     "hi-IN",
+    "it-IT",
+    "de-DE",
+    "fr-FR",
+    "pt-PT",
+    "es-ES",
   ],
 
   // Used when no locale matches
@@ -33,7 +36,11 @@ export const SupportedLanguages = [
   { lang: "ms-MY", label: "Bahasa Melayu" }, // 马来语
   { lang: "pt-PT", label: "Português" }, // 葡萄牙语
   { lang: "hi-IN", label: "हिन्दी" }, // 印地语
-  { lang: "it-IT", label: "Italiano" }, // 意大利语
+  { lang: "de-DE", label: "Klicken" }, // 德语（German）
+  { lang: "it-IT", label: "Clicca" }, // 意大利语 (Italian)
+  { lang: "fr-FR", label: "Cliquez" }, // 法语（French）
+  { lang: "pt-PT", label: "Clique" }, // 葡萄牙语（Portuguese）
+  { lang: "es-ES", label: "Haz clic" }, // 西班牙语（Spanish）
 ];
 
 export const APILang = {
