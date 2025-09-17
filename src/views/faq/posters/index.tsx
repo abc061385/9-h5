@@ -33,7 +33,7 @@ const FAQPostersView = () => {
         }}
       >
         <div className="pt-6 flex items-center justify-center">
-          <img src={currentUrl} />
+          <img src={currentUrl} alt="" />
         </div>
       </Modal>
       <div className="grid grid-cols-2 gap-4 p-content">

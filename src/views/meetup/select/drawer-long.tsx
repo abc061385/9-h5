@@ -30,7 +30,7 @@ export const Drawer: FC<IProps> = ({
         onChange={(e) => onChange && onChange(e.target.checked)}
         className="drawer-toggle"
       />
-      <div className="drawer-side h-[2300px] md-pc:h-full !bottom-0 !top-[-10px]">
+      <div className="drawer-side h-[2560px] md-pc:h-full !bottom-0 !top-[-10px]">
         <label
           htmlFor={inputId}
           aria-label="close sidebar"

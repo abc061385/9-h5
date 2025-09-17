@@ -3,6 +3,8 @@ import React, { PropsWithChildren, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ImageMetadata } from "./type";
 import { ShowIf } from "@/components/show-if";
+import toast from "react-hot-toast";
+import { useTrans } from "@/hooks/useTrans";
 
 interface VideoUploaderProps {
   onUploadSuccess?: (imgMeta: ImageMetadata) => void;
@@ -24,6 +26,8 @@ const VideoUploader: React.FC<PropsWithChildren<VideoUploaderProps>> = ({
   roundedFull = false,
   children,
 }) => {
+  const t = useTrans();
+
   const [preview, setPreview] = useState<string | null>(defaultUrl);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -35,7 +39,14 @@ const VideoUploader: React.FC<PropsWithChildren<VideoUploaderProps>> = ({
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    const maxSizeInBytes = 400 * 1024 * 1024; // 5MB
+    if (file && file.size > maxSizeInBytes) {
+      toast.error(t("videoSizeLimit"));
+      event.target.value = "";
+      return;
+    }
     if (file) {
+      event.target.value = "";
       handleUpload(file);
     }
   };
@@ -62,7 +73,7 @@ const VideoUploader: React.FC<PropsWithChildren<VideoUploaderProps>> = ({
     } catch {
       if (onUploadError) {
         setIsUploading(false);
-        onUploadError("上傳失敗，請稍後再試。");
+        onUploadError("deposit.uploadFailed");
       }
     } finally {
       setIsUploading(false);
