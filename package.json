@@ -10,7 +10,8 @@
     "lint": "next lint --fix",
     "gen:api": "node ./scripts/generateApi.mjs",
     "gen:icon": "npx fantasticon",
-    "gen:icontype": "node ./scripts/gen-icon-type.mjs"
+    "gen:icontype": "node ./scripts/gen-icon-type.mjs",
+    "json2csv": "node ./scripts/json2csv.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
