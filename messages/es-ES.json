@@ -820,5 +820,18 @@
   "spot_frozen_tip": "Se refiere a la parte de sus órdenes al contado pendientes no ejecutadas. El sistema congelará el monto equivalente en USDT. Una vez ejecutadas o canceladas, se liberará automáticamente.",
   "funds_frozen": "Monto congelado de fondos",
   "funds_frozen_tip": "Monto congelado por inscripción en eventos, retiros pendientes y capital de fondos aún bloqueado.",
-  "VIP报名赛奖金": "Bonificación de registro VIP"
+  "VIP报名赛奖金": "Bonificación de registro VIP",
+  "meetupApplication": "Solicitud de Meetup",
+  "subsidyRules": "Reglas del programa de subvención Meetup",
+  "meetupType": "Tipo de Meetup",
+  "selectMeetupType": "Por favor seleccione el tipo de Meetup",
+  "smallScale": "Pequeña escala (25-50 participantes)",
+  "mediumScale": "Escala media (51-100 participantes)",
+  "uploadVenueProof": "Subir comprobante de alquiler de lugar o pago (factura o captura de transferencia)",
+  "venueSetupPhotos": "Fotos de la disposición en el lugar",
+  "uploadSetupPhotos": "Subir fotos de la disposición que contengan posters/banners enrollables",
+  "uploadVideos1": "Por favor suba tres videos en diferentes momentos, cada uno ≥5 minutos",
+  "remainingApplications": "Solicitudes restantes de esta cuenta",
+  "readAndAgree": "Por favor lea y acepte",
+  "uploadVenueSetupPhotos": "Por favor suba fotos de la disposición en el lugar"
 }

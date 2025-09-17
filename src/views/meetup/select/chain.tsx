@@ -1,17 +1,19 @@
 import { Drawer } from "./drawer-long";
 import { useTrans } from "@/hooks/useTrans";
-import { FC, useEffect, useMemo } from "react";
+import { FC, ReactNode, useEffect, useMemo } from "react";
 
 interface IChainSelectProps {
   open: boolean;
   onClose: () => void;
   onConfirm: (chain: string) => void;
+  target?: ReactNode;
 }
 
 const ChainSelectDrawer: FC<IChainSelectProps> = ({
   open,
   onClose,
   onConfirm,
+  target,
 }) => {
   const t = useTrans();
 
@@ -19,7 +21,7 @@ const ChainSelectDrawer: FC<IChainSelectProps> = ({
 
   useEffect(() => {
     onConfirm?.(chainList[0]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -28,6 +30,7 @@ const ChainSelectDrawer: FC<IChainSelectProps> = ({
       title={t("address.selectChain")}
       open={open}
       onChange={() => onClose?.()}
+      target={target}
     >
       <div className="max-h-[400px] overflow-auto no-scrollbar">
         {chainList?.map((v) => {
