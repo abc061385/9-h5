@@ -1,63 +1,41 @@
 "use client";
 
+import { api } from "@/api";
+import BaseImage from "@/components/base-image";
+import { Drawer } from "@/components/drawer";
 import { HeaderWithBack } from "@/components/header-with-back";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
+import { ShowIf } from "@/components/show-if";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
+import { useFormatBalance } from "@/hooks/useFormatBalance";
+import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { cn } from "@/lib/utils";
-import { useCallback, useEffect, useState } from "react";
-import CardBox from "./card";
-import { useRequestMutation } from "@/hooks/useRequestMutation";
-import { api } from "@/api";
-import { useFormatBalance } from "@/hooks/useFormatBalance";
-import toast from "react-hot-toast";
-import { Drawer } from "@/components/drawer";
-import { useRequestQuery } from "@/hooks/useRequestQuery";
-import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
-import { routerMap, useRouter } from "@/i18n/navigation";
-import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
-import { ShowIf } from "@/components/show-if";
+import { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import CardBox from "../income/card";
 
-const IncomeView = () => {
+const SmartYield = () => {
   const t = useTrans();
-  const { push } = useRouter();
+  const { coinList } = useAssetStore();
   const { formatBalance } = useFormatBalance();
-
-  const { coinList, setField } = useAssetStore();
 
   const [tabsValue, setTabsValue] = useState("USDM");
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
-  const [pageSize] = useState(20);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
+  const [detailTabsValue, setDetailTabsValue] = useState("all");
+  const [pageSize] = useState(20);
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.claimedProfitUsingGet
   );
 
-  const { trigger: postExtract, isMutating } = useRequestMutation(
-    api.fundProductConfig.extractUsingPost
-  );
-
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
   const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
-
-  const getIncomeList = useCallback(
-    async (page: number) => {
-      const { data } =
-        await api.fundProductConfig.claimedProfitTransactionUsingGet({
-          pageNo: page,
-          pageSize: pageSize,
-          outputToken: tabsValue,
-        });
-      const newData = data?.list || [];
-      return {
-        data: newData,
-        hasMore: page < data.total / pageSize,
-      };
-    },
-    [tabsValue, pageSize]
-  );
 
   const getInfo = useCallback(() => {
     trigger(
@@ -76,6 +54,41 @@ const IncomeView = () => {
     getInfo();
   }, [getInfo]);
 
+  const getIncomeList = useCallback(
+    async (page: number) => {
+      const { data } =
+        await api.fundProductConfig.claimedProfitTransactionUsingGet({
+          pageNo: page,
+          pageSize: pageSize,
+          outputToken: tabsValue,
+        });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
+    },
+    [tabsValue, pageSize]
+  );
+
+  const tabs = [
+    { label: "USDM", value: "USDM" },
+    { label: "9MC", value: "9MC" },
+  ];
+
+  const detailTabs = [
+    { label: "All Details", value: "all" },
+    { label: "Investment", value: "withdrawn" },
+    { label: "Smart Yield Wallet", value: "unWithdrawn" },
+  ];
+
+  const coinLogo = useCallback(
+    (coin: string) => {
+      return coinList.find((v) => v.currencyCode === coin)?.logo || "";
+    },
+    [coinList]
+  );
+
   const expectIncome = useCallback(() => {
     if (!withdrawConfig?.managementFee) return 0;
     if (!incomeInfo?.unWithdrawnReturn) return 0;
@@ -88,24 +101,12 @@ const IncomeView = () => {
     return balanceString.substring(0, index + 3);
   }, [incomeInfo, formatBalance, withdrawConfig, tabsValue]);
 
-  const tabs = [
-    { label: "USDM", value: "USDM" },
-    { label: "9MC", value: "9MC" },
-  ];
-
-  const coinLogo = useCallback(
-    (coin: string) => {
-      return coinList.find((v) => v.currencyCode === coin)?.logo || "";
-    },
-    [coinList]
-  );
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title={t("投资收益")} algin="center" />}
-      className="flex flex-col"
+      header={<HeaderWithBack title="Smart Yield Wallet" algin="center" />}
     >
-      <div className="p-content overflow-x-hidden h-max">
+      <div className="p-content">
         <div role="tablist" className="tabs">
           {tabs.map((tab) => (
             <a
@@ -182,8 +183,13 @@ const IncomeView = () => {
             {t("提取收益")}
           </button>
         </div>
-
-        <h2 className="font-medium mt-6 mb-4">{t("收益明细")}</h2>
+        <HorizontalTabs
+          type="border"
+          tabs={detailTabs}
+          value={detailTabsValue}
+          onChange={(e) => setDetailTabsValue(e as string)}
+          className="text-base mt-6 mb-4 gap-6"
+        />
 
         <div className="h-[80vh]">
           <InfiniteVirtuosoList<IncomeListType>
@@ -240,40 +246,12 @@ const IncomeView = () => {
           </div>
         </ShowIf>
 
-        <button
-          className="btn btn-primary w-full mt-4"
-          disabled={isMutating}
-          onClick={() => {
-            postExtract(
-              {
-                outputToken: tabsValue,
-              },
-              {
-                onSuccess: () => {
-                  setField(
-                    "incomeWithdrawAmount",
-                    `${formatBalance(
-                      incomeInfo?.unWithdrawnReturn || 0,
-                      tabsValue
-                    )} ${tabsValue}`
-                  );
-                  push(routerMap.incomeResult);
-                  // getInfo();
-                  // getIncomeList();
-                  // setOpenWithdraw(false);
-                },
-              }
-            );
-          }}
-        >
-          {isMutating ? (
-            <span className="loading loading-spinner loading-xs"></span>
-          ) : (
-            t("common.confirm")
-          )}
+        <button className="btn btn-primary w-full mt-4" onClick={() => {}}>
+          {t("common.confirm")}
         </button>
       </Drawer>
     </ViewLayout>
   );
 };
-export default IncomeView;
+
+export default SmartYield;

@@ -137,7 +137,7 @@ const HeaderBox = () => {
       {/*     /> */}
       {/*   </div> */}
       {/* ) : null} */}
-      <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
+      <div className="grid grid-cols-5 gap-8 py-6">
         {cardList.map((item, index) => (
           <div
             key={index}
@@ -153,6 +153,19 @@ const HeaderBox = () => {
           </div>
         ))}
       </div>
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer"
+        onClick={() => {
+          push(routerMap.smartYield);
+        }}
+      >
+        <Icon name="smartYieldWallet" className="w-4.5 h-4" />
+        <span className="flex-1">Smart Yield Wallet</span>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+
+      <div className="divider"></div>
+
       <Drawer
         className="h-auto"
         title={t("address.selectToken")}
