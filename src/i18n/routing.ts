@@ -34,7 +34,7 @@ export const SupportedLanguages = [
   { lang: "ja-JP", label: "日本語" }, // 日语
   { lang: "ko-KR", label: "한국어" }, // 韩语
   { lang: "ms-MY", label: "Bahasa Melayu" }, // 马来语
-  { lang: "pt-PT", label: "Português" }, // 葡萄牙语
+  // { lang: "pt-PT", label: "Português" }, // 葡萄牙语
   { lang: "hi-IN", label: "हिन्दी" }, // 印地语
   { lang: "de-DE", label: "Klicken" }, // 德语（German）
   { lang: "it-IT", label: "Clicca" }, // 意大利语 (Italian)
