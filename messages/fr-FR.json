@@ -745,7 +745,7 @@
   "training_center_rules": "Règles du programme de centre/hub de formation",
   "studio_application": "Demande de centre/hub",
   "venue_address_detail": "Fournissez une adresse détaillée (pays, ville, nom du site, numéro et rue) pour vérification.",
-  "records": "Enregistrements",
+  "records": "Français",
   "submitApplication": "Soumettre la demande",
   "uploadPhotos": "Cliquez pour télécharger la photo",
   "uploadVideos": "Cliquez pour télécharger la vidéo",
@@ -820,5 +820,18 @@
   "spot_frozen_tip": "Correspond à la partie de vos ordres spot en attente non exécutés. Le système la gèle selon la valeur équivalente en USDT. Elle sera libérée après exécution ou annulation.",
   "funds_frozen": "Montant gelé des fonds",
   "funds_frozen_tip": "Montant gelé pour la participation, retraits en cours ou capital de fonds encore bloqué.",
-  "VIP报名赛奖金": "Bonus de participation VIP"
+  "VIP报名赛奖金": "Bonus de participation VIP",
+  "meetupApplication": "Demande de Meetup",
+  "subsidyRules": "Règles du programme de subvention Meetup",
+  "meetupType": "Type de Meetup",
+  "selectMeetupType": "Veuillez sélectionner le type de Meetup",
+  "smallScale": "Petite échelle (25-50 participants)",
+  "mediumScale": "Moyenne échelle (51-100 participants)",
+  "uploadVenueProof": "Télécharger la preuve de location de lieu ou de paiement (facture ou capture de transfert)",
+  "venueSetupPhotos": "Photos de l'aménagement sur place",
+  "uploadSetupPhotos": "Télécharger des photos de l'aménagement contenant des affiches/banderoles roll-up",
+  "uploadVideos1": "Veuillez télécharger trois vidéos à différents moments, chacune ≥5 minutes",
+  "remainingApplications": "Nombre de demandes restantes pour ce compte",
+  "readAndAgree": "Veuillez lire et accepter",
+  "uploadVenueSetupPhotos": "Veuillez télécharger des photos de l'aménagement sur place"
 }

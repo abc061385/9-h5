@@ -745,7 +745,7 @@
   "training_center_rules": "Regole del programma del centro/hub di formazione",
   "studio_application": "Domanda di centro/hub",
   "venue_address_detail": "Fornire l’indirizzo completo (paese, città, nome del luogo, numero civico e via) per la verifica.",
-  "records": "Registrazioni",
+  "records": "Italiano",
   "submitApplication": "Invia la domanda",
   "uploadPhotos": "Clicca per caricare foto",
   "uploadVideos": "Clicca per caricare video",
@@ -820,5 +820,18 @@
   "spot_frozen_tip": "Si riferisce alla parte degli ordini spot pendenti che non sono stati eseguiti. Il sistema congelerà l’equivalente in USDT finché l’ordine non viene eseguito o annullato.",
   "funds_frozen": "Importo congelato nei fondi",
   "funds_frozen_tip": "Include l’importo congelato per la partecipazione, le richieste di prelievo in sospeso e il capitale dei fondi ancora bloccato.",
-  "VIP报名赛奖金": "Bonus iscrizione VIP"
+  "VIP报名赛奖金": "Bonus iscrizione VIP",
+  "meetupApplication": "Domanda Meetup",
+  "subsidyRules": "Regole del programma di sovvenzione Meetup",
+  "meetupType": "Tipo di Meetup",
+  "selectMeetupType": "Seleziona il tipo di Meetup",
+  "smallScale": "Piccola scala (25-50 partecipanti)",
+  "mediumScale": "Scala media (51-100 partecipanti)",
+  "uploadVenueProof": "Carica prova di noleggio sede o pagamento (fattura o screenshot bonifico)",
+  "venueSetupPhotos": "Foto dell'allestimento",
+  "uploadSetupPhotos": "Carica foto dell'allestimento con poster/roll-up banner",
+  "uploadVideos1": "Carica 3 video di orari diversi, ciascuno ≥5 minuti",
+  "remainingApplications": "Richieste residue per questo account",
+  "readAndAgree": "Leggi e accetta",
+  "uploadVenueSetupPhotos": "Carica foto dell'allestimento"
 }
