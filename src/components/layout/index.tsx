@@ -12,6 +12,7 @@ type IProps = PropsWithChildren<{
   footer?: ReactNode;
   heightFull?: boolean;
   className?: string;
+  theme?: "light" | "dark";
 }>;
 export default function ViewLayout({
   children,
@@ -20,11 +21,15 @@ export default function ViewLayout({
   footer,
   heightFull = false,
   className,
+  theme = "light",
 }: IProps) {
   useInitToken();
   useSettingChat();
   return (
-    <div data-name="layout" className="size-full md-pc:relative">
+    <div
+      data-name="layout"
+      className={cn("size-full md-pc:relative", theme === "dark" && "dark")}
+    >
       <ShowIf condition={!!header}>
         <div
           className={cn([
@@ -44,6 +49,7 @@ export default function ViewLayout({
             "pb-16": dock,
             "h-full": heightFull,
           },
+          theme === "dark" && "bg-black",
           className,
         ])}
       >
