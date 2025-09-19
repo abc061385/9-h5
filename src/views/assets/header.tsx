@@ -10,7 +10,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useAssetStore } from "@/store/useAssetStore";
 import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
-import toast from "react-hot-toast";
 
 interface TotalInvestmentType {
   personalFundInvestment: number;
@@ -45,7 +44,7 @@ const HeaderBox = () => {
   const { data } = useRequestQuery(api.wallet.listUsingPost, {});
   const { trigger } = useRequestMutation(api.wallet.getTotalInvestmentUsingGet);
 
-  const [totalAmount, frozenTotal] = useMemo(() => {
+  const [totalAmount] = useMemo(() => {
     return [data?.data?.total ?? 0, data?.data?.frozenTotal ?? 0];
   }, [data?.data]);
 
@@ -56,7 +55,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      },
+      }
     );
   }, [trigger]);
 
@@ -128,16 +127,16 @@ const HeaderBox = () => {
           {formatBalance(totalInvestment?.personalFundInvestment || 0, 2)} USDT
         </span>
       </div>
-      {frozenTotal ? (
-        <div className="text-text4 text-sm flex items-center">
-          <span className="text-xs">{t("funds_frozen")}</span>：
-          <span>{formatBalance(frozenTotal, 2)} USDT</span>
-          <Icon
-            name="warning-black"
-            onClick={() => toast(t("funds_frozen_tip"))}
-          />
-        </div>
-      ) : null}
+      {/* {frozenTotal ? ( */}
+      {/*   <div className="text-text4 text-sm flex items-center"> */}
+      {/*     <span className="text-xs">{t("funds_frozen")}</span>： */}
+      {/*     <span>{formatBalance(frozenTotal, 2)} USDT</span> */}
+      {/*     <Icon */}
+      {/*       name="warning-black" */}
+      {/*       onClick={() => toast(t("funds_frozen_tip"))} */}
+      {/*     /> */}
+      {/*   </div> */}
+      {/* ) : null} */}
       <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
         {cardList.map((item, index) => (
           <div

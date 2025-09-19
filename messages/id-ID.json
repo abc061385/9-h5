@@ -758,5 +758,11 @@
   "finalTargetLevel": "लक्ष्य स्तर",
   "eventDescription": "「VIP उन्नति चुनौती」 सभी 9M AI उपयोगकर्ताओं के लिए खुली एक दीर्घकालिक चुनौती incentive तंत्र है।",
   "eventMechanics": "उपयोगकर्ता निर्दिष्ट समय के within VIP स्तर उन्नति और टीम स्टेकिंग लक्ष्यों को पूरा करके USDT के बराबर USDM पुरस्कार जीत सकते हैं, और luxury car honors प्राप्त करने का मौका भी!",
-  "VIP报名赛奖金": "VIP पंजीकरण रेस बोनस"
+  "VIP报名赛奖金": "VIP पंजीकरण रेस बोनस",
+  "activityCenter": "गतिविधि केंद्र",
+  "videoSizeLimit": "वीडियो का आकार 400MB से अधिक नहीं हो सकता",
+  "imageSizeLimit": "छवि का आकार 5MB से अधिक नहीं हो सकता",
+  "contactMethod": "संपर्क विधि",
+  "selectContactMethod": "कृपया संपर्क विधि चुनें",
+  "searchCountry": "देश खोजें"
 }

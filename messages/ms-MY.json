@@ -833,5 +833,11 @@
   "spot_frozen_tip": "Bahagian pesanan dagangan spot anda yang belum selesai akan dibekukan berdasarkan nilai bersamaan dalam USDT. Setelah pesanan dilaksanakan atau dibatalkan, amaun tersebut akan dinyahbeku secara automatik.",
   "funds_frozen": "Dana Dibekukan (Dana)",
   "funds_frozen_tip": "Amaun yang dibekukan untuk penyertaan aktiviti, amaun dalam proses pengeluaran, serta prinsipal yang sedang dibekukan dalam produk dana.",
-  "VIP报名赛奖金": "Bonus Perlumbaan Pendaftaran VIP"
+  "VIP报名赛奖金": "Bonus Perlumbaan Pendaftaran VIP",
+  "activityCenter": "Pusat Aktiviti",
+  "videoSizeLimit": "Saiz video tidak boleh melebihi 400MB",
+  "imageSizeLimit": "Saiz gambar tidak boleh melebihi 5MB",
+  "contactMethod": "Kaedah hubungan",
+  "selectContactMethod": "Sila pilih kaedah hubungan",
+  "searchCountry": "Cari negara"
 }

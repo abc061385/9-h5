@@ -739,7 +739,7 @@
   "need_lecturer": "是否需要講師",
   "language_of_instruction": "授課語言",
   "enter_language_of_instruction": "請輸入授課語言",
-  "receiving_address": "收貨地址",
+  "receiving_address": "收款地址",
   "enter_receiving_address": "請輸入地址",
   "agree_to_rules": "我已閱讀並同意",
   "training_center_rules": "培訓中心/工作室計劃規則",
@@ -833,5 +833,11 @@
   "spot_frozen_tip": "指您在現貨交易中掛單但未成交的部分，系統會依掛單對應的幣種折算為 USDT 價值進行凍結。當訂單成交或取消後，該部分金額將自動解凍。",
   "funds_frozen": "凍結資金（基金）",
   "funds_frozen_tip": "您報名參加活動的凍結金額、提現處理中的金額，以及基金處於凍結中的本金。",
-  "VIP报名赛奖金": "VIP報名賽獎金"
+  "VIP报名赛奖金": "VIP報名賽獎金",
+  "activityCenter": "活動中心",
+  "videoSizeLimit": "影片大小不能超過 400MB",
+  "imageSizeLimit": "圖片大小不能超過 5MB",
+  "contactMethod": "聯繫方式",
+  "selectContactMethod": "請選擇聯繫方式",
+  "searchCountry": "搜尋國家"
 }

@@ -127,7 +127,6 @@ const StudioView = () => {
     register,
     setValue,
     handleSubmit,
-    watch,
     getValues,
     reset,
     formState: { errors },
@@ -396,11 +395,6 @@ const StudioView = () => {
     });
   }, [videoFileList, t, formVideoFileList, setField]);
 
-  const needLecturerList = [
-    { label: t("yes"), value: "YES" },
-    { label: t("no"), value: "NO" },
-  ];
-
   const handleReset = () => {
     reset();
     setField("formData", {});
@@ -524,7 +518,7 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              {t("contact_info")}
+              {t("contactMethod")}
             </legend>
             <label className="input w-full h-12">
               <div
@@ -613,60 +607,6 @@ const StudioView = () => {
             </label>
             <TextError>{errors?.participantNumber?.message}</TextError>
           </fieldset>
-          <ShowIf condition={Number(watch().participantNumber || 0) >= 25}>
-            <div className="flex items-center justify-between mt-4 mb-2">
-              <h4 className="font-medium text-sm">{t("need_lecturer")}</h4>
-              <div className="flex items-center gap-6">
-                {needLecturerList.map((v) => {
-                  return (
-                    <div
-                      key={v.value}
-                      className="flex gap-2"
-                      onClick={() => {
-                        setNeedLecturer(v.value);
-                        setField("formNeedLecturer", v.value);
-                        setValue("teachLanguage", "", { shouldValidate: true });
-                      }}
-                    >
-                      <div
-                        className={cn(
-                          "border-2 rounded-full size-6 flex items-center justify-center",
-                          needLecturer === v.value
-                            ? "!bg-primary !border-primary"
-                            : " !border-border1 !bg-transparent"
-                        )}
-                      >
-                        <Icon name="duigou" />
-                      </div>
-                      <span className="font-medium">{v.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <ShowIf condition={needLecturer === "YES"}>
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend font-medium text-sm py-3.5">
-                  {t("language_of_instruction")}
-                </legend>
-                <label className="input w-full h-12">
-                  <input
-                    type="text"
-                    {...register("teachLanguage", {
-                      required:
-                        needLecturer === "YES"
-                          ? t("enter_language_of_instruction")
-                          : false,
-                    })}
-                    placeholder={t("enter_language_of_instruction")}
-                    className="grow placeholder:text-sm"
-                  />
-                </label>
-                <TextError>{errors?.teachLanguage?.message}</TextError>
-              </fieldset>
-            </ShowIf>
-          </ShowIf>
 
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">

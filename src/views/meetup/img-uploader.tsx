@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { ImageMetadata } from "./type";
 import { ShowIf } from "@/components/show-if";
+import toast from "react-hot-toast";
+import { useTrans } from "@/hooks/useTrans";
 
 interface ImageUploaderProps {
   onUploadSuccess?: (imgMeta: ImageMetadata) => void;
@@ -25,6 +27,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
   roundedFull = false,
   children,
 }) => {
+  const t = useTrans();
   const [preview, setPreview] = useState<string | null>(defaultUrl);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -36,8 +39,15 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+    if (file && file.size > maxSizeInBytes) {
+      toast.error(t("imageSizeLimit"));
+      event.target.value = "";
+      return;
+    }
     if (file) {
       handleUpload(file);
+      event.target.value = "";
     }
   };
 

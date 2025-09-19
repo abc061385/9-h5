@@ -432,7 +432,7 @@ const StudioView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-medium text-sm py-3.5">
-              {t("contact_info")}
+              {t("contactMethod")}
             </legend>
             <label className="input w-full h-12">
               <div

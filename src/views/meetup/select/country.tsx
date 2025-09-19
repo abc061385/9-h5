@@ -69,7 +69,7 @@ const CountrySelectDrawer: FC<ICountrySelectProps> = ({
         <input
           type="search"
           className="grow"
-          placeholder="Search Country"
+          placeholder={t("searchCountry")}
           onChange={(e) => {
             search(e.target.value);
           }}
