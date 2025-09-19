@@ -833,5 +833,11 @@
   "uploadVideos1": "Veuillez télécharger trois vidéos à différents moments, chacune ≥5 minutes",
   "remainingApplications": "Nombre de demandes restantes pour ce compte",
   "readAndAgree": "Veuillez lire et accepter",
-  "uploadVenueSetupPhotos": "Veuillez télécharger des photos de l'aménagement sur place"
+  "uploadVenueSetupPhotos": "Veuillez télécharger des photos de l'aménagement sur place",
+  "contactMethod": "Méthode de contact",
+  "selectContactMethod": "Veuillez sélectionner une méthode de contact",
+  "searchCountry": "Rechercher un pays",
+  "activityCenter": "Centre d'activités",
+  "videoSizeLimit": "La taille de la vidéo ne doit pas dépasser 400 Mo",
+  "imageSizeLimit": "La taille de l'image ne doit pas dépasser 5 Mo"
 }

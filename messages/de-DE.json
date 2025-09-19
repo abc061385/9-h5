@@ -833,5 +833,11 @@
   "uploadVideos1": "Bitte laden Sie drei Videos von verschiedenen Zeiten hoch, jedes ≥5 Minuten",
   "remainingApplications": "Verbleibende Anträge für dieses Konto",
   "readAndAgree": "Bitte lesen und zustimmen",
-  "uploadVenueSetupPhotos": "Bitte laden Sie Fotos vom Veranstaltungsaufbau hoch"
+  "uploadVenueSetupPhotos": "Bitte laden Sie Fotos vom Veranstaltungsaufbau hoch",
+  "contactMethod": "Kontaktmethode",
+  "selectContactMethod": "Bitte wählen Sie eine Kontaktmethode",
+  "searchCountry": "Land suchen",
+  "activityCenter": "Aktivitätszentrum",
+  "videoSizeLimit": "Videogröße darf 400 MB nicht überschreiten",
+  "imageSizeLimit": "Bildgröße darf 5 MB nicht überschreiten"
 }

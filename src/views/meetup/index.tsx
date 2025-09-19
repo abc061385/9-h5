@@ -10,7 +10,6 @@ import { TextError } from "@/components/input/text-error";
 import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
 import ChainSelectDrawer from "./select/chain";
 import VenueSelectDrawer from "./select/venue";
 import ContactSelectDrawer from "./select/contact";

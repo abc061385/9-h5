@@ -833,5 +833,11 @@
   "uploadVideos1": "Por favor suba tres videos en diferentes momentos, cada uno ≥5 minutos",
   "remainingApplications": "Solicitudes restantes de esta cuenta",
   "readAndAgree": "Por favor lea y acepte",
-  "uploadVenueSetupPhotos": "Por favor suba fotos de la disposición en el lugar"
+  "uploadVenueSetupPhotos": "Por favor suba fotos de la disposición en el lugar",
+  "contactMethod": "Método de contacto",
+  "selectContactMethod": "Por favor seleccione un método de contacto",
+  "searchCountry": "Buscar país",
+  "activityCenter": "Centro de actividades",
+  "videoSizeLimit": "El tamaño del video no puede exceder 400 MB",
+  "imageSizeLimit": "El tamaño de la imagen no puede exceder 5 MB"
 }
