@@ -39,10 +39,10 @@ const BannerBox = () => {
   return (
     <Swiper
       modules={[Autoplay, Pagination]}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
+      // autoplay={{
+      //   delay: 3000,
+      //   disableOnInteraction: false,
+      // }}
       speed={800}
       spaceBetween={10}
       pagination={{
@@ -58,7 +58,7 @@ const BannerBox = () => {
         <div className="flex h-full justify-between bg-[url('/images/home/home_banner.png')] bg-contain bg-no-repeat p-content !py-7">
           <div>
             <h2 className="text-xl leading-6 mb-2.5 font-bold">{t("公司")}</h2>
-            <p className="text-sm leading-3.5 w-[52%]">{t("公司简介")}</p>
+            <p className="text-sm leading-3.5 w-[55%] line-clamp-6">{t("公司简介")}</p>
           </div>
         </div>
       </SwiperSlide>
