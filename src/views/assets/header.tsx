@@ -137,11 +137,11 @@ const HeaderBox = () => {
       {/*     /> */}
       {/*   </div> */}
       {/* ) : null} */}
-      <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
+      <div className="grid grid-cols-5 gap-2 py-6 border-b border-border2">
         {cardList.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-start"
+            className="flex flex-col items-center justify-start overflow-hidden"
             onClick={() => {
               if (item.onClick) return item.onClick();
               if (!item.path) return;
@@ -149,7 +149,7 @@ const HeaderBox = () => {
             }}
           >
             <BaseImage src={item.icon} className="w-10 h-10" />
-            <span className="text-xs mt-2 text-center">{t(item.label)}</span>
+            <span className="text-xs mt-2 text-center break-words w-full">{t(item.label)}</span>
           </div>
         ))}
       </div>
