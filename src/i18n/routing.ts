@@ -39,7 +39,7 @@ export const SupportedLanguages = [
   { lang: "it-IT", label: "Italiano" }, // 意大利语 (Italian)
   { lang: "fr-FR", label: "Français" }, // 法语（French）
   { lang: "pt-PT", label: "Português" }, // 葡萄牙语（Portuguese）
-  { lang: "es-ES", label: "español" }, // 西班牙语（Spanish）
+  { lang: "es-ES", label: "Español" }, // 西班牙语（Spanish）
 ];
 
 export const APILang = {
