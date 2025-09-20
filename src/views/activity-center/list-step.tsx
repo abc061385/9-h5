@@ -1,6 +1,8 @@
 import { Icon } from "@/components/icon";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 const ListStepBox = () => {
+  const { push } = useRouter();
   const list = [
     {
       date: "2025-08-05",
@@ -76,7 +78,10 @@ const ListStepBox = () => {
               <dd className="bg-bg4 p-4 rounded-lg flex gap-4">
                 <div className="size-10">{v.flag}</div>
                 <div>
-                  <h4 className="font-medium leading-6 flex justify-between items-center">
+                  <h4
+                    className="font-medium leading-6 flex justify-between items-center"
+                    onClick={() => push(routerMap.meetingMinutes)}
+                  >
                     {v.country}
                     <Icon name="right-enter-white" className="w-1.5 h-2.5" />
                   </h4>

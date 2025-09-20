@@ -12,6 +12,10 @@ interface HorizontalTabsProps {
   value: string | number;
   onChange: (value: string | number) => void;
   type?: "border" | "box";
+  borderClassName?: string;
+  activeClassName?: string;
+  className?: string;
+  wrapClassName?: string;
 }
 
 const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
@@ -19,10 +23,19 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
   value,
   onChange,
   type = "box",
+  borderClassName,
+  activeClassName,
+  className,
+  wrapClassName,
 }) => {
   return (
     <div className="overflow-x-auto whitespace-nowrap no-scrollbar w-[100vw] left-6 pr-12">
-      <div className="tabs tabs-boxed inline-flex flex-nowrap gap-2">
+      <div
+        className={cn(
+          "tabs tabs-boxed inline-flex flex-nowrap gap-2",
+          wrapClassName
+        )}
+      >
         {tabs.map((tab) => {
           const isActive = tab.value === value;
           return (
@@ -30,6 +43,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
               key={tab.value}
               className={cn(
                 "tab leading-[20px] rounded-lg h-8 text-text4 font-normal flex-col",
+                className,
                 type === "border" ? "bg-none px-0" : "bg-bg3 px-3",
                 isActive && type === "box"
                   ? "tab-active bg-black text-white font-bold hover:text-white"
@@ -37,6 +51,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                 isActive && type === "border"
                   ? "tab-active text-primary font-bold"
                   : "",
+                isActive && activeClassName
               )}
               onClick={() => onChange(tab.value)}
             >
@@ -46,6 +61,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                   className={cn(
                     "w-5 h-[3px] mx-auto",
                     isActive && "bg-primary",
+                    isActive && borderClassName
                   )}
                 ></div>
               </ShowIf>
