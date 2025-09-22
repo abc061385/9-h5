@@ -51,6 +51,120 @@ export interface InternalTransferRequest {
   userId?: number;
 }
 
+/** MeetupAttachmentDTO */
+export interface MeetupAttachmentDTO {
+  /** 上传文件名称 */
+  fileName: string;
+  /**
+   * 上传文件类型;1-场地租赁凭证;2-现场视频;3-现场布置照片
+   * @format int32
+   */
+  fileType: number;
+  /** 上传文件url */
+  fileUrl: string;
+  /** 凭证缩略图url */
+  thumbnailUrl: string;
+}
+
+/** MemberMeetupDTO */
+export interface MemberMeetupDTO {
+  /** 场地地址 */
+  address: string;
+  attachmentList?: MeetupAttachmentDTO[];
+  /** 联系方式 */
+  contactInformation: string;
+  /**
+   * 联系方式类型:1-Whatsapp;2-Telegram
+   * @format int32
+   */
+  contactType: number;
+  /** 邮箱 */
+  emailAccount: string;
+  /**
+   * MEETUP类型:1-小型（25-50人参与）;2-中型（51-100人参与）
+   * @format int32
+   */
+  meetType: number;
+  /**
+   * 会员ID
+   * @format int64
+   */
+  memberId?: number;
+  /**
+   * 参训人数
+   * @format int32
+   */
+  participantNumber: number;
+  /** 电话号码 */
+  phoneNumber: string;
+  /**
+   * 国家电话号码ID
+   * @format int64
+   */
+  prefixId?: number;
+  /** 收款地址 */
+  receiveAddress: string;
+  /**
+   * 收款网络;1-TRX;2-BSC
+   * @format int32
+   */
+  receiveNetwork: number;
+}
+
+/** MemberWorkroomDTO */
+export interface MemberWorkroomDTO {
+  /** 场地地址 */
+  address: string;
+  attachmentList?: WorkroomAttachmentDTO[];
+  /** 联系方式 */
+  contactInformation: string;
+  /**
+   * 联系方式类型:1-Whatsapp;2-Telegram
+   * @format int32
+   */
+  contactType: number;
+  /** 邮箱 */
+  emailAccount: string;
+  /**
+   * 是否需要讲师;0-否;1-是
+   * @format int32
+   */
+  lecturer: number;
+  /**
+   * 会员ID
+   * @format int64
+   */
+  memberId?: number;
+  /** 运营计划 */
+  operationPlan: string;
+  /**
+   * 参训人数
+   * @format int32
+   */
+  participantNumber: number;
+  /** 电话号码 */
+  phoneNumber: string;
+  /**
+   * 国家电话号码ID
+   * @format int64
+   */
+  prefixId?: number;
+  /** 收款地址 */
+  receiveAddress: string;
+  /**
+   * 收款网络;1-TRX;2-BSC
+   * @format int32
+   */
+  receiveNetwork: number;
+  /**
+   * 场地类型:1-Training Hub（场地面积 ≥ 50㎡）;2-Training Center（场地面积 ≥ 100㎡）
+   * @format int32
+   */
+  siteType: number;
+  /** 授课语言 */
+  teachLanguage: string;
+}
+
 /** RegistActivityDTO */
 export interface RegistActivityDTO {
   /** @format int64 */
@@ -59,6 +173,21 @@ export interface RegistActivityDTO {
   contact?: string;
   /** @format int32 */
   payStatus?: number;
+}
+
+/** WorkroomAttachmentDTO */
+export interface WorkroomAttachmentDTO {
+  /** 上传文件名称 */
+  fileName: string;
+  /**
+   * 上传文件类型;1-场地租赁凭证;2-现场视频
+   * @format int32
+   */
+  fileType: number;
+  /** 上传文件url */
+  fileUrl: string;
+  /** 凭证缩略图url */
+  thumbnailUrl: string;
 }
 
 /** IPage«ActivitiesVO» */
@@ -425,6 +554,21 @@ export class Api<
      * No description
      *
      * @tags 登录注册
+     * @name GetBindListUsingGet
+     * @summary 根据会员ID，查询绑定关系
+     * @request GET:/auth/bind-list/{id}
+     */
+    getBindListUsingGet: (id: ref, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/auth/bind-list/${id}`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
      * @name EditInfoUsingPost
      * @summary 编辑用户头像
      * @request POST:/auth/editHead
@@ -513,6 +657,8 @@ export class Api<
         isDisable?: boolean;
         /** @format int32 */
         isTop?: number;
+        lastLoginDevice?: string;
+        lastLoginIp?: string;
         /** @format date-time */
         lastLoginTime?: string;
         /** @format int32 */
@@ -763,6 +909,31 @@ export class Api<
      * No description
      *
      * @tags 登录注册
+     * @name LoginByTokenUsingPost
+     * @summary 通过token登录系统
+     * @request POST:/auth/login-by-token
+     */
+    loginByTokenUsingPost: (
+      query: {
+        /** 登录账号 */
+        account: string;
+        /** 账号类型；1-邮箱；0-手机 */
+        accountType: ref;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/login-by-token`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
      * @name LoginByFaBeforeCheckUsingPost
      * @summary 登录前置校验通过后下返回2fa验证项
      * @request POST:/auth/loginByFaBeforeCheck
@@ -920,6 +1091,116 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/auth/sendCode`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name SubAccountLoginCleanEmailUsingPost
+     * @summary 清空子账号邮箱登录
+     * @request POST:/auth/sub-account/email-clean/login
+     */
+    subAccountLoginCleanEmailUsingPost: (
+      query: {
+        /** 子账号 */
+        account: string;
+        /** 母账号ID */
+        motherUserId: ref;
+        /** 子账号密码 */
+        password: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/sub-account/email-clean/login`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name SubAccountLoginUsingPost
+     * @summary 子账号登录
+     * @request POST:/auth/sub-account/login
+     */
+    subAccountLoginUsingPost: (
+      query: {
+        /** 子账号 */
+        account: string;
+        /** 母账号ID */
+        motherUserId: ref;
+        /** 子账号密码 */
+        password: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/sub-account/login`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name SubAccountLoginByTokenUsingPost
+     * @summary 子账号Token登录
+     * @request POST:/auth/sub-account/login-by-token
+     */
+    subAccountLoginByTokenUsingPost: (
+      query: {
+        /** 子账号 */
+        account: string;
+        /** 母账号ID */
+        motherUserId: ref;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/sub-account/login-by-token`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name SubAccountRegisterUsingPost
+     * @summary 子账号注册
+     * @request POST:/auth/sub-account/register
+     */
+    subAccountRegisterUsingPost: (
+      query: {
+        /** 子账号 */
+        account: string;
+        /** 确认密码 */
+        confirmPassword: string;
+        /** 邀请码 */
+        invitationCode: string;
+        /** 母账号ID */
+        motherUserId: ref;
+        /** 子账号密码 */
+        password: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/auth/sub-account/register`,
         method: "POST",
         query: query,
         type: ContentType.Json,
@@ -1690,6 +1971,22 @@ export class Api<
         ...params,
       }),
   };
+  country = {
+    /**
+     * No description
+     *
+     * @tags 电话国家语言
+     * @name GetCountryPhonePrefixListUsingGet
+     * @summary 国家电话号码前缀列表
+     * @request GET:/country/prefix/list
+     */
+    getCountryPhonePrefixListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/country/prefix/list`,
+        method: "GET",
+        ...params,
+      }),
+  };
   currencySettings = {
     /**
      * No description
@@ -1914,6 +2211,8 @@ export class Api<
      */
     extractUsingPost: (
       query?: {
+        /** newVersion */
+        newVersion?: boolean;
         /** outputToken */
         outputToken?: string;
       },
@@ -1924,6 +2223,69 @@ export class Api<
         method: "POST",
         query: query,
         type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags fund-product-config-controller
+     * @name ClaimedProfitIncomeDetailsUsingGet
+     * @summary claimedProfitIncomeDetails
+     * @request GET:/fund-product-config/claimedProfit/income-details
+     */
+    claimedProfitIncomeDetailsUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /** outputToken */
+        outputToken?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+        /**
+         * type
+         * @format int32
+         */
+        type?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/fund-product-config/claimedProfit/income-details`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags fund-product-config-controller
+     * @name ClaimedProfitSmartWalletUsingGet
+     * @summary claimedProfitSmartWallet
+     * @request GET:/fund-product-config/claimedProfit/smart-wallet
+     */
+    claimedProfitSmartWalletUsingGet: (
+      query?: {
+        /** outputToken */
+        outputToken?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/fund-product-config/claimedProfit/smart-wallet`,
+        method: "GET",
+        query: query,
         ...params,
       }),
 
@@ -2194,6 +2556,8 @@ export class Api<
      */
     rewardExtractUsingPost: (
       query?: {
+        /** newVersion */
+        newVersion?: boolean;
         /** outputToken */
         outputToken?: string;
       },
@@ -2262,6 +2626,31 @@ export class Api<
         path: `/fund-product-config/reward/transaction`,
         method: "GET",
         query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags fund-product-config-controller
+     * @name SmartWalletExtractUsingPost
+     * @summary smartWalletExtract
+     * @request POST:/fund-product-config/smart-wallet/extract
+     */
+    smartWalletExtractUsingPost: (
+      query?: {
+        /** amount */
+        amount?: number;
+        /** outputToken */
+        outputToken?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/fund-product-config/smart-wallet/extract`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
         ...params,
       }),
   };
@@ -2419,6 +2808,92 @@ export class Api<
         ...params,
       }),
   };
+  levelRace = {
+    /**
+     * No description
+     *
+     * @tags VIP等级挑战赛
+     * @name CheckFinishUsingPost
+     * @summary 检测报名是否结束
+     * @request POST:/level-race/check-finish
+     */
+    checkFinishUsingPost: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/level-race/check-finish`,
+        method: "POST",
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags VIP等级挑战赛
+     * @name IntroduceUsingGet
+     * @summary 活动文案
+     * @request GET:/level-race/introduce
+     */
+    introduceUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/level-race/introduce`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags VIP等级挑战赛
+     * @name RegistrationUsingPost1
+     * @summary 用户报名活动
+     * @request POST:/level-race/registration
+     */
+    registrationUsingPost1: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/level-race/registration`,
+        method: "POST",
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags VIP等级挑战赛
+     * @name RegistrationRecordUsingGet
+     * @summary 参赛记录
+     * @request GET:/level-race/registration-record
+     */
+    registrationRecordUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/level-race/registration-record`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags VIP等级挑战赛
+     * @name SetReadUsingPost
+     * @summary 设置已读
+     * @request POST:/level-race/set-read
+     */
+    setReadUsingPost: (
+      query?: {
+        /** 0 */
+        orderId?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/level-race/set-read`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+  };
   market = {
     /**
      * No description
@@ -2439,6 +2914,73 @@ export class Api<
         path: `/market/thumb`,
         method: "GET",
         query: query,
+        ...params,
+      }),
+  };
+  meetup = {
+    /**
+     * No description
+     *
+     * @tags meetup
+     * @name SaveUsingPost
+     * @summary meetup申请
+     * @request POST:/meetup/apply
+     */
+    saveUsingPost: (dto: MemberMeetupDTO, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/meetup/apply`,
+        method: "POST",
+        body: dto,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags meetup
+     * @name GetPageListUsingGet
+     * @summary meetup分页列表
+     * @request GET:/meetup/page-list
+     */
+    getPageListUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/meetup/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags meetup
+     * @name CanApplyCountUsingGet
+     * @summary 本账号剩余可申请次数
+     * @request GET:/meetup/rest-count
+     */
+    canApplyCountUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/meetup/rest-count`,
+        method: "GET",
         ...params,
       }),
   };
@@ -4705,6 +5247,11 @@ export class Api<
       query: {
         /** coinCode */
         coinCode?: string;
+        /**
+         * inout
+         * @format int32
+         */
+        inout?: number;
         /** 排序方式 asc/desc */
         order?: string;
         /**
@@ -4997,6 +5544,58 @@ export class Api<
     ) =>
       this.request<_, void>({
         path: `/wallet/withdraw-page`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+  };
+  workroom = {
+    /**
+     * No description
+     *
+     * @tags 工作室
+     * @name SaveUsingPost1
+     * @summary 工作室申请
+     * @request POST:/workroom/apply
+     */
+    saveUsingPost1: (dto: MemberWorkroomDTO, params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/workroom/apply`,
+        method: "POST",
+        body: dto,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 工作室
+     * @name GetPageListUsingGet1
+     * @summary 工作室分页列表
+     * @request GET:/workroom/page-list
+     */
+    getPageListUsingGet1: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/workroom/page-list`,
         method: "GET",
         query: query,
         ...params,

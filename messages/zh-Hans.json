@@ -839,5 +839,8 @@
   "imageSizeLimit": "图片大小不能超过 5MB",
   "contactMethod": "联系方式",
   "selectContactMethod": "请选择联系方式",
-  "searchCountry": "搜索国家"
+  "searchCountry": "搜索国家",
+  "SmartYieldWallet总收益": "Smart Yield Wallet 总收益",
+  "每日复利收益": "每日复利收益",
+  "昨日SmartYieldWallet收益": "昨日Smart Yield Wallet收益"
 }

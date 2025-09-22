@@ -12,26 +12,28 @@ import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { cn } from "@/lib/utils";
+import { cn, utils } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import CardBox from "../income/card";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 const SmartYield = () => {
   const t = useTrans();
-  const { coinList } = useAssetStore();
+  const { coinList, setField } = useAssetStore();
   const { formatBalance } = useFormatBalance();
+  const { push } = useRouter();
 
   const [tabsValue, setTabsValue] = useState("USDM");
-  const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
+  const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType1>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
-  const [detailTabsValue, setDetailTabsValue] = useState("all");
+  const [detailTabsValue, setDetailTabsValue] = useState(0);
   const [pageSize] = useState(20);
 
   const { trigger } = useRequestMutation(
-    api.fundProductConfig.claimedProfitUsingGet
+    api.fundProductConfig.claimedProfitSmartWalletUsingGet,
   );
 
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
@@ -44,9 +46,9 @@ const SmartYield = () => {
       },
       {
         onSuccess: ({ data }) => {
-          setIncomeInfo(data as AssetsIncomeType);
+          setIncomeInfo(data as AssetsIncomeType1);
         },
-      }
+      },
     );
   }, [trigger, tabsValue]);
 
@@ -57,9 +59,10 @@ const SmartYield = () => {
   const getIncomeList = useCallback(
     async (page: number) => {
       const { data } =
-        await api.fundProductConfig.claimedProfitTransactionUsingGet({
+        await api.fundProductConfig.claimedProfitIncomeDetailsUsingGet({
           pageNo: page,
           pageSize: pageSize,
+          type: detailTabsValue,
           outputToken: tabsValue,
         });
       const newData = data?.list || [];
@@ -68,7 +71,7 @@ const SmartYield = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, pageSize]
+    [tabsValue, pageSize, detailTabsValue],
   );
 
   const tabs = [
@@ -77,43 +80,60 @@ const SmartYield = () => {
   ];
 
   const detailTabs = [
-    { label: "All Details", value: "all" },
-    { label: "Investment", value: "withdrawn" },
-    { label: "Smart Yield Wallet", value: "unWithdrawn" },
+    { label: "All Details", value: 0 },
+    { label: "投资收益转入", value: 1 },
+    { label: "币权收益转入", value: 2 },
+    { label: "Smart Yield Wallet", value: 3 },
   ];
 
   const coinLogo = useCallback(
     (coin: string) => {
       return coinList.find((v) => v.currencyCode === coin)?.logo || "";
     },
-    [coinList]
+    [coinList],
   );
 
-  const expectIncome = useCallback(() => {
-    if (!withdrawConfig?.managementFee) return 0;
-    if (!incomeInfo?.unWithdrawnReturn) return 0;
-    const balanceString = formatBalance(
-      (incomeInfo.unWithdrawnReturn * (100 - withdrawConfig.managementFee)) /
-        100,
-      tabsValue
+  const estimatedArrival = useMemo(() => {
+    return (
+      utils
+        .toBigNumber(withDrawNum)
+        .times((100 - withdrawConfig?.managementFee) / 100)
+        .toNumber() || 0
     );
-    const index = balanceString.indexOf(".");
-    return balanceString.substring(0, index + 3);
-  }, [incomeInfo, formatBalance, withdrawConfig, tabsValue]);
+  }, [withDrawNum, withdrawConfig]);
+
+  const handleSubmit = useCallback(async () => {
+    try {
+      const res = await api.fundProductConfig.smartWalletExtractUsingPost({
+        amount: Number(withDrawNum),
+        outputToken: tabsValue,
+      });
+      if (res.code === 200) {
+        setOpenWithdraw(false);
+        getInfo();
+        setField(
+          "incomeWithdrawAmount",
+          `${formatBalance(withDrawNum || 0, tabsValue)} ${tabsValue}`,
+        );
+        push(routerMap.incomeResult);
+      }
+    } catch {}
+  }, [withDrawNum, tabsValue, getInfo, push, setField, formatBalance]);
 
   return (
     <ViewLayout
       heightFull
       header={<HeaderWithBack title="Smart Yield Wallet" algin="center" />}
+      className="flex flex-col"
     >
-      <div className="p-content">
+      <div className="p-content overflow-x-hidden h-max">
         <div role="tablist" className="tabs">
           {tabs.map((tab) => (
             <a
               role="tab"
               className={cn(
                 "tab flex-1 text-lg leading-5",
-                tab.value === tabsValue && "tab-active font-bold"
+                tab.value === tabsValue && "tab-active font-bold",
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}
@@ -133,19 +153,21 @@ const SmartYield = () => {
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
           />
           <div className="text-center border-b border-border2 pb-4 mb-4">
-            <p className="text-xs mb-1 text-text4">{t("个人基金投资额")}</p>
+            <p className="text-xs mb-1 text-text4">
+              {t("SmartYieldWallet总收益")}
+            </p>
             <div className="text-xl font-medium">
-              {formatBalance(incomeInfo?.personalFundInvestment || "0", "USDT")}{" "}
-              USDT
+              {formatBalance(
+                incomeInfo?.personalFundInvestment || "0",
+                tabsValue,
+              )}{" "}
+              {tabsValue}
             </div>
           </div>
 
-          <div className="text-center mt-4">
-            <p className="text-xs mb-0,5 text-text4">{t("基金投资总收益")}</p>
-            <div>
-              {formatBalance(incomeInfo?.totalFundReturn || "0", tabsValue)}{" "}
-              {tabsValue}
-            </div>
+          <div className="mt-4 flex items-center justify-center text-xs">
+            <p className="text-xs  text-text4">{t("每日复利收益")}: </p>
+            <p className="ml-2">{(incomeInfo?.dayRate || 0) * 100} %</p>
           </div>
           <div className="flex py-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
@@ -165,7 +187,9 @@ const SmartYield = () => {
           </div>
           <div className="bg-white rounded-lg py-3.5 px-4">
             <div className="flex items-center justify-between ">
-              <span className="text-xs text-text4">{t("昨日投资收益")}</span>
+              <span className="text-xs text-text4">
+                {t("昨日SmartYieldWallet收益")}
+              </span>
               <span className="text-primary text-sm text-right">
                 {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -207,17 +231,28 @@ const SmartYield = () => {
         className="h-auto"
         onChange={(e) => setOpenWithdraw(e)}
       >
-        <p className="text-text4 mb-6">{t("withdrawNotice")}</p>
+        {/* <p className="text-text4 mb-6">{t("withdrawNotice")}</p> */}
 
-        <label className="input w-full h-12">
-          <input
-            value={withDrawNum}
-            type="number"
-            onChange={(e) => setWithDrawNum(e.target.value)}
-          />
-          <span className="text-text4 text-sm">{tabsValue}</span>
-          <span className="font-bold text-sm ml-2">All</span>
-        </label>
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">{t("amount")}</legend>
+
+          <label className="input w-full h-12">
+            <input
+              value={withDrawNum}
+              type="number"
+              onChange={(e) => setWithDrawNum(e.target.value)}
+            />
+            <span className="text-text4 text-sm">{tabsValue}</span>
+            <span
+              className="font-bold text-sm ml-2"
+              onClick={() => {
+                setWithDrawNum(String(incomeInfo?.unWithdrawnReturn) || "0");
+              }}
+            >
+              All
+            </span>
+          </label>
+        </fieldset>
         <ShowIf
           condition={
             !!withDrawNum &&
@@ -227,26 +262,27 @@ const SmartYield = () => {
           <div className="text-xs text-primary mt-1">可用余额不足</div>
         </ShowIf>
 
-        <div className="flex items-center justify-between text-sm mt-4">
-          <span className=" text-text4">{t("提取数量")}</span>
+        <div className="flex items-center justify-between text-sm mt-1">
+          <span className=" text-text4">{t("withdraw.availableBalance")}</span>
           <span>
             {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
           </span>
         </div>
+
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">{t("预计到账")}</legend>
+          <label className="input w-full h-12">
+            <input value={estimatedArrival} type="text" disabled />
+            <span className="text-text4 text-sm">{tabsValue}</span>
+          </label>
+        </fieldset>
+
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
-        <ShowIf condition={tabsValue === "9MC"}>
-          <div className="flex items-center justify-between mt-2 text-sm">
-            <span className=" text-text4">Expected amount to be received</span>
-            <span>
-              {expectIncome()} {tabsValue}
-            </span>
-          </div>
-        </ShowIf>
 
-        <button className="btn btn-primary w-full mt-4" onClick={() => {}}>
+        <button className="btn btn-primary w-full mt-4" onClick={handleSubmit}>
           {t("common.confirm")}
         </button>
       </Drawer>

@@ -32,11 +32,11 @@ const IncomeView = () => {
   const [withDrawNum, setWithDrawNum] = useState<string>("");
 
   const { trigger } = useRequestMutation(
-    api.fundProductConfig.claimedProfitUsingGet
+    api.fundProductConfig.claimedProfitUsingGet,
   );
 
   const { trigger: postExtract, isMutating } = useRequestMutation(
-    api.fundProductConfig.extractUsingPost
+    api.fundProductConfig.extractUsingPost,
   );
 
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
@@ -56,7 +56,7 @@ const IncomeView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, pageSize]
+    [tabsValue, pageSize],
   );
 
   const getInfo = useCallback(() => {
@@ -68,7 +68,7 @@ const IncomeView = () => {
         onSuccess: ({ data }) => {
           setIncomeInfo(data as AssetsIncomeType);
         },
-      }
+      },
     );
   }, [trigger, tabsValue]);
 
@@ -82,7 +82,7 @@ const IncomeView = () => {
     const balanceString = formatBalance(
       (incomeInfo.unWithdrawnReturn * (100 - withdrawConfig.managementFee)) /
         100,
-      tabsValue
+      tabsValue,
     );
     const index = balanceString.indexOf(".");
     return balanceString.substring(0, index + 3);
@@ -97,7 +97,7 @@ const IncomeView = () => {
     (coin: string) => {
       return coinList.find((v) => v.currencyCode === coin)?.logo || "";
     },
-    [coinList]
+    [coinList],
   );
   return (
     <ViewLayout
@@ -112,7 +112,7 @@ const IncomeView = () => {
               role="tab"
               className={cn(
                 "tab flex-1 text-lg leading-5",
-                tab.value === tabsValue && "tab-active font-bold"
+                tab.value === tabsValue && "tab-active font-bold",
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}
@@ -254,15 +254,15 @@ const IncomeView = () => {
                     "incomeWithdrawAmount",
                     `${formatBalance(
                       incomeInfo?.unWithdrawnReturn || 0,
-                      tabsValue
-                    )} ${tabsValue}`
+                      tabsValue,
+                    )} ${tabsValue}`,
                   );
                   push(routerMap.incomeResult);
                   // getInfo();
                   // getIncomeList();
                   // setOpenWithdraw(false);
                 },
-              }
+              },
             );
           }}
         >
