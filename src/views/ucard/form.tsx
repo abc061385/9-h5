@@ -11,6 +11,8 @@ import { ShowIf } from "@/components/show-if";
 import ImageUploader from "../meetup/img-uploader";
 import SelectDocumentType from "./select/document-type";
 import SelectCardType from "./select/card-type";
+import TimePicker from "@/components/date-picker";
+import CountrySelectDrawer from "./select/country";
 
 type FormData = {
   firstName: string;
@@ -44,6 +46,8 @@ const FormBox = () => {
 
   const [documentSelectOpen, setDocumentSelectOpen] = useState(false);
   const [cardSelectOpen, setCardSelectOpen] = useState(false);
+  const [timePickerOpen, setTimePickerOpen] = useState(false);
+  const [countrySelectOpen, setCountrySelectOpen] = useState(false);
 
   const Schema = z.object({
     firstName: reg.firstName,
@@ -224,6 +228,7 @@ const FormBox = () => {
                 placeholder={t("selectCountry")}
                 className="grow placeholder:text-sm"
                 readOnly
+                onClick={() => setCountrySelectOpen(true)}
               />
               <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
             </label>
@@ -234,7 +239,13 @@ const FormBox = () => {
               Date of birth
             </legend>
             <label className="input w-full h-12">
-              <input type="date" className="input" />
+              <input
+                type="text"
+                className="input"
+                readOnly
+                onClick={() => setTimePickerOpen(true)}
+                placeholder="DD // MM // YYYY"
+              />
             </label>
             <TextError>{errors?.country?.message}</TextError>
           </fieldset>
@@ -422,6 +433,22 @@ const FormBox = () => {
         open={cardSelectOpen}
         onClose={() => setCardSelectOpen(false)}
         onConfirm={(v) => console.log(v)}
+      />
+      <TimePicker
+        open={timePickerOpen}
+        onClose={() => setTimePickerOpen(false)}
+        value={{
+          year: new Date().getFullYear(),
+          month: new Date().getMonth(),
+          day: new Date().getDay(),
+        }}
+      />
+      <CountrySelectDrawer
+        open={countrySelectOpen}
+        onClose={() => setCountrySelectOpen(false)}
+        onConfirm={(e) => {
+          console.log(e);
+        }}
       />
     </div>
   );

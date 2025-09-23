@@ -839,5 +839,17 @@
   "imageSizeLimit": "Saiz gambar tidak boleh melebihi 5MB",
   "contactMethod": "Kaedah hubungan",
   "selectContactMethod": "Sila pilih kaedah hubungan",
-  "searchCountry": "Cari negara"
+  "searchCountry": "Cari negara",
+  "january": "Januari",
+  "february": "Februari",
+  "march": "Mac",
+  "april": "April",
+  "may": "Mei",
+  "june": "Jun",
+  "july": "Julai",
+  "august": "Ogos",
+  "september": "September",
+  "october": "Oktober",
+  "november": "November",
+  "december": "Disember"
 }

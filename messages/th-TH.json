@@ -839,5 +839,17 @@
   "imageSizeLimit": "ขนาดภาพต้องไม่เกิน 5MB",
   "contactMethod": "วิธีการติดต่อ",
   "selectContactMethod": "กรุณาเลือกวิธีการติดต่อ",
-  "searchCountry": "ค้นหาประเทศ"
+  "searchCountry": "ค้นหาประเทศ",
+  "january": "มกราคม",
+  "february": "กุมภาพันธ์",
+  "march": "มีนาคม",
+  "april": "เมษายน",
+  "may": "พฤษภาคม",
+  "june": "มิถุนายน",
+  "july": "กรกฎาคม",
+  "august": "สิงหาคม",
+  "september": "กันยายน",
+  "october": "ตุลาคม",
+  "november": "พฤศจิกายน",
+  "december": "ธันวาคม"
 }

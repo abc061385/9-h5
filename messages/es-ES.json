@@ -839,5 +839,17 @@
   "searchCountry": "Buscar país",
   "activityCenter": "Centro de actividades",
   "videoSizeLimit": "El tamaño del video no puede exceder 400 MB",
-  "imageSizeLimit": "El tamaño de la imagen no puede exceder 5 MB"
+  "imageSizeLimit": "El tamaño de la imagen no puede exceder 5 MB",
+  "january": "Enero",
+  "february": "Febrero",
+  "march": "Marzo",
+  "april": "Abril",
+  "may": "Mayo",
+  "june": "Junio",
+  "july": "Julio",
+  "august": "Agosto",
+  "september": "Septiembre",
+  "october": "Octubre",
+  "november": "Noviembre",
+  "december": "Diciembre"
 }

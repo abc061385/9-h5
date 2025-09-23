@@ -764,5 +764,17 @@
   "imageSizeLimit": "छवि का आकार 5MB से अधिक नहीं हो सकता",
   "contactMethod": "संपर्क विधि",
   "selectContactMethod": "कृपया संपर्क विधि चुनें",
-  "searchCountry": "देश खोजें"
+  "searchCountry": "देश खोजें",
+  "january": "जनवरी",
+  "february": "फरवरी",
+  "march": "मार्च",
+  "april": "अप्रैल",
+  "may": "मई",
+  "june": "जून",
+  "july": "जुलाई",
+  "august": "अगस्त",
+  "september": "सितंबर",
+  "october": "अक्टूबर",
+  "november": "नवंबर",
+  "december": "दिसंबर"
 }

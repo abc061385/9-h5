@@ -838,5 +838,17 @@
   "imageSizeLimit": "Image size cannot exceed 5MB",
   "contactMethod": "Contact Method",
   "selectContactMethod": "Please select contact method",
-  "searchCountry": "Search country"
+  "searchCountry": "Search country",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December"
 }
