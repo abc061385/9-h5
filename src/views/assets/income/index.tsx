@@ -3,8 +3,8 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { cn } from "@/lib/utils";
-import { useCallback, useEffect, useState } from "react";
+import { cn, utils } from "@/lib/utils";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import CardBox from "./card";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
@@ -17,6 +17,12 @@ import { useAssetStore } from "@/store/useAssetStore";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { ShowIf } from "@/components/show-if";
+import { Icon } from "@/components/icon";
+
+const NewVersionMap = {
+  balance: 0,
+  smartWallet: 1,
+};
 
 const IncomeView = () => {
   const t = useTrans();
@@ -28,11 +34,16 @@ const IncomeView = () => {
   const [tabsValue, setTabsValue] = useState("USDM");
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
+  const [openSelect, setOpenSelect] = useState(false);
+  const [newVersion, setNewVersion] = useState(NewVersionMap.balance);
   const [pageSize] = useState(20);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.claimedProfitUsingGet,
+  );
+  const { trigger: triggerSmart, data: incomeInfoSmart } = useRequestMutation(
+    api.fundProductConfig.claimedProfitSmartWalletUsingGet,
   );
 
   const { trigger: postExtract, isMutating } = useRequestMutation(
@@ -70,23 +81,21 @@ const IncomeView = () => {
         },
       },
     );
-  }, [trigger, tabsValue]);
+    triggerSmart({ outputToken: tabsValue });
+  }, [trigger, tabsValue, triggerSmart]);
 
   useEffect(() => {
     getInfo();
   }, [getInfo]);
 
-  const expectIncome = useCallback(() => {
-    if (!withdrawConfig?.managementFee) return 0;
-    if (!incomeInfo?.unWithdrawnReturn) return 0;
-    const balanceString = formatBalance(
-      (incomeInfo.unWithdrawnReturn * (100 - withdrawConfig.managementFee)) /
-        100,
-      tabsValue,
+  const estimatedArrival = useMemo(() => {
+    return (
+      utils
+        .toBigNumber(withDrawNum)
+        .times((100 - withdrawConfig?.managementFee) / 100)
+        .toNumber() || 0
     );
-    const index = balanceString.indexOf(".");
-    return balanceString.substring(0, index + 3);
-  }, [incomeInfo, formatBalance, withdrawConfig, tabsValue]);
+  }, [withDrawNum, withdrawConfig]);
 
   const tabs = [
     { label: "USDM", value: "USDM" },
@@ -99,6 +108,21 @@ const IncomeView = () => {
     },
     [coinList],
   );
+
+  const disabledWithdrawSubmit = useMemo(() => {
+    return (
+      !!withDrawNum &&
+      Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
+    );
+  }, [withDrawNum, incomeInfo?.unWithdrawnReturn]);
+  const smartRate = useMemo(() => {
+    return utils
+      .toBigNumber(
+        (incomeInfoSmart?.data as unknown as AssetsIncomeType1)?.dayRate || 0,
+      )
+      .times(100)
+      .toNumber();
+  }, [incomeInfoSmart]);
   return (
     <ViewLayout
       heightFull
@@ -176,7 +200,7 @@ const IncomeView = () => {
             onClick={() => {
               if (!incomeInfo?.unWithdrawnReturn)
                 return toast.error(t("没有可提取的收益"));
-              setOpenWithdraw(true);
+              setOpenSelect(true);
             }}
           >
             {t("提取收益")}
@@ -196,12 +220,73 @@ const IncomeView = () => {
         </div>
       </div>
       <Drawer
-        open={openWithdraw}
-        title={t("提取收益")}
+        open={openSelect}
         className="h-auto"
-        onChange={(e) => setOpenWithdraw(e)}
+        onChange={(e) => setOpenSelect(e)}
       >
-        <p className="text-text4 mb-6">{t("withdrawNotice")}</p>
+        <div>
+          <div
+            className="border border-border1 rounded-lg p-4 grid grid-cols-10"
+            onClick={() => {
+              setNewVersion(NewVersionMap.smartWallet);
+              setOpenSelect(false);
+              setOpenWithdraw(true);
+            }}
+          >
+            <div className="col-span-9">
+              <p className="text-base font-bold ">
+                {t("depositIntoSmartWallet")}
+              </p>
+              <p className="text-text4">
+                {t("depositIntoSmartWalletDesc", {
+                  rate: `${smartRate} %`,
+                })}
+              </p>
+            </div>
+            <div className="col-span-1 flex justify-end items-center">
+              <Icon name="right-enter" className="size-4" />
+            </div>
+          </div>
+          <div
+            className="border border-border1 rounded-lg p-4 grid grid-cols-10 mt-4"
+            onClick={() => {
+              setNewVersion(NewVersionMap.balance);
+              setOpenSelect(false);
+              setOpenWithdraw(true);
+            }}
+          >
+            <div className="col-span-9">
+              <p className="text-base font-bold ">
+                {t("depositIntoAssetsWallet")}
+              </p>
+              <p className="text-text4">{t("withdrawNotice")}</p>
+            </div>
+            <div className="col-span-1 flex justify-end items-center">
+              <Icon name="right-enter" className="size-4" />
+            </div>
+          </div>
+        </div>
+      </Drawer>
+      <Drawer
+        open={openWithdraw}
+        title={
+          newVersion === NewVersionMap.balance
+            ? t("depositIntoAssetsWallet")
+            : t("depositIntoSmartWallet")
+        }
+        className="h-auto"
+        onChange={(e) => {
+          setOpenWithdraw(e);
+          setWithDrawNum("");
+        }}
+      >
+        <p className="text-text4 mb-6">
+          {newVersion === NewVersionMap.balance
+            ? t("withdrawNotice")
+            : t("depositIntoSmartWalletDesc", {
+                rate: `${smartRate} %`,
+              })}
+        </p>
 
         <label className="input w-full h-12">
           <input
@@ -210,19 +295,21 @@ const IncomeView = () => {
             onChange={(e) => setWithDrawNum(e.target.value)}
           />
           <span className="text-text4 text-sm">{tabsValue}</span>
-          <span className="font-bold text-sm ml-2">All</span>
+          <span
+            className="font-bold text-sm ml-2"
+            onClick={() => {
+              setWithDrawNum(String(incomeInfo?.unWithdrawnReturn) || "0");
+            }}
+          >
+            {t("withdraw.useAll")}
+          </span>
         </label>
-        <ShowIf
-          condition={
-            !!withDrawNum &&
-            Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
-          }
-        >
-          <div className="text-xs text-primary mt-1">可用余额不足</div>
+        <ShowIf condition={disabledWithdrawSubmit}>
+          <div className="text-xs text-primary mt-1">{t("可用余额不足")}</div>
         </ShowIf>
 
         <div className="flex items-center justify-between text-sm mt-4">
-          <span className=" text-text4">{t("提取数量")}</span>
+          <span className=" text-text4">{t("withdraw.availableBalance")}</span>
           <span>
             {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
           </span>
@@ -231,36 +318,41 @@ const IncomeView = () => {
           <span className=" text-text4">{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
-        <ShowIf condition={tabsValue === "9MC"}>
-          <div className="flex items-center justify-between mt-2 text-sm">
-            <span className=" text-text4">Expected amount to be received</span>
-            <span>
-              {expectIncome()} {tabsValue}
-            </span>
+        <div className="flex items-center justify-between mt-2 text-sm">
+          <span className=" text-text4">{t("预计到账")}</span>
+          <span>
+            {formatBalance(estimatedArrival, tabsValue)} {tabsValue}
+          </span>
+        </div>
+
+        <ShowIf condition={newVersion === NewVersionMap.smartWallet}>
+          <div className="text-text4 mb-8">
+            <hr className="border-border2 my-4" />
+            <p>{t("smartWalletN1Tip1")}</p>
+            <p>{t("smartWalletN1Tip2")}</p>
           </div>
         </ShowIf>
-
         <button
           className="btn btn-primary w-full mt-4"
-          disabled={isMutating}
+          disabled={
+            isMutating || disabledWithdrawSubmit || !Number(withDrawNum)
+          }
           onClick={() => {
             postExtract(
               {
                 outputToken: tabsValue,
+                newVersion: newVersion as unknown as boolean,
               },
               {
                 onSuccess: () => {
                   setField(
                     "incomeWithdrawAmount",
                     `${formatBalance(
-                      incomeInfo?.unWithdrawnReturn || 0,
+                      withDrawNum || 0,
                       tabsValue,
                     )} ${tabsValue}`,
                   );
                   push(routerMap.incomeResult);
-                  // getInfo();
-                  // getIncomeList();
-                  // setOpenWithdraw(false);
                 },
               },
             );

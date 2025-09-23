@@ -842,5 +842,14 @@
   "searchCountry": "搜索国家",
   "SmartYieldWallet总收益": "Smart Yield Wallet 总收益",
   "每日复利收益": "每日复利收益",
-  "昨日SmartYieldWallet收益": "昨日Smart Yield Wallet收益"
+  "昨日SmartYieldWallet收益": "昨日Smart Yield Wallet收益",
+  "depositIntoSmartWallet": "存入 Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Enjoy an estimated daily compound interest rate of {rate}.",
+  "depositIntoAssetsWallet": "存入平台钱包",
+  "可用余额不足": "可用余额不足",
+  "smartWalletN1Tip1": "Smart Yield Wallet 收益及资金提现到账时间：N+1",
+  "smartWalletN1Tip2": "所有提现申请将于次日结算并到账，请耐心等待。",
+  "SmartYieldWallet收益": "Smart Yield Wallet 收益",
+  "提取SmartYieldWallet余额": "提取Smart Yield Wallet余额",
+  "投资收益转入": "投资收益转入"
 }

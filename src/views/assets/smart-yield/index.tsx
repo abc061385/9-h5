@@ -78,6 +78,7 @@ const SmartYield = () => {
     { label: "USDM", value: "USDM" },
     { label: "9MC", value: "9MC" },
   ];
+  const [submitLoading, setSumitLoading] = useState(false);
 
   const detailTabs = [
     { label: "All Details", value: 0 },
@@ -103,11 +104,13 @@ const SmartYield = () => {
   }, [withDrawNum, withdrawConfig]);
 
   const handleSubmit = useCallback(async () => {
+    setSumitLoading(true);
     try {
       const res = await api.fundProductConfig.smartWalletExtractUsingPost({
         amount: Number(withDrawNum),
         outputToken: tabsValue,
       });
+      setSumitLoading(false);
       if (res.code === 200) {
         setOpenWithdraw(false);
         getInfo();
@@ -117,8 +120,17 @@ const SmartYield = () => {
         );
         push(routerMap.incomeResult);
       }
-    } catch {}
+    } catch {
+      setSumitLoading(false);
+    }
   }, [withDrawNum, tabsValue, getInfo, push, setField, formatBalance]);
+
+  const disabledWithdrawSubmit = useMemo(() => {
+    return (
+      !!withDrawNum &&
+      Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
+    );
+  }, [withDrawNum, incomeInfo?.unWithdrawnReturn]);
 
   return (
     <ViewLayout
@@ -211,7 +223,7 @@ const SmartYield = () => {
           type="border"
           tabs={detailTabs}
           value={detailTabsValue}
-          onChange={(e) => setDetailTabsValue(e as string)}
+          onChange={(e) => setDetailTabsValue(Number(e))}
           className="text-base mt-6 mb-4 gap-6"
         />
 
@@ -229,7 +241,10 @@ const SmartYield = () => {
         open={openWithdraw}
         title={t("提取收益")}
         className="h-auto"
-        onChange={(e) => setOpenWithdraw(e)}
+        onChange={(e) => {
+          setWithDrawNum("");
+          setOpenWithdraw(e);
+        }}
       >
         {/* <p className="text-text4 mb-6">{t("withdrawNotice")}</p> */}
 
@@ -249,17 +264,12 @@ const SmartYield = () => {
                 setWithDrawNum(String(incomeInfo?.unWithdrawnReturn) || "0");
               }}
             >
-              All
+              {t("withdraw.useAll")}
             </span>
           </label>
         </fieldset>
-        <ShowIf
-          condition={
-            !!withDrawNum &&
-            Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
-          }
-        >
-          <div className="text-xs text-primary mt-1">可用余额不足</div>
+        <ShowIf condition={disabledWithdrawSubmit}>
+          <div className="text-xs text-primary mt-1">{t("可用余额不足")}</div>
         </ShowIf>
 
         <div className="flex items-center justify-between text-sm mt-1">
@@ -269,21 +279,37 @@ const SmartYield = () => {
           </span>
         </div>
 
-        <fieldset className="fieldset">
-          <legend className="fieldset-legend">{t("预计到账")}</legend>
-          <label className="input w-full h-12">
-            <input value={estimatedArrival} type="text" disabled />
-            <span className="text-text4 text-sm">{tabsValue}</span>
-          </label>
-        </fieldset>
+        {/* <fieldset className="fieldset"> */}
+        {/*   <legend className="fieldset-legend">{t("预计到账")}</legend> */}
+        {/*   <label className="input w-full h-12"> */}
+        {/*     <input value={estimatedArrival} type="text" disabled /> */}
+        {/*     <span className="text-text4 text-sm">{tabsValue}</span> */}
+        {/*   </label> */}
+        {/* </fieldset> */}
 
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("手续费")}</span>
           <span>{withdrawConfig?.managementFee || "-"}%</span>
         </div>
+        <div className="flex items-center justify-between mt-2 text-sm">
+          <span className=" text-text4">{t("预计到账")}</span>
+          <span>
+            {formatBalance(estimatedArrival, tabsValue)} {tabsValue}
+          </span>
+        </div>
 
-        <button className="btn btn-primary w-full mt-4" onClick={handleSubmit}>
-          {t("common.confirm")}
+        <button
+          className="btn btn-primary w-full mt-4"
+          onClick={handleSubmit}
+          disabled={
+            submitLoading || disabledWithdrawSubmit || !Number(withDrawNum)
+          }
+        >
+          {submitLoading ? (
+            <span className="loading loading-spinner loading-xs"></span>
+          ) : (
+            t("common.confirm")
+          )}
         </button>
       </Drawer>
     </ViewLayout>
