@@ -42,6 +42,24 @@ export const useRootReg = () => {
     selectMeetupType: z.string().regex(/^.+$/, {
       message: t("selectMeetupType"),
     }),
+    firstName: z.string().regex(/^.+$/, {
+      message: "请输入First Name",
+    }),
+    lastName: z.string().regex(/^.+$/, {
+      message: "请输入Last Name",
+    }),
+    country: z.string().regex(/^.+$/, {
+      message: t("selectCountry"),
+    }),
+    postCode: z.string().regex(/^.+$/, {
+      message: "Please enter the  post code",
+    }),
+    billingAddress: z.string().regex(/^.+$/, {
+      message: "Enter your billing address",
+    }),
+    documentType: z.string().regex(/^.+$/, {
+      message: "Please select the type of ID photo to upload",
+    }),
   };
 };
 
