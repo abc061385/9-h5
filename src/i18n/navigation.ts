@@ -79,6 +79,7 @@ export const routerMap = {
   meetup: "/meetup/",
   meetupRecords: "/meetup/records",
   activity: "/activitys/",
+  smartYield: "/assets/smart-yield/",
 };
 
 export const WhiteListPath = [

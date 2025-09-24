@@ -37,6 +37,9 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_STATIC_EARNINGS: "领取静态收益",
   CLAIM_DYNAMIC_REWARDS: "领取动态收益",
   VIP_RACE_REWARD: "VIP报名赛奖金",
+  SMART_YIELD_INCOME: "SmartYieldWallet收益",
+  CLAIM_SMART_YIELD_WALLET: "提取SmartYieldWallet余额",
+  CLAIM_SMART_YIELD_INCOME: "投资收益转入",
 };
 
 export type GAPreviousPageType = "withdraw" | "";

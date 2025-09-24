@@ -121,6 +121,18 @@ export interface PopupClickDTO {
   language?: string;
 }
 
+export interface CommonResultLoginUser {
+  /** @format int32 */
+  code: number;
+  data: LoginUser;
+  msg?: string;
+}
+
+export interface LoginUser {
+  /** @format int64 */
+  id?: number;
+}
+
 export interface CommonResultUploadRespDTO {
   /** @format int32 */
   code: number;
@@ -219,6 +231,8 @@ export interface BannerRespDTO {
   imageUrl?: string;
   /** 跳转链接 */
   linkUrl?: string;
+  /** app跳转链接 */
+  nativeJumpUrl?: string;
   /**
    * 排序
    * @format int32
@@ -242,72 +256,6 @@ export interface CommonResultListBannerRespDTO {
   /** @format int32 */
   code: number;
   data: BannerRespDTO[];
-  msg?: string;
-}
-
-/** 数据 */
-export interface ActivityRespDTO {
-  /**
-   * 活动ID
-   * @format int64
-   */
-  id?: number;
-  /** 活动标题 */
-  activityName?: string;
-  /** 活动内容 */
-  content?: string;
-  /** 备注 */
-  remark?: string;
-  /** 活动图片 */
-  imageUrl?: string;
-  /** 跳转链接 */
-  linkUrl?: string;
-  /**
-   * 排序
-   * @format int32
-   */
-  sortOrder?: number;
-  /** 是否首页展示 */
-  isHome?: boolean;
-  /**
-   * 开始时间
-   * @format date-time
-   */
-  startTime?: string;
-  /**
-   * 结束时间
-   * @format date-time
-   */
-  endTime?: string;
-  /** 活动日期区间，格式：yyyy.MM.dd-yyyy.MM.dd */
-  activityDate?: string;
-  /** 最低存款金额 */
-  depositAmount?: number;
-}
-
-export interface CommonResultPageResultActivityRespDTO {
-  /** @format int32 */
-  code: number;
-  /** 分页结果 */
-  data: PageResultActivityRespDTO;
-  msg?: string;
-}
-
-/** 分页结果 */
-export interface PageResultActivityRespDTO {
-  /** 数据 */
-  list: ActivityRespDTO[];
-  /**
-   * 总量
-   * @format int64
-   */
-  total: number;
-}
-
-export interface CommonResultListActivityRespDTO {
-  /** @format int32 */
-  code: number;
-  data: ActivityRespDTO[];
   msg?: string;
 }
 
@@ -353,14 +301,16 @@ export interface PopupItem {
   endTime?: string;
 }
 
-export interface ExchangeRate {
-  /** @format int64 */
-  id?: number;
-  platform?: string;
-  pair?: string;
-  rate?: number;
-  /** @format date-time */
-  createTime?: string;
+export interface CommonResultMemberRespDTO {
+  /** @format int32 */
+  code: number;
+  data: MemberRespDTO;
+  msg?: string;
+}
+
+export interface MemberRespDTO {
+  id?: string;
+  username?: string;
 }
 
 import type {
@@ -651,6 +601,26 @@ export class Api<
     /**
      * No description
      *
+     * @tags member-api
+     * @name GetUserByToken
+     * @request POST:/internal/member/getUserByToken
+     */
+    getUserByToken: (
+      query: {
+        token: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultLoginUser, any>({
+        path: `/internal/member/getUserByToken`,
+        method: "POST",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
      * @tags image-upload-api
      * @name UploadImage
      * @summary 上传图片
@@ -786,6 +756,21 @@ export class Api<
         type: ContentType.Json,
         ...params,
       }),
+
+    /**
+     * No description
+     *
+     * @tags member-api
+     * @name GetMemberInfo
+     * @summary 获得用户信息
+     * @request GET:/internal/member/{id}
+     */
+    getMemberInfo: (id: number, params: RequestParams = {}) =>
+      this.request<CommonResultMemberRespDTO, any>({
+        path: `/internal/member/${id}`,
+        method: "GET",
+        ...params,
+      }),
   };
   behavior = {
     /**
@@ -838,108 +823,6 @@ export class Api<
       this.request<CommonResultListBannerRespDTO, any>({
         path: `/banner/list`,
         method: "POST",
-        query: query,
-        ...params,
-      }),
-  };
-  app = {
-    /**
-     * No description
-     *
-     * @tags captcha-prefix-api
-     * @name Validate2
-     * @summary 核实凭证（核实获取到的凭证的正确性）
-     * @request POST:/app/nine-index/internal/captcha/validate
-     */
-    validate2: (data: CaptchaValidateReqDTO, params: RequestParams = {}) =>
-      this.request<CommonResultCaptchaValidateRespDTO, any>({
-        path: `/app/nine-index/internal/captcha/validate`,
-        method: "POST",
-        body: data,
-        type: ContentType.Json,
-        ...params,
-      }),
-  };
-  activity = {
-    /**
-     * No description
-     *
-     * @tags 活动
-     * @name Page
-     * @summary 分页查询活动
-     * @request POST:/activity/page
-     */
-    page: (
-      query: {
-        /**
-         * 语言
-         * @example "zh-cn"
-         */
-        language?: string;
-        /** 是否启用 */
-        status?: string;
-        /** 是否首页展示 */
-        isHome?: string;
-        /**
-         * 页码，从 1 开始
-         * @min 1
-         * @example 1
-         */
-        pageNo: string;
-        /**
-         * 每页条数，最大值为 100
-         * @min 1
-         * @max 100
-         * @example 10
-         */
-        pageSize: string;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<CommonResultPageResultActivityRespDTO, any>({
-        path: `/activity/page`,
-        method: "POST",
-        query: query,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 活动
-     * @name List
-     * @summary 获取活动列表
-     * @request POST:/activity/list
-     */
-    list: (params: RequestParams = {}) =>
-      this.request<CommonResultListActivityRespDTO, any>({
-        path: `/activity/list`,
-        method: "POST",
-        ...params,
-      }),
-  };
-  exchangeRate = {
-    /**
-     * No description
-     *
-     * @tags exchange-rate-controller
-     * @name GetHistory
-     * @request GET:/exchange-rate/history
-     */
-    getHistory: (
-      query: {
-        pair: string;
-        /**
-         * @format int32
-         * @default 20
-         */
-        limit?: number;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<ExchangeRate[], any>({
-        path: `/exchange-rate/history`,
-        method: "GET",
         query: query,
         ...params,
       }),

@@ -264,6 +264,15 @@ type AssetsIncomeType = {
   yesterdayReturn: number;
   frozenUbx: number;
 };
+type AssetsIncomeType1 = {
+  dayRate: number;
+  personalFundInvestment: number;
+  totalFundReturn: number;
+  withdrawnReturn: number;
+  unWithdrawnReturn: number;
+  yesterdayReturn: number;
+  frozenUbx: number;
+};
 
 type infoUsingGet1Type = {
   id: number;
