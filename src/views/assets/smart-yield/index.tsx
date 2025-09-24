@@ -81,10 +81,10 @@ const SmartYield = () => {
   const [submitLoading, setSumitLoading] = useState(false);
 
   const detailTabs = [
-    { label: "All Details", value: 0 },
-    { label: "投资收益转入", value: 1 },
-    { label: "币权收益转入", value: 2 },
-    { label: "Smart Yield Wallet", value: 3 },
+    { label: t("walletDetail.all"), value: 0 },
+    { label: t("投资收益转入"), value: 1 },
+    { label: t("币权收益转入"), value: 2 },
+    { label: t("SmartYieldWallet"), value: 3 },
   ];
 
   const coinLogo = useCallback(
