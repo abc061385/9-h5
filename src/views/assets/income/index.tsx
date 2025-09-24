@@ -342,6 +342,7 @@ const IncomeView = () => {
               {
                 outputToken: tabsValue,
                 newVersion: newVersion as unknown as boolean,
+                amount: Number(withDrawNum),
               },
               {
                 onSuccess: () => {

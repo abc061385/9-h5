@@ -237,6 +237,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
               {
                 outputToken: tabsValue,
                 newVersion: newVersion as unknown as boolean,
+                amount: Number(withDrawNum),
               },
               {
                 onSuccess: () => {

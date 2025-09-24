@@ -2211,6 +2211,8 @@ export class Api<
      */
     extractUsingPost: (
       query?: {
+        /** amount */
+        amount?: number;
         /** newVersion */
         newVersion?: boolean;
         /** outputToken */
@@ -2253,10 +2255,10 @@ export class Api<
         /** 排序字段 */
         sort?: string;
         /**
-         * type
+         * tabType
          * @format int32
          */
-        type?: number;
+        tabType?: number;
       },
       params: RequestParams = {},
     ) =>
@@ -2556,6 +2558,8 @@ export class Api<
      */
     rewardExtractUsingPost: (
       query?: {
+        /** amount */
+        amount?: number;
         /** newVersion */
         newVersion?: boolean;
         /** outputToken */

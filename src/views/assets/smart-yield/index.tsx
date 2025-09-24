@@ -62,7 +62,7 @@ const SmartYield = () => {
         await api.fundProductConfig.claimedProfitIncomeDetailsUsingGet({
           pageNo: page,
           pageSize: pageSize,
-          type: detailTabsValue,
+          tabType: detailTabsValue,
           outputToken: tabsValue,
         });
       const newData = data?.list || [];
