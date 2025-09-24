@@ -55,7 +55,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      }
+      },
     );
   }, [trigger]);
 
@@ -137,7 +137,7 @@ const HeaderBox = () => {
       {/*     /> */}
       {/*   </div> */}
       {/* ) : null} */}
-      <div className="grid grid-cols-5 gap-8 py-6">
+      <div className="grid grid-cols-5 gap-2 py-6 border-b border-border2">
         {cardList.map((item, index) => (
           <div
             key={index}
@@ -149,7 +149,9 @@ const HeaderBox = () => {
             }}
           >
             <BaseImage src={item.icon} className="w-10 h-10" />
-            <span className="text-xs mt-2 text-center break-words w-full">{t(item.label)}</span>
+            <span className="text-xs mt-2 text-center break-words w-full">
+              {t(item.label)}
+            </span>
           </div>
         ))}
       </div>
