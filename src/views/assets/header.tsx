@@ -137,7 +137,7 @@ const HeaderBox = () => {
       {/*     /> */}
       {/*   </div> */}
       {/* ) : null} */}
-      <div className="grid grid-cols-5 gap-2 py-6 border-b border-border2">
+      <div className="grid grid-cols-5 gap-2 py-6">
         {cardList.map((item, index) => (
           <div
             key={index}
