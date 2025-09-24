@@ -77,13 +77,13 @@ const CertificateView = () => {
             <div className="text-xl font-medium">{userInfo.invitationCode}</div>
           </div>
           <div className="absolute left-0 bottom-[96px] z-50 text-white w-full flex flex-col items-center">
-            <div className="text-xl font-bold">
+            <div className="text-xl font-bold text-center leading-[1]">
               {t("my_highest_level", {
                 vip: `VIP${userInfo?.highestVipLevel}`,
               })}
               {starText}
             </div>
-            <div className="text-xl font-bold text-center">
+            <div className="text-xl font-bold text-center leading-[1]">
               {t("my_level_slogan")}
             </div>
           </div>
