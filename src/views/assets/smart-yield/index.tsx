@@ -169,10 +169,7 @@ const SmartYield = () => {
               {t("SmartYieldWallet总收益")}
             </p>
             <div className="text-xl font-medium">
-              {formatBalance(
-                incomeInfo?.personalFundInvestment || "0",
-                tabsValue,
-              )}{" "}
+              {formatBalance(incomeInfo?.totalFundReturn || "0", tabsValue)}{" "}
               {tabsValue}
             </div>
           </div>
