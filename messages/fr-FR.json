@@ -854,7 +854,7 @@
   "投资收益转入": "Transfert des gains d’investissement",
   "币权收益转入": "Transfert des gains liés aux tokens",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet累计转出\n": "Gesamtbetrag der Auszahlungen von Smart Yield Wallet",
   "smartyieldwallet可用余额": "Verfügbares Guthaben im Smart Yield Wallet",
-  "可提取数量": "Montant Retirable"
+  "可提取数量": "Montant Retirable",
+  "smartyieldwallet累计转出": "Gesamtbetrag der Auszahlungen von Smart Yield Wallet"
 }

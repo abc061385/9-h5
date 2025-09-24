@@ -180,14 +180,18 @@ const SmartYield = () => {
           </div>
           <div className="flex py-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">{t("已提取收益")}</span>
+              <span className="text-xs text-text4">
+                {t("smartyieldwallet可用余额")}
+              </span>
               <span className="text-sm">
                 {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">{t("未提取收益")}</span>
+              <span className="text-xs text-text4">
+                {t("smartyieldwallet可用余额")}
+              </span>
               <span className="text-sm">
                 {formatBalance(incomeInfo?.unWithdrawnReturn || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -270,7 +274,7 @@ const SmartYield = () => {
         </ShowIf>
 
         <div className="flex items-center justify-between text-sm mt-1">
-          <span className=" text-text4">{t("withdraw.availableBalance")}</span>
+          <span className=" text-text4">{t("可提取数量")}</span>
           <span>
             {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
           </span>

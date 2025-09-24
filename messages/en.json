@@ -853,7 +853,7 @@
   "投资收益转入": "Transfer Investment Earnings In",
   "币权收益转入": "Transfer Coin Rights Earnings In",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet累计转出\n": "Smart Yield Wallet Cumulative Withdrawals",
   "smartyieldwallet可用余额": "Smart Yield Wallet Available Balance",
-  "可提取数量": "Withdrawable Amount"
+  "可提取数量": "Withdrawable Amount",
+  "smartyieldwallet累计转出": "Smart Yield Wallet Cumulative Withdrawals"
 }

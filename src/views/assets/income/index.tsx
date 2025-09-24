@@ -309,7 +309,7 @@ const IncomeView = () => {
         </ShowIf>
 
         <div className="flex items-center justify-between text-sm mt-4">
-          <span className=" text-text4">{t("withdraw.availableBalance")}</span>
+          <span className=" text-text4">{t("可提取数量")}</span>
           <span>
             {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
           </span>

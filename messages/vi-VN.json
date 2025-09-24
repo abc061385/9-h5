@@ -854,7 +854,7 @@
   "投资收益转入": "Chuyển lợi nhuận đầu tư vào",
   "币权收益转入": "Chuyển lợi nhuận quyền token vào",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet累计转出\n": "ยอดถอนสะสม Smart Yield Wallet",
   "smartyieldwallet可用余额": "ยอดคงเหลือที่ใช้ได้ใน Smart Yield Wallet",
-  "可提取数量": "Số lượng có thể rút"
+  "可提取数量": "Số lượng có thể rút",
+  "smartyieldwallet累计转出": "ยอดถอนสะสม Smart Yield Wallet"
 }
