@@ -839,5 +839,22 @@
   "imageSizeLimit": "ขนาดภาพต้องไม่เกิน 5MB",
   "contactMethod": "วิธีการติดต่อ",
   "selectContactMethod": "กรุณาเลือกวิธีการติดต่อ",
-  "searchCountry": "ค้นหาประเทศ"
+  "searchCountry": "ค้นหาประเทศ",
+  "SmartYieldWallet总收益": "ผลตอบแทนรวม Smart Yield Wallet",
+  "每日复利收益": "รายได้ดอกเบี้ยทบต้นรายวัน",
+  "昨日SmartYieldWallet收益": "รายได้จาก Smart Yield Wallet เมื่อวาน",
+  "depositIntoSmartWallet": "ฝากเข้า Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "เพลิดเพลินกับอัตราดอกเบี้ยทบต้นรายวันประมาณ {rate}",
+  "depositIntoAssetsWallet": "ฝากเข้าไปในกระเป๋าสตางค์ของแพลตฟอร์ม",
+  "可用余额不足": "ยอดคงเหลือไม่เพียงพอ",
+  "smartWalletN1Tip1": "เวลาที่เงินเข้าบัญชีจากการถอน Smart Yield Wallet: N+1",
+  "smartWalletN1Tip2": "คำขอถอนทั้งหมดจะถูกดำเนินการและโอนในวันถัดไป",
+  "SmartYieldWallet收益": "ผลตอบแทนจาก Smart Yield Wallet",
+  "提取SmartYieldWallet余额": "ถอนยอดคงเหลือใน Smart Yield Wallet",
+  "投资收益转入": "นำรายได้จากการลงทุนเข้าระบบ",
+  "币权收益转入": "รายได้จากสิทธิ์ในเหรียญเข้าระบบ",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet累计转出\n": "Jumlah Keseluruhan Pengeluaran Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Baki Boleh Digunakan dalam Smart Yield Wallet",
+  "可提取数量": "จำนวนที่ถอนได้"
 }

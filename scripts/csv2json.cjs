@@ -1,6 +1,7 @@
 /**
  * 用法：
- *   node extract-i18n.js input.csv zh_CN zh_HK en
+ *   node csv2json.mjs input.csv zh_CN zh_HK en
+  *  node csv2json.mjs ../export_lang/import_0924.csv en zh-Hans zh-Hant ja-JP ko-KR ms-MY th-TH vi-VN hi-IN de-DE fr-FR pt-PT es-ES
  */
 
 const fs = require("fs");
@@ -11,7 +12,7 @@ const [, , csvPath, ...langs] = process.argv;
 
 // 参数校验
 if (!csvPath || langs.length === 0) {
-  console.error("用法: node extract-i18n.js <input.csv> <col1> <col2> ...");
+  console.error("用法: node csv2json.mjs <input.csv> <col1> <col2> ...");
   process.exit(1);
 }
 if (!fs.existsSync(csvPath)) {
@@ -62,7 +63,11 @@ function setDeep(obj, path, value) {
 
 // 提取内容，按语言生成对象
 const output = {};
-for (const lang of langs) output[lang] = {};
+for (const lang of langs) {
+  const oldLang = require(`../messages/${lang}.json`);
+  console.log(oldLang, 'oldLang')
+  output[lang] = {...oldLang}
+};
 
 for (const row of rows) {
   const k = row.key;

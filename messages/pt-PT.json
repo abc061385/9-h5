@@ -839,5 +839,22 @@
   "imageSizeLimit": "O tamanho da imagem não pode exceder 5MB",
   "contactMethod": "Método de contacto",
   "selectContactMethod": "Por favor selecione método de contacto",
-  "searchCountry": "Pesquisar país"
+  "searchCountry": "Pesquisar país",
+  "SmartYieldWallet总收益": "Lucro total da Smart Yield Wallet",
+  "每日复利收益": "Juros compostos diários",
+  "昨日SmartYieldWallet收益": "Ganho de ontem do Smart Yield Wallet",
+  "depositIntoSmartWallet": "Depositar no Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Desfrute de uma taxa de juro composta diária estimada de {rate}.",
+  "depositIntoAssetsWallet": "Depositar na carteira da plataforma",
+  "可用余额不足": "Saldo disponível insuficiente",
+  "smartWalletN1Tip1": "Tempo de liquidação dos ganhos e saques do Smart Yield Wallet: N+1",
+  "smartWalletN1Tip2": "Todos os pedidos de saque serão liquidados no dia seguinte.",
+  "SmartYieldWallet收益": "Ganhos do Smart Yield Wallet",
+  "提取SmartYieldWallet余额": "Retirar saldo do Smart Yield Wallet",
+  "投资收益转入": "Transferência dos rendimentos de investimento",
+  "币权收益转入": "Transferência dos lucros de token",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet累计转出\n": "Montant total retiré du Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Solde disponible dans le Smart Yield Wallet",
+  "可提取数量": "Quantidade Retirável"
 }

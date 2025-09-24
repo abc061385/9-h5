@@ -839,5 +839,22 @@
   "imageSizeLimit": "Kích thước hình ảnh không được vượt quá 5MB",
   "contactMethod": "Phương thức liên hệ",
   "selectContactMethod": "Vui lòng chọn phương thức liên hệ",
-  "searchCountry": "Tìm kiếm quốc gia"
+  "searchCountry": "Tìm kiếm quốc gia",
+  "SmartYieldWallet总收益": "Tổng lợi nhuận Smart Yield Wallet",
+  "每日复利收益": "Lợi nhuận lãi kép hàng ngày",
+  "昨日SmartYieldWallet收益": "Lợi nhuận Smart Yield Wallet hôm qua",
+  "depositIntoSmartWallet": "Gửi vào Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Tận hưởng lãi suất kép hàng ngày ước tính {rate}.",
+  "depositIntoAssetsWallet": "Nạp vào ví nền tảng",
+  "可用余额不足": "Số dư khả dụng không đủ",
+  "smartWalletN1Tip1": "Thời gian nhận được tiền rút và lợi nhuận Smart Yield Wallet: N+1",
+  "smartWalletN1Tip2": "Tất cả yêu cầu rút tiền sẽ được xử lý và thanh toán vào ngày hôm sau",
+  "SmartYieldWallet收益": "Lợi nhuận Smart Yield Wallet",
+  "提取SmartYieldWallet余额": "Rút số dư Smart Yield Wallet",
+  "投资收益转入": "Chuyển lợi nhuận đầu tư vào",
+  "币权收益转入": "Chuyển lợi nhuận quyền token vào",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet累计转出\n": "ยอดถอนสะสม Smart Yield Wallet",
+  "smartyieldwallet可用余额": "ยอดคงเหลือที่ใช้ได้ใน Smart Yield Wallet",
+  "可提取数量": "Số lượng có thể rút"
 }

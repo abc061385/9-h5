@@ -839,5 +839,22 @@
   "searchCountry": "Land suchen",
   "activityCenter": "Aktivitätszentrum",
   "videoSizeLimit": "Videogröße darf 400 MB nicht überschreiten",
-  "imageSizeLimit": "Bildgröße darf 5 MB nicht überschreiten"
+  "imageSizeLimit": "Bildgröße darf 5 MB nicht überschreiten",
+  "SmartYieldWallet总收益": "Gesamtertrag Smart Yield Wallet",
+  "每日复利收益": "Tägliche Zinseszinsen",
+  "昨日SmartYieldWallet收益": "Smart Yield Wallet Gewinn von gestern",
+  "depositIntoSmartWallet": "Einzahlung in Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Genießen Sie einen geschätzten täglichen Zinseszins von {rate}.",
+  "depositIntoAssetsWallet": "Einzahlung in Plattform-Wallet",
+  "可用余额不足": "Nicht ausreichendes verfügbares Guthaben",
+  "smartWalletN1Tip1": "Gutschriftzeit für Erträge und Auszahlungen Smart Yield Wallet: N+1",
+  "smartWalletN1Tip2": "Alle Auszahlungsanträge werden am nächsten Tag abgerechnet. Bitte haben Sie Geduld.",
+  "SmartYieldWallet收益": "Smart Yield Wallet Erträge",
+  "提取SmartYieldWallet余额": "Smart Yield Wallet Guthaben abheben",
+  "投资收益转入": "Überweisung der Anlageerträge",
+  "币权收益转入": "Überweisung der Token-Erträge",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet累计转出\n": "Smart Yield Wallet कुल निकासी",
+  "smartyieldwallet可用余额": "Smart Yield Wallet में उपलब्ध शेष राशि",
+  "可提取数量": "Auszahlbarer Betrag"
 }

@@ -805,5 +805,22 @@
   "imageSizeLimit": "छवि का आकार 5MB से अधिक नहीं हो सकता",
   "contactMethod": "संपर्क विधि",
   "selectContactMethod": "कृपया संपर्क विधि चुनें",
-  "searchCountry": "देश खोजें"
+  "searchCountry": "देश खोजें",
+  "SmartYieldWallet总收益": "Smart Yield Wallet कुल आय",
+  "每日复利收益": "दैनिक चक्रवृद्धि आय",
+  "昨日SmartYieldWallet收益": "कल की Smart Yield Wallet आय",
+  "depositIntoSmartWallet": "Smart Yield Wallet में जमा करें",
+  "depositIntoSmartWalletDesc": "अनुमानित दैनिक चक्रवृद्धि ब्याज दर {rate} का आनंद लें।",
+  "depositIntoAssetsWallet": "प्लेटफ़ॉर्म वॉलेट में जमा करें",
+  "可用余额不足": "उपलब्ध शेष राशि अपर्याप्त है",
+  "smartWalletN1Tip1": "Smart Yield Wallet की कमाई और निकासी की प्राप्ति का समय: N+1",
+  "smartWalletN1Tip2": "सभी निकासी अनुरोध अगले दिन निपटाए जाएंगे, कृपया प्रतीक्षा करें।",
+  "SmartYieldWallet收益": "Smart Yield Wallet आय",
+  "提取SmartYieldWallet余额": "Smart Yield Wallet शेष राशि निकालें",
+  "投资收益转入": "निवेश लाभ जमा करें",
+  "币权收益转入": "टोकन अधिकार लाभ जमा करें",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet累计转出\n": "Tổng số đã rút từ Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Số dư khả dụng trong Smart Yield Wallet",
+  "可提取数量": "निकासी योग्य मात्रा"
 }
