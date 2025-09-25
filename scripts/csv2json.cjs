@@ -8,8 +8,28 @@ const fs = require("fs");
 const path = require("path");
 const { parse } = require("csv-parse/sync");
 
-const [, , csvPath, ...langs] = process.argv;
+const [, , csvPath, ..._langs] = process.argv;
 
+let langs = _langs
+if (langs.length === 0) {
+  console.log(langs)
+  langs = [
+    "en",
+    "zh-Hans",
+    "zh-Hant",
+    "ja-JP",
+    "ko-KR",
+    "ms-MY",
+    "th-TH",
+    "vi-VN",
+    "hi-IN",
+    "de-DE",
+    "fr-FR",
+    "pt-PT",
+    "es-ES"
+  ]
+
+}
 // 参数校验
 if (!csvPath || langs.length === 0) {
   console.error("用法: node csv2json.mjs <input.csv> <col1> <col2> ...");
@@ -65,7 +85,6 @@ function setDeep(obj, path, value) {
 const output = {};
 for (const lang of langs) {
   const oldLang = require(`../messages/${lang}.json`);
-  console.log(oldLang, 'oldLang')
   output[lang] = {...oldLang}
 };
 

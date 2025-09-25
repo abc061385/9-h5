@@ -856,5 +856,6 @@
   "SmartYieldWallet": "Smart Yield Wallet",
   "smartyieldwallet可用余额": "ยอดคงเหลือที่ใช้ได้ใน Smart Yield Wallet",
   "可提取数量": "Số lượng có thể rút",
-  "smartyieldwallet累计转出": "ยอดถอนสะสม Smart Yield Wallet"
+  "smartyieldwallet累计转出": "ยอดถอนสะสม Smart Yield Wallet",
+  "withdrawNoticeSmartWallet": "Lợi nhuận bạn rút sẽ được gửi vào Smart Yield Wallet."
 }

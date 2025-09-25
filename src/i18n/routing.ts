@@ -3,10 +3,10 @@ import { defineRouting } from "next-intl/routing";
 export const routing = defineRouting({
   // A list of all locales that are supported
   locales: [
+    // "id-ID", // 印尼语
     "en",
     "zh-Hans",
     "zh-Hant",
-    // "id-ID", // 印尼语
     "ja-JP",
     "ko-KR",
     "ms-MY",
@@ -18,6 +18,12 @@ export const routing = defineRouting({
     "fr-FR",
     "pt-PT",
     "es-ES",
+    // 新增的5个语言用英文
+    "nl-NL",
+    "no-NO",
+    "sv-SE",
+    "ro-RO",
+    "cs-CZ",
   ],
 
   // Used when no locale matches
@@ -40,6 +46,12 @@ export const SupportedLanguages = [
   { lang: "fr-FR", label: "Français" }, // 法语（French）
   { lang: "pt-PT", label: "Português" }, // 葡萄牙语（Portuguese）
   { lang: "es-ES", label: "Español" }, // 西班牙语（Spanish）
+  // 新增的5个语言用先不展示
+  // { lang: "nl-NL", label: "Nederlands" }, // 荷兰语 (Nederlands)
+  // { lang: "no-NO", label: "Norsk" }, // 挪威语（Norsk）
+  // { lang: "sv-SE", label: "Svenska" }, //  瑞典语（Svenska）
+  // { lang: "ro-RO", label: "Română" }, // 罗马尼亚语（Română）
+  // { lang: "cs-CZ", label: "Čeština" }, // 捷克语（Čeština）
 ];
 
 export const APILang = {
@@ -57,6 +69,12 @@ export const APILang = {
   "fr-FR": "fr",
   "pt-PT": "pt",
   "es-ES": "es",
+  // 新增的5个语言用英文
+  "nl-NL": "en",
+  "no-NO": "en",
+  "sv-SE": "en",
+  "ro-RO": "en",
+  "cs-CZ": "en",
 };
 
 // 客服国际化语言映射
@@ -75,6 +93,12 @@ export const CustomerSupportLang = {
   "it-IT": "it",
   "pt-PT": "pt",
   "es-ES": "es",
+  // 新增的5个语言用英文
+  "nl-NL": "en-US",
+  "no-NO": "en-US",
+  "sv-SE": "en-US",
+  "ro-RO": "en-US",
+  "cs-CZ": "en-US",
 };
 
 // 客服语言选项（根据需要选择并设置）

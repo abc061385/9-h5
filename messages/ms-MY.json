@@ -856,5 +856,6 @@
   "SmartYieldWallet": "Smart Yield Wallet",
   "smartyieldwallet可用余额": "Smart Yield Wallet 사용 가능 잔액",
   "可提取数量": "Jumlah Boleh Dikeluarkan",
-  "smartyieldwallet累计转出": "Smart Yield Wallet 누적 출금"
+  "smartyieldwallet累计转出": "Smart Yield Wallet 누적 출금",
+  "withdrawNoticeSmartWallet": "Keuntungan yang anda keluarkan akan dimasukkan ke dalam Smart Yield Wallet."
 }
