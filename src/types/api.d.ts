@@ -383,3 +383,31 @@ interface ImageMetadata {
   uploadTime: string; // 圖片的上傳時間，格式為 "YYYY-MM-DD HH:mm:ss"
   width: number; // 圖片的寬度（以像素為單位）
 }
+
+interface FileType {
+  fileName: string;
+  fileUrl: string;
+  thumbnailUrl?: string;
+  fileType: 1 | 2 | 3;
+}
+
+interface UcardInfoType {
+  id: number;
+  firstName: string;
+  address: string;
+  birthDate: string;
+  cardType: string;
+  contact: string;
+  country: string;
+  currencies: string;
+  firstName: string;
+  idBackUrl: string;
+  idFrontUrl: string;
+  idType: string;
+  lastName: string;
+  memberId: number;
+  postalCode: string;
+  selfieWithIdUrl: string;
+  status: string;
+  topupAmount: number;
+}

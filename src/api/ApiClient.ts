@@ -2658,6 +2658,123 @@ export class Api<
         ...params,
       }),
   };
+  globalActivityCountry = {
+    /**
+     * No description
+     *
+     * @tags 全球活动举办国家管理
+     * @name GetDropdownListUsingGet
+     * @summary 获取举办国家下拉菜单列表
+     * @request GET:/global-activity-country/list
+     */
+    getDropdownListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/global-activity-country/list`,
+        method: "GET",
+        ...params,
+      }),
+  };
+  globalActivityVenue = {
+    /**
+     * No description
+     *
+     * @tags 全球活动举办地点管理
+     * @name GetDropdownListUsingGet1
+     * @summary 获取举办地点下拉菜单列表
+     * @request GET:/global-activity-venue/list
+     */
+    getDropdownListUsingGet1: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/global-activity-venue/list`,
+        method: "GET",
+        ...params,
+      }),
+  };
+  globalActivity = {
+    /**
+     * No description
+     *
+     * @tags 全球活动中心
+     * @name GetActivitiesByCountryIdUsingGet
+     * @summary 根据国家ID获取活动信息
+     * @request GET:/global-activity/country/activity
+     */
+    getActivitiesByCountryIdUsingGet: (
+      query?: {
+        /**
+         * countryId
+         * @format int64
+         */
+        countryId?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/global-activity/country/activity`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 全球活动中心
+     * @name DetailUsingGet2
+     * @summary 根据ID获取活动详情
+     * @request GET:/global-activity/detail
+     */
+    detailUsingGet2: (
+      query?: {
+        /**
+         * id
+         * @format int64
+         */
+        id?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/global-activity/detail`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 全球活动中心
+     * @name GetPageListUsingGet
+     * @summary 分页列表
+     * @request GET:/global-activity/page-list
+     */
+    getPageListUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/global-activity/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+  };
   image = {
     /**
      * No description
@@ -2943,11 +3060,11 @@ export class Api<
      * No description
      *
      * @tags meetup
-     * @name GetPageListUsingGet
+     * @name GetPageListUsingGet1
      * @summary meetup分页列表
      * @request GET:/meetup/page-list
      */
-    getPageListUsingGet: (
+    getPageListUsingGet1: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;
@@ -5575,11 +5692,11 @@ export class Api<
      * No description
      *
      * @tags 工作室
-     * @name GetPageListUsingGet1
+     * @name GetPageListUsingGet2
      * @summary 工作室分页列表
      * @request GET:/workroom/page-list
      */
-    getPageListUsingGet1: (
+    getPageListUsingGet2: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;
