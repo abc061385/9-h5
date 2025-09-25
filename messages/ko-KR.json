@@ -839,5 +839,22 @@
   "imageSizeLimit": "이미지 크기는 5MB를 초과할 수 없습니다",
   "contactMethod": "연락처",
   "selectContactMethod": "연락처를 선택해 주세요",
-  "searchCountry": "국가 검색"
+  "searchCountry": "국가 검색",
+  "SmartYieldWallet总收益": "Smart Yield Wallet 총 수익",
+  "每日复利收益": "일일 복리 수익",
+  "昨日SmartYieldWallet收益": "어제 Smart Yield Wallet 수익",
+  "depositIntoSmartWallet": "Smart Yield Wallet 입금",
+  "depositIntoSmartWalletDesc": "예상 일일 복리 이자율 {rate}를 누려보세요.",
+  "depositIntoAssetsWallet": "플랫폼 지갑에 입금",
+  "可用余额不足": "사용 가능한 잔액이 부족합니다",
+  "smartWalletN1Tip1": "Smart Yield Wallet 수익 및 자금 출금 도착 시간: N+1",
+  "smartWalletN1Tip2": "모든 출금 요청은 다음 날 정산 및 입금됩니다.",
+  "SmartYieldWallet收益": "Smart Yield Wallet 수익",
+  "提取SmartYieldWallet余额": "Smart Yield Wallet 잔액 인출",
+  "投资收益转入": "투자 수익 입금",
+  "币权收益转入": "토큰 권한 수익 입금",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Smart Yield Wallet の利用可能残高",
+  "可提取数量": "출금 가능 수량",
+  "smartyieldwallet累计转出": "Smart Yield Wallet の累計出金"
 }

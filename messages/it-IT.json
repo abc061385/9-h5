@@ -839,5 +839,22 @@
   "imageSizeLimit": "La dimensione dell'immagine non può superare 5MB",
   "contactMethod": "Metodo di contatto",
   "selectContactMethod": "Si prega di selezionare il metodo di contatto",
-  "searchCountry": "Cerca paese"
+  "searchCountry": "Cerca paese",
+  "SmartYieldWallet总收益": "Smart Yield Wallet Total Earnings",
+  "每日复利收益": "Daily Compound Earnings",
+  "昨日SmartYieldWallet收益": "Yesterday’s Smart Yield Wallet Earnings",
+  "depositIntoSmartWallet": "Deposit into Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Enjoy an estimated daily compound interest rate of {rate}.",
+  "depositIntoAssetsWallet": "Deposit into Platform Wallet",
+  "可用余额不足": "Insufficient Available Balance",
+  "smartWalletN1Tip1": "Smart Yield Wallet earnings and fund withdrawals will be settled and credited on the next day (T+1).",
+  "smartWalletN1Tip2": "All withdrawal requests will be settled and credited on the following day. Please be patient.",
+  "SmartYieldWallet收益": "Smart Yield Wallet Earnings",
+  "提取SmartYieldWallet余额": "Withdraw Smart Yield Wallet Balance",
+  "投资收益转入": "Transfer Investment Earnings In",
+  "币权收益转入": "Transfer Coin Rights Earnings In",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Smart Yield Wallet Available Balance",
+  "可提取数量": "Withdrawable Amount",
+  "smartyieldwallet累计转出": "Smart Yield Wallet Cumulative Withdrawals"
 }

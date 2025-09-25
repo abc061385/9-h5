@@ -209,7 +209,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
         {/*   </div> */}
         {/* </div> */}
         <div className="flex items-center justify-between text-sm mt-4">
-          <span className=" text-text4">{t("提取数量")}</span>
+          <span className=" text-text4">{t("可提取数量")}</span>
           <span>{formatBalance(info?.frozenRewards || 0, tabsValue)}</span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">

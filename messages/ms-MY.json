@@ -839,5 +839,22 @@
   "imageSizeLimit": "Saiz gambar tidak boleh melebihi 5MB",
   "contactMethod": "Kaedah hubungan",
   "selectContactMethod": "Sila pilih kaedah hubungan",
-  "searchCountry": "Cari negara"
+  "searchCountry": "Cari negara",
+  "SmartYieldWallet总收益": "Jumlah Pulangan Smart Yield Wallet",
+  "每日复利收益": "Pulangan Faedah Kompaun Harian",
+  "昨日SmartYieldWallet收益": "Pulangan Smart Yield Wallet semalam",
+  "depositIntoSmartWallet": "Simpan ke dalam Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Nikmati kadar faedah kompaun harian dianggarkan sebanyak {rate}.",
+  "depositIntoAssetsWallet": "Simpan ke dalam dompet platform",
+  "可用余额不足": "Baki tersedia tidak mencukupi",
+  "smartWalletN1Tip1": "Masa pemprosesan pengeluaran Smart Yield Wallet: N+1",
+  "smartWalletN1Tip2": "Semua permohonan pengeluaran akan diselesaikan dan dikreditkan pada hari berikutnya.",
+  "SmartYieldWallet收益": "Pulangan Smart Yield Wallet",
+  "提取SmartYieldWallet余额": "Keluarkan baki Smart Yield Wallet",
+  "投资收益转入": "Pulangan pelaburan dikreditkan",
+  "币权收益转入": "Pulangan hak milik token dikreditkan",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Smart Yield Wallet 사용 가능 잔액",
+  "可提取数量": "Jumlah Boleh Dikeluarkan",
+  "smartyieldwallet累计转出": "Smart Yield Wallet 누적 출금"
 }

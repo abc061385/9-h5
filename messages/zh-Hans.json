@@ -844,7 +844,7 @@
   "每日复利收益": "每日复利收益",
   "昨日SmartYieldWallet收益": "昨日Smart Yield Wallet收益",
   "depositIntoSmartWallet": "存入 Smart Yield Wallet",
-  "depositIntoSmartWalletDesc": "Enjoy an estimated daily compound interest rate of {rate}.",
+  "depositIntoSmartWalletDesc": "预计每日复利收益率为{rate}，让资金稳健增长。",
   "depositIntoAssetsWallet": "存入平台钱包",
   "可用余额不足": "可用余额不足",
   "smartWalletN1Tip1": "Smart Yield Wallet 收益及资金提现到账时间：N+1",
@@ -853,5 +853,8 @@
   "提取SmartYieldWallet余额": "提取Smart Yield Wallet余额",
   "投资收益转入": "投资收益转入",
   "币权收益转入": "币权收益转入",
-  "SmartYieldWallet": "Smart Yield Wallet"
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet可用余额": "smart yield wallet 可用余额",
+  "可提取数量": "可提取数量",
+  "smartyieldwallet累计转出": "smart yield wallet累计转出"
 }

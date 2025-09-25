@@ -839,5 +839,22 @@
   "imageSizeLimit": "圖片大小不能超過 5MB",
   "contactMethod": "聯繫方式",
   "selectContactMethod": "請選擇聯繫方式",
-  "searchCountry": "搜尋國家"
+  "searchCountry": "搜尋國家",
+  "SmartYieldWallet总收益": "Smart Yield Wallet 總收益",
+  "每日复利收益": "每日複利收益",
+  "昨日SmartYieldWallet收益": "昨日 Smart Yield Wallet 收益",
+  "depositIntoSmartWallet": "存入 Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "預計每日複利收益率為 {rate}，讓資金穩健增長。",
+  "depositIntoAssetsWallet": "存入平台錢包",
+  "可用余额不足": "可用餘額不足",
+  "smartWalletN1Tip1": "Smart Yield Wallet 收益及資金提現到賬時間：N+1",
+  "smartWalletN1Tip2": "所有提現申請將於次日結算並到賬，請耐心等待。",
+  "SmartYieldWallet收益": "Smart Yield Wallet 收益",
+  "提取SmartYieldWallet余额": "提取 Smart Yield Wallet 餘額",
+  "投资收益转入": "投資收益轉入",
+  "币权收益转入": "幣權收益轉入",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet可用余额": "smart yield wallet 可用余额",
+  "可提取数量": "可提取數量",
+  "smartyieldwallet累计转出": "smart yield wallet累计转出"
 }

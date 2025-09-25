@@ -839,5 +839,22 @@
   "searchCountry": "Rechercher un pays",
   "activityCenter": "Centre d'activités",
   "videoSizeLimit": "La taille de la vidéo ne doit pas dépasser 400 Mo",
-  "imageSizeLimit": "La taille de l'image ne doit pas dépasser 5 Mo"
+  "imageSizeLimit": "La taille de l'image ne doit pas dépasser 5 Mo",
+  "SmartYieldWallet总收益": "Revenu total du Smart Yield Wallet",
+  "每日复利收益": "Revenu composé quotidien",
+  "昨日SmartYieldWallet收益": "Revenu Smart Yield Wallet d’hier",
+  "depositIntoSmartWallet": "Dépôt dans le Smart Yield Wallet",
+  "depositIntoSmartWalletDesc": "Profitez d’un taux d’intérêt composé quotidien estimé de {rate}.",
+  "depositIntoAssetsWallet": "Dépôt dans le portefeuille de la plateforme",
+  "可用余额不足": "Solde disponible insuffisant",
+  "smartWalletN1Tip1": "Délai de réception des retraits et gains du Smart Yield Wallet : N+1",
+  "smartWalletN1Tip2": "Toutes les demandes de retrait seront traitées et créditées le lendemain.",
+  "SmartYieldWallet收益": "Gains du Smart Yield Wallet",
+  "提取SmartYieldWallet余额": "Retirer le solde du Smart Yield Wallet",
+  "投资收益转入": "Transfert des gains d’investissement",
+  "币权收益转入": "Transfert des gains liés aux tokens",
+  "SmartYieldWallet": "Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Verfügbares Guthaben im Smart Yield Wallet",
+  "可提取数量": "Montant Retirable",
+  "smartyieldwallet累计转出": "Gesamtbetrag der Auszahlungen von Smart Yield Wallet"
 }
