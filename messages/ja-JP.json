@@ -856,5 +856,6 @@
   "SmartYieldWallet": "Smart Yield Wallet",
   "smartyieldwallet可用余额": "Smart Yield Wallet 可用餘額",
   "可提取数量": "引き出し可能数量",
-  "smartyieldwallet累计转出": "Smart Yield Wallet 累計轉出"
+  "smartyieldwallet累计转出": "Smart Yield Wallet 累計轉出",
+  "withdrawNoticeSmartWallet": "引き出した利益はSmart Yield Walletに入金されます。"
 }

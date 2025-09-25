@@ -822,5 +822,6 @@
   "SmartYieldWallet": "Smart Yield Wallet",
   "smartyieldwallet可用余额": "Số dư khả dụng trong Smart Yield Wallet",
   "可提取数量": "निकासी योग्य मात्रा",
-  "smartyieldwallet累计转出": "Tổng số đã rút từ Smart Yield Wallet"
+  "smartyieldwallet累计转出": "Tổng số đã rút từ Smart Yield Wallet",
+  "withdrawNoticeSmartWallet": "आपकी निकाली गई कमाई Smart Yield Wallet में जमा कर दी जाएगी।"
 }
