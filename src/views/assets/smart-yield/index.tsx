@@ -181,7 +181,7 @@ const SmartYield = () => {
           <div className="flex py-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
               <span className="text-xs text-text4">
-                {t("smartyieldwallet可用余额")}
+                {t("smartyieldwallet累计转出")}
               </span>
               <span className="text-sm">
                 {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
