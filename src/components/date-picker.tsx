@@ -18,7 +18,12 @@ interface TimePickerProps {
   onClose: () => void;
 }
 
-const TimePicker: React.FC<TimePickerProps> = ({ value, open, onClose }) => {
+const TimePicker: React.FC<TimePickerProps> = ({
+  value,
+  open,
+  onClose,
+  onChange,
+}) => {
   const t = useTrans();
   const [selectedYear, setSelectedYear] = useState(value?.year || 2025);
   const [selectedMonth, setSelectedMonth] = useState(value?.month || 1);
@@ -49,7 +54,41 @@ const TimePicker: React.FC<TimePickerProps> = ({ value, open, onClose }) => {
   ];
 
   return (
-    <Drawer open={open} title="Select Time" onChange={() => onClose?.()}>
+    <Drawer
+      open={open}
+      title={
+        <div className="flex justify-between">
+          <span
+            className="text-text3 font-normal"
+            onClick={() => {
+              setSelectedYear(value?.year || new Date().getFullYear());
+              setSelectedMonth(value?.month || new Date().getMonth());
+              setSelectedDay(value?.day || new Date().getDay());
+              onClose?.();
+            }}
+          >
+            {t("common.cancel")}
+          </span>
+          <b className="font-bold text-lg">{t("dateSelector")}</b>
+          <span
+            className="font-medium text-primary"
+            onClick={() => {
+              onChange?.(
+                new Date(
+                  Number(selectedYear),
+                  Number(selectedMonth),
+                  Number(selectedDay)
+                ).getTime()
+              );
+              onClose();
+            }}
+          >
+            {t("common.confirm")}
+          </span>
+        </div>
+      }
+      onChange={() => onClose?.()}
+    >
       <div className="flex justify-center border-t border-border2 pt-6">
         <Picker
           selectedValue={selectedMonth.toString()}

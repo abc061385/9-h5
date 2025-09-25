@@ -10,6 +10,64 @@
  * ---------------------------------------------------------------
  */
 
+export interface CardKycUpdateReqDTO {
+  firstName?: string;
+  lastName?: string;
+  /** @format date */
+  birthDate?: string;
+  country?: string;
+  address?: string;
+  contact?: string;
+  postalCode?: string;
+  idType?: string;
+  currencies?: string;
+  cardType?: string;
+  idFrontUrl?: string;
+  idBackUrl?: string;
+  selfieWithIdUrl?: string;
+}
+
+export interface CommonResultBoolean {
+  /** @format int32 */
+  code: number;
+  data: boolean;
+  msg?: string;
+}
+
+export interface CommonResultPageResultMemberWalletSnapshot {
+  /** @format int32 */
+  code: number;
+  /** 分页结果 */
+  data: PageResultMemberWalletSnapshot;
+  msg?: string;
+}
+
+/** 数据 */
+export interface MemberWalletSnapshot {
+  /** @format int64 */
+  id?: number;
+  /** @format int64 */
+  walletId?: number;
+  /** @format int64 */
+  memberId?: number;
+  coin?: string;
+  balance?: number;
+  frozenBalance?: number;
+  /** @format date-time */
+  snapshotTime?: string;
+}
+
+/** 分页结果 */
+export interface PageResultMemberWalletSnapshot {
+  /** 数据 */
+  list: MemberWalletSnapshot[];
+  /**
+   * 总量
+   * @format int64
+   */
+  total: number;
+}
+
 export interface AppVersionCheckReqDTO {
   /**
    * 内部版本号build，只会自增
@@ -84,13 +142,6 @@ export interface PopupCloseDTO {
   language?: string;
 }
 
-export interface CommonResultBoolean {
-  /** @format int32 */
-  code: number;
-  data: boolean;
-  msg?: string;
-}
-
 export interface PopupClickDTO {
   /**
    * 弹屏ID
@@ -119,6 +170,25 @@ export interface PopupClickDTO {
    * @example "zh-cn"
    */
   language?: string;
+}
+
+export interface CommonResultObject {
+  /** @format int32 */
+  code: number;
+  data: { [key in string]?: any };
+  msg?: string;
+}
+
+export interface CommonResultLoginUser {
+  /** @format int32 */
+  code: number;
+  data: LoginUser;
+  msg?: string;
+}
+
+export interface LoginUser {
+  /** @format int64 */
+  id?: number;
 }
 
 export interface CommonResultUploadRespDTO {
@@ -171,6 +241,35 @@ export interface CommonResultCaptchaValidateRespDTO {
   msg?: string;
 }
 
+export interface CardKycSubmitReqDTO {
+  /**
+   * @minLength 0
+   * @maxLength 30
+   */
+  firstName: string;
+  /**
+   * @minLength 0
+   * @maxLength 30
+   */
+  lastName: string;
+  /** @format date */
+  birthDate: string;
+  country: string;
+  /**
+   * @minLength 0
+   * @maxLength 80
+   */
+  address: string;
+  contact: string;
+  postalCode: string;
+  idType: string;
+  currencies: string;
+  cardType: string;
+  idFrontUrl: string;
+  idBackUrl: string;
+  selfieWithIdUrl: string;
+}
+
 export interface BehaviorValidateReqDTO {
   bizType?: string;
   lotNumber?: string;
@@ -219,6 +318,8 @@ export interface BannerRespDTO {
   imageUrl?: string;
   /** 跳转链接 */
   linkUrl?: string;
+  /** app跳转链接 */
+  nativeJumpUrl?: string;
   /**
    * 排序
    * @format int32
@@ -242,72 +343,6 @@ export interface CommonResultListBannerRespDTO {
   /** @format int32 */
   code: number;
   data: BannerRespDTO[];
-  msg?: string;
-}
-
-/** 数据 */
-export interface ActivityRespDTO {
-  /**
-   * 活动ID
-   * @format int64
-   */
-  id?: number;
-  /** 活动标题 */
-  activityName?: string;
-  /** 活动内容 */
-  content?: string;
-  /** 备注 */
-  remark?: string;
-  /** 活动图片 */
-  imageUrl?: string;
-  /** 跳转链接 */
-  linkUrl?: string;
-  /**
-   * 排序
-   * @format int32
-   */
-  sortOrder?: number;
-  /** 是否首页展示 */
-  isHome?: boolean;
-  /**
-   * 开始时间
-   * @format date-time
-   */
-  startTime?: string;
-  /**
-   * 结束时间
-   * @format date-time
-   */
-  endTime?: string;
-  /** 活动日期区间，格式：yyyy.MM.dd-yyyy.MM.dd */
-  activityDate?: string;
-  /** 最低存款金额 */
-  depositAmount?: number;
-}
-
-export interface CommonResultPageResultActivityRespDTO {
-  /** @format int32 */
-  code: number;
-  /** 分页结果 */
-  data: PageResultActivityRespDTO;
-  msg?: string;
-}
-
-/** 分页结果 */
-export interface PageResultActivityRespDTO {
-  /** 数据 */
-  list: ActivityRespDTO[];
-  /**
-   * 总量
-   * @format int64
-   */
-  total: number;
-}
-
-export interface CommonResultListActivityRespDTO {
-  /** @format int32 */
-  code: number;
-  data: ActivityRespDTO[];
   msg?: string;
 }
 
@@ -353,14 +388,66 @@ export interface PopupItem {
   endTime?: string;
 }
 
-export interface ExchangeRate {
+export interface CommonResultMemberRespDTO {
+  /** @format int32 */
+  code: number;
+  data: MemberRespDTO;
+  msg?: string;
+}
+
+export interface MemberRespDTO {
+  id?: string;
+  username?: string;
+}
+
+export interface CardKycOptionsRespDTO {
+  countries?: OptionItem[];
+  idTypes?: OptionItem[];
+  currencies?: OptionItem[];
+  cardTypes?: OptionItem[];
+}
+
+export interface CommonResultCardKycOptionsRespDTO {
+  /** @format int32 */
+  code: number;
+  data: CardKycOptionsRespDTO;
+  msg?: string;
+}
+
+export interface OptionItem {
+  code: string;
+  label?: string;
+}
+
+export interface CardKyc {
   /** @format int64 */
   id?: number;
-  platform?: string;
-  pair?: string;
-  rate?: number;
-  /** @format date-time */
-  createTime?: string;
+  /** @format int64 */
+  memberId?: number;
+  firstName?: string;
+  lastName?: string;
+  /** @format date */
+  birthDate?: string;
+  country?: string;
+  address?: string;
+  contact?: string;
+  postalCode?: string;
+  idType?: string;
+  currencies?: string;
+  topupAmount?: number;
+  cardType?: string;
+  idFrontUrl?: string;
+  idBackUrl?: string;
+  selfieWithIdUrl?: string;
+  status?: string;
+  rejectReason?: string;
+}
+
+export interface CommonResultCardKyc {
+  /** @format int32 */
+  code: number;
+  data: CardKyc;
+  msg?: string;
 }
 
 import type {
@@ -553,6 +640,137 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<
   SecurityDataType extends unknown,
 > extends HttpClient<SecurityDataType> {
+  cardKyc = {
+    /**
+     * No description
+     *
+     * @tags Card KYC
+     * @name Update
+     * @summary 修改KYC（仅拒绝后可修改，修改后置为待审）
+     * @request PUT:/card-kyc/update
+     */
+    update: (data: CardKycUpdateReqDTO, params: RequestParams = {}) =>
+      this.request<CommonResultBoolean, any>({
+        path: `/card-kyc/update`,
+        method: "PUT",
+        body: data,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Card KYC
+     * @name UploadImage1
+     * @summary 上传KYC图片
+     * @request POST:/card-kyc/upload
+     */
+    uploadImage1: (
+      query: {
+        /**
+         * 图片类型：front_id（证件正面照）/back_id（证件反面照）/selfie_with_id（手持证件自拍）
+         * @pattern ^(front_id|back_id|selfie_with_id)$
+         * @example "front_id"
+         */
+        type: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultUploadRespDTO, any>({
+        path: `/card-kyc/upload`,
+        method: "POST",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Card KYC
+     * @name Submit
+     * @summary 提交KYC
+     * @request POST:/card-kyc/submit
+     */
+    submit: (data: CardKycSubmitReqDTO, params: RequestParams = {}) =>
+      this.request<CommonResultBoolean, any>({
+        path: `/card-kyc/submit`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Card KYC
+     * @name Options
+     * @summary 下拉选项
+     * @request GET:/card-kyc/options
+     */
+    options: (params: RequestParams = {}) =>
+      this.request<CommonResultCardKycOptionsRespDTO, any>({
+        path: `/card-kyc/options`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Card KYC
+     * @name Mine
+     * @summary 查询我的KYC
+     * @request GET:/card-kyc/mine
+     */
+    mine: (params: RequestParams = {}) =>
+      this.request<CommonResultCardKyc, any>({
+        path: `/card-kyc/mine`,
+        method: "GET",
+        ...params,
+      }),
+  };
+  wallet = {
+    /**
+     * No description
+     *
+     * @tags wallet-snapshot-controller
+     * @name QuerySnapshots
+     * @request POST:/wallet/page
+     */
+    querySnapshots: (
+      query: {
+        /** @format int64 */
+        memberId?: number;
+        coin?: string;
+        /** @format date-time */
+        snapshotTime?: string;
+        /** 排序字段 */
+        sortingFields?: string;
+        /**
+         * 页码，从 1 开始
+         * @min 1
+         * @example 1
+         */
+        pageNo: string;
+        /**
+         * 每页条数，最大值为 100
+         * @min 1
+         * @max 100
+         * @example 10
+         */
+        pageSize: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultPageResultMemberWalletSnapshot, any>({
+        path: `/wallet/page`,
+        method: "POST",
+        query: query,
+        ...params,
+      }),
+  };
   public = {
     /**
      * No description
@@ -648,6 +866,40 @@ export class Api<
       }),
   };
   internal = {
+    /**
+     * No description
+     *
+     * @tags wallet-snapshot-api
+     * @name CreateSnapshot
+     * @request POST:/internal/wallet/snapshot/create
+     */
+    createSnapshot: (params: RequestParams = {}) =>
+      this.request<CommonResultObject, any>({
+        path: `/internal/wallet/snapshot/create`,
+        method: "POST",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags member-api
+     * @name GetUserByToken
+     * @request POST:/internal/member/getUserByToken
+     */
+    getUserByToken: (
+      query: {
+        token: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultLoginUser, any>({
+        path: `/internal/member/getUserByToken`,
+        method: "POST",
+        query: query,
+        ...params,
+      }),
+
     /**
      * No description
      *
@@ -786,6 +1038,21 @@ export class Api<
         type: ContentType.Json,
         ...params,
       }),
+
+    /**
+     * No description
+     *
+     * @tags member-api
+     * @name GetMemberInfo
+     * @summary 获得用户信息
+     * @request GET:/internal/member/{id}
+     */
+    getMemberInfo: (id: number, params: RequestParams = {}) =>
+      this.request<CommonResultMemberRespDTO, any>({
+        path: `/internal/member/${id}`,
+        method: "GET",
+        ...params,
+      }),
   };
   behavior = {
     /**
@@ -838,108 +1105,6 @@ export class Api<
       this.request<CommonResultListBannerRespDTO, any>({
         path: `/banner/list`,
         method: "POST",
-        query: query,
-        ...params,
-      }),
-  };
-  app = {
-    /**
-     * No description
-     *
-     * @tags captcha-prefix-api
-     * @name Validate2
-     * @summary 核实凭证（核实获取到的凭证的正确性）
-     * @request POST:/app/nine-index/internal/captcha/validate
-     */
-    validate2: (data: CaptchaValidateReqDTO, params: RequestParams = {}) =>
-      this.request<CommonResultCaptchaValidateRespDTO, any>({
-        path: `/app/nine-index/internal/captcha/validate`,
-        method: "POST",
-        body: data,
-        type: ContentType.Json,
-        ...params,
-      }),
-  };
-  activity = {
-    /**
-     * No description
-     *
-     * @tags 活动
-     * @name Page
-     * @summary 分页查询活动
-     * @request POST:/activity/page
-     */
-    page: (
-      query: {
-        /**
-         * 语言
-         * @example "zh-cn"
-         */
-        language?: string;
-        /** 是否启用 */
-        status?: string;
-        /** 是否首页展示 */
-        isHome?: string;
-        /**
-         * 页码，从 1 开始
-         * @min 1
-         * @example 1
-         */
-        pageNo: string;
-        /**
-         * 每页条数，最大值为 100
-         * @min 1
-         * @max 100
-         * @example 10
-         */
-        pageSize: string;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<CommonResultPageResultActivityRespDTO, any>({
-        path: `/activity/page`,
-        method: "POST",
-        query: query,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 活动
-     * @name List
-     * @summary 获取活动列表
-     * @request POST:/activity/list
-     */
-    list: (params: RequestParams = {}) =>
-      this.request<CommonResultListActivityRespDTO, any>({
-        path: `/activity/list`,
-        method: "POST",
-        ...params,
-      }),
-  };
-  exchangeRate = {
-    /**
-     * No description
-     *
-     * @tags exchange-rate-controller
-     * @name GetHistory
-     * @request GET:/exchange-rate/history
-     */
-    getHistory: (
-      query: {
-        pair: string;
-        /**
-         * @format int32
-         * @default 20
-         */
-        limit?: number;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<ExchangeRate[], any>({
-        path: `/exchange-rate/history`,
-        method: "GET",
         query: query,
         ...params,
       }),

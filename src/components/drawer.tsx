@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import { FC, PropsWithChildren, useId } from "react";
+import { FC, PropsWithChildren, ReactNode, useId } from "react";
 
 type IProps = PropsWithChildren<{
   open?: boolean;
   onChange?: (open: boolean) => void;
-  title?: string;
+  title?: string | ReactNode;
   className?: string;
 }>;
 export const Drawer: FC<IProps> = ({
@@ -20,7 +20,7 @@ export const Drawer: FC<IProps> = ({
     <div
       className="drawer drawer-bottom"
       role="dialog"
-      aria-label={title}
+      aria-label={typeof title === "string" ? title : undefined}
       aria-modal={true}
     >
       <input
@@ -51,7 +51,7 @@ export const Drawer: FC<IProps> = ({
             <div className="w-[46px] h-1 bg-[#D9D9D9] rounded-xs"></div>
           </div>
           {title ? (
-            <p className="text-center text-lg font-bold mb-4">{title}</p>
+            <div className="text-center text-lg font-bold mb-4">{title}</div>
           ) : null}
           <div className="grow overflow-hidden overflow-y-scroll no-scrollbar">
             {children}

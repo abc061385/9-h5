@@ -43,22 +43,31 @@ export const useRootReg = () => {
       message: t("selectMeetupType"),
     }),
     firstName: z.string().regex(/^.+$/, {
-      message: "请输入First Name",
+      message: t("firstNamePlaceholder"),
     }),
     lastName: z.string().regex(/^.+$/, {
-      message: "请输入Last Name",
+      message: t("lastNamePlaceholder"),
     }),
     country: z.string().regex(/^.+$/, {
       message: t("selectCountry"),
     }),
+    birthDate: z.string().regex(/^.+$/, {
+      message: t("dateOfBirthPlaceholder"),
+    }),
     postCode: z.string().regex(/^.+$/, {
-      message: "Please enter the  post code",
+      message: t("postCodePlaceholder"),
     }),
     billingAddress: z.string().regex(/^.+$/, {
-      message: "Enter your billing address",
+      message: t("billingAddressPlaceholder"),
     }),
     documentType: z.string().regex(/^.+$/, {
-      message: "Please select the type of ID photo to upload",
+      message: t("documentTypePlaceholder"),
+    }),
+    cardType: z.string().regex(/^.+$/, {
+      message: t("cardTypePlaceholder"),
+    }),
+    currencies: z.string().regex(/^.+$/, {
+      message: t("currencyPlaceholder"),
     }),
   };
 };

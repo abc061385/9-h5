@@ -4,15 +4,62 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { cn } from "@/lib/utils";
-import FormBox from "./form";
-import { useUCardStore } from "@/store/useUCardStore";
+import FormBox, { ChildHandle } from "./form";
+import { SelectListType, useUCardStore } from "@/store/useUCardStore";
+import { useTrans } from "@/hooks/useTrans";
+import { useCallback, useEffect, useRef } from "react";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import Bridge from "@/lib/dsBridge";
+import { useRouter } from "@/i18n/navigation";
+import { ShowIf } from "@/components/show-if";
 
 const UCardView = () => {
-  const { step } = useUCardStore();
+  const { back } = useRouter();
+  const api = createAxiosInstance("/app/");
+  const t = useTrans();
+  const ref = useRef<ChildHandle>(null);
+  const { step, setField, formStatus } = useUCardStore();
 
+  const getSelectList = useCallback(async () => {
+    try {
+      const res: ApiResponse<{
+        cardTypes: SelectListType[];
+        countries: SelectListType[];
+        currencies: SelectListType[];
+        idTypes: SelectListType[];
+      }> = await api.get("/nine-index/card-kyc/options");
+      if (res.code === 200) {
+        setField("cardTypes", res?.data?.cardTypes || []);
+        setField("countries", res?.data?.countries || []);
+        setField("currencies", res?.data?.currencies || []);
+        setField("idTypes", res?.data?.idTypes || []);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setField]);
+
+  useEffect(() => {
+    getSelectList();
+  }, [getSelectList]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Apply for a U card" algin="center" />}
+      header={
+        <HeaderWithBack
+          title={t("applyButton")}
+          algin="center"
+          onClick={() => {
+            ref?.current?.reset();
+            Bridge.goBack();
+            back();
+          }}
+        />
+      }
       className="h-full overflow-auto no-scrollbar"
     >
       <BaseImage
@@ -21,23 +68,15 @@ const UCardView = () => {
         cover={false}
       />
       <div className="p-content">
-        <p className="text-sm leading-5 mb-6">
-          The U Card is a convenient and secure payment tool available in both
-          virtual and physical formats. Users can link it to their digital
-          wallet or bank account, making payments online on global e-commerce
-          platforms and app stores, as well as using the physical card for POS
-          purchases and ATM withdrawals.
-        </p>
-        <p className="text-sm leading-5">
-          Virtual cards generate a card number instantly upon application,
-          making them ideal for quick use and subscription payments. Physical
-          cards are delivered like traditional bank cards, offering long-term
-          validity and meeting everyday offline needs. Whether it&apos;s
-          cross-border shopping, digital subscriptions, or everyday payments,
-          the U Card provides users with a flexible and secure solution.
-        </p>
+        <p className="text-sm leading-5 mb-6">{t("uCardIntro1")}</p>
+        <p className="text-sm leading-5">{t("uCardIntro2")}</p>
+        <ShowIf condition={formStatus === "PENDING"}>
+          <p className="my-6 text-primary text-sm">{t("completionNote")}</p>
+          <p className="text-sm leading-5">{t("stepsSummary")}</p>
+        </ShowIf>
+
         <h2 className="font-medium mt-10 mb-6" id="ucard-form-title">
-          Please fill in the application information:
+          {t("applicationInfoTitle")}
         </h2>
         <div className="flex items-center justify-between relative">
           {[...new Array(3)].map((_, i) => {
@@ -55,7 +94,7 @@ const UCardView = () => {
           })}
           <div className="absolute top-[50%] h-[1px] bg-border1 w-full z-0"></div>
         </div>
-        <FormBox />
+        <FormBox ref={ref} />
       </div>
     </ViewLayout>
   );

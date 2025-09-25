@@ -381,3 +381,24 @@ interface FileType {
   thumbnailUrl?: string;
   fileType: 1 | 2 | 3;
 }
+
+interface UcardInfoType {
+  id: number;
+  firstName: string;
+  address: string;
+  birthDate: string;
+  cardType: string;
+  contact: string;
+  country: string;
+  currencies: string;
+  firstName: string;
+  idBackUrl: string;
+  idFrontUrl: string;
+  idType: string;
+  lastName: string;
+  memberId: number;
+  postalCode: string;
+  selfieWithIdUrl: string;
+  status: string;
+  topupAmount: number;
+}
