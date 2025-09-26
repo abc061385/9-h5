@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "โอน",
   "uploadIdPhoto": "กรุณาอัปโหลดรูปถ่ายบัตรประจำตัว",
   "uploadSelfieWithId": "กรุณาอัปโหลดรูปเซลฟี่พร้อมบัตรประจำตัว",
-  "transfer_amount": "จำนวน"
+  "transfer_amount": "จำนวน",
+  "DepositintoSmartYieldWallet": "ฝากเข้า Smart Yield Wallet",
+  "withdrawFromSmartWallet": "ถอนออกจาก Smart Yield Wallet"
 }

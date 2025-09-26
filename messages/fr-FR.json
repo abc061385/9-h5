@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "Virement",
   "uploadIdPhoto": "Veuillez télécharger une photo de pièce d'identité",
   "uploadSelfieWithId": "Veuillez télécharger un selfie avec votre pièce d'identité",
-  "transfer_amount": "Quantité"
+  "transfer_amount": "Quantité",
+  "DepositintoSmartYieldWallet": "Dépôt dans le Smart Yield Wallet",
+  "withdrawFromSmartWallet": "Retrait du Smart Yield Wallet Le retrait du Smart Yield Wallet"
 }

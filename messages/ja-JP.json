@@ -843,7 +843,7 @@
   "SmartYieldWallet总收益": "Smart Yield Wallet の総収益",
   "每日复利收益": "毎日の複利収益",
   "昨日SmartYieldWallet收益": "昨日の Smart Yield Wallet 収益",
-  "depositIntoSmartWallet": "Smart Yield Wallet に入金する",
+  "depositIntoSmartWallet": "Smart Yield Wallet に預け入れ",
   "depositIntoSmartWalletDesc": "推定日次複利利回り {rate} をお楽しみください。",
   "depositIntoAssetsWallet": "プラットフォームウォレットに入金",
   "可用余额不足": "利用可能残高が不足しています",
@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "送金",
   "uploadIdPhoto": "証明写真をアップロードしてください",
   "uploadSelfieWithId": "身分証を持った自撮り写真をアップロードしてください",
-  "transfer_amount": "数量"
+  "transfer_amount": "数量",
+  "DepositintoSmartYieldWallet": "Smart Yield Wallet に入金する",
+  "withdrawFromSmartWallet": "Smart Yield Wallet から出金する"
 }

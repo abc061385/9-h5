@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "Überweisung",
   "uploadIdPhoto": "Bitte laden Sie ein Ausweisfoto hoch",
   "uploadSelfieWithId": "Bitte laden Sie ein Selfie mit Ihrem Ausweis hoch",
-  "transfer_amount": "Menge"
+  "transfer_amount": "Menge",
+  "DepositintoSmartYieldWallet": "Einzahlung in Smart Yield Wallet",
+  "withdrawFromSmartWallet": "Auszahlung aus Smart Yield Wallet"
 }

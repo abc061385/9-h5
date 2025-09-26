@@ -843,7 +843,7 @@
   "SmartYieldWallet总收益": "Smart Yield Wallet 총 수익",
   "每日复利收益": "일일 복리 수익",
   "昨日SmartYieldWallet收益": "어제 Smart Yield Wallet 수익",
-  "depositIntoSmartWallet": "Smart Yield Wallet로 입금",
+  "depositIntoSmartWallet": "Smart Yield Wallet 입금",
   "depositIntoSmartWalletDesc": "예상 일일 복리 이자율 {rate}를 누려보세요.",
   "depositIntoAssetsWallet": "플랫폼 지갑에 입금",
   "可用余额不足": "사용 가능한 잔액이 부족합니다",
@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "이체",
   "uploadIdPhoto": "신분증 사진을 업로드해 주세요",
   "uploadSelfieWithId": "신분증을 들고 있는 셀카를 업로드해 주세요",
-  "transfer_amount": "수량"
+  "transfer_amount": "수량",
+  "DepositintoSmartYieldWallet": "Smart Yield Wallet로 입금",
+  "withdrawFromSmartWallet": "Smart Yield Wallet에서 출금"
 }

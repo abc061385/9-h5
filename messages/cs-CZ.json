@@ -843,7 +843,7 @@
   "SmartYieldWallet总收益": "Smart Yield Wallet Total Earnings",
   "每日复利收益": "Daily Compound Earnings",
   "昨日SmartYieldWallet收益": "Yesterday’s Smart Yield Wallet Earnings",
-  "depositIntoSmartWallet": "Vložit do Smart Yield Wallet",
+  "depositIntoSmartWallet": "Deposit into Smart Yield Wallet",
   "depositIntoSmartWalletDesc": "Enjoy an estimated daily compound interest rate of {rate}.",
   "depositIntoAssetsWallet": "Deposit into Platform Wallet",
   "可用余额不足": "Insufficient Available Balance",
@@ -907,5 +907,7 @@
   "transfer_amount": "Amount",
   "累计转出": "Cumulative Withdrawals",
   "uploadIdPhoto": "Please upload ID photo",
-  "uploadSelfieWithId": "Please upload a selfie holding your ID"
+  "uploadSelfieWithId": "Please upload a selfie holding your ID",
+  "DepositintoSmartYieldWallet": "Vložit do Smart Yield Wallet",
+  "withdrawFromSmartWallet": "Withdraw from Smart Yield Wallet"
 }

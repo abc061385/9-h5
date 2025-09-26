@@ -46,7 +46,7 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_DYNAMIC_REWARDS_SMART: "depositIntoSmartWallet",
   CLAIM_DYNAMIC_REWARDS_REDUCE: "depositIntoAssetsWallet", //存入平台钱包
   CLAIM_DYNAMIC_EARNINGS_REDUCE: "depositIntoAssetsWallet",
-  CLAIM_SMART_YIELD_WALLET_REDUCE: "depositIntoSmartWallet",
+  CLAIM_SMART_YIELD_WALLET_REDUCE: "withdrawFromSmartWallet",
   TRANSFER: "transaction_TRANSFER",
 };
 

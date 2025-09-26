@@ -843,7 +843,7 @@
   "SmartYieldWallet总收益": "Smart Yield Wallet 总收益",
   "每日复利收益": "每日复利收益",
   "昨日SmartYieldWallet收益": "昨日Smart Yield Wallet收益",
-  "depositIntoSmartWallet": "Smart yield wallet转入",
+  "depositIntoSmartWallet": "存入 Smart Yield Wallet",
   "depositIntoSmartWalletDesc": "预计每日复利收益率为{rate}，让资金稳健增长。",
   "depositIntoAssetsWallet": "存入平台钱包",
   "可用余额不足": "可用余额不足",
@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "转账",
   "uploadIdPhoto": "请上传证件照",
   "uploadSelfieWithId": "请上传手持证件自拍",
-  "transfer_amount": "数量"
+  "transfer_amount": "数量",
+  "DepositintoSmartYieldWallet": "Smart yield wallet 转入",
+  "withdrawFromSmartWallet": "Smart yield wallet 转出"
 }

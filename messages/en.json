@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "Transfer",
   "uploadIdPhoto": "Please upload ID photo",
   "uploadSelfieWithId": "Please upload a selfie holding your ID",
-  "transfer_amount": "Amount"
+  "transfer_amount": "Amount",
+  "DepositintoSmartYieldWallet": "Deposit into Smart Yield Wallet",
+  "withdrawFromSmartWallet": "Withdraw from Smart Yield Wallet"
 }

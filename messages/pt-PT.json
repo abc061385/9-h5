@@ -907,5 +907,7 @@
   "transaction_TRANSFER": "Transferir",
   "uploadIdPhoto": "Por favor carregue foto do documento",
   "uploadSelfieWithId": "Por favor carregue uma selfie a segurar o seu documento",
-  "transfer_amount": "Quantia"
+  "transfer_amount": "Quantia",
+  "DepositintoSmartYieldWallet": "Depositar no Smart Yield Wallet",
+  "withdrawFromSmartWallet": "Retirar do Smart Yield Wallet"
 }
