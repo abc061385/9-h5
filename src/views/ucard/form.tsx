@@ -519,17 +519,17 @@ const FormBox = forwardRef<ChildHandle>((_props, ref) => {
 
   const submitSecond = useCallback(() => {
     if (!imageFileList?.[0]?.fileUrl || !imageFileList?.[1]?.fileUrl) {
-      toast.error("请上传证件照");
+      toast.error(t("uploadIdPhoto"));
       return;
     }
     if (!holdImageFileList?.[0]?.fileUrl) {
-      toast.error("请上传手持证件自拍");
+      toast.error(t("uploadSelfieWithId"));
       return;
     }
     setField("step", 2);
     getInfo();
     smoothFn();
-  }, [getInfo, holdImageFileList, imageFileList, setField]);
+  }, [getInfo, holdImageFileList, imageFileList, setField, t]);
 
   const submit = useCallback(async () => {
     if (!isAgreement) {

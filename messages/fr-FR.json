@@ -904,5 +904,7 @@
   "completionNote": "Remplissez les informations pertinentes pour compléter la demande de Carte U. Vous serez notified du résultat par e-mail.",
   "stepsSummary": "Demander une Carte U ne nécessite que trois étapes : remplir les informations → télécharger votre ID → soumettre pour examen",
   "累计转出": "Retraits cumulés",
-  "transaction_TRANSFER": "Virement"
+  "transaction_TRANSFER": "Virement",
+  "uploadIdPhoto": "Veuillez télécharger une photo de pièce d'identité",
+  "uploadSelfieWithId": "Veuillez télécharger un selfie avec votre pièce d'identité"
 }

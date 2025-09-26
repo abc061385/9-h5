@@ -904,5 +904,7 @@
   "completionNote": "Complete la información relevante para finalizar la solicitud de Tarjeta U. Será notified del resultado por correo electrónico.",
   "stepsSummary": "Solicitar una Tarjeta U requiere solo tres pasos: completar la información → cargar su ID → enviar para revisión",
   "累计转出": "Retiros acumulados",
-  "transaction_TRANSFER": "Transferencia"
+  "transaction_TRANSFER": "Transferencia",
+  "uploadIdPhoto": "Por favor suba una foto de identificación",
+  "uploadSelfieWithId": "Por favor suba un selfie sosteniendo su identificación"
 }

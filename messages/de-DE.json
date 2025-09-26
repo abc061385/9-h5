@@ -904,5 +904,7 @@
   "completionNote": "Füllen Sie die relevanten Informationen aus, um den U-Karte Antrag abzuschließen. Sie werden per E-Mail über das Ergebnis benachrichtigt.",
   "stepsSummary": "Die Beantragung einer U-Karte erfordert nur drei Schritte: Informationen ausfüllen → ID hochladen → zur Überprüfung einreichen",
   "累计转出": "Gesamtauszahlungen",
-  "transaction_TRANSFER": "Überweisung"
+  "transaction_TRANSFER": "Überweisung",
+  "uploadIdPhoto": "Bitte laden Sie ein Ausweisfoto hoch",
+  "uploadSelfieWithId": "Bitte laden Sie ein Selfie mit Ihrem Ausweis hoch"
 }

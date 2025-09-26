@@ -904,5 +904,7 @@
   "completionNote": "Isi maklumat berkaitan untuk melengkapkan permohonan Kad U. Anda akan dimaklumkan tentang hasil melalui e-mel.",
   "stepsSummary": "Memohon Kad U hanya memerlukan tiga langkah: isi maklumat → muat naik ID → serah untuk semakan",
   "累计转出": "Pengeluaran Terkumpul",
-  "transaction_TRANSFER": "Pindahan"
+  "transaction_TRANSFER": "Pindahan",
+  "uploadIdPhoto": "Sila muat naik foto kad pengenalan",
+  "uploadSelfieWithId": "Sila muat naik selfie memegang kad pengenalan"
 }

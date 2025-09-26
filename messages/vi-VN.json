@@ -904,5 +904,7 @@
   "completionNote": "Điền thông tin liên quan để hoàn tất đăng ký Thẻ U. Bạn sẽ được thông báo kết quả qua email.",
   "stepsSummary": "Đăng ký Thẻ U chỉ cần ba bước: điền thông tin → tải lên ID → gửi để xem xét",
   "累计转出": "Tổng số đã rút",
-  "transaction_TRANSFER": "Chuyển"
+  "transaction_TRANSFER": "Chuyển",
+  "uploadIdPhoto": "Vui lòng tải lên ảnh chứng minh thư",
+  "uploadSelfieWithId": "Vui lòng tải lên ảnh selfie cầm chứng minh thư"
 }
