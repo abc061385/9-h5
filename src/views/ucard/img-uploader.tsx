@@ -134,7 +134,7 @@ const ImageUploader: React.FC<PropsWithChildren<ImageUploaderProps>> = ({
           <input
             type="file"
             className="hidden"
-            accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+            accept="image/*"
             onChange={handleFileChange}
             disabled={Boolean(defaultUrl || preview)}
           />
