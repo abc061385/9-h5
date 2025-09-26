@@ -34,8 +34,8 @@ export const typeMap: { [key: string]: string } = {
   FLASH_REDEMPTION_DEDUCTION: "闪兑扣款",
   FLASH_REDEMPTION_IS_CREDITED: "闪兑入账",
   USDM_USDT_FLASH_EXCHANGE_TRANSACTION_FEE: "闪兑手续费扣除",
-  CLAIM_STATIC_EARNINGS: "领取静态收益",
-  CLAIM_DYNAMIC_REWARDS: "领取动态收益",
+  CLAIM_STATIC_EARNINGS: "投资收益转入",
+  CLAIM_DYNAMIC_REWARDS: "币权收益转入",
   VIP_RACE_REWARD: "VIP报名赛奖金",
   SMART_YIELD_INCOME: "SmartYieldWallet收益",
   CLAIM_SMART_YIELD_WALLET: "提取SmartYieldWallet余额",
@@ -46,6 +46,7 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_DYNAMIC_REWARDS_SMART: "depositIntoSmartWallet",
   CLAIM_DYNAMIC_REWARDS_REDUCE: "depositIntoAssetsWallet", //存入平台钱包
   CLAIM_DYNAMIC_EARNINGS_REDUCE: "depositIntoAssetsWallet",
+  TRANSFER: "transaction_TRANSFER",
 };
 
 export type GAPreviousPageType = "withdraw" | "";

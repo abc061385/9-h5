@@ -858,5 +858,6 @@
   "可提取数量": "Quantidade Retirável",
   "smartyieldwallet累计转出": "Montant total retiré du Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "Os lucros que você retirar serão depositados na Smart Yield Wallet.",
-  "累计转出": "Saques acumulados"
+  "累计转出": "Saques acumulados",
+  "transaction_TRANSFER": "Transferir"
 }

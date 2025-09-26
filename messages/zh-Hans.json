@@ -858,5 +858,6 @@
   "可提取数量": "可提取数量",
   "smartyieldwallet累计转出": "smart yield wallet累计转出",
   "withdrawNoticeSmartWallet": "您提取的收益将存入Smart Yield Wallet。",
-  "累计转出": "累计转出"
+  "累计转出": "累计转出",
+  "transaction_TRANSFER": "转账"
 }

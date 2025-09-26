@@ -98,6 +98,10 @@ const WalletDetailView = () => {
       statusMap[1] = t("已发放");
       statusMap[2] = t("已提取");
     }
+
+    if (type === "CLAIM_SMART_YIELD_WALLET") {
+      statusMap[0] = t("处理中");
+    }
     return statusMap[status] || t("walletDetail.statusUnknown");
   };
   return (

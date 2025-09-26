@@ -858,5 +858,6 @@
   "可提取数量": "จำนวนที่ถอนได้",
   "smartyieldwallet累计转出": "Jumlah Keseluruhan Pengeluaran Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "กำไรที่คุณถอนจะถูกโอนเข้าบัญชี Smart Yield Wallet",
-  "累计转出": "ยอดถอนสะสม"
+  "累计转出": "ยอดถอนสะสม",
+  "transaction_TRANSFER": "โอน"
 }
