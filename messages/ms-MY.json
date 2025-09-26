@@ -903,5 +903,6 @@
   "cardTypePlaceholder": "Sila pilih jenis kad anda",
   "completionNote": "Isi maklumat berkaitan untuk melengkapkan permohonan Kad U. Anda akan dimaklumkan tentang hasil melalui e-mel.",
   "stepsSummary": "Memohon Kad U hanya memerlukan tiga langkah: isi maklumat → muat naik ID → serah untuk semakan",
-  "累计转出": "Pengeluaran Terkumpul"
+  "累计转出": "Pengeluaran Terkumpul",
+  "transaction_TRANSFER": "Pindahan"
 }

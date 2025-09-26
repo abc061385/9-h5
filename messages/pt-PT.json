@@ -903,5 +903,6 @@
   "cardTypePlaceholder": "Por favor selecione o tipo de cartão",
   "completionNote": "Preencha a informação relevante para completar a candidatura a Cartão U. Será notificado do resultado via email.",
   "stepsSummary": "Candidatar-se a um Cartão U requer apenas três passos: preencher a informação → carregar o seu ID → submeter para revisão",
-  "累计转出": "Saques acumulados"
+  "累计转出": "Saques acumulados",
+  "transaction_TRANSFER": "Transferir"
 }

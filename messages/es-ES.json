@@ -903,5 +903,6 @@
   "cardTypePlaceholder": "Por favor seleccione su tipo de tarjeta",
   "completionNote": "Complete la información relevante para finalizar la solicitud de Tarjeta U. Será notified del resultado por correo electrónico.",
   "stepsSummary": "Solicitar una Tarjeta U requiere solo tres pasos: completar la información → cargar su ID → enviar para revisión",
-  "累计转出": "Retiros acumulados"
+  "累计转出": "Retiros acumulados",
+  "transaction_TRANSFER": "Transferencia"
 }

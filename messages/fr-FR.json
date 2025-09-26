@@ -903,5 +903,6 @@
   "cardTypePlaceholder": "Veuillez sélectionner votre type de carte",
   "completionNote": "Remplissez les informations pertinentes pour compléter la demande de Carte U. Vous serez notified du résultat par e-mail.",
   "stepsSummary": "Demander une Carte U ne nécessite que trois étapes : remplir les informations → télécharger votre ID → soumettre pour examen",
-  "累计转出": "Retraits cumulés"
+  "累计转出": "Retraits cumulés",
+  "transaction_TRANSFER": "Virement"
 }
