@@ -12,7 +12,6 @@ const [, , csvPath, ..._langs] = process.argv;
 
 let langs = _langs
 if (langs.length === 0) {
-  console.log(langs)
   langs = [
     "en",
     "zh-Hans",
@@ -26,7 +25,13 @@ if (langs.length === 0) {
     "de-DE",
     "fr-FR",
     "pt-PT",
-    "es-ES"
+    "es-ES",
+    // 新增的5个语言用英文
+    "nl-NL",
+    "no-NO",
+    "sv-SE",
+    "ro-RO",
+    "cs-CZ",
   ]
 
 }

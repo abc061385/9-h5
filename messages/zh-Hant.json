@@ -906,5 +906,6 @@
   "累计转出": "累计转出",
   "transaction_TRANSFER": "轉帳",
   "uploadIdPhoto": "請上傳證件照",
-  "uploadSelfieWithId": "請上傳手持證件自拍"
+  "uploadSelfieWithId": "請上傳手持證件自拍",
+  "transfer_amount": "數量"
 }

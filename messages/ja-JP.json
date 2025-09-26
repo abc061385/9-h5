@@ -906,5 +906,6 @@
   "累计转出": "累計轉出",
   "transaction_TRANSFER": "送金",
   "uploadIdPhoto": "証明写真をアップロードしてください",
-  "uploadSelfieWithId": "身分証を持った自撮り写真をアップロードしてください"
+  "uploadSelfieWithId": "身分証を持った自撮り写真をアップロードしてください",
+  "transfer_amount": "数量"
 }

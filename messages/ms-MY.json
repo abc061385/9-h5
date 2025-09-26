@@ -906,5 +906,6 @@
   "累计转出": "Pengeluaran Terkumpul",
   "transaction_TRANSFER": "Pindahan",
   "uploadIdPhoto": "Sila muat naik foto kad pengenalan",
-  "uploadSelfieWithId": "Sila muat naik selfie memegang kad pengenalan"
+  "uploadSelfieWithId": "Sila muat naik selfie memegang kad pengenalan",
+  "transfer_amount": "Kuantiti"
 }

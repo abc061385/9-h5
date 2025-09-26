@@ -906,5 +906,6 @@
   "累计转出": "ยอดถอนสะสม",
   "transaction_TRANSFER": "โอน",
   "uploadIdPhoto": "กรุณาอัปโหลดรูปถ่ายบัตรประจำตัว",
-  "uploadSelfieWithId": "กรุณาอัปโหลดรูปเซลฟี่พร้อมบัตรประจำตัว"
+  "uploadSelfieWithId": "กรุณาอัปโหลดรูปเซลฟี่พร้อมบัตรประจำตัว",
+  "transfer_amount": "จำนวน"
 }

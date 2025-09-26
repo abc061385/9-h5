@@ -906,5 +906,6 @@
   "累计转出": "Gesamtauszahlungen",
   "transaction_TRANSFER": "Überweisung",
   "uploadIdPhoto": "Bitte laden Sie ein Ausweisfoto hoch",
-  "uploadSelfieWithId": "Bitte laden Sie ein Selfie mit Ihrem Ausweis hoch"
+  "uploadSelfieWithId": "Bitte laden Sie ein Selfie mit Ihrem Ausweis hoch",
+  "transfer_amount": "Menge"
 }

@@ -906,5 +906,6 @@
   "累计转出": "Saques acumulados",
   "transaction_TRANSFER": "Transferir",
   "uploadIdPhoto": "Por favor carregue foto do documento",
-  "uploadSelfieWithId": "Por favor carregue uma selfie a segurar o seu documento"
+  "uploadSelfieWithId": "Por favor carregue uma selfie a segurar o seu documento",
+  "transfer_amount": "Quantia"
 }

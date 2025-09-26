@@ -906,5 +906,6 @@
   "累计转出": "누적 출금",
   "transaction_TRANSFER": "이체",
   "uploadIdPhoto": "신분증 사진을 업로드해 주세요",
-  "uploadSelfieWithId": "신분증을 들고 있는 셀카를 업로드해 주세요"
+  "uploadSelfieWithId": "신분증을 들고 있는 셀카를 업로드해 주세요",
+  "transfer_amount": "수량"
 }

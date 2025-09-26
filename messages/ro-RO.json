@@ -901,5 +901,7 @@
   "currencyLabel": "Currency",
   "cardTypePlaceholder": "Please select your card type",
   "completionNote": "Fill in the relevant information to complete the U Card application. You will be notified of the result via email.",
-  "stepsSummary": "Applying for a U Card requires only three steps: fill in the information → upload your ID → submit for review"
+  "stepsSummary": "Applying for a U Card requires only three steps: fill in the information → upload your ID → submit for review",
+  "transaction_TRANSFER": "Transfer",
+  "transfer_amount": "Amount"
 }

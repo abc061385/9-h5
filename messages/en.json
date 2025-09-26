@@ -905,5 +905,6 @@
   "累计转出": "Cumulative Withdrawals",
   "transaction_TRANSFER": "Transfer",
   "uploadIdPhoto": "Please upload ID photo",
-  "uploadSelfieWithId": "Please upload a selfie holding your ID"
+  "uploadSelfieWithId": "Please upload a selfie holding your ID",
+  "transfer_amount": "Amount"
 }

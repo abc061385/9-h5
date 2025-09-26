@@ -906,5 +906,6 @@
   "累计转出": "Tổng số đã rút",
   "transaction_TRANSFER": "Chuyển",
   "uploadIdPhoto": "Vui lòng tải lên ảnh chứng minh thư",
-  "uploadSelfieWithId": "Vui lòng tải lên ảnh selfie cầm chứng minh thư"
+  "uploadSelfieWithId": "Vui lòng tải lên ảnh selfie cầm chứng minh thư",
+  "transfer_amount": "Số lượng"
 }

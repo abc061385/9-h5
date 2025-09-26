@@ -906,5 +906,6 @@
   "累计转出": "Retiros acumulados",
   "transaction_TRANSFER": "Transferencia",
   "uploadIdPhoto": "Por favor suba una foto de identificación",
-  "uploadSelfieWithId": "Por favor suba un selfie sosteniendo su identificación"
+  "uploadSelfieWithId": "Por favor suba un selfie sosteniendo su identificación",
+  "transfer_amount": "Cantidad"
 }

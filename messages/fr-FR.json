@@ -906,5 +906,6 @@
   "累计转出": "Retraits cumulés",
   "transaction_TRANSFER": "Virement",
   "uploadIdPhoto": "Veuillez télécharger une photo de pièce d'identité",
-  "uploadSelfieWithId": "Veuillez télécharger un selfie avec votre pièce d'identité"
+  "uploadSelfieWithId": "Veuillez télécharger un selfie avec votre pièce d'identité",
+  "transfer_amount": "Quantité"
 }
