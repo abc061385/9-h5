@@ -902,5 +902,6 @@
   "currencyLabel": "貨幣",
   "cardTypePlaceholder": "請選擇您的卡片類型",
   "completionNote": "填寫相關信息以完成U卡申請。結果將通過電子郵件通知您。",
-  "stepsSummary": "申請U卡僅需三步：填寫信息 → 上傳身份證 → 提交審核"
+  "stepsSummary": "申請U卡僅需三步：填寫信息 → 上傳身份證 → 提交審核",
+  "累计转出": "累计转出"
 }

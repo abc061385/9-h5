@@ -854,7 +854,7 @@
   "投资收益转入": "Transfert des gains d’investissement",
   "币权收益转入": "Transfert des gains liés aux tokens",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Verfügbares Guthaben im Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Solde disponible dans le Smart Yield Wallet",
   "可提取数量": "Montant Retirable",
   "smartyieldwallet累计转出": "Gesamtbetrag der Auszahlungen von Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "Les bénéfices que vous retirez seront déposés dans le Smart Yield Wallet.",
@@ -902,5 +902,6 @@
   "currencyLabel": "Devise",
   "cardTypePlaceholder": "Veuillez sélectionner votre type de carte",
   "completionNote": "Remplissez les informations pertinentes pour compléter la demande de Carte U. Vous serez notified du résultat par e-mail.",
-  "stepsSummary": "Demander une Carte U ne nécessite que trois étapes : remplir les informations → télécharger votre ID → soumettre pour examen"
+  "stepsSummary": "Demander une Carte U ne nécessite que trois étapes : remplir les informations → télécharger votre ID → soumettre pour examen",
+  "累计转出": "Retraits cumulés"
 }

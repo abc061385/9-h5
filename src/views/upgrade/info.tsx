@@ -187,7 +187,40 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
           <input
             value={withDrawNum}
             type="number"
-            onChange={(e) => setWithDrawNum(e.target.value)}
+            // onChange={(e) => setWithDrawNum(e.target.value)}
+            onChange={(e) => {
+              let value = e.target.value;
+              if (value === "") {
+                // 更新输入框的值
+                e.target.value = "";
+                setWithDrawNum("");
+                return;
+              }
+
+              // 匹配合法数字格式（允许中间态：12.  /  0.）
+              if (!/^\d*\.?\d*$/.test(value)) {
+                return;
+              }
+
+              // 限制小数点后两位
+              if (value.includes(".")) {
+                const [int, dec] = value.split(".");
+                if (dec.length > 2) {
+                  value = `${int}.${dec.slice(0, 2)}`;
+                }
+              }
+
+              // 数值范围限制（只在能转成 number 时判断）
+              const num = Number(value);
+              if (!isNaN(num)) {
+                if (num < 1) value = "1";
+                if (info?.frozenRewards && num > Number(info?.frozenRewards)) {
+                  value = String(info?.frozenRewards);
+                }
+              }
+
+              setWithDrawNum(value);
+            }}
           />
           <span className="text-text4 text-sm">{tabsValue}</span>
           <span

@@ -820,7 +820,7 @@
   "投资收益转入": "निवेश लाभ जमा करें",
   "币权收益转入": "टोकन अधिकार लाभ जमा करें",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Số dư khả dụng trong Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Smart Yield Wallet में उपलब्ध शेष राशि",
   "可提取数量": "निकासी योग्य मात्रा",
   "smartyieldwallet累计转出": "Tổng số đã rút từ Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "आपकी निकाली गई कमाई Smart Yield Wallet में जमा कर दी जाएगी।",
@@ -868,5 +868,6 @@
   "currencyLabel": "मुद्रा",
   "cardTypePlaceholder": "कृपया अपना कार्ड प्रकार चुनें",
   "completionNote": "यू कार्ड आवेदन पूरा करने के लिए relevant जानकारी भरें। आपको परिणाम की सूचना ईमेल के माध्यम से दी जाएगी।",
-  "stepsSummary": "यू कार्ड के लिए आवेदन करने में केवल तीन चरणों की आवश्यकता होती है: जानकारी भरें → अपना आईडी अपलोड करें → समीक्षा के लिए जमा करें"
+  "stepsSummary": "यू कार्ड के लिए आवेदन करने में केवल तीन चरणों की आवश्यकता होती है: जानकारी भरें → अपना आईडी अपलोड करें → समीक्षा के लिए जमा करें",
+  "累计转出": "कुल निकासी"
 }

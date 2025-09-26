@@ -854,7 +854,7 @@
   "投资收益转入": "投資収益の入金",
   "币权收益转入": "トークン権益収益の入金",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Smart Yield Wallet 可用餘額",
+  "smartyieldwallet可用余额": "Smart Yield Wallet の利用可能残高",
   "可提取数量": "引き出し可能数量",
   "smartyieldwallet累计转出": "Smart Yield Wallet 累計轉出",
   "withdrawNoticeSmartWallet": "引き出した利益はSmart Yield Walletに入金されます。",
@@ -902,5 +902,6 @@
   "currencyLabel": "通貨",
   "cardTypePlaceholder": "カードタイプを選択してください",
   "completionNote": "関連情報を入力してUカード申込を完了させてください。結果はメールで通知されます。",
-  "stepsSummary": "Uカードの申込は3ステップのみ：情報入力 → IDアップロード → 審査提出"
+  "stepsSummary": "Uカードの申込は3ステップのみ：情報入力 → IDアップロード → 審査提出",
+  "累计转出": "累計轉出"
 }

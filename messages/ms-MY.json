@@ -854,7 +854,7 @@
   "投资收益转入": "Pulangan pelaburan dikreditkan",
   "币权收益转入": "Pulangan hak milik token dikreditkan",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Smart Yield Wallet 사용 가능 잔액",
+  "smartyieldwallet可用余额": "Baki Boleh Digunakan dalam Smart Yield Wallet",
   "可提取数量": "Jumlah Boleh Dikeluarkan",
   "smartyieldwallet累计转出": "Smart Yield Wallet 누적 출금",
   "withdrawNoticeSmartWallet": "Keuntungan yang anda keluarkan akan dimasukkan ke dalam Smart Yield Wallet.",
@@ -902,5 +902,6 @@
   "currencyLabel": "Mata wang",
   "cardTypePlaceholder": "Sila pilih jenis kad anda",
   "completionNote": "Isi maklumat berkaitan untuk melengkapkan permohonan Kad U. Anda akan dimaklumkan tentang hasil melalui e-mel.",
-  "stepsSummary": "Memohon Kad U hanya memerlukan tiga langkah: isi maklumat → muat naik ID → serah untuk semakan"
+  "stepsSummary": "Memohon Kad U hanya memerlukan tiga langkah: isi maklumat → muat naik ID → serah untuk semakan",
+  "累计转出": "Pengeluaran Terkumpul"
 }

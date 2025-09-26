@@ -854,7 +854,7 @@
   "投资收益转入": "นำรายได้จากการลงทุนเข้าระบบ",
   "币权收益转入": "รายได้จากสิทธิ์ในเหรียญเข้าระบบ",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Baki Boleh Digunakan dalam Smart Yield Wallet",
+  "smartyieldwallet可用余额": "ยอดคงเหลือที่ใช้ได้ใน Smart Yield Wallet",
   "可提取数量": "จำนวนที่ถอนได้",
   "smartyieldwallet累计转出": "Jumlah Keseluruhan Pengeluaran Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "กำไรที่คุณถอนจะถูกโอนเข้าบัญชี Smart Yield Wallet",
@@ -902,5 +902,6 @@
   "currencyLabel": "สกุลเงิน",
   "cardTypePlaceholder": "กรุณาเลือกประเภทบัตรของคุณ",
   "completionNote": "กรอกข้อมูลที่เกี่ยวข้องเพื่อเสร็จการสมัครบัตร U คุณจะได้รับแจ้งผลทางอีเมล",
-  "stepsSummary": "การสมัครบัตร U ต้องการเพียงสามขั้นตอน: กรอกข้อมูล → อัปโหลดบัตรประจำตัว → ส่งเพื่อตรวจสอบ"
+  "stepsSummary": "การสมัครบัตร U ต้องการเพียงสามขั้นตอน: กรอกข้อมูล → อัปโหลดบัตรประจำตัว → ส่งเพื่อตรวจสอบ",
+  "累计转出": "ยอดถอนสะสม"
 }
