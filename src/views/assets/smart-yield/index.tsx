@@ -249,7 +249,7 @@ const SmartYield = () => {
         {/* <p className="text-text4 mb-6">{t("withdrawNotice")}</p> */}
 
         <fieldset className="fieldset">
-          <legend className="fieldset-legend">{t("amount")}</legend>
+          <legend className="fieldset-legend">{t("transfer_amount")}</legend>
 
           <label className="input w-full h-12">
             <input

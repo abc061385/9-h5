@@ -858,5 +858,6 @@
   "smartyieldwallet累计转出": "Smart Yield Wallet Cumulative Withdrawals",
   "withdrawNoticeSmartWallet": "The profits you withdraw will be deposited into Smart Yield Wallet.",
   "累计转出": "Cumulative Withdrawals",
-  "transaction_TRANSFER": "Transfer"
+  "transaction_TRANSFER": "Transfer",
+  "transfer_amount": "Amount"
 }

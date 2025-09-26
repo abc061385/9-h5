@@ -859,5 +859,6 @@
   "smartyieldwallet累计转出": "ยอดถอนสะสม Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "Lợi nhuận bạn rút sẽ được gửi vào Smart Yield Wallet.",
   "累计转出": "Tổng số đã rút",
-  "transaction_TRANSFER": "Chuyển"
+  "transaction_TRANSFER": "Chuyển",
+  "transfer_amount": "Số lượng"
 }

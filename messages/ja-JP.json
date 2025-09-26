@@ -859,5 +859,6 @@
   "smartyieldwallet累计转出": "Smart Yield Wallet 累計轉出",
   "withdrawNoticeSmartWallet": "引き出した利益はSmart Yield Walletに入金されます。",
   "累计转出": "累計轉出",
-  "transaction_TRANSFER": "送金"
+  "transaction_TRANSFER": "送金",
+  "transfer_amount": "数量"
 }

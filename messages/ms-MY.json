@@ -859,5 +859,6 @@
   "smartyieldwallet累计转出": "Smart Yield Wallet 누적 출금",
   "withdrawNoticeSmartWallet": "Keuntungan yang anda keluarkan akan dimasukkan ke dalam Smart Yield Wallet.",
   "累计转出": "Pengeluaran Terkumpul",
-  "transaction_TRANSFER": "Pindahan"
+  "transaction_TRANSFER": "Pindahan",
+  "transfer_amount": "Kuantiti"
 }

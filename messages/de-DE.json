@@ -859,5 +859,6 @@
   "smartyieldwallet累计转出": "Smart Yield Wallet कुल निकासी",
   "withdrawNoticeSmartWallet": "Die von Ihnen abgehobenen Gewinne werden in die Smart Yield Wallet eingezahlt.",
   "累计转出": "Gesamtauszahlungen",
-  "transaction_TRANSFER": "Überweisung"
+  "transaction_TRANSFER": "Überweisung",
+  "transfer_amount": "Menge"
 }

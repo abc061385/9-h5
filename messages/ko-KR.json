@@ -859,5 +859,6 @@
   "smartyieldwallet累计转出": "Smart Yield Wallet の累計出金",
   "withdrawNoticeSmartWallet": "인출한 수익은 Smart Yield Wallet에 입금됩니다.",
   "累计转出": "누적 출금",
-  "transaction_TRANSFER": "이체"
+  "transaction_TRANSFER": "이체",
+  "transfer_amount": "수량"
 }

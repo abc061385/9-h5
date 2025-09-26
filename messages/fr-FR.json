@@ -859,5 +859,6 @@
   "smartyieldwallet累计转出": "Gesamtbetrag der Auszahlungen von Smart Yield Wallet",
   "withdrawNoticeSmartWallet": "Les bénéfices que vous retirez seront déposés dans le Smart Yield Wallet.",
   "累计转出": "Retraits cumulés",
-  "transaction_TRANSFER": "Virement"
+  "transaction_TRANSFER": "Virement",
+  "transfer_amount": "Quantité"
 }
