@@ -38,7 +38,7 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_DYNAMIC_REWARDS: "币权收益转入",
   VIP_RACE_REWARD: "VIP报名赛奖金",
   SMART_YIELD_INCOME: "SmartYieldWallet收益",
-  CLAIM_SMART_YIELD_WALLET: "提取SmartYieldWallet余额",
+  CLAIM_SMART_YIELD_WALLET: "DepositintoSmartYieldWallet",
   CLAIM_SMART_YIELD_INCOME: "投资收益转入",
   CLAIM_SMART_YIELD_INCOME1: "投资收益转入", // 静态投资收益转入
   CLAIM_SMART_YIELD_INCOME2: "币权收益转入", // 动态投资收益转入
