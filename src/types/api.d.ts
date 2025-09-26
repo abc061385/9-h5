@@ -290,6 +290,7 @@ type IncomeListType = {
   createTime: string;
   fundType: number;
   type: string;
+  inout?: 1 | 2 | null;
 };
 
 type AwardInfoType = {

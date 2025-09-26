@@ -6,14 +6,16 @@ import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
+import { routerMap, useRouter } from "@/i18n/navigation";
 import { utils } from "@/lib/utils";
+import { useAssetStore } from "@/store/useAssetStore";
 import { FC, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 interface IUpgradeProps {
   tabsValue: string;
   info: AwardInfoType;
-  initFn: () => void;
+  initFn?: () => void;
 }
 
 const NewVersionMap = {
@@ -21,8 +23,10 @@ const NewVersionMap = {
   smartWallet: 1,
 };
 
-const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
+const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const t = useTrans();
+  const { setField } = useAssetStore();
+  const { push } = useRouter();
   const { formatBalance } = useFormatBalance();
   const [openSelect, setOpenSelect] = useState(false);
   const [newVersion, setNewVersion] = useState(NewVersionMap.balance);
@@ -274,9 +278,22 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info, initFn }) => {
               },
               {
                 onSuccess: () => {
-                  toast.success(t("操作成功"));
+                  // toast.success(t("操作成功"));
                   setOpenWithdraw(false);
-                  initFn?.();
+                  // initFn?.();
+
+                  setField(
+                    "incomeWithdrawAmount",
+                    `${formatBalance(
+                      withDrawNum || 0,
+                      tabsValue,
+                    )} ${tabsValue}`,
+                  );
+                  setField(
+                    "resultPageType",
+                    newVersion === 0 ? "normal" : "smart",
+                  );
+                  push(routerMap.incomeResult);
                 },
               },
             );

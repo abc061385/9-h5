@@ -16,7 +16,7 @@ import { cn, utils } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import CardBox from "../income/card";
+import CardBox from "./card";
 import { routerMap, useRouter } from "@/i18n/navigation";
 
 const SmartYield = () => {
