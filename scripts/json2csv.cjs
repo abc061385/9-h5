@@ -1,8 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const zh = require("../messages/zh-Hans.json");
-// const zhTW = require("./zh-TW.js");
-const en = require("../messages/en.json");
+// const zh = require("../messages/zh-Hans.json");
 function flattenObject(obj, prefix = "", res = {}) {
   for (const key in obj) {
     if (!obj.hasOwnProperty(key)) continue;
@@ -18,18 +16,39 @@ function flattenObject(obj, prefix = "", res = {}) {
   return res;
 }
 
-const flat = flattenObject(zh);
-// const flatTW = flattenObject(zhTW);
-const flatEn = flattenObject(en);
+// const flat = flattenObject(zh);
+// const flatEn = flattenObject(en);
 
 
-const csvLines = ["key,en,zh-Hans,zh-Hant,ja-JP,ko-KR,ms-MY,th-TH,vi-VN,hi-IN,de-DE,fr-FR,pt-PT,es-ES"];
-for (const key in flat) {
-  // 逗号和双引号处理一下
-  let _zh = String(flat[key]);
-  // let _zh_tw = String(flatTW[key]);
-  let _en = String(flatEn[key]);
-  csvLines.push(`${key},"${_en}","${_zh}"`);
+const langList = ['en', 'zh-Hans', 'zh-Hant', 'ja-JP', 'ko-KR', 'ms-MY', 'th-TH', 'vi-VN', 'hi-IN', 'de-DE', 'fr-FR', 'pt-PT', 'es-ES',
+  "nl-NL",
+  "no-NO",
+  "sv-SE",
+  "ro-RO",
+  "cs-CZ",
+]
+const csvLines = ["key," + langList.join(",")];
+
+const langsMap = {}
+
+for (let index = 0; index < langList.length; index++) {
+  const _lang = langList[index];
+  const _langObj =  require(`../messages/${_lang}.json`);
+  langsMap[_lang] = flattenObject(_langObj)
+  
+}
+
+for (const key in langsMap["zh-Hans"]) {
+  let langStr = ""
+  for (let index = 0; index < langList.length; index++) {
+    const _lang = langList[index];
+    langStr += `"${langsMap[_lang][key]}"`+ ","    
+  }
+  // console.log(langStr)
+  // let _zh = String(flat[key]);
+  // let _en = String(flatEn[key]);
+
+  csvLines.push(`${key},${langStr}`);
 }
 
 const csvContent = csvLines.join("\n");
@@ -41,6 +60,6 @@ function getCurrentDateYYYYMMDD() {
     return `${year}${month}${day}`;
 }
  
-fs.writeFileSync(path.resolve(__dirname, '../export_lang/', `${getCurrentDateYYYYMMDD()}.csv`), csvContent, "utf8");
+fs.writeFileSync(path.resolve(__dirname, '../export_lang/', `export_${getCurrentDateYYYYMMDD()}.csv`), csvContent, "utf8");
 
 // console.log(flatTW);
