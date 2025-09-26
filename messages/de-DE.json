@@ -854,8 +854,9 @@
   "投资收益转入": "Überweisung der Anlageerträge",
   "币权收益转入": "Überweisung der Token-Erträge",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Smart Yield Wallet में उपलब्ध शेष राशि",
+  "smartyieldwallet可用余额": "Verfügbares Guthaben im Smart Yield Wallet",
   "可提取数量": "Auszahlbarer Betrag",
   "smartyieldwallet累计转出": "Smart Yield Wallet कुल निकासी",
-  "withdrawNoticeSmartWallet": "Die von Ihnen abgehobenen Gewinne werden in die Smart Yield Wallet eingezahlt."
+  "withdrawNoticeSmartWallet": "Die von Ihnen abgehobenen Gewinne werden in die Smart Yield Wallet eingezahlt.",
+  "累计转出": "Gesamtauszahlungen"
 }

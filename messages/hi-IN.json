@@ -820,8 +820,9 @@
   "投资收益转入": "निवेश लाभ जमा करें",
   "币权收益转入": "टोकन अधिकार लाभ जमा करें",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Số dư khả dụng trong Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Smart Yield Wallet में उपलब्ध शेष राशि",
   "可提取数量": "निकासी योग्य मात्रा",
   "smartyieldwallet累计转出": "Tổng số đã rút từ Smart Yield Wallet",
-  "withdrawNoticeSmartWallet": "आपकी निकाली गई कमाई Smart Yield Wallet में जमा कर दी जाएगी।"
+  "withdrawNoticeSmartWallet": "आपकी निकाली गई कमाई Smart Yield Wallet में जमा कर दी जाएगी।",
+  "累计转出": "कुल निकासी"
 }

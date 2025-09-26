@@ -854,8 +854,9 @@
   "投资收益转入": "투자 수익 입금",
   "币权收益转入": "토큰 권한 수익 입금",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Smart Yield Wallet の利用可能残高",
+  "smartyieldwallet可用余额": "Smart Yield Wallet 사용 가능 잔액",
   "可提取数量": "출금 가능 수량",
   "smartyieldwallet累计转出": "Smart Yield Wallet の累計出金",
-  "withdrawNoticeSmartWallet": "인출한 수익은 Smart Yield Wallet에 입금됩니다."
+  "withdrawNoticeSmartWallet": "인출한 수익은 Smart Yield Wallet에 입금됩니다.",
+  "累计转出": "누적 출금"
 }

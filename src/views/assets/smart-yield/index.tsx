@@ -118,6 +118,7 @@ const SmartYield = () => {
           "incomeWithdrawAmount",
           `${formatBalance(withDrawNum || 0, tabsValue)} ${tabsValue}`,
         );
+        setField("resultPageType", "normal");
         push(routerMap.incomeResult);
       }
     } catch {
@@ -180,9 +181,7 @@ const SmartYield = () => {
           </div>
           <div className="flex py-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">
-                {t("smartyieldwallet累计转出")}
-              </span>
+              <span className="text-xs text-text4">{t("累计转出")}</span>
               <span className="text-sm">
                 {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -256,7 +255,42 @@ const SmartYield = () => {
             <input
               value={withDrawNum}
               type="number"
-              onChange={(e) => setWithDrawNum(e.target.value)}
+              onChange={(e) => {
+                let value = e.target.value;
+                if (value === "") {
+                  // 更新输入框的值
+                  e.target.value = "";
+                  setWithDrawNum("");
+                  return;
+                }
+
+                // 匹配合法数字格式（允许中间态：12.  /  0.）
+                if (!/^\d*\.?\d*$/.test(value)) {
+                  return;
+                }
+
+                // 限制小数点后两位
+                if (value.includes(".")) {
+                  const [int, dec] = value.split(".");
+                  if (dec.length > 2) {
+                    value = `${int}.${dec.slice(0, 2)}`;
+                  }
+                }
+
+                // 数值范围限制（只在能转成 number 时判断）
+                const num = Number(value);
+                if (!isNaN(num)) {
+                  if (num < 1) value = "1";
+                  if (
+                    incomeInfo?.unWithdrawnReturn &&
+                    num > Number(incomeInfo.unWithdrawnReturn)
+                  ) {
+                    value = String(incomeInfo.unWithdrawnReturn);
+                  }
+                }
+
+                setWithDrawNum(value);
+              }}
             />
             <span className="text-text4 text-sm">{tabsValue}</span>
             <span

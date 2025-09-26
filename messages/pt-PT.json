@@ -854,8 +854,9 @@
   "投资收益转入": "Transferência dos rendimentos de investimento",
   "币权收益转入": "Transferência dos lucros de token",
   "SmartYieldWallet": "Smart Yield Wallet",
-  "smartyieldwallet可用余额": "Solde disponible dans le Smart Yield Wallet",
+  "smartyieldwallet可用余额": "Saldo disponível no Smart Yield Wallet",
   "可提取数量": "Quantidade Retirável",
   "smartyieldwallet累计转出": "Montant total retiré du Smart Yield Wallet",
-  "withdrawNoticeSmartWallet": "Os lucros que você retirar serão depositados na Smart Yield Wallet."
+  "withdrawNoticeSmartWallet": "Os lucros que você retirar serão depositados na Smart Yield Wallet.",
+  "累计转出": "Saques acumulados"
 }
