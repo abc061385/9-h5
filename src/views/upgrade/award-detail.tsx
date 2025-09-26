@@ -24,7 +24,7 @@ const AwardDetail: FC<{ tabsValue: string }> = ({ tabsValue }) => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, pageSize]
+    [tabsValue, pageSize],
   );
 
   return (
@@ -39,7 +39,8 @@ const AwardDetail: FC<{ tabsValue: string }> = ({ tabsValue }) => {
             <div className="flex items-center justify-between text-sm mb-1">
               <span className="flex-1">{t(typeMap[item.type])}</span>
               <span className="text-right flex-1">
-                + {formatBalance(item.amount, tabsValue)} {tabsValue}
+                {item.inout === 2 ? "-" : "+"}
+                {formatBalance(item.amount, tabsValue)} {tabsValue}
               </span>
             </div>
             <div className="flex items-center justify-between text-xs text-text4">
