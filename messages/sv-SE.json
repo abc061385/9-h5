@@ -842,7 +842,7 @@
   "SmartYieldWallet总收益": "Smart Yield Wallet Total Earnings",
   "每日复利收益": "Daily Compound Earnings",
   "昨日SmartYieldWallet收益": "Yesterday’s Smart Yield Wallet Earnings",
-  "depositIntoSmartWallet": "Deposit into Smart Yield Wallet",
+  "depositIntoSmartWallet": "Sätt in i Smart Yield Wallet",
   "depositIntoSmartWalletDesc": "Enjoy an estimated daily compound interest rate of {rate}.",
   "depositIntoAssetsWallet": "Deposit into Platform Wallet",
   "可用余额不足": "Insufficient Available Balance",
@@ -903,5 +903,8 @@
   "completionNote": "Fill in the relevant information to complete the U Card application. You will be notified of the result via email.",
   "stepsSummary": "Applying for a U Card requires only three steps: fill in the information → upload your ID → submit for review",
   "transaction_TRANSFER": "Transfer",
-  "transfer_amount": "Amount"
+  "transfer_amount": "Amount",
+  "累计转出": "Cumulative Withdrawals",
+  "uploadIdPhoto": "Please upload ID photo",
+  "uploadSelfieWithId": "Please upload a selfie holding your ID",
 }

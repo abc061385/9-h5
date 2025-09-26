@@ -843,7 +843,7 @@
   "SmartYieldWallet总收益": "Smart Yield Wallet 总收益",
   "每日复利收益": "每日复利收益",
   "昨日SmartYieldWallet收益": "昨日Smart Yield Wallet收益",
-  "depositIntoSmartWallet": "存入 Smart Yield Wallet",
+  "depositIntoSmartWallet": "Smart yield wallet转入",
   "depositIntoSmartWalletDesc": "预计每日复利收益率为{rate}，让资金稳健增长。",
   "depositIntoAssetsWallet": "存入平台钱包",
   "可用余额不足": "可用余额不足",

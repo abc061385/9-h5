@@ -69,7 +69,8 @@
     "loginSuccess": "Login successful",
     "tip": "Notice",
     "comingSoon": "Coming Soon",
-    "checkEmailTip": "Invalid email address"
+    "checkEmailTip": "Invalid email address",
+    "invalidEmail": "Invalid email address"
   },
   "user": {
     "title": "Personal Center",
