@@ -884,5 +884,7 @@
   "currencyLabel": "通貨",
   "cardTypePlaceholder": "カードタイプを選択してください",
   "completionNote": "関連情報を入力してUカード申込を完了させてください。結果はメールで通知されます。",
-  "stepsSummary": "Uカードの申込は3ステップのみ：情報入力 → IDアップロード → 審査提出"
+  "stepsSummary": "Uカードの申込は3ステップのみ：情報入力 → IDアップロード → 審査提出",
+  "uploadIdPhoto": "証明写真をアップロードしてください",
+  "uploadSelfieWithId": "身分証を持った自撮り写真をアップロードしてください"
 }

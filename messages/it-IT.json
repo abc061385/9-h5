@@ -884,5 +884,7 @@
   "currencyLabel": "Valuta",
   "cardTypePlaceholder": "Seleziona il tipo di carta",
   "completionNote": "Compila le informazioni relevanti per completare la candidatura alla Carta U. Sarai notified del risultato via email.",
-  "stepsSummary": "Candidarsi per una Carta U richiede solo tre passi: compila le informazioni → carica il tuo ID → invia per revisione"
+  "stepsSummary": "Candidarsi per una Carta U richiede solo tre passi: compila le informazioni → carica il tuo ID → invia per revisione",
+  "uploadIdPhoto": "Si prega di caricare la foto del documento",
+  "uploadSelfieWithId": "Si prega di caricare un selfie con il documento in mano"
 }

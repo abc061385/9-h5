@@ -884,5 +884,7 @@
   "currencyLabel": "Mata wang",
   "cardTypePlaceholder": "Sila pilih jenis kad anda",
   "completionNote": "Isi maklumat berkaitan untuk melengkapkan permohonan Kad U. Anda akan dimaklumkan tentang hasil melalui e-mel.",
-  "stepsSummary": "Memohon Kad U hanya memerlukan tiga langkah: isi maklumat → muat naik ID → serah untuk semakan"
+  "stepsSummary": "Memohon Kad U hanya memerlukan tiga langkah: isi maklumat → muat naik ID → serah untuk semakan",
+  "uploadIdPhoto": "Sila muat naik foto kad pengenalan",
+  "uploadSelfieWithId": "Sila muat naik selfie memegang kad pengenalan"
 }

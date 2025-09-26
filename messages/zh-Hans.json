@@ -884,5 +884,7 @@
   "currencyLabel": "货币",
   "cardTypePlaceholder": "请选择您的卡片类型",
   "completionNote": "填写相关信息以完成U卡申请。结果将通过电子邮件通知您。",
-  "stepsSummary": "申请U卡仅需三步：填写信息 → 上传身份证 → 提交审核"
+  "stepsSummary": "申请U卡仅需三步：填写信息 → 上传身份证 → 提交审核",
+  "uploadIdPhoto": "请上传证件照",
+  "uploadSelfieWithId": "请上传手持证件自拍"
 }

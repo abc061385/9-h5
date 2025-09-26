@@ -884,5 +884,7 @@
   "currencyLabel": "Moeda",
   "cardTypePlaceholder": "Por favor selecione o tipo de cartão",
   "completionNote": "Preencha a informação relevante para completar a candidatura a Cartão U. Será notificado do resultado via email.",
-  "stepsSummary": "Candidatar-se a um Cartão U requer apenas três passos: preencher a informação → carregar o seu ID → submeter para revisão"
+  "stepsSummary": "Candidatar-se a um Cartão U requer apenas três passos: preencher a informação → carregar o seu ID → submeter para revisão",
+  "uploadIdPhoto": "Por favor carregue foto do documento",
+  "uploadSelfieWithId": "Por favor carregue uma selfie a segurar o seu documento"
 }

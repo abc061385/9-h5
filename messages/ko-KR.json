@@ -884,5 +884,7 @@
   "currencyLabel": "통화",
   "cardTypePlaceholder": "카드 유형을 선택해 주세요",
   "completionNote": "관련 정보를 입력하여 U 카드 신청을 완료하세요. 결과는 이메일로 알려드립니다.",
-  "stepsSummary": "U 카드 신청은 세 단계만 필요: 정보 입력 → ID 업로드 → 검토 제출"
+  "stepsSummary": "U 카드 신청은 세 단계만 필요: 정보 입력 → ID 업로드 → 검토 제출",
+  "uploadIdPhoto": "신분증 사진을 업로드해 주세요",
+  "uploadSelfieWithId": "신분증을 들고 있는 셀카를 업로드해 주세요"
 }

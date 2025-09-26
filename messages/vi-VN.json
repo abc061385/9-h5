@@ -884,5 +884,7 @@
   "currencyLabel": "Tiền tệ",
   "cardTypePlaceholder": "Vui lòng chọn loại thẻ của bạn",
   "completionNote": "Điền thông tin liên quan để hoàn tất đăng ký Thẻ U. Bạn sẽ được thông báo kết quả qua email.",
-  "stepsSummary": "Đăng ký Thẻ U chỉ cần ba bước: điền thông tin → tải lên ID → gửi để xem xét"
+  "stepsSummary": "Đăng ký Thẻ U chỉ cần ba bước: điền thông tin → tải lên ID → gửi để xem xét",
+  "uploadIdPhoto": "Vui lòng tải lên ảnh chứng minh thư",
+  "uploadSelfieWithId": "Vui lòng tải lên ảnh selfie cầm chứng minh thư"
 }
