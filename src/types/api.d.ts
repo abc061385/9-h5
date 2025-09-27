@@ -374,3 +374,43 @@ interface ImageMetadata {
   uploadTime: string; // 圖片的上傳時間，格式為 "YYYY-MM-DD HH:mm:ss"
   width: number; // 圖片的寬度（以像素為單位）
 }
+
+interface ActivityCenterListType {
+  id: number;
+  countryId: number;
+  holdCountry: string;
+  flagUrl: string;
+  flagThumbnailUrl: string;
+  address: string;
+  venueId: number;
+  eventTime: string;
+  activityDesc: string;
+  videoDesc: string;
+  content: string;
+  status: number;
+  attachmentList: {
+    fileName: string;
+    fileUrl: string;
+    thumbnailUrl: string;
+    fileType: number;
+  }[];
+}
+
+interface ActivityDataType {
+  countryId: number;
+  holdCountry: string;
+  description: string;
+  activityList: ActivityCenterListType[];
+  flagUrl: string;
+  establishTime: string;
+}
+
+interface ActivityAllListType {
+  countryId: number;
+  description: string;
+  establishTime: string;
+  flagThumbnailUrl: string;
+  flagUrl: string;
+  holdAddress: string;
+  holdCountry: string;
+}

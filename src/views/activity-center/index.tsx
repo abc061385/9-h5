@@ -4,8 +4,10 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import ListStepBox from "./list-step";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 const ActivityCenterView = () => {
+  const { push } = useRouter();
   return (
     <ViewLayout
       theme="dark"
@@ -44,7 +46,10 @@ const ActivityCenterView = () => {
           partners and will gradually start setting up activity centers and
           launching local projects in the future.
         </p>
-        <button className="btn btn-primary w-full h-12 mb-10">
+        <button
+          className="btn btn-primary w-full h-12 mb-10"
+          onClick={() => push(routerMap.activity)}
+        >
           Sign up for an event
         </button>
       </div>

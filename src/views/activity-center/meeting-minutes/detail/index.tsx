@@ -3,14 +3,48 @@
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 const MeetingMinutesDetailView = () => {
+  const api = createAxiosInstance("/app");
+  const searchParams = useSearchParams();
+
+  const [cityData, setCityData] = useState<ActivityCenterListType>();
+
+  const getActivityList = useCallback(async (value: number) => {
+    try {
+      const res: ApiResponse<ActivityDataType> = await api.get(
+        "/global-activity/country/activity",
+        {
+          params: { countryId: value },
+        }
+      );
+      if (res.code === 200) {
+        const venueId = searchParams.get("venueId");
+        const data = res.data.activityList.find(
+          (v) => v.venueId?.toString() === venueId
+        );
+        setCityData(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!searchParams.get("id")) return;
+    getActivityList(Number(searchParams.get("id")));
+  }, [getActivityList, searchParams]);
+
   return (
     <ViewLayout
       theme="dark"
       header={
         <HeaderWithBack
-          title="Meeting Minutes - Hong Kong"
+          title={`Meeting Minutes - ${cityData?.address}`}
           algin="center"
           theme="dark"
         />
@@ -18,45 +52,45 @@ const MeetingMinutesDetailView = () => {
     >
       <div className="p-content text-white">
         <BaseImage
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGG_z1ki7A9dGDxY6QOtuStF9jNuLy9Vz1gHt330-Wpx_Qrc1hmM4_jTDRhA&s"
+          src={
+            cityData?.attachmentList.find((v) => v.fileType === 1)?.fileUrl ||
+            ""
+          }
           className="w-full h-[148px] rounded-lg overflow-hidden"
         />
         <p className="text-sm leading-5 mt-6">
-          The Hong Kong Activity Center provides offline support for Chinese and
-          English users. It was an important site for the brand&apos;s initial
-          launch and is now regularly used for small meetups, course launches,
-          and user Q&A activities.
+          {cityData?.activityDesc || "--"}
         </p>
         <div className="h-[1px] bg-text3 my-6"></div>
 
-        <h2 className="text-lg font-medium leading-6">Live video</h2>
-
-        <video
-          src="https://9m-test-public.s3.ap-southeast-1.amazonaws.com/h5_upload/20250920_074016_1b48857b.mp4"
-          controls
-          className="w-full h-45 rounded-lg mb-6"
-        ></video>
-
-        <video
-          src="https://9m-test-public.s3.ap-southeast-1.amazonaws.com/h5_upload/20250920_074016_1b48857b.mp4"
-          controls
-          className="w-full h-45 rounded-lg mb-6"
-        ></video>
+        <h2 className="text-lg font-medium leading-6 mb-6">Live video</h2>
+        {cityData?.attachmentList
+          ?.filter((v) => v.fileType === 2)
+          ?.map((v, i) => {
+            return (
+              <video
+                src={v.fileUrl}
+                controls
+                className="w-full h-45 rounded-lg mb-6"
+                key={i}
+              ></video>
+            );
+          })}
 
         <h2 className="text-lg font-medium leading-6 mb-6">Live video</h2>
 
         <div className="grid grid-cols-2 gap-2">
-          {[...new Array(6)].map((_, i) => {
-            return (
-              <BaseImage
-                src={
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGG_z1ki7A9dGDxY6QOtuStF9jNuLy9Vz1gHt330-Wpx_Qrc1hmM4_jTDRhA&s"
-                }
-                key={i}
-                className="h-22 w-full rounded-md overflow-hidden"
-              />
-            );
-          })}
+          {cityData?.attachmentList
+            ?.filter((v) => v.fileType === 3)
+            ?.map((v, i) => {
+              return (
+                <BaseImage
+                  src={v.fileUrl}
+                  key={i}
+                  className="h-22 w-full rounded-md overflow-hidden"
+                />
+              );
+            })}
         </div>
       </div>
     </ViewLayout>

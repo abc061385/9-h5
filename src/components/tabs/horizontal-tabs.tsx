@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { ShowIf } from "../show-if";
 
-type TabItem = {
+export type TabItem = {
   label: string;
   value: string | number;
 };

@@ -80,6 +80,7 @@ export const routerMap = {
   meetupRecords: "/meetup/records",
   activity: "/activitys/",
   meetingMinutes: "/activity-center/meeting-minutes/",
+  meetingMinutesDetail: "/activity-center/meeting-minutes/detail",
 };
 
 export const WhiteListPath = [
