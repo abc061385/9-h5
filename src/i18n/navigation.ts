@@ -79,6 +79,7 @@ export const routerMap = {
   meetup: "/meetup/",
   meetupRecords: "/meetup/records",
   activity: "/activitys/",
+  activityCenter: "/activity-center",
   meetingMinutes: "/activity-center/meeting-minutes/",
   meetingMinutesDetail: "/activity-center/meeting-minutes/detail",
   smartYield: "/assets/smart-yield/",

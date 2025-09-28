@@ -88,6 +88,18 @@ const FundBox = () => {
           );
         })}
       </div>
+      <div
+        className="mt-6 relative"
+        onClick={() => push(routerMap.activityCenter)}
+      >
+        <BaseImage
+          src="/images/home/activity-center-banner.png"
+          className="w-full h-22 rounded-lg overflow-hidden"
+        />
+        <h3 className="absolute w-30 top-5 right-5 text-white font-medium">
+          {t("globalActivityCenter")}
+        </h3>
+      </div>
 
       {/* <ChartBox /> */}
       <h2 className="mb-4 font-medium text-base mt-6">{t("9M基金推荐")}</h2>

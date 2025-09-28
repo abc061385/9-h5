@@ -39,10 +39,10 @@ const BannerBox = () => {
   return (
     <Swiper
       modules={[Autoplay, Pagination]}
-      // autoplay={{
-      //   delay: 3000,
-      //   disableOnInteraction: false,
-      // }}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
       speed={800}
       spaceBetween={10}
       pagination={{
