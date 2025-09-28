@@ -9,7 +9,7 @@ import z, { useRootReg } from "@/lib/z";
 import { TextError } from "@/components/input/text-error";
 import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ChainSelectDrawer from "./select/chain";
 import VenueSelectDrawer from "./select/venue";
 import ContactSelectDrawer from "./select/contact";
@@ -38,6 +38,7 @@ type FormData = {
 };
 
 const StudioView = () => {
+  const wrapRef = useRef(null);
   const api = createAxiosInstance("/app/");
   const {
     setField,
@@ -290,7 +291,9 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm">{t("uploadPhotos")}</span>
+                <span className="text-text4 text-sm text-center">
+                  {t("uploadPhotos")}
+                </span>
               </div>
             </ShowIf>
           </ImageUploader>
@@ -334,7 +337,9 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm">{t("uploadPhotos")}</span>
+                <span className="text-text4 text-sm text-center">
+                  {t("uploadPhotos")}
+                </span>
               </div>
             </ShowIf>
           </ImageUploader>
@@ -378,7 +383,9 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm">{t("uploadVideos")}</span>
+                <span className="text-text4 text-sm text-center">
+                  {t("uploadVideos")}
+                </span>
               </div>
             </ShowIf>
           </VideoUploader>
@@ -447,7 +454,7 @@ const StudioView = () => {
       className="mt-2"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
-      <div className="p-content pb-10">
+      <div className="p-content pb-10" ref={wrapRef}>
         <h2 className="font-bold text-xl leading-5 mb-2">{t("basic_info")}</h2>
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
@@ -670,6 +677,7 @@ const StudioView = () => {
           {t("remainingApplications")}：{remainingNumber}
         </p>
         <ChainSelectDrawer
+          target={wrapRef.current}
           open={chainSelectOpen}
           onClose={() => setChainSelectOpen(false)}
           onConfirm={(chain) => {

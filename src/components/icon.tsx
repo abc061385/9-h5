@@ -7,7 +7,7 @@ import BaseImage from "./base-image";
 
 export interface IconProps extends Pick<ImageProps, "className"> {
   name: IconName;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
 }
 
 export const Icon: FC<IconProps> = ({ name, className, onClick }) => {

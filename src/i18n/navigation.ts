@@ -81,6 +81,7 @@ export const routerMap = {
   activity: "/activitys/",
   meetingMinutes: "/activity-center/meeting-minutes/",
   meetingMinutesDetail: "/activity-center/meeting-minutes/detail",
+  smartYield: "/assets/smart-yield/",
 };
 
 export const WhiteListPath = [

@@ -55,7 +55,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      }
+      },
     );
   }, [trigger]);
 
@@ -137,11 +137,11 @@ const HeaderBox = () => {
       {/*     /> */}
       {/*   </div> */}
       {/* ) : null} */}
-      <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
+      <div className="grid grid-cols-5 gap-2 py-6">
         {cardList.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-start"
+            className="flex flex-col items-center justify-start overflow-hidden"
             onClick={() => {
               if (item.onClick) return item.onClick();
               if (!item.path) return;
@@ -149,10 +149,25 @@ const HeaderBox = () => {
             }}
           >
             <BaseImage src={item.icon} className="w-10 h-10" />
-            <span className="text-xs mt-2 text-center">{t(item.label)}</span>
+            <span className="text-xs mt-2 text-center break-words w-full">
+              {t(item.label)}
+            </span>
           </div>
         ))}
       </div>
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer"
+        onClick={() => {
+          push(routerMap.smartYield);
+        }}
+      >
+        <Icon name="smartYieldWallet" className="w-4.5 h-4" />
+        <span className="flex-1">Smart Yield Wallet</span>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+
+      <div className="divider"></div>
+
       <Drawer
         className="h-auto"
         title={t("address.selectToken")}

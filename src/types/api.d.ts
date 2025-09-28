@@ -264,6 +264,15 @@ type AssetsIncomeType = {
   yesterdayReturn: number;
   frozenUbx: number;
 };
+type AssetsIncomeType1 = {
+  dayRate: number;
+  personalFundInvestment: number;
+  totalFundReturn: number;
+  withdrawnReturn: number;
+  unWithdrawnReturn: number;
+  yesterdayReturn: number;
+  frozenUbx: number;
+};
 
 type infoUsingGet1Type = {
   id: number;
@@ -281,6 +290,7 @@ type IncomeListType = {
   createTime: string;
   fundType: number;
   type: string;
+  inout?: 1 | 2 | null;
 };
 
 type AwardInfoType = {
@@ -413,4 +423,31 @@ interface ActivityAllListType {
   flagUrl: string;
   holdAddress: string;
   holdCountry: string;
+}
+interface FileType {
+  fileName: string;
+  fileUrl: string;
+  thumbnailUrl?: string;
+  fileType: 1 | 2 | 3;
+}
+
+interface UcardInfoType {
+  id: number;
+  firstName: string;
+  address: string;
+  birthDate: string;
+  cardType: string;
+  contact: string;
+  country: string;
+  currencies: string;
+  firstName: string;
+  idBackUrl: string;
+  idFrontUrl: string;
+  idType: string;
+  lastName: string;
+  memberId: number;
+  postalCode: string;
+  selfieWithIdUrl: string;
+  status: string;
+  topupAmount: number;
 }

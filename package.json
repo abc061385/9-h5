@@ -10,7 +10,8 @@
     "lint": "next lint --fix",
     "gen:api": "node ./scripts/generateApi.mjs",
     "gen:icon": "npx fantasticon",
-    "gen:icontype": "node ./scripts/gen-icon-type.mjs"
+    "gen:icontype": "node ./scripts/gen-icon-type.mjs",
+    "json2csv": "node ./scripts/json2csv.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -36,6 +37,7 @@
     "react-hot-toast": "^2.5.2",
     "react-verification-input": "^4.2.2",
     "react-virtuoso": "^4.13.0",
+    "rmc-picker": "^5.0.10",
     "swiper": "^11.2.10",
     "swr": "^2.3.3",
     "tailwind-merge": "^3.3.1",
@@ -52,6 +54,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
+    "csv-parse": "^6.1.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "fantasticon": "^3.0.0",
