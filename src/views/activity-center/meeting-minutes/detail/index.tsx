@@ -42,6 +42,7 @@ const MeetingMinutesDetailView = () => {
   return (
     <ViewLayout
       theme="dark"
+      heightFull
       header={
         <HeaderWithBack
           title={`Meeting Minutes - ${cityData?.address}`}

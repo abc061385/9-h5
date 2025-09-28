@@ -11,6 +11,7 @@ const ActivityCenterView = () => {
   return (
     <ViewLayout
       theme="dark"
+      heightFull
       header={
         <HeaderWithBack
           algin="center"

@@ -84,6 +84,7 @@ const MeetingMinutesView = () => {
   return (
     <ViewLayout
       theme="dark"
+      heightFull
       header={
         <HeaderWithBack title="Meeting minutes" algin="center" theme="dark" />
       }
