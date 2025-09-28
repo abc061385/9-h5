@@ -48,7 +48,11 @@ const FundBox = () => {
       icon: "invite-friends",
       path: routerMap.invite,
     },
-    { label: t("home.ranking"), icon: "ranking" },
+    {
+      label: "Business School",
+      icon: "business-school",
+      path: routerMap.businessSchool,
+    },
     {
       label: t("home.challenge"),
       icon: "challenge",

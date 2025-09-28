@@ -451,3 +451,15 @@ interface UcardInfoType {
   status: string;
   topupAmount: number;
 }
+
+interface BusinessCollegeMeetType {
+  id: number;
+  meetName: string;
+  fullMeetName: string;
+  fileName: string;
+  fileUrl: string;
+  thumbnailUrl: string;
+  createTime: string;
+  updateTime: string;
+  i18nList: { id: number; language: string; meetDesc: string }[];
+}
