@@ -1,10 +1,12 @@
 import BaseImage from "@/components/base-image";
 import { Icon } from "@/components/icon";
+import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { useCallback, useEffect, useState } from "react";
 
 const ListStepBox = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app");
   const { push } = useRouter();
 
@@ -31,7 +33,7 @@ const ListStepBox = () => {
   return (
     <div className="mt-10">
       <h2 className="text-lg font-medium leading-6 text-center mb-6">
-        Global studio distribution
+        {t("globalStudioDistribution")}
       </h2>
       {list?.map((v) => {
         return (
@@ -50,7 +52,7 @@ const ListStepBox = () => {
             <dl className="flex-1">
               <dt className="mb-4">
                 {v.establishTime || (
-                  <span className="text-text5">Under Construction…</span>
+                  <span className="text-text5">{t("underConstruction")}…</span>
                 )}
               </dt>
               <dd

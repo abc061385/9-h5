@@ -3,11 +3,13 @@
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { useTrans } from "@/hooks/useTrans";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const MeetingMinutesDetailView = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app");
   const searchParams = useSearchParams();
 
@@ -45,11 +47,12 @@ const MeetingMinutesDetailView = () => {
       heightFull
       header={
         <HeaderWithBack
-          title={`Meeting Minutes - ${cityData?.address}`}
+          title={`${t("meetingMinutes")} - ${cityData?.address}`}
           algin="center"
           theme="dark"
         />
       }
+      className="h-full overflow-auto no-scrollbar"
     >
       <div className="p-content text-white">
         <BaseImage
@@ -64,7 +67,7 @@ const MeetingMinutesDetailView = () => {
         </p>
         <div className="h-[1px] bg-text3 my-6"></div>
 
-        <h2 className="text-lg font-medium leading-6 mb-6">Live video</h2>
+        <h2 className="text-lg font-medium leading-6 mb-6">{t("liveVideo")}</h2>
         {cityData?.attachmentList
           ?.filter((v) => v.fileType === 2)
           ?.map((v, i) => {
@@ -78,7 +81,9 @@ const MeetingMinutesDetailView = () => {
             );
           })}
 
-        <h2 className="text-lg font-medium leading-6 mb-6">Live video</h2>
+        <h2 className="text-lg font-medium leading-6 mb-6">
+          {t("onSitePhotos")}
+        </h2>
 
         <div className="grid grid-cols-2 gap-2">
           {cityData?.attachmentList

@@ -909,5 +909,18 @@
   "uploadSelfieWithId": "请上传手持证件自拍",
   "transfer_amount": "数量",
   "DepositintoSmartYieldWallet": "Smart yield wallet 转入",
-  "withdrawFromSmartWallet": "Smart yield wallet 转出"
+  "withdrawFromSmartWallet": "Smart yield wallet 转出",
+  "globalActivityCenter": "9M AI 全球活动中心",
+  "offlineCentersIntro": "为更好地服务全球用户，9M AI 正在全球多个城市建立线下活动中心。",
+  "centersPurpose": "这些中心不仅是我们触达用户、连接本地社区的前沿，更是开展教育、培训、交流与合作的重要平台。",
+  "futureFintechBelief": "我们坚信，金融科技的未来不仅存在于线上空间，也存在于线下社区的温暖与信任之中。",
+  "globalStudioDistribution": "全球工作室分布",
+  "underConstruction": "建设中",
+  "partnershipProgress": "我们已与数家本地伙伴初步建立联系，未来将逐步启动活动中心的建设与本地项目的开展。",
+  "signUpForEvent": "报名活动",
+  "meetingMinutes": "会议纪要",
+  "establishmentTime": "成立时间",
+  "meeting": "会议",
+  "liveVideo": "现场视频",
+  "onSitePhotos": "现场照片"
 }

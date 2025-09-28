@@ -909,5 +909,18 @@
   "uploadSelfieWithId": "身分証を持った自撮り写真をアップロードしてください",
   "transfer_amount": "数量",
   "DepositintoSmartYieldWallet": "Smart Yield Wallet に入金する",
-  "withdrawFromSmartWallet": "Smart Yield Wallet から出金する"
+  "withdrawFromSmartWallet": "Smart Yield Wallet から出金する",
+  "globalActivityCenter": "9M AI グローバル活動センター",
+  "offlineCentersIntro": "世界中のユーザーにより良くサービスを提供するため、9M AIは世界中の複数の都市にオフライン活動センターを設立しています。",
+  "centersPurpose": "これらのセンターは、ユーザーにリーチし地域コミュニティと繋がるための最前線であるだけでなく、教育、トレーニング、交流、協力のための重要なプラットフォームとして機能します。",
+  "futureFintechBelief": "私たちは、フィンテックの未来がオンライン空間だけにあるのではなく、オフラインコミュニティの温かさと信頼の中にもあると確信しています。",
+  "globalStudioDistribution": "グローバルスタジオ分布",
+  "underConstruction": "建設中",
+  "partnershipProgress": "私たちはすでにいくつかの現地パートナーと予備的な接触を確立しており、今後、活動センターの設置と現地プロジェクトの立ち上げを段階的に開始する予定です。",
+  "signUpForEvent": "イベントに申し込む",
+  "meetingMinutes": "会議議事録",
+  "establishmentTime": "設立時間",
+  "meeting": "会議",
+  "liveVideo": "ライブ動画",
+  "onSitePhotos": "現場写真"
 }

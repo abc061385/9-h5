@@ -909,5 +909,18 @@
   "uploadSelfieWithId": "Vui lòng tải lên ảnh selfie cầm chứng minh thư",
   "transfer_amount": "Số lượng",
   "DepositintoSmartYieldWallet": "Nạp vào Smart Yield Wallet",
-  "withdrawFromSmartWallet": "Rút từ Smart Yield Wallet"
+  "withdrawFromSmartWallet": "Rút từ Smart Yield Wallet",
+  "globalActivityCenter": "Trung tâm Hoạt động Toàn cầu 9M AI",
+  "offlineCentersIntro": "Để phục vụ người dùng toàn cầu tốt hơn, 9M AI đang thành lập các trung tâm hoạt động ngoại tuyến tại nhiều thành phố trên thế giới.",
+  "centersPurpose": "Các trung tâm này không chỉ là tiền tuyến để chúng tôi tiếp cận người dùng và kết nối với cộng đồng địa phương, mà còn là nền tảng quan trọng cho giáo dục, đào tạo, giao tiếp và hợp tác.",
+  "futureFintechBelief": "Chúng tôi tin chắc rằng tương lai của fintech không chỉ nằm ở không gian trực tuyến mà còn ở sự ấm áp và tin cậy của cộng đồng ngoại tuyến.",
+  "globalStudioDistribution": "Phân phối studio toàn cầu",
+  "underConstruction": "Đang Xây dựng",
+  "partnershipProgress": "Chúng tôi đã thiết lập liên hệ sơ bộ với một số đối tác địa phương và sẽ dần dần bắt đầu thiết lập trung tâm hoạt động và triển khai các dự án địa phương trong tương lai.",
+  "signUpForEvent": "Đăng ký sự kiện",
+  "meetingMinutes": "Biên bản cuộc họp",
+  "establishmentTime": "Thời gian Thành lập",
+  "meeting": "Cuộc họp",
+  "liveVideo": "Video trực tiếp",
+  "onSitePhotos": "Ảnh tại hiện trường"
 }

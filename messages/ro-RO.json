@@ -908,5 +908,18 @@
   "uploadIdPhoto": "Please upload ID photo",
   "uploadSelfieWithId": "Please upload a selfie holding your ID",
   "DepositintoSmartYieldWallet": "Depunere în Smart Yield Wallet",
-  "withdrawFromSmartWallet": "Withdraw from Smart Yield Wallet"
+  "withdrawFromSmartWallet": "Withdraw from Smart Yield Wallet",
+  "globalActivityCenter": "9M AI Global Activity Center",
+  "offlineCentersIntro": "To better serve our global users, 9M AI is establishing offline activity centers in multiple cities around the world.",
+  "centersPurpose": "These centers are not only our frontier for reaching users and connecting with local communities, but also serve as crucial platforms for education, training, communication, and collaboration.",
+  "futureFintechBelief": "We firmly believe that the future of fintech lies not only in online spaces but also in the warmth and trust of offline communities.",
+  "globalStudioDistribution": "Global studio distribution",
+  "underConstruction": "Under Construction",
+  "partnershipProgress": "We have already established preliminary contacts with several local partners and will gradually start setting up activity centers and launching local projects in the future.",
+  "signUpForEvent": "Sign up for an event",
+  "meetingMinutes": "Meeting minutes",
+  "establishmentTime": "Establishment Time",
+  "meeting": "Meeting",
+  "liveVideo": "Live video",
+  "onSitePhotos": "On-site photos"
 }

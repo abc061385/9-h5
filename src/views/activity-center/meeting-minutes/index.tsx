@@ -4,6 +4,7 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import HorizontalTabs, { TabItem } from "@/components/tabs/horizontal-tabs";
+import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { useSearchParams } from "next/navigation";
@@ -15,6 +16,7 @@ interface CountryListType {
 }
 
 const MeetingMinutesView = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app");
   const { replace, push } = useRouter();
   const searchParams = useSearchParams();
@@ -86,8 +88,13 @@ const MeetingMinutesView = () => {
       theme="dark"
       heightFull
       header={
-        <HeaderWithBack title="Meeting minutes" algin="center" theme="dark" />
+        <HeaderWithBack
+          title={t("meetingMinutes")}
+          algin="center"
+          theme="dark"
+        />
       }
+      className="h-full overflow-auto no-scrollbar"
     >
       <div className="p-content text-white overflow-hidden">
         <HorizontalTabs
@@ -109,16 +116,16 @@ const MeetingMinutesView = () => {
             <span className="text-lg leading-6">
               {countryData?.holdCountry || "--"}
             </span>
-            <span className="text-sm leading-4">Activity Center</span>
+            <span className="text-sm leading-4">{t("activityCenter")}</span>
           </div>
           <div className="flex flex-col gap-1 text-right">
-            <span className="text-xs text-text5">Establishment Time</span>
+            <span className="text-xs text-text5">{t("establishmentTime")}</span>
             <span className="text-sm">{countryData?.establishTime || "-"}</span>
           </div>
         </div>
         <p className="text-sm leading-5">{countryData?.description || "--"}</p>
         <div className="h-[1px] bg-text3 my-6"></div>
-        <h3 className="font-medium text-lg leading-6">Meeting</h3>
+        <h3 className="font-medium text-lg leading-6">{t("meeting")}</h3>
         {countryData?.activityList?.map((v, i) => {
           return (
             <div key={i} className="mt-6">

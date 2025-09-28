@@ -909,5 +909,18 @@
   "uploadSelfieWithId": "Por favor suba un selfie sosteniendo su identificación",
   "transfer_amount": "Cantidad",
   "DepositintoSmartYieldWallet": "Depositar en Smart Yield Wallet",
-  "withdrawFromSmartWallet": "Retirar de Smart Yield Wallet"
+  "withdrawFromSmartWallet": "Retirar de Smart Yield Wallet",
+  "globalActivityCenter": "Centro de Actividad Global 9M AI",
+  "offlineCentersIntro": "Para servir mejor a nuestros usuarios globales, 9M AI está estableciendo centros de actividad offline en múltiples ciudades alrededor del mundo.",
+  "centersPurpose": "Estos centros no solo son nuestra frontera para llegar a los usuarios y conectar con las comunidades locales, sino que también sirven como plataformas cruciales para la educación, formación, comunicación y colaboración.",
+  "futureFintechBelief": "Creemos firmemente que el futuro de la fintech reside no solo en los espacios online sino también en la calidez y confianza de las comunidades offline.",
+  "globalStudioDistribution": "Distribución de estudio global",
+  "underConstruction": "En Construcción",
+  "partnershipProgress": "Ya hemos establecido contactos preliminares con varios socios locales y comenzaremos gradualmente a establecer centros de actividad y lanzar proyectos locales en el futuro.",
+  "signUpForEvent": "Inscribirse para un evento",
+  "meetingMinutes": "Acta de la reunión",
+  "establishmentTime": "Tiempo de Establecimiento",
+  "meeting": "Reunión",
+  "liveVideo": "Video en vivo",
+  "onSitePhotos": "Fotos en el sitio"
 }
