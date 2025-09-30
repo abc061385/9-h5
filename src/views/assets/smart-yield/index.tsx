@@ -225,7 +225,8 @@ const SmartYield = () => {
           tabs={detailTabs}
           value={detailTabsValue}
           onChange={(e) => setDetailTabsValue(Number(e))}
-          className="text-base mt-6 mb-4 gap-6"
+          className="text-base mt-6 mb-4"
+          wrapClassName="gap-4"
         />
 
         <div className="h-[80vh]">
