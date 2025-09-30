@@ -95,13 +95,14 @@ const SmartYield = () => {
   );
 
   const estimatedArrival = useMemo(() => {
-    return (
-      utils
-        .toBigNumber(withDrawNum)
-        .times((100 - withdrawConfig?.managementFee) / 100)
-        .toNumber() || 0
-    );
-  }, [withDrawNum, withdrawConfig]);
+    return withDrawNum;
+    // return (
+    //   utils
+    //     .toBigNumber(withDrawNum)
+    //     .times((100 - withdrawConfig?.managementFee) / 100)
+    //     .toNumber() || 0
+    // );
+  }, [withDrawNum]);
 
   const handleSubmit = useCallback(async () => {
     setSumitLoading(true);
@@ -322,10 +323,10 @@ const SmartYield = () => {
         {/*   </label> */}
         {/* </fieldset> */}
 
-        <div className="flex items-center justify-between mt-2 text-sm">
-          <span className=" text-text4">{t("手续费")}</span>
-          <span>{withdrawConfig?.managementFee || "-"}%</span>
-        </div>
+        {/* <div className="flex items-center justify-between mt-2 text-sm"> */}
+        {/*   <span className=" text-text4">{t("手续费")}</span> */}
+        {/*   <span>{withdrawConfig?.managementFee || "-"}%</span> */}
+        {/* </div> */}
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("预计到账")}</span>
           <span>
