@@ -10,9 +10,9 @@ import { ShowIf } from "@/components/show-if";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
-import { useRequestQuery } from "@/hooks/useRequestQuery";
+// import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { cn, utils } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
@@ -36,8 +36,8 @@ const SmartYield = () => {
     api.fundProductConfig.claimedProfitSmartWalletUsingGet,
   );
 
-  const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
-  const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
+  // const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
+  // const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
 
   const getInfo = useCallback(() => {
     trigger(
