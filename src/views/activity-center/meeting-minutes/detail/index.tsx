@@ -3,17 +3,23 @@
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
+import { Modal } from "@/components/modal";
 import { useTrans } from "@/hooks/useTrans";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const MeetingMinutesDetailView = () => {
+  const locale = useLocale();
+
   const t = useTrans();
   const api = createAxiosInstance("/app");
   const searchParams = useSearchParams();
 
   const [cityData, setCityData] = useState<ActivityCenterListType>();
+  const [reviewImageOpen, setReviewImageOpen] = useState(false);
+  const [reviewImageSrc, setReviewImageSrc] = useState("");
 
   const getActivityList = useCallback(async (value: number) => {
     try {
@@ -26,7 +32,7 @@ const MeetingMinutesDetailView = () => {
       if (res.code === 200) {
         const venueId = searchParams.get("venueId");
         const data = res.data.activityList.find(
-          (v) => v.venueId?.toString() === venueId
+          (v) => v.id?.toString() === venueId
         );
         setCityData(data);
       }
@@ -62,9 +68,16 @@ const MeetingMinutesDetailView = () => {
           }
           className="w-full h-[148px] rounded-lg overflow-hidden"
         />
-        <p className="text-sm leading-5 mt-6">
-          {cityData?.activityDesc || "--"}
-        </p>
+        <div
+          className="text-sm leading-5 mt-6"
+          dangerouslySetInnerHTML={{
+            __html: cityData?.content
+              ? JSON.parse(cityData.content)[locale]
+              : "",
+          }}
+        >
+          {/* {cityData?.content || "--"} */}
+        </div>
         <div className="h-[1px] bg-text3 my-6"></div>
 
         <h2 className="text-lg font-medium leading-6 mb-6">{t("liveVideo")}</h2>
@@ -94,11 +107,22 @@ const MeetingMinutesDetailView = () => {
                   src={v.fileUrl}
                   key={i}
                   className="h-22 w-full rounded-md overflow-hidden"
+                  onClick={() => {
+                    setReviewImageOpen(true);
+                    setReviewImageSrc(v.fileUrl);
+                  }}
                 />
               );
             })}
         </div>
       </div>
+      <Modal
+        close={false}
+        open={reviewImageOpen}
+        onClose={() => setReviewImageOpen(false)}
+      >
+        <BaseImage src={reviewImageSrc} className="w-full h-[180px]" />
+      </Modal>
     </ViewLayout>
   );
 };
