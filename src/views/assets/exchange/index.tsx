@@ -84,7 +84,9 @@ const AssetsExchangeView = () => {
   useEffect(() => {
     if (!currencyList?.length) return;
     const res = currencyList.filter((item) =>
-      ["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
+      ["USDT", "USDC", "USDM", "9MC"].includes(
+        item.currencyCode!.toUpperCase(),
+      ),
     );
 
     // const firstSymbol = res[0]?.currencyCode;
