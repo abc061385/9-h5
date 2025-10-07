@@ -224,13 +224,16 @@ const AssetsExchangeView = () => {
                 placeholder="0"
                 onChange={(e) => {
                   if (!formCoinItem?.id || !toCoinItem?.id) return;
-                  setValue(
-                    "toCoinValue",
-                    formatBalance(
-                      Number(e.target.value) * Number(price),
+                  const v = utils
+                    .toBigNumber(e.target.value)
+                    .multipliedBy(price)
+                    .decimalPlaces(
                       toCoinItem.decimalPlaces || 4,
-                    ).toString(),
-                  );
+                      utils.ROUND_DOWN,
+                    )
+                    .toString();
+
+                  setValue("toCoinValue", v === "NaN" ? "0" : v);
                 }}
               />
               <div className="text-xs text-text4 absolute bottom-4 right-6">
