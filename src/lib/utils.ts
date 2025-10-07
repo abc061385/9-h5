@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import axios from "axios";
 import * as htmlToImage from "html-to-image";
 import toast from "react-hot-toast";
+import { BigNumber } from "bignumber.js";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -232,4 +233,5 @@ export const utils = {
   toFixed,
   handleCapture,
   handleShare,
+  ROUND_DOWN: BigNumber.ROUND_DOWN,
 };
