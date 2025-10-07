@@ -83,6 +83,10 @@ export const routerMap = {
   meetingMinutes: "/activity-center/meeting-minutes/",
   meetingMinutesDetail: "/activity-center/meeting-minutes/detail",
   smartYield: "/assets/smart-yield/",
+  businessSchool: "/business-school/",
+  businessSchoolPreviousHighlights: "/business-school/previous-highlights/",
+  businessSchoolPreviousHighlightsDetail:
+    "/business-school/previous-highlights/detail/",
 };
 
 export const WhiteListPath = [
