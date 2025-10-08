@@ -9,6 +9,7 @@ import { useLocale } from "next-intl";
 import { useLocationHref } from "@/hooks/useLocationHref";
 import { useTrans } from "@/hooks/useTrans";
 import { ShowIf } from "@/components/show-if";
+import { utils } from "@/lib/utils";
 
 const ActivityView = () => {
   const locale = useLocale();
@@ -78,9 +79,16 @@ const ActivityView = () => {
                   <div
                     className="whitespace-pre-wrap mt-4 line-clamp-3"
                     dangerouslySetInnerHTML={{
-                      __html: v.content ? JSON.parse(v.content)[locale] : "",
+                      __html: v.title
+                        ? JSON.parse(v.title || "{}")[locale]
+                        : JSON.parse(v.title || "{}")["en"],
                     }}
                   ></div>
+                  <p>
+                    {v?.startDate
+                      ? utils.dayjs(v?.startDate).format("YYYY-MM-DD")
+                      : null}
+                  </p>
                 </div>
               );
             })}
