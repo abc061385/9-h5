@@ -1,7 +1,8 @@
 /**
  * 用法：
- *   node csv2json.mjs input.csv zh_CN zh_HK en
-  *  node csv2json.mjs ../export_lang/import_0924.csv en zh-Hans zh-Hant ja-JP ko-KR ms-MY th-TH vi-VN hi-IN de-DE fr-FR pt-PT es-ES
+ *   node csv2json.cjs input.csv zh_CN zh_HK en
+  *  node csv2json.cjs ../export_lang/import_0924.csv en zh-Hans zh-Hant ja-JP ko-KR ms-MY th-TH vi-VN hi-IN de-DE fr-FR pt-PT es-ES
+  *  node csv2json.cjs ../export_lang/import_1008.csv nl-NL no-NO sv-SE ro-RO cs-CZ
  */
 
 const fs = require("fs");

@@ -47,11 +47,11 @@ export const SupportedLanguages = [
   { lang: "pt-PT", label: "Português" }, // 葡萄牙语（Portuguese）
   { lang: "es-ES", label: "Español" }, // 西班牙语（Spanish）
   // 新增的5个语言用先不展示
-  // { lang: "nl-NL", label: "Nederlands" }, // 荷兰语 (Nederlands)
-  // { lang: "no-NO", label: "Norsk" }, // 挪威语（Norsk）
-  // { lang: "sv-SE", label: "Svenska" }, //  瑞典语（Svenska）
-  // { lang: "ro-RO", label: "Română" }, // 罗马尼亚语（Română）
-  // { lang: "cs-CZ", label: "Čeština" }, // 捷克语（Čeština）
+  { lang: "nl-NL", label: "Nederlands" }, // 荷兰语 (Nederlands)
+  { lang: "no-NO", label: "Norsk" }, // 挪威语（Norsk）
+  { lang: "sv-SE", label: "Svenska" }, //  瑞典语（Svenska）
+  { lang: "ro-RO", label: "Română" }, // 罗马尼亚语（Română）
+  { lang: "cs-CZ", label: "Čeština" }, // 捷克语（Čeština）
 ];
 
 export const APILang = {
