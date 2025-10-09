@@ -6,6 +6,7 @@ import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import Bridge from "@/lib/dsBridge";
 import { useLocale } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 
@@ -27,6 +28,10 @@ const BusinessSchoolView = () => {
   useEffect(() => {
     getList();
   }, [getList]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   const stepList = [
     {
@@ -63,7 +68,13 @@ const BusinessSchoolView = () => {
   return (
     <ViewLayout
       header={
-        <HeaderWithBack title="9M AI Global Business School" algin="center" />
+        <HeaderWithBack
+          title="9M AI Global Business School"
+          algin="center"
+          onClick={() => {
+            Bridge.goBack();
+          }}
+        />
       }
       heightFull
       className="h-full overflow-auto no-scrollbar"

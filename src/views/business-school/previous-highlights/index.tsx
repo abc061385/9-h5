@@ -6,6 +6,7 @@ import ViewLayout from "@/components/layout";
 import HorizontalTabs, { TabItem } from "@/components/tabs/horizontal-tabs";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import Bridge from "@/lib/dsBridge";
 import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -36,7 +37,7 @@ const PreviousHighlightsView = () => {
     }));
     setTabsList(newList || []);
     setMeetPageList(res?.data?.list || []);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const PreviousHighlightsView = () => {
       }
     );
     setMeetTypeList(res?.data?.list || []);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -77,6 +78,10 @@ const PreviousHighlightsView = () => {
   const meetInfo = useMemo(() => {
     return meetPageList.find((v) => v.id === tabsValue);
   }, [meetPageList, tabsValue]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   return (
     <ViewLayout
