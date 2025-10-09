@@ -140,3 +140,8 @@ td {
 .radio-custom::before {
   background: #000;
 }
+
+.btn-primary1 {
+  background-color: var(--color-primary2);
+  color: var(--color-white);
+}
