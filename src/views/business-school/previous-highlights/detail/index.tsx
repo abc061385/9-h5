@@ -5,6 +5,7 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import Bridge from "@/lib/dsBridge";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
@@ -40,6 +41,10 @@ const PreviousHighlightsDetailView = () => {
     if (!searchParams.get("id")) return;
     getActivityList(Number(searchParams.get("id")));
   }, [getActivityList, searchParams]);
+
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   return (
     <ViewLayout
