@@ -132,12 +132,12 @@ const MeetingMinutesView = () => {
               <BaseImage
                 src={
                   v.attachmentList.find((v) => v.fileType === 1)
-                    ?.thumbnailUrl || ""
+                    ?.fileUrl || ""
                 }
                 className="w-full h-[148px] rounded-lg overflow-hidden"
                 onClick={() =>
                   push(
-                    `${routerMap.meetingMinutesDetail}?id=${v.countryId}&venueId=${v.venueId}`
+                    `${routerMap.meetingMinutesDetail}?id=${v.countryId}&venueId=${v.id}`
                   )
                 }
               />

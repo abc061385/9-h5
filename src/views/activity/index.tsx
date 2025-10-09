@@ -9,6 +9,7 @@ import { useLocale } from "next-intl";
 import { useLocationHref } from "@/hooks/useLocationHref";
 import { useTrans } from "@/hooks/useTrans";
 import { ShowIf } from "@/components/show-if";
+import { ListNoData } from "@/components/nodata/list-nodata";
 import { utils } from "@/lib/utils";
 
 const ActivityView = () => {
@@ -51,47 +52,51 @@ const ActivityView = () => {
             condition={!loading}
             elseEl={<span className="loading flex mx-auto mt-10"></span>}
           >
-            {activityList.map((v) => {
-              return (
-                <div
-                  key={v.id}
-                  className="py-6 border-b border-border2 last:border-0"
-                  onClick={() => goToActivity(v.id.toString())}
-                >
-                  <Image
-                    src={
-                      ["zh-Hans", "zh-Hant"].indexOf(locale) !== -1
-                        ? v.bannerZh
-                        : v.bannerEn
-                    }
-                    alt=""
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      position: "relative",
-                    }}
-                    className="rounded-xl"
-                  />
-
+            {activityList?.length ? (
+              activityList.map((v) => {
+                return (
                   <div
-                    className="whitespace-pre-wrap mt-4 line-clamp-3"
-                    dangerouslySetInnerHTML={{
-                      __html: v.title
-                        ? JSON.parse(v.title || "{}")[locale]
-                        : JSON.parse(v.title || "{}")["en"],
-                    }}
-                  ></div>
-                  <p>
-                    {v?.startDate
-                      ? utils.dayjs(v?.startDate).format("YYYY-MM-DD")
-                      : null}
-                  </p>
-                </div>
-              );
-            })}
+                    key={v.id}
+                    className="py-6 border-b border-border2 last:border-0"
+                    onClick={() => goToActivity(v.id.toString())}
+                  >
+                    <Image
+                      src={
+                        ["zh-Hans", "zh-Hant"].indexOf(locale) !== -1
+                          ? v.bannerZh
+                          : v.bannerEn
+                      }
+                      alt=""
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        position: "relative",
+                      }}
+                      className="rounded-xl"
+                    />
+
+                    <div
+                      className="whitespace-pre-wrap mt-4 line-clamp-3"
+                      dangerouslySetInnerHTML={{
+                        __html: v.title
+                          ? JSON.parse(v.title || "{}")[locale]
+                          : JSON.parse(v.title || "{}")["en"],
+                      }}
+                    ></div>
+                    <p>
+                      {v?.startDate
+                        ? utils.dayjs(v?.startDate).format("YYYY-MM-DD")
+                        : null}
+                    </p>
+                  </div>
+                );
+              })
+            ) : (
+              <ListNoData />
+            )}
           </ShowIf>
         }
       </div>
