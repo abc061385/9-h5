@@ -359,6 +359,8 @@ type ActivityList = {
   langContent: string;
   remark: string;
   updateTime: string;
+  title: string;
+  startDate: string;
 };
 
 type NewsDataType = {
