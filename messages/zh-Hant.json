@@ -922,5 +922,17 @@
   "establishmentTime": "成立時間",
   "meeting": "會議",
   "liveVideo": "現場影片",
-  "onSitePhotos": "現場照片"
+  "onSitePhotos": "現場照片",
+  "businessSchool": "9M AI全球商學院",
+  "seeMore": "查看更多",
+  "journey": "9M旅程",
+  "mainHeading": "全球智慧，AI驅動——9M AI征服全球金融新高度",
+  "mainDescription": "從紐約出發，跨越亞洲金融核心，向歐洲市場中心邁進，9M AI正以AI驅動的金融力量重塑全球資本格局。每一步前進都見證著技術實力、生態系統規模和全球影響力的持續增長。",
+  "learnMore": "了解更多",
+  "registerEvent": "報名活動",
+  "previousHighlights": "往期精彩",
+  "businessSchoolDesc1": "為了更好地服務全球用戶，9M AI正在全球多個城市建立線下活動中心。",
+  "businessSchoolDesc2": "這些中心不僅是我們觸達用戶、連接本地社區的前沿陣地，更是教育、培訓、交流與合作的重要平台。",
+  "businessSchoolDesc3": "我們堅信，金融科技的未來不僅存在於線上空間，更在於線下社區的溫暖與信任。",
+  "mainDescription1": "每一步前進都見證著技術實力、生態系統規模和全球影響力的持續增長。"
 }

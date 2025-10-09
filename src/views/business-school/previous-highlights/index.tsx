@@ -4,6 +4,7 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import HorizontalTabs, { TabItem } from "@/components/tabs/horizontal-tabs";
+import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
@@ -12,6 +13,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const PreviousHighlightsView = () => {
+  const t = useTrans();
   const api = createAxiosInstance("/app");
   const searchParams = useSearchParams();
   const locale = useLocale();
@@ -85,7 +87,7 @@ const PreviousHighlightsView = () => {
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Previous highlights" algin="center" />}
+      header={<HeaderWithBack title={t("previousHighlights")} algin="center" />}
       heightFull
       className="h-full overflow-auto no-scrollbar"
     >
@@ -103,9 +105,14 @@ const PreviousHighlightsView = () => {
           controls
           className="w-full h-45 rounded-lg my-4"
         ></video>
-        <p className="text-sm mt-4">
-          {meetInfo?.i18nList?.find((v) => v.language === locale)?.meetDesc}
-        </p>
+        <p
+          className="text-sm mt-4"
+          dangerouslySetInnerHTML={{
+            __html:
+              meetInfo?.i18nList?.find((v) => v.language === locale)
+                ?.meetDesc || "",
+          }}
+        ></p>
         <div className="h-[1px] bg-bg3 mt-6"></div>
         {meetTypeList?.map((v, i) => {
           return (
@@ -124,7 +131,6 @@ const PreviousHighlightsView = () => {
               />
               <div className="text-sm leading-4 mt-4 flex justify-between items-center">
                 <span>{v.eventTime}</span>
-                <span>{v.address}</span>
               </div>
             </div>
           );
