@@ -15,7 +15,7 @@ const BusinessSchoolView = () => {
   const t = useTrans();
   const api = createAxiosInstance("/app");
   const locale = useLocale();
-  const { push } = useRouter();
+  const { push, back } = useRouter();
 
   const [meetTypeList, setMeetTypeList] = useState<BusinessCollegeMeetType[]>();
 
@@ -43,6 +43,7 @@ const BusinessSchoolView = () => {
           algin="center"
           onClick={() => {
             Bridge.goBack();
+            back();
           }}
         />
       }
