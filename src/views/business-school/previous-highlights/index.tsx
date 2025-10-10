@@ -99,7 +99,10 @@ const PreviousHighlightsView = () => {
           wrapClassName="gap-6"
           onChange={(e) => handleTabChange(e.toString())}
         />
-        <h2 className="mt-6 font-bold text-xl">{meetInfo?.fullMeetName}</h2>
+        <h2 className="mt-6 font-bold text-xl flex items-center">
+          {meetInfo?.meetName} {meetInfo?.id === 3 ? "" : "|"}{" "}
+          {t("fullMeetName" + meetInfo?.id)}
+        </h2>
         <video
           src={meetInfo?.fileUrl}
           controls
@@ -119,8 +122,7 @@ const PreviousHighlightsView = () => {
             <div key={i} className="mt-6">
               <BaseImage
                 src={
-                  v.attachmentList.find((v) => v.fileType === 1)
-                    ?.fileUrl || ""
+                  v.attachmentList.find((v) => v.fileType === 1)?.fileUrl || ""
                 }
                 className="w-full h-[148px] rounded-lg overflow-hidden"
                 onClick={() =>
