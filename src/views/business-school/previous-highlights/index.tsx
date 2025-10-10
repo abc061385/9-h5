@@ -120,7 +120,7 @@ const PreviousHighlightsView = () => {
               <BaseImage
                 src={
                   v.attachmentList.find((v) => v.fileType === 1)
-                    ?.thumbnailUrl || ""
+                    ?.fileUrl || ""
                 }
                 className="w-full h-[148px] rounded-lg overflow-hidden"
                 onClick={() =>
