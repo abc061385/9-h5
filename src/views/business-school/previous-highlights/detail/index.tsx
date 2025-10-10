@@ -2,34 +2,37 @@
 
 import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
+import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
+import { Modal } from "@/components/modal";
 import { useTrans } from "@/hooks/useTrans";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
+import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const PreviousHighlightsDetailView = () => {
+  const locale = useLocale();
+
   const t = useTrans();
   const api = createAxiosInstance("/app");
   const searchParams = useSearchParams();
 
+  const [reviewImageOpen, setReviewImageOpen] = useState(false);
+  const [reviewImageSrc, setReviewImageSrc] = useState("");
   const [cityData, setCityData] = useState<ActivityCenterListType>();
 
   const getActivityList = useCallback(async (value: number) => {
     try {
-      const res: ApiResponse<ActivityDataType> = await api.get(
+      const res: ApiResponse<ActivityCenterListType> = await api.get(
         "/business-college/detail",
         {
           params: { id: value },
         }
       );
       if (res.code === 200) {
-        const venueId = searchParams.get("venueId");
-        const data = res.data.activityList.find(
-          (v) => v.venueId?.toString() === venueId
-        );
-        setCityData(data);
+        setCityData(res.data);
       }
     } catch (error) {
       console.log(error);
@@ -51,7 +54,7 @@ const PreviousHighlightsDetailView = () => {
       heightFull
       header={
         <HeaderWithBack
-          title={`${t("meetingMinutes")} - ${cityData?.address || ""}`}
+          title={`${t("meetingMinutes")} - ${cityData?.eventTime || ""}`}
           algin="center"
         />
       }
@@ -60,14 +63,19 @@ const PreviousHighlightsDetailView = () => {
       <div className="p-content">
         <BaseImage
           src={
-            cityData?.attachmentList.find((v) => v.fileType === 1)?.fileUrl ||
+            cityData?.attachmentList?.find((v) => v.fileType === 1)?.fileUrl ||
             ""
           }
           className="w-full h-[148px] rounded-lg overflow-hidden"
         />
-        <p className="text-sm leading-5 mt-6">
-          {cityData?.activityDesc || "--"}
-        </p>
+        <p
+          className="text-sm leading-5 mt-6"
+          dangerouslySetInnerHTML={{
+            __html: cityData?.content
+              ? JSON.parse(cityData.content)[locale]
+              : "",
+          }}
+        ></p>
         <div className="h-[1px] bg-text3 my-6"></div>
 
         <h2 className="text-lg font-medium leading-6 mb-6">{t("liveVideo")}</h2>
@@ -97,11 +105,30 @@ const PreviousHighlightsDetailView = () => {
                   src={v.fileUrl}
                   key={i}
                   className="h-22 w-full rounded-md overflow-hidden"
+                  onClick={() => {
+                    setReviewImageOpen(true);
+                    setReviewImageSrc(v.fileUrl);
+                  }}
                 />
               );
             })}
         </div>
       </div>
+      <Modal
+        close={false}
+        open={reviewImageOpen}
+        onClose={() => setReviewImageOpen(false)}
+        wrapClassName="bg-transparent"
+      >
+        <div className="text-center">
+          <BaseImage src={reviewImageSrc} className="w-full h-[180px] mt-5" />
+          <Icon
+            name="close"
+            className="size-8 mt-4"
+            onClick={() => setReviewImageOpen(false)}
+          />
+        </div>
+      </Modal>
     </ViewLayout>
   );
 };
