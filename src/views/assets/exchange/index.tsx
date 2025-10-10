@@ -3,7 +3,7 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
 import { Icon } from "@/components/icon";
@@ -68,6 +68,7 @@ const AssetsExchangeView = () => {
   });
 
   const {
+    control,
     register,
     setValue,
     getValues,
@@ -216,38 +217,46 @@ const AssetsExchangeView = () => {
                   />
                 </span>
               </Skeleton>
+              <Controller
+                name="formCoinValue"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="number"
+                    {...register("formCoinValue")}
+                    {...field}
+                    className="grow text-xl font-normal text-right placeholder:text-text1"
+                    placeholder="0"
+                    onChange={(e) => {
+                      if (!formCoinItem?.id) return;
+                      const formV = utils
+                        .toBigNumber(e.target.value)
+                        .decimalPlaces(
+                          utilCoinList.includes(
+                            formCoinItem?.currencyCode || ""
+                          )
+                            ? 2
+                            : 8,
+                          utils.ROUND_DOWN
+                        )
+                        .toString();
+                      setValue("formCoinValue", formV === "NaN" ? "0" : formV);
+                      if (!toCoinItem?.id) return;
+                      const v = utils
+                        .toBigNumber(e.target.value)
+                        .multipliedBy(price)
+                        .decimalPlaces(
+                          utilCoinList.includes(toCoinItem?.currencyCode || "")
+                            ? 2
+                            : 8,
+                          utils.ROUND_DOWN
+                        )
+                        .toString();
 
-              <input
-                type="number"
-                {...register("formCoinValue")}
-                className="grow text-xl font-normal text-right placeholder:text-text1"
-                placeholder="0"
-                onChange={(e) => {
-                  if (!formCoinItem?.id) return;
-                  const formV = utils
-                    .toBigNumber(e.target.value)
-                    .decimalPlaces(
-                      utilCoinList.includes(formCoinItem?.currencyCode || "")
-                        ? 2
-                        : 8,
-                      utils.ROUND_DOWN
-                    )
-                    .toString();
-                  setValue("formCoinValue", formV === "NaN" ? "0" : formV);
-                  if (!toCoinItem?.id) return;
-                  const v = utils
-                    .toBigNumber(e.target.value)
-                    .multipliedBy(price)
-                    .decimalPlaces(
-                      utilCoinList.includes(toCoinItem?.currencyCode || "")
-                        ? 2
-                        : 8,
-                      utils.ROUND_DOWN
-                    )
-                    .toString();
-
-                  setValue("toCoinValue", v === "NaN" ? "0" : v);
-                }}
+                      setValue("toCoinValue", v === "NaN" ? "0" : v);
+                    }}
+                  />
+                )}
               />
               <div className="text-xs text-text4 absolute bottom-4 right-6">
                 {t("余额")}：
@@ -396,10 +405,7 @@ const AssetsExchangeView = () => {
                   className="size-10 rounded-full overflow-hidden"
                 />
                 <b>
-                  {formatBalance(
-                    getValues().formCoinValue,
-                    formCoinItem?.decimalPlaces || 4
-                  )}{" "}
+                  {formatBalance(getValues().formCoinValue, 2)}{" "}
                   {formCoinItem?.currencyCode}
                 </b>
               </div>
