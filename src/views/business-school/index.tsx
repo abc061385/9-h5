@@ -6,6 +6,7 @@ import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { APILang } from "@/i18n/routing";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
 import { useLocale } from "next-intl";
@@ -92,8 +93,8 @@ const BusinessSchoolView = () => {
                 className="text-sm mt-4"
                 dangerouslySetInnerHTML={{
                   __html:
-                    v?.i18nList?.find((v) => v.language === locale)?.meetDesc ||
-                    "",
+                    v?.i18nList?.find((v) => v.language === (APILang as Record<string, string>)[locale])
+                      ?.meetDesc || "",
                 }}
               ></p>
             </div>

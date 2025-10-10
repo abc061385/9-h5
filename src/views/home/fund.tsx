@@ -49,7 +49,7 @@ const FundBox = () => {
       path: routerMap.invite,
     },
     {
-      label: "Business School",
+      label: t("businessSchool1"),
       icon: "business-school",
       path: routerMap.businessSchool,
     },
