@@ -94,11 +94,11 @@ export const CustomerSupportLang = {
   "pt-PT": "pt",
   "es-ES": "es",
   // 新增的5个语言用英文
-  "nl-NL": "en-US",
-  "no-NO": "en-US",
-  "sv-SE": "en-US",
-  "ro-RO": "en-US",
-  "cs-CZ": "en-US",
+  "nl-NL": "nl",
+  "no-NO": "no",
+  "sv-SE": "sv",
+  "ro-RO": "ro",
+  "cs-CZ": "cs",
 };
 
 // 客服语言选项（根据需要选择并设置）
