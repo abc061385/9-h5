@@ -70,11 +70,11 @@ export const APILang = {
   "pt-PT": "pt",
   "es-ES": "es",
   // 新增的5个语言用英文
-  "nl-NL": "en",
-  "no-NO": "en",
-  "sv-SE": "en",
-  "ro-RO": "en",
-  "cs-CZ": "en",
+  "nl-NL": "nl",
+  "no-NO": "no",
+  "sv-SE": "sv",
+  "ro-RO": "ro",
+  "cs-CZ": "cs",
 };
 
 // 客服国际化语言映射
@@ -95,10 +95,10 @@ export const CustomerSupportLang = {
   "es-ES": "es",
   // 新增的5个语言用英文
   "nl-NL": "nl",
-  "no-NO": "no",
-  "sv-SE": "sv",
+  "no-NO": "en-US",
+  "sv-SE": "en-US",
   "ro-RO": "ro",
-  "cs-CZ": "cs",
+  "cs-CZ": "en-US",
 };
 
 // 客服语言选项（根据需要选择并设置）
