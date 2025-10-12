@@ -91,7 +91,7 @@ const PreviousHighlightsView = () => {
       heightFull
       className="h-full overflow-auto no-scrollbar"
     >
-      <div className="p-content">
+      <div className="p-content overflow-hidden">
         <HorizontalTabs
           tabs={tabsList}
           value={tabsValue}
