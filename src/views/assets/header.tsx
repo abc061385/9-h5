@@ -100,9 +100,6 @@ const HeaderBox = () => {
     },
   ];
 
-  // const handleTip = () => {
-  //   toast(t("老数据总资产"));
-  // };
   return (
     <div className="">
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
@@ -168,7 +165,7 @@ const HeaderBox = () => {
       <div
         className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
-          push(`${routerMap.fundBuy}?id=19&pledgeDays=360`);
+          push(`${routerMap.fundBuy}?id=19&pledgeDays=360&oneClick=1`);
         }}
       >
         <div className="flex flex-1 gap-4">
