@@ -90,19 +90,28 @@ const BusinessSchoolView = () => {
                 className="h-[180px] w-full rounded-lg"
               ></video>
 
-              <p
-                className="text-sm mt-4"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    v?.i18nList?.find(
-                      (v) =>
-                        v.language ===
-                        (APILang as Record<string, string>)[locale]
-                    )?.meetDesc ||
-                    v?.i18nList?.find((v) => v.language === "en")?.meetDesc ||
-                    "",
+              <div
+                className="overflow-hidden text-ellipsis"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 1,
+                  WebkitBoxOrient: "vertical",
                 }}
-              ></p>
+              >
+                <div
+                  className="text-sm mt-4"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      v?.i18nList?.find(
+                        (v) =>
+                          v.language ===
+                          (APILang as Record<string, string>)[locale]
+                      )?.meetDesc ||
+                      v?.i18nList?.find((v) => v.language === "en")?.meetDesc ||
+                      "",
+                  }}
+                ></div>
+              </div>
             </div>
           );
         })}
