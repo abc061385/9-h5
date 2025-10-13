@@ -72,7 +72,7 @@ const FundBox = () => {
         </p>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
-      <div className="flex justify-between mt-6">
+      <div className="grid grid-cols-4 gap-2 mt-6">
         {hotList.map((v, i) => {
           return (
             <div
@@ -87,7 +87,7 @@ const FundBox = () => {
                 src={`/images/home/${v.icon}.svg`}
                 className="size-14"
               />
-              <h4 className="text-xs mt-1">{v.label}</h4>
+              <h4 className="text-xs mt-1 break-words">{v.label}</h4>
             </div>
           );
         })}
