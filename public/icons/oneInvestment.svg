@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>USDM One-click Investment</title>
+    <g id="App-V2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-40, -436)" fill="#A93AFF" fill-rule="nonzero">
+            <g id="Group备份-3" transform="translate(24, 420)">
+                <g id="编组-19" transform="translate(16, 12)">
+                    <path d="M9,22 C7.42500001,22 6,21.625 4.65,20.875 C8.175,19.525 10.2,18.55 12.525,13.075 C13.2,13.6 13.95,13.825 14.625,13.825 L12.9,7.825 L6.825,10.525 C7.42500001,10.825 8.32500002,11.2 9.60000001,11.725 C7.72500001,15.325 4.875,17.2 1.05,17.2 C0.37499998,15.925 0,14.425 0,13 C0,8.05 4.05,4 9,4 C13.95,4 18,8.05 18,13 C18,17.95 13.95,22 9,22 Z" id="USDM-One-click-Investment"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

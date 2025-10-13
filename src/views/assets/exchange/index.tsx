@@ -258,6 +258,41 @@ const AssetsExchangeView = () => {
                   />
                 )}
               />
+              <span
+                className="text-primary text-lg cursor-pointer mt-0.5"
+                onClick={() => {
+                  if (!formCoinItem?.id) return;
+                  const balanceV =
+                    balanceList.find(
+                      (v) => v.coin === formCoinItem?.currencyCode
+                    )?.balance || "0";
+                  const formV = utils
+                    .toBigNumber(balanceV)
+                    .decimalPlaces(
+                      utilCoinList.includes(formCoinItem?.currencyCode || "")
+                        ? 2
+                        : 8,
+                      utils.ROUND_DOWN
+                    )
+                    .toString();
+                  setValue("formCoinValue", formV === "NaN" ? "0" : formV);
+                  if (!toCoinItem?.id) return;
+                  const v = utils
+                    .toBigNumber(balanceV)
+                    .multipliedBy(price)
+                    .decimalPlaces(
+                      utilCoinList.includes(toCoinItem?.currencyCode || "")
+                        ? 2
+                        : 8,
+                      utils.ROUND_DOWN
+                    )
+                    .toString();
+
+                  setValue("toCoinValue", v === "NaN" ? "0" : v);
+                }}
+              >
+                {t("walletDetail.all")}
+              </span>
               <div className="text-xs text-text4 absolute bottom-4 right-6">
                 {t("余额")}：
                 {balance(
