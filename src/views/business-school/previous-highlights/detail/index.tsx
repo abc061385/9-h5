@@ -72,8 +72,10 @@ const PreviousHighlightsDetailView = () => {
           className="text-sm leading-5 mt-6"
           dangerouslySetInnerHTML={{
             __html: cityData?.content
-              ? JSON.parse(cityData.content)[locale]
-              : "",
+              ? JSON.parse(cityData.content || "{}")[locale]
+                ? JSON.parse(cityData.content || "{}")[locale]
+                : JSON.parse(cityData?.content || "{}").en
+              : "--",
           }}
         ></p>
         <div className="h-[1px] bg-text3 my-6"></div>
