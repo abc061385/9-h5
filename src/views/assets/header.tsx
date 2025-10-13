@@ -55,7 +55,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      },
+      }
     );
   }, [trigger]);
 
@@ -163,6 +163,23 @@ const HeaderBox = () => {
       >
         <Icon name="smartYieldWallet" className="w-4.5 h-4" />
         <span className="flex-1">Smart Yield Wallet</span>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        onClick={() => {
+          push(`${routerMap.fundBuy}?id=19&pledgeDays=360`);
+        }}
+      >
+        <div className="flex flex-1 gap-4">
+          <Icon name="oneInvestment" className="w-4.5 h-4 mt-1" />
+          <dl className="flex-1">
+            <dt>USDM One-click Investment</dt>
+            <dd className="font-normal text-xs text-text4">
+              No need for manual exchange, complete investment in one step
+            </dd>
+          </dl>
+        </div>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
 

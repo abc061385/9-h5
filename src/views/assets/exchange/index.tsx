@@ -3,7 +3,7 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
 import { Icon } from "@/components/icon";
@@ -26,6 +26,8 @@ type FormData = {
   toCoinValue: string;
 };
 
+const utilCoinList = ["USDT", "USDC", "USDM", "9MC"];
+
 const AssetsExchangeView = () => {
   const t = useTrans();
   const { getBalanceList, balanceList } = useAssetStore();
@@ -44,11 +46,11 @@ const AssetsExchangeView = () => {
 
   const { data, isLoading } = useRequestQuery(
     api.currencySettings.protocolListUsingGet,
-    {},
+    {}
   );
   const { data: priceListRes } = useRequestQuery(
     api.kline.marketSituationUsingGet,
-    { type: "DAY" },
+    { type: "DAY" }
   );
   const lastPrice = useMemo(() => {
     const _list = priceListRes?.data?.situationVOS || [];
@@ -58,7 +60,7 @@ const AssetsExchangeView = () => {
   const currencyList = data?.data as CurrencyInfo[];
 
   const { trigger, isMutating } = useRequestMutation(
-    api.member.flashExchangeUsingPost,
+    api.member.flashExchangeUsingPost
   );
   const Schema = z.object({
     formCoinValue: z.string(),
@@ -66,6 +68,7 @@ const AssetsExchangeView = () => {
   });
 
   const {
+    control,
     register,
     setValue,
     getValues,
@@ -84,9 +87,7 @@ const AssetsExchangeView = () => {
   useEffect(() => {
     if (!currencyList?.length) return;
     const res = currencyList.filter((item) =>
-      ["USDT", "USDC", "USDM", "9MC"].includes(
-        item.currencyCode!.toUpperCase(),
-      ),
+      ["USDT", "USDC", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase())
     );
 
     // const firstSymbol = res[0]?.currencyCode;
@@ -101,15 +102,15 @@ const AssetsExchangeView = () => {
       setToCoinList(
         currencyList.filter(
           (item) =>
-            !["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
-        ),
+            !["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase())
+        )
       );
       return;
     }
     setToCoinList(
       currencyList.filter((item) =>
-        ["USDT"].includes(item.currencyCode!.toUpperCase()),
-      ),
+        ["USDT"].includes(item.currencyCode!.toUpperCase())
+      )
     );
   }, [currencyList, formCoinItem]);
 
@@ -118,10 +119,10 @@ const AssetsExchangeView = () => {
       if (!balanceList?.length) return;
       return formatBalance(
         balanceList.find((v) => v.coin === coin)?.balance || "--",
-        decimalPlaces,
+        decimalPlaces
       );
     },
-    [balanceList],
+    [balanceList]
   );
 
   useEffect(() => {
@@ -157,8 +158,8 @@ const AssetsExchangeView = () => {
       "toCoinValue",
       formatBalance(
         Number(getValues().formCoinValue) * Number(price),
-        toCoinItem?.decimalPlaces || 4,
-      ),
+        utilCoinList.includes(toCoinItem?.currencyCode || "") ? 2 : 8
+      )
     );
   }, [setValue, getValues, price, toCoinItem, formCoinItem]);
 
@@ -171,7 +172,7 @@ const AssetsExchangeView = () => {
         </div>
       );
     },
-    [],
+    []
   );
 
   return (
@@ -216,31 +217,89 @@ const AssetsExchangeView = () => {
                   />
                 </span>
               </Skeleton>
+              <Controller
+                name="formCoinValue"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="number"
+                    {...register("formCoinValue")}
+                    {...field}
+                    className="grow text-xl font-normal text-right placeholder:text-text1"
+                    placeholder="0"
+                    onChange={(e) => {
+                      if (!formCoinItem?.id) return;
+                      const formV = utils
+                        .toBigNumber(e.target.value)
+                        .decimalPlaces(
+                          utilCoinList.includes(
+                            formCoinItem?.currencyCode || ""
+                          )
+                            ? 2
+                            : 8,
+                          utils.ROUND_DOWN
+                        )
+                        .toString();
+                      setValue("formCoinValue", formV === "NaN" ? "0" : formV);
+                      if (!toCoinItem?.id) return;
+                      const v = utils
+                        .toBigNumber(e.target.value)
+                        .multipliedBy(price)
+                        .decimalPlaces(
+                          utilCoinList.includes(toCoinItem?.currencyCode || "")
+                            ? 2
+                            : 8,
+                          utils.ROUND_DOWN
+                        )
+                        .toString();
 
-              <input
-                type="number"
-                {...register("formCoinValue")}
-                className="grow text-xl font-normal text-right placeholder:text-text1"
-                placeholder="0"
-                onChange={(e) => {
-                  if (!formCoinItem?.id || !toCoinItem?.id) return;
+                      setValue("toCoinValue", v === "NaN" ? "0" : v);
+                    }}
+                  />
+                )}
+              />
+              <span
+                className="text-primary text-lg cursor-pointer mt-0.5"
+                onClick={() => {
+                  if (!formCoinItem?.id) return;
+                  const balanceV =
+                    balanceList.find(
+                      (v) => v.coin === formCoinItem?.currencyCode
+                    )?.balance || "0";
+                  const formV = utils
+                    .toBigNumber(balanceV)
+                    .decimalPlaces(
+                      utilCoinList.includes(formCoinItem?.currencyCode || "")
+                        ? 2
+                        : 8,
+                      utils.ROUND_DOWN
+                    )
+                    .toString();
+                  setValue("formCoinValue", formV === "NaN" ? "0" : formV);
+                  if (!toCoinItem?.id) return;
                   const v = utils
-                    .toBigNumber(e.target.value)
+                    .toBigNumber(balanceV)
                     .multipliedBy(price)
                     .decimalPlaces(
-                      toCoinItem.decimalPlaces || 4,
-                      utils.ROUND_DOWN,
+                      utilCoinList.includes(toCoinItem?.currencyCode || "")
+                        ? 2
+                        : 8,
+                      utils.ROUND_DOWN
                     )
                     .toString();
 
                   setValue("toCoinValue", v === "NaN" ? "0" : v);
                 }}
-              />
+              >
+                {t("walletDetail.all")}
+              </span>
               <div className="text-xs text-text4 absolute bottom-4 right-6">
                 {t("余额")}：
                 {balance(
                   formCoinItem?.currencyCode,
-                  formCoinItem?.decimalPlaces || 2,
+                  utilCoinList.includes(formCoinItem?.currencyCode || "")
+                    ? 2
+                    : 8
                 )}
               </div>
             </label>
@@ -290,7 +349,7 @@ const AssetsExchangeView = () => {
                 {t("余额")}：{" "}
                 {balance(
                   toCoinItem?.currencyCode,
-                  toCoinItem?.decimalPlaces || 2,
+                  utilCoinList.includes(toCoinItem?.currencyCode || "") ? 2 : 8
                 )}
               </div>
             </label>
@@ -301,7 +360,7 @@ const AssetsExchangeView = () => {
           {formCoinItem?.currencyCode && toCoinItem?.currencyCode ? (
             <span>
               1 {formCoinItem?.currencyCode} ≈{" "}
-              {formatBalance(price, toCoinItem.decimalPlaces || 4)}{" "}
+              {formatBalance(price, toCoinItem?.decimalPlaces || 4)}{" "}
               {toCoinItem?.currencyCode}
             </span>
           ) : (
@@ -381,10 +440,7 @@ const AssetsExchangeView = () => {
                   className="size-10 rounded-full overflow-hidden"
                 />
                 <b>
-                  {formatBalance(
-                    getValues().formCoinValue,
-                    formCoinItem?.decimalPlaces || 4,
-                  )}{" "}
+                  {formatBalance(getValues().formCoinValue, 2)}{" "}
                   {formCoinItem?.currencyCode}
                 </b>
               </div>
@@ -401,15 +457,15 @@ const AssetsExchangeView = () => {
             </div>
             {fieldEl(
               t("channel"),
-              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`,
+              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`
             )}
             {fieldEl(
               t("兑换价格"),
               `1 ${formCoinItem?.currencyCode} ≈ ${formatBalance(
                 price,
-                toCoinItem?.decimalPlaces || 4,
+                toCoinItem?.decimalPlaces || 4
               )}
-              ${toCoinItem?.currencyCode}`,
+              ${toCoinItem?.currencyCode}`
             )}
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
             <div className="grid grid-flow-row-dense grid-cols-3 gap-2 mt-9">
@@ -438,7 +494,7 @@ const AssetsExchangeView = () => {
                         setValue("toCoinValue", "");
                         setConfirmOpen(false);
                       },
-                    },
+                    }
                   );
                 }}
               >
