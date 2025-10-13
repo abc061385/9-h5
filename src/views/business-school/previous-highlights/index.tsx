@@ -6,6 +6,7 @@ import ViewLayout from "@/components/layout";
 import HorizontalTabs, { TabItem } from "@/components/tabs/horizontal-tabs";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { APILang } from "@/i18n/routing";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
 import { useLocale } from "next-intl";
@@ -112,8 +113,12 @@ const PreviousHighlightsView = () => {
           className="text-sm mt-4"
           dangerouslySetInnerHTML={{
             __html:
-              meetInfo?.i18nList?.find((v) => v.language === locale)
-                ?.meetDesc || "",
+              meetInfo?.i18nList?.find(
+                (v) =>
+                  v.language === (APILang as Record<string, string>)[locale]
+              )?.meetDesc ||
+              meetInfo?.i18nList?.find((v) => v.language === "en")?.meetDesc ||
+              "",
           }}
         ></p>
         <div className="h-[1px] bg-bg3 mt-6"></div>
