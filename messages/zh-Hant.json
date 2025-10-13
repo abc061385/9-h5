@@ -923,7 +923,6 @@
   "meeting": "會議",
   "liveVideo": "現場影片",
   "onSitePhotos": "現場照片",
-  "businessSchool": "9M AI全球商學院",
   "seeMore": "查看更多",
   "journey": "9M旅程",
   "mainHeading": "全球智慧，AI驅動——9M AI征服全球金融新高度",
@@ -935,8 +934,9 @@
   "businessSchoolDesc2": "這些中心不僅是我們觸達用戶、連接本地社區的前沿陣地，更是教育、培訓、交流與合作的重要平台。",
   "businessSchoolDesc3": "我們堅信，金融科技的未來不僅存在於線上空間，更在於線下社區的溫暖與信任。",
   "mainDescription1": "每一步前進都見證著技術實力、生態系統規模和全球影響力的持續增長。",
-  "businessSchool1": "商學院",
   "fullMeetName1": "講師訓練營",
   "fullMeetName2": "資產管理訓練營",
-  "fullMeetName3": ""
+  "fullMeetName3": "",
+  "businessSchool1": "全球活動中心",
+  "businessSchool": "9M AI全球活動中心"
 }

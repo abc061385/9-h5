@@ -923,7 +923,6 @@
   "meeting": "Meeting",
   "liveVideo": "Live video",
   "onSitePhotos": "On-site photos",
-  "businessSchool": "9M AI Global Business School",
   "seeMore": "See more",
   "journey": "9M journey",
   "mainHeading": "Global Wisdom, AI-Driven — 9M AI Conquers New Heights in Global Finance",
@@ -932,8 +931,9 @@
   "registerEvent": "Register for the event",
   "previousHighlights": "Previous highlights",
   "mainDescription1": "Every step forward witnesses the continuous growth of technological strength, ecosystem scale, and global influence.",
-  "businessSchool1": "Business School",
   "fullMeetName1": "Lecturer Training Camp",
   "fullMeetName2": "Asset Management Training Camp",
-  "fullMeetName3": ""
+  "fullMeetName3": "",
+  "businessSchool1": "Global Events Center",
+  "businessSchool": "9M AI Global Activity Center"
 }
