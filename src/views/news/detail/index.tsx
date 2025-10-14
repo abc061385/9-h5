@@ -38,7 +38,7 @@ const NewsDetailView = () => {
         <div
           className="my-4 text-sm text-text4"
           dangerouslySetInnerHTML={{
-            __html: newsDetail?.["content" + (langType[locale] || "En")] || "",
+            __html: newsDetail?.["content"] || "",
           }}
         ></div>
       </div>

@@ -8,16 +8,18 @@ import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import BaseImage from "@/components/base-image";
 import toast from "react-hot-toast";
-import { useLocale } from "next-intl";
-import { langType } from "../news";
+// import { useLocale } from "next-intl";
+// import { langType } from "../news";
+import { AnnouncementRespDTO } from "@/api/NineIndexClient";
+// import { APILang } from "@/i18n/routing";
 // import ChartBox from "./chart";
 
 const FundBox = () => {
   const t = useTrans();
   const { push } = useRouter();
-  const locale = useLocale();
+  // const locale = useLocale();
   const [pledgeDays] = useState(360);
-  const [newsList, setNewsList] = useState<NewsDataType[]>([]);
+  const [newsList, setNewsList] = useState<AnnouncementRespDTO[]>([]);
 
   const { data } = useRequestQuery(api.fundProductConfig.pageUsingGet2, {
     pledgeDays: pledgeDays,
@@ -30,9 +32,13 @@ const FundBox = () => {
   const list: TokenListType[] = data?.data?.list || [];
 
   const getList = useCallback(async () => {
-    const { data } = await api.cms.pageAnnouncementUsingGet({
-      pageNo: 1,
-      pageSize: 1,
+    // const { data } = await api.cms.pageAnnouncementUsingGet({
+    //   pageNo: 1,
+    //   pageSize: 1,
+    // });
+    const { data } = await api.nineIndex.announcement.getAnnouncementPage({
+      pageNo: "1",
+      pageSize: "1",
     });
     setNewsList(data?.list || []);
   }, []);
@@ -68,7 +74,7 @@ const FundBox = () => {
       >
         <Icon name="trumpet" className="size-6 mr-2" />
         <p className="flex-1 text-left mr-8 truncate text-xs">
-          {newsList?.[0]?.["title" + (langType[locale] || "En")]}
+          {newsList?.[0]?.["title"]}
         </p>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
@@ -102,7 +108,7 @@ const FundBox = () => {
             className="bg-bg2 rounded-2xl p-4"
             onClick={() =>
               push(
-                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`
+                `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`,
               )
             }
           >

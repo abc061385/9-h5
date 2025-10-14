@@ -5,11 +5,12 @@ import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { NewsDataType } from "./type";
-import { useLocale } from "next-intl";
+// import { NewsDataType } from "./type";
+// import { useLocale } from "next-intl";
 import { Icon } from "@/components/icon";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
+import { AnnouncementRespDTO } from "@/api/NineIndexClient";
 
 export const langType: {
   [key: string]: string;
@@ -22,15 +23,19 @@ export const langType: {
 const NewsView = () => {
   const { push } = useRouter();
   const t = useTrans();
-  const locale = useLocale();
+  // const locale = useLocale();
 
   const [pageSize] = useState(15);
 
   const getList = useCallback(
     async (page: number) => {
-      const { data } = await api.cms.pageAnnouncementUsingGet({
-        pageNo: page,
-        pageSize: pageSize,
+      // const { data } = await api.cms.pageAnnouncementUsingGet({
+      //   pageNo: page,
+      //   pageSize: pageSize,
+      // });
+      const { data } = await api.nineIndex.announcement.getAnnouncementPage({
+        pageNo: page.toString(),
+        pageSize: pageSize.toString(),
       });
       const newData = data?.list || [];
       return {
@@ -38,7 +43,7 @@ const NewsView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [pageSize]
+    [pageSize],
   );
 
   return (
@@ -54,10 +59,10 @@ const NewsView = () => {
           </button>
         </div>
         <div className="grow">
-          <InfiniteVirtuosoList<NewsDataType>
+          <InfiniteVirtuosoList<AnnouncementRespDTO>
             fetchData={getList}
             columns={1}
-            renderItem={(item: NewsDataType) => (
+            renderItem={(item: AnnouncementRespDTO) => (
               <div
                 key={item.id}
                 className="pb-4 mt-4 text-sm border-b border-assist1 "
@@ -67,9 +72,7 @@ const NewsView = () => {
                 }}
               >
                 <div className="flex items-center">
-                  <div className="flex-1 text-xs mb-2">
-                    {item["title" + (langType[locale] || "En")]}
-                  </div>
+                  <div className="flex-1 text-xs mb-2">{item["title"]}</div>
                 </div>
                 <div className="text-text2 text-xs">{item.createTime}</div>
               </div>

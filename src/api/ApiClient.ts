@@ -636,6 +636,7 @@ export class Api<
         code?: string;
         /** @format date-time */
         createTime?: string;
+        dayWithdrawMax?: number;
         emailAccount?: string;
         googleSecretKey?: string;
         /** @format int32 */
@@ -1277,6 +1278,160 @@ export class Api<
         method: "POST",
         query: query,
         type: ContentType.Json,
+        ...params,
+      }),
+  };
+  businessCollegeMeetType = {
+    /**
+     * No description
+     *
+     * @tags 商学院会议类型
+     * @name GetMeetUpListUsingGet
+     * @summary 获取下拉菜单数据
+     * @request GET:/business-college-meet-type/meet-up-list
+     */
+    getMeetUpListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/business-college-meet-type/meet-up-list`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 商学院会议类型
+     * @name GetPageListUsingGet1
+     * @summary 分页列表
+     * @request GET:/business-college-meet-type/page-list
+     */
+    getPageListUsingGet1: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/business-college-meet-type/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+  };
+  businessCollege = {
+    /**
+     * No description
+     *
+     * @tags 商学院
+     * @name DetailUsingGet1
+     * @summary 根据ID获取商学院详情
+     * @request GET:/business-college/detail
+     */
+    detailUsingGet1: (
+      query?: {
+        /**
+         * id
+         * @format int64
+         */
+        id?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/business-college/detail`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 商学院
+     * @name GetListByMeetTypeUsingGet
+     * @summary 根据会议类型获取商学院列表
+     * @request GET:/business-college/meet-type/list
+     */
+    getListByMeetTypeUsingGet: (
+      query: {
+        /**
+         * meetTypeId
+         * @format int64
+         */
+        meetTypeId?: number;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/business-college/meet-type/list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 商学院
+     * @name GetPageListUsingGet
+     * @summary 分页列表
+     * @request GET:/business-college/page-list
+     */
+    getPageListUsingGet: (
+      query: {
+        /**
+         * meetTypeId
+         * @format int64
+         */
+        meetTypeId?: number;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/business-college/page-list`,
+        method: "GET",
+        query: query,
         ...params,
       }),
   };
@@ -1992,6 +2147,43 @@ export class Api<
      * No description
      *
      * @tags currency-settings-controller
+     * @name GetBaseCurrenciesUsingGet
+     * @summary 获取可选源币种列表
+     * @request GET:/currency-settings/flash-exchange/base-currencies
+     */
+    getBaseCurrenciesUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/currency-settings/flash-exchange/base-currencies`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags currency-settings-controller
+     * @name GetToCurrenciesByFromCurrencyUsingGet
+     * @summary 根据源币种获取可兑换的目标币种列表
+     * @request GET:/currency-settings/flash-exchange/target-currencies
+     */
+    getToCurrenciesByFromCurrencyUsingGet: (
+      query?: {
+        /** fromCurrency */
+        fromCurrency?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_, void>({
+        path: `/currency-settings/flash-exchange/target-currencies`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags currency-settings-controller
      * @name PageUsingGet1
      * @summary 列表
      * @request GET:/currency-settings/list
@@ -2331,11 +2523,11 @@ export class Api<
      * No description
      *
      * @tags fund-product-config-controller
-     * @name DetailUsingGet1
+     * @name DetailUsingGet2
      * @summary detail
      * @request GET:/fund-product-config/detail
      */
-    detailUsingGet1: (
+    detailUsingGet2: (
       query?: {
         /**
          * id
@@ -2720,11 +2912,11 @@ export class Api<
      * No description
      *
      * @tags 全球活动中心
-     * @name DetailUsingGet2
+     * @name DetailUsingGet3
      * @summary 根据ID获取活动详情
      * @request GET:/global-activity/detail
      */
-    detailUsingGet2: (
+    detailUsingGet3: (
       query?: {
         /**
          * id
@@ -2745,11 +2937,26 @@ export class Api<
      * No description
      *
      * @tags 全球活动中心
-     * @name GetPageListUsingGet
+     * @name GetGlobalStudioListUsingGet
+     * @summary 获取全局活动中心举办城市
+     * @request GET:/global-activity/global-studio/list
+     */
+    getGlobalStudioListUsingGet: (params: RequestParams = {}) =>
+      this.request<_, void>({
+        path: `/global-activity/global-studio/list`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 全球活动中心
+     * @name GetPageListUsingGet2
      * @summary 分页列表
      * @request GET:/global-activity/page-list
      */
-    getPageListUsingGet: (
+    getPageListUsingGet2: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;
@@ -3060,11 +3267,11 @@ export class Api<
      * No description
      *
      * @tags meetup
-     * @name GetPageListUsingGet1
+     * @name GetPageListUsingGet3
      * @summary meetup分页列表
      * @request GET:/meetup/page-list
      */
-    getPageListUsingGet1: (
+    getPageListUsingGet3: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;
@@ -5692,11 +5899,11 @@ export class Api<
      * No description
      *
      * @tags 工作室
-     * @name GetPageListUsingGet2
+     * @name GetPageListUsingGet4
      * @summary 工作室分页列表
      * @request GET:/workroom/page-list
      */
-    getPageListUsingGet2: (
+    getPageListUsingGet4: (
       query: {
         /** 排序方式 asc/desc */
         order?: string;

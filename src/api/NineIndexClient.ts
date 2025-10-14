@@ -346,6 +346,49 @@ export interface CommonResultListBannerRespDTO {
   msg?: string;
 }
 
+export interface CommonResultListPrivacyPolicyRespDTO {
+  /** @format int32 */
+  code: number;
+  data: PrivacyPolicyRespDTO[];
+  msg?: string;
+}
+
+export interface PrivacyPolicyRespDTO {
+  /**
+   * 隐私政策ID
+   * @format int64
+   */
+  id?: number;
+  /** 标题 */
+  title?: string;
+  /** 内容 */
+  content?: string;
+  /**
+   * 类型：1: 隐私政策，2: 基金投资协议，3：服务条款，4：关于我们，5：平台介绍
+   * @format int32
+   */
+  type?: number;
+  /** 状态 */
+  status?: boolean;
+  /**
+   * 创建时间
+   * @format date-time
+   */
+  createTime?: string;
+  /**
+   * 更新时间
+   * @format date-time
+   */
+  updatedTime?: string;
+}
+
+export interface CommonResultPrivacyPolicyRespDTO {
+  /** @format int32 */
+  code: number;
+  data: PrivacyPolicyRespDTO;
+  msg?: string;
+}
+
 export interface CommonResultListPopupItem {
   /** @format int32 */
   code: number;
@@ -447,6 +490,52 @@ export interface CommonResultCardKyc {
   /** @format int32 */
   code: number;
   data: CardKyc;
+  msg?: string;
+}
+
+/** 数据 */
+export interface AnnouncementRespDTO {
+  /**
+   * 公告ID
+   * @format int64
+   */
+  id?: number;
+  /** 标题 */
+  title?: string;
+  /** 内容 */
+  content?: string;
+  /** 状态 */
+  status?: boolean;
+  /**
+   * 创建时间
+   * @format date-time
+   */
+  createTime?: string;
+}
+
+export interface CommonResultPageResultAnnouncementRespDTO {
+  /** @format int32 */
+  code: number;
+  /** 分页结果 */
+  data: PageResultAnnouncementRespDTO;
+  msg?: string;
+}
+
+/** 分页结果 */
+export interface PageResultAnnouncementRespDTO {
+  /** 数据 */
+  list: AnnouncementRespDTO[];
+  /**
+   * 总量
+   * @format int64
+   */
+  total: number;
+}
+
+export interface CommonResultListAnnouncementRespDTO {
+  /** @format int32 */
+  code: number;
+  data: AnnouncementRespDTO[];
   msg?: string;
 }
 
@@ -709,10 +798,16 @@ export class Api<
      * @summary 下拉选项
      * @request GET:/card-kyc/options
      */
-    options: (params: RequestParams = {}) =>
+    options: (
+      query?: {
+        language?: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<CommonResultCardKycOptionsRespDTO, any>({
         path: `/card-kyc/options`,
         method: "GET",
+        query: query,
         ...params,
       }),
 
@@ -1106,6 +1201,101 @@ export class Api<
         path: `/banner/list`,
         method: "POST",
         query: query,
+        ...params,
+      }),
+  };
+  privacyPolicy = {
+    /**
+     * No description
+     *
+     * @tags 隐私政策
+     * @name GetPrivacyPolicies
+     * @summary 获取隐私政策列表
+     * @request GET:/privacy-policy/list
+     */
+    getPrivacyPolicies: (
+      query: {
+        /** @format int32 */
+        type: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultListPrivacyPolicyRespDTO, any>({
+        path: `/privacy-policy/list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 隐私政策
+     * @name GetPrivacyPolicy
+     * @summary 根据类型获取隐私政策详情
+     * @request GET:/privacy-policy/infoByType
+     */
+    getPrivacyPolicy: (
+      query: {
+        /** @format int32 */
+        type: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultPrivacyPolicyRespDTO, any>({
+        path: `/privacy-policy/infoByType`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+  };
+  announcement = {
+    /**
+     * No description
+     *
+     * @tags 公告
+     * @name GetAnnouncementPage
+     * @summary 获得公告分页
+     * @request GET:/announcement/page
+     */
+    getAnnouncementPage: (
+      query: {
+        language?: string;
+        /**
+         * 页码，从 1 开始
+         * @min 1
+         * @example 1
+         */
+        pageNo: string;
+        /**
+         * 每页条数，最大值为 100
+         * @min 1
+         * @max 100
+         * @example 10
+         */
+        pageSize: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<CommonResultPageResultAnnouncementRespDTO, any>({
+        path: `/announcement/page`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 公告
+     * @name GetAnnouncements
+     * @summary 获取公告列表
+     * @request GET:/announcement/list
+     */
+    getAnnouncements: (params: RequestParams = {}) =>
+      this.request<CommonResultListAnnouncementRespDTO, any>({
+        path: `/announcement/list`,
+        method: "GET",
         ...params,
       }),
   };
