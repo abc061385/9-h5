@@ -66,8 +66,6 @@ const FundBuyView = () => {
     );
   }, [trigger, params, setField]);
 
-  console.log(params.get("oneClick"));
-
   return (
     <ViewLayout
       heightFull

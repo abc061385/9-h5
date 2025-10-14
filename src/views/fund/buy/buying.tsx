@@ -11,6 +11,7 @@ import { useFundStore } from "@/store/useFundStore";
 import { Icon } from "@/components/icon";
 import ConfirmOrderBox from "./confirm";
 import { useAssetStore } from "@/store/useAssetStore";
+import { ShowIf } from "@/components/show-if";
 
 const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const t = useTrans();
@@ -117,6 +118,10 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
     formatBalance,
   ]);
 
+  const isOneClick = useMemo(() => {
+    return params.get("oneClick") === "1";
+  }, [params]);
+
   return (
     <div className="flex flex-col flex-1">
       <h2 className="mt-6 mb-2 font-medium text-base">{t("买入基金")}</h2>
@@ -154,6 +159,24 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           }}
         />
       </label>
+
+      <ShowIf condition={isOneClick}>
+        <div className="flex items-center text-sm mt-2">
+          <label className="label text-text1 mb-1">
+            <input
+              type="checkbox"
+              className="checkbox checkbox-neutral"
+              checked={isAgreement}
+              onChange={(e) => setIsAgreement(e.target.checked)}
+            />
+            Use the USDT balance in your account
+          </label>
+        </div>
+        <p className="text-xs text-text4 pl-6">
+          Check this option to prioritize the use of USDT balance. Any shortfall
+          will be automatically supplemented with USDM.
+        </p>
+      </ShowIf>
 
       <h3 className="text-sm my-4 flex justify-between">
         <span>{t("您需支付")}</span>
