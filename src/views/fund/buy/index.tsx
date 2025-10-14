@@ -38,7 +38,7 @@ const FundBuyView = () => {
     productType: 0,
   });
 
-  const { trigger } = useRequestMutation(api.fundProductConfig.detailUsingGet1);
+  const { trigger } = useRequestMutation(api.fundProductConfig.detailUsingGet2);
 
   useEffect(() => {
     if (!params.get("id")) return;
