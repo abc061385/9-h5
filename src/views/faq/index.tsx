@@ -3,8 +3,6 @@
 import { api } from "@/api";
 import ViewLayout from "@/components/layout";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
-import { langType } from "../news";
-import { useLocale } from "next-intl";
 import BaseImage from "@/components/base-image";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useMemo } from "react";
@@ -38,18 +36,20 @@ function getFirstTagText(html: string) {
 //   return texts;
 // }
 const FAQView = () => {
-  const locale = useLocale();
   const t = useTrans();
   const { push } = useRouter();
 
-  const { data, isLoading } = useRequestQuery(api.cms.getByTypeUsingGet, {
-    type: 5,
-  });
+  const { data, isLoading } = useRequestQuery(
+    api.nineIndex.privacyPolicy.getPrivacyPolicy,
+    {
+      type: 5,
+    },
+  );
 
   const content = useMemo(() => {
     const detail = data?.data || {};
-    return detail?.["content" + (langType[locale] || "En")] || "";
-  }, [data?.data, locale]);
+    return detail?.["content"] || "";
+  }, [data?.data]);
   return (
     <ViewLayout heightFull>
       <div className="p-content">
