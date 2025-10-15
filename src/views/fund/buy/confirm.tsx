@@ -115,7 +115,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
               pledgeId: number;
               totalAmount: number;
               isReinvestment: boolean;
-              isUsdtFirst?: number;
+              isUsdtFirst?: string;
               isFastPledge?: number;
             } = {
               productId: Number(buyData?.productId ?? 0),
@@ -125,7 +125,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
             };
 
             if (isOneClick) {
-              params.isUsdtFirst = usdtFirstIs ? 1 : 0;
+              params.isUsdtFirst = usdtFirstIs || "0";
               params.isFastPledge = 1;
             }
             postBuy(params, {

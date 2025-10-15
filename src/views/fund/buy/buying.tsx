@@ -160,6 +160,10 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
     return params.get("oneClick") === "1";
   }, [params]);
 
+  useEffect(() => {
+    setField("usdtFirstIs", "0");
+  }, [setField]);
+
   return (
     <div className="flex flex-col flex-1">
       <h2 className="mt-6 mb-2 font-medium text-base">{t("买入基金")}</h2>
@@ -207,7 +211,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
               checked={isUsdtFirst}
               onChange={(e) => {
                 setIsUsdtFirst(e.target.checked);
-                setField("usdtFirstIs", e.target.checked);
+                setField("usdtFirstIs", e.target.checked ? "1" : "0");
               }}
             />
             {t("useUSDTBalance")}
