@@ -51,11 +51,11 @@ const AssetsExchangeView = () => {
 
   const { data, isLoading } = useRequestQuery(
     api.currencySettings.protocolListUsingGet,
-    {}
+    {},
   );
   const { data: priceListRes } = useRequestQuery(
     api.kline.marketSituationUsingGet,
-    { type: "DAY" }
+    { type: "DAY" },
   );
   const lastPrice = useMemo(() => {
     const _list = priceListRes?.data?.situationVOS || [];
@@ -65,7 +65,7 @@ const AssetsExchangeView = () => {
   const currencyList = data?.data as CurrencyInfo[];
 
   const { trigger, isMutating } = useRequestMutation(
-    api.member.flashExchangeUsingPost
+    api.member.flashExchangeUsingPost,
   );
   const Schema = z.object({
     formCoinValue: z.string(),
@@ -92,12 +92,9 @@ const AssetsExchangeView = () => {
   useEffect(() => {
     if (!currencyList?.length) return;
     const res = currencyList.filter((item) =>
-      [
-        "USDT",
-        "USDC",
-        "USDM",
-        //"9MC"
-      ].includes(item.currencyCode!.toUpperCase()),
+      ["USDT", "USDC", "USDM", "9MC"].includes(
+        item.currencyCode!.toUpperCase(),
+      ),
     );
 
     // const firstSymbol = res[0]?.currencyCode;
@@ -117,20 +114,20 @@ const AssetsExchangeView = () => {
               "USDM",
               "9MC",
               // 新增关闭USDT兑换
-              "ADA",
-              "BTC",
-              "ETH",
-              "BNB",
-              "SOL",
-              "DOGE",
-              "SHIB",
-              "SUI",
-              "XRP",
-              "FIL",
-              "LTC",
-              "TON",
-              "OP",
-              "POL",
+              // "ADA",
+              // "BTC",
+              // "ETH",
+              // "BNB",
+              // "SOL",
+              // "DOGE",
+              // "SHIB",
+              // "SUI",
+              // "XRP",
+              // "FIL",
+              // "LTC",
+              // "TON",
+              // "OP",
+              // "POL",
             ].includes(item.currencyCode!.toUpperCase()),
         ),
       );
@@ -138,8 +135,8 @@ const AssetsExchangeView = () => {
     }
     setToCoinList(
       currencyList.filter((item) =>
-        ["USDT"].includes(item.currencyCode!.toUpperCase())
-      )
+        ["USDT"].includes(item.currencyCode!.toUpperCase()),
+      ),
     );
   }, [currencyList, formCoinItem]);
 
@@ -148,10 +145,10 @@ const AssetsExchangeView = () => {
       if (!balanceList?.length) return;
       return formatBalance1(
         balanceList.find((v) => v.coin === coin)?.balance || "--",
-        decimalPlaces
+        decimalPlaces,
       );
     },
-    [balanceList]
+    [balanceList],
   );
 
   useEffect(() => {
@@ -187,8 +184,8 @@ const AssetsExchangeView = () => {
       "toCoinValue",
       formatBalance(
         Number(getValues().formCoinValue) * Number(price),
-        utilCoinList.includes(toCoinItem?.currencyCode || "") ? 2 : 8
-      )
+        utilCoinList.includes(toCoinItem?.currencyCode || "") ? 2 : 8,
+      ),
     );
   }, [setValue, getValues, price, toCoinItem, formCoinItem]);
 
@@ -201,7 +198,7 @@ const AssetsExchangeView = () => {
         </div>
       );
     },
-    []
+    [],
   );
 
   return (
@@ -269,7 +266,7 @@ const AssetsExchangeView = () => {
                       if (!formCoinItem?.id) return;
 
                       const decimalPlaces = utilCoinList.includes(
-                        formCoinItem?.currencyCode || ""
+                        formCoinItem?.currencyCode || "",
                       )
                         ? 2
                         : 8;
@@ -290,7 +287,7 @@ const AssetsExchangeView = () => {
                           utilCoinList.includes(toCoinItem?.currencyCode || "")
                             ? 2
                             : 8,
-                          utils.ROUND_DOWN
+                          utils.ROUND_DOWN,
                         )
                         .toString();
 
@@ -305,7 +302,7 @@ const AssetsExchangeView = () => {
                   if (!formCoinItem?.id) return;
                   const balanceV =
                     balanceList.find(
-                      (v) => v.coin === formCoinItem?.currencyCode
+                      (v) => v.coin === formCoinItem?.currencyCode,
                     )?.balance || "0";
                   const formV = utils
                     .toBigNumber(balanceV)
@@ -313,7 +310,7 @@ const AssetsExchangeView = () => {
                       utilCoinList.includes(formCoinItem?.currencyCode || "")
                         ? 2
                         : 8,
-                      utils.ROUND_DOWN
+                      utils.ROUND_DOWN,
                     )
                     .toString();
                   setValue("formCoinValue", formV === "NaN" ? "0" : formV);
@@ -325,7 +322,7 @@ const AssetsExchangeView = () => {
                       utilCoinList.includes(toCoinItem?.currencyCode || "")
                         ? 2
                         : 8,
-                      utils.ROUND_DOWN
+                      utils.ROUND_DOWN,
                     )
                     .toString();
 
@@ -340,7 +337,7 @@ const AssetsExchangeView = () => {
                   formCoinItem?.currencyCode,
                   utilCoinList.includes(formCoinItem?.currencyCode || "")
                     ? 8
-                    : 8
+                    : 8,
                 )}
                 {/* PM: 兑换币种的可用余额展示全部都是展示八位 */}
               </div>
@@ -391,7 +388,7 @@ const AssetsExchangeView = () => {
                 {t("余额")}：{" "}
                 {balance(
                   toCoinItem?.currencyCode,
-                  utilCoinList.includes(toCoinItem?.currencyCode || "") ? 8 : 8
+                  utilCoinList.includes(toCoinItem?.currencyCode || "") ? 8 : 8,
                 )}
               </div>
             </label>
@@ -499,15 +496,15 @@ const AssetsExchangeView = () => {
             </div>
             {fieldEl(
               t("channel"),
-              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`
+              `${formCoinItem?.currencyCode} → ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(
               t("兑换价格"),
               `1 ${formCoinItem?.currencyCode} ≈ ${formatBalance(
                 price,
-                toCoinItem?.decimalPlaces || 4
+                toCoinItem?.decimalPlaces || 4,
               )}
-              ${toCoinItem?.currencyCode}`
+              ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
             <div className="grid grid-flow-row-dense grid-cols-3 gap-2 mt-9">
@@ -536,7 +533,7 @@ const AssetsExchangeView = () => {
                         setValue("toCoinValue", "");
                         setConfirmOpen(false);
                       },
-                    }
+                    },
                   );
                 }}
               >
