@@ -84,9 +84,12 @@ const AssetsExchangeView = () => {
   useEffect(() => {
     if (!currencyList?.length) return;
     const res = currencyList.filter((item) =>
-      ["USDT", "USDC", "USDM", "9MC"].includes(
-        item.currencyCode!.toUpperCase(),
-      ),
+      [
+        "USDT",
+        "USDC",
+        "USDM",
+        //"9MC"
+      ].includes(item.currencyCode!.toUpperCase()),
     );
 
     // const firstSymbol = res[0]?.currencyCode;
@@ -101,7 +104,26 @@ const AssetsExchangeView = () => {
       setToCoinList(
         currencyList.filter(
           (item) =>
-            !["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
+            ![
+              "USDT",
+              "USDM",
+              "9MC",
+              // 新增关闭USDT兑换
+              "ADA",
+              "BTC",
+              "ETH",
+              "BNB",
+              "SOL",
+              "DOGE",
+              "SHIB",
+              "SUI",
+              "XRP",
+              "FIL",
+              "LTC",
+              "TON",
+              "OP",
+              "POL",
+            ].includes(item.currencyCode!.toUpperCase()),
         ),
       );
       return;
@@ -348,7 +370,7 @@ const AssetsExchangeView = () => {
           <CoinList
             list={toCoinList}
             checkValue={toCoinItem?.id}
-            onCancel={() => setFormDrawerOpen(false)}
+            onCancel={() => setToDrawerOpen(false)}
             onClick={(item) => {
               setToCoinItem(item);
               setToDrawerOpen(false);
