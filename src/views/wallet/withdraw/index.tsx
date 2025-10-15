@@ -18,7 +18,7 @@ import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
 import useSchema from "./useSchema";
 import SecurityVerification from "@/components/security-verify";
-import { formatThousand } from "@/lib/utils";
+import { formatBalance1 } from "@/lib/utils";
 
 const WithdrawView = () => {
   const { push } = useRouter();
@@ -32,7 +32,7 @@ const WithdrawView = () => {
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
   const addressPreviousPageType = useSettingStore(
-    (s) => s.addressPreviousPageType,
+    (s) => s.addressPreviousPageType
   );
   const addressInfo = useSettingStore((s) => s.addressInfo);
 
@@ -61,7 +61,7 @@ const WithdrawView = () => {
   });
   const { data: accountResponse } = useRequestQuery(
     api.wallet.listUsingPost,
-    {},
+    {}
   );
   const accountList: Account[] = accountResponse?.data?.wallet;
   const currencyAccount = useMemo(() => {
@@ -75,8 +75,8 @@ const WithdrawView = () => {
     withdrawalFeeType === "fixed"
       ? currencyCode
       : withdrawalFeeType === "percentage"
-        ? "%"
-        : "";
+      ? "%"
+      : "";
 
   const handleNext = () => {
     setField("formState", getValues());
@@ -220,17 +220,32 @@ const WithdrawView = () => {
             <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
               {t("withdraw.amount")}
             </legend>
-            <label className="input w-full h-12">
-              <input
-                type="number"
-                placeholder={t("withdraw.amount")}
-                className="grow"
-                {...register("withdrawAmount")}
-              />
-              <span>{getValues("currencyCode")}</span>
-            </label>
+            <Controller
+              name="withdrawAmount"
+              control={control}
+              render={({ field }) => (
+                <label className="input w-full h-12">
+                  <input
+                    type="number"
+                    placeholder={t("withdraw.amount")}
+                    className="grow"
+                    {...register("withdrawAmount")}
+                    {...field}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      // 允许输入整数或最多两位小数
+                      if (!/^\d*(\.\d{0,8})?$/.test(val)) {
+                        return;
+                      }
+                      setValue("withdrawAmount", val);
+                    }}
+                  />
+                  <span>{getValues("currencyCode")}</span>
+                </label>
+              )}
+            />
             <p className="text-text4 text-xs">
-              {t("余额")}：{formatThousand(currencyAccount?.balance || 0)}{" "}
+              {t("余额")}：{formatBalance1(currencyAccount?.balance || 0, 8)}{" "}
               {getValues("currencyCode")}
             </p>
             <TextError>{errors.withdrawAmount?.message}</TextError>
