@@ -909,5 +909,11 @@
   "uploadSelfieWithId": "Vui lòng tải lên ảnh selfie cầm chứng minh thư",
   "transfer_amount": "Số lượng",
   "DepositintoSmartYieldWallet": "Nạp vào Smart Yield Wallet",
-  "withdrawFromSmartWallet": "Rút từ Smart Yield Wallet"
+  "withdrawFromSmartWallet": "Rút từ Smart Yield Wallet",
+  "oneClickInvestment": "Đầu tư một chạm USDM",
+  "investmentDescription": "Không cần đổi thủ công, hoàn tất đầu tư một bước",
+  "useUSDTBalance": "Dùng số dư USDT trong tài khoản",
+  "balancePriority": "Chọn ưu tiên dùng USDT, phần thiếu sẽ bổ sung bằng USDM",
+  "swapAmount": "Số lượng (USDM)",
+  "usdtAmount": "Số USDT hệ thống nhận được từ việc đổi USDM"
 }

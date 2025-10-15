@@ -12,7 +12,12 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
-import { encryptPassword, formatBalance, utils } from "@/lib/utils";
+import {
+  encryptPassword,
+  formatBalance,
+  formatBalance1,
+  utils,
+} from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import CoinList from "./coin-list";
@@ -117,7 +122,7 @@ const AssetsExchangeView = () => {
   const balance = useCallback(
     (coin: string | undefined, decimalPlaces: number) => {
       if (!balanceList?.length) return;
-      return formatBalance(
+      return formatBalance1(
         balanceList.find((v) => v.coin === coin)?.balance || "--",
         decimalPlaces
       );
@@ -222,28 +227,40 @@ const AssetsExchangeView = () => {
                 control={control}
                 render={({ field }) => (
                   <input
-                    type="number"
+                    type="text"
                     {...register("formCoinValue")}
                     {...field}
                     className="grow text-xl font-normal text-right placeholder:text-text1"
                     placeholder="0"
+                    inputMode="decimal" // 让手机键盘仍然显示数字键盘
                     onChange={(e) => {
+                      const val = e.target.value;
+
+                      // 允许输入整数或最多两位小数
+                      if (!/^\d*(\.\d{0,2})?$/.test(val)) {
+                        return; // 不符合规则则不更新
+                      }
+
+                      // 如果没有选择币种则不处理
                       if (!formCoinItem?.id) return;
+
+                      const decimalPlaces = utilCoinList.includes(
+                        formCoinItem?.currencyCode || ""
+                      )
+                        ? 2
+                        : 8;
+
                       const formV = utils
-                        .toBigNumber(e.target.value)
-                        .decimalPlaces(
-                          utilCoinList.includes(
-                            formCoinItem?.currencyCode || ""
-                          )
-                            ? 2
-                            : 8,
-                          utils.ROUND_DOWN
-                        )
+                        .toBigNumber(val || 0)
+                        .decimalPlaces(decimalPlaces, utils.ROUND_DOWN)
                         .toString();
-                      setValue("formCoinValue", formV === "NaN" ? "0" : formV);
+
+                      setValue("formCoinValue", formV === "NaN" ? "0" : val);
+
                       if (!toCoinItem?.id) return;
+
                       const v = utils
-                        .toBigNumber(e.target.value)
+                        .toBigNumber(val || 0)
                         .multipliedBy(price)
                         .decimalPlaces(
                           utilCoinList.includes(toCoinItem?.currencyCode || "")

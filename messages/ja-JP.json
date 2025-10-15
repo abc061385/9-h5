@@ -909,5 +909,11 @@
   "uploadSelfieWithId": "身分証を持った自撮り写真をアップロードしてください",
   "transfer_amount": "数量",
   "DepositintoSmartYieldWallet": "Smart Yield Wallet に入金する",
-  "withdrawFromSmartWallet": "Smart Yield Wallet から出金する"
+  "withdrawFromSmartWallet": "Smart Yield Wallet から出金する",
+  "oneClickInvestment": "USDMワンクリック投資",
+  "investmentDescription": "手動交換不要、1ステップで投資完了",
+  "useUSDTBalance": "口座のUSDT残高を使用",
+  "balancePriority": "USDT優先利用、不足分はUSDMで自動補充",
+  "swapAmount": "交換数量 (USDM)",
+  "usdtAmount": "USDM交換で得られるUSDT数量"
 }

@@ -903,5 +903,11 @@
   "completionNote": "Compila le informazioni relevanti per completare la candidatura alla Carta U. Sarai notified del risultato via email.",
   "stepsSummary": "Candidarsi per una Carta U richiede solo tre passi: compila le informazioni → carica il tuo ID → invia per revisione",
   "uploadIdPhoto": "Si prega di caricare la foto del documento",
-  "uploadSelfieWithId": "Si prega di caricare un selfie con il documento in mano"
+  "uploadSelfieWithId": "Si prega di caricare un selfie con il documento in mano",
+  "oneClickInvestment": "Investimento Un Clic USDM",
+  "investmentDescription": "Nessuno scambio manuale, investi in un passo",
+  "useUSDTBalance": "Usa saldo USDT nel conto",
+  "balancePriority": "Priorità USDT, differenza integrata con USDM",
+  "swapAmount": "Importo (USDM)",
+  "usdtAmount": "USDT ottenuto dallo scambio di USDM"
 }

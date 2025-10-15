@@ -909,5 +909,11 @@
   "uploadSelfieWithId": "Sila muat naik selfie memegang kad pengenalan",
   "transfer_amount": "Kuantiti",
   "DepositintoSmartYieldWallet": "Deposit ke Smart Yield Wallet",
-  "withdrawFromSmartWallet": " Keluarkan dari Smart Yield Wallet"
+  "withdrawFromSmartWallet": " Keluarkan dari Smart Yield Wallet",
+  "oneClickInvestment": "Pelaburan Satu Klik USDM",
+  "investmentDescription": "Tukar manual tidak perlu, labur satu langkah",
+  "useUSDTBalance": "Guna baki USDT dalam akaun",
+  "balancePriority": "Pilih utamakan USDT, kekurangan akan tambah dengan USDM",
+  "swapAmount": "Jumlah Tukar (USDM)",
+  "usdtAmount": "Jumlah USDT dari pertukaran USDM"
 }

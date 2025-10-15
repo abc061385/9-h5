@@ -85,7 +85,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
           <div className="flex justify-between border-t border-border2 pt-6 mt-6">
             <span className="flex items-center gap-1">
               {" "}
-              Swap Amount (USDM)
+              {t("swapAmount")}
               <Icon
                 name="annotation"
                 className="size-4"
@@ -141,11 +141,9 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
       <Modal
         open={oncClickTipsOpen}
         onClose={() => setOncClickTipsOpen(false)}
-        title="Swap Amount (USDM)"
+        title={t("swapAmount")}
       >
-        <p className="pt-5">
-          The USDT amount obtained by the system through exchanging USDM.
-        </p>
+        <p className="pt-5">{t("usdtAmount")}</p>
       </Modal>
     </div>
   );

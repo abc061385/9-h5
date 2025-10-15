@@ -909,5 +909,11 @@
   "uploadSelfieWithId": "請上傳手持證件自拍",
   "transfer_amount": "數量",
   "DepositintoSmartYieldWallet": "Smart yield wallet 轉入",
-  "withdrawFromSmartWallet": "Smart yield wallet 轉出"
+  "withdrawFromSmartWallet": "Smart yield wallet 轉出",
+  "oneClickInvestment": "USDM一鍵質押",
+  "investmentDescription": "無需手動兌換，一步完成質押",
+  "useUSDTBalance": "使用帳戶中的USDT餘額",
+  "balancePriority": "勾選此項優先使用USDT餘額，差額部分將自動用USDM補足",
+  "swapAmount": "兌換數量 (USDM)",
+  "usdtAmount": "系統通過兌換USDM獲得的USDT數量"
 }

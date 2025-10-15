@@ -875,5 +875,11 @@
   "uploadSelfieWithId": "कृपया अपना पहचान पत्र पकड़े हुए सेल्फी अपलोड करें",
   "transfer_amount": "मात्रा",
   "DepositintoSmartYieldWallet": "Smart Yield Wallet में जमा करें",
-  "withdrawFromSmartWallet": "Smart Yield Wallet से निकासी करें"
+  "withdrawFromSmartWallet": "Smart Yield Wallet से निकासी करें",
+  "oneClickInvestment": "USDM वन-क्लिक निवेश",
+  "investmentDescription": "मैनुअल एक्सचेंज की आवश्यकता नहीं, एक चरण में निवेश पूरा",
+  "useUSDTBalance": "अकाउंट में USDT बैलेंस का उपयोग करें",
+  "balancePriority": "USDT को प्राथमिकता दें, कमी USDM से पूरी होगी",
+  "swapAmount": "स्वैप राशि (USDM)",
+  "usdtAmount": "USDM एक्सचेंज से प्राप्त USDT राशि"
 }

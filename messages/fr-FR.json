@@ -909,5 +909,11 @@
   "uploadSelfieWithId": "Veuillez télécharger un selfie avec votre pièce d'identité",
   "transfer_amount": "Quantité",
   "DepositintoSmartYieldWallet": "Dépôt dans le Smart Yield Wallet",
-  "withdrawFromSmartWallet": "Retrait du Smart Yield Wallet Le retrait du Smart Yield Wallet"
+  "withdrawFromSmartWallet": "Retrait du Smart Yield Wallet Le retrait du Smart Yield Wallet",
+  "oneClickInvestment": "Investissement USDM Un Clic",
+  "investmentDescription": "Aucun échange manuel, investissement en une étape",
+  "useUSDTBalance": "Utiliser le solde USDT du compte",
+  "balancePriority": "Prioriser USDT, le solde est complété avec USDM",
+  "swapAmount": "Montant (USDM)",
+  "usdtAmount": "USDT obtenu par l'échange d'USDM"
 }
