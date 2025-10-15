@@ -53,11 +53,11 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const submit = () => {
     if (!isAgreement) return toast.error(t("请先同意协议"));
     if (!amount) return toast.error(t("请输入质押额度"));
-    if (
-      (Number(amount) * info.token1Percentage) / 100 / info.pledgeToken1Price >
-      Number(getBalance(info.pledgeToken1))
-    )
-      return toast.error(t("余额不足请充值"));
+    // if (
+    //   (Number(amount) * info.token1Percentage) / 100 / info.pledgeToken1Price >
+    //   Number(getBalance(info.pledgeToken1))
+    // )
+    //   return toast.error(t("余额不足请充值"));
     // if (
     //   (Number(amount) * info.token2Percentage) / 100 / info.pledgeToken2Price >
     //   Number(getBalance(info.pledgeToken2))
