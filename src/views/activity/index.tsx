@@ -11,11 +11,14 @@ import { useTrans } from "@/hooks/useTrans";
 import { ShowIf } from "@/components/show-if";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { utils } from "@/lib/utils";
+import Bridge from "@/lib/dsBridge";
+import { useBack } from "@/hooks/useBack";
 
 const ActivityView = () => {
   const locale = useLocale();
   const t = useTrans();
   const { goToActivity } = useLocationHref();
+  const back = useBack();
 
   const [activityList, setActivityList] = useState<ActivityList[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,10 +44,19 @@ const ActivityView = () => {
     getActivityList();
   }, [getActivityList]);
 
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title={t("activityCenter")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={t("activityCenter")}
+          algin="center"
+          onClick={() => back()}
+        />
+      }
     >
       <div className="p-content">
         {
