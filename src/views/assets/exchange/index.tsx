@@ -298,9 +298,10 @@ const AssetsExchangeView = () => {
                 {balance(
                   formCoinItem?.currencyCode,
                   utilCoinList.includes(formCoinItem?.currencyCode || "")
-                    ? 2
+                    ? 8
                     : 8
                 )}
+                {/* PM: 兑换币种的可用余额展示全部都是展示八位 */}
               </div>
             </label>
 
@@ -349,7 +350,7 @@ const AssetsExchangeView = () => {
                 {t("余额")}：{" "}
                 {balance(
                   toCoinItem?.currencyCode,
-                  utilCoinList.includes(toCoinItem?.currencyCode || "") ? 2 : 8
+                  utilCoinList.includes(toCoinItem?.currencyCode || "") ? 8 : 8
                 )}
               </div>
             </label>

@@ -6,10 +6,11 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { formatBalance } from "@/lib/utils";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAssetStore } from "@/store/useAssetStore";
 import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 
 interface TotalInvestmentType {
   personalFundInvestment: number;
@@ -25,6 +26,7 @@ type CardType = {
 };
 
 const HeaderBox = () => {
+  const baseApi = createAxiosInstance("/app");
   const { push } = useRouter();
   const t = useTrans();
   const {
@@ -40,6 +42,10 @@ const HeaderBox = () => {
   const [coinListData, setCoinList] = useState<CryptoAsset[]>([]);
   const [depositCoinDrawerOpen, setDepositCoinDrawerOpen] = useState(false);
   const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
+  const [oneClickFund, setOneClickFund] = useState<{
+    productId: number;
+    pledgeDays: number;
+  }>();
 
   const { data } = useRequestQuery(api.wallet.listUsingPost, {});
   const { trigger } = useRequestMutation(api.wallet.getTotalInvestmentUsingGet);
@@ -100,9 +106,18 @@ const HeaderBox = () => {
     },
   ];
 
-  // const handleTip = () => {
-  //   toast(t("老数据总资产"));
-  // };
+  const getOneClickFund = useCallback(async () => {
+    const res: ApiResponse<{
+      list: { productId: number; pledgeDays: number }[];
+    }> = await baseApi.get("/fund-product-config/fast-invest-detail");
+    setOneClickFund(res.data.list?.[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getOneClickFund();
+  }, [getOneClickFund]);
+
   return (
     <div className="">
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
@@ -168,7 +183,10 @@ const HeaderBox = () => {
       <div
         className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
-          push(`${routerMap.fundBuy}?id=19&pledgeDays=360`);
+          if (!oneClickFund?.productId) return;
+          push(
+            `${routerMap.fundBuy}?id=${oneClickFund?.productId}&pledgeDays=${oneClickFund?.pledgeDays}&oneClick=1`
+          );
         }}
       >
         <div className="flex flex-1 gap-4">
