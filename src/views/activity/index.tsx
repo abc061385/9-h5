@@ -81,7 +81,7 @@ const ActivityView = () => {
                     <div
                       className="whitespace-pre-wrap mt-4 line-clamp-3"
                       dangerouslySetInnerHTML={{
-                        __html: v.title
+                        __html: JSON.parse(v.title || "{}")[locale]
                           ? JSON.parse(v.title || "{}")[locale]
                           : JSON.parse(v.title || "{}")["en"],
                       }}
