@@ -22,9 +22,8 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
   const t = useTrans();
   const params = useSearchParams();
   const { push } = useRouter();
-  const { buyData, isUsdtFirst } = useFundStore();
+  const { buyData, usdtFirstIs } = useFundStore();
   const { formatBalance } = useFormatBalance();
-
   const [isCheck, setIsCheck] = useState(true);
   const [oncClickTipsOpen, setOncClickTipsOpen] = useState(false);
 
@@ -124,8 +123,9 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
               totalAmount: Number(buyData?.totalAmount ?? 0),
               isReinvestment: isCheck,
             };
+
             if (isOneClick) {
-              params.isUsdtFirst = isUsdtFirst ? 1 : 0;
+              params.isUsdtFirst = usdtFirstIs ? 1 : 0;
               params.isFastPledge = 1;
             }
             postBuy(params, {

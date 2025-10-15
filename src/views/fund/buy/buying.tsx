@@ -207,7 +207,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
               checked={isUsdtFirst}
               onChange={(e) => {
                 setIsUsdtFirst(e.target.checked);
-                setField("isUsdtFirst", e.target.checked);
+                setField("usdtFirstIs", e.target.checked);
               }}
             />
             {t("useUSDTBalance")}
