@@ -22,7 +22,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
   const t = useTrans();
   const params = useSearchParams();
   const { push } = useRouter();
-  const { buyData } = useFundStore();
+  const { buyData, isUsdtFirst } = useFundStore();
   const { formatBalance } = useFormatBalance();
 
   const [isCheck, setIsCheck] = useState(true);
@@ -111,19 +111,28 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
           )}
           disabled={isMutating}
           onClick={() => {
-            postBuy(
-              {
-                productId: Number(buyData?.productId ?? 0),
-                pledgeId: Number(buyData?.pledgeId ?? 0),
-                totalAmount: Number(buyData?.totalAmount ?? 0),
-                isReinvestment: isCheck,
+            const params: {
+              productId: number;
+              pledgeId: number;
+              totalAmount: number;
+              isReinvestment: boolean;
+              isUsdtFirst?: number;
+              isFastPledge?: number;
+            } = {
+              productId: Number(buyData?.productId ?? 0),
+              pledgeId: Number(buyData?.pledgeId ?? 0),
+              totalAmount: Number(buyData?.totalAmount ?? 0),
+              isReinvestment: isCheck,
+            };
+            if (isOneClick) {
+              params.isUsdtFirst = isUsdtFirst ? 1 : 0;
+              params.isFastPledge = 1;
+            }
+            postBuy(params, {
+              onSuccess: () => {
+                push(routerMap.fundSuccess);
               },
-              {
-                onSuccess: () => {
-                  push(routerMap.fundSuccess);
-                },
-              }
-            );
+            });
           }}
         >
           {t("common.confirm")}

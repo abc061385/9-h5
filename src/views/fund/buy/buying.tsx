@@ -31,6 +31,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const [amount, setAmount] = useState<string>("");
   const [isAgreement, setIsAgreement] = useState(false);
   const [buyConfirmOpen, setBuyConfirmOpen] = useState(false);
+  const [isUsdtFirst, setIsUsdtFirst] = useState(false);
 
   useEffect(() => {
     getBalanceList();
@@ -166,8 +167,11 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
             <input
               type="checkbox"
               className="checkbox checkbox-neutral"
-              checked={isAgreement}
-              onChange={(e) => setIsAgreement(e.target.checked)}
+              checked={isUsdtFirst}
+              onChange={(e) => {
+                setIsUsdtFirst(e.target.checked);
+                setField("isUsdtFirst", e.target.checked);
+              }}
             />
             Use the USDT balance in your account
           </label>
