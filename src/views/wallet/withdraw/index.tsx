@@ -18,7 +18,7 @@ import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
 import useSchema from "./useSchema";
 import SecurityVerification from "@/components/security-verify";
-import { formatThousand } from "@/lib/utils";
+import { formatBalance1 } from "@/lib/utils";
 
 const WithdrawView = () => {
   const { push } = useRouter();
@@ -245,7 +245,7 @@ const WithdrawView = () => {
               )}
             />
             <p className="text-text4 text-xs">
-              {t("余额")}：{formatThousand(currencyAccount?.balance || 0)}{" "}
+              {t("余额")}：{formatBalance1(currencyAccount?.balance || 0, 8)}{" "}
               {getValues("currencyCode")}
             </p>
             <TextError>{errors.withdrawAmount?.message}</TextError>
