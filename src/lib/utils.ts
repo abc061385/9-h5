@@ -101,20 +101,22 @@ export function formatBalance(
   return precision > 0 ? `${formattedInt}.${trimmedDecimal}` : formattedInt;
 }
 
-export function formatBalance1(
-  value: string | number,
-  precision: number
-): string {
+export function formatBalance1(value: string | number, precision: number): string {
   if (value == null || isNaN(Number(value))) return "--";
 
   const [intPart, decimalPart = ""] = String(value).split(".");
   const trimmedDecimal = decimalPart.slice(0, precision);
 
-  // 添加千分位
+  // 千分位格式化
   const formattedInt = Number(intPart).toLocaleString("en-US");
 
-  return precision > 0 ? `${formattedInt}.${trimmedDecimal}` : formattedInt;
+  if (precision > 0 && trimmedDecimal.length > 0) {
+    return `${formattedInt}.${trimmedDecimal}`;
+  }
+
+  return formattedInt;
 }
+
 
 function copyText(text: string) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
