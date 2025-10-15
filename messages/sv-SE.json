@@ -938,5 +938,11 @@
   "fullMeetName2": "Asset Management Training Camp",
   "fullMeetName3": "",
   "businessSchool1": "Global Events Center",
-  "businessSchool": "9M AI Global Activity Center"
+  "businessSchool": "9M AI Global Activity Center",
+  "oneClickInvestment": "Investimento Um Clique USDM",
+  "investmentDescription": "Sem troca manual, investa em um passo",
+  "useUSDTBalance": "Usar saldo USDT da conta",
+  "balancePriority": "Priorize USDT, diferença será suprida com USDM",
+  "swapAmount": "Valor (USDM)",
+  "usdtAmount": "USDT obtido pela troca de USDM"
 }

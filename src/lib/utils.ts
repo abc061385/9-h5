@@ -49,7 +49,7 @@ export function formatThousand(
   options?: {
     separator?: string; // 默认使用 ","
     decimalSeparator?: string; // 默认使用 "."
-  },
+  }
 ): string {
   const separator = options?.separator ?? ",";
   const decimalSeparator = options?.decimalSeparator ?? ".";
@@ -88,12 +88,27 @@ export const encryptPassword = (password: string) => {
  */
 export function formatBalance(
   value: string | number,
-  precision: number,
+  precision: number
 ): string {
   if (value == null || isNaN(Number(value))) return "--";
 
   const [intPart, decimalPart = ""] = String(value).split(".");
   const trimmedDecimal = decimalPart.slice(0, precision).padEnd(precision, "0");
+
+  // 添加千分位
+  const formattedInt = Number(intPart).toLocaleString("en-US");
+
+  return precision > 0 ? `${formattedInt}.${trimmedDecimal}` : formattedInt;
+}
+
+export function formatBalance1(
+  value: string | number,
+  precision: number
+): string {
+  if (value == null || isNaN(Number(value))) return "--";
+
+  const [intPart, decimalPart = ""] = String(value).split(".");
+  const trimmedDecimal = decimalPart.slice(0, precision);
 
   // 添加千分位
   const formattedInt = Number(intPart).toLocaleString("en-US");
@@ -135,7 +150,7 @@ function setJwtCookie(token: string, cookieName = "token") {
 
     // Base64 解码
     const payloadJson = atob(
-      payloadBase64.replace(/-/g, "+").replace(/_/g, "/"),
+      payloadBase64.replace(/-/g, "+").replace(/_/g, "/")
     );
     const payload = JSON.parse(payloadJson);
 
@@ -203,7 +218,7 @@ async function handleCapture(node: HTMLElement, fileName: string) {
 const handleShare = async (
   node: HTMLElement,
   fileName: string,
-  onError?: () => void,
+  onError?: () => void
 ) => {
   try {
     const blob = await htmlToImage.toBlob(node);

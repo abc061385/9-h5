@@ -192,9 +192,9 @@ const HeaderBox = () => {
         <div className="flex flex-1 gap-4">
           <Icon name="oneInvestment" className="w-4.5 h-4 mt-1" />
           <dl className="flex-1">
-            <dt>USDM One-click Investment</dt>
+            <dt>{t("oneClickInvestment")}</dt>
             <dd className="font-normal text-xs text-text4">
-              No need for manual exchange, complete investment in one step
+              {t("investmentDescription")}
             </dd>
           </dl>
         </div>

@@ -938,5 +938,11 @@
   "fullMeetName2": "資産管理トレーニングキャンプ",
   "fullMeetName3": "",
   "businessSchool1": "グローバルイベントセンター",
-  "businessSchool": "9M AIグローバルアクティビティセンター"
+  "businessSchool": "9M AIグローバルアクティビティセンター",
+  "oneClickInvestment": "USDMワンクリック投資",
+  "investmentDescription": "手動交換不要、1ステップで投資完了",
+  "useUSDTBalance": "口座のUSDT残高を使用",
+  "balancePriority": "USDT優先利用、不足分はUSDMで自動補充",
+  "swapAmount": "交換数量 (USDM)",
+  "usdtAmount": "USDM交換で得られるUSDT数量"
 }

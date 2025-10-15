@@ -938,5 +938,11 @@
   "fullMeetName2": "资产管理训练营",
   "fullMeetName3": "",
   "businessSchool1": "全球活动中心",
-  "businessSchool": "9M AI全球活动中心"
+  "businessSchool": "9M AI全球活动中心",
+  "oneClickInvestment": "USDM一键质押",
+  "investmentDescription": "无需手动兑换，一步完成质押",
+  "useUSDTBalance": "使用账户中的USDT余额",
+  "balancePriority": "勾选此项优先使用USDT余额，差额部分将自动用USDM补足",
+  "swapAmount": "兑换数量 (USDM)",
+  "usdtAmount": "系统通过兑换USDM获得的USDT数量"
 }

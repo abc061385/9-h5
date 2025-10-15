@@ -932,5 +932,11 @@
   "fullMeetName2": "Campo di Addestramento per la Gestione delle Attività",
   "fullMeetName3": "",
   "businessSchool1": "Centro Eventi Globale",
-  "businessSchool": "Centro Attività Globale 9M AI"
+  "businessSchool": "Centro Attività Globale 9M AI",
+  "oneClickInvestment": "Investimento Un Clic USDM",
+  "investmentDescription": "Nessuno scambio manuale, investi in un passo",
+  "useUSDTBalance": "Usa saldo USDT nel conto",
+  "balancePriority": "Priorità USDT, differenza integrata con USDM",
+  "swapAmount": "Importo (USDM)",
+  "usdtAmount": "USDT ottenuto dallo scambio di USDM"
 }

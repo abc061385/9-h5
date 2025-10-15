@@ -938,5 +938,11 @@
   "fullMeetName2": "Trại Đào tạo Quản lý Tài sản",
   "fullMeetName3": "",
   "businessSchool1": "Trung tâm Sự kiện Toàn cầu",
-  "businessSchool": "Trung tâm Hoạt động Toàn cầu 9M AI"
+  "businessSchool": "Trung tâm Hoạt động Toàn cầu 9M AI",
+  "oneClickInvestment": "Đầu tư một chạm USDM",
+  "investmentDescription": "Không cần đổi thủ công, hoàn tất đầu tư một bước",
+  "useUSDTBalance": "Dùng số dư USDT trong tài khoản",
+  "balancePriority": "Chọn ưu tiên dùng USDT, phần thiếu sẽ bổ sung bằng USDM",
+  "swapAmount": "Số lượng (USDM)",
+  "usdtAmount": "Số USDT hệ thống nhận được từ việc đổi USDM"
 }

@@ -938,5 +938,11 @@
   "fullMeetName2": "ค่ายฝึกอบรมการจัดการสินทรัพย์",
   "fullMeetName3": "",
   "businessSchool1": "ศูนย์กิจกรรมระดับโลก",
-  "businessSchool": "ศูนย์กิจกรรมระดับโลก 9M AI"
+  "businessSchool": "ศูนย์กิจกรรมระดับโลก 9M AI",
+  "oneClickInvestment": "USDM ลงทุนคลิกเดียว",
+  "investmentDescription": "ไม่ต้องแลกเปลี่ยนเอง ลงทุนเสร็จในขั้นตอนเดียว",
+  "useUSDTBalance": "ใช้ยอด USDT ในบัญชี",
+  "balancePriority": "เลือกใช้ USDT ก่อน ส่วนต่างจะเติมด้วย USDM อัตโนมัติ",
+  "swapAmount": "จำนวนที่แลก (USDM)",
+  "usdtAmount": "จำนวน USDT ที่ระบบได้จากการแลก USDM"
 }

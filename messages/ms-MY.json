@@ -938,5 +938,11 @@
   "fullMeetName2": "Kem Latihan Pengurusan Aset",
   "fullMeetName3": "",
   "businessSchool1": "Pusat Acara Global",
-  "businessSchool": "Pusat Aktiviti Global 9M AI"
+  "businessSchool": "Pusat Aktiviti Global 9M AI",
+  "oneClickInvestment": "Pelaburan Satu Klik USDM",
+  "investmentDescription": "Tukar manual tidak perlu, labur satu langkah",
+  "useUSDTBalance": "Guna baki USDT dalam akaun",
+  "balancePriority": "Pilih utamakan USDT, kekurangan akan tambah dengan USDM",
+  "swapAmount": "Jumlah Tukar (USDM)",
+  "usdtAmount": "Jumlah USDT dari pertukaran USDM"
 }

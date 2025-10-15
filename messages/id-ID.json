@@ -840,5 +840,11 @@
   "fullMeetName2": "परिसंपत्ति प्रबंधन प्रशिक्षण शिविर",
   "fullMeetName3": "",
   "businessSchool1": "ग्लोबल इवेंट सेंटर",
-  "businessSchool": "9M AI ग्लोबल एक्टिविटी सेंटर"
+  "businessSchool": "9M AI ग्लोबल एक्टिविटी सेंटर",
+  "oneClickInvestment": "USDM वन-क्लिक निवेश",
+  "investmentDescription": "मैनुअल एक्सचेंज की आवश्यकता नहीं, एक चरण में निवेश पूरा",
+  "useUSDTBalance": "अकाउंट में USDT बैलेंस का उपयोग करें",
+  "balancePriority": "USDT को प्राथमिकता दें, कमी USDM से पूरी होगी",
+  "swapAmount": "स्वैप राशि (USDM)",
+  "usdtAmount": "USDM एक्सचेंज से प्राप्त USDT राशि"
 }

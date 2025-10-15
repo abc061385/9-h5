@@ -210,13 +210,10 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
                 setField("isUsdtFirst", e.target.checked);
               }}
             />
-            Use the USDT balance in your account
+            {t("useUSDTBalance")}
           </label>
         </div>
-        <p className="text-xs text-text4 pl-6">
-          Check this option to prioritize the use of USDT balance. Any shortfall
-          will be automatically supplemented with USDM.
-        </p>
+        <p className="text-xs text-text4 pl-6">{t("balancePriority")}</p>
       </ShowIf>
 
       <h3 className="text-sm my-4 flex justify-between">

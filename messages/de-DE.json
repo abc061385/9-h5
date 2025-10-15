@@ -938,5 +938,11 @@
   "fullMeetName2": "Vermögensverwaltung Schulungslager",
   "fullMeetName3": "",
   "businessSchool1": "Globales Veranstaltungszentrum",
-  "businessSchool": "9M AI Globales Aktivitätszentrum"
+  "businessSchool": "9M AI Globales Aktivitätszentrum",
+  "oneClickInvestment": "USDM Ein-Klick-Invest",
+  "investmentDescription": "Kein manueller Tausch, Investition in einem Schritt",
+  "useUSDTBalance": "USDT-Guthaben nutzen",
+  "balancePriority": "USDT priorisieren, Differenz wird mit USDM ausgeglichen",
+  "swapAmount": "Betrag (USDM)",
+  "usdtAmount": "Durch USDM-Tausch erhaltener USDT-Betrag"
 }
