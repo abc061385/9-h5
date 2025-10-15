@@ -162,6 +162,7 @@ type FundBuyType = FundInfoType & {
   pledgeToken2Amount: string;
   selectCycle: string | number;
   pledge: PledgeType;
+  swapAmount?: number;
 };
 
 type PledgeType = {

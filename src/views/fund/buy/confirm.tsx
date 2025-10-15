@@ -93,7 +93,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
               />
             </span>
             <b className="text-xl">
-              {formatBalance(buyData?.totalAmount || "", "USDT")} USDT
+              {formatBalance(buyData?.swapAmount || "", "USDT")} USDT
             </b>
           </div>
         </ShowIf>

@@ -12,8 +12,10 @@ import { Icon } from "@/components/icon";
 import ConfirmOrderBox from "./confirm";
 import { useAssetStore } from "@/store/useAssetStore";
 import { ShowIf } from "@/components/show-if";
+import { createAxiosInstance } from "@/lib/axios";
 
 const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
+  const baseApi = createAxiosInstance("/app");
   const t = useTrans();
   const params = useSearchParams();
   const { push } = useRouter();
@@ -32,6 +34,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const [isAgreement, setIsAgreement] = useState(false);
   const [buyConfirmOpen, setBuyConfirmOpen] = useState(false);
   const [isUsdtFirst, setIsUsdtFirst] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getBalanceList();
@@ -55,17 +58,18 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       Number(getBalance(info.pledgeToken1))
     )
       return toast.error(t("余额不足请充值"));
-    if (
-      (Number(amount) * info.token2Percentage) / 100 / info.pledgeToken2Price >
-      Number(getBalance(info.pledgeToken2))
-    )
-      return toast.error(t("余额不足请充值"));
+    // if (
+    //   (Number(amount) * info.token2Percentage) / 100 / info.pledgeToken2Price >
+    //   Number(getBalance(info.pledgeToken2))
+    // )
+    //   return toast.error(t("余额不足请充值"));
     if (Number(amount) < info.minInvestment)
       return toast.error(t("质押金额不能低于", { n: info.minInvestment }));
     if (Number(amount) > (pledgeDays?.maxBet as number))
       return toast.error(
         t("单次质押不能高于", { n: pledgeDays?.maxBet as number })
       );
+    setLoading(true);
     trigger(
       {
         productId: Number(params.get("id")),
@@ -73,7 +77,37 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         totalAmount: Number(amount) || 0,
       },
       {
-        onSuccess: () => {
+        onSuccess: async () => {
+          if (!isOneClick) {
+            setField("buyData", {
+              ...info,
+              productId: params.get("id")!,
+              pledgeId: pledgeDays?.id || "",
+              totalAmount: amount,
+              pledgeToken1Amount: payAmount1,
+              pledgeToken2Amount: payAmount2,
+              selectCycle: pledgeDays?.pledgeDays || "",
+              pledge: pledgeDays!,
+            });
+            setBuyConfirmOpen(true);
+            setLoading(false);
+            return;
+          }
+          const res = await baseApi.post(
+            "/fund-product-config/cal-fast-invest",
+            {
+              productId: params.get("id"),
+              pledgeId: (pledgeDays?.id || 0).toString(),
+              totalAmount: amount || "0",
+              isFastPledge: isOneClick ? "1" : "0",
+              isUsdtFirst: isOneClick && isUsdtFirst ? "1" : "0",
+            },
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setField("buyData", {
             ...info,
             productId: params.get("id")!,
@@ -83,8 +117,11 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
             pledgeToken2Amount: payAmount2,
             selectCycle: pledgeDays?.pledgeDays || "",
             pledge: pledgeDays!,
+            swapAmount: res.data.swapAmount,
           });
           setBuyConfirmOpen(true);
+          setLoading(false);
+          console.log(res.data.swapAmount);
         },
       }
     );
@@ -278,8 +315,12 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           {t("基金投资协议")}
         </span>
       </div>
-      <button className="btn btn-primary w-full mt-4" onClick={submit}>
-        {t("买入")}
+      <button
+        className="btn btn-primary w-full mt-4"
+        disabled={loading}
+        onClick={submit}
+      >
+        {loading ? <div className="loading"></div> : t("买入")}
       </button>
       <ConfirmOrderBox
         open={buyConfirmOpen}
