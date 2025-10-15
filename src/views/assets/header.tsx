@@ -185,7 +185,7 @@ const HeaderBox = () => {
         onClick={() => {
           if (!oneClickFund?.productId) return;
           push(
-            `${routerMap.fundBuy}?id=${oneClickFund?.productId}&pledgeDays=${oneClickFund?.pledgeDays}&oneClick=1`
+            `${routerMap.fundBuy}?id=${oneClickFund?.productId}&pledgeDays=360&oneClick=1`
           );
         }}
       >
