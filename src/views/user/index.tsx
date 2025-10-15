@@ -36,7 +36,7 @@ const UserView = () => {
         />
       }
     >
-      <div className="p-content">
+      <div className="p-content bg-white">
         <UserInfoBox />
         <Link href={routerMap.activity}>
           <div className="w-full relative mt-4">
