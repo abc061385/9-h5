@@ -6,6 +6,8 @@ import ViewLayout from "@/components/layout";
 import ListStepBox from "./list-step";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useTrans } from "@/hooks/useTrans";
+import Platform from "@/lib/platfrom";
+import Bridge from "@/lib/dsBridge";
 
 const ActivityCenterView = () => {
   const { push } = useRouter();
@@ -38,7 +40,13 @@ const ActivityCenterView = () => {
         <p className="my-10 text-sm leading-5">{t("partnershipProgress")}</p>
         <button
           className="btn btn-primary w-full h-12 mb-10"
-          onClick={() => push(routerMap.activity)}
+          onClick={() => {
+            if (Platform.isInApp()) {
+              Bridge.jumpTo("/activitys");
+            } else {
+              push(routerMap.activity);
+            }
+          }}
         >
           {t("signUpForEvent")}
         </button>
