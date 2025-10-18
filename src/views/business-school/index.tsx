@@ -9,11 +9,10 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { APILang } from "@/i18n/routing";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
-import Platform from "@/lib/platfrom";
+// import Platform from "@/lib/platfrom";
 import { useLocale } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { useBack } from "@/hooks/useBack";
-
 const BusinessSchoolView = () => {
   const t = useTrans();
   const api = createAxiosInstance("/app");
@@ -128,11 +127,11 @@ const BusinessSchoolView = () => {
         <button
           className="btn btn-primary w-full h-12"
           onClick={() => {
-            if (Platform.isInApp()) {
-              Bridge.jumpTo("/activitys");
-            } else {
-              push(routerMap.activity);
-            }
+            // if (Platform.isInApp()) {
+            //   Bridge.jumpTo("/activitys");
+            // } else {
+            push(routerMap.activity);
+            // }
           }}
         >
           {t("registerEvent")}
