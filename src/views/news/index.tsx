@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
@@ -11,6 +11,8 @@ import { Icon } from "@/components/icon";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
 import { AnnouncementRespDTO } from "@/api/NineIndexClient";
+import Bridge from "@/lib/dsBridge";
+import { useBack } from "@/hooks/useBack";
 
 export const langType: {
   [key: string]: string;
@@ -23,6 +25,7 @@ export const langType: {
 const NewsView = () => {
   const { push } = useRouter();
   const t = useTrans();
+  const back = useBack();
   // const locale = useLocale();
 
   const [pageSize] = useState(15);
@@ -45,10 +48,19 @@ const NewsView = () => {
     },
     [pageSize],
   );
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title={t("消息中心")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={t("消息中心")}
+          algin="center"
+          onClick={() => back()}
+        />
+      }
       heightFull
     >
       <div className="p-content h-full flex flex-col">

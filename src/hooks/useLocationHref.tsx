@@ -8,7 +8,7 @@ export function useLocationHref() {
   }
   function goToActivity(id: string) {
     if (!id) return;
-    const targetUrl = `/activity/${lang}?id=${id}`;
+    const targetUrl = `/activity/${lang}/?id=${id}`;
     window.location.href = targetUrl;
   }
   function goToLuckyActivity(id: string) {
