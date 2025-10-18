@@ -7,6 +7,7 @@ import Platform from "@/lib/platfrom";
 import Bridge from "@/lib/dsBridge";
 import { useRouter } from "@/i18n/navigation";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 type ImageItem = { [key in string]: unknown };
 
@@ -20,6 +21,7 @@ export default function ImageQueueModal({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visible, setVisible] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
   const { push } = useRouter();
 
   useEffect(() => {
@@ -51,13 +53,13 @@ export default function ImageQueueModal({
       if (currentItem?.h5JumpUrl) {
         const url = currentItem.h5JumpUrl as string;
         if (/^https?:\/\//.test(url)) {
-          window.location.href = url;
+          window.location.href = url.replace("{lang}", locale);
         } else {
           push(url);
         }
       }
     }
-  }, [currentIndex, images, push]);
+  }, [currentIndex, images, push, locale]);
   return (
     <Modal
       open={visible}
