@@ -12,12 +12,14 @@ import Bridge from "@/lib/dsBridge";
 import Platform from "@/lib/platfrom";
 import { useLocale } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
+import { useBack } from "@/hooks/useBack";
 
 const BusinessSchoolView = () => {
   const t = useTrans();
   const api = createAxiosInstance("/app");
   const locale = useLocale();
-  const { push, back } = useRouter();
+  const { push } = useRouter();
+  const back = useBack();
 
   const [meetTypeList, setMeetTypeList] = useState<BusinessCollegeMeetType[]>();
 
@@ -43,10 +45,7 @@ const BusinessSchoolView = () => {
         <HeaderWithBack
           title={t("businessSchool")}
           algin="center"
-          onClick={() => {
-            Bridge.goBack();
-            back();
-          }}
+          onClick={() => back()}
         />
       }
       heightFull
