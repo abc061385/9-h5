@@ -9,20 +9,23 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { APILang } from "@/i18n/routing";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import Bridge from "@/lib/dsBridge";
+import Platform from "@/lib/platfrom";
 import { useLocale } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
+import { useBack } from "@/hooks/useBack";
 
 const BusinessSchoolView = () => {
   const t = useTrans();
   const api = createAxiosInstance("/app");
   const locale = useLocale();
-  const { push, back } = useRouter();
+  const { push } = useRouter();
+  const back = useBack();
 
   const [meetTypeList, setMeetTypeList] = useState<BusinessCollegeMeetType[]>();
 
   const getList = useCallback(async () => {
     const res: ApiResponse<{ list: BusinessCollegeMeetType[] }> = await api.get(
-      "/business-college-meet-type/page-list"
+      "/business-college-meet-type/page-list",
     );
     setMeetTypeList(res?.data?.list || []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,10 +45,7 @@ const BusinessSchoolView = () => {
         <HeaderWithBack
           title={t("businessSchool")}
           algin="center"
-          onClick={() => {
-            Bridge.goBack();
-            back();
-          }}
+          onClick={() => back()}
         />
       }
       heightFull
@@ -76,7 +76,7 @@ const BusinessSchoolView = () => {
                   className="text-sm"
                   onClick={() =>
                     push(
-                      `${routerMap.businessSchoolPreviousHighlights}?id=${v.id}`
+                      `${routerMap.businessSchoolPreviousHighlights}?id=${v.id}`,
                     )
                   }
                 >
@@ -105,7 +105,7 @@ const BusinessSchoolView = () => {
                       v?.i18nList?.find(
                         (v) =>
                           v.language ===
-                          (APILang as Record<string, string>)[locale]
+                          (APILang as Record<string, string>)[locale],
                       )?.meetDesc ||
                       v?.i18nList?.find((v) => v.language === "en")?.meetDesc ||
                       "",
@@ -127,7 +127,13 @@ const BusinessSchoolView = () => {
         </button>
         <button
           className="btn btn-primary w-full h-12"
-          onClick={() => push(routerMap.activity)}
+          onClick={() => {
+            if (Platform.isInApp()) {
+              Bridge.jumpTo("/activitys");
+            } else {
+              push(routerMap.activity);
+            }
+          }}
         >
           {t("registerEvent")}
         </button>
