@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { NewsDataType } from "../type";
 import { langType } from "..";
 import ViewLayout from "@/components/layout";
+import Bridge from "@/lib/dsBridge";
 
 const NewsDetailView = () => {
   const t = useTrans();
@@ -22,6 +23,9 @@ const NewsDetailView = () => {
     }
     return back();
   }, [back]);
+  useEffect(() => {
+    Bridge.setFull(true);
+  }, []);
   return (
     <ViewLayout
       heightFull
@@ -38,7 +42,7 @@ const NewsDetailView = () => {
         <div
           className="my-4 text-sm text-text4"
           dangerouslySetInnerHTML={{
-            __html: newsDetail?.["content" + (langType[locale] || "En")] || "",
+            __html: newsDetail?.["content"] || "",
           }}
         ></div>
       </div>

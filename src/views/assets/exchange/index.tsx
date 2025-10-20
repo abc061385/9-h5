@@ -3,7 +3,7 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
 import { Icon } from "@/components/icon";
@@ -12,7 +12,12 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Drawer } from "@/components/drawer";
-import { encryptPassword, formatBalance } from "@/lib/utils";
+import {
+  encryptPassword,
+  formatBalance,
+  formatBalance1,
+  utils,
+} from "@/lib/utils";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import CoinList from "./coin-list";
@@ -25,6 +30,8 @@ type FormData = {
   formCoinValue: string;
   toCoinValue: string;
 };
+
+const utilCoinList = ["USDT", "USDC", "USDM", "9MC"];
 
 const AssetsExchangeView = () => {
   const t = useTrans();
@@ -66,6 +73,7 @@ const AssetsExchangeView = () => {
   });
 
   const {
+    control,
     register,
     setValue,
     getValues,
@@ -84,7 +92,9 @@ const AssetsExchangeView = () => {
   useEffect(() => {
     if (!currencyList?.length) return;
     const res = currencyList.filter((item) =>
-      ["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
+      ["USDT", "USDC", "USDM", "9MC"].includes(
+        item.currencyCode!.toUpperCase(),
+      ),
     );
 
     // const firstSymbol = res[0]?.currencyCode;
@@ -99,7 +109,26 @@ const AssetsExchangeView = () => {
       setToCoinList(
         currencyList.filter(
           (item) =>
-            !["USDT", "USDM", "9MC"].includes(item.currencyCode!.toUpperCase()),
+            ![
+              "USDT",
+              "USDM",
+              "9MC",
+              // 新增关闭USDT兑换
+              // "ADA",
+              // "BTC",
+              // "ETH",
+              // "BNB",
+              // "SOL",
+              // "DOGE",
+              // "SHIB",
+              // "SUI",
+              // "XRP",
+              // "FIL",
+              // "LTC",
+              // "TON",
+              // "OP",
+              // "POL",
+            ].includes(item.currencyCode!.toUpperCase()),
         ),
       );
       return;
@@ -114,7 +143,7 @@ const AssetsExchangeView = () => {
   const balance = useCallback(
     (coin: string | undefined, decimalPlaces: number) => {
       if (!balanceList?.length) return;
-      return formatBalance(
+      return formatBalance1(
         balanceList.find((v) => v.coin === coin)?.balance || "--",
         decimalPlaces,
       );
@@ -124,16 +153,29 @@ const AssetsExchangeView = () => {
 
   useEffect(() => {
     if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
-    if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
-    if (formCoinItem?.currencyCode === "9MC") return setPrice(lastPrice);
+    // if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
+
+    // api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
+    //   const price = res.data?.length ? Number(res.data[0]?.price) || 1 : 1;
+    //   setPrice(utils.toBigNumber(1).div(price).toString());
+    // });
+    const currentToken =
+      formCoinItem?.currencyCode !== "USDT"
+        ? formCoinItem?.currencyCode
+        : toCoinItem.currencyCode;
 
     api.currencySettings
       .protocolExchangeUsingGet({
-        instId: `${toCoinItem?.currencyCode}-${formCoinItem?.currencyCode}`,
+        instId: `${currentToken}-USDT`,
       })
       .then((res) => {
         const price = res.data?.idxPx || 1;
-        setPrice((1 / price).toString());
+
+        if (formCoinItem?.currencyCode !== "USDT") {
+          setPrice(price);
+        } else {
+          setPrice(utils.toBigNumber(1).div(price).toString());
+        }
       });
   }, [formCoinItem, toCoinItem, lastPrice]);
 
@@ -142,10 +184,10 @@ const AssetsExchangeView = () => {
       "toCoinValue",
       formatBalance(
         Number(getValues().formCoinValue) * Number(price),
-        toCoinItem?.decimalPlaces || 4,
+        utilCoinList.includes(toCoinItem?.currencyCode || "") ? 2 : 8,
       ),
     );
-  }, [setValue, getValues, price, toCoinItem]);
+  }, [setValue, getValues, price, toCoinItem, formCoinItem]);
 
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
@@ -201,29 +243,103 @@ const AssetsExchangeView = () => {
                   />
                 </span>
               </Skeleton>
+              <Controller
+                name="formCoinValue"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    {...register("formCoinValue")}
+                    {...field}
+                    className="grow text-xl font-normal text-right placeholder:text-text1"
+                    placeholder="0"
+                    inputMode="decimal" // 让手机键盘仍然显示数字键盘
+                    onChange={(e) => {
+                      const val = e.target.value;
 
-              <input
-                type="number"
-                {...register("formCoinValue")}
-                className="grow text-xl font-normal text-right placeholder:text-text1"
-                placeholder="0"
-                onChange={(e) => {
-                  if (!formCoinItem?.id || !toCoinItem?.id) return;
-                  setValue(
-                    "toCoinValue",
-                    formatBalance(
-                      Number(e.target.value) * Number(price),
-                      toCoinItem.decimalPlaces || 4,
-                    ).toString(),
-                  );
-                }}
+                      // 允许输入整数或最多两位小数
+                      if (!/^\d*(\.\d{0,2})?$/.test(val)) {
+                        return; // 不符合规则则不更新
+                      }
+
+                      // 如果没有选择币种则不处理
+                      if (!formCoinItem?.id) return;
+
+                      const decimalPlaces = utilCoinList.includes(
+                        formCoinItem?.currencyCode || "",
+                      )
+                        ? 2
+                        : 8;
+
+                      const formV = utils
+                        .toBigNumber(val || 0)
+                        .decimalPlaces(decimalPlaces, utils.ROUND_DOWN)
+                        .toString();
+
+                      setValue("formCoinValue", formV === "NaN" ? "0" : val);
+
+                      if (!toCoinItem?.id) return;
+
+                      const v = utils
+                        .toBigNumber(val || 0)
+                        .multipliedBy(price)
+                        .decimalPlaces(
+                          utilCoinList.includes(toCoinItem?.currencyCode || "")
+                            ? 2
+                            : 8,
+                          utils.ROUND_DOWN,
+                        )
+                        .toString();
+
+                      setValue("toCoinValue", v === "NaN" ? "0" : v);
+                    }}
+                  />
+                )}
               />
+              <span
+                className="text-primary text-lg cursor-pointer mt-0.5"
+                onClick={() => {
+                  if (!formCoinItem?.id) return;
+                  const balanceV =
+                    balanceList.find(
+                      (v) => v.coin === formCoinItem?.currencyCode,
+                    )?.balance || "0";
+                  const formV = utils
+                    .toBigNumber(balanceV)
+                    .decimalPlaces(
+                      utilCoinList.includes(formCoinItem?.currencyCode || "")
+                        ? 2
+                        : 8,
+                      utils.ROUND_DOWN,
+                    )
+                    .toString();
+                  setValue("formCoinValue", formV === "NaN" ? "0" : formV);
+                  if (!toCoinItem?.id) return;
+                  const v = utils
+                    .toBigNumber(balanceV)
+                    .multipliedBy(price)
+                    .decimalPlaces(
+                      utilCoinList.includes(toCoinItem?.currencyCode || "")
+                        ? 2
+                        : 8,
+                      utils.ROUND_DOWN,
+                    )
+                    .toString();
+
+                  setValue("toCoinValue", v === "NaN" ? "0" : v);
+                }}
+              >
+                {t("walletDetail.all")}
+              </span>
               <div className="text-xs text-text4 absolute bottom-4 right-6">
                 {t("余额")}：
                 {balance(
                   formCoinItem?.currencyCode,
-                  formCoinItem?.decimalPlaces || 2,
+                  utilCoinList.includes(formCoinItem?.currencyCode || "")
+                    ? 8
+                    : 8,
                 )}
+                {/* PM: 兑换币种的可用余额展示全部都是展示八位 */}
               </div>
             </label>
 
@@ -272,7 +388,7 @@ const AssetsExchangeView = () => {
                 {t("余额")}：{" "}
                 {balance(
                   toCoinItem?.currencyCode,
-                  toCoinItem?.decimalPlaces || 2,
+                  utilCoinList.includes(toCoinItem?.currencyCode || "") ? 8 : 8,
                 )}
               </div>
             </label>
@@ -283,7 +399,7 @@ const AssetsExchangeView = () => {
           {formCoinItem?.currencyCode && toCoinItem?.currencyCode ? (
             <span>
               1 {formCoinItem?.currencyCode} ≈{" "}
-              {formatBalance(price, toCoinItem.decimalPlaces || 4)}{" "}
+              {formatBalance(price, toCoinItem?.decimalPlaces || 4)}{" "}
               {toCoinItem?.currencyCode}
             </span>
           ) : (
@@ -330,7 +446,7 @@ const AssetsExchangeView = () => {
           <CoinList
             list={toCoinList}
             checkValue={toCoinItem?.id}
-            onCancel={() => setFormDrawerOpen(false)}
+            onCancel={() => setToDrawerOpen(false)}
             onClick={(item) => {
               setToCoinItem(item);
               setToDrawerOpen(false);
@@ -363,10 +479,7 @@ const AssetsExchangeView = () => {
                   className="size-10 rounded-full overflow-hidden"
                 />
                 <b>
-                  {formatBalance(
-                    getValues().formCoinValue,
-                    formCoinItem?.decimalPlaces || 4,
-                  )}{" "}
+                  {formatBalance(getValues().formCoinValue, 2)}{" "}
                   {formCoinItem?.currencyCode}
                 </b>
               </div>

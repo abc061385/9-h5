@@ -6,6 +6,9 @@ import lodash from "./lodash";
 import toBigNumber from "./bignumber";
 import dayjs from "dayjs";
 import axios from "axios";
+import * as htmlToImage from "html-to-image";
+import toast from "react-hot-toast";
+import { BigNumber } from "bignumber.js";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -46,7 +49,7 @@ export function formatThousand(
   options?: {
     separator?: string; // 默认使用 ","
     decimalSeparator?: string; // 默认使用 "."
-  },
+  }
 ): string {
   const separator = options?.separator ?? ",";
   const decimalSeparator = options?.decimalSeparator ?? ".";
@@ -85,7 +88,7 @@ export const encryptPassword = (password: string) => {
  */
 export function formatBalance(
   value: string | number,
-  precision: number,
+  precision: number
 ): string {
   if (value == null || isNaN(Number(value))) return "--";
 
@@ -97,6 +100,23 @@ export function formatBalance(
 
   return precision > 0 ? `${formattedInt}.${trimmedDecimal}` : formattedInt;
 }
+
+export function formatBalance1(value: string | number, precision: number): string {
+  if (value == null || isNaN(Number(value))) return "--";
+
+  const [intPart, decimalPart = ""] = String(value).split(".");
+  const trimmedDecimal = decimalPart.slice(0, precision);
+
+  // 千分位格式化
+  const formattedInt = Number(intPart).toLocaleString("en-US");
+
+  if (precision > 0 && trimmedDecimal.length > 0) {
+    return `${formattedInt}.${trimmedDecimal}`;
+  }
+
+  return formattedInt;
+}
+
 
 function copyText(text: string) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -132,7 +152,7 @@ function setJwtCookie(token: string, cookieName = "token") {
 
     // Base64 解码
     const payloadJson = atob(
-      payloadBase64.replace(/-/g, "+").replace(/_/g, "/"),
+      payloadBase64.replace(/-/g, "+").replace(/_/g, "/")
     );
     const payload = JSON.parse(payloadJson);
 
@@ -180,6 +200,46 @@ const downloadFile = (url: string, fileName: string) => {
     .catch(() => {});
 };
 
+const toFixed = (n: number | string, fixed: number): string => {
+  const match = `${n}`.match(new RegExp(`^-?\\d+(?:\\.\\d{0,${fixed}})?`));
+  return match ? match[0] : "";
+};
+
+async function handleCapture(node: HTMLElement, fileName: string) {
+  try {
+    const dataUrl = await htmlToImage.toPng(node);
+    const link = document.createElement("a");
+    link.download = fileName;
+    link.href = dataUrl;
+    link.click();
+  } catch {
+    toast("Download failed");
+  }
+}
+
+const handleShare = async (
+  node: HTMLElement,
+  fileName: string,
+  onError?: () => void
+) => {
+  try {
+    const blob = await htmlToImage.toBlob(node);
+    const file = new File([blob as Blob], fileName, {
+      type: (blob as Blob).type,
+      lastModified: Date.now(),
+    });
+
+    const shareData = { files: [file] };
+    if (navigator.canShare && navigator.canShare(shareData)) {
+      await navigator.share(shareData);
+    } else {
+      if (onError) onError();
+    }
+  } catch {
+    if (onError) onError();
+  }
+};
+
 export const utils = {
   ...lodash,
   toBigNumber,
@@ -187,4 +247,8 @@ export const utils = {
   copyText,
   setJwtCookie,
   downloadFile,
+  toFixed,
+  handleCapture,
+  handleShare,
+  ROUND_DOWN: BigNumber.ROUND_DOWN,
 };

@@ -7,7 +7,7 @@ import BaseImage from "./base-image";
 
 export interface IconProps extends Pick<ImageProps, "className"> {
   name: IconName;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
 }
 
 export const Icon: FC<IconProps> = ({ name, className, onClick }) => {
@@ -16,6 +16,7 @@ export const Icon: FC<IconProps> = ({ name, className, onClick }) => {
       alt={name}
       src={`/icons/${name}.svg`}
       className={cn(["inline-block", "size-4", className])}
+      cover={false}
       onClick={onClick}
     />
   );

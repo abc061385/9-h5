@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { ICardProps, IndividualType, TeamType } from "./type";
-import { cn, formatThousand, maskString } from "@/lib/utils";
+import { cn, formatThousand } from "@/lib/utils";
 
 const CardBox: FC<ICardProps> = ({ data }) => {
   const t = useTrans();
@@ -21,9 +21,10 @@ const CardBox: FC<ICardProps> = ({ data }) => {
   return (
     <div className="rounded-md bg-bg2 mb-6 p-4">
       <div className="flex justify-between border-b border-border2 pb-4 mb-4">
-        <div className="flex flex-wrap gap-1 items-center">
-          <span className="text-lg font-bold mr-2">
-            {maskString(data.nickname) || "--"}
+        <div className="flex flex-wrap gap-1 items-center max-w-[70%]">
+          <span className="text-lg font-bold mr-2 max-w-[100%] wrap-break-word">
+            {data.nickname || "--"}
+            {/* {maskString(data.nickname) || "--"} */}
           </span>
           <div className="badge badge-soft badge-primary rounded-xs text-xs">
             {data.areaType === 1 ? t("小区") : t("大区")}
@@ -32,12 +33,13 @@ const CardBox: FC<ICardProps> = ({ data }) => {
             {data.area || "--"} {t("区")}
           </div>
         </div>
-        <div className="flex items-center gap-1 text-sm">
-          <div
-            className={cn(data.isInvest === 0 ? "text-text4" : "text-primary")}
-          >
-            {data.isInvest === 0 ? t("未投资") : t("已投资")}
-          </div>
+        <div
+          className={cn(
+            "flex items-center gap-1 text-sm text-right",
+            data.isInvest === 0 ? "text-text4" : "text-primary"
+          )}
+        >
+          {data.isInvest === 0 ? t("未投资") : t("已投资")}
         </div>
       </div>
       <h3 className="font-medium mb-2">{t("个人")}</h3>

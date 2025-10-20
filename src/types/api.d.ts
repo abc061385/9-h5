@@ -16,6 +16,9 @@ type UserInfo = Partial<{
   maxProfitMultiplier: number;
   googleVerify: number;
   bindEmail: string;
+  highestVipLevel: number;
+  highestVipStar: number;
+  cardBackgroundUrl: string;
 }>;
 
 type VipInfoType = Partial<{
@@ -159,6 +162,7 @@ type FundBuyType = FundInfoType & {
   pledgeToken2Amount: string;
   selectCycle: string | number;
   pledge: PledgeType;
+  swapAmount?: number;
 };
 
 type PledgeType = {
@@ -261,6 +265,15 @@ type AssetsIncomeType = {
   yesterdayReturn: number;
   frozenUbx: number;
 };
+type AssetsIncomeType1 = {
+  dayRate: number;
+  personalFundInvestment: number;
+  totalFundReturn: number;
+  withdrawnReturn: number;
+  unWithdrawnReturn: number;
+  yesterdayReturn: number;
+  frozenUbx: number;
+};
 
 type infoUsingGet1Type = {
   id: number;
@@ -278,6 +291,7 @@ type IncomeListType = {
   createTime: string;
   fundType: number;
   type: string;
+  inout?: 1 | 2 | null;
 };
 
 type AwardInfoType = {
@@ -288,6 +302,12 @@ type AwardInfoType = {
   yesterdayVipReward: number;
   yesterdayCurrencyReward: number;
   chuJuAmount: number;
+  coinQuotaStats: {
+    coin: string;
+    remainQuota: number;
+    totalQuota: number;
+    usedQuota: number;
+  };
 };
 
 type AwardListType = {
@@ -340,6 +360,8 @@ type ActivityList = {
   langContent: string;
   remark: string;
   updateTime: string;
+  title: string;
+  startDate: string;
 };
 
 type NewsDataType = {
@@ -354,3 +376,93 @@ type NewsDataType = {
   titleZhTw: string;
   [key: string]: string;
 };
+
+interface ImageMetadata {
+  contentType: string; // 圖片的 MIME 類型，例如 "image/png"
+  fileName: string; // 圖片的檔案名稱
+  fileSize: number; // 圖片的檔案大小（以位元組為單位）
+  height: number; // 圖片的高度（以像素為單位）
+  originalUrl: string; // 圖片的原始 URL
+  thumbnailUrl: string; // 圖片的縮圖 URL，若無則為 null
+  uploadTime: string; // 圖片的上傳時間，格式為 "YYYY-MM-DD HH:mm:ss"
+  width: number; // 圖片的寬度（以像素為單位）
+}
+
+interface ActivityCenterListType {
+  id: number;
+  countryId: number;
+  holdCountry: string;
+  flagUrl: string;
+  flagThumbnailUrl: string;
+  address: string;
+  venueId: number;
+  eventTime: string;
+  activityDesc: string;
+  videoDesc: string;
+  content: string;
+  status: number;
+  attachmentList: {
+    fileName: string;
+    fileUrl: string;
+    thumbnailUrl: string;
+    fileType: number;
+  }[];
+}
+
+interface ActivityDataType {
+  countryId: number;
+  holdCountry: string;
+  description: string;
+  activityList: ActivityCenterListType[];
+  flagUrl: string;
+  establishTime: string;
+}
+
+interface ActivityAllListType {
+  countryId: number;
+  description: string;
+  establishTime: string;
+  flagThumbnailUrl: string;
+  flagUrl: string;
+  holdAddress: string;
+  holdCountry: string;
+}
+interface FileType {
+  fileName: string;
+  fileUrl: string;
+  thumbnailUrl?: string;
+  fileType: 1 | 2 | 3;
+}
+
+interface UcardInfoType {
+  id: number;
+  firstName: string;
+  address: string;
+  birthDate: string;
+  cardType: string;
+  contact: string;
+  country: string;
+  currencies: string;
+  firstName: string;
+  idBackUrl: string;
+  idFrontUrl: string;
+  idType: string;
+  lastName: string;
+  memberId: number;
+  postalCode: string;
+  selfieWithIdUrl: string;
+  status: string;
+  topupAmount: number;
+}
+
+interface BusinessCollegeMeetType {
+  id: number;
+  meetName: string;
+  fullMeetName: string;
+  fileName: string;
+  fileUrl: string;
+  thumbnailUrl: string;
+  createTime: string;
+  updateTime: string;
+  i18nList: { id: number; language: string; meetDesc: string }[];
+}

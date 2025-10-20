@@ -5,15 +5,15 @@ import { api } from "@/api";
 import ViewLayout from "@/components/layout";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
-import { langType } from "@/views/news";
-import { useLocale } from "next-intl";
+import { PrivacyPolicyRespDTO } from "@/api/NineIndexClient";
 
 const FundProtocolView = () => {
   const t = useTrans();
-  const locale = useLocale();
-  const [detail, setDetail] = useState<{ [x: string]: string }>();
+  const [detail, setDetail] = useState<PrivacyPolicyRespDTO>();
   const getDetail = useCallback(async () => {
-    const { data } = await api.cms.getByTypeUsingGet({ type: 2 });
+    const { data } = await api.nineIndex.privacyPolicy.getPrivacyPolicy({
+      type: 2,
+    });
     setDetail(data);
   }, []);
 
@@ -32,7 +32,7 @@ const FundProtocolView = () => {
       <div
         className="p-content text-sm"
         dangerouslySetInnerHTML={{
-          __html: detail?.["content" + langType[locale]] || "",
+          __html: detail?.["content"] || "",
         }}
       ></div>
     </ViewLayout>

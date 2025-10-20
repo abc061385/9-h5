@@ -5,12 +5,13 @@ import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import UserInfoBox from "./info";
 import ListBox from "./list";
-import { routerMap } from "@/i18n/navigation";
+import { Link, routerMap } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { Modal } from "@/components/modal";
 import { Icon } from "@/components/icon";
 import { useEffect, useState } from "react";
 import { useAssetStore } from "@/store/useAssetStore";
+import BaseImage from "@/components/base-image";
 
 const UserView = () => {
   const t = useTrans();
@@ -35,8 +36,20 @@ const UserView = () => {
         />
       }
     >
-      <div className="p-content">
+      <div className="p-content bg-white">
         <UserInfoBox />
+        <Link href={routerMap.activity}>
+          <div className="w-full relative mt-4">
+            <BaseImage
+              src="/images/user/entry@2x.webp"
+              className="h-[48px] w-full"
+            />
+            <div className="absolute top-0 left-0 size-full flex items-center pl-2">
+              <span className="text-white">{t("activityCenter")}</span>
+              <Icon name="right-enter-white" className="h-2"></Icon>
+            </div>
+          </div>
+        </Link>
         <ListBox />
         <button
           className="btn btn-soft w-full text-assist2 bg-bg-assist2 border-none"

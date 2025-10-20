@@ -26,7 +26,7 @@ type Item = {
 const FAQDocView = () => {
   const { data } = useRequestQuery(
     api.publicizeDocVideo.getDocListUsingGet,
-    {},
+    {}
   );
   const t = useTrans();
   // const [currentUrl, setCurrentUrl] = useState("");
@@ -42,7 +42,7 @@ const FAQDocView = () => {
       }
       return "-";
     },
-    [locale],
+    [locale]
   );
   // const [numPages, setNumPages] = useState<number>();
   // function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
@@ -86,6 +86,7 @@ const FAQDocView = () => {
                         <img
                           src={item.coverUrl}
                           className="size-full object-cover"
+                          alt=""
                         />
                       ) : (
                         <BaseImage

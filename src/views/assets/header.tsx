@@ -6,11 +6,11 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { formatBalance } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAssetStore } from "@/store/useAssetStore";
 import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
-import toast from "react-hot-toast";
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 
 interface TotalInvestmentType {
   personalFundInvestment: number;
@@ -26,6 +26,7 @@ type CardType = {
 };
 
 const HeaderBox = () => {
+  const baseApi = createAxiosInstance("/app");
   const { push } = useRouter();
   const t = useTrans();
   const {
@@ -41,10 +42,17 @@ const HeaderBox = () => {
   const [coinListData, setCoinList] = useState<CryptoAsset[]>([]);
   const [depositCoinDrawerOpen, setDepositCoinDrawerOpen] = useState(false);
   const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
+  const [oneClickFund, setOneClickFund] = useState<{
+    productId: number;
+    pledgeDays: number;
+  }>();
 
   const { data } = useRequestQuery(api.wallet.listUsingPost, {});
-  const totalAmount = data?.data.total;
   const { trigger } = useRequestMutation(api.wallet.getTotalInvestmentUsingGet);
+
+  const [totalAmount] = useMemo(() => {
+    return [data?.data?.total ?? 0, data?.data?.frozenTotal ?? 0];
+  }, [data?.data]);
 
   useEffect(() => {
     trigger(
@@ -53,7 +61,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      },
+      }
     );
   }, [trigger]);
 
@@ -98,9 +106,18 @@ const HeaderBox = () => {
     },
   ];
 
-  const handleTip = () => {
-    toast(t("老数据总资产"));
-  };
+  const getOneClickFund = useCallback(async () => {
+    const res: ApiResponse<{
+      list: { productId: number; pledgeDays: number }[];
+    }> = await baseApi.get("/fund-product-config/fast-invest-detail");
+    setOneClickFund(res.data.list?.[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getOneClickFund();
+  }, [getOneClickFund]);
+
   return (
     <div className="">
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
@@ -108,28 +125,38 @@ const HeaderBox = () => {
       <h4 className="text-[28px] font-bold leading-8">
         ${formatBalance(totalAmount, 2)}
       </h4>
-      {totalInvestment?.frozenUbx ? (
-        <div className="text-text4 text-sm mt-2">
-          <div className="flex items-center">
-            <span className="text-xs">{t("冻结金额")}</span>：
-            <span>
-              {formatBalance(totalInvestment?.frozenUbx || 0, 2)} USDT
-            </span>
-            <Icon name="warning-black" onClick={handleTip} />
-          </div>
-        </div>
-      ) : null}
+      {/* {totalInvestment?.frozenUbx ? ( */}
+      {/*   <div className="text-text4 text-sm mt-2"> */}
+      {/*     <div className="flex items-center"> */}
+      {/*       <span className="text-xs">{t("冻结金额")}</span>： */}
+      {/*       <span> */}
+      {/*         {formatBalance(totalInvestment?.frozenUbx || 0, 2)} USDT */}
+      {/*       </span> */}
+      {/*       <Icon name="warning-black" onClick={handleTip} /> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/* ) : null} */}
       <div className="text-text4 text-sm mt-2">
         <span className="mb-2 text-xs">{t("投资总额")}</span>：
         <span>
           {formatBalance(totalInvestment?.personalFundInvestment || 0, 2)} USDT
         </span>
       </div>
-      <div className="grid grid-cols-5 gap-8 py-6 border-b border-border2">
+      {/* {frozenTotal ? ( */}
+      {/*   <div className="text-text4 text-sm flex items-center"> */}
+      {/*     <span className="text-xs">{t("funds_frozen")}</span>： */}
+      {/*     <span>{formatBalance(frozenTotal, 2)} USDT</span> */}
+      {/*     <Icon */}
+      {/*       name="warning-black" */}
+      {/*       onClick={() => toast(t("funds_frozen_tip"))} */}
+      {/*     /> */}
+      {/*   </div> */}
+      {/* ) : null} */}
+      <div className="grid grid-cols-5 gap-2 py-6">
         {cardList.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-start"
+            className="flex flex-col items-center justify-start overflow-hidden"
             onClick={() => {
               if (item.onClick) return item.onClick();
               if (!item.path) return;
@@ -137,10 +164,45 @@ const HeaderBox = () => {
             }}
           >
             <BaseImage src={item.icon} className="w-10 h-10" />
-            <span className="text-xs mt-2 text-center">{t(item.label)}</span>
+            <span className="text-xs mt-2 text-center break-words w-full">
+              {t(item.label)}
+            </span>
           </div>
         ))}
       </div>
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer"
+        onClick={() => {
+          push(routerMap.smartYield);
+        }}
+      >
+        <Icon name="smartYieldWallet" className="w-4.5 h-4" />
+        <span className="flex-1">Smart Yield Wallet</span>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        onClick={() => {
+          if (!oneClickFund?.productId) return;
+          push(
+            `${routerMap.fundBuy}?id=${oneClickFund?.productId}&pledgeDays=360&oneClick=1`
+          );
+        }}
+      >
+        <div className="flex flex-1 gap-4">
+          <Icon name="oneInvestment" className="w-4.5 h-4 mt-1" />
+          <dl className="flex-1">
+            <dt>{t("oneClickInvestment")}</dt>
+            <dd className="font-normal text-xs text-text4">
+              {t("investmentDescription")}
+            </dd>
+          </dl>
+        </div>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+
+      <div className="divider"></div>
+
       <Drawer
         className="h-auto"
         title={t("address.selectToken")}

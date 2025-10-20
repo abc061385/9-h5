@@ -15,6 +15,60 @@ export const useRootReg = () => {
     googleVerifyCode: z.string().regex(/^\d{6}$/, {
       message: t("editPassword.enterSixDigit"),
     }),
+    countryPhone: z.string().regex(/^\+?[1-9]\d{1,14}$/, {
+      message: t("validPhone"),
+    }),
+    studioAddress: z.string().regex(/^.+$/, {
+      message: t("enter_venue_address"),
+    }),
+    studioContactType: z.string().regex(/^.+$/, {
+      message: t("enter_contact_info"),
+    }),
+    studioSiteType: z.string().regex(/^.+$/, {
+      message: t("select_venue_type"),
+    }),
+    studioOperationPlan: z.string().regex(/^.+$/, {
+      message: t("enter_operational_plan"),
+    }),
+    studioParticipantNumber: z.string().regex(/^[1-9]\d*$/, {
+      message: t("validTraineeCount"),
+    }),
+    studioTeachLanguage: z.string().regex(/^.+$/, {
+      message: t("enter_language_of_instruction"),
+    }),
+    studioReceiveAddress: z.string().regex(/^.+$/, {
+      message: t("enter_receiving_address"),
+    }),
+    selectMeetupType: z.string().regex(/^.+$/, {
+      message: t("selectMeetupType"),
+    }),
+    firstName: z.string().regex(/^.+$/, {
+      message: t("firstNamePlaceholder"),
+    }),
+    lastName: z.string().regex(/^.+$/, {
+      message: t("lastNamePlaceholder"),
+    }),
+    country: z.string().regex(/^.+$/, {
+      message: t("selectCountry"),
+    }),
+    birthDate: z.string().regex(/^.+$/, {
+      message: t("dateOfBirthPlaceholder"),
+    }),
+    postCode: z.string().regex(/^.+$/, {
+      message: t("postCodePlaceholder"),
+    }),
+    billingAddress: z.string().regex(/^.+$/, {
+      message: t("billingAddressPlaceholder"),
+    }),
+    documentType: z.string().regex(/^.+$/, {
+      message: t("documentTypePlaceholder"),
+    }),
+    cardType: z.string().regex(/^.+$/, {
+      message: t("cardTypePlaceholder"),
+    }),
+    currencies: z.string().regex(/^.+$/, {
+      message: t("currencyPlaceholder"),
+    }),
   };
 };
 

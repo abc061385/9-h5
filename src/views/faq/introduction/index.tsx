@@ -3,19 +3,19 @@
 import { api } from "@/api";
 import ViewLayout from "@/components/layout";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
-import { useLocale } from "next-intl";
 import BaseImage from "@/components/base-image";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { langType } from "@/views/news";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 
 const FAQIntroductionView = () => {
-  const locale = useLocale();
   const t = useTrans();
   const { push } = useRouter();
 
-  const { data } = useRequestQuery(api.cms.getByTypeUsingGet, { type: 5 });
+  const { data } = useRequestQuery(
+    api.nineIndex.privacyPolicy.getPrivacyPolicy,
+    { type: 5 },
+  );
   const detail = data?.data || {};
 
   return (
@@ -32,7 +32,7 @@ const FAQIntroductionView = () => {
       <div
         className="p-content text-sm"
         dangerouslySetInnerHTML={{
-          __html: detail?.["content" + (langType[locale] || "En")] || "",
+          __html: detail?.["content"] || "",
         }}
       ></div>
     </ViewLayout>

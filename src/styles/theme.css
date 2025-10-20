@@ -29,6 +29,7 @@
   --color-bg1: #f6f7fd;
   --color-bg2: #fafafa;
   --color-bg3: #f4f4f4;
+  --color-bg4: #121212;
   --color-border1: #cecece;
   --color-border2: #eeeeee;
   --color-assist1: #f2f3f6;
@@ -84,7 +85,7 @@
 html,
 body {
   color: var(--color-text1);
-  background-color: var(--color-white);
+  /* background-color: var(--color-white); */
   @apply no-scrollbar;
 }
 
@@ -107,4 +108,40 @@ body {
   display: inline-block;
   width: 30px;
   content: url("/images/common/open.svg");
+}
+
+.embed-html table {
+  width: 100%;
+  max-width: 100% !important;
+  table-layout: fixed; /* 固定布局，按比例分配 */
+}
+
+.embed-html table,
+th,
+td {
+  width: auto !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+.radio-custom {
+  border-width: 1.5px;
+}
+
+.radio-custom:checked {
+  background: none;
+}
+
+.radio-custom:checked::before {
+  background: var(--color-primary);
+}
+
+.radio-custom::before {
+  background: #000;
+}
+
+.btn-primary1 {
+  background-color: var(--color-primary2);
+  color: var(--color-white);
 }

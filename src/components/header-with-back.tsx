@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { ReactNode, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { Icon } from "./icon";
 import { useRouter as useI18nRouter } from "@/i18n/navigation";
 
@@ -27,14 +26,13 @@ export const HeaderWithBack = ({
     theme === "light" ? "bg-white" : "bg-black text-white",
     className,
   ]);
-  const router = useRouter();
-  const { push } = useI18nRouter();
+  const { push, back } = useI18nRouter();
 
   const handleBack = () => {
     onChange?.();
     if (onClick) return onClick();
     if (path) return push(path);
-    router.back();
+    back();
   };
 
   const notHistory = useMemo(() => {

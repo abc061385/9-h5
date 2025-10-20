@@ -30,7 +30,7 @@ const FundRecordView = () => {
   }, [getCoinList]);
 
   const { trigger: editReinvestment } = useRequestMutation(
-    api.fundProductConfig.reinvestmentUsingPost,
+    api.fundProductConfig.reinvestmentUsingPost
   );
 
   const getList = useCallback(
@@ -46,7 +46,7 @@ const FundRecordView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [pageSize, tabsValue],
+    [pageSize, tabsValue]
   );
 
   const tabs = [
@@ -93,16 +93,17 @@ const FundRecordView = () => {
             <div key={item.id} className="mt-4">
               <div className="bg-bg2 rounded-2xl p-4 pb-5">
                 <h3
-                  className="text-base font-medium flex items-center justify-between"
+                  className="text-base font-medium flex items-center justify-between gap-2"
                   onClick={() =>
                     push(
-                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`,
+                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`
                     )
                   }
                 >
                   {item.fundType === 1 ? t("稳健基金") : t("策略基金")}
-                  <div className="flex items-center gap-1">
-                    <div className="text-primary text-sm">
+
+                  <div className="flex items-center gap-1 flex-1">
+                    <div className="text-primary text-sm text-right">
                       {statusText[item.status]}
                     </div>
                     <Icon name="right-arrow" className="w-1.5 h-2.5" />
@@ -116,12 +117,12 @@ const FundRecordView = () => {
                     <p>
                       {formatBalance(
                         item?.pledgeToken1Amount || 0,
-                        item?.pledgeToken1 || "USDT",
+                        item?.pledgeToken1 || "USDT"
                       )}
                       {item?.pledgeToken1} +{" "}
                       {formatBalance(
                         item?.pledgeToken2Amount || 0,
-                        item?.pledgeToken2 || "USDT",
+                        item?.pledgeToken2 || "USDT"
                       )}{" "}
                       {item?.pledgeToken2}
                     </p>
@@ -167,7 +168,7 @@ const FundRecordView = () => {
                             toast.success(t("操作成功"));
                             await reloadRef.current?.();
                           },
-                        },
+                        }
                       );
                     }}
                   />

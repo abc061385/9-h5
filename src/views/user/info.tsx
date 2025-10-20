@@ -1,12 +1,12 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import StarIcon from "../vip/star-icon";
 import CopyText from "@/components/copy-text";
-import BaseImage from "@/components/base-image";
-import { Drawer } from "@/components/drawer";
+// import { Drawer } from "@/components/drawer";
+import { AvatarUploader } from "@/components/avatar-uploader";
 
 interface CardType {
   icon: "vip-user" | "invite-user";
@@ -20,7 +20,7 @@ const UserInfoBox = () => {
   const userInfo = useUserStore((s) => s.userInfo);
   const { push } = useRouter();
 
-  const [editUserHead, setEditUserHead] = useState(false);
+  // const [editUserHead, setEditUserHead] = useState(false);
 
   const cards: CardType[] = [
     {
@@ -44,15 +44,12 @@ const UserInfoBox = () => {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <BaseImage
-          src="/icons/user-head.svg"
-          className="size-16"
-          // onClick={() => setEditUserHead(true)}
-        />
+        <AvatarUploader className="size-16" />
         <div className="font-bold text-xl mt-4 mb-2">
-          {userInfo?.emailAccount ||
+          {userInfo?.tel ||
+            userInfo?.nick ||
+            userInfo?.emailAccount ||
             userInfo?.bindEmail ||
-            userInfo?.tel ||
             "--"}
         </div>
         <div className="flex justify-center text-sm gap-2 text-center">
@@ -78,26 +75,26 @@ const UserInfoBox = () => {
           </div>
         ))}
       </div>
-      <Drawer
-        open={editUserHead}
-        onChange={() => setEditUserHead(false)}
-        className="h-auto text-center"
-      >
-        <div className="py-4 border-b border-border2">
-          {t("user.takePhoto")}
-        </div>
-        <div className="py-3.5 border-b border-border2">
-          {t("user.chooseFromAlbum")}
-        </div>
-        <button
-          className="btn btn-outline w-full mt-6"
-          onClick={() => {
-            setEditUserHead(false);
-          }}
-        >
-          {t("common.cancel")}
-        </button>
-      </Drawer>
+      {/* <Drawer */}
+      {/*   open={editUserHead} */}
+      {/*   onChange={() => setEditUserHead(false)} */}
+      {/*   className="h-auto text-center" */}
+      {/* > */}
+      {/*   <div className="py-4 border-b border-border2"> */}
+      {/*     {t("user.takePhoto")} */}
+      {/*   </div> */}
+      {/*   <div className="py-3.5 border-b border-border2"> */}
+      {/*     {t("user.chooseFromAlbum")} */}
+      {/*   </div> */}
+      {/*   <button */}
+      {/*     className="btn btn-outline w-full mt-6" */}
+      {/*     onClick={() => { */}
+      {/*       setEditUserHead(false); */}
+      {/*     }} */}
+      {/*   > */}
+      {/*     {t("common.cancel")} */}
+      {/*   </button> */}
+      {/* </Drawer> */}
     </div>
   );
 };

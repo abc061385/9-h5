@@ -8,16 +8,18 @@ import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import BaseImage from "@/components/base-image";
 import toast from "react-hot-toast";
-import { useLocale } from "next-intl";
-import { langType } from "../news";
+// import { useLocale } from "next-intl";
+// import { langType } from "../news";
+import { AnnouncementRespDTO } from "@/api/NineIndexClient";
+// import { APILang } from "@/i18n/routing";
 // import ChartBox from "./chart";
 
 const FundBox = () => {
   const t = useTrans();
   const { push } = useRouter();
-  const locale = useLocale();
-  const [pledgeDays] = useState(180);
-  const [newsList, setNewsList] = useState<NewsDataType[]>([]);
+  // const locale = useLocale();
+  const [pledgeDays] = useState(360);
+  const [newsList, setNewsList] = useState<AnnouncementRespDTO[]>([]);
 
   const { data } = useRequestQuery(api.fundProductConfig.pageUsingGet2, {
     pledgeDays: pledgeDays,
@@ -30,9 +32,13 @@ const FundBox = () => {
   const list: TokenListType[] = data?.data?.list || [];
 
   const getList = useCallback(async () => {
-    const { data } = await api.cms.pageAnnouncementUsingGet({
-      pageNo: 1,
-      pageSize: 1,
+    // const { data } = await api.cms.pageAnnouncementUsingGet({
+    //   pageNo: 1,
+    //   pageSize: 1,
+    // });
+    const { data } = await api.nineIndex.announcement.getAnnouncementPage({
+      pageNo: "1",
+      pageSize: "1",
     });
     setNewsList(data?.list || []);
   }, []);
@@ -48,8 +54,16 @@ const FundBox = () => {
       icon: "invite-friends",
       path: routerMap.invite,
     },
-    { label: t("home.ranking"), icon: "ranking" },
-    { label: t("home.challenge"), icon: "challenge" },
+    {
+      label: t("businessSchool1"),
+      icon: "business-school",
+      path: routerMap.businessSchool,
+    },
+    {
+      label: t("home.challenge"),
+      icon: "challenge",
+      path: routerMap.VIPChallenge,
+    },
   ];
 
   return (
@@ -60,11 +74,11 @@ const FundBox = () => {
       >
         <Icon name="trumpet" className="size-6 mr-2" />
         <p className="flex-1 text-left mr-8 truncate text-xs">
-          {newsList?.[0]?.["title" + (langType[locale] || "En")]}
+          {newsList?.[0]?.["title"]}
         </p>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
-      <div className="flex justify-between mt-6">
+      <div className="grid grid-cols-4 gap-2 mt-6">
         {hotList.map((v, i) => {
           return (
             <div
@@ -79,7 +93,7 @@ const FundBox = () => {
                 src={`/images/home/${v.icon}.svg`}
                 className="size-14"
               />
-              <h4 className="text-xs mt-1">{v.label}</h4>
+              <h4 className="text-xs mt-1 break-words">{v.label}</h4>
             </div>
           );
         })}

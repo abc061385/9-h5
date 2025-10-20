@@ -26,6 +26,8 @@ const FundSuccessView = () => {
           className="btn btn-neutral w-50 mt-12 mb-2"
           onClick={() => {
             setField("buyData", undefined);
+            setField("usdtFirstIs", "0");
+            setField("pledgeDays", undefined);
             push(routerMap.fundRecord);
           }}
         >
@@ -36,6 +38,8 @@ const FundSuccessView = () => {
           onClick={() => {
             push(routerMap.fund);
             setField("buyData", undefined);
+            setField("usdtFirstIs", "0");
+            setField("pledgeDays", undefined);
           }}
         >
           {t("return")}
