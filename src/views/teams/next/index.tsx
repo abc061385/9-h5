@@ -87,7 +87,7 @@ const TeamsNextView = () => {
           <input
             type="search"
             className="grow"
-            placeholder={t("查询团队账号")}
+            placeholder='Search for team member accounts'
             onKeyDown={(e) => {
               if (e.code === "Enter") {
                 setSearchValue((e.target as HTMLInputElement).value);

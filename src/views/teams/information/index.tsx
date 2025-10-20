@@ -5,14 +5,17 @@ import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { ReactNode, useCallback } from "react";
+import { ReactNode, useCallback, useState } from "react";
 
 const TeamsInformationView = () => {
   const t = useTrans();
   const { formatBalance } = useFormatBalance();
+
+  const [tabsValue, setTabsValue] = useState("0");
 
   const { data } = useRequestQuery(
     api.wallet.inteamInvestmentStatitUsingGet,
@@ -31,6 +34,11 @@ const TeamsInformationView = () => {
     },
     [formatBalance]
   );
+
+  const tabsList = [
+    { label: "Team", value: "0" },
+    { label: "Personal", value: "1" },
+  ];
   return (
     <ViewLayout
       header={<HeaderWithBack algin="center" title="Personal Information" />}
@@ -70,6 +78,13 @@ const TeamsInformationView = () => {
         </div>
         <div className="mt-6">
           <h3 className="font-medium mb-4">{t("投资总额")}</h3>
+          <HorizontalTabs
+            tabs={tabsList}
+            value={tabsValue}
+            onChange={(e) => setTabsValue(e as string)}
+            type="border"
+            gap="4"
+          />
           {FieldEL(`360 ${t("daysFund")}`, info?.totalInvestment360Days || 0)}
           {FieldEL(`180 ${t("daysFund")}`, info?.totalInvestment180Days || 0)}
           {FieldEL(`90 ${t("daysFund")}`, info?.totalInvestment90Days || 0)}
