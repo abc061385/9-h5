@@ -88,6 +88,7 @@ export const routerMap = {
   businessSchoolPreviousHighlights: "/business-school/previous-highlights/",
   businessSchoolPreviousHighlightsDetail:
     "/business-school/previous-highlights/detail/",
+  teamsMembers: "/teams/members/",
 };
 
 export const WhiteListPath = [

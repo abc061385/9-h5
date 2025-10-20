@@ -87,7 +87,7 @@ const TeamsNextView = () => {
           <input
             type="search"
             className="grow"
-            placeholder='Search for team member accounts'
+            placeholder="Search for team member accounts"
             onKeyDown={(e) => {
               if (e.code === "Enter") {
                 setSearchValue((e.target as HTMLInputElement).value);
@@ -111,7 +111,7 @@ const TeamsNextView = () => {
           value={tabsValue!}
           onChange={(e) => setTabsValue(e)}
           type="border"
-          gap="4"
+          wrapClassName="gap-4"
         />
         <div className="mt-4 grid grid-cols-4 gap-2">
           {areaStatList.map((item, index) => {
