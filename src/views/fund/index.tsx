@@ -5,11 +5,12 @@ import FundHeaderBox from "./header";
 import ListBox from "./list";
 import ViewLayout from "@/components/layout";
 import { useSearchParams } from "next/navigation";
+import Platform from "@/lib/platfrom";
 
 const FundView = () => {
   const params = useSearchParams();
   const isDock = useMemo(() => {
-    if (params.get("r") === "app") {
+    if (params.get("r") === "app" && Platform.isInApp()) {
       return false;
     } else {
       return true;
