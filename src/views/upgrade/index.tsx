@@ -12,10 +12,12 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { api } from "@/api";
 import { useAssetStore } from "@/store/useAssetStore";
 import BaseImage from "@/components/base-image";
+import { useBack } from "@/hooks/useBack";
 
 const UpgradeView = () => {
   const t = useTrans();
   const { coinList } = useAssetStore();
+  const back = useBack();
 
   const [tabsValue, setTabsValue] = useState("USDM");
   const [awardInfo, setAwardInfo] = useState<AwardInfoType>();
@@ -54,7 +56,9 @@ const UpgradeView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title={t("VIP计划")} algin="center" />}
+      header={
+        <HeaderWithBack title={t("VIP计划")} algin="center" onClick={back} />
+      }
     >
       <div className="p-content">
         <div role="tablist" className="tabs mb-4">
