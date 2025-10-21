@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
@@ -14,6 +14,7 @@ import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
 import { useAssetStore } from "@/store/useAssetStore";
+import Platform from "@/lib/platfrom";
 
 const FundRecordView = () => {
   const reloadRef = useRef<() => Promise<void>>(null);
@@ -63,15 +64,17 @@ const FundRecordView = () => {
     t("已取消"),
     t("复投中"),
   ];
+  const fundPath = useMemo(() => {
+    if (Platform.isInApp()) {
+      return routerMap.fund + "?r=app";
+    }
+    return routerMap.fund;
+  }, []);
   return (
     <ViewLayout
       heightFull
       header={
-        <HeaderWithBack
-          title={t("购买记录")}
-          algin="center"
-          // path={routerMap.fund}
-        />
+        <HeaderWithBack title={t("购买记录")} algin="center" path={fundPath} />
       }
     >
       <div className="p-content">
