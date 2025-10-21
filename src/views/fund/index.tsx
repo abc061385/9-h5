@@ -5,11 +5,17 @@ import FundHeaderBox from "./header";
 import ListBox from "./list";
 import ViewLayout from "@/components/layout";
 import Platform from "@/lib/platfrom";
+import { useSearchParams } from "next/navigation";
 
 const FundView = () => {
+  const params = useSearchParams();
   const isDock = useMemo(() => {
-    return !Platform.isInApp();
-  }, []);
+    if (params.get("r") === "app" && Platform.isInApp()) {
+      return false;
+    } else {
+      return true;
+    }
+  }, [params]);
   return (
     <ViewLayout
       className="h-max md-pc:h-full overflow-hidden flex flex-col"
