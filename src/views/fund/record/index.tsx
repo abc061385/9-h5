@@ -30,7 +30,7 @@ const FundRecordView = () => {
   }, [getCoinList]);
 
   const { trigger: editReinvestment } = useRequestMutation(
-    api.fundProductConfig.reinvestmentUsingPost
+    api.fundProductConfig.reinvestmentUsingPost,
   );
 
   const getList = useCallback(
@@ -46,7 +46,7 @@ const FundRecordView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [pageSize, tabsValue]
+    [pageSize, tabsValue],
   );
 
   const tabs = [
@@ -70,7 +70,7 @@ const FundRecordView = () => {
         <HeaderWithBack
           title={t("购买记录")}
           algin="center"
-          path={routerMap.fund}
+          // path={routerMap.fund}
         />
       }
     >
@@ -96,7 +96,7 @@ const FundRecordView = () => {
                   className="text-base font-medium flex items-center justify-between gap-2"
                   onClick={() =>
                     push(
-                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`
+                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`,
                     )
                   }
                 >
@@ -117,12 +117,12 @@ const FundRecordView = () => {
                     <p>
                       {formatBalance(
                         item?.pledgeToken1Amount || 0,
-                        item?.pledgeToken1 || "USDT"
+                        item?.pledgeToken1 || "USDT",
                       )}
                       {item?.pledgeToken1} +{" "}
                       {formatBalance(
                         item?.pledgeToken2Amount || 0,
-                        item?.pledgeToken2 || "USDT"
+                        item?.pledgeToken2 || "USDT",
                       )}{" "}
                       {item?.pledgeToken2}
                     </p>
@@ -168,7 +168,7 @@ const FundRecordView = () => {
                             toast.success(t("操作成功"));
                             await reloadRef.current?.();
                           },
-                        }
+                        },
                       );
                     }}
                   />
