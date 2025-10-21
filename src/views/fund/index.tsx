@@ -4,13 +4,12 @@ import { useMemo } from "react";
 import FundHeaderBox from "./header";
 import ListBox from "./list";
 import ViewLayout from "@/components/layout";
-import Platform from "@/lib/platfrom";
 import { useSearchParams } from "next/navigation";
 
 const FundView = () => {
   const params = useSearchParams();
   const isDock = useMemo(() => {
-    if (params.get("r") === "app" && Platform.isInApp()) {
+    if (params.get("r") === "app") {
       return false;
     } else {
       return true;
