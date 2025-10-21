@@ -37,9 +37,8 @@ export const HeaderWithBack = ({
     if (onClick) return onClick();
     if (path) return push(path);
 
-    const refApp = params.get("r");
-    console.log(Bridge.goBack);
-    if (Platform.isInApp() && refApp && Bridge.goBack) {
+    const refApp = params.get("r") || "";
+    if (Platform.isInApp() && refApp === "app" && Bridge.goBack) {
       Bridge.goBack();
     } else {
       back();
