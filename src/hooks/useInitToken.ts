@@ -6,6 +6,7 @@ import { useStore } from "@/store";
 import { useUserStore } from "@/store/useUserStore";
 import { useCallback, useEffect } from "react";
 
+// const fullWihteList = [routerMap.fundBuy, routerMap.fundProtocol, routerMap.income, routerMap.upgrade]
 // init token
 export const useInitToken = () => {
   const initRoot = useStore((s) => s.initRoot);
@@ -14,7 +15,7 @@ export const useInitToken = () => {
 
   const setToken = useCallback(async () => {
     if (Platform.isInApp()) {
-      Bridge.setFull(false);
+      Bridge.setFull(true);
       const token =
         Bridge?.getToken() || window.localStorage.getItem("token") || "";
       utils.setJwtCookie(token);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import { useRequestMutation } from "@/hooks/useRequestMutation";
@@ -14,6 +14,7 @@ import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
 import { useAssetStore } from "@/store/useAssetStore";
+import Platform from "@/lib/platfrom";
 
 const FundRecordView = () => {
   const reloadRef = useRef<() => Promise<void>>(null);
@@ -30,7 +31,7 @@ const FundRecordView = () => {
   }, [getCoinList]);
 
   const { trigger: editReinvestment } = useRequestMutation(
-    api.fundProductConfig.reinvestmentUsingPost
+    api.fundProductConfig.reinvestmentUsingPost,
   );
 
   const getList = useCallback(
@@ -46,7 +47,7 @@ const FundRecordView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [pageSize, tabsValue]
+    [pageSize, tabsValue],
   );
 
   const tabs = [
@@ -63,15 +64,17 @@ const FundRecordView = () => {
     t("已取消"),
     t("复投中"),
   ];
+  const fundPath = useMemo(() => {
+    if (Platform.isInApp()) {
+      return routerMap.fund + "?r=app";
+    }
+    return routerMap.fund;
+  }, []);
   return (
     <ViewLayout
       heightFull
       header={
-        <HeaderWithBack
-          title={t("购买记录")}
-          algin="center"
-          path={routerMap.fund}
-        />
+        <HeaderWithBack title={t("购买记录")} algin="center" path={fundPath} />
       }
     >
       <div className="p-content">
@@ -96,7 +99,7 @@ const FundRecordView = () => {
                   className="text-base font-medium flex items-center justify-between gap-2"
                   onClick={() =>
                     push(
-                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`
+                      `${routerMap.fundDetail}?id=${item.id}&orderType=${item.orderType}`,
                     )
                   }
                 >
@@ -117,12 +120,12 @@ const FundRecordView = () => {
                     <p>
                       {formatBalance(
                         item?.pledgeToken1Amount || 0,
-                        item?.pledgeToken1 || "USDT"
+                        item?.pledgeToken1 || "USDT",
                       )}
                       {item?.pledgeToken1} +{" "}
                       {formatBalance(
                         item?.pledgeToken2Amount || 0,
-                        item?.pledgeToken2 || "USDT"
+                        item?.pledgeToken2 || "USDT",
                       )}{" "}
                       {item?.pledgeToken2}
                     </p>
@@ -168,7 +171,7 @@ const FundRecordView = () => {
                             toast.success(t("操作成功"));
                             await reloadRef.current?.();
                           },
-                        }
+                        },
                       );
                     }}
                   />

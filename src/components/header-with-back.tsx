@@ -2,6 +2,9 @@ import { cn } from "@/lib/utils";
 import { ReactNode, useMemo } from "react";
 import { Icon } from "./icon";
 import { useRouter as useI18nRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import Bridge from "@/lib/dsBridge";
+import Platform from "@/lib/platfrom";
 
 type IProps = {
   title?: ReactNode;
@@ -28,11 +31,18 @@ export const HeaderWithBack = ({
   ]);
   const { push, back } = useI18nRouter();
 
+  const params = useSearchParams();
   const handleBack = () => {
     onChange?.();
     if (onClick) return onClick();
     if (path) return push(path);
-    back();
+
+    const refApp = params.get("r") || "";
+    if (Platform.isInApp() && refApp === "app" && Bridge.goBack) {
+      Bridge.goBack();
+    } else {
+      back();
+    }
   };
 
   const notHistory = useMemo(() => {

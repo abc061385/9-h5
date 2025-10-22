@@ -18,6 +18,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import CardBox from "./card";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { useBack } from "@/hooks/useBack";
 
 const SmartYield = () => {
   const t = useTrans();
@@ -25,6 +26,7 @@ const SmartYield = () => {
   const { formatBalance } = useFormatBalance();
   const { push } = useRouter();
 
+  const back = useBack();
   const [tabsValue, setTabsValue] = useState("USDM");
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType1>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
@@ -137,7 +139,13 @@ const SmartYield = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="Smart Yield Wallet" algin="center" />}
+      header={
+        <HeaderWithBack
+          title="Smart Yield Wallet"
+          algin="center"
+          onClick={back}
+        />
+      }
       className="flex flex-col"
     >
       <div className="p-content overflow-x-hidden h-max">
