@@ -37,32 +37,29 @@ const AssetsExchangeView = () => {
   const t = useTrans();
   const { getBalanceList, balanceList } = useAssetStore();
 
-  const [formCoinList, setFormCoinList] = useState<CurrencyInfo[]>([]);
   const [toCoinList, setToCoinList] = useState<CurrencyInfo[]>([]);
 
   const [formDrawerOpen, setFormDrawerOpen] = useState(false);
   const [toDrawerOpen, setToDrawerOpen] = useState(false);
 
   const [formCoinItem, setFormCoinItem] = useState<CurrencyInfo>();
-  const [toCoinItem, setToCoinItem] = useState<CurrencyInfo>();
+  const [toCoinItem, setToCoinItem] = useState<
+    ExchangeRateItem & CurrencyInfo
+  >();
 
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState<string>("");
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-  const { data, isLoading } = useRequestQuery(
-    api.currencySettings.protocolListUsingGet,
+  const { data: baseCurrenciesRes, isLoading } = useRequestQuery(
+    api.currencySettings.getBaseCurrenciesUsingGet,
     {},
   );
-  const { data: priceListRes } = useRequestQuery(
-    api.kline.marketSituationUsingGet,
-    { type: "DAY" },
-  );
-  const lastPrice = useMemo(() => {
-    const _list = priceListRes?.data?.situationVOS || [];
-    if (!_list?.length) return 0;
-    return _list?.slice(-1)[0]?.price || 0;
-  }, [priceListRes]);
-  const currencyList = data?.data as CurrencyInfo[];
+  const formCoinList = useMemo(() => {
+    return baseCurrenciesRes?.data.map((item: CurrencyInfo) => ({
+      ...item,
+      id: item.currencyCode,
+    }));
+  }, [baseCurrenciesRes]);
 
   const { trigger, isMutating } = useRequestMutation(
     api.member.flashExchangeUsingPost,
@@ -90,55 +87,22 @@ const AssetsExchangeView = () => {
   }, [getBalanceList]);
 
   useEffect(() => {
-    if (!currencyList?.length) return;
-    const res = currencyList.filter((item) =>
-      ["USDT", "USDC", "USDM", "9MC"].includes(
-        item.currencyCode!.toUpperCase(),
-      ),
-    );
-
-    // const firstSymbol = res[0]?.currencyCode;
-    // setValue("formCoinValue", firstSymbol as string);
-    setFormCoinList(res);
-  }, [currencyList, setValue]);
-
-  useEffect(() => {
-    if (!currencyList?.length) return;
+    if (!formCoinList?.length) return;
     if (!formCoinItem?.id) return;
-    if (formCoinItem.currencyCode === "USDT") {
-      setToCoinList(
-        currencyList.filter(
-          (item) =>
-            ![
-              "USDT",
-              "USDM",
-              "9MC",
-              // 新增关闭USDT兑换
-              // "ADA",
-              // "BTC",
-              // "ETH",
-              // "BNB",
-              // "SOL",
-              // "DOGE",
-              // "SHIB",
-              // "SUI",
-              // "XRP",
-              // "FIL",
-              // "LTC",
-              // "TON",
-              // "OP",
-              // "POL",
-            ].includes(item.currencyCode!.toUpperCase()),
-        ),
-      );
-      return;
-    }
-    setToCoinList(
-      currencyList.filter((item) =>
-        ["USDT"].includes(item.currencyCode!.toUpperCase()),
-      ),
-    );
-  }, [currencyList, formCoinItem]);
+    api.currencySettings
+      .getToCurrenciesByFromCurrencyUsingGet({
+        fromCurrency: formCoinItem.currencyCode,
+      })
+      .then((res) => {
+        const _toCoinlist = res.data.map((item: ExchangeRateItem) => ({
+          ...item,
+          id: item.toCurrency,
+          currencyCode: item.toCurrency,
+          logo: item.toLogo,
+        }));
+        setToCoinList(_toCoinlist);
+      });
+  }, [formCoinList, formCoinItem]);
 
   const balance = useCallback(
     (coin: string | undefined, decimalPlaces: number) => {
@@ -150,34 +114,6 @@ const AssetsExchangeView = () => {
     },
     [balanceList],
   );
-
-  useEffect(() => {
-    if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) return;
-    // if (formCoinItem?.currencyCode === "USDM") return setPrice("1");
-
-    // api.getTickerPrice(`${toCoinItem?.currencyCode}USDT`).then((res) => {
-    //   const price = res.data?.length ? Number(res.data[0]?.price) || 1 : 1;
-    //   setPrice(utils.toBigNumber(1).div(price).toString());
-    // });
-    const currentToken =
-      formCoinItem?.currencyCode !== "USDT"
-        ? formCoinItem?.currencyCode
-        : toCoinItem.currencyCode;
-
-    api.currencySettings
-      .protocolExchangeUsingGet({
-        instId: `${currentToken}-USDT`,
-      })
-      .then((res) => {
-        const price = res.data?.idxPx || 1;
-
-        if (formCoinItem?.currencyCode !== "USDT") {
-          setPrice(price);
-        } else {
-          setPrice(utils.toBigNumber(1).div(price).toString());
-        }
-      });
-  }, [formCoinItem, toCoinItem, lastPrice]);
 
   useEffect(() => {
     setValue(
@@ -398,8 +334,7 @@ const AssetsExchangeView = () => {
           <span>{t("兑换价格")}</span>
           {formCoinItem?.currencyCode && toCoinItem?.currencyCode ? (
             <span>
-              1 {formCoinItem?.currencyCode} ≈{" "}
-              {formatBalance(price, toCoinItem?.decimalPlaces || 4)}{" "}
+              1 {formCoinItem?.currencyCode} ≈ {toCoinItem?.rate}{" "}
               {toCoinItem?.currencyCode}
             </span>
           ) : (
@@ -410,8 +345,9 @@ const AssetsExchangeView = () => {
           type="submit"
           className="btn btn-primary w-full mt-4"
           onClick={handleSubmit((e) => {
-            if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode)
+            if (!formCoinItem?.currencyCode || !toCoinItem?.currencyCode) {
               return toast.error(t("deposit.selectCoin"));
+            }
             if (!e.formCoinValue) return toast.error(t("deposit.enterAmount"));
             if (!price) return toast.error(t("未获取到币价"));
             return setConfirmOpen(true);
@@ -426,8 +362,8 @@ const AssetsExchangeView = () => {
           className="h-auto"
         >
           <CoinList
-            list={formCoinList}
-            checkValue={formCoinItem?.id}
+            list={formCoinList as unknown as CurrencyInfo[]}
+            checkValue={formCoinItem?.currencyCode}
             onCancel={() => setFormDrawerOpen(false)}
             onClick={(item) => {
               setFormCoinItem(item);
@@ -448,9 +384,10 @@ const AssetsExchangeView = () => {
             checkValue={toCoinItem?.id}
             onCancel={() => setToDrawerOpen(false)}
             onClick={(item) => {
-              setToCoinItem(item);
+              const _item = item as unknown as ExchangeRateItem;
+              setToCoinItem(_item);
               setToDrawerOpen(false);
-              setPrice("");
+              setPrice(_item?.rate);
             }}
           />
         </Drawer>
@@ -500,10 +437,7 @@ const AssetsExchangeView = () => {
             )}
             {fieldEl(
               t("兑换价格"),
-              `1 ${formCoinItem?.currencyCode} ≈ ${formatBalance(
-                price,
-                toCoinItem?.decimalPlaces || 4,
-              )}
+              `1 ${formCoinItem?.currencyCode} ≈ ${toCoinItem?.rate}
               ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
@@ -524,7 +458,6 @@ const AssetsExchangeView = () => {
                       amount: Number(getValues().formCoinValue),
                       rate: encryptPassword(getValues().toCoinValue),
                     },
-
                     {
                       onSuccess: () => {
                         toast.success(t("操作成功"));

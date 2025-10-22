@@ -6,7 +6,7 @@ import { FC } from "react";
 
 interface CoinListType {
   list: CurrencyInfo[];
-  checkValue?: number;
+  checkValue?: number | string;
   onClick?: (item: CurrencyInfo) => void;
   onCancel?: () => void;
 }
