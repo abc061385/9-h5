@@ -27,7 +27,7 @@ const SmartYield = () => {
   const { push } = useRouter();
 
   const back = useBack();
-  const [tabsValue, setTabsValue] = useState("USDM");
+  const [tabsValue, setTabsValue] = useState("USD1");
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType1>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
@@ -77,8 +77,8 @@ const SmartYield = () => {
   );
 
   const tabs = [
-    { label: "USDM", value: "USDM" },
-    { label: "9MC", value: "9MC" },
+    { label: "USD1", value: "USD1" },
+    { label: "9MD", value: "9MD" },
   ];
   const [submitLoading, setSumitLoading] = useState(false);
 

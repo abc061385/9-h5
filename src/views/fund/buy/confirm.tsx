@@ -28,13 +28,16 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
   const [oncClickTipsOpen, setOncClickTipsOpen] = useState(false);
 
   const { trigger: postBuy, isMutating } = useRequestMutation(
-    api.fundProductConfig.purchaseUsingPost
+    api.fundProductConfig.purchaseUsingPost,
   );
 
   const isOneClick = useMemo(() => {
     return params.get("oneClick") === "1";
   }, [params]);
 
+  const onlyOneCurrency = useMemo(() => {
+    return String(buyData?.productType) === "2";
+  }, [buyData]);
   return (
     <div>
       <Drawer
@@ -54,19 +57,27 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
         </p>
         <div className="flex justify-between border-t border-border2 pt-6 mt-6">
           <CoinIcon
-            coins={[
-              { src: buyData?.pledgeToken1Logo || "" },
-              { src: buyData?.pledgeToken2Logo || "" },
-            ]}
+            coins={
+              onlyOneCurrency
+                ? [{ src: buyData?.pledgeToken1Logo || "" }]
+                : [
+                    { src: buyData?.pledgeToken1Logo || "" },
+                    { src: buyData?.pledgeToken2Logo || "" },
+                  ]
+            }
             overlap={16}
             size={24}
           />
           <div className="text-right">
             <h4 className="text-text4 text-sm leading-4">{t("支付代币")}</h4>
+            {}
             <p>
               {buyData?.pledgeToken1Amount}
-              {buyData?.pledgeToken1} + {buyData?.pledgeToken2Amount}
-              {buyData?.pledgeToken2}
+              {buyData?.pledgeToken1}
+              <ShowIf condition={!onlyOneCurrency}>
+                + {buyData?.pledgeToken2Amount}
+                {buyData?.pledgeToken2}
+              </ShowIf>
             </p>
           </div>
         </div>
@@ -97,16 +108,18 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
           </div>
         </ShowIf>
 
-        <div className="flex justify-between border-t border-border2 pt-6 mt-6">
-          <span>{t("购买总额")}</span>
-          <b className="text-xl">
-            {formatBalance(buyData?.totalAmount || "", "USDT")} USDT
-          </b>
-        </div>
+        <ShowIf condition={!onlyOneCurrency}>
+          <div className="flex justify-between border-t border-border2 pt-6 mt-6">
+            <span>{t("购买总额")}</span>
+            <b className="text-xl">
+              {formatBalance(buyData?.totalAmount || "", "USDT")} USDT
+            </b>
+          </div>
+        </ShowIf>
         <button
           className={cn(
             "btn btn-primary w-full mt-10.5",
-            isMutating && "btn-disabled"
+            isMutating && "btn-disabled",
           )}
           disabled={isMutating}
           onClick={() => {

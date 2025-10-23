@@ -114,12 +114,13 @@ const FundBox = () => {
           >
             <div className="flex items-center justify-between gap-2">
               <span className="text-base font-medium">
-                {item.pledgeToken1}/{item.pledgeToken2}
+                {/* {item.pledgeToken1}/{item.pledgeToken2} */}
+                {item.pledgeToken1}
               </span>
               <CoinIcon
                 coins={[
                   { src: item.pledgeToken1Logo },
-                  { src: item.pledgeToken2Logo },
+                  // { src: item.pledgeToken2Logo },
                 ]}
                 size={20}
                 overlap={16}

@@ -20,11 +20,11 @@ const FundDetailView = () => {
   const [data, setData] = useState<FundDetailOrder>();
 
   const { trigger, isMutating } = useRequestMutation(
-    api.fundProductConfig.purchaseDetailUsingGet
+    api.fundProductConfig.purchaseDetailUsingGet,
   );
 
   const { trigger: editReinvestment } = useRequestMutation(
-    api.fundProductConfig.reinvestmentUsingPost
+    api.fundProductConfig.reinvestmentUsingPost,
   );
 
   const getData = useCallback(() => {
@@ -38,7 +38,7 @@ const FundDetailView = () => {
         onSuccess: ({ data }) => {
           setData(data as FundDetailOrder);
         },
-      }
+      },
     );
   }, [params, trigger]);
   useEffect(() => {
@@ -56,7 +56,7 @@ const FundDetailView = () => {
         </div>
       );
     },
-    [isMutating]
+    [isMutating],
   );
 
   return (
@@ -81,12 +81,12 @@ const FundDetailView = () => {
               <p className="font-bold text-base">
                 {formatBalance(
                   data?.pledgeToken1Amount || 0,
-                  data?.pledgeToken1 || "USDT"
+                  data?.pledgeToken1 || "USDT",
                 )}
                 {data?.pledgeToken1} +{" "}
                 {formatBalance(
                   data?.pledgeToken2Amount || 0,
-                  data?.pledgeToken2 || "USDT"
+                  data?.pledgeToken2 || "USDT",
                 )}{" "}
                 {data?.pledgeToken2}
               </p>
@@ -136,7 +136,7 @@ const FundDetailView = () => {
                       toast.success(t("操作成功"));
                       getData();
                     },
-                  }
+                  },
                 );
               }}
             />
@@ -150,19 +150,19 @@ const FundDetailView = () => {
           t("昨日收益"),
           `${formatBalance(
             data?.yesterdayProfit || 0,
-            data?.outputToken || "USDM"
-          )} ${data?.outputToken}`
+            data?.outputToken || "USD1",
+          )} ${data?.outputToken}`,
         )}
         {cardEl(
           t("已获取收益"),
           `${formatBalance(
             data?.totalProfit || 0,
-            data?.outputToken || "USDM"
-          )} ${data?.outputToken}`
+            data?.outputToken || "USD1",
+          )} ${data?.outputToken}`,
         )}
         {cardEl(
           t("最大收益"),
-          `${formatBalance(data?.maxProfit || 0, "USDM")} USDM`
+          `${formatBalance(data?.maxProfit || 0, "USD1")} USD1`,
         )}
         {cardEl(t("日收益率"), `≈${data?.dailyYield}%`)}
         {cardEl(t("发放时间"), t("发放时间p"))}

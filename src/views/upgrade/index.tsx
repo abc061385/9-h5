@@ -19,11 +19,11 @@ const UpgradeView = () => {
   const { coinList } = useAssetStore();
   const back = useBack();
 
-  const [tabsValue, setTabsValue] = useState("USDM");
+  const [tabsValue, setTabsValue] = useState("USD1");
   const [awardInfo, setAwardInfo] = useState<AwardInfoType>();
   const tabs = [
-    { label: "USDM", value: "USDM" },
-    { label: "9MC", value: "9MC" },
+    { label: "USD1", value: "USD1" },
+    { label: "9MD", value: "9MD" },
   ];
 
   const { trigger } = useRequestMutation(

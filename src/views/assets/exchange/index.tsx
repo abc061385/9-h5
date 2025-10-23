@@ -31,7 +31,7 @@ type FormData = {
   toCoinValue: string;
 };
 
-const utilCoinList = ["USDT", "USDC", "USDM", "9MC"];
+const utilCoinList = ["USDT", "USDC", "USD1", "9MD"];
 
 const AssetsExchangeView = () => {
   const t = useTrans();

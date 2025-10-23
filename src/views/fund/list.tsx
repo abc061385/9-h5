@@ -91,18 +91,35 @@ const ListBox = () => {
               }
             >
               <div className="flex items-center justify-between gap-2">
-                <span className="text-base font-medium">
-                  {item.pledgeToken1}/{item.pledgeToken2}
-                </span>
-                <CoinIcon
-                  coins={[
-                    { src: item.pledgeToken1Logo },
-                    { src: item.pledgeToken2Logo },
-                  ]}
-                  size={20}
-                  overlap={16}
-                  className="pr-2"
-                />
+                {/* 2 是策略(单币) 1 是稳 （双币） */}
+                {tabsValue === 2 ? (
+                  <>
+                    <span className="text-base font-medium">
+                      {item.pledgeToken1}
+                    </span>
+                    <CoinIcon
+                      coins={[{ src: item.pledgeToken1Logo }]}
+                      size={20}
+                      overlap={16}
+                      className="pr-2"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <span className="text-base font-medium">
+                      {item.pledgeToken1}/{item.pledgeToken2}
+                    </span>
+                    <CoinIcon
+                      coins={[
+                        { src: item.pledgeToken1Logo },
+                        { src: item.pledgeToken2Logo },
+                      ]}
+                      size={20}
+                      overlap={16}
+                      className="pr-2"
+                    />
+                  </>
+                )}
               </div>
               <div className="text-text4 text-xs mt-1 flex flex-col">
                 {t("日收益率")}

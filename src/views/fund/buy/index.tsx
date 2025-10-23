@@ -51,18 +51,18 @@ const FundBuyView = () => {
           const pledgeList = data?.pledgePlans.sort(
             (a: { pledgeDays: number }, b: { pledgeDays: number }) => {
               return b.pledgeDays - a.pledgeDays;
-            }
+            },
           );
           data.pledgePlans = pledgeList;
           const pledge = data.pledgePlans.find(
             (v: PledgeType) =>
-              v.pledgeDays.toString() === params.get("pledgeDays")
+              v.pledgeDays.toString() === params.get("pledgeDays"),
           );
           setPlegeValue(pledge);
           setField("pledgeDays", pledge);
           setInfo(data as FundInfoType);
         },
-      }
+      },
     );
   }, [trigger, params, setField]);
 
@@ -76,13 +76,19 @@ const FundBuyView = () => {
           <div>
             <h3 className="text-text4 text-xs">{t("质押代币")}</h3>
             <p className="text-base font-medium mb-2 mt-1">
-              {info?.pledgeToken1} / {info?.pledgeToken2}
+              {String(info.productType) === "2"
+                ? info?.pledgeToken1
+                : `${info?.pledgeToken1}/${info?.pledgeToken2}`}
             </p>
             <CoinIcon
-              coins={[
-                { src: info?.pledgeToken2Logo || "" },
-                { src: info?.pledgeToken1Logo || "" },
-              ]}
+              coins={
+                String(info.productType) === "2"
+                  ? [{ src: info?.pledgeToken1Logo || "" }]
+                  : [
+                      { src: info?.pledgeToken1Logo || "" },
+                      { src: info?.pledgeToken2Logo || "" },
+                    ]
+              }
               overlap={18}
               size={24}
               className="justify-start"
@@ -130,7 +136,7 @@ const FundBuyView = () => {
                 className={cn(
                   "flex justify-between items-center mt-2 h-16 bg-bg2 rounded-lg px-4",
                   plegeValue?.pledgeDays === item.pledgeDays &&
-                    "bg-primary text-white"
+                    "bg-primary text-white",
                 )}
                 onClick={() => {
                   setPlegeValue(item);
@@ -144,7 +150,7 @@ const FundBuyView = () => {
                 <span
                   className={cn(
                     "text-base text-text4",
-                    plegeValue?.pledgeDays === item.pledgeDays && "text-white"
+                    plegeValue?.pledgeDays === item.pledgeDays && "text-white",
                   )}
                 >
                   {t("日收益率")} ≈ {item?.dailyYield}%

@@ -15,6 +15,7 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
 import { useAssetStore } from "@/store/useAssetStore";
 import Platform from "@/lib/platfrom";
+import { ShowIf } from "@/components/show-if";
 
 const FundRecordView = () => {
   const reloadRef = useRef<() => Promise<void>>(null);
@@ -52,8 +53,8 @@ const FundRecordView = () => {
 
   const tabs = [
     { label: t("walletDetail.all"), value: "" },
-    { label: "USDM", value: "USDM" },
-    { label: "9MC", value: "9MC" },
+    { label: "USD1", value: "USD1" },
+    { label: "9MD", value: "9MD" },
   ];
 
   const statusText = [
@@ -122,12 +123,16 @@ const FundRecordView = () => {
                         item?.pledgeToken1Amount || 0,
                         item?.pledgeToken1 || "USDT",
                       )}
-                      {item?.pledgeToken1} +{" "}
-                      {formatBalance(
-                        item?.pledgeToken2Amount || 0,
-                        item?.pledgeToken2 || "USDT",
-                      )}{" "}
-                      {item?.pledgeToken2}
+                      {item?.pledgeToken1}
+                      {/*稳健基金才展示*/}
+                      <ShowIf condition={item.fundType === 1}>
+                        +
+                        {formatBalance(
+                          item?.pledgeToken2Amount || 0,
+                          item?.pledgeToken2 || "USDT",
+                        )}{" "}
+                        {item?.pledgeToken2}
+                      </ShowIf>
                     </p>
                   </div>
                   <CoinIcon

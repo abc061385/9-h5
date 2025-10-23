@@ -33,7 +33,7 @@ const IncomeView = () => {
 
   const { coinList, setField } = useAssetStore();
 
-  const [tabsValue, setTabsValue] = useState("USDM");
+  const [tabsValue, setTabsValue] = useState("USD1");
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [openSelect, setOpenSelect] = useState(false);
@@ -100,8 +100,8 @@ const IncomeView = () => {
   }, [withDrawNum, withdrawConfig]);
 
   const tabs = [
-    { label: "USDM", value: "USDM" },
-    { label: "9MC", value: "9MC" },
+    { label: "USD1", value: "USD1" },
+    { label: "9MD", value: "9MD" },
   ];
 
   const coinLogo = useCallback(

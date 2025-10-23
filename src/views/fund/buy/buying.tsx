@@ -47,7 +47,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   }, [assetsSetField]); // 清空充值币种和链
 
   const { trigger } = useRequestMutation(
-    api.fundProductConfig.calMaxProfitUsingPost
+    api.fundProductConfig.calMaxProfitUsingPost,
   );
 
   const submit = () => {
@@ -67,7 +67,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       return toast.error(t("质押金额不能低于", { n: info.minInvestment }));
     if (Number(amount) > (pledgeDays?.maxBet as number))
       return toast.error(
-        t("单次质押不能高于", { n: pledgeDays?.maxBet as number })
+        t("单次质押不能高于", { n: pledgeDays?.maxBet as number }),
       );
     setLoading(true);
     trigger(
@@ -106,7 +106,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
-            }
+            },
           );
           setField("buyData", {
             ...info,
@@ -123,7 +123,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           setLoading(false);
           console.log(res.data.swapAmount);
         },
-      }
+      },
     );
   };
 
@@ -132,7 +132,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       (Number(amount || 0) * info.token1Percentage) /
         100 /
         info.pledgeToken1Price || "",
-      info.pledgeToken1
+      info.pledgeToken1,
     );
   }, [
     amount,
@@ -146,7 +146,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
       (Number(amount || 0) * info.token2Percentage) /
         100 /
         info.pledgeToken2Price || "",
-      info.pledgeToken2
+      info.pledgeToken2,
     );
   }, [
     amount,
@@ -159,6 +159,10 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   const isOneClick = useMemo(() => {
     return params.get("oneClick") === "1";
   }, [params]);
+
+  const onlyOneCurrency = useMemo(() => {
+    return String(info.productType) === "2";
+  }, [info]);
 
   useEffect(() => {
     setField("usdtFirstIs", "0");
@@ -222,10 +226,12 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
 
       <h3 className="text-sm my-4 flex justify-between">
         <span>{t("您需支付")}</span>
-        <span className="text-text4">
-          {info.pledgeToken1}:{info.pledgeToken2} = {info.token1Percentage / 10}
-          :{info.token2Percentage / 10}
-        </span>
+        <ShowIf condition={!onlyOneCurrency}>
+          <span className="text-text4">
+            {info.pledgeToken1}:{info.pledgeToken2} ={" "}
+            {info.token1Percentage / 10}:{info.token2Percentage / 10}
+          </span>
+        </ShowIf>
       </h3>
       <div className="flex justify-between items-center h-12 bg-bg2 rounded-lg px-4">
         <div className="flex items-center gap-1">
@@ -247,7 +253,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           className="text-primary cursor-pointer flex items-center gap-1"
           onClick={async () => {
             const coin = coinList.find(
-              (v) => v.currencyCode === info.pledgeToken1
+              (v) => v.currencyCode === info.pledgeToken1,
             );
             if (coin) {
               assetsSetField("depositCoinItem", coin);
@@ -262,41 +268,43 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           {t("充值")}
         </span>
       </div>
-      <div className="flex justify-between items-center h-12 bg-bg2 rounded-lg px-4">
-        <div className="flex items-center gap-1">
-          <BaseImage
-            src={info.pledgeToken2Logo}
-            className="w-5 h-5 rounded-full flex-1 overflow-hidden"
-          />
-          <span>{info.pledgeToken2}</span>
+      <ShowIf condition={!onlyOneCurrency}>
+        <div className="flex justify-between items-center h-12 bg-bg2 rounded-lg px-4">
+          <div className="flex items-center gap-1">
+            <BaseImage
+              src={info.pledgeToken2Logo}
+              className="w-5 h-5 rounded-full flex-1 overflow-hidden"
+            />
+            <span>{info.pledgeToken2}</span>
+          </div>
+          <span>{payAmount2}</span>
         </div>
-        <span>{payAmount2}</span>
-      </div>
-      <div className="flex items-center justify-between mt-2 text-xs">
-        <span className="text-text4">
-          {t("余额")}{" "}
-          {formatBalance(getBalance(info.pledgeToken2), info.pledgeToken2)}
-          {info.pledgeToken2}
-        </span>
-        <span
-          className="text-primary cursor-pointer flex items-center gap-1"
-          onClick={async () => {
-            const coin = coinList.find(
-              (v) => v.currencyCode === info.pledgeToken2
-            );
-            if (coin) {
-              assetsSetField("depositCoinItem", coin);
-              await getChainList();
-              push(routerMap.walletDeposit);
-            } else {
-              toast.error(t("未查询到该币种"));
-            }
-          }}
-        >
-          <Icon name="circle-add" className="w-3 h-3" />
-          {t("充值")}
-        </span>
-      </div>
+        <div className="flex items-center justify-between mt-2 text-xs">
+          <span className="text-text4">
+            {t("余额")}{" "}
+            {formatBalance(getBalance(info.pledgeToken2), info.pledgeToken2)}
+            {info.pledgeToken2}
+          </span>
+          <span
+            className="text-primary cursor-pointer flex items-center gap-1"
+            onClick={async () => {
+              const coin = coinList.find(
+                (v) => v.currencyCode === info.pledgeToken2,
+              );
+              if (coin) {
+                assetsSetField("depositCoinItem", coin);
+                await getChainList();
+                push(routerMap.walletDeposit);
+              } else {
+                toast.error(t("未查询到该币种"));
+              }
+            }}
+          >
+            <Icon name="circle-add" className="w-3 h-3" />
+            {t("充值")}
+          </span>
+        </div>
+      </ShowIf>
       <div className="grow"></div>
       <div className="flex items-center text-xs mt-2 text-text4">
         <label className="label">
