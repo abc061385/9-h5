@@ -1,21 +1,18 @@
 "use client";
 
-import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import Tabs from "@/components/tabs/tabs";
-import { useRequestMutation } from "@/hooks/useRequestMutation";
-import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SubCardBox from "../sub-card";
-
-interface AreaData {
-  area: string;
-  topMemberId: number;
-}
+import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { useUserStore } from "@/store/useUserStore";
+import { ShowIf } from "@/components/show-if";
+import { ListNoData } from "@/components/nodata/list-nodata";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 interface AreaStatData {
   count: number;
@@ -25,6 +22,9 @@ interface AreaStatData {
 
 const TeamsNextView = () => {
   const t = useTrans();
+  const { push } = useRouter();
+  const baseApi = createAxiosInstance("/app");
+  const { userInfo } = useUserStore();
 
   const [, setSearchValue] = useState("");
   const [areaList, setAreaList] = useState<
@@ -36,33 +36,87 @@ const TeamsNextView = () => {
   const [tabsValue, setTabsValue] = useState<string | number>("");
   const [areaStatList, setAreaStatList] = useState<AreaStatData[]>([]);
   const [userTabValue, setUserTabValue] = useState(0);
+  const [isDepositor, setIsDepositor] = useState(false);
+  const [tabsCheck, setTabsCheck] = useState<{
+    label: string;
+    value: string | number;
+  }>();
+  const [loading, setLoading] = useState(true);
+  const [directReferralNum, setDirectReferralNum] = useState(0);
 
-  const { data } = useRequestQuery(api.member.memberTeamAreaUsingGet, {});
-  const { trigger } = useRequestMutation(api.member.memberTeamAreaStatUsingGet);
+  const [highLoading, setHighLoading] = useState(true);
+  const [highestList, setHighestList] =
+    useState<TeamDirectReferralAreaType[]>();
 
-  useEffect(() => {
-    if (!data?.data?.length) return;
-    const arr = data?.data.map((v: AreaData) => {
-      return {
-        value: v.topMemberId,
-        label: v.area + t("区"),
-      };
-    });
-    setAreaList([{ label: t("withdraw.useAll"), value: "" }, ...arr]);
-  }, [data, t]);
-
-  useEffect(() => {
-    trigger(
-      {
-        topMemberId: (tabsValue as number) || undefined,
-      },
-      {
-        onSuccess: ({ data }) => {
-          setAreaStatList((data as AreaStatData[]) || []);
-        },
+  const getAreaList = useCallback(async () => {
+    try {
+      const res: ApiResponse<TeamDirectReferralAreaType[]> = await baseApi.get(
+        "/member/team/direct-referral/area/list",
+        {
+          params: {
+            userId: userInfo?.id || 0,
+            account: userInfo.emailAccount || "",
+          },
+        }
+      );
+      if (res.code === 200) {
+        const arr = res?.data.map((v: TeamDirectReferralAreaType) => {
+          return {
+            value: v.id,
+            label: v.username,
+          };
+        });
+        setAreaList([{ label: t("withdraw.useAll"), value: "" }, ...arr]);
+        setDirectReferralNum(res.data?.length || 0);
       }
-    );
-  }, [tabsValue, trigger]);
+    } catch (err) {
+      console.log(err);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getAreaList();
+  }, [getAreaList]);
+
+  const getAreaStat = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res: ApiResponse<AreaStatData[]> = await baseApi.get(
+        "/member/team/page-query/areaStat",
+        {
+          params: {
+            account:
+              tabsCheck?.label === "All"
+                ? userInfo.emailAccount
+                : tabsCheck?.label || userInfo.emailAccount,
+            topMemberId: tabsCheck?.value || userInfo.id || undefined,
+            isDepositor: isDepositor ? 1 : 0,
+          },
+        }
+      );
+      setLoading(false);
+      if (res.code === 200) {
+        setAreaStatList(
+          res.data?.length ? res.data : [{ vipLevel: 0, star: 0, count: 0 }]
+        );
+      }
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    tabsCheck?.label,
+    tabsCheck?.value,
+    userInfo.emailAccount,
+    userInfo.id,
+    isDepositor,
+  ]);
+
+  useEffect(() => {
+    getAreaStat();
+  }, [getAreaStat]);
 
   const userTabs = [
     {
@@ -75,6 +129,35 @@ const TeamsNextView = () => {
     },
   ];
 
+  const getHighList = useCallback(async () => {
+    setHighLoading(true);
+    const params = {
+      account: userInfo.emailAccount || "",
+      userId: userInfo.id || 0,
+    };
+    try {
+      const res: ApiResponse<TeamDirectReferralAreaType[]> =
+        userTabValue === 0
+          ? await baseApi.get("/member/team/highest-level-user/list", {
+              params,
+            })
+          : await baseApi.get("/member/team/highest-performing-user/list", {
+              params,
+            });
+      setHighLoading(false);
+      if (res.code === 200) {
+        setHighestList(res.data);
+      }
+    } catch (err) {
+      setHighLoading(false);
+      console.log(err);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo.emailAccount, userInfo.id, userTabValue]);
+
+  useEffect(() => {
+    getHighList();
+  }, [getHighList, userTabValue]);
   return (
     <ViewLayout
       heightFull
@@ -100,8 +183,12 @@ const TeamsNextView = () => {
           <label className="label">
             {t("onlyShowDepositors")}
             <input
+              value={isDepositor ? 1 : 0}
               type="checkbox"
-              className="checkbox checkbox-neutral w-4 h-4"
+              className="checkbox checkbox-neutral1 w-4 h-4"
+              onChange={(e) => {
+                setIsDepositor(e.target.checked);
+              }}
             />
           </label>
         </div>
@@ -109,27 +196,52 @@ const TeamsNextView = () => {
         <HorizontalTabs
           tabs={areaList}
           value={tabsValue!}
-          onChange={(e) => setTabsValue(e)}
+          onChange={(e) => {
+            setTabsValue(e);
+            const checkItem = areaList.find((item) => item.value === e);
+            setTabsCheck(checkItem);
+          }}
           type="border"
           wrapClassName="gap-4"
         />
-        <div className="mt-4 grid grid-cols-4 gap-2">
-          {areaStatList.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="flex flex-col h-13.5 rounded-lg items-center justify-center bg-bg3 text-sm"
-              >
-                <span className="text-text4">VIP{item.vipLevel}</span>
-                <span className="font-medium">{item.count}</span>
-              </div>
+        <ShowIf
+          condition={!loading}
+          elseEl={<div className="loading flex mx-auto mt-4"></div>}
+        >
+          <div className="mt-4 grid grid-cols-4 gap-2">
+            {areaStatList.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col h-13.5 rounded-lg items-center justify-center bg-bg3 text-sm"
+                  onClick={() => {
+                    push(
+                      `${routerMap.teamsMembers}?id=${
+                        tabsValue || userInfo.id
+                      }&type=level&level=${item.vipLevel}`
+                    );
+                  }}
+                >
+                  <span className="text-text4">VIP{item.vipLevel}</span>
+                  <span className="font-medium">{item.count}</span>
+                </div>
+              );
+            })}
+          </div>
+        </ShowIf>
+        <div
+          className="flex items-center justify-between text-sm border-y border-border2 py-6 my-6"
+          onClick={() => {
+            push(
+              `${routerMap.teamsMembers}?id=${
+                tabsValue || userInfo?.id
+              }&type=direct`
             );
-          })}
-        </div>
-        <div className="flex items-center justify-between text-sm border-y border-border2 py-6 my-6">
+          }}
+        >
           <span>My direct referrals</span>
           <span className="flex gap-2 items-center font-medium">
-            584
+            {directReferralNum}
             <Icon name="right-enter" className="w-1.5 h-2.5" />
           </span>
         </div>
@@ -142,7 +254,18 @@ const TeamsNextView = () => {
           activeClassName="text-text1 font-medium"
           between={false}
         />
-        <SubCardBox />
+        <ShowIf
+          condition={!highLoading}
+          elseEl={<div className="loading flex mx-auto mt-40"></div>}
+        >
+          {highestList?.length ? (
+            highestList.map((v) => {
+              return <SubCardBox key={v.id} data={v} />;
+            })
+          ) : (
+            <ListNoData />
+          )}
+        </ShowIf>
       </div>
     </ViewLayout>
   );

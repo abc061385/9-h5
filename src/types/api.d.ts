@@ -466,3 +466,50 @@ interface BusinessCollegeMeetType {
   updateTime: string;
   i18nList: { id: number; language: string; meetDesc: string }[];
 }
+
+interface TeamDirectReferralAreaType {
+  id: number;
+  username: string;
+  nickname?: string;
+  vipLevel?: number;
+  totalTeamInvestment?: number;
+  totalTeamMembers?: number;
+  star?: number;
+}
+
+interface UserInvestmentData {
+  createTime: string;
+  id: number;
+  levelName: string;
+  nickname: string;
+  personalInvestmentStable7Days: number | null;
+  personalInvestmentStable30Days: number | null;
+  personalInvestmentStable90Days: number | null;
+  personalInvestmentStable180Days: number | null;
+  personalInvestmentStable360Days: number | null;
+  personalInvestmentStableAmount: number | null;
+  personalInvestmentStrategy7Days: number | null;
+  personalInvestmentStrategy30Days: number | null;
+  personalInvestmentStrategy90Days: number | null;
+  personalInvestmentStrategy180Days: number | null;
+  personalInvestmentStrategy360Days: number | null;
+  personalInvestmentStrategyAmount: number | null;
+  star: number | null;
+  totalCommunityInvestment: number | null;
+  totalInvestmentStable7Days: number | null;
+  totalInvestmentStable30Days: number | null;
+  totalInvestmentStable90Days: number | null;
+  totalInvestmentStable180Days: number | null;
+  totalInvestmentStable360Days: number | null;
+  totalInvestmentStableAmount: number | null;
+  totalInvestmentStrategy7Days: number | null;
+  totalInvestmentStrategy30Days: number | null;
+  totalInvestmentStrategy90Days: number | null;
+  totalInvestmentStrategy180Days: number | null;
+  totalInvestmentStrategy360Days: number | null;
+  totalInvestmentStrategyAmount: number | null;
+  totalRegionInvestment: number | null;
+  totalTeamInvestment: number | null;
+  totalTeamMembers: number;
+  vipLevel: number;
+}

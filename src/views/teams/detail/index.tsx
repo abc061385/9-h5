@@ -8,9 +8,13 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { ReactNode, useCallback } from "react";
 import { Icon } from "@/components/icon";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import { useUserStore } from "@/store/useUserStore";
 
 const TeamsDetailView = () => {
   const t = useTrans();
+  const { push } = useRouter();
+  const { userInfo } = useUserStore();
   const { formatBalance } = useFormatBalance();
 
   const { data } = useRequestQuery(
@@ -24,7 +28,10 @@ const TeamsDetailView = () => {
       return (
         <div className="flex justify-between items-center mb-2 text-sm last:mb-0">
           <span className="text-text4 flex-1">{label}</span>
-          <span className="text-right">{`≈ ${formatBalance(value, "USDT")} USDT`}</span>
+          <span className="text-right">{`≈ ${formatBalance(
+            value,
+            "USDT"
+          )} USDT`}</span>
         </div>
       );
     },
@@ -37,7 +44,12 @@ const TeamsDetailView = () => {
     >
       <div className="p-content">
         <div className="bg-[url('/images/team/team-data-bg.png')] bg-contain bg-no-repeat flex items-center justify-around h-[96px] text-white px-4 gap-2">
-          <div className="flex flex-col gap-2 flex-1">
+          <div
+            className="flex flex-col gap-2 flex-1"
+            onClick={() => {
+              push(`${routerMap.teamsMembers}?id=${userInfo.id}&type=total`);
+            }}
+          >
             <span className="text-2xl font-bold leading-6">
               {info?.totalTeamMembers || 0}
               <Icon
@@ -47,7 +59,12 @@ const TeamsDetailView = () => {
             </span>
             <span className="font-medium leading-4">{t("团队总人数")}</span>
           </div>
-          <div className="flex flex-col gap-2 flex-1">
+          <div
+            className="flex flex-col gap-2 flex-1"
+            onClick={() => {
+              push(`${routerMap.teamsMembers}?id=${userInfo.id}&type=today`);
+            }}
+          >
             <span className="text-2xl font-bold leading-6">
               {info?.newMembersToday || 0}
               <Icon
