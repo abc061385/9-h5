@@ -60,14 +60,14 @@ const TeamsInformationView = () => {
   );
 
   const tabsList = [
-    { label: "Team", value: "0" },
-    { label: "Personal", value: "1" },
+    { label: t("team"), value: "0" },
+    { label: t("personal"), value: "1" },
   ];
 
   const header = (
     <div className="flex-1 flex justify-center items-center relative font-bold text-lg max-w-[78vw]">
       <span className="truncate">
-        {information?.nickname || "Personal Information"}
+        {information?.nickname || t("personalInformation")}
       </span>
       <Icon
         name={filterDrawerOpen ? "filter-check" : "filter"}
@@ -129,12 +129,12 @@ const TeamsInformationView = () => {
             </div>
           </div>
           <div className="flex flex-col items-end text-text4 text-sm gap-1">
-            <span>Registration date</span>
+            <span>{t("registrationDate")}</span>
             <span>{information?.createTime || "--"}</span>
           </div>
         </div>
         <div className="flex items-center justify-between text-sm border-y border-border2 py-6">
-          <span>Total Team Investment</span>
+          <span>{t("totalTeamInvestment")}</span>
           <span className="flex gap-2 items-center font-medium">
             ≈ {formatBalance1(information?.totalTeamInvestment || 0, 4)} USDT
           </span>
@@ -142,10 +142,14 @@ const TeamsInformationView = () => {
         <div
           className="flex items-center justify-between text-sm border-b border-border2 py-6"
           onClick={() => {
-            push(`${routerMap.teamsMembers}?id=${searchParams.get("id")}`);
+            push(
+              `${routerMap.teamsMembers}?id=${searchParams.get(
+                "id"
+              )}&type=direct`
+            );
           }}
         >
-          <span>Total Team Members</span>
+          <span>{t("totalTeamMembers")}</span>
           <span className="flex gap-2 items-center font-medium">
             {information?.totalTeamMembers || 0}{" "}
             <Icon name="right-enter" className="w-1.5 h-2.5" />
@@ -161,21 +165,21 @@ const TeamsInformationView = () => {
             wrapClassName="gap-4"
             className="text-base!"
           />
-          <h4 className="my-4 text-sm">9M AI Stategy Fund</h4>
+          <h4 className="my-4 text-sm">{t("9mAIStategyFund")}</h4>
           {FieldEL(`360 ${t("daysFund")}`, "InvestmentStrategy360Days")}
           {FieldEL(`180 ${t("daysFund")}`, "InvestmentStrategy180Days")}
           {FieldEL(`90 ${t("daysFund")}`, "InvestmentStrategy90Days")}
           {FieldEL(`30 ${t("daysFund")}`, "InvestmentStrategy30Days")}
           {FieldEL(`7 ${t("daysFund")}`, "InvestmentStrategy7Days")}
-          {FieldEL(`Total`, "InvestmentStrategyAmount")}
+          {FieldEL(t("total"), "InvestmentStrategyAmount")}
 
-          <h4 className="my-4 text-sm">9M AI Stable Fund</h4>
+          <h4 className="my-4 text-sm">{t("9mAIStableFund")}</h4>
           {FieldEL(`360 ${t("daysFund")}`, "InvestmentStable360Days")}
           {FieldEL(`180 ${t("daysFund")}`, "InvestmentStable180Days")}
           {FieldEL(`90 ${t("daysFund")}`, "InvestmentStable90Days")}
           {FieldEL(`30 ${t("daysFund")}`, "InvestmentStable30Days")}
           {FieldEL(`7 ${t("daysFund")}`, "InvestmentStable7Days")}
-          {FieldEL(`Total`, "InvestmentStrategyAmount")}
+          {FieldEL(t("total"), "InvestmentStrategyAmount")}
         </div>
       </div>
       <Drawer
@@ -186,7 +190,7 @@ const TeamsInformationView = () => {
         title={<HeaderWithBack algin="center" title={header} />}
       >
         <div className="p-content pb-6">
-          <h4 className="font-medium mb-2">Statistics by time</h4>
+          <h4 className="font-medium mb-2">{t("registrationDate")}</h4>
 
           <label className="input w-full h-12">
             <input
@@ -197,7 +201,7 @@ const TeamsInformationView = () => {
                 setTimePickerType("start");
                 setTimePickerOpen(true);
               }}
-              placeholder={"Start time"}
+              placeholder={t("startTime")}
               value={startTime}
             />
             <Icon name={"date"} className="size-4" />
@@ -211,7 +215,7 @@ const TeamsInformationView = () => {
                 setTimePickerType("end");
                 setTimePickerOpen(true);
               }}
-              placeholder={"End time"}
+              placeholder={t("endTime")}
               value={endTime}
             />
             <Icon name={"date"} className="size-4" />
@@ -224,7 +228,7 @@ const TeamsInformationView = () => {
                 setEndTime("");
               }}
             >
-              Reset
+              {t("reset")}
             </button>
             <button
               className="btn btn-primary h-12"

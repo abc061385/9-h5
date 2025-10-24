@@ -101,7 +101,7 @@ const TeamsMembersView = () => {
 
   return (
     <ViewLayout
-      header={<HeaderWithBack title="Total Team Members" algin="center" />}
+      header={<HeaderWithBack title={t("members")} algin="center" />}
       heightFull
     >
       <div className="p-content h-full flex-col flex">
@@ -110,7 +110,7 @@ const TeamsMembersView = () => {
           <input
             type="search"
             className="grow"
-            placeholder="Search for team member accounts"
+            placeholder={t("searchForTeamMemberAccounts")}
             onChange={useDebouncedCallback(
               (e: ChangeEvent<HTMLInputElement>) => {
                 setSearchValue(e.target.value);

@@ -513,3 +513,31 @@ interface UserInvestmentData {
   totalTeamMembers: number;
   vipLevel: number;
 }
+
+interface InvestmentStats {
+  newCommunityInvestmentToday: number | null;
+  newMembersToday: number | null;
+  newTeamInvestmentToday: number;
+  totalCommunityInvestment: number;
+  totalFaithNodeInvestment: number | null;
+  totalGenesisNodeInvestment: number | null;
+  totalInvestment7Days: number;
+  totalInvestment30Days: number;
+  totalInvestment90Days: number;
+  totalInvestment180Days: number;
+  totalInvestment360Days: number;
+  totalInvestmentStable7Days: number | null;
+  totalInvestmentStable30Days: number | null;
+  totalInvestmentStable90Days: number | null;
+  totalInvestmentStable180Days: number | null;
+  totalInvestmentStable360Days: number | null;
+  totalInvestmentStableAmount: number | null;
+  totalInvestmentStrategy7Days: number | null;
+  totalInvestmentStrategy30Days: number | null;
+  totalInvestmentStrategy90Days: number | null;
+  totalInvestmentStrategy180Days: number | null;
+  totalInvestmentStrategy360Days: number | null;
+  totalInvestmentStrategyAmount: number | null;
+  totalTeamInvestment: number;
+  totalTeamMembers: number;
+}

@@ -4,6 +4,7 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { formatBalance } from "@/lib/utils";
 import { FC } from "react";
 import StarIcon from "../vip/star-icon";
+import { useTrans } from "@/hooks/useTrans";
 
 interface ISubCardProps {
   data?: TeamDirectReferralAreaType;
@@ -11,6 +12,7 @@ interface ISubCardProps {
 
 const SubCardBox: FC<ISubCardProps> = ({ data }) => {
   const { push } = useRouter();
+  const t = useTrans();
   return (
     <div
       className="rounded-lg bg-bg2 p-4 mb-2 last:mb-0"
@@ -33,11 +35,11 @@ const SubCardBox: FC<ISubCardProps> = ({ data }) => {
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
       <div className="text-sm flex items-center justify-between">
-        <span className="text-text4">Total Team Investment</span>
+        <span className="text-text4">{t("totalTeamInvestment")}</span>
         <span>≈ {formatBalance(data?.totalTeamInvestment || 0, 4)} USDT</span>
       </div>
       <div className="text-sm flex items-center justify-between mt-1">
-        <span className="text-text4">Total Team Members</span>
+        <span className="text-text4">{t("totalTeamMembers")}</span>
         <span>{data?.totalTeamMembers || 0}</span>
       </div>
     </div>

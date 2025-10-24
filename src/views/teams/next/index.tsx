@@ -120,11 +120,11 @@ const TeamsNextView = () => {
 
   const userTabs = [
     {
-      label: "Highest level user",
+      label: t("highestLevelUser"),
       value: 0,
     },
     {
-      label: "Highest performing users",
+      label: t("highestPerformingUsers"),
       value: 1,
     },
   ];
@@ -170,7 +170,7 @@ const TeamsNextView = () => {
           <input
             type="search"
             className="grow"
-            placeholder="Search for team member accounts"
+            placeholder={t("searchForTeamMemberAccounts")}
             onKeyDown={(e) => {
               if (e.code === "Enter") {
                 setSearchValue((e.target as HTMLInputElement).value);
@@ -239,7 +239,7 @@ const TeamsNextView = () => {
             );
           }}
         >
-          <span>My direct referrals</span>
+          <span>{t("myDirectReferrals")}</span>
           <span className="flex gap-2 items-center font-medium">
             {directReferralNum}
             <Icon name="right-enter" className="w-1.5 h-2.5" />
