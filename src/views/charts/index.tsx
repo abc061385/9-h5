@@ -98,7 +98,7 @@ const ChartsView = () => {
           tabs={tabsList}
           value={tabsValue}
           onChange={(v) => setTabsValue(v as string)}
-          type="segment"
+          type="text"
           className="my-4"
         />
         <ReactECharts
