@@ -5,10 +5,12 @@ import ViewLayout from "@/components/layout";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import BaseImage from "@/components/base-image";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { Icon } from "@/components/icon";
 import { Skeleton } from "@/components/skeleton";
+import Platform from "@/lib/platfrom";
+import Bridge from "@/lib/dsBridge";
 
 const regex = /<([a-zA-Z0-9]+)[^>]*>([\s\S]*?)<\/\1>/i;
 
@@ -50,6 +52,9 @@ const FAQView = () => {
     const detail = data?.data || {};
     return detail?.["content"] || "";
   }, [data?.data]);
+  useEffect(() => {
+    if (Platform.isInApp()) Bridge.setFull(false);
+  }, []);
   return (
     <ViewLayout heightFull>
       <div className="p-content">
