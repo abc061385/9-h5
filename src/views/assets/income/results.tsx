@@ -5,6 +5,8 @@ import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import Bridge from "@/lib/dsBridge";
+import Platform from "@/lib/platfrom";
 import { useAssetStore } from "@/store/useAssetStore";
 
 const AssetsIncomeResultsView = () => {
@@ -24,7 +26,13 @@ const AssetsIncomeResultsView = () => {
         </p>
         <button
           className="btn btn-neutral w-50 mt-12 mb-2"
-          onClick={() => push(routerMap.assets)}
+          onClick={() => {
+            if (Platform.isInApp()) {
+              Bridge.jumpTo("/assets");
+            } else {
+              push(routerMap.assets);
+            }
+          }}
         >
           {t("viewAccount")}
         </button>

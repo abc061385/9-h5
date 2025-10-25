@@ -4,7 +4,7 @@ import Platform from "@/lib/platfrom";
 
 export const useBack = () => {
   const { back } = useRouter();
-  if (Platform.isInApp()) {
+  if (Platform.isInApp() && Bridge?.goBack) {
     return Bridge.goBack;
   }
   return back;

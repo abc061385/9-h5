@@ -36,6 +36,17 @@ type NextStarConfig = Partial<{
   teamVipCount: number;
 }>;
 
+interface ExchangeRateItem {
+  fromCurrency: string;
+  fromLogo: string;
+  maxAmount: number;
+  minAmount: number;
+  rate: string;
+  sortOrder: number;
+  toCurrency: string;
+  toLogo: string;
+}
+
 type CurrencyInfo = Partial<{
   id: number;
   protocolType: string; // e.g., "TRON"

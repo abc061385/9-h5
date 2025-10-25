@@ -18,6 +18,7 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { ShowIf } from "@/components/show-if";
 import { Icon } from "@/components/icon";
+import { useBack } from "@/hooks/useBack";
 
 const NewVersionMap = {
   balance: 0,
@@ -27,6 +28,7 @@ const NewVersionMap = {
 const IncomeView = () => {
   const t = useTrans();
   const { push } = useRouter();
+  const back = useBack();
   const { formatBalance } = useFormatBalance();
 
   const { coinList, setField } = useAssetStore();
@@ -126,7 +128,9 @@ const IncomeView = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title={t("投资收益")} algin="center" />}
+      header={
+        <HeaderWithBack title={t("投资收益")} algin="center" onClick={back} />
+      }
       className="flex flex-col"
     >
       <div className="p-content overflow-x-hidden h-max">
