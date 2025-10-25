@@ -196,6 +196,25 @@
     }
   }
 }
+@utility drawer-top {
+  &.drawer {
+    @apply static;
+  }
+
+  > .drawer-toggle ~ .drawer-side {
+    @apply absolute top-0 bottom-auto z-49;
+
+    :not(.drawer-overlay) {
+      @apply translate-y-[-100%];
+    }
+  }
+
+  > .drawer-toggle:checked ~ .drawer-side {
+    :not(.drawer-overlay) {
+      @apply translate-y-0;
+    }
+  }
+}
 
 @utility progress-gradient1 {
   color: var(--color-gradient1);

@@ -20,10 +20,34 @@ const TeamsView = () => {
   const { push } = useRouter();
   const userInfo = useUserStore((s) => s.userInfo);
   const [tabsValue, setTabsValue] = useState<number | string>("");
-  const [list, setList] = useState<DataType[]>([]);
+  const [list, setList] = useState<DataType[]>([
+    {
+      generation: 0,
+      totalInvestmentYesterday: 0,
+      totalInvestment: 0,
+      yesterdayReturn: 0,
+      totalFundReturn: 0,
+      yesterdayNewUsersCount: 0,
+      totalUsersCount: 0,
+      totalInvestmentTeam: 0,
+      id: 0,
+      parentId: 0,
+      nodeInvestment: 0,
+      tel: "",
+      nickname: "",
+      createTime: "",
+      vipLevel: 0,
+      frozen_ubx: 0,
+      emailAccount: "",
+      isInvest: 0,
+      areaType: 0,
+      accountType: 0,
+      area: "",
+    },
+  ]);
   const [teamNumbers, setTeamNumbers] = useState(0);
   const [searchValue, setSearchValue] = useState("");
-  const [pageSize] = useState(100);
+  const [pageSize] = useState(10);
 
   const tabsList = [
     { label: t("withdraw.useAll"), value: "" },
@@ -48,7 +72,7 @@ const TeamsView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, searchValue, userInfo, pageSize],
+    [tabsValue, searchValue, userInfo, pageSize]
   );
 
   const getInfo = useCallback(async () => {

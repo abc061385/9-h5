@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>筛选</title>
+    <g id="App-V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Personal-Information_Filter" transform="translate(-338, -52)" fill="#000000" fill-rule="nonzero">
+            <g id="筛选" transform="translate(338, 52)">
+                <polygon id="路径" points="31 12 31 13.9718519 24.9949996 21.2325926 24.9949996 32 23.8894075 32 18.8849904 29.4548148 18.8849904 21.2325926 13 14.2992593 13 12"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

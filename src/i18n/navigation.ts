@@ -71,6 +71,7 @@ export const routerMap = {
   accounts: "/user/accounts/",
   accountsAdd: "/user/accounts/add/",
   accountsRegister: "/user/accounts/register/",
+  teamsInformation: "/teams/information/",
   certificate: "/certificate/",
   studio: "/studio/",
   studioRecords: "/studio/records",
@@ -87,6 +88,7 @@ export const routerMap = {
   businessSchoolPreviousHighlights: "/business-school/previous-highlights/",
   businessSchoolPreviousHighlightsDetail:
     "/business-school/previous-highlights/detail/",
+  teamsMembers: "/teams/members/",
 };
 
 export const WhiteListPath = [
