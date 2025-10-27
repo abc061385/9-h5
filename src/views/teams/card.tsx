@@ -26,12 +26,12 @@ const CardBox: FC<ICardProps> = ({ data }) => {
             {data.nickname || "--"}
             {/* {maskString(data.nickname) || "--"} */}
           </span>
-          <div className="badge badge-soft badge-primary rounded-xs text-xs">
+          {/* <div className="badge badge-soft badge-primary rounded-xs text-xs">
             {data.areaType === 1 ? t("小区") : t("大区")}
           </div>
           <div className="badge badge-soft badge-primary2 rounded-xs text-xs">
             {data.area || "--"} {t("区")}
-          </div>
+          </div> */}
         </div>
         <div
           className={cn(
