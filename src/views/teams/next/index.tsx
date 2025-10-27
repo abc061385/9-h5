@@ -63,7 +63,7 @@ const TeamsNextView = () => {
         const arr = res?.data.map((v: TeamDirectReferralAreaType) => {
           return {
             value: v.id,
-            label: v.username,
+            label: v.username || v.tel || v.nickname || v.bindEmail || "",
           };
         });
         setAreaList([{ label: t("withdraw.useAll"), value: "" }, ...arr]);
