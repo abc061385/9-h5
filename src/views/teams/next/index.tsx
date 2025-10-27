@@ -88,8 +88,11 @@ const TeamsNextView = () => {
           params: {
             account:
               tabsCheck?.label === "All"
-                ? userInfo.emailAccount
-                : tabsCheck?.label || userInfo.emailAccount,
+                ? userInfo?.emailAccount || userInfo?.bindEmail || userInfo?.tel
+                : tabsCheck?.label ||
+                  userInfo?.emailAccount ||
+                  userInfo?.bindEmail ||
+                  userInfo?.tel,
             topMemberId: tabsCheck?.value || userInfo.id || undefined,
             isDepositor: isDepositor ? 1 : 0,
           },
