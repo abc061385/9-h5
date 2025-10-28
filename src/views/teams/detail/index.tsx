@@ -119,7 +119,7 @@ const TeamsDetailView = () => {
         </div>
         <h5 className="text-sm leading-5 mt-6">{t("团队投资总额")}</h5>
         <div className="font-bold leading-6 text-xl">
-          {formatBalance(info?.totalTeamInvestment || 0, "USDT")} USDT
+          ≈{formatBalance(info?.totalTeamInvestment || 0, "USDT")} USDT
         </div>
 
         <div className="mt-6">
@@ -132,7 +132,7 @@ const TeamsDetailView = () => {
         <div>
           <h3 className="font-medium text-sm">{t("投资总额")}</h3>
 
-          <h4 className="my-4">9M AI Stategy Fund</h4>
+          <h4 className="my-4 text-sm">{t("9mAIStategyFund")}</h4>
           {FieldEL(
             `360 ${t("daysFund")}`,
             info?.totalInvestmentStrategy360Days || 0
@@ -155,7 +155,7 @@ const TeamsDetailView = () => {
           )}
           {FieldEL(t("total"), info?.totalInvestmentStrategyAmount || 0)}
 
-          <h4 className="my-4 text-sm">9M AI Stable Fund</h4>
+          <h4 className="my-4 text-sm">{t("9mAIStableFund")}</h4>
 
           {FieldEL(
             `360 ${t("daysFund")}`,

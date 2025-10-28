@@ -6,13 +6,14 @@ import ViewLayout from "@/components/layout";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import Tabs from "@/components/tabs/tabs";
 import { useTrans } from "@/hooks/useTrans";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import SubCardBox from "../sub-card";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { useUserStore } from "@/store/useUserStore";
 import { ShowIf } from "@/components/show-if";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 interface AreaStatData {
   count: number;
@@ -26,7 +27,7 @@ const TeamsNextView = () => {
   const baseApi = createAxiosInstance("/app");
   const { userInfo } = useUserStore();
 
-  const [, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const [areaList, setAreaList] = useState<
     {
       label: string;
@@ -55,7 +56,7 @@ const TeamsNextView = () => {
         {
           params: {
             userId: userInfo?.id || 0,
-            account: userInfo.emailAccount || "",
+            account: searchValue || "",
           },
         }
       );
@@ -72,8 +73,8 @@ const TeamsNextView = () => {
     } catch (err) {
       console.log(err);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue, t, userInfo?.id]);
 
   useEffect(() => {
     getAreaList();
@@ -135,7 +136,7 @@ const TeamsNextView = () => {
   const getHighList = useCallback(async () => {
     setHighLoading(true);
     const params = {
-      account: userInfo.emailAccount || "",
+      account: searchValue || "",
       userId: userInfo.id || 0,
     };
     try {
@@ -156,7 +157,7 @@ const TeamsNextView = () => {
       console.log(err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userInfo.emailAccount, userInfo.id, userTabValue]);
+  }, [searchValue, userInfo.id, userTabValue]);
 
   useEffect(() => {
     getHighList();
@@ -174,11 +175,12 @@ const TeamsNextView = () => {
             type="search"
             className="grow"
             placeholder={t("searchForTeamMemberAccounts")}
-            onKeyDown={(e) => {
-              if (e.code === "Enter") {
-                setSearchValue((e.target as HTMLInputElement).value);
-              }
-            }}
+            onChange={useDebouncedCallback(
+              (e: ChangeEvent<HTMLInputElement>) => {
+                setSearchValue(e.target.value);
+              },
+              500
+            )}
           />
         </label>
 

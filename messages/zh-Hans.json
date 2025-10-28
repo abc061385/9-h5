@@ -641,7 +641,7 @@
   "autoReinvestmentDesc": "平台的自动复投功能让投资更便捷灵活。到期后，平台会自动将您的本金重新投资。开启自动复投可以让您的资金在更长时间内产生复利，使您的投资更具价值。",
   "noTeamMembers": "暂无团队成员。",
   "inviteFriends": "邀请好友加入您的团队！",
-  "daysFund": "天数基金",
+  "daysFund": "天基金",
   "teamMembers": "团队成员",
   "onlyShowDepositors": "仅显示存款人",
   "myAssets": "我的资产",
@@ -960,7 +960,7 @@
   "endTime": "结束时间",
   "team": "团队",
   "personal": "个人",
-  "9mAIStategyFund": "9M AI策略基金",
-  "9mAIStableFund": "9M AI稳健基金",
+  "9mAIStategyFund": "9M AI 策略基金",
+  "9mAIStableFund": "9M AI 稳健基金",
   "personalInformation": "个人信息"
 }

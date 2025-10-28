@@ -67,7 +67,7 @@ const TeamsInformationView = () => {
   const header = (
     <div className="flex-1 flex justify-center items-center relative font-bold text-lg max-w-[78vw]">
       <span className="truncate">
-        {information?.nickname || t("personalInformation")}
+        {t("personalInformation")}
       </span>
       <Icon
         name={filterDrawerOpen ? "filter-check" : "filter"}
