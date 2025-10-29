@@ -6,7 +6,7 @@ import ViewLayout from "@/components/layout";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import Tabs from "@/components/tabs/tabs";
 import { useTrans } from "@/hooks/useTrans";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import SubCardBox from "../sub-card";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { useUserStore } from "@/store/useUserStore";
@@ -14,6 +14,9 @@ import { ShowIf } from "@/components/show-if";
 import { ListNoData } from "@/components/nodata/list-nodata";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+import { cn } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
+import { useClickAway } from "@/hooks/useClickOutside";
 
 interface AreaStatData {
   count: number;
@@ -22,6 +25,7 @@ interface AreaStatData {
 }
 
 const TeamsNextView = () => {
+  const searchParams = useSearchParams();
   const t = useTrans();
   const { push } = useRouter();
   const baseApi = createAxiosInstance("/app");
@@ -34,14 +38,11 @@ const TeamsNextView = () => {
       value: string | number;
     }[]
   >([]);
-  const [tabsValue, setTabsValue] = useState<string | number>("");
+  const [tabsValue] = useState<string | number>("");
   const [areaStatList, setAreaStatList] = useState<AreaStatData[]>([]);
   const [userTabValue, setUserTabValue] = useState(0);
   const [isDepositor, setIsDepositor] = useState(false);
-  const [tabsCheck, setTabsCheck] = useState<{
-    label: string;
-    value: string | number;
-  }>();
+
   const [loading, setLoading] = useState(true);
   const [directReferralNum, setDirectReferralNum] = useState(0);
 
@@ -49,14 +50,17 @@ const TeamsNextView = () => {
   const [highestList, setHighestList] =
     useState<TeamDirectReferralAreaType[]>();
 
+  const [searchList, setSearchList] = useState<TeamsAllUserSearchList[]>();
+  const [searchLoading, setSearchLoading] = useState(true);
+
   const getAreaList = useCallback(async () => {
     try {
       const res: ApiResponse<TeamDirectReferralAreaType[]> = await baseApi.get(
         "/member/team/direct-referral/area/list",
         {
           params: {
-            userId: userInfo?.id || 0,
-            account: searchValue || "",
+            userId: searchParams.get("id") || userInfo?.id || 0,
+            account: searchParams.get("username") || "",
           },
         }
       );
@@ -73,8 +77,8 @@ const TeamsNextView = () => {
     } catch (err) {
       console.log(err);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue, t, userInfo?.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, t, userInfo?.id]);
 
   useEffect(() => {
     getAreaList();
@@ -87,14 +91,7 @@ const TeamsNextView = () => {
         "/member/team/page-query/areaStat",
         {
           params: {
-            account:
-              tabsCheck?.label === "All"
-                ? userInfo?.emailAccount || userInfo?.bindEmail || userInfo?.tel
-                : tabsCheck?.label ||
-                  userInfo?.emailAccount ||
-                  userInfo?.bindEmail ||
-                  userInfo?.tel,
-            topMemberId: tabsCheck?.value || userInfo.id || undefined,
+            userId: searchParams.get("id") || userInfo.id || undefined,
             isDepositor: isDepositor ? 1 : 0,
           },
         }
@@ -111,9 +108,10 @@ const TeamsNextView = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    tabsCheck?.label,
-    tabsCheck?.value,
-    userInfo.emailAccount,
+    searchParams,
+    userInfo?.emailAccount,
+    userInfo?.bindEmail,
+    userInfo?.tel,
     userInfo.id,
     isDepositor,
   ]);
@@ -136,8 +134,8 @@ const TeamsNextView = () => {
   const getHighList = useCallback(async () => {
     setHighLoading(true);
     const params = {
-      account: searchValue || "",
-      userId: userInfo.id || 0,
+      account: searchParams.get("username") || "",
+      userId: searchParams.get("id") || userInfo.id || 0,
     };
     try {
       const res: ApiResponse<TeamDirectReferralAreaType[]> =
@@ -157,32 +155,115 @@ const TeamsNextView = () => {
       console.log(err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue, userInfo.id, userTabValue]);
+  }, [userInfo.id, userTabValue]);
 
   useEffect(() => {
     getHighList();
   }, [getHighList, userTabValue]);
+
+  const getSearchList = useCallback(async () => {
+    setSearchLoading(true);
+    if (!searchValue) {
+      setSearchLoading(false);
+      setSearchList([]);
+      return;
+    }
+    try {
+      const res: ApiResponse<TeamsAllUserSearchList[]> = await baseApi.get(
+        "/member/team/team-member/list",
+        {
+          params: {
+            userId: userInfo.id,
+            account: searchValue || "",
+          },
+        }
+      );
+      setSearchLoading(false);
+      if (res.code === 200) {
+        setSearchList(res.data);
+      }
+    } catch (error) {
+      setSearchLoading(false);
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue, userInfo.id]);
+
+  useEffect(() => {
+    getSearchList();
+  }, [getSearchList]);
+
+  const ref = useRef<HTMLLabelElement>(null);
+
+  useClickAway(() => {
+    setSearchValue("");
+  }, ref);
+
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title={t("teamMembers")} algin="center" />}
+      header={
+        <HeaderWithBack
+          title={searchParams.get("username") || t("teamMembers")}
+          algin="center"
+        />
+      }
       className="h-max md-pc:h-full overflow-hidden"
     >
       <div className="p-content">
-        <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
-          <Icon name="search" className="w-4 h-4" />
-          <input
-            type="search"
-            className="grow"
-            placeholder={t("searchForTeamMemberAccounts")}
-            onChange={useDebouncedCallback(
-              (e: ChangeEvent<HTMLInputElement>) => {
-                setSearchValue(e.target.value);
-              },
-              500
+        <ShowIf condition={!searchParams.get("id")}>
+          <label
+            ref={ref}
+            className={cn(
+              "input w-full !bg-bg3 border-none placeholder:text-text5 relative",
+              Boolean(searchValue) ? "rounded-b-none!" : ""
             )}
-          />
-        </label>
+          >
+            <Icon name="search" className="w-4 h-4" />
+            <input
+              type="search"
+              className={cn("grow")}
+              placeholder={t("searchForTeamMemberAccounts")}
+              onChange={useDebouncedCallback(
+                (e: ChangeEvent<HTMLInputElement>) => {
+                  setSearchValue(e.target.value);
+                },
+                500
+              )}
+            />
+            <ShowIf condition={Boolean(searchValue)}>
+              <div className="absolute w-full bg-bg3 top-10 left-0 z-10 rounded-b-lg p-4">
+                <ShowIf
+                  condition={!searchLoading}
+                  elseEl={<div className="loading flex mx-auto my-10"></div>}
+                >
+                  <div className="bg-white rounded-2xl max-h-80 overflow-auto">
+                    {searchList?.length ? (
+                      searchList?.map((v, i) => {
+                        return (
+                          <div
+                            key={i}
+                            className="flex justify-between items-center text-sm my-2 p-4 rounded-lg border-b border-border2"
+                            onClick={() =>
+                              push(`${routerMap.teamsInformation}?id=${v.id}`)
+                            }
+                          >
+                            <span className="font-medium text-text3">
+                              {v.nickname}
+                            </span>
+                            <span>{v.levelName}</span>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="py-2 text-center">{t("暂无数据")}</div>
+                    )}
+                  </div>
+                </ShowIf>
+              </div>
+            </ShowIf>
+          </label>
+        </ShowIf>
 
         <div className="flex items-center text-sm my-4">
           <label className="label">
@@ -202,9 +283,10 @@ const TeamsNextView = () => {
           tabs={areaList}
           value={tabsValue!}
           onChange={(e) => {
-            setTabsValue(e);
-            const checkItem = areaList.find((item) => item.value === e);
-            setTabsCheck(checkItem);
+            push(`${routerMap.teamsInformation}?id=${e}`);
+            // setTabsValue(e);
+            // const checkItem = areaList.find((item) => item.value === e);
+            // setTabsCheck(checkItem);
           }}
           type="border"
           wrapClassName="gap-4"
@@ -222,7 +304,7 @@ const TeamsNextView = () => {
                   onClick={() => {
                     push(
                       `${routerMap.teamsMembers}?id=${
-                        tabsValue || userInfo.id
+                        searchParams.get("id") || userInfo.id
                       }&type=level&level=${item.vipLevel}`
                     );
                   }}
@@ -239,7 +321,7 @@ const TeamsNextView = () => {
           onClick={() => {
             push(
               `${routerMap.teamsMembers}?id=${
-                tabsValue || userInfo?.id
+                searchParams.get("id") || userInfo?.id
               }&type=direct`
             );
           }}

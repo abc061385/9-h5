@@ -85,7 +85,7 @@ const TeamsDetailView = () => {
           <div
             className="flex flex-col gap-2 flex-1"
             onClick={() => {
-              push(`${routerMap.teamsMembers}?id=${userInfo.id}&type=total`);
+              push(`${routerMap.teamsNext}`);
             }}
           >
             <span className="text-2xl font-bold leading-6">
