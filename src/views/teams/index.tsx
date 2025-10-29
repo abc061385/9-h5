@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
@@ -16,6 +16,7 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 const TeamsView = () => {
+  const requestIdRef = useRef(0);
   const t = useTrans();
   const { push } = useRouter();
   const userInfo = useUserStore((s) => s.userInfo);
@@ -57,6 +58,8 @@ const TeamsView = () => {
 
   const getList = useCallback(
     async (page = 1) => {
+      requestIdRef.current++;
+      const curRequestId = requestIdRef.current;
       const { data } = await api.member.memberTeamPageQueryUsingGet1({
         pageNo: page,
         pageSize: pageSize,
@@ -65,6 +68,13 @@ const TeamsView = () => {
         generation: 1,
         tel: searchValue,
       });
+      if (curRequestId < requestIdRef.current) {
+        return {
+          data: [],
+          hasMore: page < data.total / pageSize,
+        };
+      }
+
       const newData = data?.list || [];
       setList(newData);
       return {
@@ -81,8 +91,11 @@ const TeamsView = () => {
   }, []);
   const deboun = useDebouncedCallback(() => {
     getList();
+  }, 1000);
+
+  useEffect(() => {
     getInfo();
-  }, 300);
+  }, [getInfo]);
 
   useEffect(() => {
     deboun();
@@ -127,7 +140,10 @@ const TeamsView = () => {
       <header className="p-content absolute top-0 w-full">
         <div className="flex items-center justify-between gap-4">
           <span className="font-bold text-lg">{t("我的团队")}</span>
-          <span className="text-sm flex-1 text-right" onClick={() => push(routerMap.teamDetail)}>
+          <span
+            className="text-sm flex-1 text-right"
+            onClick={() => push(routerMap.teamDetail)}
+          >
             {t("查看团队投资数据")}
             <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
           </span>
@@ -143,19 +159,12 @@ const TeamsView = () => {
             type="search"
             className="grow"
             placeholder={t("查询团队账号")}
-            onInput={(e) => {
-              setSearchValue((e.target as HTMLInputElement).value);
-              // if (!(e.target as HTMLInputElement).value) {
-              //   // 清除按钮被点击时触发
-              //   getList();
-              //   getInfo();
-              // }
-            }}
-            // onKeyDown={(e) => {
-            //   if (e.code === "Enter") {
-            //     setSearchValue((e.target as HTMLInputElement).value);
-            //   }
-            // }}
+            onChange={useDebouncedCallback(
+              (e: ChangeEvent<HTMLInputElement>) => {
+                setSearchValue(e.target.value);
+              },
+              1000
+            )}
           />
         </label>
         <Tabs

@@ -554,3 +554,10 @@ interface InvestmentStats {
   totalTeamInvestment: number;
   totalTeamMembers: number;
 }
+
+interface TeamsAllUserSearchList {
+  id: number;
+  nickname: string;
+  vipLevel: number;
+  levelName: string;
+}

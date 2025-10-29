@@ -66,9 +66,7 @@ const TeamsInformationView = () => {
 
   const header = (
     <div className="flex-1 flex justify-center items-center relative font-bold text-lg max-w-[78vw]">
-      <span className="truncate">
-        {t("personalInformation")}
-      </span>
+      <span className="truncate">{t("personalInformation")}</span>
       <Icon
         name={filterDrawerOpen ? "filter-check" : "filter"}
         className="size-10 absolute right-[-32px]"
@@ -143,9 +141,9 @@ const TeamsInformationView = () => {
           className="flex items-center justify-between text-sm border-b border-border2 py-6"
           onClick={() => {
             push(
-              `${routerMap.teamsMembers}?id=${searchParams.get(
-                "id"
-              )}&type=direct`
+              `${routerMap.teamsNext}?id=${searchParams.get("id")}&username=${
+                information?.nickname
+              }`
             );
           }}
         >
