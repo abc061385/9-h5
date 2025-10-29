@@ -49,8 +49,8 @@ const TeamsDetailView = () => {
         "/wallet/team/investmentStat",
         {
           params: {
-            start,
-            end,
+            startTime: start,
+            endTime: end,
           },
         }
       );
