@@ -221,6 +221,7 @@ const TeamsDetailView = () => {
               onClick={() => {
                 setStartTime("");
                 setEndTime("");
+                getTeamInvesData();
               }}
             >
               {t("reset")}
@@ -230,8 +231,6 @@ const TeamsDetailView = () => {
               onClick={() => {
                 getTeamInvesData(startTime, endTime);
                 setFilterDrawerOpen(false);
-                setStartTime("");
-                setEndTime("");
               }}
             >
               {t("common.confirm")}
