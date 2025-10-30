@@ -61,6 +61,7 @@ const TeamsNextView = () => {
           params: {
             userId: searchParams.get("id") || userInfo?.id || 0,
             account: searchParams.get("username") || "",
+            isDepositor: isDepositor ? 1 : 0,
           },
         }
       );
@@ -78,7 +79,7 @@ const TeamsNextView = () => {
       console.log(err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams, t, userInfo?.id]);
+  }, [searchParams, t, userInfo?.id, isDepositor]);
 
   useEffect(() => {
     getAreaList();
@@ -305,7 +306,9 @@ const TeamsNextView = () => {
                     push(
                       `${routerMap.teamsMembers}?id=${
                         searchParams.get("id") || userInfo.id
-                      }&type=level&level=${item.vipLevel}`
+                      }&type=level&level=${item.vipLevel}&isDepositor=${
+                        isDepositor ? 1 : 0
+                      }`
                     );
                   }}
                 >
@@ -326,7 +329,7 @@ const TeamsNextView = () => {
               push(
                 `${routerMap.teamsMembers}?id=${
                   searchParams.get("id") || userInfo?.id
-                }&type=direct`
+                }&type=direct&isDepositor=${isDepositor ? 1 : 0}`
               );
             }}
           >

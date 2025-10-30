@@ -58,11 +58,16 @@ const TeamsMembersView = () => {
             ...requestParams,
             level: searchParams.get("level"),
             userId,
+            isDepositor: searchParams.get("isDepositor"),
           },
         },
         direct: {
           url: "/member/team/direct-referral/page-list",
-          params: { ...requestParams, userId },
+          params: {
+            ...requestParams,
+            userId,
+            isDepositor: searchParams.get("isDepositor"),
+          },
         },
         today: {
           url: "/member/team/team-member/today/page-list",
@@ -115,7 +120,7 @@ const TeamsMembersView = () => {
               (e: ChangeEvent<HTMLInputElement>) => {
                 setSearchValue(e.target.value);
               },
-              500
+              1000
             )}
           />
         </label>

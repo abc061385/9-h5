@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
@@ -16,7 +16,6 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 const TeamsView = () => {
-  const requestIdRef = useRef(0);
   const t = useTrans();
   const { push } = useRouter();
   const userInfo = useUserStore((s) => s.userInfo);
@@ -58,8 +57,6 @@ const TeamsView = () => {
 
   const getList = useCallback(
     async (page = 1) => {
-      requestIdRef.current++;
-      const curRequestId = requestIdRef.current;
       const { data } = await api.member.memberTeamPageQueryUsingGet1({
         pageNo: page,
         pageSize: pageSize,
@@ -68,12 +65,6 @@ const TeamsView = () => {
         generation: 1,
         tel: searchValue,
       });
-      if (curRequestId < requestIdRef.current) {
-        return {
-          data: [],
-          hasMore: page < data.total / pageSize,
-        };
-      }
 
       const newData = data?.list || [];
       setList(newData);
