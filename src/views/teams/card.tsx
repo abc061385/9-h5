@@ -2,8 +2,10 @@ import { FC } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { ICardProps, IndividualType, TeamType } from "./type";
 import { cn, formatThousand } from "@/lib/utils";
+import { routerMap, useRouter } from "@/i18n/navigation";
 
 const CardBox: FC<ICardProps> = ({ data }) => {
+  const { push } = useRouter();
   const t = useTrans();
   const individualList: IndividualType[] = [
     { label: "代数", value: "generation" },
@@ -19,7 +21,10 @@ const CardBox: FC<ICardProps> = ({ data }) => {
     { label: "团队投资金额", value: "totalInvestmentTeam" },
   ];
   return (
-    <div className="rounded-md bg-bg2 mb-6 p-4">
+    <div
+      className="rounded-md bg-bg2 mb-6 p-4"
+      onClick={() => push(`${routerMap.teamsInformation}?id=${data.id}`)}
+    >
       <div className="flex justify-between border-b border-border2 pb-4 mb-4">
         <div className="flex flex-wrap gap-1 items-center max-w-[70%]">
           <span className="text-lg font-bold mr-2 max-w-[100%] wrap-break-word">

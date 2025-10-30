@@ -316,22 +316,27 @@ const TeamsNextView = () => {
             })}
           </div>
         </ShowIf>
-        <div
-          className="flex items-center justify-between text-sm border-y border-border2 py-6 my-6"
-          onClick={() => {
-            push(
-              `${routerMap.teamsMembers}?id=${
-                searchParams.get("id") || userInfo?.id
-              }&type=direct`
-            );
-          }}
+        <ShowIf
+          condition={!searchParams.get("id")}
+          elseEl={<div className="my-6 h-[1px] bg-border2"></div>}
         >
-          <span>{t("myDirectReferrals")}</span>
-          <span className="flex gap-2 items-center font-medium">
-            {directReferralNum}
-            <Icon name="right-enter" className="w-1.5 h-2.5" />
-          </span>
-        </div>
+          <div
+            className="flex items-center justify-between text-sm border-y border-border2 py-6 my-6"
+            onClick={() => {
+              push(
+                `${routerMap.teamsMembers}?id=${
+                  searchParams.get("id") || userInfo?.id
+                }&type=direct`
+              );
+            }}
+          >
+            <span>{t("myDirectReferrals")}</span>
+            <span className="flex gap-2 items-center font-medium">
+              {directReferralNum}
+              <Icon name="right-enter" className="w-1.5 h-2.5" />
+            </span>
+          </div>
+        </ShowIf>
         <Tabs
           tabs={userTabs}
           value={userTabValue}
