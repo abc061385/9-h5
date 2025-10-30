@@ -488,6 +488,7 @@ interface TeamDirectReferralAreaType {
   star?: number;
   tel?: string;
   bindEmail?: string;
+  headUrl?: string;
 }
 
 interface UserInvestmentData {
@@ -525,6 +526,7 @@ interface UserInvestmentData {
   totalTeamInvestment: number | null;
   totalTeamMembers: number;
   vipLevel: number;
+  headUrl?: string;
 }
 
 interface InvestmentStats {
