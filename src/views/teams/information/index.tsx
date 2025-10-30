@@ -113,7 +113,10 @@ const TeamsInformationView = () => {
     >
       <div className="p-content">
         <div className="flex gap-4 items-center justify-between mb-6">
-          <BaseImage src={information?.headUrl || "/icons/user-head.svg"} className="size-10" />
+          <BaseImage
+            src={information?.headUrl || "/icons/user-head.svg"}
+            className="size-10"
+          />
           <div className="flex-1 break-words max-w-[45%] leading-4">
             <b>{information?.nickname || "--"}</b>
             <div className="flex gap-1 mt-1">
@@ -177,7 +180,7 @@ const TeamsInformationView = () => {
           {FieldEL(`90 ${t("daysFund")}`, "InvestmentStable90Days")}
           {FieldEL(`30 ${t("daysFund")}`, "InvestmentStable30Days")}
           {FieldEL(`7 ${t("daysFund")}`, "InvestmentStable7Days")}
-          {FieldEL(t("total"), "InvestmentStrategyAmount")}
+          {FieldEL(t("total"), "InvestmentStableAmount")}
         </div>
       </div>
       <Drawer
