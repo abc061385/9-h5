@@ -45,8 +45,14 @@ export default function IndexView() {
         <h2 className="text-[28px] font-bold text-white text-center leading-[32px]">
           {t("home.welcome")}
         </h2>
-        <p className="font-medium leading-[20px] text-lg text-white mt-6 mb-14 text-center">
+        <h2 className="text-[28px] font-bold text-[#FEC700] text-center leading-[32px]">
+          {t("home.investmentPlatform")}
+        </h2>
+        <p className="font-medium leading-[20px] text-lg text-white mt-6 text-center">
           {t("home.subtitle")}
+        </p>
+        <p className="font-medium leading-[20px] text-lg text-white mt-1 mb-14 text-center">
+          {t("home.aiAcceleratesWealth")}
         </p>
         <button
           className="btn btn-primary border-none shadow-none w-full"
