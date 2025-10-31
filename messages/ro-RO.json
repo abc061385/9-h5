@@ -169,14 +169,16 @@
     "database": "Bază de date",
     "ranking": "Clasament",
     "challenge": "Provocare",
-    "welcome": "Bine ați venit pe platforma de investiții 9M",
+    "welcome": "Bun venit la 9M",
     "subtitle": "Investiți inteligent în viitor, AI vă accelerează averea",
     "startNow": "Începe acum",
     "fund": "Fondul 9M AI",
     "aiSystem": "Sistem de chat AI puternic",
     "startJourney": "Porniți călătoria dvs. de investiții acum",
     "aiDesc1": "Nu este nevoie de supraveghere, AI pătrunde prin ceața liniei K",
-    "aiDesc2": "Găsiți soluția optimă pentru fiecare tranzacție folosind modele probabilistice"
+    "aiDesc2": "Găsiți soluția optimă pentru fiecare tranzacție folosind modele probabilistice",
+    "investmentPlatform": "Platformă de Investiții",
+    "aiAcceleratesWealth": "AI Accelerează Averea Ta"
   },
   "assets": {
     "title": "Active",
@@ -621,7 +623,7 @@
   "周": "Săptămână",
   "月": "Lună",
   "年": "An",
-  "公司": "Compania 9M AI",
+  "公司": "Compania {plat}",
   "资本连接": "Conectare Capital",
   "公司简介": "Inteligența artificială deschide noi orizonturi pentru investiția dvs. – fondurile dvs. lucrează cu tranzacții inteligente",
   "代数": "Grad",

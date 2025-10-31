@@ -169,14 +169,16 @@
     "database": "数据库",
     "ranking": "排行榜",
     "challenge": "挑战",
-    "welcome": "欢迎来到 9M 投资平台",
+    "welcome": "欢迎来到 9M",
     "subtitle": "智投未来，AI 为您的财富加速",
     "startNow": "立刻开始",
     "fund": "9M AI 基金",
     "aiSystem": "强大的 AI 智能聊天系统",
     "startJourney": "立即开启您的投资之旅",
     "aiDesc1": "无需盯盘，AI穿透K线迷雾，",
-    "aiDesc2": "用概率模型为每笔交易锁定最优解。"
+    "aiDesc2": "用概率模型为每笔交易锁定最优解。",
+    "investmentPlatform": "投资平台",
+    "aiAcceleratesWealth": "AI加速您的财富增长"
   },
   "assets": {
     "title": "资产",
@@ -621,7 +623,7 @@
   "周": "周",
   "月": "月",
   "年": "年",
-  "公司": "9M AI公司",
+  "公司": "{plat}公司",
   "资本连接": "资本连接",
   "公司简介": "人工智能为您的投资开辟新天地，让您的资金与出色的交易相匹配",
   "代数": "代数",

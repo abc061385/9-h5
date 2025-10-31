@@ -169,14 +169,16 @@
     "database": "Datenbank",
     "ranking": "Bestenliste",
     "challenge": "Herausforderung",
-    "welcome": "Willkommen bei der 9M-Investitionsplattform",
+    "welcome": "Willkommen bei 9M",
     "subtitle": "Intelligente Investitionen, KI beschleunigt Ihr Vermögen",
     "startNow": "Jetzt starten",
     "fund": "9M AI Fonds",
     "aiSystem": "Leistungsstarkes KI-Chat-System",
     "startJourney": "Starten Sie jetzt Ihre Investitionsreise",
     "aiDesc1": "Kein Chart-Watching nötig, KI durchdringt das Chart-Dickicht",
-    "aiDesc2": "Nutzt Wahrscheinlichkeitsmodelle für optimale Entscheidungen"
+    "aiDesc2": "Nutzt Wahrscheinlichkeitsmodelle für optimale Entscheidungen",
+    "investmentPlatform": "Investment-Plattform",
+    "aiAcceleratesWealth": "KI beschleunigt Ihren Wohlstand"
   },
   "assets": {
     "title": "Vermögen",
@@ -621,7 +623,7 @@
   "周": "Woche",
   "月": "Monat",
   "年": "Jahr",
-  "公司": "9M AI Unternehmen",
+  "公司": "{plat} Unternehmen",
   "资本连接": "Kapitalverbindung",
   "公司简介": "Künstliche Intelligenz eröffnet neue Wege für Ihre Investitionen und bringt Ihr Kapital mit herausragenden Trades zusammen",
   "代数": "Ebene",

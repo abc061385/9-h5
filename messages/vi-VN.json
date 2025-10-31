@@ -169,14 +169,16 @@
     "database": "Cơ sở dữ liệu",
     "ranking": "Bảng xếp hạng",
     "challenge": "Thử thách",
-    "welcome": "Chào mừng đến với Nền tảng Đầu tư 9M",
+    "welcome": "Chào mừng đến với 9M",
     "subtitle": "Tương lai đầu tư thông minh",
     "startNow": "Bắt đầu ngay",
     "fund": "Quỹ AI 9M",
     "aiSystem": "Hệ thống Trò chuyện Thông minh AI Mạnh Mẽ",
     "startJourney": "Bắt đầu hành trình đầu tư của bạn ngay bây giờ",
     "aiDesc1": "Không cần theo dõi biểu đồ liên tục",
-    "aiDesc2": "Sử dụng mô hình xác suất để đảm bảo giải pháp tối ưu cho mỗi giao dịch."
+    "aiDesc2": "Sử dụng mô hình xác suất để đảm bảo giải pháp tối ưu cho mỗi giao dịch.",
+    "investmentPlatform": "Nền tảng Đầu tư",
+    "aiAcceleratesWealth": "AI Tăng Tốc Tài Sản Của Bạn"
   },
   "assets": {
     "title": "Tài sản",
@@ -621,7 +623,7 @@
   "周": "Tuần",
   "月": "Tháng",
   "年": "Năm",
-  "公司": "9M AI Corporation",
+  "公司": "{plat} Corporation",
   "资本连接": "Kết nối Vốn",
   "公司简介": "AI mở ra những chân trời mới cho các khoản đầu tư của bạn",
   "代数": "Thế hệ",

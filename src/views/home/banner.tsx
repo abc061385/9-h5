@@ -55,10 +55,19 @@ const BannerBox = () => {
       className="h-[178px]"
     >
       <SwiperSlide>
-        <div className="flex h-full justify-between bg-[url('/images/home/home_banner.png')] bg-contain bg-no-repeat p-content !py-7">
+        <div className="flex h-full justify-between bg-[url('/images/home/home_banner.png')] bg-contain bg-no-repeat p-content !py-7 text-white">
           <div>
-            <h2 className="text-xl leading-6 mb-2.5 font-bold">{t("公司")}</h2>
-            <p className="text-sm leading-3.5 w-[55%] line-clamp-6">{t("公司简介")}</p>
+            <h2
+              className="text-xl leading-6 mb-2.5 font-bold text-[#FEC700]"
+              dangerouslySetInnerHTML={{
+                __html: t("公司", {
+                  plat: `<span style="color:#FFFFFF;">9M AI</span>`,
+                }),
+              }}
+            ></h2>
+            <p className="text-sm leading-3.5 w-[50%] line-clamp-6">
+              {t("公司简介")}
+            </p>
           </div>
         </div>
       </SwiperSlide>

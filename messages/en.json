@@ -169,14 +169,16 @@
     "database": "Database",
     "ranking": "Ranking",
     "challenge": "Challenge",
-    "welcome": "Welcome to 9M Investment Platform",
+    "welcome": "Welcome to 9M",
     "subtitle": "Smart Investment Future",
     "startNow": "Start Now",
     "fund": "9M AI Fund",
     "aiSystem": "Powerful AI Smart Chat System",
     "startJourney": "Start Your Investment Journey Now",
     "aiDesc1": "No need to stare at charts",
-    "aiDesc2": "using probability models to secure optimal solutions for each trade."
+    "aiDesc2": "using probability models to secure optimal solutions for each trade.",
+    "investmentPlatform": "Investment Platform",
+    "aiAcceleratesWealth": "AI Accelerates Your Wealth"
   },
   "assets": {
     "title": "Assets",
@@ -621,7 +623,7 @@
   "周": "Week",
   "月": "Month",
   "年": "Year",
-  "公司": "9M AI Corporation",
+  "公司": "{plat} Corporation",
   "资本连接": "Capital Connectivity",
   "公司简介": "AI opens up new horizons for your investments",
   "代数": "Generation",

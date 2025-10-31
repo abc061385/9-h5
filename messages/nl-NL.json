@@ -169,7 +169,7 @@
     "database": "Database",
     "ranking": "Ranglijst",
     "challenge": "Uitdaging",
-    "welcome": "Welkom bij het 9M-investeringsplatform",
+    "welcome": "Welkom bij 9M",
     "subtitle": "Slim investeren in de toekomst, AI versnelt uw rijkdom",
     "startNow": "Begin nu",
     "fund": "9M AI-fonds",
@@ -621,7 +621,7 @@
   "周": "Week",
   "月": "Maand",
   "年": "Jaar",
-  "公司": "9M AI Bedrijf",
+  "公司": "{plat} Bedrijf",
   "资本连接": "Kapitaalverbinding",
   "公司简介": "Kunstmatige intelligentie opent nieuwe horizonten voor uw investering – uw geld werkt samen met slimme handel",
   "代数": "Graad",
@@ -962,5 +962,7 @@
   "personal": "Personal",
   "9mAIStategyFund": "9M AI Strategy Fund",
   "9mAIStableFund": "9M AI Stable Fund",
-  "personalInformation": "Personal Information"
+  "personalInformation": "Personal Information",
+  "investmentPlatform": "Investeringsplatform",
+  "aiAcceleratesWealth": "AI Versnelt Je Vermogen"
 }

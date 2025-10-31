@@ -169,14 +169,16 @@
     "database": "Database",
     "ranking": "Classifica",
     "challenge": "Sfida",
-    "welcome": "Benvenuto sulla piattaforma di investimento 9M",
+    "welcome": "Benvenuto in 9M",
     "subtitle": "Investi in modo intelligente: l’IA accelera la tua crescita patrimoniale",
     "startNow": "Inizia ora",
     "fund": "Fondo 9M AI",
     "aiSystem": "Potente sistema di chat IA",
     "startJourney": "Inizia ora il tuo viaggio di investimento",
     "aiDesc1": "Nessun bisogno di monitorare i grafici, l’IA li interpreta per te",
-    "aiDesc2": "Modello probabilistico per ogni operazione"
+    "aiDesc2": "Modello probabilistico per ogni operazione",
+    "investmentPlatform": "Piattaforma di Investimento",
+    "aiAcceleratesWealth": "IA Accelera la Tua Ricchezza"
   },
   "assets": {
     "title": "Attività",
@@ -621,7 +623,7 @@
   "周": "Settimana",
   "月": "Mese",
   "年": "Anno",
-  "公司": "Azienda 9M AI",
+  "公司": "Azienda {plat}",
   "资本连接": "Connessione di capitale",
   "公司简介": "L’intelligenza artificiale apre nuovi orizzonti per i tuoi investimenti, abbinando fondi a operazioni eccellenti",
   "代数": "Livello",

@@ -128,7 +128,7 @@ const TeamsView = () => {
           }}
         />
       </div>
-      <header className="p-content absolute top-0 w-full">
+      <header className="p-content absolute top-0 w-full text-white">
         <div className="flex items-center justify-between gap-4">
           <span className="font-bold text-lg">{t("我的团队")}</span>
           <span
@@ -136,7 +136,7 @@ const TeamsView = () => {
             onClick={() => push(routerMap.teamDetail)}
           >
             {t("查看团队投资数据")}
-            <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
+            <Icon name="right-enter-white" className="w-1.5 h-2.5 ml-2" />
           </span>
         </div>
         <div className="mt-1">

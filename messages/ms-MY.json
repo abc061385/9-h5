@@ -169,14 +169,16 @@
     "database": "Pangkalan Data",
     "ranking": "Kedudukan",
     "challenge": "Cabaran",
-    "welcome": "Selamat Datang ke Platform Pelaburan 9M",
+    "welcome": "Selamat datang ke 9M",
     "subtitle": "Masa Depan Pelaburan Pintar",
     "startNow": "Mulakan Sekarang",
     "fund": "Dana AI 9M",
     "aiSystem": "Sistem Sembang Pintar AI Berkuasa",
     "startJourney": "Mulakan Perjalanan Pelaburan Anda Sekarang",
     "aiDesc1": "Tiada perlu memantau carta",
-    "aiDesc2": "menggunakan model kebarangkalian untuk mendapatkan penyelesaian optimum bagi setiap urus niaga."
+    "aiDesc2": "menggunakan model kebarangkalian untuk mendapatkan penyelesaian optimum bagi setiap urus niaga.",
+    "investmentPlatform": "Platform Pelaburan",
+    "aiAcceleratesWealth": "AI Pecut Kekayaan Anda"
   },
   "assets": {
     "title": "Aset",
@@ -621,7 +623,7 @@
   "周": "Minggu",
   "月": "Bulan",
   "年": "Tahun",
-  "公司": "9M AI Corporation",
+  "公司": "{plat} Corporation",
   "资本连接": "Perhubungan Modal",
   "公司简介": "AI membuka ufuk baharu untuk pelaburan anda",
   "代数": "Generasi",

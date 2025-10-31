@@ -169,14 +169,16 @@
     "database": "Databas",
     "ranking": "Topp",
     "challenge": "Utmaning",
-    "welcome": "Välkommen till 9M-investeringsplattformen",
+    "welcome": "Välkommen till 9M",
     "subtitle": "Smart investering i framtiden, AI ökar din rikedom",
     "startNow": "Börja nu",
     "fund": "9M AI-fond",
     "aiSystem": "Kraftfullt AI-chatsystem",
     "startJourney": "Starta din investeringsresa nu",
     "aiDesc1": "Inget behov av övervakning, AI skär igenom K-linjens dimma",
-    "aiDesc2": "Lås upp bästa lösning för varje transaktion med sannolikhetsmodell"
+    "aiDesc2": "Lås upp bästa lösning för varje transaktion med sannolikhetsmodell",
+    "investmentPlatform": "Investeringsplattform",
+    "aiAcceleratesWealth": "AI Snabbar På Din Förmögenhet"
   },
   "assets": {
     "title": "Tillgångar",
@@ -621,7 +623,7 @@
   "周": "Vecka",
   "月": "Månad",
   "年": "År",
-  "公司": "9M AI Företag",
+  "公司": "{plat} Företag",
   "资本连接": "Kapitalanslutning",
   "公司简介": "AI öppnar nya möjligheter för din investering – kapitalet matchas med smart handel",
   "代数": "Grad",
