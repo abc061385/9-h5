@@ -944,5 +944,7 @@
   "useUSDTBalance": "Use the USDT balance in your account",
   "balancePriority": "Check this option to prioritize the use of USDT balance. Any shortfall will be automatically supplemented with USDM.",
   "swapAmount": "Swap Amount (USDM)",
-  "usdtAmount": "The USDT amount obtained by the system through exchanging USDM."
+  "usdtAmount": "The USDT amount obtained by the system through exchanging USDM.",
+  "investmentPlatform": "Investeringsplatform",
+  "aiAcceleratesWealth": "AI Versnelt Je Vermogen"
 }

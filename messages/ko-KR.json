@@ -176,7 +176,9 @@
     "aiSystem": "강력한 AI 스마트 채팅 시스템",
     "startJourney": "지금 투자 여정을 시작하세요",
     "aiDesc1": "차트를 볼 필요 없이, AI가 캔들의 혼란을 꿰뚫다",
-    "aiDesc2": "확률 모델로 최적의 매매 해답을 제시합니다."
+    "aiDesc2": "확률 모델로 최적의 매매 해답을 제시합니다.",
+    "investmentPlatform": "투자 플랫폼",
+    "aiAcceleratesWealth": "AI가 당신의 부를 가속화합니다"
   },
   "assets": {
     "title": "자산",

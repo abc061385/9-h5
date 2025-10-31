@@ -176,7 +176,9 @@
     "aiSystem": "Kraftfullt AI-chatsystem",
     "startJourney": "Starta din investeringsresa nu",
     "aiDesc1": "Inget behov av övervakning, AI skär igenom K-linjens dimma",
-    "aiDesc2": "Lås upp bästa lösning för varje transaktion med sannolikhetsmodell"
+    "aiDesc2": "Lås upp bästa lösning för varje transaktion med sannolikhetsmodell",
+    "investmentPlatform": "Investeringsplattform",
+    "aiAcceleratesWealth": "AI Snabbar På Din Förmögenhet"
   },
   "assets": {
     "title": "Tillgångar",

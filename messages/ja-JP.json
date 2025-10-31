@@ -176,7 +176,9 @@
     "aiSystem": "強力なAIスマートチャットシステム",
     "startJourney": "今すぐ投資の旅を始めよう",
     "aiDesc1": "チャートを監視する必要なし、AIがキャンドルの迷いを突き抜ける",
-    "aiDesc2": "確率モデルで各取引に最適解を提供"
+    "aiDesc2": "確率モデルで各取引に最適解を提供",
+    "investmentPlatform": "投資プラットフォーム",
+    "aiAcceleratesWealth": "AIが資産形成を加速"
   },
   "assets": {
     "title": "資産",

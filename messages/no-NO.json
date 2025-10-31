@@ -176,7 +176,9 @@
     "aiSystem": "Kraftig AI-chatløsning",
     "startJourney": "Start din investeringsreise nå",
     "aiDesc1": "Ingen overvåking nødvendig, AI skjærer gjennom K-linjens tåke",
-    "aiDesc2": "Finn optimal løsning for hver transaksjon med sannsynlighetsmodell"
+    "aiDesc2": "Finn optimal løsning for hver transaksjon med sannsynlighetsmodell",
+    "investmentPlatform": "Investeringsplattform",
+    "aiAcceleratesWealth": "AI Akselererer Din Formue"
   },
   "assets": {
     "title": "Eiendeler",

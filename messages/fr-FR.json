@@ -176,7 +176,9 @@
     "aiSystem": "Système de chat IA puissant",
     "startJourney": "Commencez votre aventure d’investissement",
     "aiDesc1": "Plus besoin de suivre les graphiques, l’IA les analyse pour vous",
-    "aiDesc2": "Utilise des modèles probabilistes pour chaque transaction"
+    "aiDesc2": "Utilise des modèles probabilistes pour chaque transaction",
+    "investmentPlatform": "Plateforme d'Investissement",
+    "aiAcceleratesWealth": "IA Accélère Votre Richesse"
   },
   "assets": {
     "title": "Actifs",

@@ -176,7 +176,9 @@
     "aiSystem": "强大的 AI 智能聊天系统",
     "startJourney": "立即开启您的投资之旅",
     "aiDesc1": "无需盯盘，AI穿透K线迷雾，",
-    "aiDesc2": "用概率模型为每笔交易锁定最优解。"
+    "aiDesc2": "用概率模型为每笔交易锁定最优解。",
+    "investmentPlatform": "投资平台",
+    "aiAcceleratesWealth": "AI加速您的财富增长"
   },
   "assets": {
     "title": "资产",

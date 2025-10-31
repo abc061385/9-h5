@@ -176,7 +176,9 @@
     "aiSystem": "Poderoso sistema de chat com IA",
     "startJourney": "Inicie agora sua jornada de investimento",
     "aiDesc1": "Sem precisar acompanhar gráficos, a IA interpreta por você",
-    "aiDesc2": "Modelo de probabilidade para cada operação"
+    "aiDesc2": "Modelo de probabilidade para cada operação",
+    "investmentPlatform": "Plataforma de Investimento",
+    "aiAcceleratesWealth": "IA Acelera Sua Riqueza"
   },
   "assets": {
     "title": "Ativos",

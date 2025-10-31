@@ -1,4 +1,5 @@
 "use client";
+import BaseImage from "@/components/base-image";
 import { Drawer } from "@/components/drawer";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
@@ -27,14 +28,18 @@ export default function IndexView() {
           backgroundSize: "100% 100%",
         }}
       >
+        <BaseImage
+          src={"/images/logo-white.svg"}
+          className="w-33 h-13 absolute z-10 left-[50%] translate-x-[-50%] top-14"
+        />
         <div
-          className="absolute top-6 right-6 flex items-center"
+          className="absolute top-6 right-6 flex items-center text-white"
           onClick={() => setLangSelectOpen(true)}
         >
           <span className="mr-2 font-medium">
             {SupportedLanguages.find((v) => v.lang === locale)?.label || locale}
           </span>
-          <Icon name="language" className="size-5" />
+          <Icon name="language-white" className="size-5" />
         </div>
         <div className="flex-1"></div>
         <h2 className="text-[28px] font-bold text-white text-center leading-[32px]">

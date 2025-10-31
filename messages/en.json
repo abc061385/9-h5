@@ -176,7 +176,9 @@
     "aiSystem": "Powerful AI Smart Chat System",
     "startJourney": "Start Your Investment Journey Now",
     "aiDesc1": "No need to stare at charts",
-    "aiDesc2": "using probability models to secure optimal solutions for each trade."
+    "aiDesc2": "using probability models to secure optimal solutions for each trade.",
+    "investmentPlatform": "Investment Platform",
+    "aiAcceleratesWealth": "AI Accelerates Your Wealth"
   },
   "assets": {
     "title": "Assets",

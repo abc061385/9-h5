@@ -176,7 +176,9 @@
     "aiSystem": "Leistungsstarkes KI-Chat-System",
     "startJourney": "Starten Sie jetzt Ihre Investitionsreise",
     "aiDesc1": "Kein Chart-Watching nötig, KI durchdringt das Chart-Dickicht",
-    "aiDesc2": "Nutzt Wahrscheinlichkeitsmodelle für optimale Entscheidungen"
+    "aiDesc2": "Nutzt Wahrscheinlichkeitsmodelle für optimale Entscheidungen",
+    "investmentPlatform": "Investment-Plattform",
+    "aiAcceleratesWealth": "KI beschleunigt Ihren Wohlstand"
   },
   "assets": {
     "title": "Vermögen",
