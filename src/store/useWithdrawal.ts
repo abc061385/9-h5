@@ -67,7 +67,7 @@ export const useWithdrawalStore = create<WithdrawalState>()(
           },
           getAddrMap: async () => {
             try {
-              const res = await api.member.memberAddressListUsingPost();
+              const res = await api.withdrawAddress.memberAddressListUsingGet();
               const _addressMap = {} as { [key in string]: AddrItem };
               res.data.forEach((item: AddrItem) => {
                 _addressMap[item.protocol] = item;

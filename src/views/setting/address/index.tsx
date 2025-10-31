@@ -17,14 +17,15 @@ import toast from "react-hot-toast";
 const SettingAddressView = () => {
   const t = useTrans();
   const { push, back } = useRouter();
-  const { setField, addressPreviousPageType, withdrawNetwork } = useSettingStore();
+  const { setField, addressPreviousPageType, withdrawNetwork } =
+    useSettingStore();
 
   const [openEdit, setOpenEdit] = useState(false);
   const [delIds, setDelIds] = useState<number[]>([]);
   const [delConfirmOpen, setDelConfirmOpen] = useState(false);
 
   const { trigger: getAddressList, data } = useRequestMutation(
-    api.member.memberAddressListUsingPost,
+    api.withdrawAddress.memberAddressListUsingGet,
   );
 
   const { trigger: delAddress } = useRequestMutation(
@@ -92,13 +93,18 @@ const SettingAddressView = () => {
             addressList.map((item) => {
               return (
                 <div
-                  className={cn(["bg-bg2 p-4 rounded-lg mb-4 w-full", {
-                    "opacity-55": item.protocol !== withdrawNetwork && addressPreviousPageType === "withdraw"
-                  }])}
+                  className={cn([
+                    "bg-bg2 p-4 rounded-lg mb-4 w-full",
+                    {
+                      "opacity-55":
+                        item.protocol !== withdrawNetwork &&
+                        addressPreviousPageType === "withdraw",
+                    },
+                  ])}
                   key={item.id}
                   onClick={() => {
                     if (addressPreviousPageType === "withdraw") {
-                      if (item.protocol !== withdrawNetwork) return
+                      if (item.protocol !== withdrawNetwork) return;
                       setField("addressInfo", item);
                       push(routerMap.walletWithdraw);
                     }
@@ -107,19 +113,15 @@ const SettingAddressView = () => {
                   <label className="flex items-center">
                     <div className="flex-1">
                       <div className="font-bold flex justify-between items-center">
-                        <span>
-                          {item.coin}
-                          {" - "}
-                          {item.protocol}
-                        </span>
+                        <span>{item.protocol}</span>
                         {openEdit && check(item)}
                       </div>
                       <p className="text-text4 text-sm wrap-break-word mt-4 mb-2">
                         {item.addr}
                       </p>
-                      <p className="text-text4 text-sm">
-                        {t("address.remark")}:
-                      </p>
+                      {/* <p className="text-text4 text-sm"> */}
+                      {/*   {t("address.remark")}: */}
+                      {/* </p> */}
                     </div>
                   </label>
                 </div>

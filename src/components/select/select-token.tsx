@@ -22,8 +22,8 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
     const t = useTrans();
     const [open, setOpen] = useState(false);
     const { data, isLoading } = useRequestQuery(
-      api.currencySettings.protocolListUsingGet,
-      {}
+      api.currencySettings.protocolListUsingGet1,
+      {},
     );
     const currencyList = data?.data as CurrencyInfo[];
 
@@ -110,7 +110,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
         </Drawer>
       </div>
     );
-  }
+  },
 );
 
 SelectToken.displayName = "SelectToken";

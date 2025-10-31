@@ -213,7 +213,7 @@ const WithdrawView = () => {
                   type="text"
                   {...register("withdrawAddress")}
                   disabled
-                  placeholder={t("withdraw.longPressToPaste")}
+                  placeholder={t("withdrawalBindTip")}
                   className="w-9/10"
                 />
                 <div className="inline-flex items-center h-12">

@@ -1,6 +1,7 @@
 import { Modal } from "@/components/modal";
 import { FC } from "react";
-// import { useTrans } from "@/hooks/useTrans";
+import { useTrans } from "@/hooks/useTrans";
+import { api } from "@/api";
 
 type IProps = {
   open: boolean;
@@ -17,26 +18,36 @@ const BindAddressModal: FC<IProps> = ({
   address,
   network,
 }) => {
-  // const t = useTrans();
+  const t = useTrans();
+  const hanldeSubmit = async () => {
+    try {
+      await api.withdrawAddress.bindAddressUsingPost({
+        addr: address,
+        protocol: network,
+      });
+      onOk();
+    } catch {
+      onOk();
+    }
+  };
   return (
-    <Modal open={open} onClose={onClose} title="Bind Address" close={false}>
+    <Modal open={open} onClose={onClose} title={t("bindAddress")} close={false}>
       <div>
         <p className="text-center break-words mb-6">
-          {network} withdrawal address:
+          {t("bindAddressTitle", { network })}
         </p>
         <p className="text-center break-words mb-4 leading-none">{address}</p>
         <p className="text-center break-words mb-6 text-assist2 leading-none">
-          For the safety of your funds, please ensure that your address is
-          correct. Once filled in, it cannot be modified or deleted.
+          {t("bindAddressTips")}
         </p>
         <button
-          className="btn btn-primary bg-black text-white shadow-none w-full mb-2"
-          onClick={onOk}
+          className="btn btn-primary bg-black text-white shadow-none border-none w-full mb-2"
+          onClick={hanldeSubmit}
         >
-          Binding
+          {t("binding")}
         </button>
         <button className="btn btn-outline w-full" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </button>
       </div>
     </Modal>

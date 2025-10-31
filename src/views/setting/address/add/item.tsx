@@ -14,7 +14,10 @@ interface FormData {
   network: string;
 }
 
-const AddressAddItem: FC<{ network: string }> = ({ network }) => {
+const AddressAddItem: FC<{ network: string; addr: string }> = ({
+  network,
+  addr,
+}) => {
   const t = useTrans();
   const [open, setOpen] = useState(false);
 
@@ -31,7 +34,7 @@ const AddressAddItem: FC<{ network: string }> = ({ network }) => {
 
   const { handleSubmit, register, watch } = useForm<FormData>({
     resolver: zodResolver(Schema),
-    values: { network: network, address: "" },
+    values: { network: network, address: addr },
   });
   const address = watch("address");
 
@@ -39,10 +42,12 @@ const AddressAddItem: FC<{ network: string }> = ({ network }) => {
     <div>
       <form autoComplete="off">
         <fieldset className="fieldset p-0">
-          <legend className="fieldset-legend p-0 pb-4">Network</legend>
+          <legend className="fieldset-legend p-0 pb-4">
+            {t("withdraw.network")}
+          </legend>
           <label className="input w-full h-12 border border-border1 bg-bg3 ">
             <BaseImage
-              src="https://861276122348apse1.s3.ap-southeast-1.amazonaws.com/20250428/22.png"
+              src={`/images/chain-icon/${network.toUpperCase()}.png`}
               className="size-6 shrink-0"
             ></BaseImage>
             <input
@@ -61,7 +66,7 @@ const AddressAddItem: FC<{ network: string }> = ({ network }) => {
             <input
               type="text"
               {...register("address")}
-              placeholder="Long press to paste"
+              placeholder={t("withdraw.longPressToPaste")}
               className="grow placeholder:text-sm font-normal "
             />
             {/* <span */}

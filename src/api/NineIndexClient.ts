@@ -1025,6 +1025,11 @@ export class Api<
          * @example 200
          */
         thumbnailHeight?: string;
+        /**
+         * 是否忽略图片大小限制（只要传该参数即不限制）
+         * @example true
+         */
+        ignoreLimit?: string;
       },
       params: RequestParams = {},
     ) =>
@@ -1086,6 +1091,11 @@ export class Api<
          * @example 200
          */
         thumbnailHeight?: string;
+        /**
+         * 是否忽略图片大小限制（只要传该参数即不限制）
+         * @example true
+         */
+        ignoreLimit?: string;
       },
       params: RequestParams = {},
     ) =>
