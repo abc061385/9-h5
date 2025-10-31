@@ -10,6 +10,7 @@ interface SettingState extends BaseState<SettingState> {
   clearAddressInfo: () => void;
   gaPreviousPageType: GAPreviousPageType;
   addressPreviousPageType: AddressPreviousPageType;
+  withdrawNetwork: string;
 }
 
 export const useSettingStore = create<SettingState>()(
@@ -21,13 +22,15 @@ export const useSettingStore = create<SettingState>()(
           gaPreviousPageType: "",
           addressInfo: {},
           addressPreviousPageType: "",
+          withdrawNetwork: "",
           clearGoogleCode: () => {
-            set(() => ({ googleCode: "", gaPreviousPageType: "" }));
+            set(() => ({ googleCode: "", gaPreviousPageType: "", withdrawNetwork: "" }));
           },
           clearAddressInfo: () => {
             set(() => ({
               addressInfo: {},
               addressPreviousPageType: "",
+              withdrawNetwork: ""
             }));
           },
           setField: (key, value) => set({ [key]: value }),

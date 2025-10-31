@@ -27,14 +27,12 @@ const WithdrawView = () => {
   const setField = useWithdrawalStore((s) => s.setField);
   const formState = useWithdrawalStore((s) => s.formState);
   const resetFormState = useWithdrawalStore((s) => s.resetFormState);
-  const getAddrMap = useWithdrawalStore((s) => s.getAddrMap);
-  const addressMap = useWithdrawalStore((s) => s.addressMap);
 
   const setSettingField = useSettingStore((s) => s.setField);
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
   const addressPreviousPageType = useSettingStore(
-    (s) => s.addressPreviousPageType,
+    (s) => s.addressPreviousPageType
   );
   const addressInfo = useSettingStore((s) => s.addressInfo);
 
@@ -57,27 +55,13 @@ const WithdrawView = () => {
   });
 
   const currencyCode = useWatch({ control, name: "currencyCode" });
-  const chainEnum = useWatch({ control, name: "chainEnum" });
-
-  useEffect(() => {
-    // 获取地址列表
-    getAddrMap();
-  }, [getAddrMap]);
-
-  useEffect(() => {
-    setValue(
-      "withdrawAddress",
-      addressMap[chainEnum?.protocolType]?.addr ?? "",
-    );
-  }, [chainEnum, addressMap, setValue]);
-
   const [withdrawalFeeConfig, withdrawalFeeType] = useWatch({
     control,
     name: ["chainEnum.withdrawalFeeConfig", "chainEnum.withdrawalFeeType"],
   });
   const { data: accountResponse } = useRequestQuery(
     api.wallet.listUsingPost,
-    {},
+    {}
   );
   const accountList: Account[] = accountResponse?.data?.wallet;
   const currencyAccount = useMemo(() => {
@@ -91,8 +75,8 @@ const WithdrawView = () => {
     withdrawalFeeType === "fixed"
       ? currencyCode
       : withdrawalFeeType === "percentage"
-        ? "%"
-        : "";
+      ? "%"
+      : "";
 
   const handleNext = () => {
     setField("formState", getValues());
@@ -187,6 +171,35 @@ const WithdrawView = () => {
 
           <fieldset className="fieldset p-0">
             <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+              {t("withdraw.address")}
+            </legend>
+            <div className="join items-center gap-4.5">
+              <label className="input w-full flex items-center h-12 rounded-lg pr-0">
+                <input
+                  type="text"
+                  {...register("withdrawAddress")}
+                  placeholder={t("withdraw.longPressToPaste")}
+                  className="w-9/10"
+                />
+                <div className="inline-flex items-center h-12">
+                  {/* <Icon name="scan" className="size-11" /> */}
+                </div>
+              </label>
+              <Icon
+                name="address-book"
+                className="size-5"
+                onClick={() => {
+                  setSettingField("addressPreviousPageType", "withdraw");
+                  setField("formState", getValues());
+                  push(routerMap.settingAddress);
+                }}
+              />
+            </div>
+            <TextError>{errors.withdrawAddress?.message}</TextError>
+          </fieldset>
+
+          <fieldset className="fieldset p-0">
+            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
               {t("withdraw.network")}
             </legend>
             <Controller
@@ -201,45 +214,6 @@ const WithdrawView = () => {
               )}
             ></Controller>
             <TextError>{errors.chainEnum?.message}</TextError>
-          </fieldset>
-
-          <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
-              {t("withdraw.address")}
-            </legend>
-            <div className="join items-center gap-4.5">
-              <label className="input w-full flex items-center h-12 rounded-lg pr-0">
-                <input
-                  type="text"
-                  {...register("withdrawAddress")}
-                  disabled
-                  placeholder={t("withdraw.longPressToPaste")}
-                  className="w-9/10"
-                />
-                <div className="inline-flex items-center h-12">
-                  {/* <Icon name="scan" className="size-11" /> */}
-                </div>
-              </label>
-              <Icon
-                name="address-book"
-                className="size-5"
-                onClick={() => {
-                  setSettingField("addressPreviousPageType", "withdraw");
-                  setField("formState", getValues());
-                  setSettingField(
-                    "withdrawNetwork",
-                    getValues("chainEnum").protocolType,
-                  );
-                  const _withdrawAddress = getValues("withdrawAddress");
-                  if (_withdrawAddress) {
-                    push(routerMap.settingAddress);
-                  } else {
-                    push(routerMap.settingAddressAdd);
-                  }
-                }}
-              />
-            </div>
-            <TextError>{errors.withdrawAddress?.message}</TextError>
           </fieldset>
 
           <fieldset className="fieldset p-0">

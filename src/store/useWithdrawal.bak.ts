@@ -1,5 +1,4 @@
 // import { navigateTo, routerMap } from "@/i18n/navigation";
-import { api } from "@/api";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
@@ -11,16 +10,6 @@ type ChainEnum = {
   withdrawalFeeType: string;
   withdrawalFeeConfig: number;
 };
-interface AddrItem {
-  addr: string;
-  coin: string;
-  id: number;
-  memberId: number;
-  protocol: string;
-  remark: string;
-  systemType: number;
-  type: string;
-}
 
 export type WithdrawForm = {
   currencyCode: string;
@@ -32,11 +21,7 @@ export type WithdrawForm = {
 
 interface WithdrawalState extends BaseState<WithdrawalState> {
   formState: WithdrawForm;
-  addressMap: {
-    [key in string]?: AddrItem;
-  };
   resetFormState: () => void;
-  getAddrMap: () => Promise<void>;
   clear: () => void;
 }
 
@@ -65,23 +50,13 @@ export const useWithdrawalStore = create<WithdrawalState>()(
           clear: () => {
             get().resetFormState();
           },
-          getAddrMap: async () => {
-            try {
-              const res = await api.member.memberAddressListUsingPost();
-              const _addressMap = {} as { [key in string]: AddrItem };
-              res.data.forEach((item: AddrItem) => {
-                _addressMap[item.protocol] = item;
-              });
-              set(() => ({ addressMap: _addressMap }));
-            } catch {}
-          },
           setField: (key, value) => set({ [key]: value }),
         };
       },
-      { enabled: getIsDev() },
+      { enabled: getIsDev() }
     ),
     {
       name: "withdraw-store",
-    },
-  ),
+    }
+  )
 );
