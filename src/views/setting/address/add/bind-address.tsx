@@ -2,6 +2,7 @@ import { Modal } from "@/components/modal";
 import { FC } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { api } from "@/api";
+import toast from "react-hot-toast";
 
 type IProps = {
   open: boolean;
@@ -25,6 +26,8 @@ const BindAddressModal: FC<IProps> = ({
         addr: address,
         protocol: network,
       });
+
+      toast.success(t("googleVerify.bindComplete"));
       onOk();
     } catch {
       onOk();
