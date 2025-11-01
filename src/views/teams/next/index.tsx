@@ -316,7 +316,7 @@ const TeamsNextView = () => {
                         searchParams.get("id") || userInfo.id
                       }&type=level&level=${item.vipLevel}&isDepositor=${
                         isDepositor ? 1 : 0
-                      }`
+                      }&star=${item.star}`
                     );
                   }}
                 >
