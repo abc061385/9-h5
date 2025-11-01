@@ -21,7 +21,7 @@ const SubCardBox: FC<ISubCardProps> = ({ data }) => {
       <div className="flex justify-between items-center flex-wrap gap-2 font-bold mb-4">
         <BaseImage
           src={data?.headUrl || "/icons/user-head.svg"}
-          className="size-8"
+          className="size-8 rounded-full overflow-hidden"
         />
         <span className="max-w-[60%] break-words">
           {data?.nickname || "--"}

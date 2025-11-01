@@ -17,6 +17,7 @@ import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { useClickAway } from "@/hooks/useClickOutside";
+import StarIcon from "@/views/vip/star-icon";
 
 interface AreaStatData {
   count: number;
@@ -253,7 +254,13 @@ const TeamsNextView = () => {
                             <span className="font-medium text-text3">
                               {v.nickname}
                             </span>
-                            <span>{v.levelName}</span>
+                            <div className="flex">
+                              {v.levelName}
+                              <StarIcon
+                                level={v?.vipLevel || 0}
+                                star={v?.star || 0}
+                              />
+                            </div>
                           </div>
                         );
                       })
@@ -314,6 +321,10 @@ const TeamsNextView = () => {
                   }}
                 >
                   <span className="text-text4">VIP{item.vipLevel}</span>
+                  <StarIcon
+                    level={item?.vipLevel || 0}
+                    star={item?.star || 0}
+                  />
                   <span className="font-medium">{item.count}</span>
                 </div>
               );

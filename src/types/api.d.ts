@@ -562,4 +562,5 @@ interface TeamsAllUserSearchList {
   nickname: string;
   vipLevel: number;
   levelName: string;
+  star?: number;
 }
