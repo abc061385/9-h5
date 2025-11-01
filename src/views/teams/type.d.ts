@@ -20,6 +20,7 @@ export interface DataType {
   areaType: number;
   accountType: number;
   area: string;
+  star?: number;
 }
 
 export interface ICardProps {
