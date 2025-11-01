@@ -38,11 +38,11 @@ for (let index = 0; index < langList.length; index++) {
   
 }
 
-for (const key in langsMap["zh-Hans"]) {
+for (const key in langsMap["en"]) {
   let langStr = ""
   for (let index = 0; index < langList.length; index++) {
     const _lang = langList[index];
-    langStr += `"${langsMap[_lang][key]}"`+ ","    
+    langStr += `"${langsMap[_lang][key] || ''}"`+ ","    
   }
   // console.log(langStr)
   // let _zh = String(flat[key]);

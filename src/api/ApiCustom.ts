@@ -1,5 +1,5 @@
 import axiosIn, { createAxiosInstance, spotAxios } from "@/lib/axios";
-import { Api, _ } from "./ApiClient";
+import { Api, _2 } from "./ApiClient";
 import {
   CommonResultCaptchaValidateRespDTO,
   Api as NineIndexClient,
@@ -23,7 +23,7 @@ export class ApiCustom extends Api<string> {
     });
   }
 
-  getData(response: _) {
+  getData(response: _2) {
     switch (response.code) {
       case 200:
         return response.data;

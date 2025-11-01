@@ -964,5 +964,11 @@
   "personal": "Personal",
   "9mAIStategyFund": "9M AI Strategy Fund",
   "9mAIStableFund": "9M AI Stable Fund",
-  "personalInformation": "Personal Information"
+  "personalInformation": "Personal Information",
+  "addressAddTips": "The withdrawal address needs to be configured for each network. Once bound, it can only be modified by contacting customer service. Please keep the private key of this address safe. Once the private key is leaked, the platform will not be able to recover your assets.",
+  "bindAddress": "Bind Address",
+  "bindAddressTitle": "{network} withdrawal address:",
+  "bindAddressTips": "For the safety of your funds, please ensure that your address is correct. Once filled in, it cannot be modified or deleted.",
+  "binding": "Binding",
+  "withdrawalBindTip": "Please bind the withdrawal address first"
 }

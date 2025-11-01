@@ -165,6 +165,70 @@ export interface MemberWorkroomDTO {
   teachLanguage: string;
 }
 
+/** PersonalInformationVO */
+export interface PersonalInformationVO {
+  /**
+   * 注册日期
+   * @format date-time
+   */
+  createTime?: string;
+  headUrl?: string;
+  /**
+   * 用户id
+   * @format int64
+   */
+  id?: number;
+  /** 用户等级名称 */
+  levelName?: string;
+  /** 用户昵称 */
+  nickname?: string;
+  personalInvestmentStable180Days?: number;
+  personalInvestmentStable30Days?: number;
+  personalInvestmentStable360Days?: number;
+  personalInvestmentStable7Days?: number;
+  personalInvestmentStable90Days?: number;
+  personalInvestmentStableAmount?: number;
+  personalInvestmentStrategy180Days?: number;
+  personalInvestmentStrategy30Days?: number;
+  personalInvestmentStrategy360Days?: number;
+  personalInvestmentStrategy7Days?: number;
+  personalInvestmentStrategy90Days?: number;
+  personalInvestmentStrategyAmount?: number;
+  /**
+   * 星级
+   * @format int32
+   */
+  star?: number;
+  /** community投资总额 */
+  totalCommunityInvestment?: number;
+  totalInvestmentStable180Days?: number;
+  totalInvestmentStable30Days?: number;
+  totalInvestmentStable360Days?: number;
+  totalInvestmentStable7Days?: number;
+  totalInvestmentStable90Days?: number;
+  totalInvestmentStableAmount?: number;
+  totalInvestmentStrategy180Days?: number;
+  totalInvestmentStrategy30Days?: number;
+  totalInvestmentStrategy360Days?: number;
+  totalInvestmentStrategy7Days?: number;
+  totalInvestmentStrategy90Days?: number;
+  totalInvestmentStrategyAmount?: number;
+  /** region投资总额 */
+  totalRegionInvestment?: number;
+  /** 团队投资总额 */
+  totalTeamInvestment?: number;
+  /**
+   * 团队人数
+   * @format int32
+   */
+  totalTeamMembers?: number;
+  /**
+   * 用户等级
+   * @format int32
+   */
+  vipLevel?: number;
+}
+
 /** RegistActivityDTO */
 export interface RegistActivityDTO {
   /** @format int64 */
@@ -205,8 +269,20 @@ export interface IPageActivitiesVO {
   total?: number;
 }
 
-/** 统一消息返回对象 */
+/** 绑定提现地址请求参数 */
 export interface _ {
+  /** 提现地址 */
+  addr: string;
+  /** 地址标签或备注 */
+  memo?: string;
+  /** 协议 */
+  protocol: string;
+  /** 备注 */
+  remark?: string;
+}
+
+/** 统一消息返回对象 */
+export interface _2 {
   /** @format int32 */
   code: number;
   data: { [key in string]?: any };
@@ -234,6 +310,14 @@ export interface ListActivitiesVO {
   /** @format int32 */
   code: number;
   data: ActivitiesVO[];
+  message: string;
+}
+
+/** 统一消息返回对象«PersonalInformationVO» */
+export interface PersonalInformationVO {
+  /** @format int32 */
+  code: number;
+  data: PersonalInformationVO;
   message: string;
 }
 
@@ -541,7 +625,7 @@ export class Api<
       dto: RegistActivityDTO,
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/activity/registration`,
         method: "POST",
         body: dto,
@@ -559,7 +643,7 @@ export class Api<
      * @request GET:/auth/bind-list/{id}
      */
     getBindListUsingGet: (id: ref, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/bind-list/${id}`,
         method: "GET",
         ...params,
@@ -580,7 +664,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/editHead`,
         method: "POST",
         query: query,
@@ -603,7 +687,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/editNice`,
         method: "POST",
         query: query,
@@ -706,7 +790,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/editTel`,
         method: "POST",
         query: query,
@@ -738,7 +822,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/forget/updatePwd`,
         method: "POST",
         query: query,
@@ -769,7 +853,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/forgetPwd`,
         method: "POST",
         query: query,
@@ -786,7 +870,7 @@ export class Api<
      * @request POST:/auth/getAllNetData
      */
     jyPasswordUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/getAllNetData`,
         method: "POST",
         type: ContentType.Json,
@@ -802,7 +886,7 @@ export class Api<
      * @request POST:/auth/getSwarm
      */
     getSwarmUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/getSwarm`,
         method: "POST",
         type: ContentType.Json,
@@ -829,7 +913,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/getToken`,
         method: "POST",
         query: query,
@@ -846,7 +930,7 @@ export class Api<
      * @request GET:/auth/info
      */
     infoUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/info`,
         method: "GET",
         ...params,
@@ -869,7 +953,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/jyPassword`,
         method: "POST",
         query: query,
@@ -898,7 +982,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/login`,
         method: "POST",
         query: query,
@@ -923,7 +1007,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/login-by-token`,
         method: "POST",
         query: query,
@@ -955,7 +1039,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/loginByFaBeforeCheck`,
         method: "POST",
         query: query,
@@ -989,7 +1073,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/regByFaBeforeCheck`,
         method: "POST",
         query: query,
@@ -1022,7 +1106,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/register`,
         method: "POST",
         query: query,
@@ -1055,7 +1139,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/registerH5`,
         method: "POST",
         query: query,
@@ -1090,7 +1174,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/sendCode`,
         method: "POST",
         query: query,
@@ -1117,7 +1201,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/sub-account/email-clean/login`,
         method: "POST",
         query: query,
@@ -1144,7 +1228,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/sub-account/login`,
         method: "POST",
         query: query,
@@ -1169,7 +1253,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/sub-account/login-by-token`,
         method: "POST",
         query: query,
@@ -1200,7 +1284,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/sub-account/register`,
         method: "POST",
         query: query,
@@ -1217,7 +1301,7 @@ export class Api<
      * @request POST:/auth/test
      */
     testUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/test`,
         method: "POST",
         type: ContentType.Json,
@@ -1248,7 +1332,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/updatePwd`,
         method: "POST",
         query: query,
@@ -1273,7 +1357,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/auth/validateCode`,
         method: "POST",
         query: query,
@@ -1291,7 +1375,7 @@ export class Api<
      * @request GET:/business-college-meet-type/meet-up-list
      */
     getMeetUpListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/business-college-meet-type/meet-up-list`,
         method: "GET",
         ...params,
@@ -1324,7 +1408,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/business-college-meet-type/page-list`,
         method: "GET",
         query: query,
@@ -1350,7 +1434,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/business-college/detail`,
         method: "GET",
         query: query,
@@ -1389,7 +1473,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/business-college/meet-type/list`,
         method: "GET",
         query: query,
@@ -1428,7 +1512,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/business-college/page-list`,
         method: "GET",
         query: query,
@@ -1461,7 +1545,7 @@ export class Api<
      * @request GET:/cms/advisory/{id}
      */
     advisoryUsingGet: (id: number, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/advisory/${id}`,
         method: "GET",
         ...params,
@@ -1485,7 +1569,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/announcement-noRead`,
         method: "GET",
         query: query,
@@ -1501,7 +1585,7 @@ export class Api<
      * @request GET:/cms/announcement/{id}
      */
     announcementUsingGet: (id: number, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/announcement/${id}`,
         method: "GET",
         ...params,
@@ -1525,7 +1609,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/caijin`,
         method: "GET",
         query: query,
@@ -1541,7 +1625,7 @@ export class Api<
      * @request GET:/cms/getAgreementById/{id}
      */
     getAgreementByIdUsingGet: (id: number, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/getAgreementById/${id}`,
         method: "GET",
         ...params,
@@ -1556,7 +1640,7 @@ export class Api<
      * @request GET:/cms/getAgreementByIds/{ids}
      */
     getAgreementByIdUsingGet1: (ids: string, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/getAgreementByIds/${ids}`,
         method: "GET",
         ...params,
@@ -1577,7 +1661,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/getChildMenu`,
         method: "GET",
         query: query,
@@ -1593,7 +1677,7 @@ export class Api<
      * @request GET:/cms/getFirstMenu
      */
     getFirstMenuUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/getFirstMenu`,
         method: "GET",
         ...params,
@@ -1617,7 +1701,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/getOpenPage`,
         method: "GET",
         query: query,
@@ -1642,7 +1726,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/info-advertise`,
         method: "GET",
         query: query,
@@ -1667,7 +1751,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/info-privacy-policy/getByType`,
         method: "GET",
         query: query,
@@ -1683,7 +1767,7 @@ export class Api<
      * @request GET:/cms/notice/{id}
      */
     noticeUsingGet: (id: number, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/notice/${id}`,
         method: "GET",
         ...params,
@@ -1717,7 +1801,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/page-advertise/${type}`,
         method: "GET",
         query: query,
@@ -1756,7 +1840,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/page-advisory`,
         method: "GET",
         query: query,
@@ -1800,7 +1884,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/page-announcement`,
         method: "GET",
         query: query,
@@ -1844,7 +1928,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/page-announcement-info`,
         method: "GET",
         query: query,
@@ -1878,7 +1962,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/page-notice`,
         method: "GET",
         query: query,
@@ -1900,7 +1984,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/type`,
         method: "GET",
         query: query,
@@ -1925,7 +2009,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/update-noRead`,
         method: "GET",
         query: query,
@@ -1941,7 +2025,7 @@ export class Api<
      * @request GET:/cms/version
      */
     versionUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cms/version`,
         method: "GET",
         ...params,
@@ -1983,7 +2067,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cobo/create-addr`,
         method: "POST",
         query: query,
@@ -2000,7 +2084,7 @@ export class Api<
      * @request POST:/cobo/create-wallet
      */
     createWalletUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cobo/create-wallet`,
         method: "POST",
         type: ContentType.Json,
@@ -2016,7 +2100,7 @@ export class Api<
      * @request POST:/cobo/enabled_chains
      */
     enabledChainsUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cobo/enabled_chains`,
         method: "POST",
         type: ContentType.Json,
@@ -2038,7 +2122,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cobo/getChainAddr`,
         method: "GET",
         query: query,
@@ -2054,7 +2138,7 @@ export class Api<
      * @request POST:/cobo/repairMemo
      */
     repairMemoUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/cobo/repairMemo`,
         method: "POST",
         type: ContentType.Json,
@@ -2097,7 +2181,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/coin/getCoin`,
         method: "GET",
         query: query,
@@ -2119,7 +2203,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/coin/info`,
         method: "GET",
         query: query,
@@ -2136,7 +2220,7 @@ export class Api<
      * @request GET:/country/prefix/list
      */
     getCountryPhonePrefixListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/country/prefix/list`,
         method: "GET",
         ...params,
@@ -2152,7 +2236,7 @@ export class Api<
      * @request GET:/currency-settings/flash-exchange/base-currencies
      */
     getBaseCurrenciesUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/currency-settings/flash-exchange/base-currencies`,
         method: "GET",
         ...params,
@@ -2173,7 +2257,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/currency-settings/flash-exchange/target-currencies`,
         method: "GET",
         query: query,
@@ -2195,7 +2279,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/currency-settings/list`,
         method: "GET",
         query: query,
@@ -2206,12 +2290,12 @@ export class Api<
      * No description
      *
      * @tags currency-settings-controller
-     * @name ProtocolListUsingGet
+     * @name ProtocolListUsingGet1
      * @summary 列表
      * @request GET:/currency-settings/protocol/list
      */
-    protocolListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+    protocolListUsingGet1: (params: RequestParams = {}) =>
+      this.request<_2, void>({
         path: `/currency-settings/protocol/list`,
         method: "GET",
         ...params,
@@ -2232,7 +2316,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/currency-settings/protocol/rate`,
         method: "GET",
         query: query,
@@ -2255,7 +2339,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/deposit/create-addr`,
         method: "POST",
         query: query,
@@ -2278,7 +2362,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/deposit/create-addr_two`,
         method: "POST",
         query: query,
@@ -2296,7 +2380,7 @@ export class Api<
      * @request GET:/feign/captcha/validate
      */
     captchaValidateUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/feign/captcha/validate`,
         method: "GET",
         ...params,
@@ -2325,7 +2409,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/file/upload`,
         method: "POST",
         query: query,
@@ -2339,15 +2423,17 @@ export class Api<
      * No description
      *
      * @tags fund-product-config-controller
-     * @name CalMaxProfitUsingPost
-     * @summary calMaxProfit
-     * @request POST:/fund-product-config/calMaxProfit
+     * @name CalFastInvestUsingPost
+     * @summary calFastInvest
+     * @request POST:/fund-product-config/cal-fast-invest
      */
-    calMaxProfitUsingPost: (
+    calFastInvestUsingPost: (
       query: {
+        isFastPledge?: boolean;
         isLockPosit?: boolean;
         /** 复投是否开启(0:否,1:是) */
         isReinvestment?: boolean;
+        isUsdtFirst?: boolean;
         /**
          * 质押计划ID
          * @format int64
@@ -2363,7 +2449,45 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
+        path: `/fund-product-config/cal-fast-invest`,
+        method: "POST",
+        query: query,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags fund-product-config-controller
+     * @name CalMaxProfitUsingPost
+     * @summary calMaxProfit
+     * @request POST:/fund-product-config/calMaxProfit
+     */
+    calMaxProfitUsingPost: (
+      query: {
+        isFastPledge?: boolean;
+        isLockPosit?: boolean;
+        /** 复投是否开启(0:否,1:是) */
+        isReinvestment?: boolean;
+        isUsdtFirst?: boolean;
+        /**
+         * 质押计划ID
+         * @format int64
+         */
+        pledgeId: number;
+        /**
+         * 产品ID
+         * @format int64
+         */
+        productId: number;
+        /** 投资总金额(USDT) */
+        totalAmount: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
         path: `/fund-product-config/calMaxProfit`,
         method: "POST",
         query: query,
@@ -2386,7 +2510,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/claimedProfit`,
         method: "GET",
         query: query,
@@ -2412,7 +2536,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/claimedProfit/extract`,
         method: "POST",
         query: query,
@@ -2454,7 +2578,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/claimedProfit/income-details`,
         method: "GET",
         query: query,
@@ -2476,7 +2600,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/claimedProfit/smart-wallet`,
         method: "GET",
         query: query,
@@ -2512,7 +2636,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/claimedProfit/transaction`,
         method: "GET",
         query: query,
@@ -2537,8 +2661,42 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/detail`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags fund-product-config-controller
+     * @name DetailUsingGet3
+     * @summary detail
+     * @request GET:/fund-product-config/fast-invest-detail
+     */
+    detailUsingGet3: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/fund-product-config/fast-invest-detail`,
         method: "GET",
         query: query,
         ...params,
@@ -2562,7 +2720,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/getPledgeDays`,
         method: "GET",
         query: query,
@@ -2579,9 +2737,11 @@ export class Api<
      */
     purchaseUsingPost: (
       query: {
+        isFastPledge?: boolean;
         isLockPosit?: boolean;
         /** 复投是否开启(0:否,1:是) */
         isReinvestment?: boolean;
+        isUsdtFirst?: boolean;
         /**
          * 质押计划ID
          * @format int64
@@ -2597,7 +2757,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/invest`,
         method: "POST",
         query: query,
@@ -2625,7 +2785,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/invest/detail`,
         method: "GET",
         query: query,
@@ -2661,7 +2821,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/invest/page`,
         method: "GET",
         query: query,
@@ -2705,7 +2865,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/page`,
         method: "GET",
         query: query,
@@ -2732,7 +2892,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/reinvestment`,
         method: "POST",
         query: query,
@@ -2759,7 +2919,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/reward/extract`,
         method: "POST",
         query: query,
@@ -2782,7 +2942,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/reward/stats`,
         method: "GET",
         query: query,
@@ -2818,7 +2978,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/reward/transaction`,
         method: "GET",
         query: query,
@@ -2842,7 +3002,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/fund-product-config/smart-wallet/extract`,
         method: "POST",
         query: query,
@@ -2860,7 +3020,7 @@ export class Api<
      * @request GET:/global-activity-country/list
      */
     getDropdownListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/global-activity-country/list`,
         method: "GET",
         ...params,
@@ -2876,7 +3036,7 @@ export class Api<
      * @request GET:/global-activity-venue/list
      */
     getDropdownListUsingGet1: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/global-activity-venue/list`,
         method: "GET",
         ...params,
@@ -2901,7 +3061,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/global-activity/country/activity`,
         method: "GET",
         query: query,
@@ -2912,11 +3072,11 @@ export class Api<
      * No description
      *
      * @tags 全球活动中心
-     * @name DetailUsingGet3
+     * @name DetailUsingGet4
      * @summary 根据ID获取活动详情
      * @request GET:/global-activity/detail
      */
-    detailUsingGet3: (
+    detailUsingGet4: (
       query?: {
         /**
          * id
@@ -2926,7 +3086,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/global-activity/detail`,
         method: "GET",
         query: query,
@@ -2942,7 +3102,7 @@ export class Api<
      * @request GET:/global-activity/global-studio/list
      */
     getGlobalStudioListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/global-activity/global-studio/list`,
         method: "GET",
         ...params,
@@ -2975,7 +3135,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/global-activity/page-list`,
         method: "GET",
         query: query,
@@ -2995,7 +3155,7 @@ export class Api<
       imageUrls: string[],
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/image/batch-delete`,
         method: "POST",
         body: imageUrls,
@@ -3018,7 +3178,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/image/delete`,
         method: "POST",
         query: query,
@@ -3053,7 +3213,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/image/upload`,
         method: "POST",
         query: query,
@@ -3075,7 +3235,7 @@ export class Api<
       req: InternalTransferRequest,
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/internal/transfer`,
         method: "POST",
         body: req,
@@ -3092,7 +3252,7 @@ export class Api<
      * @request GET:/internal/whatsApp/{uid}
      */
     getStatisticsUsingGet: (uid: number, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/internal/whatsApp/${uid}`,
         method: "GET",
         ...params,
@@ -3108,7 +3268,7 @@ export class Api<
      * @request GET:/kline/latestPrice
      */
     latestPriceUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/kline/latestPrice`,
         method: "GET",
         ...params,
@@ -3129,7 +3289,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/kline/marketSituation`,
         method: "GET",
         query: query,
@@ -3146,7 +3306,7 @@ export class Api<
      * @request POST:/level-race/check-finish
      */
     checkFinishUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/level-race/check-finish`,
         method: "POST",
         type: ContentType.Json,
@@ -3162,7 +3322,7 @@ export class Api<
      * @request GET:/level-race/introduce
      */
     introduceUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/level-race/introduce`,
         method: "GET",
         ...params,
@@ -3177,7 +3337,7 @@ export class Api<
      * @request POST:/level-race/registration
      */
     registrationUsingPost1: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/level-race/registration`,
         method: "POST",
         type: ContentType.Json,
@@ -3193,7 +3353,7 @@ export class Api<
      * @request GET:/level-race/registration-record
      */
     registrationRecordUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/level-race/registration-record`,
         method: "GET",
         ...params,
@@ -3214,7 +3374,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/level-race/set-read`,
         method: "POST",
         query: query,
@@ -3238,7 +3398,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/market/thumb`,
         method: "GET",
         query: query,
@@ -3255,7 +3415,7 @@ export class Api<
      * @request POST:/meetup/apply
      */
     saveUsingPost: (dto: MemberMeetupDTO, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/meetup/apply`,
         method: "POST",
         body: dto,
@@ -3290,7 +3450,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/meetup/page-list`,
         method: "GET",
         query: query,
@@ -3306,7 +3466,7 @@ export class Api<
      * @request GET:/meetup/rest-count
      */
     canApplyCountUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/meetup/rest-count`,
         method: "GET",
         ...params,
@@ -3376,7 +3536,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member-vip-level-config/edit`,
         method: "POST",
         query: query,
@@ -3402,7 +3562,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member-vip-level-config/getById`,
         method: "GET",
         query: query,
@@ -3418,7 +3578,7 @@ export class Api<
      * @request GET:/member-vip-level-config/list
      */
     listUsingGet1: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member-vip-level-config/list`,
         method: "GET",
         ...params,
@@ -3482,7 +3642,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member-vip-level-start-config/edit`,
         method: "POST",
         query: query,
@@ -3508,7 +3668,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member-vip-level-start-config/getById`,
         method: "GET",
         query: query,
@@ -3524,7 +3684,7 @@ export class Api<
      * @request GET:/member-vip-level-start-config/list
      */
     listUsingGet2: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member-vip-level-start-config/list`,
         method: "GET",
         ...params,
@@ -3585,7 +3745,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/approve`,
         method: "GET",
         query: query,
@@ -3601,7 +3761,7 @@ export class Api<
      * @request GET:/member/checkApprove
      */
     checkApproveUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/checkApprove`,
         method: "GET",
         ...params,
@@ -3624,7 +3784,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/edit-info`,
         method: "POST",
         query: query,
@@ -3648,7 +3808,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/email/bind`,
         method: "POST",
         query: query,
@@ -3673,7 +3833,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/email/change`,
         method: "POST",
         query: query,
@@ -3729,7 +3889,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/flash-exchange`,
         method: "POST",
         query: query,
@@ -3757,7 +3917,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/gg/bindGoogle`,
         method: "POST",
         query: query,
@@ -3774,7 +3934,7 @@ export class Api<
      * @request POST:/member/gg/generateGoogleSecret
      */
     generateGoogleSecretUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/gg/generateGoogleSecret`,
         method: "POST",
         type: ContentType.Json,
@@ -3801,7 +3961,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/gg/googleCodeTelVerify`,
         method: "POST",
         query: query,
@@ -3827,7 +3987,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/gg/googleCodeVerify`,
         method: "POST",
         query: query,
@@ -3844,7 +4004,7 @@ export class Api<
      * @request GET:/member/info
      */
     userInfoUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/info`,
         method: "GET",
         ...params,
@@ -3865,7 +4025,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/init-invitation-code`,
         method: "POST",
         query: query,
@@ -3890,7 +4050,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/member-address-add`,
         method: "POST",
         query: query,
@@ -3913,7 +4073,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/member-address-del`,
         method: "POST",
         query: query,
@@ -3930,7 +4090,7 @@ export class Api<
      * @request POST:/member/member-address-list
      */
     memberAddressListUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/member-address-list`,
         method: "POST",
         type: ContentType.Json,
@@ -3964,7 +4124,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/page-invitation`,
         method: "GET",
         query: query,
@@ -3980,9 +4140,135 @@ export class Api<
      * @request GET:/member/qrcode
      */
     invitationUsingGet2: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/qrcode`,
         method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name DirectReferralListUsingGet
+     * @summary 获取新分区信息
+     * @request GET:/member/team/direct-referral/area/list
+     */
+    directReferralListUsingGet: (
+      query: {
+        /**
+         * isDepositor
+         * @format int32
+         */
+        isDepositor?: number;
+        /**
+         * 用户ID
+         * @format int64
+         */
+        userId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/direct-referral/area/list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryMemberPageListByDirectReferralUsingGet
+     * @summary 点击My direct referral获取用户列表
+     * @request GET:/member/team/direct-referral/page-list
+     */
+    queryMemberPageListByDirectReferralUsingGet: (
+      query: {
+        /** account */
+        account?: string;
+        /**
+         * isDepositor
+         * @format int32
+         */
+        isDepositor?: number;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+        /**
+         * 用户ID
+         * @format int64
+         */
+        userId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/direct-referral/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryHighestLevelUserUsingGet
+     * @summary 高等级用户top10
+     * @request GET:/member/team/highest-level-user/list
+     */
+    queryHighestLevelUserUsingGet: (
+      query: {
+        /**
+         * 用户ID
+         * @format int64
+         */
+        userId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/highest-level-user/list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryHighestPerformingUserUsingGet
+     * @summary 高活跃度用户top10
+     * @request GET:/member/team/highest-performing-user/list
+     */
+    queryHighestPerformingUserUsingGet: (
+      query: {
+        /**
+         * 用户ID
+         * @format int64
+         */
+        userId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/highest-performing-user/list`,
+        method: "GET",
+        query: query,
         ...params,
       }),
 
@@ -4035,7 +4321,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/team/page-query`,
         method: "GET",
         query: query,
@@ -4051,7 +4337,7 @@ export class Api<
      * @request GET:/member/team/page-query/area
      */
     memberTeamAreaUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/team/page-query/area`,
         method: "GET",
         ...params,
@@ -4062,20 +4348,22 @@ export class Api<
      *
      * @tags 用户中心
      * @name MemberTeamAreaStatUsingGet
-     * @summary 会员列表
+     * @summary VIP会员信息展示
      * @request GET:/member/team/page-query/areaStat
      */
     memberTeamAreaStatUsingGet: (
-      query?: {
+      query: {
+        /** 是否有投资:1-有 */
+        isDepositor?: ref;
         /**
-         * topMemberId
+         * 用户id
          * @format int64
          */
-        topMemberId?: number;
+        userId: number;
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/team/page-query/areaStat`,
         method: "GET",
         query: query,
@@ -4110,8 +4398,184 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/member/team/page-query/generation`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryAllTeamMemberListUsingGet
+     * @summary 团队用户列表
+     * @request GET:/member/team/team-member/list
+     */
+    queryAllTeamMemberListUsingGet: (
+      query?: {
+        /** account */
+        account?: string;
+        /**
+         * userId
+         * @format int64
+         */
+        userId?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/team-member/list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryPersonalInformationUsingGet
+     * @summary 通过用户ID查询个人投资信息详情
+     * @request GET:/member/team/team-member/personal-information
+     */
+    queryPersonalInformationUsingGet: (
+      query: {
+        /** 结束日期（格式：YYYY-MM-DD） */
+        endTime?: string;
+        /** 开始日期（格式：YYYY-MM-DD） */
+        startTime?: string;
+        /**
+         * 用户ID
+         * @format int64
+         */
+        userId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<PersonalInformationVO, void>({
+        path: `/member/team/team-member/personal-information`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryTodayNewTeamMemberPageListUsingGet
+     * @summary 今日新增用户分页列表
+     * @request GET:/member/team/team-member/today/page-list
+     */
+    queryTodayNewTeamMemberPageListUsingGet: (
+      query: {
+        /** account */
+        account?: string;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/team-member/today/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryTotalTeamMemberPageListUsingGet
+     * @summary 所有团队成员分页列表
+     * @request GET:/member/team/team-member/total/page-list
+     */
+    queryTotalTeamMemberPageListUsingGet: (
+      query: {
+        /** account */
+        account?: string;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/team-member/total/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name QueryMemberPageListByLevelUsingGet
+     * @summary 根据用户等级获取用户列表
+     * @request GET:/member/team/vip-level/page-list
+     */
+    queryMemberPageListByLevelUsingGet: (
+      query: {
+        /** account */
+        account?: string;
+        /**
+         * isDepositor
+         * @format int32
+         */
+        isDepositor?: number;
+        /** VIP等级 */
+        level?: ref;
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+        /**
+         * 用户ID
+         * @format int64
+         */
+        userId: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/team/vip-level/page-list`,
         method: "GET",
         query: query,
         ...params,
@@ -4136,7 +4600,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/node-product-config/list`,
         method: "POST",
         query: query,
@@ -4163,7 +4627,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/node-product/purchase`,
         method: "POST",
         query: query,
@@ -4189,7 +4653,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/node-product/purchase/check`,
         method: "POST",
         query: query,
@@ -4206,7 +4670,7 @@ export class Api<
      * @request POST:/node-product/purchase/info
      */
     purchaseInfoUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/node-product/purchase/info`,
         method: "POST",
         type: ContentType.Json,
@@ -4232,7 +4696,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/order/create`,
         method: "POST",
         query: query,
@@ -4249,7 +4713,7 @@ export class Api<
      * @request GET:/order/dividends-statistics
      */
     dividendsStatisticsUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/order/dividends-statistics`,
         method: "GET",
         ...params,
@@ -4273,7 +4737,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/order/info`,
         method: "GET",
         query: query,
@@ -4307,7 +4771,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/order/page`,
         method: "GET",
         query: query,
@@ -4332,7 +4796,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/order/unlock`,
         method: "POST",
         query: query,
@@ -4358,7 +4822,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/order/unlock-info`,
         method: "GET",
         query: query,
@@ -4375,7 +4839,7 @@ export class Api<
      * @request GET:/platform-config/info
      */
     infoUsingGet1: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/platform-config/info`,
         method: "GET",
         ...params,
@@ -4391,7 +4855,7 @@ export class Api<
      * @request GET:/porder/computing-power-output-swarm
      */
     computingPowerOutputSwarmUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/porder/computing-power-output-swarm`,
         method: "GET",
         ...params,
@@ -4567,7 +5031,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/porder/create`,
         method: "POST",
         query: query,
@@ -4593,7 +5057,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/porder/info`,
         method: "GET",
         query: query,
@@ -4632,7 +5096,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/porder/page-detail-mc-dx`,
         method: "GET",
         query: query,
@@ -4676,7 +5140,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/porder/page-list`,
         method: "GET",
         query: query,
@@ -4692,7 +5156,7 @@ export class Api<
      * @request GET:/porder/sumIncome
      */
     sumIncomeUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/porder/sumIncome`,
         method: "GET",
         ...params,
@@ -4708,7 +5172,7 @@ export class Api<
      * @request GET:/power/hank
      */
     hankUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/power/hank`,
         method: "GET",
         ...params,
@@ -4761,7 +5225,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/power/page-list`,
         method: "GET",
         query: query,
@@ -4815,7 +5279,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/power/page-list-h5`,
         method: "GET",
         query: query,
@@ -4831,7 +5295,7 @@ export class Api<
      * @request GET:/power/{id}
      */
     pageListUsingGet1: (id?: string, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/power/${id}`,
         method: "GET",
         ...params,
@@ -4847,7 +5311,7 @@ export class Api<
      * @request GET:/product/hank
      */
     hankUsingGet1: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/product/hank`,
         method: "GET",
         ...params,
@@ -4885,7 +5349,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/product/page-list`,
         method: "GET",
         query: query,
@@ -4901,7 +5365,7 @@ export class Api<
      * @request GET:/product/{id}
      */
     pageListUsingGet3: (id?: string, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/product/${id}`,
         method: "GET",
         ...params,
@@ -4917,7 +5381,7 @@ export class Api<
      * @request GET:/publicize-doc-video/doc/list
      */
     getDocListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/publicize-doc-video/doc/list`,
         method: "GET",
         ...params,
@@ -4932,7 +5396,7 @@ export class Api<
      * @request GET:/publicize-doc-video/video/list
      */
     getVideoListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/publicize-doc-video/video/list`,
         method: "GET",
         ...params,
@@ -4948,7 +5412,7 @@ export class Api<
      * @request GET:/publicize-poster/list
      */
     getListUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/publicize-poster/list`,
         method: "GET",
         ...params,
@@ -4980,7 +5444,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/sms/get/${type}`,
         method: "GET",
         query: query,
@@ -5010,7 +5474,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/sms/sendEmail/${type}`,
         method: "GET",
         query: query,
@@ -5034,7 +5498,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/sms/verificationEmail`,
         method: "GET",
         query: query,
@@ -5060,7 +5524,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/upload/apkUpload`,
         method: "POST",
         body: data,
@@ -5086,7 +5550,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/upload/imgUpload`,
         method: "POST",
         body: data,
@@ -5113,7 +5577,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/userActivity/getActivityById`,
         method: "GET",
         query: query,
@@ -5152,7 +5616,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/userActivity/getApiActivityList`,
         method: "GET",
         query: query,
@@ -5177,7 +5641,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/userActivity/getUserActByActivityId`,
         method: "GET",
         query: query,
@@ -5196,7 +5660,7 @@ export class Api<
       dto: RegistActivityDTO,
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/userActivity/regist/activity`,
         method: "POST",
         body: dto,
@@ -5220,7 +5684,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/account-details-balance`,
         method: "GET",
         query: query,
@@ -5242,7 +5706,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/account-details-freeze`,
         method: "GET",
         query: query,
@@ -5278,7 +5742,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/account-details-freeze-list`,
         method: "GET",
         query: query,
@@ -5318,7 +5782,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/deposit-other`,
         method: "GET",
         query: query,
@@ -5360,7 +5824,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/deposit-page`,
         method: "GET",
         query: query,
@@ -5382,7 +5846,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/getAccountAvailableBalance`,
         method: "GET",
         query: query,
@@ -5398,7 +5862,7 @@ export class Api<
      * @request GET:/wallet/getAccountAvailableBalanceSwarm
      */
     getAccountAvailableBalanceSwarmUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/getAccountAvailableBalanceSwarm`,
         method: "GET",
         ...params,
@@ -5421,7 +5885,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/getRecordStatistics`,
         method: "GET",
         query: query,
@@ -5448,7 +5912,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/getTips`,
         method: "POST",
         query: query,
@@ -5465,7 +5929,7 @@ export class Api<
      * @request GET:/wallet/getTotalInvestment
      */
     getTotalInvestmentUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/getTotalInvestment`,
         method: "GET",
         ...params,
@@ -5488,7 +5952,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/getWithdrawStatistics`,
         method: "GET",
         query: query,
@@ -5504,7 +5968,7 @@ export class Api<
      * @request POST:/wallet/initEvery
      */
     initUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/initEvery`,
         method: "POST",
         type: ContentType.Json,
@@ -5520,7 +5984,7 @@ export class Api<
      * @request POST:/wallet/list
      */
     listUsingPost: (params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/list`,
         method: "POST",
         type: ContentType.Json,
@@ -5556,7 +6020,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/page-detail`,
         method: "GET",
         query: query,
@@ -5602,7 +6066,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/page-detail-list`,
         method: "POST",
         query: query,
@@ -5625,7 +6089,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/pledge-thawing`,
         method: "GET",
         query: query,
@@ -5661,7 +6125,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/pledge-thawing-list`,
         method: "GET",
         query: query,
@@ -5693,7 +6157,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/rechargeCommit`,
         method: "POST",
         query: query,
@@ -5719,7 +6183,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/rechargeDetail`,
         method: "POST",
         query: query,
@@ -5735,10 +6199,19 @@ export class Api<
      * @summary 团队资产统计
      * @request GET:/wallet/team/investmentStat
      */
-    inteamInvestmentStatitUsingGet: (params: RequestParams = {}) =>
-      this.request<_, void>({
+    inteamInvestmentStatitUsingGet: (
+      query?: {
+        /** endTime */
+        endTime?: string;
+        /** startTime */
+        startTime?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
         path: `/wallet/team/investmentStat`,
         method: "GET",
+        query: query,
         ...params,
       }),
 
@@ -5759,7 +6232,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/transfer`,
         method: "POST",
         query: query,
@@ -5794,7 +6267,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/transfer-page`,
         method: "GET",
         query: query,
@@ -5833,7 +6306,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/withdraw`,
         method: "POST",
         query: query,
@@ -5870,10 +6343,65 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/wallet/withdraw-page`,
         method: "GET",
         query: query,
+        ...params,
+      }),
+  };
+  withdrawAddress = {
+    /**
+     * No description
+     *
+     * @tags 提现地址管理
+     * @name MemberAddressListUsingGet
+     * @summary 地址列表
+     * @request GET:/withdraw-address/address-list
+     */
+    memberAddressListUsingGet: (
+      query?: {
+        /** protocol */
+        protocol?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/withdraw-address/address-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 提现地址管理
+     * @name BindAddressUsingPost
+     * @summary 绑定地址
+     * @request POST:/withdraw-address/bind-address
+     */
+    bindAddressUsingPost: (param: _, params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/withdraw-address/bind-address`,
+        method: "POST",
+        body: param,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 提现地址管理
+     * @name ProtocolListUsingGet
+     * @summary 列表
+     * @request GET:/withdraw-address/protocol/list
+     */
+    protocolListUsingGet: (params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/withdraw-address/protocol/list`,
+        method: "GET",
         ...params,
       }),
   };
@@ -5887,7 +6415,7 @@ export class Api<
      * @request POST:/workroom/apply
      */
     saveUsingPost1: (dto: MemberWorkroomDTO, params: RequestParams = {}) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/workroom/apply`,
         method: "POST",
         body: dto,
@@ -5922,7 +6450,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<_, void>({
+      this.request<_2, void>({
         path: `/workroom/page-list`,
         method: "GET",
         query: query,
