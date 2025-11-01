@@ -79,7 +79,7 @@ const TeamsDetailView = () => {
   );
 
   return (
-    <ViewLayout header={<HeaderWithBack title={header} algin="center" />}>
+    <ViewLayout header={<HeaderWithBack title={header} algin="center" />} heightFull>
       <div className="p-content">
         <div className="bg-[url('/images/team/team-data-bg.png')] bg-contain bg-no-repeat flex items-center justify-around h-[96px] text-white px-4 gap-2">
           <div

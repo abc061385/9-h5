@@ -29,7 +29,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
   wrapClassName,
 }) => {
   return (
-    <div className="overflow-x-auto whitespace-nowrap no-scrollbar w-[100vw] left-6 pr-12">
+    <div className="overflow-x-auto whitespace-nowrap no-scrollbar md-pc:w-[110%] w-[100vw] left-6 pr-12">
       <div
         className={cn(
           "tabs tabs-boxed inline-flex flex-nowrap gap-2",
