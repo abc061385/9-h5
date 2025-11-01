@@ -80,9 +80,22 @@ const axiosIn = createAxiosInstance("/app/", (config) => {
     config.headers["Content-Type"] = ContentType.FormData;
   }
   config.data = config.data
-    ? { ...Object.fromEntries(Object.entries(config.data)), ...config.params }
+    ? {
+        ...Object.fromEntries(
+          config.data.entries
+            ? config.data.entries()
+            : Object.entries(config.data),
+        ),
+        ...config.params,
+      }
     : config.params;
   config.params = {};
+
+  // config.headers["Content-Type"] = ContentType.FormData;
+  // config.data = config.data
+  //   ? { ...Object.fromEntries(config.data.entries()), ...config.params }
+  //   : config.params;
+  // config.params = {};
 });
 
 export const spotAxios = (() => {
