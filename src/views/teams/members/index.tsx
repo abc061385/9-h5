@@ -59,6 +59,7 @@ const TeamsMembersView = () => {
             level: searchParams.get("level"),
             userId,
             isDepositor: searchParams.get("isDepositor"),
+            star: searchParams.get("star") || undefined,
           },
         },
         direct: {
