@@ -52,7 +52,7 @@ const BusinessSchoolView = () => {
     >
       <div className="h-[148px] relative">
         <BaseImage
-          src="/images/activity/business-school-banner.png"
+          src="/images/activity/center-banner.png"
           className="w-full h-full"
         />
         <h3 className="absolute text-xl font-bold w-40 top-13 left-6 text-white">
