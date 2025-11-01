@@ -137,6 +137,7 @@ const TeamsNextView = () => {
     const params = {
       account: searchParams.get("username") || "",
       userId: searchParams.get("id") || userInfo.id || 0,
+      isDepositor: isDepositor ? 1 : 0,
     };
     try {
       const res: ApiResponse<TeamDirectReferralAreaType[]> =
@@ -156,7 +157,7 @@ const TeamsNextView = () => {
       console.log(err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userInfo.id, userTabValue]);
+  }, [userInfo.id, userTabValue, isDepositor]);
 
   useEffect(() => {
     getHighList();
