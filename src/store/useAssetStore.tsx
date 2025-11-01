@@ -34,7 +34,7 @@ export const useAssetStore = create<AssetState>()(
             set(() => ({ balanceList: data?.wallet || [] }));
           },
           getCoinList: async () => {
-            const { data } = await api.currencySettings.protocolListUsingGet();
+            const { data } = await api.currencySettings.protocolListUsingGet1();
             set(() => ({
               coinList: Array.isArray(data) ? data : [],
             }));
