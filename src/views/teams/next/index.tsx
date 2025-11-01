@@ -254,7 +254,13 @@ const TeamsNextView = () => {
                             <span className="font-medium text-text3">
                               {v.nickname}
                             </span>
-                            <span>{v.levelName}</span>
+                            <div className="flex">
+                              {v.levelName}
+                              <StarIcon
+                                level={v?.vipLevel || 0}
+                                star={v?.star || 0}
+                              />
+                            </div>
                           </div>
                         );
                       })
