@@ -3,6 +3,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { ICardProps, IndividualType, TeamType } from "./type";
 import { cn, formatThousand } from "@/lib/utils";
 import { routerMap, useRouter } from "@/i18n/navigation";
+import StarIcon from "../vip/star-icon";
 
 const CardBox: FC<ICardProps> = ({ data }) => {
   const { push } = useRouter();
@@ -31,10 +32,11 @@ const CardBox: FC<ICardProps> = ({ data }) => {
             {data.nickname || "--"}
             {/* {maskString(data.nickname) || "--"} */}
           </span>
-          {/* <div className="badge badge-soft badge-primary rounded-xs text-xs">
-            {data.areaType === 1 ? t("小区") : t("大区")}
+          <div className="badge badge-soft badge-primary rounded-xs text-xs">
+            V{data?.vipLevel || "0"}
+            <StarIcon level={data?.vipLevel || 0} star={data?.star || 0} />
           </div>
-          <div className="badge badge-soft badge-primary2 rounded-xs text-xs">
+          {/* <div className="badge badge-soft badge-primary2 rounded-xs text-xs">
             {data.area || "--"} {t("区")}
           </div> */}
         </div>
