@@ -70,10 +70,14 @@ export const useWithdrawalStore = create<WithdrawalState>()(
             try {
               const res = await api.withdrawAddress.memberAddressListUsingGet();
               const _addressMap = {} as { [key in string]: AddrItem };
-              res.data.forEach((item: AddrItem) => {
-                _addressMap[item.protocol] = item;
-              });
-              set(() => ({ addressMap: _addressMap }));
+              if (res.data) {
+                res.data.forEach((item: AddrItem) => {
+                  _addressMap[item.protocol] = item;
+                });
+                set(() => ({ addressMap: _addressMap }));
+              } else {
+                set(() => ({ addressMap: {} }));
+              }
             } catch {}
           },
           setField: (key, value) => set({ [key]: value }),
