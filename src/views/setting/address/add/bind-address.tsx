@@ -3,6 +3,7 @@ import { FC } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { api } from "@/api";
 import toast from "react-hot-toast";
+import { useWithdrawalStore } from "@/store/useWithdrawal";
 
 type IProps = {
   open: boolean;
@@ -19,6 +20,8 @@ const BindAddressModal: FC<IProps> = ({
   address,
   network,
 }) => {
+  const getAddrMap = useWithdrawalStore((s) => s.getAddrMap);
+
   const t = useTrans();
   const hanldeSubmit = async () => {
     try {
@@ -29,6 +32,7 @@ const BindAddressModal: FC<IProps> = ({
 
       toast.success(t("googleVerify.bindComplete"));
       onOk();
+      getAddrMap();
     } catch {
       onOk();
     }
