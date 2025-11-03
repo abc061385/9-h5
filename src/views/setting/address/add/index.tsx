@@ -6,31 +6,39 @@ import { useTrans } from "@/hooks/useTrans";
 import AddressAddItem from "./item";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+// import { useRequestMutation } from "@/hooks/useRequestMutation";
+import { useWithdrawalStore } from "@/store/useWithdrawal";
 
 const SettingAddressAddView = () => {
   const t = useTrans();
+  const addressMap = useWithdrawalStore((s) => s.addressMap);
+  const getAddrMap = useWithdrawalStore((s) => s.getAddrMap);
   const { data } = useRequestQuery(
     api.withdrawAddress.protocolListUsingGet,
     {},
   );
 
-  const { data: addressRes } = useRequestQuery(
-    api.withdrawAddress.memberAddressListUsingGet,
-    {},
-  );
+  // const { data: addressRes, trigger } = useRequestMutation(
+  //   api.withdrawAddress.memberAddressListUsingGet,
+  // );
+
+  useEffect(() => {
+    getAddrMap();
+  }, [getAddrMap]);
   const protoList = useMemo(() => {
     const _protoList = (data?.data || []) as string[];
     return _protoList.map((chainName) => {
       return {
         netowrk: chainName,
-        address: (addressRes?.data || []).find(
-          (item: { protocol: string; addr: string }) =>
-            item?.protocol === chainName,
-        )?.addr,
+        address: addressMap[chainName]?.addr || "",
+        // address: (addressRes?.data || []).find(
+        //   (item: { protocol: string; addr: string }) =>
+        //     item?.protocol === chainName,
+        // )?.addr,
       };
     });
-  }, [data, addressRes]);
+  }, [data, addressMap]);
 
   return (
     <ViewLayout
