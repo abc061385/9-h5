@@ -59,6 +59,7 @@ export const useWithdrawalStore = create<WithdrawalState>()(
       (set, get) => {
         return {
           formState: defaultFormState,
+          addressMap: {},
           resetFormState: () => {
             set(() => ({ formState: defaultFormState }));
           },
