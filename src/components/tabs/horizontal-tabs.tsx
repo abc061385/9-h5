@@ -1,5 +1,5 @@
+import React, { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import React from "react";
 import { ShowIf } from "../show-if";
 
 export type TabItem = {
@@ -18,6 +18,7 @@ interface HorizontalTabsProps {
   wrapClassName?: string;
 }
 
+
 const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
   tabs,
   value,
@@ -28,8 +29,54 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
   className,
   wrapClassName,
 }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const activeTabRef = useRef<HTMLAnchorElement>(null);
+
+  // ✅ 自动滚动到选中标签
+  useEffect(() => {
+    const container = scrollRef.current;
+    const activeTab = activeTabRef.current;
+    if (container && activeTab) {
+      const { offsetLeft, offsetWidth } = activeTab;
+      const scrollLeft =
+        offsetLeft - container.clientWidth / 2 + offsetWidth / 2;
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: "smooth",
+      });
+    }
+  }, [value]);
+
+  // ✅ 横向滚动优先处理
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (el.scrollWidth <= el.clientWidth) return; // 没有溢出不处理
+
+      const atStart = el.scrollLeft === 0;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth;
+
+      // 当有可滚动空间时，阻止默认纵向滚动
+      if ((!atStart && e.deltaY < 0) || (!atEnd && e.deltaY > 0)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
   return (
-    <div className="overflow-x-auto whitespace-nowrap no-scrollbar md-pc:w-[110%] w-[100vw] left-6 pr-12">
+    <div
+      ref={scrollRef}
+      className={cn(
+        "overflow-x-auto whitespace-nowrap no-scrollbar relative w-full",
+        "md-pc:w-[110%] pr-12"
+      )}
+    >
       <div
         className={cn(
           "tabs tabs-boxed inline-flex flex-nowrap gap-2",
@@ -38,20 +85,22 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
       >
         {tabs.map((tab) => {
           const isActive = tab.value === value;
+
           return (
             <a
               key={tab.value}
+              ref={isActive ? activeTabRef : null}
               className={cn(
-                "tab leading-[20px] rounded-lg h-8 text-text4 font-normal flex-col",
+                "tab leading-[20px] rounded-lg h-8 text-text4 font-normal flex-col transition-all",
+                type === "border" ? "bg-transparent px-0" : "bg-bg3 px-3",
                 className,
-                type === "border" ? "bg-none px-0" : "bg-bg3 px-3",
-                isActive && type === "box"
-                  ? "tab-active bg-black text-white font-bold hover:text-white"
-                  : "",
-                isActive && type === "border"
-                  ? "tab-active text-primary font-bold"
-                  : "",
-                isActive && activeClassName
+                isActive &&
+                  cn(
+                    type === "box"
+                      ? "tab-active bg-black text-white font-bold hover:text-white"
+                      : "tab-active text-primary font-bold",
+                    activeClassName
+                  )
               )}
               onClick={() => onChange(tab.value)}
             >
@@ -63,7 +112,7 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
                     isActive && "bg-primary",
                     isActive && borderClassName
                   )}
-                ></div>
+                />
               </ShowIf>
             </a>
           );
