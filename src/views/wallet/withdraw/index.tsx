@@ -65,6 +65,7 @@ const WithdrawView = () => {
   }, [getAddrMap]);
 
   useEffect(() => {
+    if (!addressMap) return;
     setValue(
       "withdrawAddress",
       addressMap[chainEnum?.protocolType]?.addr ?? "",
