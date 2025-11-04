@@ -944,5 +944,11 @@
   "useUSDTBalance": "Usar saldo USDT da conta",
   "balancePriority": "Priorize USDT, diferença será suprida com USDM",
   "swapAmount": "Valor (USDM)",
-  "usdtAmount": "USDT obtido pela troca de USDM"
+  "usdtAmount": "USDT obtido pela troca de USDM",
+  "addressAddTips": "Uttagsadressen måste konfigureras för varje nätverk. När den är bunden kan den endast ändras genom att kontakta kundtjänst. Förvara den privata nyckeln till denna adress säkert. Om den privata nyckeln läcker kan plattformen inte återställa dina tillgångar.",
+  "bindAddress": "Koppla adressă",
+  "bindAddressTitle": "Uttagsadress {network}:",
+  "bindAddressTips": "För säkerheten för dina medel, se till att adressen är korrekt. När den väl har fyllts i kan den inte ändras eller tas bort.",
+  "binding": "Koppling",
+  "withdrawalBindTip": "Vänligen koppla uttagsadressen först."
 }

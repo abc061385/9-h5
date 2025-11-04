@@ -944,5 +944,11 @@
   "useUSDTBalance": "Use the USDT balance in your account",
   "balancePriority": "Check this option to prioritize the use of USDT balance. Any shortfall will be automatically supplemented with USDM.",
   "swapAmount": "Swap Amount (USDM)",
-  "usdtAmount": "The USDT amount obtained by the system through exchanging USDM."
+  "usdtAmount": "The USDT amount obtained by the system through exchanging USDM.",
+  "addressAddTips": "Uttaksadressen må konfigureres for hvert nettverk. Når det er bundet, kan det bare endres ved å kontakte kundeservice. Oppbevar den private nøkkelen til denne adressen trygt. Hvis den private nøkkelen lekker, vil plattformen ikke kunne gjenopprette eiendelene dine.",
+  "bindAddress": "Binde adresse",
+  "bindAddressTitle": "Uttaksadresse {network}:",
+  "bindAddressTips": "For sikkerheten til midlene dine, må du sørge for at adressen er riktig. Når den er fylt ut, kan den ikke endres eller slettes.",
+  "binding": "Binder",
+  "withdrawalBindTip": "Vennligst bind uttaksadressen først."
 }

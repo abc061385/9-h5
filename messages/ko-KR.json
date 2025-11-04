@@ -944,5 +944,11 @@
   "useUSDTBalance": "계정 내 USDT 잔액 사용",
   "balancePriority": "USDT 우선 사용 선택, 부족분은 USDM으로 자동 보충",
   "swapAmount": "교환 수량 (USDM)",
-  "usdtAmount": "USDM 교환으로 얻은 USDT 수량"
+  "usdtAmount": "USDM 교환으로 얻은 USDT 수량",
+  "addressAddTips": "출금 주소는 각 네트워크별로 설정해야 합니다. 한번 연동되면 고객센터를 통해서만 수정할 수 있습니다. 해당 주소의 개인 키를 안전하게 보관하십시오. 개인 키가 유출되면 플랫폼은 자산을 복구할 수 없습니다.",
+  "bindAddress": "출금 주소 연동",
+  "bindAddressTitle": "{network} 출금 주소:",
+  "bindAddressTips": "자금의 안전을 위해 주소를 올바르게 입력했는지 확인하십시오. 입력 후에는 수정하거나 삭제할 수 없습니다.",
+  "binding": "연동 중",
+  "withdrawalBindTip": "먼저 출금 주소를 연동하십시오"
 }

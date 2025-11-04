@@ -944,5 +944,11 @@
   "useUSDTBalance": "Dùng số dư USDT trong tài khoản",
   "balancePriority": "Chọn ưu tiên dùng USDT, phần thiếu sẽ bổ sung bằng USDM",
   "swapAmount": "Số lượng (USDM)",
-  "usdtAmount": "Số USDT hệ thống nhận được từ việc đổi USDM"
+  "usdtAmount": "Số USDT hệ thống nhận được từ việc đổi USDM",
+  "addressAddTips": "Địa chỉ rút tiền cần được cấu hình cho từng mạng. Sau khi liên kết, chỉ có thể sửa đổi bằng cách liên hệ với bộ phận hỗ trợ. Vui lòng giữ an toàn khóa cá nhân của địa chỉ này. Nếu khóa bị lộ, nền tảng sẽ không thể khôi phục tài sản của bạn.",
+  "bindAddress": "Địa chỉ rút tiền",
+  "bindAddressTitle": "Địa chỉ rút tiền {network}:",
+  "bindAddressTips": "Vì sự an toàn của tài sản, hãy đảm bảo địa chỉ của bạn chính xác. Sau khi điền, sẽ không thể chỉnh sửa hoặc xóa.",
+  "binding": "Đang liên kết",
+  "withdrawalBindTip": "Vui lòng liên kết địa chỉ rút tiền trước"
 }

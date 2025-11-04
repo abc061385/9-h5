@@ -944,5 +944,11 @@
   "useUSDTBalance": "使用账户中的USDT余额",
   "balancePriority": "勾选此项优先使用USDT余额，差额部分将自动用USDM补足",
   "swapAmount": "兑换数量 (USDM)",
-  "usdtAmount": "系统通过兑换USDM获得的USDT数量"
+  "usdtAmount": "系统通过兑换USDM获得的USDT数量",
+  "addressAddTips": "每个网络都需要配置提现地址。绑定后只能通过联系客服修改。请妥善保管该地址的私钥，一旦私钥泄露，平台将无法找回您的资产。",
+  "bindAddress": "绑定地址",
+  "bindAddressTitle": "{network} 提现地址：",
+  "bindAddressTips": "为保障您的资金安全，请确保填写的地址正确。一旦填写，将无法修改或删除。",
+  "binding": "绑定中",
+  "withdrawalBindTip": "请先绑定提现地址"
 }

@@ -944,5 +944,11 @@
   "useUSDTBalance": "Usar saldo USDT da conta",
   "balancePriority": "Priorize USDT, diferença será suprida com USDM",
   "swapAmount": "Valor (USDM)",
-  "usdtAmount": "USDT obtido pela troca de USDM"
+  "usdtAmount": "USDT obtido pela troca de USDM",
+  "addressAddTips": "O endereço de saque precisa ser configurado para cada rede. Uma vez vinculado, só pode ser modificado entrando em contato com o suporte. Guarde a chave privada deste endereço com segurança. Caso a chave privada seja exposta, a plataforma não poderá recuperar seus ativos.",
+  "bindAddress": "Endereço de Retirada",
+  "bindAddressTitle": "Endereço de retirada {network}:",
+  "bindAddressTips": "Para a segurança dos seus fundos, verifique se o endereço está correto. Depois de preenchido, não poderá ser modificado ou eliminado.",
+  "binding": "Vinculando",
+  "withdrawalBindTip": "Por favor, vincule primeiro o endereço de retirada"
 }
