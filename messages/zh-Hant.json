@@ -964,5 +964,11 @@
   "personal": "個人",
   "9mAIStategyFund": "9M AI 策略基金",
   "9mAIStableFund": "9M AI 穩健基金",
-  "personalInformation": "個人資訊"
+  "personalInformation": "個人資訊",
+  "addressAddTips": "每個網絡都需要配置提現地址。綁定後只能通過聯繫客服修改。請妥善保管該地址的私鑰，一旦私鑰洩露，平台將無法找回您的資產。",
+  "bindAddress": "綁定地址",
+  "bindAddressTitle": "{network} 提現地址：",
+  "bindAddressTips": "為保障您的資金安全，請確保填寫的地址正確。一旦填寫，將無法修改或刪除。",
+  "binding": "綁定中",
+  "withdrawalBindTip": "請先綁定提現地址"
 }

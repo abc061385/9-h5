@@ -964,5 +964,11 @@
   "personal": "Personal",
   "9mAIStategyFund": "Fondo de Estrategia 9M AI",
   "9mAIStableFund": "Fondo Estable 9M AI",
-  "personalInformation": "Información Personal"
+  "personalInformation": "Información Personal",
+  "addressAddTips": "La dirección de retiro debe configurarse para cada red. Una vez vinculada, solo puede modificarse contactando con atención al cliente. Mantén segura la clave privada de esta dirección. Si la clave privada se filtra, la plataforma no podrá recuperar tus activos.",
+  "bindAddress": "Enlazar dirección",
+  "bindAddressTitle": "Dirección de retiro {network}:",
+  "bindAddressTips": "Por la seguridad de tus fondos, asegúrate de que tu dirección sea correcta. Una vez completada, no podrá modificarse ni eliminarse.",
+  "binding": "Vinculando",
+  "withdrawalBindTip": "Por favor, vincula primero la dirección de retiro."
 }

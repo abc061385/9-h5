@@ -964,5 +964,11 @@
   "personal": "個人",
   "9mAIStategyFund": "9M AIストラテジーファンド",
   "9mAIStableFund": "9M AI安定ファンド",
-  "personalInformation": "個人情報"
+  "personalInformation": "個人情報",
+  "addressAddTips": "出金アドレスはネットワークごとに設定する必要があります。一度紐付けると、カスタマーサポートに連絡しない限り変更できません。このアドレスの秘密鍵を安全に保管してください。秘密鍵が漏洩した場合、資産は回復できません。",
+  "bindAddress": "出金アドレスを紐付ける",
+  "bindAddressTitle": "{network} 出金アドレス：",
+  "bindAddressTips": "資金の安全のため、入力したアドレスが正しいことを確認してください。一度入力すると変更または削除できません。",
+  "binding": "バインド中",
+  "withdrawalBindTip": "最初に出金アドレスを紐付けてください"
 }

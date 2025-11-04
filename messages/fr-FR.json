@@ -964,5 +964,11 @@
   "personal": "Personnel",
   "9mAIStategyFund": "Fonds de stratégie 9M AI",
   "9mAIStableFund": "Fonds stable 9M AI",
-  "personalInformation": "Informations Personnelles"
+  "personalInformation": "Informations Personnelles",
+  "addressAddTips": "L’adresse de retrait doit être configurée pour chaque réseau. Une fois liée, elle ne peut être modifiée qu’en contactant le service client. Veuillez conserver la clé privée de cette adresse en lieu sûr. Si la clé privée est divulguée, la plateforme ne pourra pas récupérer vos actifs.",
+  "bindAddress": "Lier l’adresse",
+  "bindAddressTitle": "Adresse de retrait {network}:",
+  "bindAddressTips": "Pour la sécurité de vos fonds, assurez-vous que votre adresse est correcte. Une fois remplie, elle ne peut pas être modifiée ni supprimée.",
+  "binding": "Liaison",
+  "withdrawalBindTip": "Veuillez d’abord lier l’adresse de retrait."
 }

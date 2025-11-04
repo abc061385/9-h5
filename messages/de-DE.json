@@ -964,5 +964,11 @@
   "personal": "Persönlich",
   "9mAIStategyFund": "9M AI-Strategiefonds",
   "9mAIStableFund": "9M AI-Stabilfonds",
-  "personalInformation": "Persönliche Informationen"
+  "personalInformation": "Persönliche Informationen",
+  "addressAddTips": "Die Auszahlungsadresse muss für jedes Netzwerk konfiguriert werden. Nach der Verknüpfung kann sie nur durch Kontaktaufnahme mit dem Kundendienst geändert werden. Bitte bewahren Sie den privaten Schlüssel dieser Adresse sicher auf. Wenn der private Schlüssel offengelegt wird, kann die Plattform Ihre Vermögenswerte nicht wiederherstellen.",
+  "bindAddress": "Diese Adresse verknüpfen",
+  "bindAddressTitle": "{network} Auszahlungsadresse:",
+  "bindAddressTips": "Stellen Sie zur Sicherheit Ihrer Gelder sicher, dass Ihre Adresse korrekt ist. Nach dem Ausfüllen kann sie nicht mehr geändert oder gelöscht werden.",
+  "binding": "Bindung",
+  "withdrawalBindTip": "Bitte verknüpfen Sie zuerst die Auszahlungsadresse."
 }

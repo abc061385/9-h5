@@ -964,5 +964,11 @@
   "personal": "Personal",
   "9mAIStategyFund": "9M AI Strategy Fund",
   "9mAIStableFund": "9M AI Stable Fund",
-  "personalInformation": "Personal Information"
+  "personalInformation": "Personal Information",
+  "addressAddTips": "Adresa de retragere trebuie configurată pentru fiecare rețea. Odată legată, aceasta poate fi modificată doar contactând serviciul clienți. Păstrați cheia privată a acestei adrese în siguranță. Dacă cheia privată este divulgată, platforma nu va putea recupera activele dumneavoastră.",
+  "bindAddress": "Adresă de retragere",
+  "bindAddressTitle": "Adresă de retragere {network}:",
+  "bindAddressTips": "Pentru siguranța fondurilor dvs., asigurați-vă că adresa este corectă. Odată completată, nu mai poate fi modificată sau ștearsă.",
+  "binding": "Legare",
+  "withdrawalBindTip": "Vă rugăm să legați mai întâi adresa de retragere."
 }

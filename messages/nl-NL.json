@@ -964,5 +964,11 @@
   "9mAIStableFund": "9M AI Stable Fund",
   "personalInformation": "Personal Information",
   "investmentPlatform": "Investeringsplatform",
-  "aiAcceleratesWealth": "AI Versnelt Je Vermogen"
+  "aiAcceleratesWealth": "AI Versnelt Je Vermogen",
+  "addressAddTips": "Het opnameadres moet voor elk netwerk worden geconfigureerd. Zodra het is gekoppeld, kan het alleen worden gewijzigd door contact op te nemen met de klantenservice. Bewaar de privésleutel van dit adres veilig. Zodra de privésleutel is gelekt, kan het platform uw activa niet herstellen.",
+  "bindAddress": "Verbindingsadres",
+  "bindAddressTitle": "Opnameadres {network}:",
+  "bindAddressTips": "Zorg ervoor dat uw adres correct is voor de veiligheid van uw fondsen. Zodra het is ingevuld, kan het niet meer worden gewijzigd of verwijderd.",
+  "binding": "Koppelen",
+  "withdrawalBindTip": "Koppel eerst het opnameadres."
 }

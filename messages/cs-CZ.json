@@ -964,5 +964,11 @@
   "personal": "Personal",
   "9mAIStategyFund": "9M AI Strategy Fund",
   "9mAIStableFund": "9M AI Stable Fund",
-  "personalInformation": "Personal Information"
+  "personalInformation": "Personal Information",
+  "addressAddTips": "Adresa pro výběr musí být nakonfigurována pro každou síť. Po svázání ji lze změnit pouze kontaktováním zákaznické podpory. Uchovávejte soukromý klíč této adresy v bezpečí. Pokud bude soukromý klíč zveřejněn, platforma nebude moci vaše aktiva obnovit.",
+  "bindAddress": "Vazba adresy",
+  "bindAddressTitle": "Výběrová adresa {network}:",
+  "bindAddressTips": "Z důvodu bezpečnosti vašich prostředků se ujistěte, že adresa je správná. Po vyplnění ji nelze změnit ani odstranit.",
+  "binding": "Vazba",
+  "withdrawalBindTip": "Nejprve prosím připojte výběrovou adresu."
 }
