@@ -27,6 +27,7 @@ if (langs.length === 0) {
     "fr-FR",
     "pt-PT",
     "es-ES",
+    "it-IT",
     // 新增的5个语言用英文
     "nl-NL",
     "no-NO",

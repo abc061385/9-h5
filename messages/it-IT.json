@@ -958,5 +958,11 @@
   "personal": "Personale",
   "9mAIStategyFund": "Fondo Strategia 9M AI",
   "9mAIStableFund": "Fondo Stabile 9M AI",
-  "personalInformation": "Informazioni Personali"
+  "personalInformation": "Informazioni Personali",
+  "addressAddTips": "L’indirizzo di prelievo deve essere configurato per ogni rete. Una volta collegato, può essere modificato solo contattando l’assistenza clienti. Conserva la chiave privata di questo indirizzo in modo sicuro. Se la chiave privata viene divulgata, la piattaforma non potrà recuperare i tuoi asset.",
+  "bindAddress": "Indirizzo di prelievo",
+  "bindAddressTitle": "Indirizzo di prelievo {network}:",
+  "bindAddressTips": "Per la sicurezza dei tuoi fondi, assicurati che l’indirizzo inserito sia corretto. Una volta compilato, non potrà essere modificato o eliminato.",
+  "binding": "Collegamento",
+  "withdrawalBindTip": "Collega prima l’indirizzo di prelievo"
 }
