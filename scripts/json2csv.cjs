@@ -20,7 +20,7 @@ function flattenObject(obj, prefix = "", res = {}) {
 // const flatEn = flattenObject(en);
 
 
-const langList = ['en', 'zh-Hans', 'zh-Hant', 'ja-JP', 'ko-KR', 'ms-MY', 'th-TH', 'vi-VN', 'hi-IN', 'de-DE', 'fr-FR', 'pt-PT', 'es-ES',
+const langList = ['en', 'zh-Hans', 'zh-Hant', 'ja-JP', 'ko-KR', 'ms-MY', 'th-TH', 'vi-VN', 'hi-IN', 'de-DE', 'fr-FR', 'pt-PT', 'es-ES', 'it-IT',
   "nl-NL",
   "no-NO",
   "sv-SE",
