@@ -905,8 +905,8 @@
   "cardTypePlaceholder": "Välj korttyp",
   "completionNote": "Fyll i den nödvändiga informationen för att slutföra din U-kortansökan. Du meddelas via e-post.",
   "stepsSummary": "Endast tre steg för att ansöka om U-kort: Fyll i info → Ladda upp ID → Skicka in",
-  "transaction_TRANSFER": "Överföring",
-  "transfer_amount": "Antal",
+  "transaction_TRANSFER": "Transfer",
+  "transfer_amount": "Amount",
   "累计转出": "Totalt överfört",
   "uploadIdPhoto": "Ladda upp ID-foto",
   "uploadSelfieWithId": "Ladda upp en selfie där du håller ID",
@@ -970,4 +970,6 @@
   "bindAddressTitle": "Uttagsadress {network}:",
   "bindAddressTips": "För säkerheten för dina medel, se till att adressen är korrekt. När den väl har fyllts i kan den inte ändras eller tas bort.",
   "binding": "Koppling",
-  "withdrawalBindTip": "Vänligen koppla uttagsadressen först."
+  "withdrawalBindTip": "Vänligen koppla uttagsadressen först.",
+  "transaction_WITHDRAW": "Uttag"
+}

@@ -964,4 +964,8 @@
   "bindAddressTitle": "Indirizzo di prelievo {network}:",
   "bindAddressTips": "Per la sicurezza dei tuoi fondi, assicurati che l’indirizzo inserito sia corretto. Una volta compilato, non potrà essere modificato o eliminato.",
   "binding": "Collegamento",
-  "withdrawalBindTip": "Collega prima l’indirizzo di prelievo"
+  "withdrawalBindTip": "Collega prima l’indirizzo di prelievo",
+  "transaction_TRANSFER": "Trasferimento",
+  "transfer_amount": "Quantità",
+  "transaction_WITHDRAW": "Preleva"
+}
