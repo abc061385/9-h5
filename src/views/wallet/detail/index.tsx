@@ -135,7 +135,7 @@ const WalletDetailView = () => {
                 >
                   <div className="flex justify-between">
                     <BaseImage
-                      src={coinLogoMap[item?.symbol]}
+                      src={coinLogoMap[item?.symbol?.toUpperCase()]}
                       className="size-6 mr-1"
                     />
                     <div className="flex-1">

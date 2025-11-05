@@ -40,7 +40,7 @@ export const useAssetStore = create<AssetState>()(
             const coinList = Array.isArray(data) ? data : [];
             const coinLogoMap = {} as { [key: string]: string };
             coinList.forEach((item) => {
-              coinLogoMap[item.currencyCode] = item.logo;
+              coinLogoMap[item?.currencyCode?.toUpperCase()] = item.logo;
             }, coinLogoMap);
             set(() => ({
               coinList,
