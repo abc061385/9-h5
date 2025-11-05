@@ -971,5 +971,6 @@
   "bindAddressTips": "For the safety of your funds, please ensure that your address is correct. Once filled in, it cannot be modified or deleted.",
   "binding": "Binding",
   "withdrawalBindTip": "Please bind the withdrawal address first",
-  "transaction_WITHDRAW": "Withdraw"
+  "transaction_WITHDRAW": "Withdraw",
+  "bind_address": "Bind Address"
 }

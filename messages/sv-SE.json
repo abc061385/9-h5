@@ -971,5 +971,6 @@
   "bindAddressTips": "För säkerheten för dina medel, se till att adressen är korrekt. När den väl har fyllts i kan den inte ändras eller tas bort.",
   "binding": "Koppling",
   "withdrawalBindTip": "Vänligen koppla uttagsadressen först.",
-  "transaction_WITHDRAW": "Uttag"
+  "transaction_WITHDRAW": "Uttag",
+  "bind_address": "Koppla adressen"
 }

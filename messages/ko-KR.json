@@ -971,5 +971,6 @@
   "bindAddressTips": "자금의 안전을 위해 주소를 올바르게 입력했는지 확인하십시오. 입력 후에는 수정하거나 삭제할 수 없습니다.",
   "binding": "연동 중",
   "withdrawalBindTip": "먼저 출금 주소를 연동하십시오",
-  "transaction_WITHDRAW": "출금"
+  "transaction_WITHDRAW": "출금",
+  "bind_address": "출금 주소 연동"
 }

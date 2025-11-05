@@ -971,5 +971,6 @@
   "bindAddressTips": "For sikkerheten til midlene dine, må du sørge for at adressen er riktig. Når den er fylt ut, kan den ikke endres eller slettes.",
   "binding": "Binder",
   "withdrawalBindTip": "Vennligst bind uttaksadressen først.",
-  "transaction_WITHDRAW": "Uttak"
+  "transaction_WITHDRAW": "Uttak",
+  "bind_address": "Binde adresse"
 }

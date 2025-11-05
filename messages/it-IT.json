@@ -967,5 +967,6 @@
   "withdrawalBindTip": "Collega prima l’indirizzo di prelievo",
   "transaction_TRANSFER": "Trasferimento",
   "transfer_amount": "Quantità",
-  "transaction_WITHDRAW": "Preleva"
+  "transaction_WITHDRAW": "Preleva",
+  "bind_address": "Indirizzo di prelievo"
 }

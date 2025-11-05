@@ -971,5 +971,6 @@
   "bindAddressTips": "Por la seguridad de tus fondos, asegúrate de que tu dirección sea correcta. Una vez completada, no podrá modificarse ni eliminarse.",
   "binding": "Vinculando",
   "withdrawalBindTip": "Por favor, vincula primero la dirección de retiro.",
-  "transaction_WITHDRAW": "Retiro"
+  "transaction_WITHDRAW": "Retiro",
+  "bind_address": "Enlazar dirección"
 }

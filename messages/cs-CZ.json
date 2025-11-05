@@ -971,5 +971,6 @@
   "bindAddressTips": "Z důvodu bezpečnosti vašich prostředků se ujistěte, že adresa je správná. Po vyplnění ji nelze změnit ani odstranit.",
   "binding": "Vazba",
   "withdrawalBindTip": "Nejprve prosím připojte výběrovou adresu.",
-  "transaction_WITHDRAW": "Výběr"
+  "transaction_WITHDRAW": "Výběr",
+  "bind_address": "Výběrová adresa"
 }

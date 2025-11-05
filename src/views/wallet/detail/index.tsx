@@ -65,7 +65,7 @@ const WalletDetailView = () => {
 
   const getStatusText = (status: ListType["status"], type: string) => {
     const statusMap = {
-      0: t("walletDetail.statusPending"),
+      0: t("处理中"),
       1: t("walletDetail.statusSuccess"),
       2: t("walletDetail.statusFailed"),
     };

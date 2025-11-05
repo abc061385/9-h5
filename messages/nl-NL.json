@@ -971,5 +971,6 @@
   "bindAddressTips": "Zorg ervoor dat uw adres correct is voor de veiligheid van uw fondsen. Zodra het is ingevuld, kan het niet meer worden gewijzigd of verwijderd.",
   "binding": "Koppelen",
   "withdrawalBindTip": "Koppel eerst het opnameadres.",
-  "transaction_WITHDRAW": "Opnemen"
+  "transaction_WITHDRAW": "Opnemen",
+  "bind_address": "Verbindingsadres"
 }

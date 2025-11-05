@@ -971,5 +971,6 @@
   "bindAddressTips": "Untuk keselamatan dana anda, pastikan alamat yang diisi adalah betul. Setelah diisi, ia tidak dapat diubah atau dipadam.",
   "binding": "Mengikat",
   "withdrawalBindTip": "Sila pautkan alamat pengeluaran terlebih dahulu",
-  "transaction_WITHDRAW": "Pengeluaran Wang"
+  "transaction_WITHDRAW": "Pengeluaran Wang",
+  "bind_address": "Alamat Pengeluaran"
 }

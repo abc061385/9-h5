@@ -51,7 +51,7 @@ const BindAddressModal: FC<IProps> = ({
           className="btn btn-primary bg-black text-white shadow-none border-none w-full mb-2"
           onClick={hanldeSubmit}
         >
-          {t("binding")}
+          {t("bind_address")}
         </button>
         <button className="btn btn-outline w-full" onClick={onClose}>
           {t("common.cancel")}

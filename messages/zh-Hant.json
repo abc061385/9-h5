@@ -971,5 +971,6 @@
   "bindAddressTips": "為保障您的資金安全，請確保填寫的地址正確。一旦填寫，將無法修改或刪除。",
   "binding": "綁定中",
   "withdrawalBindTip": "請先綁定提現地址",
-  "transaction_WITHDRAW": "提现"
+  "transaction_WITHDRAW": "提现",
+  "bind_address": "綁定地址"
 }
