@@ -903,8 +903,8 @@
   "cardTypePlaceholder": "Kies uw kaarttype",
   "completionNote": "Vul de vereiste gegevens in om de aanvraag van de U-kaart te voltooien. U ontvangt een e-mail met het resultaat.",
   "stepsSummary": "Slechts drie stappen om een U-kaart aan te vragen: informatie invullen → ID uploaden → indienen voor beoordeling",
-  "transaction_TRANSFER": "Overboeking",
-  "transfer_amount": "Aantal",
+  "transaction_TRANSFER": "Transfer",
+  "transfer_amount": "Amount",
   "累计转出": "Totaal overgemaakt",
   "uploadIdPhoto": "Upload identiteitsfoto",
   "uploadSelfieWithId": "Upload selfie met ID in hand",
@@ -950,5 +950,6 @@
   "bindAddressTitle": "Opnameadres {network}:",
   "bindAddressTips": "Zorg ervoor dat uw adres correct is voor de veiligheid van uw fondsen. Zodra het is ingevuld, kan het niet meer worden gewijzigd of verwijderd.",
   "binding": "Koppelen",
-  "withdrawalBindTip": "Koppel eerst het opnameadres."
+  "withdrawalBindTip": "Koppel eerst het opnameadres.",
+  "transaction_WITHDRAW": "Opnemen"
 }

@@ -904,7 +904,7 @@
   "completionNote": "Completați informațiile necesare pentru a finaliza cererea pentru cardul U. Veți fi notificat prin e-mail.",
   "stepsSummary": "Doar trei pași pentru a aplica pentru cardul U: completați informații → încărcați actul de identitate → trimiteți pentru aprobare",
   "transaction_TRANSFER": "Transfer",
-  "transfer_amount": "Cantitate",
+  "transfer_amount": "Amount",
   "累计转出": "Suma totală transferată",
   "uploadIdPhoto": "Încărcați o fotografie de identificare",
   "uploadSelfieWithId": "Încărcați un selfie ținând actul de identitate",
@@ -950,5 +950,6 @@
   "bindAddressTitle": "Adresă de retragere {network}:",
   "bindAddressTips": "Pentru siguranța fondurilor dvs., asigurați-vă că adresa este corectă. Odată completată, nu mai poate fi modificată sau ștearsă.",
   "binding": "Legare",
-  "withdrawalBindTip": "Vă rugăm să legați mai întâi adresa de retragere."
+  "withdrawalBindTip": "Vă rugăm să legați mai întâi adresa de retragere.",
+  "transaction_WITHDRAW": "Retragere"
 }

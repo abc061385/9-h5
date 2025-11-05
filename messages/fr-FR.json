@@ -950,5 +950,6 @@
   "bindAddressTitle": "Adresse de retrait {network}:",
   "bindAddressTips": "Pour la sécurité de vos fonds, assurez-vous que votre adresse est correcte. Une fois remplie, elle ne peut pas être modifiée ni supprimée.",
   "binding": "Liaison",
-  "withdrawalBindTip": "Veuillez d’abord lier l’adresse de retrait."
+  "withdrawalBindTip": "Veuillez d’abord lier l’adresse de retrait.",
+  "transaction_WITHDRAW": "Retrait"
 }

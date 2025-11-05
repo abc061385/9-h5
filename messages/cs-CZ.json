@@ -903,8 +903,8 @@
   "cardTypePlaceholder": "Vyberte typ karty",
   "completionNote": "Vyplňte potřebné údaje k dokončení žádosti o U kartu. Výsledek vám bude zaslán e-mailem.",
   "stepsSummary": "Pouhé tři kroky k podání žádosti o U kartu: vyplňte informace → nahrajte doklad totožnosti → odešlete ke kontrole",
-  "transaction_TRANSFER": "Převod",
-  "transfer_amount": "Množství",
+  "transaction_TRANSFER": "Transfer",
+  "transfer_amount": "Amount",
   "累计转出": "Celkem převedeno",
   "uploadIdPhoto": "Nahrajte průkazovou fotografii",
   "uploadSelfieWithId": "Nahrajte selfie s občankou v ruce",
@@ -950,5 +950,6 @@
   "bindAddressTitle": "Výběrová adresa {network}:",
   "bindAddressTips": "Z důvodu bezpečnosti vašich prostředků se ujistěte, že adresa je správná. Po vyplnění ji nelze změnit ani odstranit.",
   "binding": "Vazba",
-  "withdrawalBindTip": "Nejprve prosím připojte výběrovou adresu."
+  "withdrawalBindTip": "Nejprve prosím připojte výběrovou adresu.",
+  "transaction_WITHDRAW": "Výběr"
 }

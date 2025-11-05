@@ -97,7 +97,7 @@ const WalletDetailView = () => {
       value: 4,
     },
     {
-      label: "提现",
+      label: t("transaction_WITHDRAW"),
       value: 3,
     },
     {

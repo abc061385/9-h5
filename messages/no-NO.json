@@ -903,8 +903,8 @@
   "cardTypePlaceholder": "Velg korttype",
   "completionNote": "Fyll inn nødvendige opplysninger for å fullføre søknaden om U-kort. Du vil få svar på e-post.",
   "stepsSummary": "Kun tre trinn for å søke om U-kort: Fyll inn info → Last opp ID → Send inn",
-  "transaction_TRANSFER": "Overføring",
-  "transfer_amount": "Antall",
+  "transaction_TRANSFER": "Transfer",
+  "transfer_amount": "Amount",
   "累计转出": "Totalt overført",
   "uploadIdPhoto": "Last opp ID-bilde",
   "uploadSelfieWithId": "Last opp selfie med ID i hånden",
@@ -950,5 +950,6 @@
   "bindAddressTitle": "Uttaksadresse {network}:",
   "bindAddressTips": "For sikkerheten til midlene dine, må du sørge for at adressen er riktig. Når den er fylt ut, kan den ikke endres eller slettes.",
   "binding": "Binder",
-  "withdrawalBindTip": "Vennligst bind uttaksadressen først."
+  "withdrawalBindTip": "Vennligst bind uttaksadressen først.",
+  "transaction_WITHDRAW": "Uttak"
 }

@@ -950,5 +950,6 @@
   "bindAddressTitle": "{network} 出金アドレス：",
   "bindAddressTips": "資金の安全のため、入力したアドレスが正しいことを確認してください。一度入力すると変更または削除できません。",
   "binding": "バインド中",
-  "withdrawalBindTip": "最初に出金アドレスを紐付けてください"
+  "withdrawalBindTip": "最初に出金アドレスを紐付けてください",
+  "transaction_WITHDRAW": "出金"
 }
