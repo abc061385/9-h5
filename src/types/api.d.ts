@@ -355,6 +355,7 @@ type TokenListType = {
   pledgeToken2: string;
   dailyYield: number;
   productId: number;
+  isHot: 0 | 1;
 };
 
 type ActivityList = {
