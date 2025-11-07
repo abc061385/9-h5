@@ -32,7 +32,7 @@ const TeamsInformationView = () => {
 
   const [information, setInformation] = useState<UserInvestmentData>();
   const [timePickerType, setTimePickerType] = useState<"start" | "end">(
-    "start"
+    "start",
   );
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -56,7 +56,7 @@ const TeamsInformationView = () => {
         </div>
       );
     },
-    [formatBalance, information, tabsValue]
+    [formatBalance, information, tabsValue],
   );
 
   const tabsList = [
@@ -86,7 +86,7 @@ const TeamsInformationView = () => {
               startTime: start || undefined,
               endTime: end || undefined,
             },
-          }
+          },
         );
         if (res.code === 200) {
           setInformation(res.data);
@@ -96,7 +96,7 @@ const TeamsInformationView = () => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [searchParams, userInfo?.id]
+    [searchParams, userInfo?.id],
   );
 
   useEffect(() => {
@@ -153,7 +153,7 @@ const TeamsInformationView = () => {
             push(
               `${routerMap.teamsNext}?id=${searchParams.get("id")}&username=${
                 information?.nickname
-              }`
+              }`,
             );
           }}
         >
@@ -170,12 +170,12 @@ const TeamsInformationView = () => {
             USDT
           </span>
         </div>
-        {/* <div className="flex items-center justify-between text-sm border-b border-border2 pb-6">
+        <div className="flex items-center justify-between text-sm border-b border-border2 pb-6">
           <span>{t("今日新增团队投资")}</span>
           <span className="flex gap-2 items-center font-medium">
             ≈ {formatBalance1(information?.newTeamInvestmentToday || 0, 4)} USDT
           </span>
-        </div> */}
+        </div>
 
         <div className="mt-6">
           <h3 className="font-medium mb-4">{t("投资总额")}</h3>
