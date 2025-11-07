@@ -163,7 +163,7 @@ const TeamsInformationView = () => {
             <Icon name="right-enter" className="w-1.5 h-2.5" />
           </span>
         </div>
-        <div className="flex items-center justify-between text-sm border-b border-border2 pt-6 pb-6">
+        <div className="flex items-center justify-between text-sm py-6">
           <span>{t("今日新增小区投资")}</span>
           <span className="flex gap-2 items-center font-medium">
             ≈ {formatBalance1(information?.newCommunityInvestmentToday || 0, 4)}{" "}
