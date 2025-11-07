@@ -124,7 +124,9 @@ const TeamsDetailView = () => {
 
         <div className="mt-6">
           {FieldEL(t("团队投资总额"), info?.totalTeamInvestment || 0)}
+          {FieldEL(t("小区总投资额"), info?.totalCommunityInvestment || 0)}
           <div className="divider"></div>
+          {FieldEL(t("今日新增小区投资"), info?.newCommunityInvestmentToday || 0)}
           {FieldEL(t("今日新增团队投资"), info?.newTeamInvestmentToday || 0)}
         </div>
         <div className="divider"></div>
