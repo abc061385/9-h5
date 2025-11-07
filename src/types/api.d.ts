@@ -496,6 +496,8 @@ interface UserInvestmentData {
   id: number;
   levelName: string;
   nickname: string;
+  newCommunityInvestmentToday: number | null;
+  newTeamInvestmentToday: number | null;
   personalInvestmentStable7Days: number | null;
   personalInvestmentStable30Days: number | null;
   personalInvestmentStable90Days: number | null;

@@ -134,10 +134,17 @@ const TeamsInformationView = () => {
             <span>{information?.createTime || "--"}</span>
           </div>
         </div>
-        <div className="flex items-center justify-between text-sm border-y border-border2 py-6">
+        <div className="flex items-center justify-between text-sm border-t border-border2 pt-6 pb-4">
           <span>{t("totalTeamInvestment")}</span>
           <span className="flex gap-2 items-center font-medium">
             ≈ {formatBalance1(information?.totalTeamInvestment || 0, 4)} USDT
+          </span>
+        </div>
+        <div className="flex items-center justify-between text-sm border-b border-border2 pb-6">
+          <span>{t("小区总投资额")}</span>
+          <span className="flex gap-2 items-center font-medium">
+            ≈ {formatBalance1(information?.totalCommunityInvestment || 0, 4)}{" "}
+            USDT
           </span>
         </div>
         <div
@@ -156,6 +163,20 @@ const TeamsInformationView = () => {
             <Icon name="right-enter" className="w-1.5 h-2.5" />
           </span>
         </div>
+        <div className="flex items-center justify-between text-sm border-b border-border2 pt-6 pb-6">
+          <span>{t("今日新增小区投资")}</span>
+          <span className="flex gap-2 items-center font-medium">
+            ≈ {formatBalance1(information?.newCommunityInvestmentToday || 0, 4)}{" "}
+            USDT
+          </span>
+        </div>
+        {/* <div className="flex items-center justify-between text-sm border-b border-border2 pb-6">
+          <span>{t("今日新增团队投资")}</span>
+          <span className="flex gap-2 items-center font-medium">
+            ≈ {formatBalance1(information?.newTeamInvestmentToday || 0, 4)} USDT
+          </span>
+        </div> */}
+
         <div className="mt-6">
           <h3 className="font-medium mb-4">{t("投资总额")}</h3>
           <HorizontalTabs
