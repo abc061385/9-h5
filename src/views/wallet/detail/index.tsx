@@ -24,6 +24,7 @@ interface ListType {
   amount: string;
   symbol: string;
   createTime: string;
+  detail?: string;
 }
 
 const WalletDetailView = () => {

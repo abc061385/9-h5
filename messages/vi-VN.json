@@ -973,5 +973,6 @@
   "withdrawalBindTip": "Vui lòng liên kết địa chỉ rút tiền trước",
   "transaction_WITHDRAW": "Rút tiền",
   "bind_address": "Địa chỉ rút tiền",
-  "assets_np_tips": "Phát hành dưới dạng {token_name}, phát hành hàng ngày với tỷ lệ {precent}% theo cơ chế phát hành"
+  "assets_np_tips": "Phát hành dưới dạng {token_name}, phát hành hàng ngày với tỷ lệ {precent}% theo cơ chế phát hành",
+  "NP_ASSETS_RELEASE": "Phát hành tài sản"
 }

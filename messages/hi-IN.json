@@ -970,5 +970,6 @@
   "withdrawalBindTip": "कृपया पहले निकासी पते को जोड़ें।",
   "transaction_WITHDRAW": "निकालना",
   "bind_address": "निकासी पता",
-  "assets_np_tips": "{token_name} के रूप में जारी किया गया, रिलीज़ तंत्र के अनुसार दैनिक {precent}% जारी किया गया"
+  "assets_np_tips": "{token_name} के रूप में जारी किया गया, रिलीज़ तंत्र के अनुसार दैनिक {precent}% जारी किया गया",
+  "NP_ASSETS_RELEASE": "संपत्ति विकास"
 }
