@@ -972,5 +972,7 @@
   "binding": "연동 중",
   "withdrawalBindTip": "먼저 출금 주소를 연동하십시오",
   "transaction_WITHDRAW": "출금",
-  "bind_address": "출금 주소 연동"
+  "bind_address": "출금 주소 연동",
+  "assets_np_tips": "{token_name} 형태로 발행되며, 릴리스 메커니즘에 따라 매일 {precent}%가 릴리스됩니다",
+  "NP_ASSETS_RELEASE": "자산 공개"
 }

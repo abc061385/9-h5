@@ -972,5 +972,7 @@
   "binding": "Vinculando",
   "withdrawalBindTip": "Por favor, vincule primeiro o endereço de retirada",
   "transaction_WITHDRAW": "Retirar",
-  "bind_address": "Endereço de Retirada"
+  "bind_address": "Endereço de Retirada",
+  "assets_np_tips": "Emitido na forma de {token_name}, liberado diariamente a {precent}% de acordo com o mecanismo de liberação",
+  "NP_ASSETS_RELEASE": "Liberar de Activos"
 }

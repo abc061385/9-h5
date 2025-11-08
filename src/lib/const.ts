@@ -48,6 +48,7 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_DYNAMIC_EARNINGS_REDUCE: "depositIntoAssetsWallet",
   CLAIM_SMART_YIELD_WALLET_REDUCE: "withdrawFromSmartWallet",
   TRANSFER: "transaction_TRANSFER",
+  NP_ASSETS_RELEASE: "NP_ASSETS_RELEASE",
 };
 
 export type GAPreviousPageType = "withdraw" | "";

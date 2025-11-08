@@ -972,5 +972,7 @@
   "binding": "กำลังเชื่อมโยง",
   "withdrawalBindTip": "กรุณาเชื่อมโยงที่อยู่ถอนเงินก่อน",
   "transaction_WITHDRAW": "ถอน",
-  "bind_address": "เชื่อมโยงที่อยู่ถอนเงิน"
+  "bind_address": "เชื่อมโยงที่อยู่ถอนเงิน",
+  "assets_np_tips": "ในรูปแบบ {token_name} ปล่อยรายวันที่ {precent}% ตามกลไกการปล่อย",
+  "NP_ASSETS_RELEASE": "การ ปล่อย สินทรัพย์"
 }

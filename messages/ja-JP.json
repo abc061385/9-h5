@@ -972,5 +972,7 @@
   "binding": "バインド中",
   "withdrawalBindTip": "最初に出金アドレスを紐付けてください",
   "transaction_WITHDRAW": "出金",
-  "bind_address": "出金アドレスを紐付ける"
+  "bind_address": "出金アドレスを紐付ける",
+  "assets_np_tips": "{token_name}の形で発行され、リリースメカニズムに従って毎日{precent}%がリリースされます",
+  "NP_ASSETS_RELEASE": "資産リリース"
 }
