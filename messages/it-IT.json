@@ -969,5 +969,6 @@
   "transfer_amount": "Quantità",
   "transaction_WITHDRAW": "Preleva",
   "bind_address": "Indirizzo di prelievo",
-  "assets_np_tips": "Emesso sotto forma di {token_name}, rilasciato quotidianamente al {precent}% secondo il meccanismo di rilascio"
+  "assets_np_tips": "Emesso sotto forma di {token_name}, rilasciato quotidianamente al {precent}% secondo il meccanismo di rilascio",
+  "NP_ASSETS_RELEASE": "Rilascio di Asset"
 }

@@ -973,5 +973,6 @@
   "withdrawalBindTip": "Veuillez d’abord lier l’adresse de retrait.",
   "transaction_WITHDRAW": "Retrait",
   "bind_address": "Lier l’adresse",
-  "assets_np_tips": "Émis sous forme de {token_name}, libéré quotidiennement à {precent}% selon le mécanisme de libération"
+  "assets_np_tips": "Émis sous forme de {token_name}, libéré quotidiennement à {precent}% selon le mécanisme de libération",
+  "NP_ASSETS_RELEASE": "Libération d’Actifs"
 }

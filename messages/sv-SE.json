@@ -973,5 +973,6 @@
   "withdrawalBindTip": "Vänligen koppla uttagsadressen först.",
   "transaction_WITHDRAW": "Uttag",
   "bind_address": "Koppla adressen",
-  "assets_np_tips": "Utfärdat i form av {token_name}, släpps dagligen på {precent}% enligt frisläppningsmekanismen"
+  "assets_np_tips": "Utfärdat i form av {token_name}, släpps dagligen på {precent}% enligt frisläppningsmekanismen",
+  "NP_ASSETS_RELEASE": "Stillahavande tilldelning"
 }

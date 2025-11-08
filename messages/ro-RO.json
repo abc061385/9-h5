@@ -973,5 +973,6 @@
   "withdrawalBindTip": "Vă rugăm să legați mai întâi adresa de retragere.",
   "transaction_WITHDRAW": "Retragere",
   "bind_address": "Adresă de retragere",
-  "assets_np_tips": "Emis în formă de {token_name}, eliberat zilnic la {precent}% conform mecanismului de eliberare"
+  "assets_np_tips": "Emis în formă de {token_name}, eliberat zilnic la {precent}% conform mecanismului de eliberare",
+  "NP_ASSETS_RELEASE": "Eliberare de Active"
 }

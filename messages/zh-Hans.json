@@ -973,5 +973,6 @@
   "withdrawalBindTip": "请先绑定提现地址",
   "transaction_WITHDRAW": "提现",
   "bind_address": "绑定地址",
-  "assets_np_tips": "以{token_name}形式发放，按照释放机制每日释放{precent}%"
+  "assets_np_tips": "以{token_name}形式发放，按照释放机制每日释放{precent}%",
+  "NP_ASSETS_RELEASE": "资产释放"
 }

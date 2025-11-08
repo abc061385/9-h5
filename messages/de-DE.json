@@ -973,5 +973,6 @@
   "withdrawalBindTip": "Bitte verknüpfen Sie zuerst die Auszahlungsadresse.",
   "transaction_WITHDRAW": "Auszahlung",
   "bind_address": "Diese Adresse verknüpfen",
-  "assets_np_tips": "In Form von {token_name} ausgegeben, täglich zu {precent}% gemäß dem Freigabemechanismus freigegeben"
+  "assets_np_tips": "In Form von {token_name} ausgegeben, täglich zu {precent}% gemäß dem Freigabemechanismus freigegeben",
+  "NP_ASSETS_RELEASE": "Asset Freigabe"
 }
