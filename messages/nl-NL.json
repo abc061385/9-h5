@@ -972,5 +972,6 @@
   "binding": "Koppelen",
   "withdrawalBindTip": "Koppel eerst het opnameadres.",
   "transaction_WITHDRAW": "Opnemen",
-  "bind_address": "Verbindingsadres"
+  "bind_address": "Verbindingsadres",
+  "assets_np_tips": "Uitgegeven in de vorm van {token_name}, dagelijks vrijgegeven op {precent}% volgens het vrijgavemechanisme"
 }

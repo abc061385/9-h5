@@ -972,5 +972,6 @@
   "binding": "Mengikat",
   "withdrawalBindTip": "Sila pautkan alamat pengeluaran terlebih dahulu",
   "transaction_WITHDRAW": "Pengeluaran Wang",
-  "bind_address": "Alamat Pengeluaran"
+  "bind_address": "Alamat Pengeluaran",
+  "assets_np_tips": "Dikeluarkan dalam bentuk {token_name}, dilepaskan setiap hari pada {precent}% mengikut mekanisme pelepasan"
 }

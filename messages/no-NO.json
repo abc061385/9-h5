@@ -972,5 +972,6 @@
   "binding": "Binder",
   "withdrawalBindTip": "Vennligst bind uttaksadressen først.",
   "transaction_WITHDRAW": "Uttak",
-  "bind_address": "Binde adresse"
+  "bind_address": "Binde adresse",
+  "assets_np_tips": "Uitstedt i form av {token_name}, frigjøres daglig på {precent}% i henhold til utgivelsesmekanismen"
 }
