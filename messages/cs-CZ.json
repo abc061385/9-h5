@@ -972,5 +972,6 @@
   "binding": "Vazba",
   "withdrawalBindTip": "Nejprve prosím připojte výběrovou adresu.",
   "transaction_WITHDRAW": "Výběr",
-  "bind_address": "Výběrová adresa"
+  "bind_address": "Výběrová adresa",
+  "assets_np_tips": "Vydáno ve formě {token_name}, denně uvolňováno na {precent}% podle uvolňovacího mechanismu"
 }

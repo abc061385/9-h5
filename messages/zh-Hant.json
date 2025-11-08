@@ -972,5 +972,6 @@
   "binding": "綁定中",
   "withdrawalBindTip": "請先綁定提現地址",
   "transaction_WITHDRAW": "提现",
-  "bind_address": "綁定地址"
+  "bind_address": "綁定地址",
+  "assets_np_tips": "以{token_name}形式發放，按照釋放機制每日釋放{precent}%"
 }

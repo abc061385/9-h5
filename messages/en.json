@@ -972,5 +972,6 @@
   "binding": "Binding",
   "withdrawalBindTip": "Please bind the withdrawal address first",
   "transaction_WITHDRAW": "Withdraw",
-  "bind_address": "Bind Address"
+  "bind_address": "Bind Address",
+  "assets_np_tips": "Issued in the form of {token_name}, released daily at {precent}% according to the release mechanism"
 }

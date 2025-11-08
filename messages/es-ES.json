@@ -972,5 +972,6 @@
   "binding": "Vinculando",
   "withdrawalBindTip": "Por favor, vincula primero la dirección de retiro.",
   "transaction_WITHDRAW": "Retiro",
-  "bind_address": "Enlazar dirección"
+  "bind_address": "Enlazar dirección",
+  "assets_np_tips": "Emitido en forma de {token_name}, liberado diariamente al {precent}% según el mecanismo de liberación"
 }

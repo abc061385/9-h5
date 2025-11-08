@@ -180,6 +180,8 @@ export interface PersonalInformationVO {
   id?: number;
   /** 用户等级名称 */
   levelName?: string;
+  newCommunityInvestmentToday?: number;
+  newTeamInvestmentToday?: number;
   /** 用户昵称 */
   nickname?: string;
   personalInvestmentStable180Days?: number;
@@ -780,13 +782,14 @@ export class Api<
         /** @format date-time */
         timestamp?: string;
         tradePwd?: string;
-        username?: string;
         /** @format int32 */
         vipLevel?: number;
         /** @format date-time */
         vipLevelUpTime?: string;
         /** @format int32 */
         vipLock?: number;
+        /** @format int32 */
+        withdrawTag?: number;
       },
       params: RequestParams = {},
     ) =>
@@ -4233,6 +4236,11 @@ export class Api<
     queryHighestLevelUserUsingGet: (
       query: {
         /**
+         * isDepositor
+         * @format int32
+         */
+        isDepositor?: number;
+        /**
          * 用户ID
          * @format int64
          */
@@ -4257,6 +4265,11 @@ export class Api<
      */
     queryHighestPerformingUserUsingGet: (
       query: {
+        /**
+         * isDepositor
+         * @format int32
+         */
+        isDepositor?: number;
         /**
          * 用户ID
          * @format int64
@@ -4566,6 +4579,11 @@ export class Api<
         pageSize: number;
         /** 排序字段 */
         sort?: string;
+        /**
+         * star
+         * @format int32
+         */
+        star?: number;
         /**
          * 用户ID
          * @format int64
@@ -6395,7 +6413,7 @@ export class Api<
      *
      * @tags 提现地址管理
      * @name ProtocolListUsingGet
-     * @summary 列表
+     * @summary 协议列表
      * @request GET:/withdraw-address/protocol/list
      */
     protocolListUsingGet: (params: RequestParams = {}) =>
