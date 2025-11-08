@@ -3,12 +3,12 @@
 import { useCallback, useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
-import CoinIcon from "./coin-icon";
 import { api } from "@/api";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import Tabs from "@/components/tabs/tabs";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
+import ListCardBox from "./list-card";
 
 const ListBox = () => {
   const t = useTrans();
@@ -48,7 +48,7 @@ const ListBox = () => {
         hasMore: data.pageNum < data.pages,
       };
     },
-    [tabsValue, pledgeDays],
+    [tabsValue, pledgeDays]
   );
 
   return (
@@ -79,39 +79,10 @@ const ListBox = () => {
         <InfiniteVirtuosoList<TokenListType>
           fetchData={getTokenList}
           className="!flex-1"
+          listClassName="!pt-4"
           columns={2}
           renderItem={(item: TokenListType) => (
-            <div
-              key={item.id}
-              className="bg-bg2 rounded-2xl p-4"
-              onClick={() =>
-                push(
-                  `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}`,
-                )
-              }
-            >
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-base font-medium">
-                  {item.pledgeToken1}/{item.pledgeToken2}
-                </span>
-                <CoinIcon
-                  coins={[
-                    { src: item.pledgeToken1Logo },
-                    { src: item.pledgeToken2Logo },
-                  ]}
-                  size={20}
-                  overlap={16}
-                  className="pr-2"
-                />
-              </div>
-              <div className="text-text4 text-xs mt-1 flex flex-col">
-                {t("日收益率")}
-                <span className="text-rise text-base font-bold">
-                  {" "}
-                  ≈ {item.dailyYield}%
-                </span>
-              </div>
-            </div>
+            <ListCardBox item={item} pledgeDays={pledgeDays} />
           )}
         />
       </div>
