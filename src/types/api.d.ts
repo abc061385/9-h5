@@ -567,3 +567,14 @@ interface TeamsAllUserSearchList {
   levelName: string;
   star?: number;
 }
+
+interface InvestmentRecord {
+  id: number;
+  createdTime: string; // ISO 时间字符串，例如 "2025-05-15T21:28:26.000+00:00"
+  updatedTime: string; // ISO 时间字符串，例如 "2025-10-14T07:45:00.000+00:00"
+  investmentReturn: number;
+  managementFee: number;
+  platformDividend: number;
+  smartExtractFee: number;
+  withdrawTag: number;
+}
