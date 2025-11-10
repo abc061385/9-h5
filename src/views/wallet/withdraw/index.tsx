@@ -42,6 +42,7 @@ const WithdrawView = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
+  // const [isSubmit, setIsSubmit] = useState(false);
 
   const Schema = useSchema();
 
@@ -71,12 +72,8 @@ const WithdrawView = () => {
   }, [getAddrMap]);
 
   useEffect(() => {
-    if (!addressMap) return;
-    setValue(
-      "withdrawAddress",
-      addressMap[chainEnum?.protocolType]?.addr ?? "",
-    );
-  }, [chainEnum, addressMap, setValue]);
+    setValue("withdrawAddress", "");
+  }, [chainEnum?.protocolType]);
 
   const [withdrawalFeeConfig, withdrawalFeeType] = useWatch({
     control,
@@ -225,7 +222,18 @@ const WithdrawView = () => {
                   type="text"
                   {...register("withdrawAddress")}
                   disabled={isInputAddressDisabled}
-                  placeholder={t("withdrawalBindTip")}
+                  placeholder={
+                    isInputAddressDisabled
+                      ? t("withdrawalBindTip")
+                      : t("enter_receiving_address")
+                  }
+                  onChange={(e) => {
+                    setValue("withdrawAddress", e.target.value);
+                    setField("formState", {
+                      ...formState,
+                      withdrawAddress: e.target.value,
+                    });
+                  }}
                   className="w-9/10"
                 />
                 <div className="inline-flex items-center h-12">
@@ -242,7 +250,9 @@ const WithdrawView = () => {
                     "withdrawNetwork",
                     getValues("chainEnum").protocolType,
                   );
-                  const _withdrawAddress = getValues("withdrawAddress");
+                  const _withdrawAddress = addressMap
+                    ? addressMap[chainEnum?.protocolType]?.addr
+                    : "";
                   if (_withdrawAddress) {
                     push(routerMap.settingAddress);
                   } else {
