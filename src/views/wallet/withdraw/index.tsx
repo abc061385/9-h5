@@ -33,6 +33,8 @@ const WithdrawView = () => {
   const setSettingField = useSettingStore((s) => s.setField);
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
+  const getPlatformInfo = useSettingStore((s) => s.getPlatformInfo);
+  const platformInfo = useSettingStore((s) => s.platformInfo);
   const addressPreviousPageType = useSettingStore(
     (s) => s.addressPreviousPageType,
   );
@@ -58,6 +60,10 @@ const WithdrawView = () => {
 
   const currencyCode = useWatch({ control, name: "currencyCode" });
   const chainEnum = useWatch({ control, name: "chainEnum" });
+
+  useEffect(() => {
+    getPlatformInfo();
+  }, [getPlatformInfo]);
 
   useEffect(() => {
     // 获取地址列表
@@ -125,6 +131,11 @@ const WithdrawView = () => {
     setOpenModal(false);
     clear();
   }, [clear]);
+
+  // 获取标识 withdrawTag 【0=可输入地址，1=不能输入】
+  const isInputAddressDisabled = useMemo(() => {
+    return platformInfo.withdrawTag === 1;
+  }, [platformInfo]);
 
   return (
     <ViewLayout
@@ -213,7 +224,7 @@ const WithdrawView = () => {
                 <input
                   type="text"
                   {...register("withdrawAddress")}
-                  disabled
+                  disabled={isInputAddressDisabled}
                   placeholder={t("withdrawalBindTip")}
                   className="w-9/10"
                 />

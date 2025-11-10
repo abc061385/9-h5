@@ -27,7 +27,7 @@ const WithdrawConfirmView = () => {
   const t = useTrans();
   const { push } = useRouter();
   const { formState, resetFormState } = useWithdrawalStore();
-  const { googleCode, clearGoogleCode } = useSettingStore();
+  const { googleCode, clearGoogleCode, platformInfo } = useSettingStore();
   const { clearAddressInfo } = useSettingStore();
 
   const { formatBalance } = useFormatBalance();
@@ -43,7 +43,7 @@ const WithdrawConfirmView = () => {
         </div>
       );
     },
-    []
+    [],
   );
 
   const clear = useCallback(() => {
@@ -59,7 +59,8 @@ const WithdrawConfirmView = () => {
       coinCode: formState.currencyCode,
       protocol: formState.chainEnum.protocolType,
       code: Number(googleCode),
-    } as Parameters<typeof trigger>[0];
+      tag: platformInfo.withdrawTag,
+    } as unknown as Parameters<typeof trigger>[0];
 
     if (formState.XRPTag) {
       _data.memo = formState.XRPTag;
@@ -73,7 +74,16 @@ const WithdrawConfirmView = () => {
       .catch(() => {
         clearGoogleCode();
       });
-  }, [googleCode, formState, trigger, clearGoogleCode, t, clear, push]);
+  }, [
+    googleCode,
+    formState,
+    trigger,
+    clearGoogleCode,
+    t,
+    clear,
+    push,
+    platformInfo,
+  ]);
 
   return (
     <ViewLayout
@@ -95,11 +105,11 @@ const WithdrawConfirmView = () => {
           <div className="flex items-center gap-2">
             <span>{formState.withdrawAddress}</span>
             <CopyText text={formState.withdrawAddress} />
-          </div>
+          </div>,
         )}
         {fieldEl(
           "Service Fee",
-          formState.chainEnum.withdrawalFeeConfig + " USDT"
+          formState.chainEnum.withdrawalFeeConfig + " USDT",
         )}
         <button className="btn btn-primary w-full mt-10" onClick={confirm}>
           {t("confirmSubmit")}
