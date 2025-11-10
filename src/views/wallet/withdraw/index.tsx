@@ -33,6 +33,8 @@ const WithdrawView = () => {
   const setSettingField = useSettingStore((s) => s.setField);
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
+  const getPlatformInfo = useSettingStore((s) => s.getPlatformInfo);
+  const platformInfo = useSettingStore((s) => s.platformInfo);
   const addressPreviousPageType = useSettingStore(
     (s) => s.addressPreviousPageType,
   );
@@ -40,6 +42,7 @@ const WithdrawView = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
+  // const [isSubmit, setIsSubmit] = useState(false);
 
   const Schema = useSchema();
 
@@ -60,17 +63,17 @@ const WithdrawView = () => {
   const chainEnum = useWatch({ control, name: "chainEnum" });
 
   useEffect(() => {
+    getPlatformInfo();
+  }, [getPlatformInfo]);
+
+  useEffect(() => {
     // 获取地址列表
     getAddrMap();
   }, [getAddrMap]);
 
   useEffect(() => {
-    if (!addressMap) return;
-    setValue(
-      "withdrawAddress",
-      addressMap[chainEnum?.protocolType]?.addr ?? "",
-    );
-  }, [chainEnum, addressMap, setValue]);
+    setValue("withdrawAddress", "");
+  }, [chainEnum?.protocolType]);
 
   const [withdrawalFeeConfig, withdrawalFeeType] = useWatch({
     control,
@@ -125,6 +128,11 @@ const WithdrawView = () => {
     setOpenModal(false);
     clear();
   }, [clear]);
+
+  // 获取标识 withdrawTag 【0=可输入地址，1=不能输入】
+  const isInputAddressDisabled = useMemo(() => {
+    return platformInfo.withdrawTag === 1;
+  }, [platformInfo]);
 
   return (
     <ViewLayout
@@ -213,8 +221,19 @@ const WithdrawView = () => {
                 <input
                   type="text"
                   {...register("withdrawAddress")}
-                  disabled
-                  placeholder={t("withdrawalBindTip")}
+                  disabled={isInputAddressDisabled}
+                  placeholder={
+                    isInputAddressDisabled
+                      ? t("withdrawalBindTip")
+                      : t("enter_receiving_address")
+                  }
+                  onChange={(e) => {
+                    setValue("withdrawAddress", e.target.value);
+                    setField("formState", {
+                      ...formState,
+                      withdrawAddress: e.target.value,
+                    });
+                  }}
                   className="w-9/10"
                 />
                 <div className="inline-flex items-center h-12">
@@ -231,7 +250,9 @@ const WithdrawView = () => {
                     "withdrawNetwork",
                     getValues("chainEnum").protocolType,
                   );
-                  const _withdrawAddress = getValues("withdrawAddress");
+                  const _withdrawAddress = addressMap
+                    ? addressMap[chainEnum?.protocolType]?.addr
+                    : "";
                   if (_withdrawAddress) {
                     push(routerMap.settingAddress);
                   } else {

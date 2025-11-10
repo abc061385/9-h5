@@ -1,3 +1,4 @@
+import { api } from "@/api";
 import { AddressPreviousPageType, GAPreviousPageType } from "@/lib/const";
 import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
@@ -11,6 +12,8 @@ interface SettingState extends BaseState<SettingState> {
   gaPreviousPageType: GAPreviousPageType;
   addressPreviousPageType: AddressPreviousPageType;
   withdrawNetwork: string;
+  platformInfo: InvestmentRecord
+  getPlatformInfo: () => Promise<void>
 }
 
 export const useSettingStore = create<SettingState>()(
@@ -23,6 +26,7 @@ export const useSettingStore = create<SettingState>()(
           addressInfo: {},
           addressPreviousPageType: "",
           withdrawNetwork: "",
+          platformInfo: {},
           clearGoogleCode: () => {
             set(() => ({ googleCode: "", gaPreviousPageType: "", withdrawNetwork: "" }));
           },
@@ -32,6 +36,12 @@ export const useSettingStore = create<SettingState>()(
               addressPreviousPageType: "",
               withdrawNetwork: ""
             }));
+          },
+          getPlatformInfo: async () => {
+            try {
+              const res = await api.platformConfig.infoUsingGet1();
+              set(() => ({ platformInfo: res.data as InvestmentRecord }))
+            } catch {}
           },
           setField: (key, value) => set({ [key]: value }),
         };
