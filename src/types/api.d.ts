@@ -181,6 +181,7 @@ type PledgeType = {
   dailyYield: number;
   id: number;
   maxBet: number;
+  isHot: number;
 };
 
 type FundOrder = {

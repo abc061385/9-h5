@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
@@ -58,7 +58,6 @@ const FundBuyView = () => {
             (v: PledgeType) =>
               v.pledgeDays.toString() === params.get("pledgeDays"),
           );
-          console.log(pledge, "pledge");
           setPlegeValue(pledge);
           setField("pledgeDays", pledge);
           setInfo(data as FundInfoType);
@@ -66,6 +65,15 @@ const FundBuyView = () => {
       },
     );
   }, [trigger, params, setField]);
+  const pledgePlans = useMemo(() => {
+    const _result = info.pledgePlans || [];
+    return _result.sort((a, b) => {
+      if (a.pledgeDays !== b.pledgeDays) {
+        return b.pledgeDays - a.pledgeDays;
+      }
+      return b.isHot - a.isHot;
+    });
+  }, [info.pledgePlans]);
 
   return (
     <ViewLayout
@@ -124,7 +132,7 @@ const FundBuyView = () => {
           onChange={(e) => setDrawerOpen(e)}
           className="h-auto"
         >
-          {info?.pledgePlans?.map((item, index) => {
+          {pledgePlans.map((item, index) => {
             return (
               <div
                 key={index}
