@@ -54,10 +54,16 @@ const FundBuyView = () => {
             },
           );
           data.pledgePlans = pledgeList;
-          const pledge = data.pledgePlans.find(
-            (v: PledgeType) =>
-              v.pledgeDays.toString() === params.get("pledgeDays"),
-          );
+
+          const pid = params.get("pid");
+          const pledge =
+            data.pledgePlans.find((v: PledgeType) => {
+              if (pid) {
+                return v.id.toString() === pid;
+              } else {
+                return v.pledgeDays.toString() === params.get("pledgeDays");
+              }
+            }) || data.pledgePlans[0];
           setPlegeValue(pledge);
           setField("pledgeDays", pledge);
           setInfo(data as FundInfoType);
