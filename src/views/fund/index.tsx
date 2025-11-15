@@ -10,7 +10,7 @@ import Platform from "@/lib/platfrom";
 const FundView = () => {
   const params = useSearchParams();
   const isDock = useMemo(() => {
-    if (params.get("r") === "app" && Platform.isInApp()) {
+    if (params.get("r") === "app" || Platform.isInApp()) {
       return false;
     } else {
       return true;
@@ -23,7 +23,7 @@ const FundView = () => {
       dock={isDock}
       header={<FundHeaderBox />}
     >
-      <div className="p-content pb-0 flex-1 flex flex-col">
+      <div className="p-content pb-4 flex-1 flex flex-col">
         <ListBox />
       </div>
     </ViewLayout>
