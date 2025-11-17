@@ -9,7 +9,7 @@ import Tabs from "@/components/tabs/tabs";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 // import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ListCardBox from "./list-card";
-import { Skeleton } from "@/components/skeleton";
+// import { Skeleton } from "@/components/skeleton";
 
 const ListBox = () => {
   const t = useTrans();
@@ -17,7 +17,7 @@ const ListBox = () => {
   const [tabsValue, setTabsValue] = useState(2);
   const [pledgeDays, setPledgeDays] = useState(360);
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const tabs = [
     {
@@ -54,7 +54,6 @@ const ListBox = () => {
   //   [tabsValue, pledgeDays],
   // );
   useEffect(() => {
-    setLoading(false);
     api.fundProductConfig
       .pageUsingGet2({
         pageNo: 1,
@@ -68,7 +67,6 @@ const ListBox = () => {
         } else {
           setList([]);
         }
-        setLoading(true);
       });
   }, [tabsValue, pledgeDays]);
 
