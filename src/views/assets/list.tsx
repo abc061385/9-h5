@@ -35,9 +35,9 @@ const AssetsListBox = () => {
     getCurrentList();
   }, [getList, getCurrentList]);
   return (
-    <div className="flex-1 flex flex-col h-full overflow-auto no-scrollbar">
+    <div className="flex-1 flex flex-col h-full">
       <h2 className="font-medium leading-6 mb-6">{t("tabbar.assets")}</h2>
-      <div className="flex-1">
+      <div className="flex-1 pb-14">
         {list.map((item) => {
           return (
             <div
