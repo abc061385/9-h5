@@ -36,7 +36,9 @@ export const typeMap: { [key: string]: string } = {
   USDM_USDT_FLASH_EXCHANGE_TRANSACTION_FEE: "闪兑手续费扣除",
   CLAIM_STATIC_EARNINGS: "投资收益转入",
   CLAIM_DYNAMIC_REWARDS: "币权收益转入",
-  VIP_RACE_REWARD: "VIP报名赛奖金",
+  REGIST: "报名活动", //47
+  PAYDEPOSIT: "返还活动押金", // 49
+  VIP_RACE_REWARD: "VIP报名赛奖金", // 48
   SMART_YIELD_INCOME: "SmartYieldWallet收益",
   CLAIM_SMART_YIELD_WALLET: "DepositintoSmartYieldWallet",
   CLAIM_SMART_YIELD_INCOME: "投资收益转入",
