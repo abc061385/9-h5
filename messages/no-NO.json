@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "Uttak",
   "bind_address": "Binde adresse",
   "assets_np_tips": "Uitstedt i form av {token_name}, frigjøres daglig på {precent}% i henhold til utgivelsesmekanismen",
-  "NP_ASSETS_RELEASE": "Formue frigivelse"
+  "NP_ASSETS_RELEASE": "Formue frigivelse",
+  "9MEcosystemGrowthPool": "9M Økosystem – Growth Pool",
+  "growthClubmembe": "Vær medlem av Growth Club og skap vekst sammen",
+  "9MEcosystemGrowthPoolDesc": "Å bli med i Growth Pool = komme inn i vekstmotoren i 9M-økosystemet\nHer kommer avkastningen fra reell forretningsvekst, ikke kortsiktige svingninger.\nSom med-bygger av økosystemet vil du:\nDele kjerneinntekter fra globale betalinger og handel\nMotta bærekraftige kvartalsutbytter\nFå langsiktige vekstfordeler fra 9M sin globale ekspansjon\nSammen med brukere over hele verden vil du skape og dele verdien av fremtidens finansøkosystem og løfte veksten utover bare tall.",
+  "USDMBalance": "USDM-saldo:",
+  "9MCBalance": "9MC-saldo:",
+  "Deposit History": "Innskuddshistorikk",
+  "9MEcosystemBuy": "Kjøp",
+  "topuptoGrowthPool": "Fylle på Growth Pool",
+  "selectCurrency": "Velg valuta",
+  "selectCurrencyDesc": "Skriv inn kjøpsbeløp"
 }

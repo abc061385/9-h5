@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "Rút tiền",
   "bind_address": "Địa chỉ rút tiền",
   "assets_np_tips": "Phát hành dưới dạng {token_name}, phát hành hàng ngày với tỷ lệ {precent}% theo cơ chế phát hành",
-  "NP_ASSETS_RELEASE": "Phát hành tài sản"
+  "NP_ASSETS_RELEASE": "Phát hành tài sản",
+  "9MEcosystemGrowthPool": "9M Hệ sinh thái – Growth Pool",
+  "growthClubmembe": "Trở thành thành viên Growth Club và cùng tạo giá trị",
+  "9MEcosystemGrowthPoolDesc": "Tham gia “9M Ecosystem Growth Pool” nghĩa là bước vào động cơ tăng trưởng cốt lõi của hệ sinh thái 9M.\nTại đây, lợi nhuận đến từ tăng trưởng kinh doanh thực tế, không phải biến động ngắn hạn.\nLà người đồng kiến tạo hệ sinh thái, bạn sẽ:\nChia sẻ doanh thu cốt lõi từ thanh toán và giao dịch toàn cầu\nNhận cổ tức hàng quý bền vững\nHưởng lợi tăng trưởng dài hạn từ sự mở rộng toàn cầu của 9M\nCùng với người dùng trên toàn thế giới, bạn sẽ tạo ra và chia sẻ giá trị của hệ sinh thái tài chính tương lai, giúp tăng trưởng vượt xa những con số.",
+  "USDMBalance": "Số dư USDM:",
+  "9MCBalance": "Số dư 9MC:",
+  "Deposit History": "Lịch sử nạp tiền:",
+  "9MEcosystemBuy": "Mua",
+  "topuptoGrowthPool": "Nạp Growth Pool",
+  "selectCurrency": "Chọn loại tiền",
+  "selectCurrencyDesc": "Vui lòng nhập số tiền mua"
 }

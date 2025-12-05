@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "Retragere",
   "bind_address": "Adresă de retragere",
   "assets_np_tips": "Emis în formă de {token_name}, eliberat zilnic la {precent}% conform mecanismului de eliberare",
-  "NP_ASSETS_RELEASE": "Eliberare de Active"
+  "NP_ASSETS_RELEASE": "Eliberare de Active",
+  "9MEcosystemGrowthPool": "9M Ecosistem – Growth Pool",
+  "growthClubmembe": "Devino membru Growth Club și creează valoare împreună",
+  "9MEcosystemGrowthPoolDesc": "A te alătura Growth Pool = acces la motorul central de creștere al ecosistemului 9M\nAici, veniturile provin din creșterea reală a afacerii, nu din fluctuații pe termen scurt.\nCa și co-constructor al ecosistemului, vei:\nÎmpărți veniturile principale din plățile și tranzacțiile globale\nPrimi dividende trimestriale sustenabile\nBeneficia de creșterea pe termen lung din expansiunea globală a 9M\nÎmpreună cu utilizatori din întreaga lume, vei crea și împărți valoarea viitorului ecosistem financiar, astfel încât creșterea să depășească simplele cifre.",
+  "USDMBalance": "Sold USDM:",
+  "9MCBalance": "Sold 9MC:",
+  "Deposit History": "Istoric depuneri",
+  "9MEcosystemBuy": "Cumpărați",
+  "topuptoGrowthPool": "Încărcare Growth Pool",
+  "selectCurrency": "Alegeți moneda",
+  "selectCurrencyDesc": "Introduceți suma achiziției"
 }

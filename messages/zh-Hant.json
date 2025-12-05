@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "提现",
   "bind_address": "綁定地址",
   "assets_np_tips": "以{token_name}形式發放，按照釋放機制每日釋放{precent}%",
-  "NP_ASSETS_RELEASE": "資產釋放"
+  "NP_ASSETS_RELEASE": "資產釋放",
+  "9MEcosystemGrowthPool": "9M 生態增長池",
+  "growthClubmembe": "成為 Growth Club 成員，共創價值增長",
+  "9MEcosystemGrowthPoolDesc": "加入「9M Ecosystem Growth Pool」= 進入 9M 生態的核心增長引擎\n這裡的收益來自真實業務增長，而非短期波動\n作為生態共建者，你將：\n共享全球支付與交易核心營收\n獲取可持續季度分紅\n擁有 9M 全球擴張的長期成長紅利\n與全球用戶一起創造並分享未來金融生態的價值，讓增長不再停留於數字上。",
+  "USDMBalance": "USDM 餘額：",
+  "9MCBalance": "9MC 餘額：",
+  "Deposit History": "充值記錄：",
+  "9MEcosystemBuy": "買入",
+  "topuptoGrowthPool": "Growth Pool 充值",
+  "selectCurrency": "選擇幣種",
+  "selectCurrencyDesc": "請輸入購買金額"
 }

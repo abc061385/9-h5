@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "出金",
   "bind_address": "出金アドレスを紐付ける",
   "assets_np_tips": "{token_name}の形で発行され、リリースメカニズムに従って毎日{precent}%がリリースされます",
-  "NP_ASSETS_RELEASE": "資産リリース"
+  "NP_ASSETS_RELEASE": "資産リリース",
+  "9MEcosystemGrowthPool": "9M エコシステム・グロースプール",
+  "growthClubmembe": "グロースクラブの一員となり、価値成長を共に創りましょう",
+  "9MEcosystemGrowthPoolDesc": "「9M Ecosystem Growth Pool」に参加することは、9M エコシステムの中核成長エンジンに入ることを意味します。\nここで得られる収益は、短期的な変動ではなく、実際の事業成長によって生み出されます。\nエコシステム共同構築者として、あなたは：\n世界中の決済および取引の中核収益を共有し\n持続可能な四半期配当を受け取り\n9M のグローバル拡大による長期的成長利益を獲得します\n世界中のユーザーと共に、未来の金融エコシステム価値を創造・共有し、成長を数字以上のものへと高めていきます。",
+  "USDMBalance": "USDM 残高：",
+  "9MCBalance": "9MC 残高：",
+  "Deposit History": "入金履歴：",
+  "9MEcosystemBuy": "購入",
+  "topuptoGrowthPool": "Growth Pool へ入金",
+  "selectCurrency": "通貨を選択",
+  "selectCurrencyDesc": "購入金額を入力してください"
 }

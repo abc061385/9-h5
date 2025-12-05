@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "Retrait",
   "bind_address": "Lier l’adresse",
   "assets_np_tips": "Émis sous forme de {token_name}, libéré quotidiennement à {precent}% selon le mécanisme de libération",
-  "NP_ASSETS_RELEASE": "Libération d’Actifs"
+  "NP_ASSETS_RELEASE": "Libération d’Actifs",
+  "9MEcosystemGrowthPool": "9M Écosystème – Growth Pool",
+  "growthClubmembe": "Devenez membre du Growth Club et co-créez la croissance de valeur",
+  "9MEcosystemGrowthPoolDesc": "Rejoindre le Growth Pool = accéder au moteur central de croissance de l’écosystème 9M\nIci, les revenus proviennent de la croissance réelle de l’activité, et non de fluctuations à court terme.\n\nn tant que co-constructeur de l’écosystème, vous allez :\nPartager les revenus essentiels issus des paiements et transactions mondiaux\nRecevoir des dividendes trimestriels durables\nBénéficier de la croissance à long terme liée à l’expansion mondiale de 9M\nAvec les utilisateurs du monde entier, vous contribuerez à créer et partager la valeur du futur écosystème financier, pour que la croissance ne se limite plus aux chiffres.",
+  "USDMBalance": "Solde USDM:",
+  "9MCBalance": "Solde 9MC:",
+  "Deposit History": "Historique des dépôts:",
+  "9MEcosystemBuy": "Acheter",
+  "topuptoGrowthPool": "Recharger le Growth Pool",
+  "selectCurrency": "Choisir la devise",
+  "selectCurrencyDesc": "Veuillez saisir le montant d’achat"
 }
