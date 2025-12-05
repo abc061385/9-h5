@@ -232,6 +232,24 @@ const HeaderBox = () => {
         </div>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
+      {/* --9M Ecosystem Growth Poo-- */}
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        onClick={() => {
+          push(routerMap.growthPool);
+        }}
+      >
+        <div className="flex flex-1 gap-4">
+          <Icon name="oneInvestment" className="w-4.5 h-4 mt-1" />
+          <dl className="flex-1">
+            <dt>9M Ecosystem Growth Poo</dt>
+            <dd className="font-normal text-xs text-text4">
+              成为 Growth Club 成员，共创价值增长
+            </dd>
+          </dl>
+        </div>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
 
       <div className="divider"></div>
 
