@@ -242,9 +242,9 @@ const HeaderBox = () => {
         <div className="flex flex-1 gap-4">
           <Icon name="oneInvestment" className="w-4.5 h-4 mt-1" />
           <dl className="flex-1">
-            <dt>9M Ecosystem Growth Poo</dt>
+            <dt>{t("9MEcosystemGrowthPool")}</dt>
             <dd className="font-normal text-xs text-text4">
-              成为 Growth Club 成员，共创价值增长
+              {t("growthClubmembe")}
             </dd>
           </dl>
         </div>

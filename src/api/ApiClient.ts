@@ -39,6 +39,14 @@ export interface ActivitiesVO {
   updateTime?: string;
 }
 
+/** GrowthPoolBuyDTO */
+export interface GrowthPoolBuyDTO {
+  /** 购买金额 */
+  amount: number;
+  /** 币种 */
+  coin: string;
+}
+
 /** InternalTransferRequest */
 export interface InternalTransferRequest {
   amount?: number;
@@ -712,6 +720,8 @@ export class Api<
         areaCode?: string;
         /** @format int32 */
         assetPower?: number;
+        /** @format int32 */
+        banUsdm?: number;
         bindEmail?: string;
         /** @format date-time */
         bindEmailTime?: string;
@@ -3140,6 +3150,76 @@ export class Api<
     ) =>
       this.request<_2, void>({
         path: `/global-activity/page-list`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+  };
+  growth = {
+    /**
+     * No description
+     *
+     * @tags 增长池
+     * @name BuyGrowthPoolUsingPost
+     * @summary 购买增长池
+     * @request POST:/growth/buy
+     */
+    buyGrowthPoolUsingPost: (
+      req: GrowthPoolBuyDTO,
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/growth/buy`,
+        method: "POST",
+        body: req,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 增长池
+     * @name GetGrowthPoolInfoUsingGet
+     * @summary 获取用户增长池信息
+     * @request GET:/growth/info
+     */
+    getGrowthPoolInfoUsingGet: (params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/growth/info`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 增长池
+     * @name GetGrowthPoolTransactionsUsingGet
+     * @summary 查询增长池交易记录
+     * @request GET:/growth/orders
+     */
+    getGrowthPoolTransactionsUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/growth/orders`,
         method: "GET",
         query: query,
         ...params,
