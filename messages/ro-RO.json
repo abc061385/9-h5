@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "Cumpărați",
   "topuptoGrowthPool": "Încărcare Growth Pool",
   "selectCurrency": "Alegeți moneda",
-  "selectCurrencyDesc": "Introduceți suma achiziției"
+  "selectCurrencyDesc": "Introduceți suma achiziției",
+  "REGIST": "Registrace akce",
+  "PAYDEPOSIT": "Vrácení zálohy na akci",
+  "GP_EXCHANGE": "Výmena růstového fondu",
+  "GP_BUY_IN": "Nákup do růstového fondu",
+  "GP_BUY_OUT": "Prodej z růstového fondu",
+  "GP_SPOT_BUY": "Spot nákup růstového fondu"
 }

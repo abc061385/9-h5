@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "ซื้อ",
   "topuptoGrowthPool": "เติมเงินเข้าสู่ Growth Pool",
   "selectCurrency": "เลือกสกุลเงิน",
-  "selectCurrencyDesc": "กรุณากรอกจำนวนเงินซื้อ"
+  "selectCurrencyDesc": "กรุณากรอกจำนวนเงินซื้อ",
+  "REGIST": "ลงทะเบียนกิจกรรม",
+  "PAYDEPOSIT": "คืนเงินมัดจำกิจกรรม",
+  "GP_EXCHANGE": "แลกเปลี่ยนพูลการเติบโต",
+  "GP_BUY_IN": "ซื้อเข้าในพูลการเติบโต",
+  "GP_BUY_OUT": "ขายออกจากพูลการเติบโต",
+  "GP_SPOT_BUY": "การซื้อจุดพูลการเติบโต"
 }

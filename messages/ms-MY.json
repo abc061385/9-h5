@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "Beli",
   "topuptoGrowthPool": "Top-up Growth Pool",
   "selectCurrency": "Select mata wang",
-  "selectCurrencyDesc": "Sila masukkan amaun pembelian"
+  "selectCurrencyDesc": "Sila masukkan amaun pembelian",
+  "REGIST": "Pendaftaran Acara",
+  "PAYDEPOSIT": "Deposit Aktivitas Pengembalian",
+  "GP_EXCHANGE": "Pertukaran Kolam Pertumbuhan",
+  "GP_BUY_IN": "Pembelian Masuk Kolam Pertumbuhan",
+  "GP_BUY_OUT": "Penjualan Keluar Kolam Pertumbuhan",
+  "GP_SPOT_BUY": "Pembelian Spot Kolam Pertumbuhan"
 }

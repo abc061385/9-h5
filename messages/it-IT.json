@@ -980,5 +980,11 @@
   "9MEcosystemBuy": "Acquista",
   "topuptoGrowthPool": "Ricarica Growth Pool",
   "selectCurrency": "Seleziona valuta",
-  "selectCurrencyDesc": "Inserisci l’importo di acquisto"
+  "selectCurrencyDesc": "Inserisci l’importo di acquisto",
+  "REGIST": "Evenementregistratie",
+  "PAYDEPOSIT": "Terugbetaling activiteit borg",
+  "GP_EXCHANGE": "Groei-pool wisselen",
+  "GP_BUY_IN": "Groei-pool kopen",
+  "GP_BUY_OUT": "Groei-pool verkoop",
+  "GP_SPOT_BUY": "Groei-pool spot kopen"
 }

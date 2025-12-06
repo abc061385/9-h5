@@ -119,7 +119,7 @@ const GrowthPoolView = () => {
             <div className="size-full">
               <table className="table">
                 <tbody>
-                  {listData?.data?.list ? (
+                  {listData?.data?.list?.length ? (
                     listData?.data?.list?.map(
                       (
                         item: {
@@ -147,11 +147,11 @@ const GrowthPoolView = () => {
                       <td colSpan={2} className="py-10 text-center">
                         <BaseImage
                           src="/images/common/no_data.png"
-                          className="w-[104px] h-[97px] mx-auto"
+                          className="w-[104px] h-[90px] mx-auto"
                         />
-                        <span className="font-bold text-text2 text-sm">
+                        <p className="font-bold text-text2 text-sm">
                           {t("暂无数据")}
-                        </span>
+                        </p>
                       </td>
                     </tr>
                   )}

@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "매수",
   "topuptoGrowthPool": "Growth Pool 충전",
   "selectCurrency": "통화 선택",
-  "selectCurrencyDesc": "구매 금액을 입력하세요"
+  "selectCurrencyDesc": "구매 금액을 입력하세요",
+  "REGIST": "이벤트 등록",
+  "PAYDEPOSIT": "활동 보증금 반환",
+  "GP_EXCHANGE": "성장 풀 교환",
+  "GP_BUY_IN": "성장 풀 구매",
+  "GP_BUY_OUT": "성장 풀 매도",
+  "GP_SPOT_BUY": "스팟 구매 성장 풀"
 }

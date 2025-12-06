@@ -51,6 +51,10 @@ export const typeMap: { [key: string]: string } = {
   CLAIM_SMART_YIELD_WALLET_REDUCE: "withdrawFromSmartWallet",
   TRANSFER: "transaction_TRANSFER",
   NP_ASSETS_RELEASE: "NP_ASSETS_RELEASE",
+  GP_EXCHANGE: "GP_EXCHANGE", //60
+  GP_BUY_IN: "GP_BUY_IN", //61
+  GP_BUY_OUT: "GP_BUY_OUT", //62
+  GP_SPOT_BUY: "GP_SPOT_BUY", //63
 };
 
 export type GAPreviousPageType = "withdraw" | "";

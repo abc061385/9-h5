@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "Comprar",
   "topuptoGrowthPool": "Recarregar Growth Pool",
   "selectCurrency": "Selecionar Moeda",
-  "selectCurrencyDesc": "Insira o montante da compra"
+  "selectCurrencyDesc": "Insira o montante da compra",
+  "REGIST": "Registro de evento",
+  "PAYDEPOSIT": "Reembolso do depósito de atividade",
+  "GP_EXCHANGE": "Troca de pool de crescimento",
+  "GP_BUY_IN": "Compra no pool de crescimento",
+  "GP_BUY_OUT": "Venda do pool de crescimento",
+  "GP_SPOT_BUY": "Compra spot no pool de crescimento"
 }
