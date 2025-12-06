@@ -987,5 +987,6 @@
   "GP_BUY_IN": "Groei-pool kopen",
   "GP_BUY_OUT": "Groei-pool verkoop",
   "GP_SPOT_BUY": "Groei-pool spot kopen",
-  "swap_ext_hint": "Per il tuo livello VIP:\\nIl {precent}% di ogni importo di swap sarà assegnato al Growth Pool per l’acquisizione di azioni e il guadagno di profitti."
+  "swap_ext_hint": "Per il tuo livello VIP:\\nIl {precent}% di ogni importo di swap sarà assegnato al Growth Pool per l’acquisizione di azioni e il guadagno di profitti.",
+  "GP_TRANSFER": "Trasferimento del pool di crescita"
 }

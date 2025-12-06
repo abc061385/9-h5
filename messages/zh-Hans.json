@@ -991,5 +991,6 @@
   "GP_BUY_IN": "增长池购买入账",
   "GP_BUY_OUT": "增长池购买出账",
   "GP_SPOT_BUY": "现货兑换增长池",
-  "swap_ext_hint": "对于您所在的vip等级：\\n每次闪兑金额的 {precent}% 将分配给增长池，用于收购股权并赚取收益"
+  "swap_ext_hint": "对于您所在的vip等级：\\n每次闪兑金额的 {precent}% 将分配给增长池，用于收购股权并赚取收益",
+  "GP_TRANSFER": "增长池转入"
 }

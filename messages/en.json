@@ -991,5 +991,6 @@
   "GP_BUY_IN": "Growth Pool Buy In",
   "GP_BUY_OUT": "Growth Pool Buy Out",
   "GP_SPOT_BUY": "Spot Buy Growth Pool",
-  "swap_ext_hint": "For your VIP level:\\n{precent}% of each swap amount will be allocated to the Growth Pool for equity acquisition and profit earning."
+  "swap_ext_hint": "For your VIP level:\\n{precent}% of each swap amount will be allocated to the Growth Pool for equity acquisition and profit earning.",
+  "GP_TRANSFER": "Growth Pool Transfer In"
 }

@@ -991,5 +991,6 @@
   "GP_BUY_IN": "Kjøp inn i vekstpool",
   "GP_BUY_OUT": "Salg fra vekstpool",
   "GP_SPOT_BUY": "Spot-kjøp vekstpool",
-  "swap_ext_hint": "Voor uw VIP-niveau:\\n{precent}% van elk swapbedrag wordt toegewezen aan de Growth Pool voor aandelenverwerving en winstgeneratie."
+  "swap_ext_hint": "Voor uw VIP-niveau:\\n{precent}% van elk swapbedrag wordt toegewezen aan de Growth Pool voor aandelenverwerving en winstgeneratie.",
+  "GP_TRANSFER": "Overdracht groeipool"
 }

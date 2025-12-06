@@ -991,5 +991,6 @@
   "GP_BUY_IN": "Nákup do růstového fondu",
   "GP_BUY_OUT": "Prodej z růstového fondu",
   "GP_SPOT_BUY": "Spotová výměna růstového fondu",
-  "swap_ext_hint": "Pro vaše VIP úroveň:\\n{precent}% z každé částky swapu bude přiděleno do Growth Pool pro získávání kapitálu a generování zisku."
+  "swap_ext_hint": "Pro vaše VIP úroveň:\\n{precent}% z každé částky swapu bude přiděleno do Growth Pool pro získávání kapitálu a generování zisku.",
+  "GP_TRANSFER": "Přenos růstového fondu"
 }
