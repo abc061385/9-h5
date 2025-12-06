@@ -11,6 +11,10 @@ import { useForm } from "react-hook-form";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 
+import BaseImage from "@/components/base-image";
+import { GrowthPoolBuyDTO } from "@/api/ApiClient";
+import toast from "react-hot-toast";
+
 type FormData = {
   coin: string;
   amount: string;
@@ -19,11 +23,11 @@ type FormData = {
 const GrowthPoolView = () => {
   const t = useTrans();
   const [open, setOpen] = useState(false);
-  const { data: infoRes } = useRequestQuery(
+  const { data: infoRes, mutate: infoMutate } = useRequestQuery(
     api.growth.getGrowthPoolInfoUsingGet,
     {},
   );
-  const { data: listData } = useRequestQuery(
+  const { data: listData, mutate } = useRequestQuery(
     api.growth.getGrowthPoolTransactionsUsingGet,
     {
       pageNo: 1,
@@ -109,27 +113,41 @@ const GrowthPoolView = () => {
             <div className=" size-full rounded-box border border-base-content/5 ">
               <table className="table">
                 <tbody>
-                  {listData?.data?.list?.map(
-                    (
-                      item: {
-                        amount: number;
-                        coin: string;
-                        createTime: string;
+                  {listData?.data?.list ? (
+                    listData?.data?.list?.map(
+                      (
+                        item: {
+                          amount: number;
+                          coin: string;
+                          createTime: string;
+                        },
+                        index: number,
+                      ) => {
+                        return (
+                          <tr
+                            key={index}
+                            className="divide-x divide-base-content/5"
+                          >
+                            <td>
+                              {item?.amount} {item?.coin}
+                            </td>
+                            <td>{item?.createTime}</td>
+                          </tr>
+                        );
                       },
-                      index: number,
-                    ) => {
-                      return (
-                        <tr
-                          key={index}
-                          className="divide-x divide-base-content/5"
-                        >
-                          <td>
-                            {item?.amount} {item?.coin}
-                          </td>
-                          <td>{item?.createTime}</td>
-                        </tr>
-                      );
-                    },
+                    )
+                  ) : (
+                    <tr>
+                      <td colSpan={2} className="py-10 text-center">
+                        <BaseImage
+                          src="/images/common/no_data.png"
+                          className="w-[104px] h-[97px] mx-auto"
+                        />
+                        <span className="font-bold text-text2 text-sm">
+                          {t("暂无数据")}
+                        </span>
+                      </td>
+                    </tr>
                   )}
                 </tbody>
               </table>
@@ -178,7 +196,18 @@ const GrowthPoolView = () => {
               type="submit"
               className="btn btn-primary w-full bottom-0"
               onClick={handleSubmit((v) => {
-                console.log(v);
+                api.growth
+                  .buyGrowthPoolUsingPost({
+                    amount: Number(v.amount),
+                    coin: v.coin,
+                  } as unknown as GrowthPoolBuyDTO)
+                  .then(() => {
+                    toast.success(t("购买成功"));
+                    setOpen(false);
+                    mutate();
+                    infoMutate();
+                  })
+                  .catch(() => {});
               })}
             >
               {t("9MEcosystemBuy")}

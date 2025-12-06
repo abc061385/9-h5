@@ -45,6 +45,11 @@ export interface GrowthPoolBuyDTO {
   amount: number;
   /** 币种 */
   coin: string;
+  /**
+   * 用户ID【现货接口用】
+   * @format int64
+   */
+  memberId: number;
 }
 
 /** InternalTransferRequest */
@@ -3306,6 +3311,26 @@ export class Api<
       }),
   };
   internal = {
+    /**
+     * No description
+     *
+     * @tags 内部接口
+     * @name BuyGrowthPoolUsingPost1
+     * @summary 现货交易增长池购买
+     * @request POST:/internal/growthPool/buy
+     */
+    buyGrowthPoolUsingPost1: (
+      req: GrowthPoolBuyDTO,
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/internal/growthPool/buy`,
+        method: "POST",
+        body: req,
+        type: ContentType.Json,
+        ...params,
+      }),
+
     /**
      * No description
      *
