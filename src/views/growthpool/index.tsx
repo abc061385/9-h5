@@ -27,6 +27,7 @@ const GrowthPoolView = () => {
     api.growth.getGrowthPoolInfoUsingGet,
     {},
   );
+  const [loading, setLoading] = useState(false);
   const { data: listData, mutate } = useRequestQuery(
     api.growth.getGrowthPoolTransactionsUsingGet,
     {
@@ -201,7 +202,9 @@ const GrowthPoolView = () => {
             <button
               type="submit"
               className="btn btn-primary w-full bottom-0"
+              disabled={loading}
               onClick={handleSubmit((v) => {
+                setLoading(true);
                 api.growth
                   .buyGrowthPoolUsingPost({
                     amount: Number(v.amount),
@@ -210,11 +213,14 @@ const GrowthPoolView = () => {
                   .then(() => {
                     toast.success(t("购买成功"));
                     setOpen(false);
+                    setLoading(false);
                     mutate();
                     infoMutate();
                     reset();
                   })
-                  .catch(() => {});
+                  .catch(() => {
+                    setLoading(false);
+                  });
               })}
             >
               {t("9MEcosystemBuy")}
