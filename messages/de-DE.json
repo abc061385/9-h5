@@ -991,5 +991,6 @@
   "GP_BUY_IN": "Wachstumspool Kauf",
   "GP_BUY_OUT": "Wachstumspool Verkauf",
   "GP_SPOT_BUY": "Spot-Kauf Wachstumspool",
-  "swap_ext_hint": "Für Ihr VIP-Level:\\n{precent}% jedes Swap-Betrags wird dem Growth Pool für den Erwerb von Eigenkapital und die Gewinnerzielung zugewiesen."
+  "swap_ext_hint": "Für Ihr VIP-Level:\\n{precent}% jedes Swap-Betrags wird dem Growth Pool für den Erwerb von Eigenkapital und die Gewinnerzielung zugewiesen.",
+  "GP_TRANSFER": "Wachstumsbeckenübertragung"
 }
