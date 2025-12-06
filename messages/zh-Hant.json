@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "買入",
   "topuptoGrowthPool": "Growth Pool 充值",
   "selectCurrency": "選擇幣種",
-  "selectCurrencyDesc": "請輸入購買金額"
+  "selectCurrencyDesc": "請輸入購買金額",
+  "REGIST": "報名活動",
+  "PAYDEPOSIT": "返還活動押金",
+  "GP_EXCHANGE": "兌換增長池",
+  "GP_BUY_IN": "增長池購買入帳",
+  "GP_BUY_OUT": "增長池購買出帳",
+  "GP_SPOT_BUY": "現貨兌換增長池"
 }

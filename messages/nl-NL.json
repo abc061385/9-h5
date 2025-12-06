@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "Kopen",
   "topuptoGrowthPool": "Growth Pool opladen",
   "selectCurrency": "Valuta kiezen",
-  "selectCurrencyDesc": "Voer het aankoopbedrag in"
+  "selectCurrencyDesc": "Voer het aankoopbedrag in",
+  "REGIST": "Eventregistrering",
+  "PAYDEPOSIT": "Tilbakebetaling aktivitetens depositum",
+  "GP_EXCHANGE": "Vekstpool bytte",
+  "GP_BUY_IN": "Kjøp inn i vekstpool",
+  "GP_BUY_OUT": "Salg fra vekstpool",
+  "GP_SPOT_BUY": "Spot-kjøp vekstpool"
 }

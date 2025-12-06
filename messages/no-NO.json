@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "Kjøp",
   "topuptoGrowthPool": "Fylle på Growth Pool",
   "selectCurrency": "Velg valuta",
-  "selectCurrencyDesc": "Skriv inn kjøpsbeløp"
+  "selectCurrencyDesc": "Skriv inn kjøpsbeløp",
+  "REGIST": "Evenemangregistrering",
+  "PAYDEPOSIT": "Återbetalning av aktivitetsdeposition",
+  "GP_EXCHANGE": "Växla tillväxtpool",
+  "GP_BUY_IN": "Köp in i tillväxtpool",
+  "GP_BUY_OUT": "Försäljning från tillväxtpool",
+  "GP_SPOT_BUY": "Spotköp växling av pool"
 }

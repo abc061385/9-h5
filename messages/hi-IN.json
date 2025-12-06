@@ -981,5 +981,11 @@
   "9MEcosystemBuy": "खरीदें",
   "topuptoGrowthPool": "Growth Pool में जमा करें",
   "selectCurrency": "मुद्रा चुनें",
-  "selectCurrencyDesc": "कृपया खरीद राशि दर्ज करें"
+  "selectCurrencyDesc": "कृपया खरीद राशि दर्ज करें",
+  "REGIST": "कार्यक्रम पंजीकरण",
+  "PAYDEPOSIT": "गतिविधि जमा वापसी",
+  "GP_EXCHANGE": "विकास पूल का आदान-प्रदान",
+  "GP_BUY_IN": "विकास पूल में निवेश",
+  "GP_BUY_OUT": "विकास पूल में बिक्री",
+  "GP_SPOT_BUY": "स्पॉट खरीद विकास पूल"
 }

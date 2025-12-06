@@ -984,5 +984,11 @@
   "9MEcosystemBuy": "Köp",
   "topuptoGrowthPool": "Fylla på Growth Pool",
   "selectCurrency": "Välj valuta",
-  "selectCurrencyDesc": "Ange köpbelopp"
+  "selectCurrencyDesc": "Ange köpbelopp",
+  "REGIST": "Înregistrare eveniment",
+  "PAYDEPOSIT": "Rambursarea depozitului activității",
+  "GP_EXCHANGE": "Schimb de pool de creștere",
+  "GP_BUY_IN": "Cumpărarea în pool-ul de creștere",
+  "GP_BUY_OUT": "Vânzarea din pool-ul de creștere",
+  "GP_SPOT_BUY": "Cumpărare spot în pool-ul de creștere"
 }
