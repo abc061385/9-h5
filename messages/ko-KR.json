@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Growth Pool 충전",
   "selectCurrency": "통화 선택",
   "selectCurrencyDesc": "구매 금액을 입력하세요",
-  "REGIST": "이벤트 등록",
-  "PAYDEPOSIT": "활동 보증금 반환",
-  "GP_EXCHANGE": "성장 풀 교환",
-  "GP_BUY_IN": "성장 풀 구매",
-  "GP_BUY_OUT": "성장 풀 매도",
-  "GP_SPOT_BUY": "스팟 구매 성장 풀",
+  "REGIST": "등록 보증금",
+  "PAYDEPOSIT": "등록 보증금 반환",
+  "GP_EXCHANGE": "스왑 입금",
+  "GP_BUY_IN": "펀드 지갑 입금",
+  "GP_BUY_OUT": "Growth Pool 입금",
+  "GP_SPOT_BUY": "스팟 지갑 입금",
   "swap_ext_hint": "귀하의 VIP 등급의 경우:\\n각 스왑 금액의 {precent}%가 성장 풀에 할당되어 지분 취득 및 수익 창출에 사용됩니다.",
-  "GP_TRANSFER": "성장 풀 전송"
+  "GP_TRANSFER": "성장 풀 집합",
+  "VIP_RACE_REWARD": "VIP 등록 보너스"
 }

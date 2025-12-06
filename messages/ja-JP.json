@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Growth Pool へ入金",
   "selectCurrency": "通貨を選択",
   "selectCurrencyDesc": "購入金額を入力してください",
-  "REGIST": "イベント登録",
-  "PAYDEPOSIT": "活動預金の返金",
-  "GP_EXCHANGE": "成長プール交換",
-  "GP_BUY_IN": "成長プール購入",
-  "GP_BUY_OUT": "成長プール売却",
-  "GP_SPOT_BUY": "スポット購入成長プール",
+  "REGIST": "登録デポジット",
+  "PAYDEPOSIT": "登録デポジットの返却",
+  "GP_EXCHANGE": "スワップ入金",
+  "GP_BUY_IN": "ファンドウォレット入金",
+  "GP_BUY_OUT": "Growth Pool入金",
+  "GP_SPOT_BUY": "スポットウォレット入金",
   "swap_ext_hint": "あなたのVIPレベルの場合：\\n各スワップ金額の{precent}%が成長プールに割り当てられ、株式取得と利益獲得に使用されます。",
-  "GP_TRANSFER": "成長プール転送"
+  "GP_TRANSFER": "成長プールの統合",
+  "VIP_RACE_REWARD": "VIP登録ボーナス"
 }

@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Recargar Growth Pool",
   "selectCurrency": "Seleccionar moneda",
   "selectCurrencyDesc": "Ingrese el monto de compra",
-  "REGIST": "Registrazione evento",
-  "PAYDEPOSIT": "Rimborso deposito attività",
-  "GP_EXCHANGE": "Scambio del pool di crescita",
-  "GP_BUY_IN": "Acquisto nel pool di crescita",
-  "GP_BUY_OUT": "Vendita dal pool di crescita",
-  "GP_SPOT_BUY": "Acquisto spot nel pool di crescita",
+  "REGIST": "Depósito de registro",
+  "PAYDEPOSIT": "Devolución del depósito de registro",
+  "GP_EXCHANGE": "Depósito de intercambio",
+  "GP_BUY_IN": "Fondo Wallet Deposit",
+  "GP_BUY_OUT": "Growth Pool Deposit",
+  "GP_SPOT_BUY": "Depósito de Spot Wallet",
   "swap_ext_hint": "Para su nivel VIP:\\nEl {precent}% de cada monto de intercambio se asignará al Growth Pool para la adquisición de acciones y la obtención de ganancias.",
-  "GP_TRANSFER": "Transferencia de grupo de crecimiento"
+  "GP_TRANSFER": "Consolidación del Pool de Crecimiento",
+  "VIP_RACE_REWARD": "Bono de Registro VIP"
 }

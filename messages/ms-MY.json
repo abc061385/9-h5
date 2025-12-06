@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Top-up Growth Pool",
   "selectCurrency": "Select mata wang",
   "selectCurrencyDesc": "Sila masukkan amaun pembelian",
-  "REGIST": "Pendaftaran Acara",
-  "PAYDEPOSIT": "Deposit Aktivitas Pengembalian",
-  "GP_EXCHANGE": "Pertukaran Kolam Pertumbuhan",
-  "GP_BUY_IN": "Pembelian Masuk Kolam Pertumbuhan",
-  "GP_BUY_OUT": "Penjualan Keluar Kolam Pertumbuhan",
-  "GP_SPOT_BUY": "Pembelian Spot Kolam Pertumbuhan",
+  "REGIST": "Deposit Pendaftaran",
+  "PAYDEPOSIT": "Pemulangan Deposit Pendaftaran",
+  "GP_EXCHANGE": "Deposit Pertukaran",
+  "GP_BUY_IN": "Pemindahan ke Dompet Dana",
+  "GP_BUY_OUT": "Pemindahan ke Growth Pool",
+  "GP_SPOT_BUY": "Pemindahan ke Dompet Spot",
   "swap_ext_hint": "Untuk tahap VIP anda:\\n{precent}% daripada setiap jumlah pertukaran akan diperuntukkan kepada Growth Pool untuk pemerolehan ekuiti dan penjanaan keuntungan.",
-  "GP_TRANSFER": "Pemindahan Kolam Pertumbuhan"
+  "GP_TRANSFER": "Penggabungan Kolam Pertumbuhan",
+  "VIP_RACE_REWARD": "Bonus Pendaftaran VIP"
 }

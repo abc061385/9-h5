@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Growth Pool opladen",
   "selectCurrency": "Valuta kiezen",
   "selectCurrencyDesc": "Voer het aankoopbedrag in",
-  "REGIST": "Eventregistrering",
-  "PAYDEPOSIT": "Tilbakebetaling aktivitetens depositum",
-  "GP_EXCHANGE": "Vekstpool bytte",
-  "GP_BUY_IN": "Kjøp inn i vekstpool",
-  "GP_BUY_OUT": "Salg fra vekstpool",
-  "GP_SPOT_BUY": "Spot-kjøp vekstpool",
+  "REGIST": "Registratiedeposito",
+  "PAYDEPOSIT": "Teruggave van registratie deposito",
+  "GP_EXCHANGE": "Swap-storting",
+  "GP_BUY_IN": "Storting op de Fonds-portemonnee",
+  "GP_BUY_OUT": "Storting op de Growth Pool",
+  "GP_SPOT_BUY": "Storting op de Spot-portemonnee",
   "swap_ext_hint": "Voor uw VIP-niveau:\\n{precent}% van elk swapbedrag wordt toegewezen aan de Growth Pool voor aandelenverwerving en winstgeneratie.",
-  "GP_TRANSFER": "Overdracht groeipool"
+  "GP_TRANSFER": "Groei Pool Consolidatie",
+  "VIP_RACE_REWARD": "VIP-aanmeldbonus"
 }

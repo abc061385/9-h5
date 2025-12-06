@@ -981,12 +981,13 @@
   "topuptoGrowthPool": "Ricarica Growth Pool",
   "selectCurrency": "Seleziona valuta",
   "selectCurrencyDesc": "Inserisci l’importo di acquisto",
-  "REGIST": "Evenementregistratie",
-  "PAYDEPOSIT": "Terugbetaling activiteit borg",
-  "GP_EXCHANGE": "Groei-pool wisselen",
-  "GP_BUY_IN": "Groei-pool kopen",
-  "GP_BUY_OUT": "Groei-pool verkoop",
-  "GP_SPOT_BUY": "Groei-pool spot kopen",
+  "REGIST": "Deposito di registrazione",
+  "PAYDEPOSIT": "Rimborso deposito di registrazione",
+  "GP_EXCHANGE": "Deposito di swap",
+  "GP_BUY_IN": "Deposito nel portafoglio Fondi",
+  "GP_BUY_OUT": "Deposito nel Growth Pool",
+  "GP_SPOT_BUY": "Deposito nel portafoglio Spot",
   "swap_ext_hint": "Per il tuo livello VIP:\\nIl {precent}% di ogni importo di swap sarà assegnato al Growth Pool per l’acquisizione di azioni e il guadagno di profitti.",
-  "GP_TRANSFER": "Trasferimento del pool di crescita"
+  "GP_TRANSFER": "Consolidamento del Pool di Crescita",
+  "VIP_RACE_REWARD": "Bonus Iscrizione VIP"
 }
