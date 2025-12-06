@@ -74,7 +74,13 @@ const GrowthPoolView = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+    reset,
+  } = useForm<FormData>({
+    defaultValues: {
+      coin: "9MC",
+      amount: "",
+    },
+  });
 
   return (
     <ViewLayout className="flex flex-col md-pc:h-full">
@@ -108,9 +114,9 @@ const GrowthPoolView = () => {
           <div className="h-[1PX] bg-[rgba(0,0,0,0.1)] mt-3"></div>
           <div className="mt-6">{t("Deposit History")}</div>
         </div>
-        <div className="grow shrink-0  mb-4 mt-3 min-h-[200px] relative">
-          <div className="size-full  absolute overflow-y-scroll">
-            <div className=" size-full rounded-box border border-base-content/5 ">
+        <div className="grow shrink-0 mb-4 mt-3 min-h-[200px] relative">
+          <div className="size-full absolute overflow-y-scroll rounded-box border border-base-content/5 ">
+            <div className="size-full">
               <table className="table">
                 <tbody>
                   {listData?.data?.list ? (
@@ -129,7 +135,7 @@ const GrowthPoolView = () => {
                             className="divide-x divide-base-content/5"
                           >
                             <td>
-                              {item?.amount} {item?.coin}
+                              +{item?.amount} {item?.coin}
                             </td>
                             <td>{item?.createTime}</td>
                           </tr>
@@ -206,6 +212,7 @@ const GrowthPoolView = () => {
                     setOpen(false);
                     mutate();
                     infoMutate();
+                    reset();
                   })
                   .catch(() => {});
               })}
