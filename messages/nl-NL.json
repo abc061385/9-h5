@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "Opnemen",
   "bind_address": "Verbindingsadres",
   "assets_np_tips": "Uitgegeven in de vorm van {token_name}, dagelijks vrijgegeven op {precent}% volgens het vrijgavemechanisme",
-  "NP_ASSETS_RELEASE": "Activum vrijgave"
+  "NP_ASSETS_RELEASE": "Activum vrijgave",
+  "9MEcosystemGrowthPool": "9M Ecosysteem – Growth Pool",
+  "growthClubmembe": "Word lid van de Growth Club en bouw samen waarde",
+  "9MEcosystemGrowthPoolDesc": "Lid worden van Growth Pool = toegang tot de groeimotor van het 9M-ecosysteem\nHier komen de opbrengsten voort uit echte bedrijfsgroei, niet uit kortetermijnschommelingen.\nAls mede-bouwer van het ecosysteem zult u:\nDe kerninkomsten uit wereldwijde betalingen en handel delen\nDuurzame kwartaaldividenden ontvangen\nProfiteren van de langetermijngroei door 9M’s wereldwijde uitbreiding\nSamen met gebruikers over de hele wereld creëert u waarde voor het toekomstige financiële ecosysteem en deelt u deze, zodat groei verder gaat dan alleen cijfers.",
+  "USDMBalance": "USDM-saldo",
+  "9MCBalance": "9MC-saldo",
+  "Deposit History": "Stortingsgeschiedenis",
+  "9MEcosystemBuy": "Kopen",
+  "topuptoGrowthPool": "Growth Pool opladen",
+  "selectCurrency": "Valuta kiezen",
+  "selectCurrencyDesc": "Voer het aankoopbedrag in"
 }

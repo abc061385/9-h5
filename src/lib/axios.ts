@@ -75,7 +75,7 @@ const createAxiosInstance = (
 // 默认导出一个主实例（默认 baseURL）
 const axiosIn = createAxiosInstance("/app/", (config) => {
   // 白名单api - 不需要转换成form-data格式。
-  const wihteList: string[] = ["/withdraw-address/bind-address"];
+  const wihteList: string[] = ["/withdraw-address/bind-address", "/growth/buy"];
   if (!wihteList.includes(config?.url || "")) {
     config.headers["Content-Type"] = ContentType.FormData;
   }

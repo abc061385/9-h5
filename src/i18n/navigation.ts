@@ -89,6 +89,7 @@ export const routerMap = {
   businessSchoolPreviousHighlightsDetail:
     "/business-school/previous-highlights/detail/",
   teamsMembers: "/teams/members/",
+  growthPool: "/growthpool/",
 };
 
 export const WhiteListPath = [

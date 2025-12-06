@@ -441,6 +441,13 @@ const AssetsExchangeView = () => {
               ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
+            {["9MC", "USDM"].indexOf(formCoinItem?.currencyCode as string) >
+            -1 ? (
+              <div className="text-sm text-text4">
+                For V6+ users: 30% of each swap amount will be allocated to the
+                Growth Pool to acquire equity shares and earn returns.
+              </div>
+            ) : null}
             <div className="grid grid-flow-row-dense grid-cols-3 gap-2 mt-9">
               <button
                 className="btn btn-outline"

@@ -1,0 +1,12 @@
+<svg width="675" height="675" viewBox="0 0 675 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2147213234">
+<circle id="Ellipse 3534" cx="337.5" cy="337.5" r="337.5" fill="url(#paint0_linear_3135_74)"/>
+<path id="Vector" d="M316.765 361.286H216.706V428.143H238.941V495H150V428.143H172.235V316.714H316.765V249.857H283.412V183H394.588V249.857H361.235V316.714H505.765V428.121L528 428.143V495H439.059V428.143L461.294 428.121V361.286H361.235V428.143H394.588V495H283.412V428.143H316.765V361.286Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_3135_74" x1="337.5" y1="0" x2="337.5" y2="675" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A044E2"/>
+<stop offset="1" stop-color="#8F3CE7"/>
+</linearGradient>
+</defs>
+</svg>

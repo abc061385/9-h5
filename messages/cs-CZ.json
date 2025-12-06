@@ -974,5 +974,15 @@
   "transaction_WITHDRAW": "Výběr",
   "bind_address": "Výběrová adresa",
   "assets_np_tips": "Vydáno ve formě {token_name}, denně uvolňováno na {precent}% podle uvolňovacího mechanismu",
-  "NP_ASSETS_RELEASE": "Uvolnění majetku"
+  "NP_ASSETS_RELEASE": "Uvolnění majetku",
+  "9MEcosystemGrowthPool": "9M Ekosystém – Growth Pool",
+  "growthClubmembe": "Staňte se členem Growth Club a spoluvytvářejte hodnotu",
+  "9MEcosystemGrowthPoolDesc": "Vstup do Growth Pool = přístup k hlavnímu růstovému motoru ekosystému 9M\nVýnosy zde pocházejí ze skutečného růstu podnikání, nikoli z krátkodobých výkyvů.\nJako spolutvůrce ekosystému budete:\nSdílet klíčové příjmy z globálních plateb a obchodování\nZískávat udržitelné čtvrtletní dividendy\nTěžit z dlouhodobého růstu díky globální expanzi 9M\nSpolu s uživateli po celém světě budete vytvářet a sdílet hodnotu budoucího finančního ekosystému a posunete růst za hranici pouhých čísel.",
+  "USDMBalance": "Zůstatek USDM",
+  "9MCBalance": "Zůstatek 9MC",
+  "Deposit History": "Historie vkladů",
+  "9MEcosystemBuy": "Koupit",
+  "topuptoGrowthPool": "Dobít Growth Pool",
+  "selectCurrency": "Zvolte měnu",
+  "selectCurrencyDesc": "Zadejte částku nákupu\n"
 }

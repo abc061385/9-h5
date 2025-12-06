@@ -975,6 +975,16 @@
   "bind_address": "绑定地址",
   "assets_np_tips": "以{token_name}形式发放，按照释放机制每日释放{precent}%",
   "NP_ASSETS_RELEASE": "资产释放",
-  "REGIST":"报名活动",
-  "PAYDEPOSIT":"返还活动押金"
+  "REGIST": "报名活动",
+  "PAYDEPOSIT": "返还活动押金",
+  "9MEcosystemGrowthPool": "9M Ecosystem Growth Pool",
+  "growthClubmembe": "成为 Growth Club 成员，共创价值增长",
+  "9MEcosystemGrowthPoolDesc": "加入「9M Ecosystem Growth Pool」= 进入 9M 生态的核心增长引擎。\n这里的收益来自真实业务增长，而非短期波动。\n作为生态共建者，你将：\n共享全球支付与交易核心营收\n获取可持续季度分红\n拥有 9M 全球扩张的长期成长红利\n与全球用户一起创造并分享未来金融生态的价值，让增长不止停留在数字上。",
+  "USDMBalance": "USDM余额",
+  "9MCBalance": "9MC余额",
+  "Deposit History": "充值记录：",
+  "9MEcosystemBuy": "买入",
+  "topuptoGrowthPool": "Growth Pool充值",
+  "selectCurrency": "选择币种",
+  "selectCurrencyDesc": "请输入购买金额"
 }
