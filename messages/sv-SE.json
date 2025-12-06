@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "Schimb de pool de creștere",
   "GP_BUY_IN": "Cumpărarea în pool-ul de creștere",
   "GP_BUY_OUT": "Vânzarea din pool-ul de creștere",
-  "GP_SPOT_BUY": "Cumpărare spot în pool-ul de creștere"
+  "GP_SPOT_BUY": "Cumpărare spot în pool-ul de creștere",
+  "swap_ext_hint": "För din VIP-nivå:\\n{precent}% av varje swap-belopp kommer att tilldelas Growth Pool för förvärv av eget kapital och vinstgenerering."
 }

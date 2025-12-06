@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "Växla tillväxtpool",
   "GP_BUY_IN": "Köp in i tillväxtpool",
   "GP_BUY_OUT": "Försäljning från tillväxtpool",
-  "GP_SPOT_BUY": "Spotköp växling av pool"
+  "GP_SPOT_BUY": "Spotköp växling av pool",
+  "swap_ext_hint": "For ditt VIP-nivå:\\n{precent}% av hvert byttebeløp vil bli tildelt Growth Pool for egenkapitalanskaffelse og profittinntjening."
 }

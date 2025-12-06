@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "兌換增長池",
   "GP_BUY_IN": "增長池購買入帳",
   "GP_BUY_OUT": "增長池購買出帳",
-  "GP_SPOT_BUY": "現貨兌換增長池"
+  "GP_SPOT_BUY": "現貨兌換增長池",
+  "swap_ext_hint": "對於您所在的vip等級：\\n每次閃兌金額的 {precent}% 將分配給增長池，用於收購股權並賺取收益"
 }

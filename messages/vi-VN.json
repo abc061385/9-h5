@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "Hoán đổi bể tăng trưởng",
   "GP_BUY_IN": "Mua vào bể tăng trưởng",
   "GP_BUY_OUT": "Bán ra khỏi bể tăng trưởng",
-  "GP_SPOT_BUY": "Mua điểm vào bể tăng trưởng"
+  "GP_SPOT_BUY": "Mua điểm vào bể tăng trưởng",
+  "swap_ext_hint": "Đối với cấp độ VIP của bạn:\\n{precent}% của mỗi số tiền hoán đổi sẽ được phân bổ cho Growth Pool để mua cổ phần và kiếm lợi nhuận."
 }

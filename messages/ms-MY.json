@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "Pertukaran Kolam Pertumbuhan",
   "GP_BUY_IN": "Pembelian Masuk Kolam Pertumbuhan",
   "GP_BUY_OUT": "Penjualan Keluar Kolam Pertumbuhan",
-  "GP_SPOT_BUY": "Pembelian Spot Kolam Pertumbuhan"
+  "GP_SPOT_BUY": "Pembelian Spot Kolam Pertumbuhan",
+  "swap_ext_hint": "Untuk tahap VIP anda:\\n{precent}% daripada setiap jumlah pertukaran akan diperuntukkan kepada Growth Pool untuk pemerolehan ekuiti dan penjanaan keuntungan."
 }

@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "Výmena růstového fondu",
   "GP_BUY_IN": "Nákup do růstového fondu",
   "GP_BUY_OUT": "Prodej z růstového fondu",
-  "GP_SPOT_BUY": "Spot nákup růstového fondu"
+  "GP_SPOT_BUY": "Spot nákup růstového fondu",
+  "swap_ext_hint": "Pentru nivelul dvs. VIP:\\n{precent}% din fiecare sumă de swap va fi alocat Growth Pool pentru achiziția de capitaluri proprii și obținerea de profit."
 }
