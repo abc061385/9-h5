@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Growth Pool充值",
   "selectCurrency": "选择币种",
   "selectCurrencyDesc": "请输入购买金额",
-  "REGIST": "报名活动",
-  "PAYDEPOSIT": "返还活动押金",
-  "GP_EXCHANGE": "兑换增长池",
-  "GP_BUY_IN": "增长池购买入账",
-  "GP_BUY_OUT": "增长池购买出账",
-  "GP_SPOT_BUY": "现货兑换增长池",
+  "REGIST": "报名押金",
+  "PAYDEPOSIT": "报名押金返还",
+  "GP_EXCHANGE": "闪兑充值",
+  "GP_BUY_IN": "基金钱包充值",
+  "GP_BUY_OUT": "Growth Pool充值",
+  "GP_SPOT_BUY": "现货钱包充值",
   "swap_ext_hint": "对于您所在的vip等级：\\n每次闪兑金额的 {precent}% 将分配给增长池，用于收购股权并赚取收益",
-  "GP_TRANSFER": "增长池转入"
+  "GP_TRANSFER": "增长池归集",
+  "VIP_RACE_REWARD": "VIP报名赛奖金"
 }

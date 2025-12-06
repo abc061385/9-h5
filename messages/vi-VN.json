@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Nạp Growth Pool",
   "selectCurrency": "Chọn loại tiền",
   "selectCurrencyDesc": "Vui lòng nhập số tiền mua",
-  "REGIST": "Đăng ký sự kiện",
-  "PAYDEPOSIT": "Hoàn lại tiền cọc hoạt động",
-  "GP_EXCHANGE": "Hoán đổi bể tăng trưởng",
-  "GP_BUY_IN": "Mua vào bể tăng trưởng",
-  "GP_BUY_OUT": "Bán ra khỏi bể tăng trưởng",
-  "GP_SPOT_BUY": "Mua điểm vào bể tăng trưởng",
+  "REGIST": "Đặt cọc đăng ký",
+  "PAYDEPOSIT": "Hoàn trả đặt cọc đăng ký",
+  "GP_EXCHANGE": "Nạp tiền hoán đổi",
+  "GP_BUY_IN": "Nạp ví quỹ",
+  "GP_BUY_OUT": "Nạp Growth Pool",
+  "GP_SPOT_BUY": "Nạp ví giao ngay",
   "swap_ext_hint": "Đối với cấp độ VIP của bạn:\\n{precent}% của mỗi số tiền hoán đổi sẽ được phân bổ cho Growth Pool để mua cổ phần và kiếm lợi nhuận.",
-  "GP_TRANSFER": "Chuyển giao nhóm tăng trưởng"
+  "GP_TRANSFER": "Hợp nhất bể tăng trưởng",
+  "VIP_RACE_REWARD": "Thưởng đăng ký VIP"
 }

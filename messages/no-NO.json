@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Fylle på Growth Pool",
   "selectCurrency": "Velg valuta",
   "selectCurrencyDesc": "Skriv inn kjøpsbeløp",
-  "REGIST": "Evenemangregistrering",
-  "PAYDEPOSIT": "Återbetalning av aktivitetsdeposition",
-  "GP_EXCHANGE": "Växla tillväxtpool",
-  "GP_BUY_IN": "Köp in i tillväxtpool",
-  "GP_BUY_OUT": "Försäljning från tillväxtpool",
-  "GP_SPOT_BUY": "Spotköp växling av pool",
+  "REGIST": "Registreringsinnskudd",
+  "PAYDEPOSIT": "Refusjon av registreringsinnskudd",
+  "GP_EXCHANGE": "Bytteinnskudd",
+  "GP_BUY_IN": "Innskudd til Fond-lommebok",
+  "GP_BUY_OUT": "Innskudd til Growth Pool",
+  "GP_SPOT_BUY": "Innskudd til Spot-lommebok",
   "swap_ext_hint": "For ditt VIP-nivå:\\n{precent}% av hvert byttebeløp vil bli tildelt Growth Pool for egenkapitalanskaffelse og profittinntjening.",
-  "GP_TRANSFER": "Overføring av vekstpool"
+  "GP_TRANSFER": "Vekstbassengets Konsolidering",
+  "VIP_RACE_REWARD": "VIP-registreringsbonus"
 }

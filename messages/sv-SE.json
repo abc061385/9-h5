@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Fylla på Growth Pool",
   "selectCurrency": "Välj valuta",
   "selectCurrencyDesc": "Ange köpbelopp",
-  "REGIST": "Înregistrare eveniment",
-  "PAYDEPOSIT": "Rambursarea depozitului activității",
-  "GP_EXCHANGE": "Schimb de pool de creștere",
-  "GP_BUY_IN": "Cumpărarea în pool-ul de creștere",
-  "GP_BUY_OUT": "Vânzarea din pool-ul de creștere",
-  "GP_SPOT_BUY": "Cumpărare spot în pool-ul de creștere",
+  "REGIST": "Registreringsdeposition",
+  "PAYDEPOSIT": "Återbetalning av registreringsdeposition",
+  "GP_EXCHANGE": "Swap-inbetalning",
+  "GP_BUY_IN": "Insättning till Fond-plånbok",
+  "GP_BUY_OUT": "Insättning till Growth Pool",
+  "GP_SPOT_BUY": "Insättning till Spot-plånbok",
   "swap_ext_hint": "För din VIP-nivå:\\n{precent}% av varje swap-belopp kommer att tilldelas Growth Pool för förvärv av eget kapital och vinstgenerering.",
-  "GP_TRANSFER": "Överföring av tillväxtpool"
+  "GP_TRANSFER": "Konsolidering av Växande Pool",
+  "VIP_RACE_REWARD": "VIP-registreringsbonus"
 }

@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Dobít Growth Pool",
   "selectCurrency": "Zvolte měnu",
   "selectCurrencyDesc": "Zadejte částku nákupu\n",
-  "REGIST": "Registrace na akci",
-  "PAYDEPOSIT": "Vrácení zálohy za akci",
-  "GP_EXCHANGE": "Výměna růstového fondu",
-  "GP_BUY_IN": "Nákup do růstového fondu",
-  "GP_BUY_OUT": "Prodej z růstového fondu",
-  "GP_SPOT_BUY": "Spotová výměna růstového fondu",
+  "REGIST": "Záloha na registraci",
+  "PAYDEPOSIT": "Vrácení zálohy na registraci",
+  "GP_EXCHANGE": "Výměna vkladu",
+  "GP_BUY_IN": "Nabití peněženky fondového fondu",
+  "GP_BUY_OUT": "Nabití Growth Pool",
+  "GP_SPOT_BUY": "Nabití peněženky spotového fondu",
   "swap_ext_hint": "Pro vaše VIP úroveň:\\n{precent}% z každé částky swapu bude přiděleno do Growth Pool pro získávání kapitálu a generování zisku.",
-  "GP_TRANSFER": "Přenos růstového fondu"
+  "GP_TRANSFER": "Konsolidace Růstového Poolu",
+  "VIP_RACE_REWARD": "VIP registrační bonus"
 }

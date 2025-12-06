@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Încărcare Growth Pool",
   "selectCurrency": "Alegeți moneda",
   "selectCurrencyDesc": "Introduceți suma achiziției",
-  "REGIST": "Registrace akce",
-  "PAYDEPOSIT": "Vrácení zálohy na akci",
-  "GP_EXCHANGE": "Výmena růstového fondu",
-  "GP_BUY_IN": "Nákup do růstového fondu",
-  "GP_BUY_OUT": "Prodej z růstového fondu",
-  "GP_SPOT_BUY": "Spot nákup růstového fondu",
+  "REGIST": "Depozit de înregistrare",
+  "PAYDEPOSIT": "Returnarea depozitului de înregistrare",
+  "GP_EXCHANGE": "Depunere Swap",
+  "GP_BUY_IN": "Depunere în portofelul Fondurilor",
+  "GP_BUY_OUT": "Depunere în Growth Pool",
+  "GP_SPOT_BUY": "Depunere în portofelul Spot",
   "swap_ext_hint": "Pentru nivelul dvs. VIP:\\n{precent}% din fiecare sumă de swap va fi alocat Growth Pool pentru achiziția de capitaluri proprii și obținerea de profit.",
-  "GP_TRANSFER": "Transferul grupului de creștere"
+  "GP_TRANSFER": "Consolidarea Pool-ului de Creștere",
+  "VIP_RACE_REWARD": "Bonus de înregistrare VIP"
 }

@@ -985,12 +985,13 @@
   "topuptoGrowthPool": "Top-up to Growth Pool",
   "selectCurrency": "Select Currency",
   "selectCurrencyDesc": "Please enter purchase amount",
-  "REGIST": "Event Registration",
-  "PAYDEPOSIT": "Refund Activity Deposit",
-  "GP_EXCHANGE": "Exchange Growth Pool",
-  "GP_BUY_IN": "Growth Pool Buy In",
-  "GP_BUY_OUT": "Growth Pool Buy Out",
-  "GP_SPOT_BUY": "Spot Buy Growth Pool",
+  "REGIST": "Registration Deposit",
+  "PAYDEPOSIT": "Registration Deposit Return",
+  "GP_EXCHANGE": "Swap Deposit",
+  "GP_BUY_IN": "Fund Wallet Deposit",
+  "GP_BUY_OUT": "Growth Pool Deposit",
+  "GP_SPOT_BUY": "Spot Wallet Deposit",
   "swap_ext_hint": "For your VIP level:\\n{precent}% of each swap amount will be allocated to the Growth Pool for equity acquisition and profit earning.",
-  "GP_TRANSFER": "Growth Pool Transfer In"
+  "GP_TRANSFER": "Growth Pool Consolidation",
+  "VIP_RACE_REWARD": "VIP Registration"
 }
