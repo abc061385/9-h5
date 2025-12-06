@@ -38,6 +38,8 @@ const AssetsExchangeView = () => {
   const { getBalanceList, balanceList } = useAssetStore();
 
   const [toCoinList, setToCoinList] = useState<CurrencyInfo[]>([]);
+  const [showTip, setShowTip] = useState(false);
+  const [growthRate, setGrowthRate] = useState(0);
 
   const [formDrawerOpen, setFormDrawerOpen] = useState(false);
   const [toDrawerOpen, setToDrawerOpen] = useState(false);
@@ -136,6 +138,20 @@ const AssetsExchangeView = () => {
     },
     [],
   );
+
+  const handleSetExchagePreview = useCallback(async () => {
+    try {
+      const res = await api.member.flashExchangePreviewUsingGet({
+        fromCoin: formCoinItem?.currencyCode,
+        toCoin: toCoinItem?.currencyCode,
+        amount: Number(getValues().formCoinValue),
+      });
+      setShowTip(res.data?.buyGrowth || false);
+      setGrowthRate(res.data?.growthRate * 100);
+    } catch {
+      setShowTip(false);
+    }
+  }, [formCoinItem, toCoinItem, getValues]);
 
   return (
     <ViewLayout
@@ -350,6 +366,8 @@ const AssetsExchangeView = () => {
             }
             if (!e.formCoinValue) return toast.error(t("deposit.enterAmount"));
             if (!price) return toast.error(t("未获取到币价"));
+
+            handleSetExchagePreview();
             return setConfirmOpen(true);
           })}
         >
@@ -441,12 +459,17 @@ const AssetsExchangeView = () => {
               ${toCoinItem?.currencyCode}`,
             )}
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
-            {["9MC", "USDM"].indexOf(formCoinItem?.currencyCode as string) >
-            -1 ? (
-              <div className="text-sm text-text4">
-                For V6+ users: 30% of each swap amount will be allocated to the
-                Growth Pool to acquire equity shares and earn returns.
-              </div>
+            {showTip ? (
+              <div
+                className="text-sm text-text4"
+                style={{ whiteSpace: "pre-line" }}
+                dangerouslySetInnerHTML={{
+                  __html: t("swap_ext_hint", { precent: growthRate }).replace(
+                    "\\n",
+                    "<br/>",
+                  ),
+                }}
+              ></div>
             ) : null}
             <div className="grid grid-flow-row-dense grid-cols-3 gap-2 mt-9">
               <button

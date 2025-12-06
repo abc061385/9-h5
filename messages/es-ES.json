@@ -990,5 +990,6 @@
   "GP_EXCHANGE": "Scambio del pool di crescita",
   "GP_BUY_IN": "Acquisto nel pool di crescita",
   "GP_BUY_OUT": "Vendita dal pool di crescita",
-  "GP_SPOT_BUY": "Acquisto spot nel pool di crescita"
+  "GP_SPOT_BUY": "Acquisto spot nel pool di crescita",
+  "swap_ext_hint": "Para su nivel VIP:\\nEl {precent}% de cada monto de intercambio se asignará al Growth Pool para la adquisición de acciones y la obtención de ganancias."
 }

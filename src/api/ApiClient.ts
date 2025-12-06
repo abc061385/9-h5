@@ -3335,6 +3335,31 @@ export class Api<
      * No description
      *
      * @tags 内部接口
+     * @name GetGrowthPoolLimitInfoUsingGet
+     * @summary 获取增长池限制信息
+     * @request GET:/internal/growthPool/check
+     */
+    getGrowthPoolLimitInfoUsingGet: (
+      query?: {
+        /**
+         * memberId
+         * @format int64
+         */
+        memberId?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/internal/growthPool/check`,
+        method: "GET",
+        query: query,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 内部接口
      * @name TransferUsingPost
      * @summary 内部转账
      * @request POST:/internal/transfer
@@ -4002,6 +4027,32 @@ export class Api<
         method: "POST",
         query: query,
         type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 用户中心
+     * @name FlashExchangePreviewUsingGet
+     * @summary 用户闪兑预算
+     * @request GET:/member/flash-exchange/preview
+     */
+    flashExchangePreviewUsingGet: (
+      query?: {
+        /** amount */
+        amount?: number;
+        /** fromCoin */
+        fromCoin?: string;
+        /** toCoin */
+        toCoin?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member/flash-exchange/preview`,
+        method: "GET",
+        query: query,
         ...params,
       }),
 
