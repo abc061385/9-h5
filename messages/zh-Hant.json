@@ -991,7 +991,7 @@
   "GP_BUY_IN": "基金錢包充值",
   "GP_BUY_OUT": "Growth Pool充值",
   "GP_SPOT_BUY": "現貨錢包充值",
-  "swap_ext_hint": "對於您所在的vip等級：\\n每次閃兌金額的 {precent}% 將分配給增長池，用於收購股權並賺取收益",
+  "swap_ext_hint": "對於您所在的 VIP 等級：每次閃兌金額的 {precent}% 將自動分配至增長池，用於參與股權收購並獲取相應收益。",
   "GP_TRANSFER": "增長池歸集",
   "VIP_RACE_REWARD": "VIP報名賽獎金"
 }

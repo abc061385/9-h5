@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Einzahlung auf das Fonds-Wallet",
   "GP_BUY_OUT": "Einzahlung auf das Growth Pool",
   "GP_SPOT_BUY": "Einzahlung auf das Spot-Wallet",
-  "swap_ext_hint": "Für Ihr VIP-Level:\\n{precent}% jedes Swap-Betrags wird dem Growth Pool für den Erwerb von Eigenkapital und die Gewinnerzielung zugewiesen.",
+  "swap_ext_hint": "Gemäß Ihrem aktuellen VIP-Level werden {precent}% jeder Swap-Summe automatisch dem Growth Pool zugewiesen, um Aktienakquisition und langfristige Ertragsgenerierung zu unterstützen.",
   "GP_TRANSFER": "Wachstumspool-Konsolidierung",
   "VIP_RACE_REWARD": "VIP-Anmeldebonus"
 }

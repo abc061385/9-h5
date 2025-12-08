@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Depunere în portofelul Fondurilor",
   "GP_BUY_OUT": "Depunere în Growth Pool",
   "GP_SPOT_BUY": "Depunere în portofelul Spot",
-  "swap_ext_hint": "Pentru nivelul dvs. VIP:\\n{precent}% din fiecare sumă de swap va fi alocat Growth Pool pentru achiziția de capitaluri proprii și obținerea de profit.",
+  "swap_ext_hint": "Pe baza nivelului dvs. VIP, {precent}% din fiecare sumă Swap va fi alocată automat către Growth Pool pentru achiziția de acțiuni și generarea de câștiguri pe termen lung.",
   "GP_TRANSFER": "Consolidarea Pool-ului de Creștere",
   "VIP_RACE_REWARD": "Bonus de înregistrare VIP"
 }

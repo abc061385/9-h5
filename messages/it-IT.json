@@ -987,7 +987,7 @@
   "GP_BUY_IN": "Deposito nel portafoglio Fondi",
   "GP_BUY_OUT": "Deposito nel Growth Pool",
   "GP_SPOT_BUY": "Deposito nel portafoglio Spot",
-  "swap_ext_hint": "Per il tuo livello VIP:\\nIl {precent}% di ogni importo di swap sarà assegnato al Growth Pool per l’acquisizione di azioni e il guadagno di profitti.",
+  "swap_ext_hint": "In base al tuo livello VIP, il {precent}% di ogni importo Swap sarà automaticamente assegnato al Growth Pool per l’acquisizione di equity e la generazione di rendimenti a lungo termine.",
   "GP_TRANSFER": "Consolidamento del Pool di Crescita",
   "VIP_RACE_REWARD": "Bonus Iscrizione VIP"
 }

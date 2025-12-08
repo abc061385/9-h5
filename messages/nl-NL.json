@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Storting op de Fonds-portemonnee",
   "GP_BUY_OUT": "Storting op de Growth Pool",
   "GP_SPOT_BUY": "Storting op de Spot-portemonnee",
-  "swap_ext_hint": "Voor uw VIP-niveau:\\n{precent}% van elk swapbedrag wordt toegewezen aan de Growth Pool voor aandelenverwerving en winstgeneratie.",
+  "swap_ext_hint": "Op basis van uw huidige VIP-niveau wordt {precent}% van elk Swap-bedrag automatisch toegewezen aan de Growth Pool voor aandelenverwerving en langetermijnrendement.",
   "GP_TRANSFER": "Groei Pool Consolidatie",
   "VIP_RACE_REWARD": "VIP-aanmeldbonus"
 }
