@@ -977,7 +977,7 @@
   "NP_ASSETS_RELEASE": "Liberar de Activos",
   "9MEcosystemGrowthPool": "9M Ecossistema – Growth Pool",
   "growthClubmembe": "Torne-se membro do Growth Club e crie valor em conjunto",
-  "9MEcosystemGrowthPoolDesc": "Aderir ao “9M Ecosystem Growth Pool” significa entrar no motor central de crescimento do ecossistema 9M.\nAqui, os rendimentos vêm do crescimento real do negócio, não de flutuações de curto prazo.\nComo co-construtor do ecossistema, você irá:\nPartilhar as receitas principais de pagamentos e transações globais\nReceber dividendos periódicos sustentáveis\nObter benefícios de crescimento a longo prazo com a expansão global da 9M\nJuntamente com utilizadores de todo o mundo, criará e partilhará o valor do futuro ecossistema financeiro, permitindo que o crescimento vá além dos números.",
+  "9MEcosystemGrowthPoolDesc": "Junte-se ao “9M Ecosystem Growth Pool” = Entre no motor central de crescimento do ecossistema 9M.\nAqui, os retornos vêm do crescimento real dos negócios, não de volatilidade de curto prazo.\nComo co-construtor do ecossistema, você irá:\nPartilhar receitas globais de pagamentos e transações\nReceber dividendos sustentáveis periódicos\nBeneficiar do crescimento de longo prazo da expansão global da 9M\nCriar e partilhar valor com utilizadores globais, permitindo que o crescimento vá além dos números.",
   "USDMBalance": "Saldo USDM",
   "9MCBalance": "Saldo 9MC",
   "Deposit History": "Histórico de Depósitos:",
@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Depósito na Carteira de Fundos",
   "GP_BUY_OUT": "Depósito no Growth Pool",
   "GP_SPOT_BUY": "Depósito na Carteira Spot",
-  "swap_ext_hint": "Para o seu nível VIP:\\n{precent}% de cada valor de swap será alocado ao Growth Pool para aquisição de ações e obtenção de lucros.",
+  "swap_ext_hint": "Para o seu nível VIP atual, {precent}% de cada valor de Swap será automaticamente alocado ao Growth Pool, utilizado para aquisição de ações e geração de rendimentos a longo prazo.",
   "GP_TRANSFER": "Consolidação do Pool de Crescimento",
   "VIP_RACE_REWARD": "Prémio VIP do Torneio"
 }

@@ -977,7 +977,7 @@
   "NP_ASSETS_RELEASE": "Pelepasan Aset",
   "9MEcosystemGrowthPool": "9M Ekosistem – Growth Pool",
   "growthClubmembe": "Terus jadi ahli Growth Club dan bina nilai bersama",
-  "9MEcosystemGrowthPoolDesc": "Menyertai “9M Ecosystem Growth Pool” bermaksud memasuki enjin pertumbuhan teras dalam ekosistem 9M.\nHasil di sini datang daripada pertumbuhan perniagaan sebenar, bukan turun naik jangka pendek.\nSebagai rakan pembina ekosistem, anda akan:\nBerkongsi hasil teras pembayaran dan perdagangan global\nMenerima dividen berkala yang mampan\nMemperoleh manfaat pertumbuhan jangka panjang daripada pengembangan global 9M\nBersama pengguna di seluruh dunia, anda akan mencipta dan berkongsi nilai ekosistem kewangan masa depan, memastikan pertumbuhan tidak hanya berhenti pada angka.",
+  "9MEcosystemGrowthPoolDesc": "Menyertai “9M Ecosystem Growth Pool” = memasuki enjin pertumbuhan teras ekosistem 9M.\nKeuntungan di sini datang daripada pertumbuhan perniagaan sebenar, bukan turun naik jangka pendek.\nSebagai pembina ekosistem, anda akan:\nBerkongsi hasil teras pembayaran & dagangan global\nMenerima dividen berkala yang mampan\nMenikmati manfaat pertumbuhan jangka panjang daripada pengembangan global 9M\nMencipta dan berkongsi nilai ekosistem kewangan masa depan bersama pengguna global — menjadikan pertumbuhan lebih daripada sekadar angka.",
   "USDMBalance": "Baki USDM",
   "9MCBalance": "Baki 9MC",
   "Deposit History": "Rekod deposit:",
@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Pemindahan ke Dompet Dana",
   "GP_BUY_OUT": "Pemindahan ke Growth Pool",
   "GP_SPOT_BUY": "Pemindahan ke Dompet Spot",
-  "swap_ext_hint": "Untuk tahap VIP anda:\\n{precent}% daripada setiap jumlah pertukaran akan diperuntukkan kepada Growth Pool untuk pemerolehan ekuiti dan penjanaan keuntungan.",
+  "swap_ext_hint": "Menurut tahap VIP anda, {precent}% daripada setiap amaun Swap akan diperuntukkan secara automatik ke Growth Pool untuk pengambilalihan ekuiti dan penjanaan hasil jangka panjang.",
   "GP_TRANSFER": "Penggabungan Kolam Pertumbuhan",
   "VIP_RACE_REWARD": "Bonus Pendaftaran VIP"
 }

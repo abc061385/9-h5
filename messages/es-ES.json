@@ -977,7 +977,7 @@
   "NP_ASSETS_RELEASE": "Lib­er­a­ción de Activos",
   "9MEcosystemGrowthPool": "9M Ecosistema – Growth Pool",
   "growthClubmembe": "Únete al Growth Club y crea valor sostenible",
-  "9MEcosystemGrowthPoolDesc": "Unirse al “9M Ecosystem Growth Pool” significa entrar en el motor central de crecimiento del ecosistema 9M.\nAquí, los beneficios provienen del crecimiento real del negocio, no de fluctuaciones a corto plazo.\nComo co-constructor del ecosistema, usted:\nCompartirá los ingresos centrales de pagos y transacciones globales\nRecibir dividendos periódicos sostenibles\nObtendrá beneficios de crecimiento a largo plazo de la expansión global de 9M\nJunto con usuarios de todo el mundo, creará y compartirá el valor del futuro ecosistema financiero, llevando el crecimiento más allá de los números.",
+  "9MEcosystemGrowthPoolDesc": "Unirse al “9M Ecosystem Growth Pool” = entrar al motor central de crecimiento del ecosistema 9M.\nLos beneficios aquí provienen del crecimiento real del negocio, no de la volatilidad a corto plazo.\nComo co-constructor del ecosistema, usted:\nCompartirá ingresos centrales de pagos y comercio global\nRecibirá dividendos periódicos sostenibles\nDisfrutará beneficios de crecimiento a largo plazo de la expansión global de 9M\nCreará y compartirá valor con usuarios globales para que el crecimiento no se limite solo a números.",
   "USDMBalance": "Saldo USDM",
   "9MCBalance": "Saldo 9MC",
   "Deposit History": "Historial de depósitos:",
@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Fondo Wallet Deposit",
   "GP_BUY_OUT": "Growth Pool Deposit",
   "GP_SPOT_BUY": "Depósito de Spot Wallet",
-  "swap_ext_hint": "Para su nivel VIP:\\nEl {precent}% de cada monto de intercambio se asignará al Growth Pool para la adquisición de acciones y la obtención de ganancias.",
+  "swap_ext_hint": "Según su nivel VIP actual, el {precent}% de cada monto de Swap se asignará automáticamente al Growth Pool para adquisición de acciones y generación de rendimientos a largo plazo.",
   "GP_TRANSFER": "Consolidación del Pool de Crecimiento",
   "VIP_RACE_REWARD": "Bono de Registro VIP"
 }

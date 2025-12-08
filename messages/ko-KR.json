@@ -977,7 +977,7 @@
   "NP_ASSETS_RELEASE": "자산 공개",
   "9MEcosystemGrowthPool": "9M 생태계 성장 풀",
   "growthClubmembe": "Growth Club 회원이 되어 가치 성장을 함께 만들어가세요",
-  "9MEcosystemGrowthPoolDesc": "9M Ecosystem Growth Pool’에 참여한다는 것은 9M 생태계의 핵심 성장 엔진에 들어간다는 의미입니다.\n여기서의 수익은 단기 변동이 아니라 실제 비즈니스 성장에서 나옵니다.\n생태계 공동 구축자로서 당신은:\n전 세계 결제 및 거래 핵심 수익을 공유하고\n지속 가능한 주기적 배당금을 받다\n9M 글로벌 확장에 따른 장기 성장 이익을 얻습니다\n전 세계 사용자들과 함께 미래 금융 생태계의 가치를 창조하고 공유하며, 성장을 숫자에만 머물지 않게 합니다.",
+  "9MEcosystemGrowthPoolDesc": "「9M Ecosystem Growth Pool」에 참여 = 9M 생태계의 핵심 성장 엔진에 진입하는 것입니다.\n여기서의 수익은 단기 변동이 아닌 실제 비즈니스 성장에서 발생합니다.\n생태계 공동 구축자로서 당신은:\n글로벌 결제 및 거래 핵심 수익을 공유하고\n지속 가능한 주기 배당을 받으며\n9M 글로벌 확장의 장기 성장 이익을 얻고\n전 세계 사용자와 함께 미래 금융 생태계의 가치를 창조하고 공유하여 성장의 의미를 숫자 그 이상으로 확장하게 됩니다.",
   "USDMBalance": "USDM 잔액",
   "9MCBalance": "9MC 잔액",
   "Deposit History": "입금 기록:",
@@ -991,7 +991,7 @@
   "GP_BUY_IN": "펀드 지갑 입금",
   "GP_BUY_OUT": "Growth Pool 입금",
   "GP_SPOT_BUY": "스팟 지갑 입금",
-  "swap_ext_hint": "귀하의 VIP 등급의 경우:\\n각 스왑 금액의 {precent}%가 성장 풀에 할당되어 지분 취득 및 수익 창출에 사용됩니다.",
+  "swap_ext_hint": "회원님의 현재 VIP 등급 기준으로, 각 스왑 금액의 {precent}%가 자동으로 성장 풀에 배정되며, 이는 지분 취득과 장기 수익 창출에 사용됩니다。",
   "GP_TRANSFER": "성장 풀 집합",
   "VIP_RACE_REWARD": "VIP 등록 보너스"
 }

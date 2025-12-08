@@ -977,7 +977,7 @@
   "NP_ASSETS_RELEASE": "Libération d’Actifs",
   "9MEcosystemGrowthPool": "9M Écosystème – Growth Pool",
   "growthClubmembe": "Devenez membre du Growth Club et co-créez la croissance de valeur",
-  "9MEcosystemGrowthPoolDesc": "Rejoindre le Growth Pool = accéder au moteur central de croissance de l’écosystème 9M\nIci, les revenus proviennent de la croissance réelle de l’activité, et non de fluctuations à court terme.\n\nn tant que co-constructeur de l’écosystème, vous allez :\nPartager les revenus essentiels issus des paiements et transactions mondiaux\nRecevoir des dividendes périodiques durables\nBénéficier de la croissance à long terme liée à l’expansion mondiale de 9M\nAvec les utilisateurs du monde entier, vous contribuerez à créer et partager la valeur du futur écosystème financier, pour que la croissance ne se limite plus aux chiffres.",
+  "9MEcosystemGrowthPoolDesc": "Rejoindre le “9M Ecosystem Growth Pool” = accéder au moteur de croissance central de l’écosystème 9M.\nIci, les gains proviennent d’une véritable croissance commerciale, et non de fluctuations à court terme.\nEn tant que co-constructeur de l’écosystème, vous :\nPartagez les revenus clés des paiements et transactions mondiaux\nRecevez des dividendes périodiques durables\nBénéficiez d’une croissance à long terme grâce à l’expansion mondiale de 9M\nCréez et partagez la valeur du futur écosystème financier avec les utilisateurs du monde entier, pour que la croissance aille au-delà des chiffres.",
   "USDMBalance": "Solde USDM",
   "9MCBalance": "Solde 9MC",
   "Deposit History": "Historique des dépôts:",
@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Dépôt du portefeuille de fonds",
   "GP_BUY_OUT": "Dépôt du Growth Pool",
   "GP_SPOT_BUY": "Dépôt du portefeuille Spot",
-  "swap_ext_hint": "Pour votre niveau VIP :\\n{precent}% de chaque montant d’échange sera alloué au Growth Pool pour l’acquisition d’actions et la génération de bénéfices.",
+  "swap_ext_hint": "Selon votre niveau VIP, {precent}% de chaque montant de Swap seront automatiquement alloués au Growth Pool pour l’acquisition d’actions et la génération de revenus à long terme.",
   "GP_TRANSFER": "Consolidation du Pool de Croissance",
   "VIP_RACE_REWARD": "Prime d’inscription VIP"
 }
