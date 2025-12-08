@@ -7,13 +7,16 @@ import { useTrans } from "@/hooks/useTrans";
 import Bridge from "@/lib/dsBridge";
 import { useEffect, useMemo, useState } from "react";
 import { Modal } from "@/components/modal";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "@/lib/z";
 import BaseImage from "@/components/base-image";
 import { GrowthPoolBuyDTO } from "@/api/ApiClient";
 import toast from "react-hot-toast";
+import { utils } from "@/lib/utils";
 
 type FormData = {
   coin: string;
@@ -71,15 +74,23 @@ const GrowthPoolView = () => {
     }
   };
 
+  const Schema = z.object({
+    coin: z.string(),
+    amount: z.string(),
+  });
+
   const {
     register,
     handleSubmit,
+    setValue,
+    control,
     formState: { errors },
     reset,
   } = useForm<FormData>({
+    resolver: zodResolver(Schema),
     defaultValues: {
       coin: "9MC",
-      amount: "",
+      amount: "0",
     },
   });
 
@@ -187,12 +198,43 @@ const GrowthPoolView = () => {
               )}
             </div>
             <div className="form-control w-full">
-              <input
-                type="text"
-                placeholder={t("selectCurrencyDesc")}
-                className="input input-bordered w-full"
-                {...register("amount", { required: t("selectCurrencyDesc") })}
-              />
+              <Controller
+                name="amount"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    {...register("amount", {
+                      required: t("selectCurrencyDesc"),
+                    })}
+                    {...field}
+                    type="text"
+                    placeholder={t("selectCurrencyDesc")}
+                    className="input input-bordered w-full"
+                    inputMode="decimal" // 让手机键盘仍然显示数字键盘
+                    onChange={(e) => {
+                      const val = e.target.value;
+
+                      // 允许输入整数或最多两位小数
+                      if (!/^\d*(\.\d{0,2})?$/.test(val)) {
+                        return; // 不符合规则则不更新
+                      }
+
+                      // 允许输入整数或最多两位小数
+                      if (/^\d*\.$/.test(val)) {
+                        setValue("amount", val);
+                        return;
+                      }
+                      // 只有USDM和9MC 2位小数
+                      const v = utils
+                        .toBigNumber(val || 0)
+                        .decimalPlaces(2, utils.ROUND_DOWN)
+                        .toString();
+
+                      setValue("amount", v === "NaN" ? "0" : v);
+                    }}
+                  />
+                )}
+              ></Controller>
               {errors.amount && (
                 <span className="text-red-500 text-sm mt-1">
                   {errors.amount.message}
