@@ -367,7 +367,8 @@ const AssetsExchangeView = () => {
             if (!e.formCoinValue) return toast.error(t("deposit.enterAmount"));
             if (!price) return toast.error(t("未获取到币价"));
 
-            handleSetExchagePreview();
+            // 改逻辑了，这里不需要了
+            // handleSetExchagePreview();
             return setConfirmOpen(true);
           })}
         >

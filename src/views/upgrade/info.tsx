@@ -9,7 +9,7 @@ import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { utils } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 interface IUpgradeProps {
@@ -23,6 +23,17 @@ const NewVersionMap = {
   smartWallet: 1,
 };
 
+interface RewardStatsType {
+  growthRate: number;
+  limitLevel: number;
+  buyGrowth: boolean;
+}
+const rewardStatsDefault = {
+  growthRate: 0.3,
+  limitLevel: 0,
+  buyGrowth: false,
+};
+
 const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const t = useTrans();
   const { setField } = useAssetStore();
@@ -33,6 +44,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
 
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
+  const [rewardStats, setRewardStats] = useState(rewardStatsDefault);
 
   const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
   const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
@@ -44,6 +56,25 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const { trigger, isMutating } = useRequestMutation(
     api.fundProductConfig.rewardExtractUsingPost,
   );
+
+  useEffect(() => {
+    if (!tabsValue) return;
+    api.fundProductConfig
+      .getRewardStatsUsingGet({ outputToken: tabsValue })
+      .then((res) => {
+        if (res?.data?.growthPoolConfig) {
+          setRewardStats(
+            (res?.data?.growthPoolConfig as RewardStatsType) ||
+              rewardStatsDefault,
+          );
+        } else {
+          setRewardStats(rewardStatsDefault);
+        }
+      })
+      .catch(() => {
+        setRewardStats(rewardStatsDefault);
+      });
+  }, [tabsValue]);
 
   // const expectIncome = useCallback(() => {
   //   if (!withdrawConfig?.managementFee) return 0;
@@ -259,6 +290,20 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
             {formatBalance(estimatedArrival, tabsValue)} {tabsValue}
           </span>
         </div>
+        <ShowIf condition={rewardStats.buyGrowth}>
+          <div
+            className="text-sm text-text4 mt-2"
+            style={{ whiteSpace: "pre-line" }}
+            dangerouslySetInnerHTML={{
+              __html: t("swap_ext_hint", {
+                precent: utils
+                  .toBigNumber(rewardStats.growthRate)
+                  .multipliedBy(100)
+                  .toNumber(),
+              }).replace("\\n", "<br/>"),
+            }}
+          ></div>
+        </ShowIf>
         <ShowIf condition={newVersion === NewVersionMap.smartWallet}>
           <div className="text-sm text-text4 mb-8">
             <hr className="border-border2 my-4" />
