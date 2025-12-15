@@ -23,11 +23,6 @@ const NewVersionMap = {
   smartWallet: 1,
 };
 
-interface RewardStatsType {
-  growthRate: number;
-  limitLevel: number;
-  buyGrowth: boolean;
-}
 const rewardStatsDefault = {
   growthRate: 0.3,
   limitLevel: 0,
@@ -58,23 +53,9 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   );
 
   useEffect(() => {
-    if (!tabsValue) return;
-    api.fundProductConfig
-      .getRewardStatsUsingGet({ outputToken: tabsValue })
-      .then((res) => {
-        if (res?.data?.growthPoolConfig) {
-          setRewardStats(
-            (res?.data?.growthPoolConfig as RewardStatsType) ||
-              rewardStatsDefault,
-          );
-        } else {
-          setRewardStats(rewardStatsDefault);
-        }
-      })
-      .catch(() => {
-        setRewardStats(rewardStatsDefault);
-      });
-  }, [tabsValue]);
+    if (!info.growthPoolConfig) return;
+    setRewardStats(info.growthPoolConfig || rewardStatsDefault);
+  }, [info]);
 
   // const expectIncome = useCallback(() => {
   //   if (!withdrawConfig?.managementFee) return 0;

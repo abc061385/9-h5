@@ -306,6 +306,12 @@ type IncomeListType = {
   inout?: 1 | 2 | null;
 };
 
+interface GrowthPoolConfigType {
+  growthRate: number;
+  limitLevel: number;
+  buyGrowth: boolean;
+}
+
 type AwardInfoType = {
   totalReward: number;
   totalCurrency: number;
@@ -320,6 +326,7 @@ type AwardInfoType = {
     totalQuota: number;
     usedQuota: number;
   };
+  growthPoolConfig: GrowthPoolConfigType;
 };
 
 type AwardListType = {
