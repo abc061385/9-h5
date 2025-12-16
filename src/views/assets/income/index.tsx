@@ -192,13 +192,15 @@ const IncomeView = () => {
             </div>
           </div>
           <div className="mb-4">
-            <ChallengeProgress
-              value={utils
-                .toBigNumber(100)
-                .minus(incomeInfo?.remainingProportion || 0)
-                .toNumber()}
-              max={100}
-            />
+            {Number.isFinite(incomeInfo?.remainingProportion) ? (
+              <ChallengeProgress
+                value={utils
+                  .toBigNumber(100)
+                  .minus(incomeInfo?.remainingProportion || 0)
+                  .toNumber()}
+                max={100}
+              />
+            ) : null}
           </div>
           <div className="bg-white rounded-lg py-3.5 px-4">
             <div className="flex items-center justify-between ">
