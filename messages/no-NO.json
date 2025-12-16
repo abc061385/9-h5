@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Innskudd til Fond-lommebok",
   "GP_BUY_OUT": "Innskudd til Growth Pool",
   "GP_SPOT_BUY": "Innskudd til Spot-lommebok",
-  "swap_ext_hint": "Basert på ditt nåværende VIP-nivå vil {precent}% av hvert Swap-beløp automatisk bli tildelt Growth Pool for aksjeoppkjøp og langsiktig avkastning.",
+  "swap_ext_hint": "Basert på ditt nåværende VIP-nivå vil {precent}% av hvert mottatt beløp automatisk bli tildelt Growth Pool for aksjeoppkjøp og langsiktig avkastning.",
   "GP_TRANSFER": "Vekstbassengets Konsolidering",
   "VIP_RACE_REWARD": "VIP-registreringsbonus"
 }

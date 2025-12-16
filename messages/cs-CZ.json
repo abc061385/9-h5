@@ -991,7 +991,7 @@
   "GP_BUY_IN": "Nabití peněženky fondového fondu",
   "GP_BUY_OUT": "Nabití Growth Pool",
   "GP_SPOT_BUY": "Nabití peněženky spotového fondu",
-  "swap_ext_hint": "Na základě vaší VIP úrovně bude {precent} % z každé částky Swap automaticky přiděleno do Growth Pool, určeného k získávání akcií a tvorbě dlouhodobých výnosů.",
+  "swap_ext_hint": "Na základě vaší VIP úrovně bude {precent} % z každé přijaté částky automaticky přiděleno do Growth Pool, určeného k získávání akcií a tvorbě dlouhodobých výnosů.",
   "GP_TRANSFER": "Konsolidace Růstového Poolu",
   "VIP_RACE_REWARD": "VIP registrační bonus"
 }
