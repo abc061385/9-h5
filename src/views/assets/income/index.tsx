@@ -19,6 +19,7 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { ShowIf } from "@/components/show-if";
 import { Icon } from "@/components/icon";
 import { useBack } from "@/hooks/useBack";
+import ChallengeProgress from "@/views/vip-challenge/progress";
 
 const NewVersionMap = {
   balance: 0,
@@ -190,6 +191,15 @@ const IncomeView = () => {
               </span>
             </div>
           </div>
+          <div className="mb-4">
+            <ChallengeProgress
+              value={utils
+                .toBigNumber(100)
+                .minus(incomeInfo?.remainingProportion || 0)
+                .toNumber()}
+              max={100}
+            />
+          </div>
           <div className="bg-white rounded-lg py-3.5 px-4">
             <div className="flex items-center justify-between ">
               <span className="text-xs text-text4">{t("昨日投资收益")}</span>
@@ -199,6 +209,7 @@ const IncomeView = () => {
               </span>
             </div>
           </div>
+
           <button
             className="btn btn-primary w-full mt-6"
             onClick={() => {

@@ -276,6 +276,7 @@ type AssetsIncomeType = {
   unWithdrawnReturn: number;
   yesterdayReturn: number;
   frozenUbx: number;
+  remainingProportion: number;
 };
 type AssetsIncomeType1 = {
   dayRate: number;
