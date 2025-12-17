@@ -191,17 +191,17 @@ const IncomeView = () => {
               </span>
             </div>
           </div>
-          <div className="mb-4">
-            {Number.isFinite(incomeInfo?.remainingProportion) ? (
-              <ChallengeProgress
-                value={utils
-                  .toBigNumber(100)
-                  .minus(incomeInfo?.remainingProportion || 0)
-                  .toNumber()}
-                max={100}
-              />
-            ) : null}
-          </div>
+          {/* <div className="mb-4"> */}
+          {/*   {Number.isFinite(incomeInfo?.remainingProportion) ? ( */}
+          {/*     <ChallengeProgress */}
+          {/*       value={utils */}
+          {/*         .toBigNumber(100) */}
+          {/*         .minus(incomeInfo?.remainingProportion || 0) */}
+          {/*         .toNumber()} */}
+          {/*       max={100} */}
+          {/*     /> */}
+          {/*   ) : null} */}
+          {/* </div> */}
           <div className="bg-white rounded-lg py-3.5 px-4">
             <div className="flex items-center justify-between ">
               <span className="text-xs text-text4">{t("昨日投资收益")}</span>

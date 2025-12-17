@@ -328,6 +328,7 @@ type AwardInfoType = {
     usedQuota: number;
   };
   growthPoolConfig: GrowthPoolConfigType;
+  remainingProportion: number;
 };
 
 type AwardListType = {
