@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Storting op de Spot-portemonnee",
   "swap_ext_hint": "Op basis van uw huidige VIP-niveau wordt {precent}% van elk ontvangen bedrag automatisch toegewezen aan de Growth Pool voor aandelenverwerving en langetermijnrendement.",
   "GP_TRANSFER": "Groei Pool Consolidatie",
-  "VIP_RACE_REWARD": "VIP-aanmeldbonus"
+  "VIP_RACE_REWARD": "VIP-aanmeldbonus",
+  "GP_DIRECT_PUSH_REWARD": "Directe doorverwijzingsbeloning van de Groeipool",
+  "GP_INDIRECT_PUSH_REWARD": "Indirecte doorverwijzingsbeloning van de Groeipool"
 }

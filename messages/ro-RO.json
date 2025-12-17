@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Depunere în portofelul Spot",
   "swap_ext_hint": "Pe baza nivelului dvs. VIP, {precent}% din fiecare sumă primită va fi alocată automat către Growth Pool pentru achiziția de acțiuni și generarea de câștiguri pe termen lung.",
   "GP_TRANSFER": "Consolidarea Pool-ului de Creștere",
-  "VIP_RACE_REWARD": "Bonus de înregistrare VIP"
+  "VIP_RACE_REWARD": "Bonus de înregistrare VIP",
+  "GP_DIRECT_PUSH_REWARD": "Recompensă pentru recomandare directă din Fondul de Creștere",
+  "GP_INDIRECT_PUSH_REWARD": "Recompensă pentru recomandare indirectă din Fondul de Creștere"
 }

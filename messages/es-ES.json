@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Depósito de Spot Wallet",
   "swap_ext_hint": "Según su nivel VIP actual, el {precent}% de cada monto recibido se asignará automáticamente al Growth Pool para adquisición de acciones y generación de rendimientos a largo plazo.",
   "GP_TRANSFER": "Consolidación del Pool de Crecimiento",
-  "VIP_RACE_REWARD": "Bono de Registro VIP"
+  "VIP_RACE_REWARD": "Bono de Registro VIP",
+  "GP_DIRECT_PUSH_REWARD": "Recompensa por referencia directa del Pool de Crecimiento",
+  "GP_INDIRECT_PUSH_REWARD": "Recompensa por referencia indirecta del Pool de Crecimiento"
 }

@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Pemindahan ke Dompet Spot",
   "swap_ext_hint": "Menurut tahap VIP anda, {precent}% daripada setiap amaun yang diterima akan diperuntukkan secara automatik ke Growth Pool untuk pengambilalihan ekuiti dan penjanaan hasil jangka panjang.",
   "GP_TRANSFER": "Penggabungan Kolam Pertumbuhan",
-  "VIP_RACE_REWARD": "Bonus Pendaftaran VIP"
+  "VIP_RACE_REWARD": "Bonus Pendaftaran VIP",
+  "GP_DIRECT_PUSH_REWARD": "Ganjaran Rujukan Terus Kolam Pertumbuhan",
+  "GP_INDIRECT_PUSH_REWARD": "Ganjaran Rujukan Tidak Langsung Kolam Pertumbuhan"
 }

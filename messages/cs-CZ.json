@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Nabití peněženky spotového fondu",
   "swap_ext_hint": "Na základě vaší VIP úrovně bude {precent} % z každé přijaté částky automaticky přiděleno do Growth Pool, určeného k získávání akcií a tvorbě dlouhodobých výnosů.",
   "GP_TRANSFER": "Konsolidace Růstového Poolu",
-  "VIP_RACE_REWARD": "VIP registrační bonus"
+  "VIP_RACE_REWARD": "VIP registrační bonus",
+  "GP_DIRECT_PUSH_REWARD": "Odměna za přímé doporučení z růstového fondu",
+  "GP_INDIRECT_PUSH_REWARD": "Odměna za nepřímé doporučení z růstového fondu"
 }

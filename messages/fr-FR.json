@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Dépôt du portefeuille Spot",
   "swap_ext_hint": "Selon votre niveau VIP, {precent}% de chaque montant reçu seront automatiquement alloués au Growth Pool pour l’acquisition d’actions et la génération de revenus à long terme.",
   "GP_TRANSFER": "Consolidation du Pool de Croissance",
-  "VIP_RACE_REWARD": "Prime d’inscription VIP"
+  "VIP_RACE_REWARD": "Prime d’inscription VIP",
+  "GP_DIRECT_PUSH_REWARD": "Récompense de parrainage direct du pool de croissance",
+  "GP_INDIRECT_PUSH_REWARD": "Récompense de parrainage indirect du pool de croissance"
 }
