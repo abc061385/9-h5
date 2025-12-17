@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "スポットウォレット入金",
   "swap_ext_hint": "現在の VIP ランクに基づき、各受取金額の {precent}％ が自動的にグロースプールへ割り当てられ、株式取得および長期収益の獲得に使用されます。",
   "GP_TRANSFER": "成長プールの統合",
-  "VIP_RACE_REWARD": "VIP登録ボーナス"
+  "VIP_RACE_REWARD": "VIP登録ボーナス",
+  "GP_DIRECT_PUSH_REWARD": "成長プール直接紹介報酬",
+  "GP_INDIRECT_PUSH_REWARD": "成長プール間接紹介報酬"
 }

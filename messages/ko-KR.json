@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "스팟 지갑 입금",
   "swap_ext_hint": "회원님의 현재 VIP 등급 기준으로, 각 수령 금액의 {precent}%가 자동으로 성장 풀에 배정되며, 이는 지분 취득과 장기 수익 창출에 사용됩니다.",
   "GP_TRANSFER": "성장 풀 집합",
-  "VIP_RACE_REWARD": "VIP 등록 보너스"
+  "VIP_RACE_REWARD": "VIP 등록 보너스",
+  "GP_DIRECT_PUSH_REWARD": "성장 풀 직접 추천 보상",
+  "GP_INDIRECT_PUSH_REWARD": "성장 풀 간접 추천 보상"
 }

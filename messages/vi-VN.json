@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Nạp ví giao ngay",
   "swap_ext_hint": "Dựa trên cấp VIP hiện tại của bạn, {precent}% mỗi khoản tiền nhận được sẽ được tự động phân bổ vào Growth Pool để tham gia mua cổ phần và tạo lợi nhuận dài hạn.",
   "GP_TRANSFER": "Hợp nhất bể tăng trưởng",
-  "VIP_RACE_REWARD": "Thưởng đăng ký VIP"
+  "VIP_RACE_REWARD": "Thưởng đăng ký VIP",
+  "GP_DIRECT_PUSH_REWARD": "Phần thưởng giới thiệu trực tiếp của Quỹ Tăng trưởng",
+  "GP_INDIRECT_PUSH_REWARD": "Phần thưởng giới thiệu gián tiếp của Quỹ Tăng trưởng"
 }

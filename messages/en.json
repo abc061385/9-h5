@@ -993,5 +993,7 @@
   "GP_SPOT_BUY": "Spot Wallet Deposit",
   "swap_ext_hint": "For your current VIP level, {precent}% of each claimed amount will be automatically allocated to the Growth Pool, which is used for equity acquisition and long-term yield generation.",
   "GP_TRANSFER": "Growth Pool Consolidation",
-  "VIP_RACE_REWARD": "VIP Registration"
+  "VIP_RACE_REWARD": "VIP Registration",
+  "GP_DIRECT_PUSH_REWARD": "Growth Pool Direct Referral Reward",
+  "GP_INDIRECT_PUSH_REWARD": "Growth Pool Indirect Referral Reward"
 }
