@@ -19,7 +19,6 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { ShowIf } from "@/components/show-if";
 import { Icon } from "@/components/icon";
 import { useBack } from "@/hooks/useBack";
-import ChallengeProgress from "@/views/vip-challenge/progress";
 
 const NewVersionMap = {
   balance: 0,
