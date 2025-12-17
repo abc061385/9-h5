@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { generateApi } from "swagger-typescript-api";
 
 const apiUrl = "https://www.9mc.one/app/v2/api-docs";
-const nineIndexUrl = "https://www.9mc.one/app/nine-index/v3/api-docs";
+// const nineIndexUrl = "https://www.9mc.one/app/nine-index/v3/api-docs";
 async function run(url, name) {
   const res = await axios.get(url);
   const __filename = fileURLToPath(import.meta.url);
@@ -25,7 +25,7 @@ async function run(url, name) {
 function main() {
   Promise.allSettled([
     run(apiUrl, "ApiClient"),
-    run(nineIndexUrl, "NineIndexClient"),
+    // run(nineIndexUrl, "NineIndexClient"),
   ]);
 }
 
