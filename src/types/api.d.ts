@@ -321,6 +321,7 @@ type AwardInfoType = {
     totalQuota: number;
     usedQuota: number;
   };
+  remainingProportion: number;
 };
 
 type AwardListType = {

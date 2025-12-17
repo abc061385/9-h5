@@ -11,6 +11,7 @@ import { utils } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
 import { FC, useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import ChallengeProgress from "../vip-challenge/progress";
 
 interface IUpgradeProps {
   tabsValue: string;
@@ -99,6 +100,17 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
               {formatBalance(info.frozenRewards || "0", tabsValue)} {tabsValue}
             </span>
           </div>
+        </div>
+        <div className="mt-2">
+          {Number.isFinite(info?.remainingProportion) ? (
+            <ChallengeProgress
+              value={utils
+                .toBigNumber(100)
+                .minus(info?.remainingProportion || 0)
+                .toNumber()}
+              max={100}
+            />
+          ) : null}
         </div>
         <div className="flex items-center justify-between bg-white rounded-lg h-12 px-4 mt-4 mb-6">
           <h3 className="text-xs text-text4">{t("昨日币权奖励")}</h3>
