@@ -40,8 +40,7 @@ const GrowthPoolView = () => {
   );
   const info = useMemo(() => {
     const _info = {
-      "9MC": 0,
-      USDM: 0,
+      USDT: 0,
     } as { [key in string]: number };
     infoRes?.data?.balances?.forEach(
       (i: { symbol: string; amount: number }) => {
@@ -109,19 +108,19 @@ const GrowthPoolView = () => {
               __html: formatDesc(t("9MEcosystemGrowthPoolDesc")),
             }}
           ></div>
-          <div className="grid grid-cols-2">
-            <div className="flex justify-center items-center flex-col  border-r-[1px] border-[rgba(0,0,0,0.1)]">
-              <p>{t("USDMBalance")}</p>
+          <div className="grid grid-cols-1">
+            <div className="flex justify-center items-center flex-col  border-[rgba(0,0,0,0.1)]">
+              <p>USDT {t("assets.balance")}</p>
               <span className="text-lg font-bold text-primary">
-                {info["USDM"]}
+                {info["USDT"] || 0}
               </span>
             </div>
-            <div className="flex justify-center items-center flex-col">
-              <p>{t("9MCBalance")}</p>
-              <span className="text-lg font-bold text-primary">
-                {info["9MC"]}
-              </span>
-            </div>
+            {/* <div className="flex justify-center items-center flex-col"> */}
+            {/*   <p>{t("9MCBalance")}</p> */}
+            {/*   <span className="text-lg font-bold text-primary"> */}
+            {/*     {info["9MC"]} */}
+            {/*   </span> */}
+            {/* </div> */}
           </div>
           <div className="h-[1PX] bg-[rgba(0,0,0,0.1)] mt-3"></div>
           <div className="mt-6">{t("Deposit History")}</div>

@@ -56,8 +56,6 @@ export const typeMap: { [key: string]: string } = {
   GP_BUY_OUT: "GP_BUY_OUT", //62
   GP_SPOT_BUY: "GP_SPOT_BUY", //63
   GP_TRANSFER: "GP_TRANSFER", // 64
-  GP_DIRECT_PUSH_REWARD: "GP_DIRECT_PUSH_REWARD", //65
-  GP_INDIRECT_PUSH_REWARD: "GP_INDIRECT_PUSH_REWARD", //66
 };
 
 export type GAPreviousPageType = "withdraw" | "";
