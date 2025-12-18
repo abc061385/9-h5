@@ -117,8 +117,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           {Number.isFinite(info?.remainingProportion) ? (
             <ChallengeProgress
               value={utils
-                .toBigNumber(100)
-                .minus(info?.remainingProportion || 0)
+                .toBigNumber(info?.remainingProportion || 0)
                 .toNumber()}
               max={100}
             />
