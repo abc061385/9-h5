@@ -95,7 +95,14 @@ const GrowthPoolView = () => {
 
   return (
     <ViewLayout className="flex flex-col md-pc:h-full">
-      <HeaderWithBack title={t("9MEcosystemGrowthPool")} algin="center" />
+      <HeaderWithBack
+        title={
+          <span className="text-center leading-none">
+            {t("9MEcosystemGrowthPool")}
+          </span>
+        }
+        algin="center"
+      />
       <img
         src="/images/growthpool/banner@2x.webp"
         className="w-full h-[164px] mt-2 mb-7 mc-pc:block"
