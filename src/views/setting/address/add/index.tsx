@@ -39,7 +39,7 @@ const SettingAddressAddView = () => {
   }, [data, addressMap]);
 
   const isEmpty = useMemo(() => {
-    return protoList.length ? true : protoList.every(({ address }) => address);
+    return protoList.every(({ address }) => address);
   }, [protoList]);
 
   return (
