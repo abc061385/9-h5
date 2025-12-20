@@ -9,6 +9,8 @@ import { api } from "@/api";
 import { useEffect, useMemo } from "react";
 // import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useWithdrawalStore } from "@/store/useWithdrawal";
+import { ListNoData } from "@/components/nodata/list-nodata";
+// import { ListNoData } from "@/components/nodata/list-nodata";
 
 const SettingAddressAddView = () => {
   const t = useTrans();
@@ -32,13 +34,13 @@ const SettingAddressAddView = () => {
       return {
         netowrk: chainName,
         address: addressMap[chainName]?.addr || "",
-        // address: (addressRes?.data || []).find(
-        //   (item: { protocol: string; addr: string }) =>
-        //     item?.protocol === chainName,
-        // )?.addr,
       };
     });
   }, [data, addressMap]);
+
+  const isEmpty = useMemo(() => {
+    return protoList.length ? true : protoList.every(({ address }) => address);
+  }, [protoList]);
 
   return (
     <ViewLayout
@@ -47,14 +49,21 @@ const SettingAddressAddView = () => {
     >
       <div className="p-content">
         <p className="text-assist2 leading-none mb-6">{t("addressAddTips")}</p>
-        {protoList.map(({ netowrk, address }) => {
-          return address ? null : (
-            <>
-              <AddressAddItem network={netowrk} addr={address}></AddressAddItem>
-              <div className="divider"></div>
-            </>
-          );
-        })}
+        {isEmpty ? (
+          <ListNoData />
+        ) : (
+          protoList.map(({ netowrk, address }) => {
+            return address ? null : (
+              <>
+                <AddressAddItem
+                  network={netowrk}
+                  addr={address}
+                ></AddressAddItem>
+                <div className="divider"></div>
+              </>
+            );
+          })
+        )}
       </div>
     </ViewLayout>
   );
