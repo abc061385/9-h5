@@ -22,6 +22,7 @@ interface ListType {
   type: string;
   inOut: string;
   amount: string;
+  beforeBalance: string;
   symbol: string;
   createTime: string;
   detail?: string;
@@ -143,7 +144,8 @@ const WalletDetailView = () => {
                       <div className="flex items-center justify-between">
                         <div className="mb-2">
                           {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
-                          {formatBalance(item?.amount, coin)}
+                          {/* {formatBalance(item?.amount, coin)} */}
+                          {formatBalance(Math.abs(Number(item?.amount)), coin)}
                           <span className="ml-1">{item?.symbol}</span>
                         </div>
                         <div>
