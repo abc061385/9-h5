@@ -48,6 +48,6 @@ export const useMeetupStore = create<MeetupState>()(
         setField: (key, value) => set({ [key]: value }),
       };
     },
-    { enabled: getIsDev() }
-  )
+    { enabled: getIsDev() },
+  ),
 );
