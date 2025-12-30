@@ -12,6 +12,7 @@ import { AnnouncementRespDTO } from "@/api/NineIndexClient";
 import Bridge from "@/lib/dsBridge";
 import { useBack } from "@/hooks/useBack";
 import Tabs from "@/components/tabs/tabs1";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 
 export const langType: {
   [key: string]: string;
@@ -28,6 +29,7 @@ const NewsView = () => {
   const back = useBack();
   const [tab, setTab] = useState(0);
 
+  const { data } = useRequestQuery(api.getMemberMessageUnreadCount, {});
   const getList = useCallback(async (page: number) => {
     const { data } = await api.nineIndex.announcement.getAnnouncementPage({
       pageNo: page.toString(),
@@ -80,9 +82,15 @@ const NewsView = () => {
               },
               {
                 label: (
-                  <span className="flex items-center justify-center mb-2">
+                  <span className="flex items-center justify-center mb-2 relative">
                     <Icon name="email-fill" className="w-4 h-4 mr-1" />
                     {t("site_message")}
+                    {data?.data ? (
+                      <span
+                        aria-label="error"
+                        className="status status-error absolute top-[-4px] right-[-4px] bg-[#FF0A52]"
+                      ></span>
+                    ) : null}
                   </span>
                 ),
                 value: 1,
