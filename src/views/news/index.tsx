@@ -11,7 +11,7 @@ import ViewLayout from "@/components/layout";
 import { AnnouncementRespDTO } from "@/api/NineIndexClient";
 import Bridge from "@/lib/dsBridge";
 import { useBack } from "@/hooks/useBack";
-import Tabs from "@/components/tabs/tabs";
+import Tabs from "@/components/tabs/tabs1";
 
 export const langType: {
   [key: string]: string;
@@ -82,7 +82,7 @@ const NewsView = () => {
                 label: (
                   <span className="flex items-center justify-center mb-2">
                     <Icon name="email-fill" className="w-4 h-4 mr-1" />
-                    {t("站内信")}
+                    {t("site_message")}
                   </span>
                 ),
                 value: 1,

@@ -995,5 +995,6 @@
   "GP_TRANSFER": "成長プールの統合",
   "VIP_RACE_REWARD": "VIP登録ボーナス",
   "GP_DIRECT_PUSH_REWARD": "成長プール直接紹介報酬",
-  "GP_INDIRECT_PUSH_REWARD": "成長プール間接紹介報酬"
+  "GP_INDIRECT_PUSH_REWARD": "成長プール間接紹介報酬",
+  "site_message": "アプリ内メッセージ"
 }

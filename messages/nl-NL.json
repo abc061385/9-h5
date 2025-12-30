@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Groei Pool Consolidatie",
   "VIP_RACE_REWARD": "VIP-aanmeldbonus",
   "GP_DIRECT_PUSH_REWARD": "Directe doorverwijzingsbeloning van de Groeipool",
-  "GP_INDIRECT_PUSH_REWARD": "Indirecte doorverwijzingsbeloning van de Groeipool"
+  "GP_INDIRECT_PUSH_REWARD": "Indirecte doorverwijzingsbeloning van de Groeipool",
+  "site_message": "Interne Berichtgeving"
 }

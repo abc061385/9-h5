@@ -992,5 +992,6 @@
   "GP_TRANSFER": "वृद्धि पूल एकत्रीकरण",
   "VIP_RACE_REWARD": "वीआईपी पंजीकरण बोनस",
   "GP_DIRECT_PUSH_REWARD": "ग्रोथ पूल प्रत्यक्ष रेफरल पुरस्कार",
-  "GP_INDIRECT_PUSH_REWARD": "ग्रोथ पूल अप्रत्यक्ष रेफरल पुरस्कार"
+  "GP_INDIRECT_PUSH_REWARD": "ग्रोथ पूल अप्रत्यक्ष रेफरल पुरस्कार",
+  "site_message": "इन-ऐप संदेश"
 }

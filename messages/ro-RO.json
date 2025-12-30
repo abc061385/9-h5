@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Consolidarea Pool-ului de Creștere",
   "VIP_RACE_REWARD": "Bonus de înregistrare VIP",
   "GP_DIRECT_PUSH_REWARD": "Recompensă pentru recomandare directă din Fondul de Creștere",
-  "GP_INDIRECT_PUSH_REWARD": "Recompensă pentru recomandare indirectă din Fondul de Creștere"
+  "GP_INDIRECT_PUSH_REWARD": "Recompensă pentru recomandare indirectă din Fondul de Creștere",
+  "site_message": "Mesaj Intern"
 }

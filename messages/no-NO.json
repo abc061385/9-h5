@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Vekstbassengets Konsolidering",
   "VIP_RACE_REWARD": "VIP-registreringsbonus",
   "GP_DIRECT_PUSH_REWARD": "Direkte henvisningsbelønning fra vekstpoolen",
-  "GP_INDIRECT_PUSH_REWARD": "Indirekte henvisningsbelønning fra vekstpoolen"
+  "GP_INDIRECT_PUSH_REWARD": "Indirekte henvisningsbelønning fra vekstpoolen",
+  "site_message": "Intern Melding"
 }

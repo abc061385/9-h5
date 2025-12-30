@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Consolidation du Pool de Croissance",
   "VIP_RACE_REWARD": "Prime d’inscription VIP",
   "GP_DIRECT_PUSH_REWARD": "Récompense de parrainage direct du pool de croissance",
-  "GP_INDIRECT_PUSH_REWARD": "Récompense de parrainage indirect du pool de croissance"
+  "GP_INDIRECT_PUSH_REWARD": "Récompense de parrainage indirect du pool de croissance",
+  "site_message": "Message Interne"
 }

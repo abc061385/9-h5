@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Konsolidace Růstového Poolu",
   "VIP_RACE_REWARD": "VIP registrační bonus",
   "GP_DIRECT_PUSH_REWARD": "Odměna za přímé doporučení z růstového fondu",
-  "GP_INDIRECT_PUSH_REWARD": "Odměna za nepřímé doporučení z růstového fondu"
+  "GP_INDIRECT_PUSH_REWARD": "Odměna za nepřímé doporučení z růstového fondu",
+  "site_message": "Interní Zpráva"
 }

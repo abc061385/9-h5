@@ -995,5 +995,6 @@
   "GP_TRANSFER": "增長池歸集",
   "VIP_RACE_REWARD": "VIP報名賽獎金",
   "GP_DIRECT_PUSH_REWARD": "增長池直推獎勵",
-  "GP_INDIRECT_PUSH_REWARD": "增長池間推獎勵"
+  "GP_INDIRECT_PUSH_REWARD": "增長池間推獎勵",
+  "site_message": "站內信"
 }

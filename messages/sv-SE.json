@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Konsolidering av Växande Pool",
   "VIP_RACE_REWARD": "VIP-registreringsbonus",
   "GP_DIRECT_PUSH_REWARD": "Direkt hänvisningsbelöning från tillväxtpoolen",
-  "GP_INDIRECT_PUSH_REWARD": "Indirekt hänvisningsbelöning från tillväxtpoolen"
+  "GP_INDIRECT_PUSH_REWARD": "Indirekt hänvisningsbelöning från tillväxtpoolen",
+  "site_message": "Internt Meddelande"
 }

@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Penggabungan Kolam Pertumbuhan",
   "VIP_RACE_REWARD": "Bonus Pendaftaran VIP",
   "GP_DIRECT_PUSH_REWARD": "Ganjaran Rujukan Terus Kolam Pertumbuhan",
-  "GP_INDIRECT_PUSH_REWARD": "Ganjaran Rujukan Tidak Langsung Kolam Pertumbuhan"
+  "GP_INDIRECT_PUSH_REWARD": "Ganjaran Rujukan Tidak Langsung Kolam Pertumbuhan",
+  "site_message": "Mesej Dalam Aplikasi"
 }

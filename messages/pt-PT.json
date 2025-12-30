@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Consolidação do Pool de Crescimento",
   "VIP_RACE_REWARD": "Prémio VIP do Torneio",
   "GP_DIRECT_PUSH_REWARD": "Recompensa de indicação direta do Pool de Crescimento",
-  "GP_INDIRECT_PUSH_REWARD": "Recompensa de indicação indireta do Pool de Crescimento"
+  "GP_INDIRECT_PUSH_REWARD": "Recompensa de indicação indireta do Pool de Crescimento",
+  "site_message": "Mensagem Interna"
 }

@@ -995,5 +995,6 @@
   "GP_TRANSFER": "성장 풀 집합",
   "VIP_RACE_REWARD": "VIP 등록 보너스",
   "GP_DIRECT_PUSH_REWARD": "성장 풀 직접 추천 보상",
-  "GP_INDIRECT_PUSH_REWARD": "성장 풀 간접 추천 보상"
+  "GP_INDIRECT_PUSH_REWARD": "성장 풀 간접 추천 보상",
+  "site_message": "앱 내 메시지"
 }

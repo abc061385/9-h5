@@ -995,5 +995,6 @@
   "GP_TRANSFER": "Wachstumspool-Konsolidierung",
   "VIP_RACE_REWARD": "VIP-Anmeldebonus",
   "GP_DIRECT_PUSH_REWARD": "Wachstumspool-Direktempfehlungsbelohnung",
-  "GP_INDIRECT_PUSH_REWARD": "Wachstumspool-Indirektempfehlungsbelohnung"
+  "GP_INDIRECT_PUSH_REWARD": "Wachstumspool-Indirektempfehlungsbelohnung",
+  "site_message": "Interne Nachricht"
 }

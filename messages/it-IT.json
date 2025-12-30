@@ -991,5 +991,6 @@
   "GP_TRANSFER": "Consolidamento del Pool di Crescita",
   "VIP_RACE_REWARD": "Bonus Iscrizione VIP",
   "GP_DIRECT_PUSH_REWARD": "Ricompensa di referral diretto del Pool di Crescita",
-  "GP_INDIRECT_PUSH_REWARD": "Ricompensa di referral indiretto del Pool di Crescita"
+  "GP_INDIRECT_PUSH_REWARD": "Ricompensa di referral indiretto del Pool di Crescita",
+  "site_message": "Messaggio Interno"
 }
