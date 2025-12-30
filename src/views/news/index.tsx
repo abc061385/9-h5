@@ -11,6 +11,7 @@ import ViewLayout from "@/components/layout";
 import { AnnouncementRespDTO } from "@/api/NineIndexClient";
 import Bridge from "@/lib/dsBridge";
 import { useBack } from "@/hooks/useBack";
+import Tabs from "@/components/tabs/tabs";
 
 export const langType: {
   [key: string]: string;
@@ -66,23 +67,32 @@ const NewsView = () => {
     >
       <div className="p-content h-full flex flex-col">
         <div>
-          <button
-            className="btn border-none bg-bg3 inline-flex justify-between mb-4 text-base font-normal"
-            onClick={() => setTab(0)}
-          >
-            <Icon name="news-icon" className="w-4 h-4 mr-1" />
-            {t("公告")}
-          </button>
-          <button
-            className="btn border-none bg-bg3 inline-flex justify-between mb-4 text-base font-normal ml-2"
-            onClick={() => setTab(1)}
-          >
-            <Icon name="email" className="w-4 h-4 mr-1" />
-            站内信
-          </button>
+          <Tabs
+            tabs={[
+              {
+                label: (
+                  <span className="flex items-center justify-center mb-2">
+                    <Icon name="news-icon" className="size-3.5 mr-1" />
+                    {t("公告")}
+                  </span>
+                ),
+                value: 0,
+              },
+              {
+                label: (
+                  <span className="flex items-center justify-center mb-2">
+                    <Icon name="email-fill" className="w-4 h-4 mr-1" />
+                    {t("站内信")}
+                  </span>
+                ),
+                value: 1,
+              },
+            ]}
+            value={tab}
+            onChange={(e) => setTab(e as number)}
+          ></Tabs>
         </div>
-        {/* <div className="grow"> */}
-        <div className="h-[200px]">
+        <div className="grow">
           {tab === 0 ? (
             <InfiniteVirtuosoList<AnnouncementRespDTO>
               key="sc_0"
@@ -148,7 +158,7 @@ const NewsView = () => {
                     {item.status ? null : (
                       <div
                         aria-label="error"
-                        className="status status-error"
+                        className="status status-error bg-[#FF0A52]"
                       ></div>
                     )}
                   </div>

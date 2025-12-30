@@ -38,7 +38,7 @@ const HomeHeaderBox = () => {
           {data?.data ? (
             <div
               aria-label="error"
-              className="status status-error absolute top-2 right-2"
+              className="status status-error absolute top-2 right-2 bg-[#FF0A52]"
             ></div>
           ) : null}
         </div>

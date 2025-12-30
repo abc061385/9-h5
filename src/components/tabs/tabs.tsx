@@ -3,7 +3,7 @@ import React from "react";
 import { ShowIf } from "../show-if";
 
 interface TabItem {
-  label: string;
+  label: string | React.ReactNode;
   value: string | number;
 }
 
@@ -33,7 +33,7 @@ const Tabs: React.FC<TabsProps> = ({
       className={cn(
         "flex items-center text-lg",
         className,
-        between ? "justify-between" : ""
+        between ? "justify-between" : "",
       )}
     >
       {tabs.map((tab) => {
@@ -46,7 +46,7 @@ const Tabs: React.FC<TabsProps> = ({
               "text-center cursor-pointer transition-all mr-0.5 p-1.5 leading-[120%]",
               isActive ? activeClassName : inactiveClassName,
               between ? "flex-1" : "mr-6 last:mr-0",
-              type === "text" ? "p-0" : ""
+              type === "text" ? "p-0" : "",
             )}
           >
             {tab.label}
