@@ -540,6 +540,7 @@ interface UserInvestmentData {
   totalTeamMembers: number;
   vipLevel: number;
   headUrl?: string;
+  invitationCode?: string;
 }
 
 interface InvestmentStats {
