@@ -14,6 +14,7 @@ import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { formatBalance1 } from "@/lib/utils";
 import { useUserStore } from "@/store/useUserStore";
 import StarIcon from "@/views/vip/star-icon";
+import CopyText from "@/components/copy-text";
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
 import { ReactNode, useCallback, useEffect, useState } from "react";
@@ -127,6 +128,12 @@ const TeamsInformationView = () => {
                   star={information?.star || 0}
                 />
               </div>
+              {information?.invitationCode ? (
+                <div className="flex justify-center items-center">
+                  {information?.invitationCode || "-"}
+                  <CopyText text={information?.invitationCode || "-"} />
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="flex flex-col items-end text-text4 text-sm gap-1">
