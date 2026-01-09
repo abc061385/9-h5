@@ -10,6 +10,8 @@ import { Modal } from "@/components/modal";
 import { Controller, useForm } from "react-hook-form";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
+import Tabs from "@/components/tabs/tabs";
+// import { Icon } from "@/components/icon";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
@@ -26,6 +28,7 @@ type FormData = {
 const GrowthPoolView = () => {
   const t = useTrans();
   const [open, setOpen] = useState(false);
+  const [tabsValue, setTabsValue] = useState(1);
   const { data: infoRes, mutate: infoMutate } = useRequestQuery(
     api.growth.getGrowthPoolInfoUsingGet,
     {},
@@ -38,6 +41,16 @@ const GrowthPoolView = () => {
       pageSize: 5000,
     },
   );
+  const tabs = [
+    {
+      label: "购买",
+      value: 1,
+    },
+    {
+      label: "直推",
+      value: 2,
+    },
+  ];
   const info = useMemo(() => {
     const _info = {
       USDT: 0,
@@ -115,22 +128,38 @@ const GrowthPoolView = () => {
               __html: formatDesc(t("9MEcosystemGrowthPoolDesc")),
             }}
           ></div>
-          <div className="grid grid-cols-1">
+          {/* <div className="grid grid-cols-2"> */}
+          {/*   <div className="flex justify-center items-center flex-col  border-[rgba(0,0,0,0.1)]"> */}
+          {/*     <p>USDT {t("assets.balance")}</p> */}
+          {/*     <span className="text-lg font-bold text-primary"> */}
+          {/*       {info["USDT"] || 0} */}
+          {/*     </span> */}
+          {/*   </div> */}
+          {/*   <div className="flex justify-center items-center flex-col"> */}
+          {/*     <p>{t("9MCBalance")}</p> */}
+          {/*     <span className="text-lg font-bold text-primary"> */}
+          {/*       {info["9MC"] || 0} */}
+          {/*     </span> */}
+          {/*   </div> */}
+          {/* </div> */}
+          <div className="grid grid-cols-2">
             <div className="flex justify-center items-center flex-col  border-[rgba(0,0,0,0.1)]">
-              <p>USDT {t("assets.balance")}</p>
-              <span className="text-lg font-bold text-primary">
-                {info["USDT"] || 0}
-              </span>
+              <p>Asset</p>
+              <span className="text-lg font-bold text-primary">1000 USD</span>
             </div>
-            {/* <div className="flex justify-center items-center flex-col"> */}
-            {/*   <p>{t("9MCBalance")}</p> */}
-            {/*   <span className="text-lg font-bold text-primary"> */}
-            {/*     {info["9MC"]} */}
-            {/*   </span> */}
-            {/* </div> */}
+            <div className="flex justify-center items-center flex-col">
+              <p>Referral</p>
+              <span className="text-lg font-bold text-primary">500 USD</span>
+            </div>
           </div>
           <div className="h-[1PX] bg-[rgba(0,0,0,0.1)] mt-3"></div>
           <div className="mt-6">{t("Deposit History")}</div>
+          <Tabs
+            tabs={tabs}
+            value={tabsValue}
+            between={false}
+            onChange={(value) => setTabsValue(value as number)}
+          />
         </div>
         <div className="grow shrink-0 mb-4 mt-3 min-h-[200px] relative">
           <div className="size-full absolute overflow-y-scroll rounded-box border border-base-content/5 ">
