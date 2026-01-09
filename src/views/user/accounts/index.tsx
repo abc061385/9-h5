@@ -25,7 +25,7 @@ interface Info extends UserInfo {
 
 const AccountManage = () => {
   const t = useTrans();
-  const { userInfo, setField } = useUserStore();
+  const { userInfo, setField, logOut } = useUserStore();
   const api = createAxiosInstance("/app/");
 
   const { push } = useRouter();
@@ -115,7 +115,7 @@ const AccountManage = () => {
             push(routerMap.accountsAdd);
           } else {
             toast.error(t("loginTimeout"));
-            push(routerMap.login);
+            logOut();
           }
         } else {
           toast.error(res.message);
