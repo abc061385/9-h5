@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 interface Info extends UserInfo {
   nickname: string;
   totalInvestment: string;
+  isDisable: 0 | 1;
 }
 
 const AccountManage = () => {
@@ -40,7 +41,7 @@ const AccountManage = () => {
             device: navigator.userAgent,
             "Content-Type": "application/x-www-form-urlencoded",
           },
-        }
+        },
       );
       if (res.code === 200) {
         setAccountsList(res.data);
@@ -77,7 +78,7 @@ const AccountManage = () => {
                 device: navigator.userAgent,
                 "Content-Type": "application/x-www-form-urlencoded",
               },
-            }
+            },
           );
         } else {
           res = await api.post(
@@ -91,7 +92,7 @@ const AccountManage = () => {
                 device: navigator.userAgent,
                 "Content-Type": "application/x-www-form-urlencoded",
               },
-            }
+            },
           );
         }
 
@@ -101,15 +102,21 @@ const AccountManage = () => {
             setField("token", res.data?.loginInfo?.token || "");
             window.localStorage.setItem(
               "token",
-              res.data?.loginInfo?.token || ""
+              res.data?.loginInfo?.token || "",
             );
             utils.setJwtCookie(res.data?.loginInfo?.token || "");
             useVerificationStore.persist.clearStorage();
             push(routerMap.accounts);
             return;
           }
-          setField("subAccount", item.nickname);
-          push(routerMap.accountsAdd);
+
+          if (item.accountType === 2) {
+            setField("subAccount", item.nickname);
+            push(routerMap.accountsAdd);
+          } else {
+            toast.error(t("loginTimeout"));
+            push(routerMap.login);
+          }
         } else {
           toast.error(res.message);
         }
@@ -118,7 +125,7 @@ const AccountManage = () => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [userInfo?.id]
+    [userInfo?.id],
   );
 
   return (
@@ -150,7 +157,7 @@ const AccountManage = () => {
                 key={i}
                 className={cn(
                   "p-4 rounded-lg bg-bg3 flex items-center justify-between mb-4 gap-4",
-                  userInfo.id === v.id && "bg-primary text-white"
+                  userInfo.id === v.id && "bg-primary text-white",
                 )}
                 onClick={() => {
                   if (userInfo.id === v.id) return;
