@@ -5,7 +5,7 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import Bridge from "@/lib/dsBridge";
-import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { Modal } from "@/components/modal";
 import { Controller, useForm } from "react-hook-form";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
@@ -16,7 +16,6 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
-import BaseImage from "@/components/base-image";
 import { GrowthPoolBuyDTO } from "@/api/ApiClient";
 import toast from "react-hot-toast";
 import { utils } from "@/lib/utils";
