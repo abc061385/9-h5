@@ -243,9 +243,17 @@ const GrowthPoolView = () => {
                     reloadRef.current = fn;
                   }}
                   renderItem={(item: RewardItem) => (
-                    <div key={item.coin} className="flex justify-between p-2 ">
-                      <div>+{item.amount} USD</div>
-                      <div>{item.createTime}</div>
+                    <div
+                      key={item.coin}
+                      className="grid grid-cols-2 p-2 border border-transparent border-b-base-content/5"
+                    >
+                      <div className="break-words">
+                        <p>{item.coin}</p>+{item.amount} USD
+                      </div>
+                      <div className="text-right">
+                        <p>&nbsp;</p>
+                        {item.createTime}
+                      </div>
                     </div>
                   )}
                 />
