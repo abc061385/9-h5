@@ -118,7 +118,7 @@ const GrowthPoolView = () => {
   // 购买
   const getList = useCallback(
     async (page: number) => {
-      const { data } = await api.growth.getGrowthPoolTransactionsUsingGet({
+      const { data } = await api.growth.getGrowthPoolBuyTransactionsUsingGet({
         pageNo: page,
         pageSize: pageSize,
       });
@@ -131,12 +131,15 @@ const GrowthPoolView = () => {
     [pageSize, tabsValue],
   );
 
+  // 查询增长池直推记录
   const getList1 = useCallback(
     async (page: number) => {
-      const { data } = await api.growth.getGrowthPoolBuyTransactionsUsingGet({
-        pageNo: page,
-        pageSize: pageSize,
-      });
+      const { data } = await api.growth.getGrowthPoolDirectTransactionsUsingGet(
+        {
+          pageNo: page,
+          pageSize: pageSize,
+        },
+      );
       const newData = data?.list || [];
       return {
         data: newData,
