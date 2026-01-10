@@ -636,7 +636,7 @@
   "个人": "Cá nhân",
   "团队": "Đội",
   "confirmOrder": "Xác nhận đơn hàng của bạn",
-  "purchase": "Bạn sẽ mua",
+  "purchase": "Mua",
   "results": "Kết quả",
   "viewFundDetails": "Xem chi tiết quỹ",
   "return": "Quay lại",
@@ -996,5 +996,8 @@
   "VIP_RACE_REWARD": "Thưởng đăng ký VIP",
   "GP_DIRECT_PUSH_REWARD": "Phần thưởng giới thiệu trực tiếp của Quỹ Tăng trưởng",
   "GP_INDIRECT_PUSH_REWARD": "Phần thưởng giới thiệu gián tiếp của Quỹ Tăng trưởng",
-  "site_message": "Tin Nhắn Trong Ứng Dụng"
+  "site_message": "Tin Nhắn Trong Ứng Dụng",
+  "direct_referral": "Giới thiệu trực tiếp",
+  "asset": "Tài sản",
+  "referral": "Giới thiệu"
 }

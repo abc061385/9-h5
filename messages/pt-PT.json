@@ -636,7 +636,7 @@
   "个人": "Pessoal",
   "团队": "Equipe",
   "confirmOrder": "Confirmar pedido",
-  "purchase": "Você comprará",
+  "purchase": "Comprar",
   "results": "Resultado",
   "viewFundDetails": "Ver detalhes do fundo",
   "return": "Voltar",
@@ -996,5 +996,8 @@
   "VIP_RACE_REWARD": "Prémio VIP do Torneio",
   "GP_DIRECT_PUSH_REWARD": "Recompensa de indicação direta do Pool de Crescimento",
   "GP_INDIRECT_PUSH_REWARD": "Recompensa de indicação indireta do Pool de Crescimento",
-  "site_message": "Mensagem Interna"
+  "site_message": "Mensagem Interna",
+  "direct_referral": "Indicação Direta",
+  "asset": "Ativo",
+  "referral": "Indicação"
 }

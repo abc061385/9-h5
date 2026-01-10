@@ -636,7 +636,7 @@
   "个人": "個人",
   "团队": "チーム",
   "confirmOrder": "注文を確認する",
-  "purchase": "購入する商品",
+  "purchase": "購入",
   "results": "結果",
   "viewFundDetails": "ファンド詳細を表示",
   "return": "戻る",
@@ -996,5 +996,8 @@
   "VIP_RACE_REWARD": "VIP登録ボーナス",
   "GP_DIRECT_PUSH_REWARD": "成長プール直接紹介報酬",
   "GP_INDIRECT_PUSH_REWARD": "成長プール間接紹介報酬",
-  "site_message": "アプリ内メッセージ"
+  "site_message": "アプリ内メッセージ",
+  "direct_referral": "直接紹介",
+  "asset": "資産",
+  "referral": "紹介"
 }

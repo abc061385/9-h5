@@ -636,7 +636,7 @@
   "个人": "Individual",
   "团队": "Echipă",
   "confirmOrder": "Confirmă comanda",
-  "purchase": "Vei cumpăra",
+  "purchase": "Achiziție",
   "results": "Rezultat",
   "viewFundDetails": "Vezi detalii fond",
   "return": "Înapoi",
@@ -996,5 +996,8 @@
   "VIP_RACE_REWARD": "Bonus de înregistrare VIP",
   "GP_DIRECT_PUSH_REWARD": "Recompensă pentru recomandare directă din Fondul de Creștere",
   "GP_INDIRECT_PUSH_REWARD": "Recompensă pentru recomandare indirectă din Fondul de Creștere",
-  "site_message": "Mesaj Intern"
+  "site_message": "Mesaj Intern",
+  "direct_referral": "Recomandare Directă",
+  "asset": "Activum",
+  "referral": "Recomandare"
 }

@@ -636,7 +636,7 @@
   "个人": "Individual",
   "团队": "Team",
   "confirmOrder": "Confirm your order",
-  "purchase": "You will purchase",
+  "purchase": "Purchase",
   "results": "Results",
   "viewFundDetails": "View fund details",
   "return": "Return",
@@ -996,5 +996,8 @@
   "VIP_RACE_REWARD": "VIP Registration",
   "GP_DIRECT_PUSH_REWARD": "Growth Pool Direct Referral Reward",
   "GP_INDIRECT_PUSH_REWARD": "Growth Pool Indirect Referral Reward",
-  "site_message": "In-App Message"
+  "site_message": "In-App Message",
+  "direct_referral": "Direct Referral",
+  "asset": "Asset",
+  "referral": "Referral"
 }

@@ -634,7 +634,7 @@
   "个人": "Persoonlijk",
   "团队": "Team",
   "confirmOrder": "Bevestig bestelling",
-  "purchase": "U gaat kopen",
+  "purchase": "Aankoop",
   "results": "Resultaat",
   "viewFundDetails": "Bekijk fondsdetails",
   "return": "Terugkeer",
@@ -996,5 +996,8 @@
   "VIP_RACE_REWARD": "VIP-aanmeldbonus",
   "GP_DIRECT_PUSH_REWARD": "Directe doorverwijzingsbeloning van de Groeipool",
   "GP_INDIRECT_PUSH_REWARD": "Indirecte doorverwijzingsbeloning van de Groeipool",
-  "site_message": "Interne Berichtgeving"
+  "site_message": "Interne Berichtgeving",
+  "direct_referral": "Directe Verwijzing",
+  "asset": "Activa",
+  "referral": "Verwijzing"
 }
