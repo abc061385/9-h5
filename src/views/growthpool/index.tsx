@@ -224,8 +224,13 @@ const GrowthPoolView = () => {
                       key={item.coin}
                       className="grid grid-cols-2 p-2 border border-transparent border-b-base-content/5"
                     >
-                      <div className="break-words">+{item.amount} USD</div>
-                      <div className="text-right">{item.createTime}</div>
+                      <div className="break-words">
+                        <p>{item.coin}</p>+{item.amount} USD
+                      </div>
+                      <div className="text-right">
+                        <p>&nbsp;</p>
+                        {item.createTime}
+                      </div>
                     </div>
                   )}
                 />
