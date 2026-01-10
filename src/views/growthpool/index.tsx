@@ -18,7 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
 import { GrowthPoolBuyDTO } from "@/api/ApiClient";
 import toast from "react-hot-toast";
-import { utils } from "@/lib/utils";
+import { formatBalance, utils } from "@/lib/utils";
 
 type FormData = {
   coin: string;
@@ -188,13 +188,13 @@ const GrowthPoolView = () => {
             <div className="flex justify-center items-center flex-col  border-[rgba(0,0,0,0.1)]">
               <p>{t("asset")}</p>
               <span className="text-lg font-bold text-primary">
-                {infoRes?.data?.asset || 0} USD
+                {formatBalance(infoRes?.data?.asset || 0, 2)} USD
               </span>
             </div>
             <div className="flex justify-center items-center flex-col">
               <p>{t("referral")}</p>
               <span className="text-lg font-bold text-primary">
-                {infoRes?.data?.referral || 0} USD
+                {formatBalance(infoRes?.data?.referral || 0, 2)} USD
               </span>
             </div>
           </div>
@@ -225,7 +225,7 @@ const GrowthPoolView = () => {
                       className="grid grid-cols-2 p-2 border border-transparent border-b-base-content/5"
                     >
                       <div className="break-words">
-                        <p>{item.coin}</p>+{item.amount} USD
+                        <p>{item.coin}</p>+{formatBalance(item.amount, 2)} USD
                       </div>
                       <div className="text-right">
                         <p>&nbsp;</p>
@@ -248,7 +248,7 @@ const GrowthPoolView = () => {
                       className="grid grid-cols-2 p-2 border border-transparent border-b-base-content/5"
                     >
                       <div className="break-words">
-                        <p>{item.coin}</p>+{item.amount} USD
+                        <p>{item.coin}</p>+{formatBalance(item.amount, 2)} USD
                       </div>
                       <div className="text-right">
                         <p>&nbsp;</p>
