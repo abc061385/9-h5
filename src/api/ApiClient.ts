@@ -191,6 +191,8 @@ export interface PersonalInformationVO {
    * @format int64
    */
   id?: number;
+  /** 邀请码 */
+  invitationCode?: string;
   /** 用户等级名称 */
   levelName?: string;
   newCommunityInvestmentToday?: number;
@@ -541,11 +543,13 @@ export class Api<
      * @name DetailUsingGet
      * @summary 活动详情
      * @request GET:/activity/detail/{id}
+     * @secure
      */
     detailUsingGet: (id: string, params: RequestParams = {}) =>
       this.request<ActivitiesVO, void>({
         path: `/activity/detail/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -556,11 +560,13 @@ export class Api<
      * @name HomeActivitiesUsingGet
      * @summary 首页活动列表
      * @request GET:/activity/home
+     * @secure
      */
     homeActivitiesUsingGet: (params: RequestParams = {}) =>
       this.request<ListActivitiesVO, void>({
         path: `/activity/home`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -571,6 +577,7 @@ export class Api<
      * @name ListUsingGet
      * @summary 活动列表
      * @request GET:/activity/list
+     * @secure
      */
     listUsingGet: (
       query?: {
@@ -585,6 +592,7 @@ export class Api<
         path: `/activity/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -595,6 +603,7 @@ export class Api<
      * @name PageUsingGet
      * @summary 活动分页列表
      * @request GET:/activity/page
+     * @secure
      */
     pageUsingGet: (
       query: {
@@ -625,6 +634,7 @@ export class Api<
         path: `/activity/page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -635,6 +645,7 @@ export class Api<
      * @name RegistrationUsingPost
      * @summary 用户报名活动
      * @request POST:/activity/registration
+     * @secure
      */
     registrationUsingPost: (
       dto: RegistActivityDTO,
@@ -644,6 +655,7 @@ export class Api<
         path: `/activity/registration`,
         method: "POST",
         body: dto,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -656,11 +668,13 @@ export class Api<
      * @name GetBindListUsingGet
      * @summary 根据会员ID，查询绑定关系
      * @request GET:/auth/bind-list/{id}
+     * @secure
      */
     getBindListUsingGet: (id: ref, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/auth/bind-list/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -671,6 +685,7 @@ export class Api<
      * @name EditInfoUsingPost
      * @summary 编辑用户头像
      * @request POST:/auth/editHead
+     * @secure
      */
     editInfoUsingPost: (
       query?: {
@@ -683,6 +698,7 @@ export class Api<
         path: `/auth/editHead`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -694,6 +710,7 @@ export class Api<
      * @name EditNiceUsingPost
      * @summary 编辑用户昵称
      * @request POST:/auth/editNice
+     * @secure
      */
     editNiceUsingPost: (
       query?: {
@@ -706,6 +723,7 @@ export class Api<
         path: `/auth/editNice`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -717,6 +735,7 @@ export class Api<
      * @name EditTelUsingPost
      * @summary 编辑手机号
      * @request POST:/auth/editTel
+     * @secure
      */
     editTelUsingPost: (
       query?: {
@@ -730,6 +749,8 @@ export class Api<
         bindEmail?: string;
         /** @format date-time */
         bindEmailTime?: string;
+        /** @format int32 */
+        canExtractReward?: number;
         /** @format int32 */
         canWithdraw?: number;
         /** @format int32 */
@@ -812,6 +833,7 @@ export class Api<
         path: `/auth/editTel`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -823,6 +845,7 @@ export class Api<
      * @name ForgetUpdatePwdUsingPost
      * @summary 修改登录密码
      * @request POST:/auth/forget/updatePwd
+     * @secure
      */
     forgetUpdatePwdUsingPost: (
       query?: {
@@ -844,6 +867,7 @@ export class Api<
         path: `/auth/forget/updatePwd`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -855,6 +879,7 @@ export class Api<
      * @name ForgetPwdUsingPost
      * @summary 忘记密码
      * @request POST:/auth/forgetPwd
+     * @secure
      */
     forgetPwdUsingPost: (
       query: {
@@ -875,6 +900,7 @@ export class Api<
         path: `/auth/forgetPwd`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -886,11 +912,13 @@ export class Api<
      * @name JyPasswordUsingPost
      * @summary 全网信息
      * @request POST:/auth/getAllNetData
+     * @secure
      */
     jyPasswordUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/auth/getAllNetData`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -902,11 +930,13 @@ export class Api<
      * @name GetSwarmUsingPost
      * @summary 获取Swarm信息
      * @request POST:/auth/getSwarm
+     * @secure
      */
     getSwarmUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/auth/getSwarm`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -918,6 +948,7 @@ export class Api<
      * @name GetTokenUsingPost
      * @summary 获取token
      * @request POST:/auth/getToken
+     * @secure
      */
     getTokenUsingPost: (
       query: {
@@ -935,6 +966,7 @@ export class Api<
         path: `/auth/getToken`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -946,11 +978,13 @@ export class Api<
      * @name InfoUsingGet
      * @summary 查询用户详情
      * @request GET:/auth/info
+     * @secure
      */
     infoUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/auth/info`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -961,6 +995,7 @@ export class Api<
      * @name JyPasswordUsingPost1
      * @summary 设置编辑交易密码
      * @request POST:/auth/jyPassword
+     * @secure
      */
     jyPasswordUsingPost1: (
       query?: {
@@ -975,6 +1010,7 @@ export class Api<
         path: `/auth/jyPassword`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -986,6 +1022,7 @@ export class Api<
      * @name LoginUsingPost
      * @summary 登录
      * @request POST:/auth/login
+     * @secure
      */
     loginUsingPost: (
       query: {
@@ -1004,6 +1041,7 @@ export class Api<
         path: `/auth/login`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1015,6 +1053,7 @@ export class Api<
      * @name LoginByTokenUsingPost
      * @summary 通过token登录系统
      * @request POST:/auth/login-by-token
+     * @secure
      */
     loginByTokenUsingPost: (
       query: {
@@ -1029,6 +1068,7 @@ export class Api<
         path: `/auth/login-by-token`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1040,6 +1080,7 @@ export class Api<
      * @name LoginByFaBeforeCheckUsingPost
      * @summary 登录前置校验通过后下返回2fa验证项
      * @request POST:/auth/loginByFaBeforeCheck
+     * @secure
      */
     loginByFaBeforeCheckUsingPost: (
       query: {
@@ -1061,6 +1102,7 @@ export class Api<
         path: `/auth/loginByFaBeforeCheck`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1072,6 +1114,7 @@ export class Api<
      * @name RegByFaBeforeCheckUsingPost
      * @summary 注册前验证信息
      * @request POST:/auth/regByFaBeforeCheck
+     * @secure
      */
     regByFaBeforeCheckUsingPost: (
       query: {
@@ -1095,6 +1138,7 @@ export class Api<
         path: `/auth/regByFaBeforeCheck`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1106,6 +1150,7 @@ export class Api<
      * @name RegisterUsingPost
      * @summary 注册
      * @request POST:/auth/register
+     * @secure
      */
     registerUsingPost: (
       query: {
@@ -1128,6 +1173,7 @@ export class Api<
         path: `/auth/register`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1139,6 +1185,7 @@ export class Api<
      * @name RegisterH5UsingPost
      * @summary 注册-H5
      * @request POST:/auth/registerH5
+     * @secure
      */
     registerH5UsingPost: (
       query: {
@@ -1161,6 +1208,7 @@ export class Api<
         path: `/auth/registerH5`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1172,6 +1220,7 @@ export class Api<
      * @name SendCodeUsingPost
      * @summary 发送验证码
      * @request POST:/auth/sendCode
+     * @secure
      */
     sendCodeUsingPost: (
       query: {
@@ -1196,6 +1245,7 @@ export class Api<
         path: `/auth/sendCode`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1207,6 +1257,7 @@ export class Api<
      * @name SubAccountLoginCleanEmailUsingPost
      * @summary 清空子账号邮箱登录
      * @request POST:/auth/sub-account/email-clean/login
+     * @secure
      */
     subAccountLoginCleanEmailUsingPost: (
       query: {
@@ -1223,6 +1274,7 @@ export class Api<
         path: `/auth/sub-account/email-clean/login`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1234,6 +1286,7 @@ export class Api<
      * @name SubAccountLoginUsingPost
      * @summary 子账号登录
      * @request POST:/auth/sub-account/login
+     * @secure
      */
     subAccountLoginUsingPost: (
       query: {
@@ -1250,6 +1303,7 @@ export class Api<
         path: `/auth/sub-account/login`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1261,6 +1315,7 @@ export class Api<
      * @name SubAccountLoginByTokenUsingPost
      * @summary 子账号Token登录
      * @request POST:/auth/sub-account/login-by-token
+     * @secure
      */
     subAccountLoginByTokenUsingPost: (
       query: {
@@ -1275,6 +1330,7 @@ export class Api<
         path: `/auth/sub-account/login-by-token`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1286,6 +1342,7 @@ export class Api<
      * @name SubAccountRegisterUsingPost
      * @summary 子账号注册
      * @request POST:/auth/sub-account/register
+     * @secure
      */
     subAccountRegisterUsingPost: (
       query: {
@@ -1306,6 +1363,7 @@ export class Api<
         path: `/auth/sub-account/register`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1317,11 +1375,13 @@ export class Api<
      * @name TestUsingPost
      * @summary 测试语言的
      * @request POST:/auth/test
+     * @secure
      */
     testUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/auth/test`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1333,6 +1393,7 @@ export class Api<
      * @name UpdatePwdUsingPost
      * @summary 修改登录密码
      * @request POST:/auth/updatePwd
+     * @secure
      */
     updatePwdUsingPost: (
       query?: {
@@ -1354,6 +1415,7 @@ export class Api<
         path: `/auth/updatePwd`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1365,6 +1427,7 @@ export class Api<
      * @name ValidateCodeUsingPost
      * @summary 校验验证码
      * @request POST:/auth/validateCode
+     * @secure
      */
     validateCodeUsingPost: (
       query: {
@@ -1379,6 +1442,7 @@ export class Api<
         path: `/auth/validateCode`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -1391,11 +1455,13 @@ export class Api<
      * @name GetMeetUpListUsingGet
      * @summary 获取下拉菜单数据
      * @request GET:/business-college-meet-type/meet-up-list
+     * @secure
      */
     getMeetUpListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/business-college-meet-type/meet-up-list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1406,6 +1472,7 @@ export class Api<
      * @name GetPageListUsingGet1
      * @summary 分页列表
      * @request GET:/business-college-meet-type/page-list
+     * @secure
      */
     getPageListUsingGet1: (
       query: {
@@ -1430,6 +1497,7 @@ export class Api<
         path: `/business-college-meet-type/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -1441,6 +1509,7 @@ export class Api<
      * @name DetailUsingGet1
      * @summary 根据ID获取商学院详情
      * @request GET:/business-college/detail
+     * @secure
      */
     detailUsingGet1: (
       query?: {
@@ -1456,6 +1525,7 @@ export class Api<
         path: `/business-college/detail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1466,6 +1536,7 @@ export class Api<
      * @name GetListByMeetTypeUsingGet
      * @summary 根据会议类型获取商学院列表
      * @request GET:/business-college/meet-type/list
+     * @secure
      */
     getListByMeetTypeUsingGet: (
       query: {
@@ -1495,6 +1566,7 @@ export class Api<
         path: `/business-college/meet-type/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1505,6 +1577,7 @@ export class Api<
      * @name GetPageListUsingGet
      * @summary 分页列表
      * @request GET:/business-college/page-list
+     * @secure
      */
     getPageListUsingGet: (
       query: {
@@ -1534,6 +1607,7 @@ export class Api<
         path: `/business-college/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -1545,11 +1619,13 @@ export class Api<
      * @name GenCaptchaUsingGet
      * @summary genCaptcha
      * @request GET:/captcha
+     * @secure
      */
     genCaptchaUsingGet: (params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/captcha`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -1561,11 +1637,13 @@ export class Api<
      * @name AdvisoryUsingGet
      * @summary 咨询详情
      * @request GET:/cms/advisory/{id}
+     * @secure
      */
     advisoryUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/advisory/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1576,6 +1654,7 @@ export class Api<
      * @name NoReadUsingGet
      * @summary 获取未阅读消息数
      * @request GET:/cms/announcement-noRead
+     * @secure
      */
     noReadUsingGet: (
       query?: {
@@ -1591,6 +1670,7 @@ export class Api<
         path: `/cms/announcement-noRead`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1601,11 +1681,13 @@ export class Api<
      * @name AnnouncementUsingGet
      * @summary 公告详情
      * @request GET:/cms/announcement/{id}
+     * @secure
      */
     announcementUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/announcement/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1616,6 +1698,7 @@ export class Api<
      * @name CaijinUsingGet
      * @summary 财经消息
      * @request GET:/cms/caijin
+     * @secure
      */
     caijinUsingGet: (
       query?: {
@@ -1631,6 +1714,7 @@ export class Api<
         path: `/cms/caijin`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1641,11 +1725,13 @@ export class Api<
      * @name GetAgreementByIdUsingGet
      * @summary 根据id查询协议
      * @request GET:/cms/getAgreementById/{id}
+     * @secure
      */
     getAgreementByIdUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/getAgreementById/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1656,11 +1742,13 @@ export class Api<
      * @name GetAgreementByIdUsingGet1
      * @summary 根据多个id查询协议
      * @request GET:/cms/getAgreementByIds/{ids}
+     * @secure
      */
     getAgreementByIdUsingGet1: (ids: string, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/getAgreementByIds/${ids}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1671,6 +1759,7 @@ export class Api<
      * @name GetChildMenuUsingGet
      * @summary 获取帮助中心二级列表
      * @request GET:/cms/getChildMenu
+     * @secure
      */
     getChildMenuUsingGet: (
       query?: {
@@ -1683,6 +1772,7 @@ export class Api<
         path: `/cms/getChildMenu`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1693,11 +1783,13 @@ export class Api<
      * @name GetFirstMenuUsingGet
      * @summary 获取帮助中心一个菜单
      * @request GET:/cms/getFirstMenu
+     * @secure
      */
     getFirstMenuUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/getFirstMenu`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1708,6 +1800,7 @@ export class Api<
      * @name GetOpeningPageUsingGet
      * @summary 获取开屏页
      * @request GET:/cms/getOpenPage
+     * @secure
      */
     getOpeningPageUsingGet: (
       query?: {
@@ -1723,6 +1816,7 @@ export class Api<
         path: `/cms/getOpenPage`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1733,6 +1827,7 @@ export class Api<
      * @name InfoAdvertiseUsingGet
      * @summary 轮播图详细
      * @request GET:/cms/info-advertise
+     * @secure
      */
     infoAdvertiseUsingGet: (
       query?: {
@@ -1748,6 +1843,7 @@ export class Api<
         path: `/cms/info-advertise`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1758,6 +1854,7 @@ export class Api<
      * @name GetByTypeUsingGet
      * @summary 详情内容
      * @request GET:/cms/info-privacy-policy/getByType
+     * @secure
      */
     getByTypeUsingGet: (
       query?: {
@@ -1773,6 +1870,7 @@ export class Api<
         path: `/cms/info-privacy-policy/getByType`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1783,11 +1881,13 @@ export class Api<
      * @name NoticeUsingGet
      * @summary 消息详情
      * @request GET:/cms/notice/{id}
+     * @secure
      */
     noticeUsingGet: (id: number, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/notice/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -1798,6 +1898,7 @@ export class Api<
      * @name PageAdvertiseUsingGet
      * @summary 轮播图
      * @request GET:/cms/page-advertise/{type}
+     * @secure
      */
     pageAdvertiseUsingGet: (
       type: number,
@@ -1823,6 +1924,7 @@ export class Api<
         path: `/cms/page-advertise/${type}`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1833,6 +1935,7 @@ export class Api<
      * @name AdvisoryListUsingGet
      * @summary 咨询列表
      * @request GET:/cms/page-advisory
+     * @secure
      */
     advisoryListUsingGet: (
       query: {
@@ -1862,6 +1965,7 @@ export class Api<
         path: `/cms/page-advisory`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1872,6 +1976,7 @@ export class Api<
      * @name PageAnnouncementUsingGet
      * @summary 公告列表
      * @request GET:/cms/page-announcement
+     * @secure
      */
     pageAnnouncementUsingGet: (
       query: {
@@ -1906,6 +2011,7 @@ export class Api<
         path: `/cms/page-announcement`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1916,6 +2022,7 @@ export class Api<
      * @name PageAnnouncementInfoUsingGet
      * @summary 公告列表-消息
      * @request GET:/cms/page-announcement-info
+     * @secure
      */
     pageAnnouncementInfoUsingGet: (
       query: {
@@ -1950,6 +2057,7 @@ export class Api<
         path: `/cms/page-announcement-info`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1960,6 +2068,7 @@ export class Api<
      * @name PageNoticeUsingGet
      * @summary 消息列表
      * @request GET:/cms/page-notice
+     * @secure
      */
     pageNoticeUsingGet: (
       query: {
@@ -1984,6 +2093,7 @@ export class Api<
         path: `/cms/page-notice`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -1994,6 +2104,7 @@ export class Api<
      * @name TypeUsingGet
      * @summary 查询协议
      * @request GET:/cms/type
+     * @secure
      */
     typeUsingGet: (
       query?: {
@@ -2006,6 +2117,7 @@ export class Api<
         path: `/cms/type`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2016,6 +2128,7 @@ export class Api<
      * @name UpdateNoReadUsingGet
      * @summary 更改阅读状态
      * @request GET:/cms/update-noRead
+     * @secure
      */
     updateNoReadUsingGet: (
       query?: {
@@ -2031,6 +2144,7 @@ export class Api<
         path: `/cms/update-noRead`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2041,11 +2155,13 @@ export class Api<
      * @name VersionUsingGet
      * @summary 查看版本
      * @request GET:/cms/version
+     * @secure
      */
     versionUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cms/version`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -2057,6 +2173,7 @@ export class Api<
      * @name HandleDoubleConfirmUsingPost
      * @summary handleDoubleConfirm
      * @request POST:/cobo/callback
+     * @secure
      */
     handleDoubleConfirmUsingPost: (
       rawBody: string,
@@ -2066,6 +2183,7 @@ export class Api<
         path: `/cobo/callback`,
         method: "POST",
         body: rawBody,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2077,6 +2195,7 @@ export class Api<
      * @name CreateAddrUsingPost
      * @summary 创建钱包中的地址
      * @request POST:/cobo/create-addr
+     * @secure
      */
     createAddrUsingPost: (
       query?: {
@@ -2089,6 +2208,7 @@ export class Api<
         path: `/cobo/create-addr`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2100,11 +2220,13 @@ export class Api<
      * @name CreateWalletUsingPost
      * @summary 创建钱包
      * @request POST:/cobo/create-wallet
+     * @secure
      */
     createWalletUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cobo/create-wallet`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2116,11 +2238,13 @@ export class Api<
      * @name EnabledChainsUsingPost
      * @summary 获取启动的链
      * @request POST:/cobo/enabled_chains
+     * @secure
      */
     enabledChainsUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cobo/enabled_chains`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2132,6 +2256,7 @@ export class Api<
      * @name GetChainAddrUsingGet
      * @summary 链获取地址
      * @request GET:/cobo/getChainAddr
+     * @secure
      */
     getChainAddrUsingGet: (
       query?: {
@@ -2144,6 +2269,7 @@ export class Api<
         path: `/cobo/getChainAddr`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2154,11 +2280,13 @@ export class Api<
      * @name RepairMemoUsingPost
      * @summary 修复地址的memo
      * @request POST:/cobo/repairMemo
+     * @secure
      */
     repairMemoUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/cobo/repairMemo`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2170,6 +2298,7 @@ export class Api<
      * @name HandleWebhookEventUsingPost
      * @summary handleWebhookEvent
      * @request POST:/cobo/webhook
+     * @secure
      */
     handleWebhookEventUsingPost: (
       rawBody: string,
@@ -2179,6 +2308,7 @@ export class Api<
         path: `/cobo/webhook`,
         method: "POST",
         body: rawBody,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2191,6 +2321,7 @@ export class Api<
      * @name GetCoinUsingGet
      * @summary 币种
      * @request GET:/coin/getCoin
+     * @secure
      */
     getCoinUsingGet: (
       query?: {
@@ -2203,6 +2334,7 @@ export class Api<
         path: `/coin/getCoin`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2213,6 +2345,7 @@ export class Api<
      * @name CoinConfigUsingGet
      * @summary 查询币种配置
      * @request GET:/coin/info
+     * @secure
      */
     coinConfigUsingGet: (
       query?: {
@@ -2225,6 +2358,7 @@ export class Api<
         path: `/coin/info`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -2236,11 +2370,13 @@ export class Api<
      * @name GetCountryPhonePrefixListUsingGet
      * @summary 国家电话号码前缀列表
      * @request GET:/country/prefix/list
+     * @secure
      */
     getCountryPhonePrefixListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/country/prefix/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -2252,11 +2388,13 @@ export class Api<
      * @name GetBaseCurrenciesUsingGet
      * @summary 获取可选源币种列表
      * @request GET:/currency-settings/flash-exchange/base-currencies
+     * @secure
      */
     getBaseCurrenciesUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/currency-settings/flash-exchange/base-currencies`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -2267,6 +2405,7 @@ export class Api<
      * @name GetToCurrenciesByFromCurrencyUsingGet
      * @summary 根据源币种获取可兑换的目标币种列表
      * @request GET:/currency-settings/flash-exchange/target-currencies
+     * @secure
      */
     getToCurrenciesByFromCurrencyUsingGet: (
       query?: {
@@ -2279,6 +2418,7 @@ export class Api<
         path: `/currency-settings/flash-exchange/target-currencies`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2289,6 +2429,7 @@ export class Api<
      * @name PageUsingGet1
      * @summary 列表
      * @request GET:/currency-settings/list
+     * @secure
      */
     pageUsingGet1: (
       query?: {
@@ -2301,6 +2442,7 @@ export class Api<
         path: `/currency-settings/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2311,11 +2453,13 @@ export class Api<
      * @name ProtocolListUsingGet1
      * @summary 列表
      * @request GET:/currency-settings/protocol/list
+     * @secure
      */
     protocolListUsingGet1: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/currency-settings/protocol/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -2326,6 +2470,7 @@ export class Api<
      * @name ProtocolExchangeUsingGet
      * @summary 任意币种兑换汇率
      * @request GET:/currency-settings/protocol/rate
+     * @secure
      */
     protocolExchangeUsingGet: (
       query?: {
@@ -2338,6 +2483,7 @@ export class Api<
         path: `/currency-settings/protocol/rate`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -2349,6 +2495,7 @@ export class Api<
      * @name CreateAddrUsingPost1
      * @summary 创建地址
      * @request POST:/deposit/create-addr
+     * @secure
      */
     createAddrUsingPost1: (
       query?: {
@@ -2361,6 +2508,7 @@ export class Api<
         path: `/deposit/create-addr`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2372,6 +2520,7 @@ export class Api<
      * @name CreateAddrTwoUsingPost
      * @summary 创建地址
      * @request POST:/deposit/create-addr_two
+     * @secure
      */
     createAddrTwoUsingPost: (
       query?: {
@@ -2384,6 +2533,7 @@ export class Api<
         path: `/deposit/create-addr_two`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2396,11 +2546,13 @@ export class Api<
      * @name CaptchaValidateUsingGet
      * @summary captchaValidate
      * @request GET:/feign/captcha/validate
+     * @secure
      */
     captchaValidateUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/feign/captcha/validate`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -2412,6 +2564,7 @@ export class Api<
      * @name UploadFileUsingPost
      * @summary 上传文件
      * @request POST:/file/upload
+     * @secure
      */
     uploadFileUsingPost: (
       query: {
@@ -2432,6 +2585,7 @@ export class Api<
         method: "POST",
         query: query,
         body: data,
+        secure: true,
         type: ContentType.FormData,
         ...params,
       }),
@@ -2444,6 +2598,7 @@ export class Api<
      * @name CalFastInvestUsingPost
      * @summary calFastInvest
      * @request POST:/fund-product-config/cal-fast-invest
+     * @secure
      */
     calFastInvestUsingPost: (
       query: {
@@ -2471,6 +2626,7 @@ export class Api<
         path: `/fund-product-config/cal-fast-invest`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2482,6 +2638,7 @@ export class Api<
      * @name CalMaxProfitUsingPost
      * @summary calMaxProfit
      * @request POST:/fund-product-config/calMaxProfit
+     * @secure
      */
     calMaxProfitUsingPost: (
       query: {
@@ -2509,6 +2666,7 @@ export class Api<
         path: `/fund-product-config/calMaxProfit`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2520,6 +2678,7 @@ export class Api<
      * @name ClaimedProfitUsingGet
      * @summary claimedProfit
      * @request GET:/fund-product-config/claimedProfit
+     * @secure
      */
     claimedProfitUsingGet: (
       query?: {
@@ -2532,6 +2691,7 @@ export class Api<
         path: `/fund-product-config/claimedProfit`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2542,6 +2702,7 @@ export class Api<
      * @name ExtractUsingPost
      * @summary extract
      * @request POST:/fund-product-config/claimedProfit/extract
+     * @secure
      */
     extractUsingPost: (
       query?: {
@@ -2558,6 +2719,7 @@ export class Api<
         path: `/fund-product-config/claimedProfit/extract`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2569,6 +2731,7 @@ export class Api<
      * @name ClaimedProfitIncomeDetailsUsingGet
      * @summary claimedProfitIncomeDetails
      * @request GET:/fund-product-config/claimedProfit/income-details
+     * @secure
      */
     claimedProfitIncomeDetailsUsingGet: (
       query: {
@@ -2600,6 +2763,7 @@ export class Api<
         path: `/fund-product-config/claimedProfit/income-details`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2610,6 +2774,7 @@ export class Api<
      * @name ClaimedProfitSmartWalletUsingGet
      * @summary claimedProfitSmartWallet
      * @request GET:/fund-product-config/claimedProfit/smart-wallet
+     * @secure
      */
     claimedProfitSmartWalletUsingGet: (
       query?: {
@@ -2622,6 +2787,7 @@ export class Api<
         path: `/fund-product-config/claimedProfit/smart-wallet`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2632,6 +2798,7 @@ export class Api<
      * @name ClaimedProfitTransactionUsingGet
      * @summary claimedProfitTransaction
      * @request GET:/fund-product-config/claimedProfit/transaction
+     * @secure
      */
     claimedProfitTransactionUsingGet: (
       query: {
@@ -2658,6 +2825,7 @@ export class Api<
         path: `/fund-product-config/claimedProfit/transaction`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2668,6 +2836,7 @@ export class Api<
      * @name DetailUsingGet2
      * @summary detail
      * @request GET:/fund-product-config/detail
+     * @secure
      */
     detailUsingGet2: (
       query?: {
@@ -2683,6 +2852,7 @@ export class Api<
         path: `/fund-product-config/detail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2693,6 +2863,7 @@ export class Api<
      * @name DetailUsingGet3
      * @summary detail
      * @request GET:/fund-product-config/fast-invest-detail
+     * @secure
      */
     detailUsingGet3: (
       query: {
@@ -2717,6 +2888,7 @@ export class Api<
         path: `/fund-product-config/fast-invest-detail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2727,6 +2899,7 @@ export class Api<
      * @name GetPledgeDaysUsingGet
      * @summary getPledgeDays
      * @request GET:/fund-product-config/getPledgeDays
+     * @secure
      */
     getPledgeDaysUsingGet: (
       query?: {
@@ -2742,6 +2915,7 @@ export class Api<
         path: `/fund-product-config/getPledgeDays`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2752,6 +2926,7 @@ export class Api<
      * @name PurchaseUsingPost
      * @summary purchase
      * @request POST:/fund-product-config/invest
+     * @secure
      */
     purchaseUsingPost: (
       query: {
@@ -2779,6 +2954,7 @@ export class Api<
         path: `/fund-product-config/invest`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2790,6 +2966,7 @@ export class Api<
      * @name PurchaseDetailUsingGet
      * @summary purchaseDetail
      * @request GET:/fund-product-config/invest/detail
+     * @secure
      */
     purchaseDetailUsingGet: (
       query?: {
@@ -2807,6 +2984,7 @@ export class Api<
         path: `/fund-product-config/invest/detail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2817,6 +2995,7 @@ export class Api<
      * @name PurchaseRecordUsingGet
      * @summary purchaseRecord
      * @request GET:/fund-product-config/invest/page
+     * @secure
      */
     purchaseRecordUsingGet: (
       query: {
@@ -2843,6 +3022,7 @@ export class Api<
         path: `/fund-product-config/invest/page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2853,6 +3033,7 @@ export class Api<
      * @name PageUsingGet2
      * @summary page
      * @request GET:/fund-product-config/page
+     * @secure
      */
     pageUsingGet2: (
       query: {
@@ -2887,6 +3068,7 @@ export class Api<
         path: `/fund-product-config/page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2897,6 +3079,7 @@ export class Api<
      * @name ReinvestmentUsingPost
      * @summary reinvestment
      * @request POST:/fund-product-config/reinvestment
+     * @secure
      */
     reinvestmentUsingPost: (
       query?: {
@@ -2914,6 +3097,7 @@ export class Api<
         path: `/fund-product-config/reinvestment`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2925,6 +3109,7 @@ export class Api<
      * @name RewardExtractUsingPost
      * @summary rewardExtract
      * @request POST:/fund-product-config/reward/extract
+     * @secure
      */
     rewardExtractUsingPost: (
       query?: {
@@ -2941,6 +3126,7 @@ export class Api<
         path: `/fund-product-config/reward/extract`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -2952,6 +3138,7 @@ export class Api<
      * @name GetRewardStatsUsingGet
      * @summary getRewardStats
      * @request GET:/fund-product-config/reward/stats
+     * @secure
      */
     getRewardStatsUsingGet: (
       query?: {
@@ -2964,6 +3151,7 @@ export class Api<
         path: `/fund-product-config/reward/stats`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -2974,6 +3162,7 @@ export class Api<
      * @name RewardTransactionUsingGet
      * @summary rewardTransaction
      * @request GET:/fund-product-config/reward/transaction
+     * @secure
      */
     rewardTransactionUsingGet: (
       query: {
@@ -3000,6 +3189,7 @@ export class Api<
         path: `/fund-product-config/reward/transaction`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3010,6 +3200,7 @@ export class Api<
      * @name SmartWalletExtractUsingPost
      * @summary smartWalletExtract
      * @request POST:/fund-product-config/smart-wallet/extract
+     * @secure
      */
     smartWalletExtractUsingPost: (
       query?: {
@@ -3024,6 +3215,7 @@ export class Api<
         path: `/fund-product-config/smart-wallet/extract`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3036,11 +3228,13 @@ export class Api<
      * @name GetDropdownListUsingGet
      * @summary 获取举办国家下拉菜单列表
      * @request GET:/global-activity-country/list
+     * @secure
      */
     getDropdownListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/global-activity-country/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -3052,11 +3246,13 @@ export class Api<
      * @name GetDropdownListUsingGet1
      * @summary 获取举办地点下拉菜单列表
      * @request GET:/global-activity-venue/list
+     * @secure
      */
     getDropdownListUsingGet1: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/global-activity-venue/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -3068,6 +3264,7 @@ export class Api<
      * @name GetActivitiesByCountryIdUsingGet
      * @summary 根据国家ID获取活动信息
      * @request GET:/global-activity/country/activity
+     * @secure
      */
     getActivitiesByCountryIdUsingGet: (
       query?: {
@@ -3083,6 +3280,7 @@ export class Api<
         path: `/global-activity/country/activity`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3093,6 +3291,7 @@ export class Api<
      * @name DetailUsingGet4
      * @summary 根据ID获取活动详情
      * @request GET:/global-activity/detail
+     * @secure
      */
     detailUsingGet4: (
       query?: {
@@ -3108,6 +3307,7 @@ export class Api<
         path: `/global-activity/detail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3118,11 +3318,13 @@ export class Api<
      * @name GetGlobalStudioListUsingGet
      * @summary 获取全局活动中心举办城市
      * @request GET:/global-activity/global-studio/list
+     * @secure
      */
     getGlobalStudioListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/global-activity/global-studio/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -3133,6 +3335,7 @@ export class Api<
      * @name GetPageListUsingGet2
      * @summary 分页列表
      * @request GET:/global-activity/page-list
+     * @secure
      */
     getPageListUsingGet2: (
       query: {
@@ -3157,6 +3360,7 @@ export class Api<
         path: `/global-activity/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -3168,6 +3372,7 @@ export class Api<
      * @name BuyGrowthPoolUsingPost
      * @summary 购买增长池
      * @request POST:/growth/buy
+     * @secure
      */
     buyGrowthPoolUsingPost: (
       req: GrowthPoolBuyDTO,
@@ -3177,7 +3382,44 @@ export class Api<
         path: `/growth/buy`,
         method: "POST",
         body: req,
+        secure: true,
         type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 增长池
+     * @name GetGrowthPoolDirectTransactionsUsingGet
+     * @summary 查询增长池直推记录
+     * @request GET:/growth/direct/page-list
+     * @secure
+     */
+    getGrowthPoolDirectTransactionsUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/growth/direct/page-list`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3188,11 +3430,13 @@ export class Api<
      * @name GetGrowthPoolInfoUsingGet
      * @summary 获取用户增长池信息
      * @request GET:/growth/info
+     * @secure
      */
     getGrowthPoolInfoUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/growth/info`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -3203,6 +3447,7 @@ export class Api<
      * @name GetGrowthPoolTransactionsUsingGet
      * @summary 查询增长池交易记录
      * @request GET:/growth/orders
+     * @secure
      */
     getGrowthPoolTransactionsUsingGet: (
       query: {
@@ -3227,6 +3472,43 @@ export class Api<
         path: `/growth/orders`,
         method: "GET",
         query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 增长池
+     * @name GetGrowthPoolBuyTransactionsUsingGet
+     * @summary 查询增长池购买记录
+     * @request GET:/growth/purchase/page-list
+     * @secure
+     */
+    getGrowthPoolBuyTransactionsUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/growth/purchase/page-list`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -3238,6 +3520,7 @@ export class Api<
      * @name BatchDeleteImagesUsingPost
      * @summary 批量删除图片
      * @request POST:/image/batch-delete
+     * @secure
      */
     batchDeleteImagesUsingPost: (
       imageUrls: string[],
@@ -3247,6 +3530,7 @@ export class Api<
         path: `/image/batch-delete`,
         method: "POST",
         body: imageUrls,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3258,6 +3542,7 @@ export class Api<
      * @name DeleteImageUsingPost
      * @summary 删除图片
      * @request POST:/image/delete
+     * @secure
      */
     deleteImageUsingPost: (
       query: {
@@ -3270,6 +3555,7 @@ export class Api<
         path: `/image/delete`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3281,6 +3567,7 @@ export class Api<
      * @name UploadImageUsingPost
      * @summary 上传图片
      * @request POST:/image/upload
+     * @secure
      */
     uploadImageUsingPost: (
       query: {
@@ -3306,6 +3593,7 @@ export class Api<
         method: "POST",
         query: query,
         body: data,
+        secure: true,
         type: ContentType.FormData,
         ...params,
       }),
@@ -3318,6 +3606,7 @@ export class Api<
      * @name BuyGrowthPoolUsingPost1
      * @summary 现货交易增长池购买
      * @request POST:/internal/growthPool/buy
+     * @secure
      */
     buyGrowthPoolUsingPost1: (
       req: GrowthPoolBuyDTO,
@@ -3327,6 +3616,7 @@ export class Api<
         path: `/internal/growthPool/buy`,
         method: "POST",
         body: req,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3338,6 +3628,7 @@ export class Api<
      * @name GetGrowthPoolLimitInfoUsingGet
      * @summary 获取增长池限制信息
      * @request GET:/internal/growthPool/check
+     * @secure
      */
     getGrowthPoolLimitInfoUsingGet: (
       query?: {
@@ -3353,6 +3644,7 @@ export class Api<
         path: `/internal/growthPool/check`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3363,6 +3655,7 @@ export class Api<
      * @name TransferUsingPost
      * @summary 内部转账
      * @request POST:/internal/transfer
+     * @secure
      */
     transferUsingPost: (
       req: InternalTransferRequest,
@@ -3372,6 +3665,7 @@ export class Api<
         path: `/internal/transfer`,
         method: "POST",
         body: req,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3383,11 +3677,13 @@ export class Api<
      * @name GetStatisticsUsingGet
      * @summary whatsApp统计报表
      * @request GET:/internal/whatsApp/{uid}
+     * @secure
      */
     getStatisticsUsingGet: (uid: number, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/internal/whatsApp/${uid}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -3399,11 +3695,13 @@ export class Api<
      * @name LatestPriceUsingGet
      * @summary 获取最新价格
      * @request GET:/kline/latestPrice
+     * @secure
      */
     latestPriceUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/kline/latestPrice`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -3414,6 +3712,7 @@ export class Api<
      * @name MarketSituationUsingGet
      * @summary 市场行情
      * @request GET:/kline/marketSituation
+     * @secure
      */
     marketSituationUsingGet: (
       query?: {
@@ -3426,6 +3725,7 @@ export class Api<
         path: `/kline/marketSituation`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -3437,11 +3737,13 @@ export class Api<
      * @name CheckFinishUsingPost
      * @summary 检测报名是否结束
      * @request POST:/level-race/check-finish
+     * @secure
      */
     checkFinishUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/level-race/check-finish`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3453,11 +3755,13 @@ export class Api<
      * @name IntroduceUsingGet
      * @summary 活动文案
      * @request GET:/level-race/introduce
+     * @secure
      */
     introduceUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/level-race/introduce`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -3468,11 +3772,13 @@ export class Api<
      * @name RegistrationUsingPost1
      * @summary 用户报名活动
      * @request POST:/level-race/registration
+     * @secure
      */
     registrationUsingPost1: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/level-race/registration`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3484,11 +3790,13 @@ export class Api<
      * @name RegistrationRecordUsingGet
      * @summary 参赛记录
      * @request GET:/level-race/registration-record
+     * @secure
      */
     registrationRecordUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/level-race/registration-record`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -3499,6 +3807,7 @@ export class Api<
      * @name SetReadUsingPost
      * @summary 设置已读
      * @request POST:/level-race/set-read
+     * @secure
      */
     setReadUsingPost: (
       query?: {
@@ -3511,6 +3820,7 @@ export class Api<
         path: `/level-race/set-read`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3523,6 +3833,7 @@ export class Api<
      * @name ThumbUsingGet
      * @summary 行情查询
      * @request GET:/market/thumb
+     * @secure
      */
     thumbUsingGet: (
       query?: {
@@ -3535,6 +3846,7 @@ export class Api<
         path: `/market/thumb`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -3546,12 +3858,14 @@ export class Api<
      * @name SaveUsingPost
      * @summary meetup申请
      * @request POST:/meetup/apply
+     * @secure
      */
     saveUsingPost: (dto: MemberMeetupDTO, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/meetup/apply`,
         method: "POST",
         body: dto,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3563,6 +3877,7 @@ export class Api<
      * @name GetPageListUsingGet3
      * @summary meetup分页列表
      * @request GET:/meetup/page-list
+     * @secure
      */
     getPageListUsingGet3: (
       query: {
@@ -3587,6 +3902,7 @@ export class Api<
         path: `/meetup/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3597,11 +3913,113 @@ export class Api<
      * @name CanApplyCountUsingGet
      * @summary 本账号剩余可申请次数
      * @request GET:/meetup/rest-count
+     * @secure
      */
     canApplyCountUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/meetup/rest-count`,
         method: "GET",
+        secure: true,
+        ...params,
+      }),
+  };
+  memberMessage = {
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name UpdateMessageStatusBatchUsingPost
+     * @summary 批量将消息修改为已读状态
+     * @request POST:/member-message/batch-change-status
+     * @secure
+     */
+    updateMessageStatusBatchUsingPost: (params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/member-message/batch-change-status`,
+        method: "POST",
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name UpdateMessageStatusUsingPost
+     * @summary 根据消息ID，将消息修改为已读状态
+     * @request POST:/member-message/change-status
+     * @secure
+     */
+    updateMessageStatusUsingPost: (
+      query?: {
+        /**
+         * id
+         * @format int64
+         */
+        id?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member-message/change-status`,
+        method: "POST",
+        query: query,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name QueryPageListUsingGet
+     * @summary 根据用户ID,查询用户消息列表
+     * @request GET:/member-message/list
+     * @secure
+     */
+    queryPageListUsingGet: (
+      query: {
+        /** 排序方式 asc/desc */
+        order?: string;
+        /**
+         * 页号
+         * @format int32
+         */
+        pageNo: number;
+        /**
+         * 页面大小
+         * @format int32
+         */
+        pageSize: number;
+        /** 排序字段 */
+        sort?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/member-message/list`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 登录注册
+     * @name GetUnReadCountUsingGet
+     * @summary 查询用户有多少条未读消息
+     * @request GET:/member-message/unread-count
+     * @secure
+     */
+    getUnReadCountUsingGet: (params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/member-message/unread-count`,
+        method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -3613,6 +4031,7 @@ export class Api<
      * @name EditUsingPost
      * @summary 编辑
      * @request POST:/member-vip-level-config/edit
+     * @secure
      */
     editUsingPost: (
       query?: {
@@ -3673,6 +4092,7 @@ export class Api<
         path: `/member-vip-level-config/edit`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3684,6 +4104,7 @@ export class Api<
      * @name GetByIdUsingGet
      * @summary 获取详情
      * @request GET:/member-vip-level-config/getById
+     * @secure
      */
     getByIdUsingGet: (
       query?: {
@@ -3699,6 +4120,7 @@ export class Api<
         path: `/member-vip-level-config/getById`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3709,11 +4131,13 @@ export class Api<
      * @name ListUsingGet1
      * @summary 会员列表
      * @request GET:/member-vip-level-config/list
+     * @secure
      */
     listUsingGet1: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member-vip-level-config/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -3725,6 +4149,7 @@ export class Api<
      * @name EditUsingPost1
      * @summary 编辑
      * @request POST:/member-vip-level-start-config/edit
+     * @secure
      */
     editUsingPost1: (
       query?: {
@@ -3779,6 +4204,7 @@ export class Api<
         path: `/member-vip-level-start-config/edit`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3790,6 +4216,7 @@ export class Api<
      * @name GetByIdUsingGet1
      * @summary 获取详情
      * @request GET:/member-vip-level-start-config/getById
+     * @secure
      */
     getByIdUsingGet1: (
       query?: {
@@ -3805,6 +4232,7 @@ export class Api<
         path: `/member-vip-level-start-config/getById`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3815,11 +4243,13 @@ export class Api<
      * @name ListUsingGet2
      * @summary 会员列表
      * @request GET:/member-vip-level-start-config/list
+     * @secure
      */
     listUsingGet2: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member-vip-level-start-config/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -3831,6 +4261,7 @@ export class Api<
      * @name InvitationUsingGet
      * @summary 认证
      * @request GET:/member/approve
+     * @secure
      */
     invitationUsingGet: (
       query?: {
@@ -3882,6 +4313,7 @@ export class Api<
         path: `/member/approve`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -3892,11 +4324,13 @@ export class Api<
      * @name CheckApproveUsingGet
      * @summary 检查是否认证
      * @request GET:/member/checkApprove
+     * @secure
      */
     checkApproveUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member/checkApprove`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -3907,6 +4341,7 @@ export class Api<
      * @name EditInfoUsingPost1
      * @summary 修改用户信息
      * @request POST:/member/edit-info
+     * @secure
      */
     editInfoUsingPost1: (
       query?: {
@@ -3921,6 +4356,7 @@ export class Api<
         path: `/member/edit-info`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3932,6 +4368,7 @@ export class Api<
      * @name BindEmailUsingPost
      * @summary bindEmail
      * @request POST:/member/email/bind
+     * @secure
      */
     bindEmailUsingPost: (
       query?: {
@@ -3945,6 +4382,7 @@ export class Api<
         path: `/member/email/bind`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3956,6 +4394,7 @@ export class Api<
      * @name ChangeEmailUsingPost
      * @summary changeEmail
      * @request POST:/member/email/change
+     * @secure
      */
     changeEmailUsingPost: (
       query?: {
@@ -3970,6 +4409,7 @@ export class Api<
         path: `/member/email/change`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -3981,6 +4421,7 @@ export class Api<
      * @name SendEmailCodeUsingGet
      * @summary sendEmailCode
      * @request GET:/member/email/send-code
+     * @secure
      */
     sendEmailCodeUsingGet: (
       query: {
@@ -3998,6 +4439,7 @@ export class Api<
         path: `/member/email/send-code`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4008,6 +4450,7 @@ export class Api<
      * @name FlashExchangeUsingPost
      * @summary 用户闪兑
      * @request POST:/member/flash-exchange
+     * @secure
      */
     flashExchangeUsingPost: (
       query?: {
@@ -4026,6 +4469,7 @@ export class Api<
         path: `/member/flash-exchange`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4037,6 +4481,7 @@ export class Api<
      * @name FlashExchangePreviewUsingGet
      * @summary 用户闪兑预算
      * @request GET:/member/flash-exchange/preview
+     * @secure
      */
     flashExchangePreviewUsingGet: (
       query?: {
@@ -4053,6 +4498,7 @@ export class Api<
         path: `/member/flash-exchange/preview`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4063,6 +4509,7 @@ export class Api<
      * @name BindGoogleUsingPost
      * @summary 绑定google验证
      * @request POST:/member/gg/bindGoogle
+     * @secure
      */
     bindGoogleUsingPost: (
       query?: {
@@ -4080,6 +4527,7 @@ export class Api<
         path: `/member/gg/bindGoogle`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4091,11 +4539,13 @@ export class Api<
      * @name GenerateGoogleSecretUsingPost
      * @summary 生成谷歌秘钥
      * @request POST:/member/gg/generateGoogleSecret
+     * @secure
      */
     generateGoogleSecretUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member/gg/generateGoogleSecret`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4107,6 +4557,7 @@ export class Api<
      * @name GoogleLoginUsingPost
      * @summary google验证验证码
      * @request POST:/member/gg/googleCodeTelVerify
+     * @secure
      */
     googleLoginUsingPost: (
       query?: {
@@ -4124,6 +4575,7 @@ export class Api<
         path: `/member/gg/googleCodeTelVerify`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4135,6 +4587,7 @@ export class Api<
      * @name GoogleLoginUsingPost1
      * @summary google验证验证码
      * @request POST:/member/gg/googleCodeVerify
+     * @secure
      */
     googleLoginUsingPost1: (
       query?: {
@@ -4150,6 +4603,7 @@ export class Api<
         path: `/member/gg/googleCodeVerify`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4161,11 +4615,13 @@ export class Api<
      * @name UserInfoUsingGet
      * @summary 邀请列表
      * @request GET:/member/info
+     * @secure
      */
     userInfoUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member/info`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -4176,6 +4632,7 @@ export class Api<
      * @name InitInvitationCodeUsingPost
      * @summary 用户钱包地址列表
      * @request POST:/member/init-invitation-code
+     * @secure
      */
     initInvitationCodeUsingPost: (
       query?: {
@@ -4188,6 +4645,7 @@ export class Api<
         path: `/member/init-invitation-code`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4199,6 +4657,7 @@ export class Api<
      * @name MemberAddressAddUsingPost
      * @summary 用户钱包地址列表
      * @request POST:/member/member-address-add
+     * @secure
      */
     memberAddressAddUsingPost: (
       query?: {
@@ -4213,6 +4672,7 @@ export class Api<
         path: `/member/member-address-add`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4224,6 +4684,7 @@ export class Api<
      * @name MemberAddressAddUsingPost1
      * @summary 用户钱包地址列表
      * @request POST:/member/member-address-del
+     * @secure
      */
     memberAddressAddUsingPost1: (
       query?: {
@@ -4236,6 +4697,7 @@ export class Api<
         path: `/member/member-address-del`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4247,11 +4709,13 @@ export class Api<
      * @name MemberAddressListUsingPost
      * @summary 用户钱包地址列表
      * @request POST:/member/member-address-list
+     * @secure
      */
     memberAddressListUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member/member-address-list`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4263,6 +4727,7 @@ export class Api<
      * @name InvitationUsingGet1
      * @summary 邀请列表
      * @request GET:/member/page-invitation
+     * @secure
      */
     invitationUsingGet1: (
       query: {
@@ -4287,6 +4752,7 @@ export class Api<
         path: `/member/page-invitation`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4297,11 +4763,13 @@ export class Api<
      * @name InvitationUsingGet2
      * @summary 生成邀请二维码
      * @request GET:/member/qrcode
+     * @secure
      */
     invitationUsingGet2: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member/qrcode`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -4312,6 +4780,7 @@ export class Api<
      * @name DirectReferralListUsingGet
      * @summary 获取新分区信息
      * @request GET:/member/team/direct-referral/area/list
+     * @secure
      */
     directReferralListUsingGet: (
       query: {
@@ -4332,6 +4801,7 @@ export class Api<
         path: `/member/team/direct-referral/area/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4342,6 +4812,7 @@ export class Api<
      * @name QueryMemberPageListByDirectReferralUsingGet
      * @summary 点击My direct referral获取用户列表
      * @request GET:/member/team/direct-referral/page-list
+     * @secure
      */
     queryMemberPageListByDirectReferralUsingGet: (
       query: {
@@ -4378,6 +4849,7 @@ export class Api<
         path: `/member/team/direct-referral/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4388,6 +4860,7 @@ export class Api<
      * @name QueryHighestLevelUserUsingGet
      * @summary 高等级用户top10
      * @request GET:/member/team/highest-level-user/list
+     * @secure
      */
     queryHighestLevelUserUsingGet: (
       query: {
@@ -4408,6 +4881,7 @@ export class Api<
         path: `/member/team/highest-level-user/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4418,6 +4892,7 @@ export class Api<
      * @name QueryHighestPerformingUserUsingGet
      * @summary 高活跃度用户top10
      * @request GET:/member/team/highest-performing-user/list
+     * @secure
      */
     queryHighestPerformingUserUsingGet: (
       query: {
@@ -4438,6 +4913,7 @@ export class Api<
         path: `/member/team/highest-performing-user/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4448,6 +4924,7 @@ export class Api<
      * @name MemberTeamPageQueryUsingGet1
      * @summary 会员列表
      * @request GET:/member/team/page-query
+     * @secure
      */
     memberTeamPageQueryUsingGet1: (
       query: {
@@ -4494,6 +4971,7 @@ export class Api<
         path: `/member/team/page-query`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4504,11 +4982,13 @@ export class Api<
      * @name MemberTeamAreaUsingGet
      * @summary 分区信息
      * @request GET:/member/team/page-query/area
+     * @secure
      */
     memberTeamAreaUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/member/team/page-query/area`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -4519,6 +4999,7 @@ export class Api<
      * @name MemberTeamAreaStatUsingGet
      * @summary VIP会员信息展示
      * @request GET:/member/team/page-query/areaStat
+     * @secure
      */
     memberTeamAreaStatUsingGet: (
       query: {
@@ -4536,6 +5017,7 @@ export class Api<
         path: `/member/team/page-query/areaStat`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4546,6 +5028,7 @@ export class Api<
      * @name MemberTeamPageQueryUsingGet
      * @summary 会员列表
      * @request GET:/member/team/page-query/generation
+     * @secure
      */
     memberTeamPageQueryUsingGet: (
       query?: {
@@ -4571,6 +5054,7 @@ export class Api<
         path: `/member/team/page-query/generation`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4581,6 +5065,7 @@ export class Api<
      * @name QueryAllTeamMemberListUsingGet
      * @summary 团队用户列表
      * @request GET:/member/team/team-member/list
+     * @secure
      */
     queryAllTeamMemberListUsingGet: (
       query?: {
@@ -4598,6 +5083,7 @@ export class Api<
         path: `/member/team/team-member/list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4608,6 +5094,7 @@ export class Api<
      * @name QueryPersonalInformationUsingGet
      * @summary 通过用户ID查询个人投资信息详情
      * @request GET:/member/team/team-member/personal-information
+     * @secure
      */
     queryPersonalInformationUsingGet: (
       query: {
@@ -4627,6 +5114,7 @@ export class Api<
         path: `/member/team/team-member/personal-information`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4637,6 +5125,7 @@ export class Api<
      * @name QueryTodayNewTeamMemberPageListUsingGet
      * @summary 今日新增用户分页列表
      * @request GET:/member/team/team-member/today/page-list
+     * @secure
      */
     queryTodayNewTeamMemberPageListUsingGet: (
       query: {
@@ -4663,6 +5152,7 @@ export class Api<
         path: `/member/team/team-member/today/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4673,6 +5163,7 @@ export class Api<
      * @name QueryTotalTeamMemberPageListUsingGet
      * @summary 所有团队成员分页列表
      * @request GET:/member/team/team-member/total/page-list
+     * @secure
      */
     queryTotalTeamMemberPageListUsingGet: (
       query: {
@@ -4699,6 +5190,7 @@ export class Api<
         path: `/member/team/team-member/total/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4709,6 +5201,7 @@ export class Api<
      * @name QueryMemberPageListByLevelUsingGet
      * @summary 根据用户等级获取用户列表
      * @request GET:/member/team/vip-level/page-list
+     * @secure
      */
     queryMemberPageListByLevelUsingGet: (
       query: {
@@ -4752,6 +5245,7 @@ export class Api<
         path: `/member/team/vip-level/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -4763,6 +5257,7 @@ export class Api<
      * @name PageUsingPost
      * @summary 列表
      * @request POST:/node-product-config/list
+     * @secure
      */
     pageUsingPost: (
       query?: {
@@ -4778,6 +5273,7 @@ export class Api<
         path: `/node-product-config/list`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4790,6 +5286,7 @@ export class Api<
      * @name PurchaseUsingPost1
      * @summary 列表
      * @request POST:/node-product/purchase
+     * @secure
      */
     purchaseUsingPost1: (
       query?: {
@@ -4805,6 +5302,7 @@ export class Api<
         path: `/node-product/purchase`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4816,6 +5314,7 @@ export class Api<
      * @name PurchaseCheckUsingPost
      * @summary 列表
      * @request POST:/node-product/purchase/check
+     * @secure
      */
     purchaseCheckUsingPost: (
       query?: {
@@ -4831,6 +5330,7 @@ export class Api<
         path: `/node-product/purchase/check`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4842,11 +5342,13 @@ export class Api<
      * @name PurchaseInfoUsingPost
      * @summary 列表
      * @request POST:/node-product/purchase/info
+     * @secure
      */
     purchaseInfoUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/node-product/purchase/info`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4859,6 +5361,7 @@ export class Api<
      * @name CreateUsingPost1
      * @summary 托管
      * @request POST:/order/create
+     * @secure
      */
     createUsingPost1: (
       query?: {
@@ -4874,6 +5377,7 @@ export class Api<
         path: `/order/create`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4885,11 +5389,13 @@ export class Api<
      * @name DividendsStatisticsUsingGet
      * @summary 分红统计
      * @request GET:/order/dividends-statistics
+     * @secure
      */
     dividendsStatisticsUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/order/dividends-statistics`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -4900,6 +5406,7 @@ export class Api<
      * @name InfoUsingGet3
      * @summary 详情
      * @request GET:/order/info
+     * @secure
      */
     infoUsingGet3: (
       query?: {
@@ -4915,6 +5422,7 @@ export class Api<
         path: `/order/info`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4925,6 +5433,7 @@ export class Api<
      * @name PageUsingGet3
      * @summary 托管列表
      * @request GET:/order/page
+     * @secure
      */
     pageUsingGet3: (
       query: {
@@ -4949,6 +5458,7 @@ export class Api<
         path: `/order/page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -4959,6 +5469,7 @@ export class Api<
      * @name UnlockUsingPost
      * @summary 解锁
      * @request POST:/order/unlock
+     * @secure
      */
     unlockUsingPost: (
       query?: {
@@ -4974,6 +5485,7 @@ export class Api<
         path: `/order/unlock`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -4985,6 +5497,7 @@ export class Api<
      * @name UnlockInfoUsingGet
      * @summary 解锁手续费查询
      * @request GET:/order/unlock-info
+     * @secure
      */
     unlockInfoUsingGet: (
       query?: {
@@ -5000,6 +5513,7 @@ export class Api<
         path: `/order/unlock-info`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -5011,11 +5525,13 @@ export class Api<
      * @name InfoUsingGet1
      * @summary 详情
      * @request GET:/platform-config/info
+     * @secure
      */
     infoUsingGet1: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/platform-config/info`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -5027,11 +5543,13 @@ export class Api<
      * @name ComputingPowerOutputSwarmUsingGet
      * @summary 算力产出-swarm统计
      * @request GET:/porder/computing-power-output-swarm
+     * @secure
      */
     computingPowerOutputSwarmUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/porder/computing-power-output-swarm`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -5042,6 +5560,7 @@ export class Api<
      * @name CreateUsingPost
      * @summary 下单
      * @request POST:/porder/create
+     * @secure
      */
     createUsingPost: (
       query?: {
@@ -5209,6 +5728,7 @@ export class Api<
         path: `/porder/create`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -5220,6 +5740,7 @@ export class Api<
      * @name InfoUsingGet2
      * @summary 订单详情
      * @request GET:/porder/info
+     * @secure
      */
     infoUsingGet2: (
       query?: {
@@ -5235,6 +5756,7 @@ export class Api<
         path: `/porder/info`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5245,6 +5767,7 @@ export class Api<
      * @name PageDetailMcDxUsingGet
      * @summary 算力产出
      * @request GET:/porder/page-detail-mc-dx
+     * @secure
      */
     pageDetailMcDxUsingGet: (
       query: {
@@ -5274,6 +5797,7 @@ export class Api<
         path: `/porder/page-detail-mc-dx`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5284,6 +5808,7 @@ export class Api<
      * @name ListPageUsingGet
      * @summary 订单列表
      * @request GET:/porder/page-list
+     * @secure
      */
     listPageUsingGet: (
       query: {
@@ -5318,6 +5843,7 @@ export class Api<
         path: `/porder/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5328,11 +5854,13 @@ export class Api<
      * @name SumIncomeUsingGet
      * @summary 订单列表-累计产出
      * @request GET:/porder/sumIncome
+     * @secure
      */
     sumIncomeUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/porder/sumIncome`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -5344,11 +5872,13 @@ export class Api<
      * @name HankUsingGet
      * @summary 产品销量排行
      * @request GET:/power/hank
+     * @secure
      */
     hankUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/power/hank`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -5359,6 +5889,7 @@ export class Api<
      * @name PageListUsingGet
      * @summary 产品列表
      * @request GET:/power/page-list
+     * @secure
      */
     pageListUsingGet: (
       query: {
@@ -5403,6 +5934,7 @@ export class Api<
         path: `/power/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5413,6 +5945,7 @@ export class Api<
      * @name PageListH5UsingGet
      * @summary 产品列表-H5
      * @request GET:/power/page-list-h5
+     * @secure
      */
     pageListH5UsingGet: (
       query: {
@@ -5457,6 +5990,7 @@ export class Api<
         path: `/power/page-list-h5`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5467,11 +6001,13 @@ export class Api<
      * @name PageListUsingGet1
      * @summary 根据查询产品
      * @request GET:/power/{id}
+     * @secure
      */
     pageListUsingGet1: (id?: string, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/power/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -5483,11 +6019,13 @@ export class Api<
      * @name HankUsingGet1
      * @summary 产品销量排行
      * @request GET:/product/hank
+     * @secure
      */
     hankUsingGet1: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/product/hank`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -5498,6 +6036,7 @@ export class Api<
      * @name PageListUsingGet2
      * @summary 质押产品列表
      * @request GET:/product/page-list
+     * @secure
      */
     pageListUsingGet2: (
       query: {
@@ -5527,6 +6066,7 @@ export class Api<
         path: `/product/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5537,11 +6077,13 @@ export class Api<
      * @name PageListUsingGet3
      * @summary 根据查询产品
      * @request GET:/product/{id}
+     * @secure
      */
     pageListUsingGet3: (id?: string, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/product/${id}`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -5553,11 +6095,13 @@ export class Api<
      * @name GetDocListUsingGet
      * @summary 宣传资料列表
      * @request GET:/publicize-doc-video/doc/list
+     * @secure
      */
     getDocListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/publicize-doc-video/doc/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -5568,11 +6112,13 @@ export class Api<
      * @name GetVideoListUsingGet
      * @summary 宣传视频列表
      * @request GET:/publicize-doc-video/video/list
+     * @secure
      */
     getVideoListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/publicize-doc-video/video/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -5584,11 +6130,13 @@ export class Api<
      * @name GetListUsingGet
      * @summary 宣传海报分页列表
      * @request GET:/publicize-poster/list
+     * @secure
      */
     getListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/publicize-poster/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -5600,6 +6148,7 @@ export class Api<
      * @name GetCodeUsingGet
      * @summary 验证码
      * @request GET:/sms/get/{type}
+     * @secure
      */
     getCodeUsingGet: (
       type:
@@ -5622,6 +6171,7 @@ export class Api<
         path: `/sms/get/${type}`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5632,6 +6182,7 @@ export class Api<
      * @name SendEmailUsingGet
      * @summary 发送邮箱验证码
      * @request GET:/sms/sendEmail/{type}
+     * @secure
      */
     sendEmailUsingGet: (
       type:
@@ -5652,6 +6203,7 @@ export class Api<
         path: `/sms/sendEmail/${type}`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5662,6 +6214,7 @@ export class Api<
      * @name VerificationEmailUsingGet
      * @summary 验证邮箱验证
      * @request GET:/sms/verificationEmail
+     * @secure
      */
     verificationEmailUsingGet: (
       query?: {
@@ -5676,6 +6229,7 @@ export class Api<
         path: `/sms/verificationEmail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -5687,6 +6241,7 @@ export class Api<
      * @name ApkUploadUsingPost
      * @summary apkUpload
      * @request POST:/upload/apkUpload
+     * @secure
      */
     apkUploadUsingPost: (
       data: {
@@ -5702,6 +6257,7 @@ export class Api<
         path: `/upload/apkUpload`,
         method: "POST",
         body: data,
+        secure: true,
         type: ContentType.FormData,
         ...params,
       }),
@@ -5713,6 +6269,7 @@ export class Api<
      * @name ImgUploadUsingPost
      * @summary imgUpload
      * @request POST:/upload/imgUpload
+     * @secure
      */
     imgUploadUsingPost: (
       data: {
@@ -5728,6 +6285,7 @@ export class Api<
         path: `/upload/imgUpload`,
         method: "POST",
         body: data,
+        secure: true,
         type: ContentType.FormData,
         ...params,
       }),
@@ -5740,6 +6298,7 @@ export class Api<
      * @name GetActivityByIdUsingGet
      * @summary 活动详情
      * @request GET:/userActivity/getActivityById
+     * @secure
      */
     getActivityByIdUsingGet: (
       query: {
@@ -5755,6 +6314,7 @@ export class Api<
         path: `/userActivity/getActivityById`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5765,6 +6325,7 @@ export class Api<
      * @name GetActivityListUsingGet
      * @summary api活动列表
      * @request GET:/userActivity/getApiActivityList
+     * @secure
      */
     getActivityListUsingGet: (
       query: {
@@ -5794,6 +6355,7 @@ export class Api<
         path: `/userActivity/getApiActivityList`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5804,6 +6366,7 @@ export class Api<
      * @name GetUserActByActivityIdUsingGet
      * @summary 展示活动审核状态
      * @request GET:/userActivity/getUserActByActivityId
+     * @secure
      */
     getUserActByActivityIdUsingGet: (
       query: {
@@ -5819,6 +6382,7 @@ export class Api<
         path: `/userActivity/getUserActByActivityId`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5829,6 +6393,7 @@ export class Api<
      * @name RegistActivityUsingPost
      * @summary 用户报名活动
      * @request POST:/userActivity/regist/activity
+     * @secure
      */
     registActivityUsingPost: (
       dto: RegistActivityDTO,
@@ -5838,6 +6403,7 @@ export class Api<
         path: `/userActivity/regist/activity`,
         method: "POST",
         body: dto,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -5850,6 +6416,7 @@ export class Api<
      * @name OutputFreezeAllUsingGet
      * @summary 账户明细-可用余额
      * @request GET:/wallet/account-details-balance
+     * @secure
      */
     outputFreezeAllUsingGet: (
       query?: {
@@ -5862,6 +6429,7 @@ export class Api<
         path: `/wallet/account-details-balance`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5872,6 +6440,7 @@ export class Api<
      * @name AccountDetailsFreezeUsingGet1
      * @summary 账户明细-产出冻结-总览
      * @request GET:/wallet/account-details-freeze
+     * @secure
      */
     accountDetailsFreezeUsingGet1: (
       query?: {
@@ -5884,6 +6453,7 @@ export class Api<
         path: `/wallet/account-details-freeze`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5894,6 +6464,7 @@ export class Api<
      * @name AccountDetailsFreezeUsingGet
      * @summary 账户明细-产出冻结-列表
      * @request GET:/wallet/account-details-freeze-list
+     * @secure
      */
     accountDetailsFreezeUsingGet: (
       query: {
@@ -5920,6 +6491,7 @@ export class Api<
         path: `/wallet/account-details-freeze-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5930,6 +6502,7 @@ export class Api<
      * @name OtherPageUsingGet
      * @summary 分页获取其他记录（系统操作）
      * @request GET:/wallet/deposit-other
+     * @secure
      */
     otherPageUsingGet: (
       query: {
@@ -5960,6 +6533,7 @@ export class Api<
         path: `/wallet/deposit-other`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -5970,6 +6544,7 @@ export class Api<
      * @name DepositPageUsingGet
      * @summary 分页获取冲币记录
      * @request GET:/wallet/deposit-page
+     * @secure
      */
     depositPageUsingGet: (
       query: {
@@ -6002,6 +6577,7 @@ export class Api<
         path: `/wallet/deposit-page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6012,6 +6588,7 @@ export class Api<
      * @name GetAccountAvailableBalanceUsingGet
      * @summary 账户可用余额
      * @request GET:/wallet/getAccountAvailableBalance
+     * @secure
      */
     getAccountAvailableBalanceUsingGet: (
       query?: {
@@ -6024,6 +6601,7 @@ export class Api<
         path: `/wallet/getAccountAvailableBalance`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6034,11 +6612,13 @@ export class Api<
      * @name GetAccountAvailableBalanceSwarmUsingGet
      * @summary SWARM账户可用余额
      * @request GET:/wallet/getAccountAvailableBalanceSwarm
+     * @secure
      */
     getAccountAvailableBalanceSwarmUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/wallet/getAccountAvailableBalanceSwarm`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -6049,6 +6629,7 @@ export class Api<
      * @name GetRecordStatisticsUsingGet
      * @summary 资产-充值统计
      * @request GET:/wallet/getRecordStatistics
+     * @secure
      */
     getRecordStatisticsUsingGet: (
       query?: {
@@ -6063,6 +6644,7 @@ export class Api<
         path: `/wallet/getRecordStatistics`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6073,6 +6655,7 @@ export class Api<
      * @name GetTipsUsingPost
      * @summary 资产-获取温馨提示
      * @request POST:/wallet/getTips
+     * @secure
      */
     getTipsUsingPost: (
       query?: {
@@ -6090,6 +6673,7 @@ export class Api<
         path: `/wallet/getTips`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6101,11 +6685,13 @@ export class Api<
      * @name GetTotalInvestmentUsingGet
      * @summary 获取总投资金额
      * @request GET:/wallet/getTotalInvestment
+     * @secure
      */
     getTotalInvestmentUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/wallet/getTotalInvestment`,
         method: "GET",
+        secure: true,
         ...params,
       }),
 
@@ -6116,6 +6702,7 @@ export class Api<
      * @name GetWithdrawStatisticsUsingGet
      * @summary 资产-提币统计
      * @request GET:/wallet/getWithdrawStatistics
+     * @secure
      */
     getWithdrawStatisticsUsingGet: (
       query?: {
@@ -6130,6 +6717,7 @@ export class Api<
         path: `/wallet/getWithdrawStatistics`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6140,11 +6728,13 @@ export class Api<
      * @name InitUsingPost
      * @summary 初始化一下
      * @request POST:/wallet/initEvery
+     * @secure
      */
     initUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/wallet/initEvery`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6156,11 +6746,13 @@ export class Api<
      * @name ListUsingPost
      * @summary 资产列表
      * @request POST:/wallet/list
+     * @secure
      */
     listUsingPost: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/wallet/list`,
         method: "POST",
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6172,6 +6764,7 @@ export class Api<
      * @name PageDetailUsingGet
      * @summary 明细
      * @request GET:/wallet/page-detail
+     * @secure
      */
     pageDetailUsingGet: (
       query: {
@@ -6198,6 +6791,7 @@ export class Api<
         path: `/wallet/page-detail`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6208,6 +6802,7 @@ export class Api<
      * @name PageDetailListUsingPost
      * @summary 明细-按分类查询
      * @request POST:/wallet/page-detail-list
+     * @secure
      */
     pageDetailListUsingPost: (
       query: {
@@ -6244,6 +6839,7 @@ export class Api<
         path: `/wallet/page-detail-list`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6255,6 +6851,7 @@ export class Api<
      * @name PledgeThawingUsingGet
      * @summary 账户明细-质押解冻-总览
      * @request GET:/wallet/pledge-thawing
+     * @secure
      */
     pledgeThawingUsingGet: (
       query?: {
@@ -6267,6 +6864,7 @@ export class Api<
         path: `/wallet/pledge-thawing`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6277,6 +6875,7 @@ export class Api<
      * @name PledgeThawingListUsingGet
      * @summary 账户明细-质押解冻-列表
      * @request GET:/wallet/pledge-thawing-list
+     * @secure
      */
     pledgeThawingListUsingGet: (
       query: {
@@ -6303,6 +6902,7 @@ export class Api<
         path: `/wallet/pledge-thawing-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6313,6 +6913,7 @@ export class Api<
      * @name RechargeCommitUsingPost
      * @summary 资产-提交充币
      * @request POST:/wallet/rechargeCommit
+     * @secure
      */
     rechargeCommitUsingPost: (
       query: {
@@ -6335,6 +6936,7 @@ export class Api<
         path: `/wallet/rechargeCommit`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6346,6 +6948,7 @@ export class Api<
      * @name RechargeDetailUsingPost
      * @summary 资产-提交充币
      * @request POST:/wallet/rechargeDetail
+     * @secure
      */
     rechargeDetailUsingPost: (
       query?: {
@@ -6361,6 +6964,7 @@ export class Api<
         path: `/wallet/rechargeDetail`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6372,6 +6976,7 @@ export class Api<
      * @name InteamInvestmentStatitUsingGet
      * @summary 团队资产统计
      * @request GET:/wallet/team/investmentStat
+     * @secure
      */
     inteamInvestmentStatitUsingGet: (
       query?: {
@@ -6386,6 +6991,7 @@ export class Api<
         path: `/wallet/team/investmentStat`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6396,6 +7002,7 @@ export class Api<
      * @name TransferUsingPost1
      * @summary 转账
      * @request POST:/wallet/transfer
+     * @secure
      */
     transferUsingPost1: (
       query?: {
@@ -6410,6 +7017,7 @@ export class Api<
         path: `/wallet/transfer`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6421,6 +7029,7 @@ export class Api<
      * @name TransferPageUsingGet
      * @summary 分页获取转账记录
      * @request GET:/wallet/transfer-page
+     * @secure
      */
     transferPageUsingGet: (
       query: {
@@ -6445,6 +7054,7 @@ export class Api<
         path: `/wallet/transfer-page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6455,6 +7065,7 @@ export class Api<
      * @name WithdrawUsingPost
      * @summary 提币
      * @request POST:/wallet/withdraw
+     * @secure
      */
     withdrawUsingPost: (
       query: {
@@ -6484,6 +7095,7 @@ export class Api<
         path: `/wallet/withdraw`,
         method: "POST",
         query: query,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6495,6 +7107,7 @@ export class Api<
      * @name WithdrawPageUsingGet
      * @summary 分页获取提币记录
      * @request GET:/wallet/withdraw-page
+     * @secure
      */
     withdrawPageUsingGet: (
       query: {
@@ -6521,6 +7134,7 @@ export class Api<
         path: `/wallet/withdraw-page`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };
@@ -6532,6 +7146,7 @@ export class Api<
      * @name MemberAddressListUsingGet
      * @summary 地址列表
      * @request GET:/withdraw-address/address-list
+     * @secure
      */
     memberAddressListUsingGet: (
       query?: {
@@ -6544,6 +7159,7 @@ export class Api<
         path: `/withdraw-address/address-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
 
@@ -6554,12 +7170,14 @@ export class Api<
      * @name BindAddressUsingPost
      * @summary 绑定地址
      * @request POST:/withdraw-address/bind-address
+     * @secure
      */
     bindAddressUsingPost: (param: _, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/withdraw-address/bind-address`,
         method: "POST",
         body: param,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6571,11 +7189,13 @@ export class Api<
      * @name ProtocolListUsingGet
      * @summary 协议列表
      * @request GET:/withdraw-address/protocol/list
+     * @secure
      */
     protocolListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/withdraw-address/protocol/list`,
         method: "GET",
+        secure: true,
         ...params,
       }),
   };
@@ -6587,12 +7207,14 @@ export class Api<
      * @name SaveUsingPost1
      * @summary 工作室申请
      * @request POST:/workroom/apply
+     * @secure
      */
     saveUsingPost1: (dto: MemberWorkroomDTO, params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/workroom/apply`,
         method: "POST",
         body: dto,
+        secure: true,
         type: ContentType.Json,
         ...params,
       }),
@@ -6604,6 +7226,7 @@ export class Api<
      * @name GetPageListUsingGet4
      * @summary 工作室分页列表
      * @request GET:/workroom/page-list
+     * @secure
      */
     getPageListUsingGet4: (
       query: {
@@ -6628,6 +7251,7 @@ export class Api<
         path: `/workroom/page-list`,
         method: "GET",
         query: query,
+        secure: true,
         ...params,
       }),
   };

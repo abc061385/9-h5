@@ -636,7 +636,7 @@
   "个人": "Osobní",
   "团队": "Tým",
   "confirmOrder": "Potvrdit objednávku",
-  "purchase": "Budete kupovat",
+  "purchase": "Nákup",
   "results": "Výsledek",
   "viewFundDetails": "Zobrazit podrobnosti o fondu",
   "return": "Zpět",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "Konsolidace Růstového Poolu",
   "VIP_RACE_REWARD": "VIP registrační bonus",
   "GP_DIRECT_PUSH_REWARD": "Odměna za přímé doporučení z růstového fondu",
-  "GP_INDIRECT_PUSH_REWARD": "Odměna za nepřímé doporučení z růstového fondu"
+  "GP_INDIRECT_PUSH_REWARD": "Odměna za nepřímé doporučení z růstového fondu",
+  "direct_referral": "Přímé Doporučení",
+  "asset": "Aktivum",
+  "referral": "Doporučení"
 }

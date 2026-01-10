@@ -636,7 +636,7 @@
   "个人": "Individuell",
   "团队": "Team",
   "confirmOrder": "Bekreft bestilling",
-  "purchase": "Du skal kjøpe",
+  "purchase": "Kjøp",
   "results": "Resultat",
   "viewFundDetails": "Se fondets detaljer",
   "return": "Tilbake",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "Vekstbassengets Konsolidering",
   "VIP_RACE_REWARD": "VIP-registreringsbonus",
   "GP_DIRECT_PUSH_REWARD": "Direkte henvisningsbelønning fra vekstpoolen",
-  "GP_INDIRECT_PUSH_REWARD": "Indirekte henvisningsbelønning fra vekstpoolen"
+  "GP_INDIRECT_PUSH_REWARD": "Indirekte henvisningsbelønning fra vekstpoolen",
+  "direct_referral": "Direkte Henvisning",
+  "asset": "Eiendel",
+  "referral": "Henvisning"
 }

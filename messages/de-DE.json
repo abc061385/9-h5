@@ -636,7 +636,7 @@
   "个人": "Individuell",
   "团队": "Team",
   "confirmOrder": "Bestellung bestätigen",
-  "purchase": "Sie werden kaufen",
+  "purchase": "Kauf",
   "results": "Ergebnis",
   "viewFundDetails": "Fonddetails anzeigen",
   "return": "Zurück",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "Wachstumspool-Konsolidierung",
   "VIP_RACE_REWARD": "VIP-Anmeldebonus",
   "GP_DIRECT_PUSH_REWARD": "Wachstumspool-Direktempfehlungsbelohnung",
-  "GP_INDIRECT_PUSH_REWARD": "Wachstumspool-Indirektempfehlungsbelohnung"
+  "GP_INDIRECT_PUSH_REWARD": "Wachstumspool-Indirektempfehlungsbelohnung",
+  "direct_referral": "Direkte Empfehlung",
+  "asset": "Vermögenswert",
+  "referral": "Empfehlung"
 }

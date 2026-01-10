@@ -636,7 +636,7 @@
   "个人": "Personale",
   "团队": "Squadra",
   "confirmOrder": "Conferma ordine",
-  "purchase": "Acquisterai",
+  "purchase": "Acquisto",
   "results": "Risultato",
   "viewFundDetails": "Visualizza dettagli del fondo",
   "return": "Indietro",
@@ -991,5 +991,8 @@
   "GP_TRANSFER": "Consolidamento del Pool di Crescita",
   "VIP_RACE_REWARD": "Bonus Iscrizione VIP",
   "GP_DIRECT_PUSH_REWARD": "Ricompensa di referral diretto del Pool di Crescita",
-  "GP_INDIRECT_PUSH_REWARD": "Ricompensa di referral indiretto del Pool di Crescita"
+  "GP_INDIRECT_PUSH_REWARD": "Ricompensa di referral indiretto del Pool di Crescita",
+  "direct_referral": "Riferimento Diretto",
+  "asset": "Bene",
+  "referral": "Riferimento"
 }

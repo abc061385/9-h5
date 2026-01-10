@@ -636,7 +636,7 @@
   "个人": "Personlig",
   "团队": "Lag",
   "confirmOrder": "Bekräfta beställning",
-  "purchase": "Du kommer att köpa",
+  "purchase": "Köp",
   "results": "Resultat",
   "viewFundDetails": "Visa fonddetaljer",
   "return": "Tillbaka",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "Konsolidering av Växande Pool",
   "VIP_RACE_REWARD": "VIP-registreringsbonus",
   "GP_DIRECT_PUSH_REWARD": "Direkt hänvisningsbelöning från tillväxtpoolen",
-  "GP_INDIRECT_PUSH_REWARD": "Indirekt hänvisningsbelöning från tillväxtpoolen"
+  "GP_INDIRECT_PUSH_REWARD": "Indirekt hänvisningsbelöning från tillväxtpoolen",
+  "direct_referral": "Direkt Rekommendation",
+  "asset": "Tillgång",
+  "referral": "Rekommendation"
 }

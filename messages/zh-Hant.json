@@ -636,7 +636,7 @@
   "个人": "個人",
   "团队": "團隊",
   "confirmOrder": "確認訂單",
-  "purchase": "您將購買",
+  "purchase": "購買",
   "results": "結果",
   "viewFundDetails": "查看基金詳情",
   "return": "返回",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "增長池歸集",
   "VIP_RACE_REWARD": "VIP報名賽獎金",
   "GP_DIRECT_PUSH_REWARD": "增長池直推獎勵",
-  "GP_INDIRECT_PUSH_REWARD": "增長池間推獎勵"
+  "GP_INDIRECT_PUSH_REWARD": "增長池間推獎勵",
+  "direct_referral": "直推",
+  "asset": "資產",
+  "referral": "推薦"
 }

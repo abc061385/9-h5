@@ -636,7 +636,7 @@
   "个人": "개인",
   "团队": "팀",
   "confirmOrder": "주문 확인",
-  "purchase": "구매하실 상품",
+  "purchase": "구매",
   "results": "결과",
   "viewFundDetails": "펀드 상세 보기",
   "return": "돌아가기",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "성장 풀 집합",
   "VIP_RACE_REWARD": "VIP 등록 보너스",
   "GP_DIRECT_PUSH_REWARD": "성장 풀 직접 추천 보상",
-  "GP_INDIRECT_PUSH_REWARD": "성장 풀 간접 추천 보상"
+  "GP_INDIRECT_PUSH_REWARD": "성장 풀 간접 추천 보상",
+  "direct_referral": "직접 추천",
+  "asset": "자산",
+  "referral": "추천"
 }

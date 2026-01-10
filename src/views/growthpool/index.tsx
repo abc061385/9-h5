@@ -5,12 +5,13 @@ import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import Bridge from "@/lib/dsBridge";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { Modal } from "@/components/modal";
 import { Controller, useForm } from "react-hook-form";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import Tabs from "@/components/tabs/tabs";
+import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 // import { Icon } from "@/components/icon";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,43 +26,52 @@ type FormData = {
   amount: string;
 };
 
+interface RewardItem {
+  coin: string;
+  amount: number; // 注意：如果要精确处理大数字，可以用 string
+  type: string;
+  createTime: string; // ISO 字符串格式
+}
+
 const GrowthPoolView = () => {
   const t = useTrans();
+  const reloadRef = useRef<() => Promise<void>>(null);
   const [open, setOpen] = useState(false);
   const [tabsValue, setTabsValue] = useState(1);
   const { data: infoRes, mutate: infoMutate } = useRequestQuery(
     api.growth.getGrowthPoolInfoUsingGet,
     {},
   );
+  const [pageSize] = useState(8);
   const [loading, setLoading] = useState(false);
-  const { data: listData, mutate } = useRequestQuery(
-    api.growth.getGrowthPoolTransactionsUsingGet,
-    {
-      pageNo: 1,
-      pageSize: 5000,
-    },
-  );
+  // const { data: listData, mutate } = useRequestQuery(
+  //   api.growth.getGrowthPoolTransactionsUsingGet,
+  //   {
+  //     pageNo: 1,
+  //     pageSize: 5000,
+  //   },
+  // );
   const tabs = [
     {
-      label: "购买",
+      label: t("purchase"),
       value: 1,
     },
     {
-      label: "直推",
+      label: t("direct_referral"),
       value: 2,
     },
   ];
-  const info = useMemo(() => {
-    const _info = {
-      USDT: 0,
-    } as { [key in string]: number };
-    infoRes?.data?.balances?.forEach(
-      (i: { symbol: string; amount: number }) => {
-        _info[i?.symbol] = i?.amount || 0;
-      },
-    );
-    return _info;
-  }, [infoRes]);
+  // const info = useMemo(() => {
+  //   const _info = {
+  //     USDT: 0,
+  //   } as { [key in string]: number };
+  //   infoRes?.data?.balances?.forEach(
+  //     (i: { symbol: string; amount: number }) => {
+  //       _info[i?.symbol] = i?.amount || 0;
+  //     },
+  //   );
+  //   return _info;
+  // }, [infoRes]);
   useEffect(() => {
     if (Bridge.setFull) {
       Bridge.setFull(true);
@@ -105,6 +115,36 @@ const GrowthPoolView = () => {
       amount: "0",
     },
   });
+  // 购买
+  const getList = useCallback(
+    async (page: number) => {
+      const { data } = await api.growth.getGrowthPoolTransactionsUsingGet({
+        pageNo: page,
+        pageSize: pageSize,
+      });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
+    },
+    [pageSize, tabsValue],
+  );
+
+  const getList1 = useCallback(
+    async (page: number) => {
+      const { data } = await api.growth.getGrowthPoolBuyTransactionsUsingGet({
+        pageNo: page,
+        pageSize: pageSize,
+      });
+      const newData = data?.list || [];
+      return {
+        data: newData,
+        hasMore: page < data.total / pageSize,
+      };
+    },
+    [pageSize, tabsValue],
+  );
 
   return (
     <ViewLayout className="flex flex-col md-pc:h-full">
@@ -144,17 +184,22 @@ const GrowthPoolView = () => {
           {/* </div> */}
           <div className="grid grid-cols-2">
             <div className="flex justify-center items-center flex-col  border-[rgba(0,0,0,0.1)]">
-              <p>Asset</p>
-              <span className="text-lg font-bold text-primary">1000 USD</span>
+              <p>{t("asset")}</p>
+              <span className="text-lg font-bold text-primary">
+                {infoRes?.data?.asset || 0} USD
+              </span>
             </div>
             <div className="flex justify-center items-center flex-col">
-              <p>Referral</p>
-              <span className="text-lg font-bold text-primary">500 USD</span>
+              <p>{t("referral")}</p>
+              <span className="text-lg font-bold text-primary">
+                {infoRes?.data?.referral || 0} USD
+              </span>
             </div>
           </div>
-          <div className="h-[1PX] bg-[rgba(0,0,0,0.1)] mt-3"></div>
-          <div className="mt-6">{t("Deposit History")}</div>
+          <div className="h-[1PX] bg-[rgba(0,0,0,0.1)] mt-3 mb-3"></div>
+          {/* <div className="mt-6 text-sm">{t("Deposit History")}</div> */}
           <Tabs
+            className="text-sm mt-4"
             tabs={tabs}
             value={tabsValue}
             between={false}
@@ -162,48 +207,82 @@ const GrowthPoolView = () => {
           />
         </div>
         <div className="grow shrink-0 mb-4 mt-3 min-h-[200px] relative">
-          <div className="size-full absolute overflow-y-scroll rounded-box border border-base-content/5 ">
+          <div className="size-full absolute rounded-box border border-base-content/5 ">
             <div className="size-full">
-              <table className="table">
-                <tbody>
-                  {listData?.data?.list?.length ? (
-                    listData?.data?.list?.map(
-                      (
-                        item: {
-                          amount: number;
-                          coin: string;
-                          createTime: string;
-                        },
-                        index: number,
-                      ) => {
-                        return (
-                          <tr
-                            key={index}
-                            className="divide-x divide-base-content/5"
-                          >
-                            <td>
-                              +{item?.amount} {item?.coin}
-                            </td>
-                            <td>{item?.createTime}</td>
-                          </tr>
-                        );
-                      },
-                    )
-                  ) : (
-                    <tr>
-                      <td colSpan={2} className="py-10 text-center">
-                        <BaseImage
-                          src="/images/common/no_data.png"
-                          className="w-[104px] h-[90px] mx-auto"
-                        />
-                        <p className="font-bold text-text2 text-sm">
-                          {t("暂无数据")}
-                        </p>
-                      </td>
-                    </tr>
+              {tabsValue === 1 ? (
+                <InfiniteVirtuosoList<RewardItem>
+                  key="buy"
+                  fetchData={getList}
+                  columns={1}
+                  onReloadReady={(fn) => {
+                    reloadRef.current = fn;
+                  }}
+                  renderItem={(item: RewardItem) => (
+                    <div
+                      key={item.coin}
+                      className="grid grid-cols-2 p-2 border border-transparent border-b-base-content/5"
+                    >
+                      <div className="break-words">+{item.amount} USD</div>
+                      <div className="text-right">{item.createTime}</div>
+                    </div>
                   )}
-                </tbody>
-              </table>
+                />
+              ) : (
+                <InfiniteVirtuosoList<RewardItem>
+                  key="direct"
+                  fetchData={getList1}
+                  columns={1}
+                  onReloadReady={(fn) => {
+                    reloadRef.current = fn;
+                  }}
+                  renderItem={(item: RewardItem) => (
+                    <div key={item.coin} className="flex justify-between p-2 ">
+                      <div>+{item.amount} USD</div>
+                      <div>{item.createTime}</div>
+                    </div>
+                  )}
+                />
+              )}
+              {/* <table className="table"> */}
+              {/*   <tbody> */}
+              {/*     {listData?.data?.list?.length ? ( */}
+              {/*       listData?.data?.list?.map( */}
+              {/*         ( */}
+              {/*           item: { */}
+              {/*             amount: number; */}
+              {/*             coin: string; */}
+              {/*             createTime: string; */}
+              {/*           }, */}
+              {/*           index: number, */}
+              {/*         ) => { */}
+              {/*           return ( */}
+              {/*             <tr */}
+              {/*               key={index} */}
+              {/*               className="divide-x divide-base-content/5" */}
+              {/*             > */}
+              {/*               <td> */}
+              {/*                 +{item?.amount} {item?.coin} */}
+              {/*               </td> */}
+              {/*               <td>{item?.createTime}</td> */}
+              {/*             </tr> */}
+              {/*           ); */}
+              {/*         }, */}
+              {/*       ) */}
+              {/*     ) : ( */}
+              {/*       <tr> */}
+              {/*         <td colSpan={2} className="py-10 text-center"> */}
+              {/*           <BaseImage */}
+              {/*             src="/images/common/no_data.png" */}
+              {/*             className="w-[104px] h-[90px] mx-auto" */}
+              {/*           /> */}
+              {/*           <p className="font-bold text-text2 text-sm"> */}
+              {/*             {t("暂无数据")} */}
+              {/*           </p> */}
+              {/*         </td> */}
+              {/*       </tr> */}
+              {/*     )} */}
+              {/*   </tbody> */}
+              {/* </table> */}
             </div>
           </div>
         </div>
@@ -291,7 +370,8 @@ const GrowthPoolView = () => {
                     toast.success(t("购买成功"));
                     setOpen(false);
                     setLoading(false);
-                    mutate();
+                    // mutate();
+                    reloadRef.current?.();
                     infoMutate();
                     reset();
                   })

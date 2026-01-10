@@ -636,7 +636,7 @@
   "个人": "Individuel",
   "团队": "Équipe",
   "confirmOrder": "Confirmer la commande",
-  "purchase": "Vous allez acheter",
+  "purchase": "Achat",
   "results": "Résultat",
   "viewFundDetails": "Voir les détails du fonds",
   "return": "Retour",
@@ -995,5 +995,8 @@
   "GP_TRANSFER": "Consolidation du Pool de Croissance",
   "VIP_RACE_REWARD": "Prime d’inscription VIP",
   "GP_DIRECT_PUSH_REWARD": "Récompense de parrainage direct du pool de croissance",
-  "GP_INDIRECT_PUSH_REWARD": "Récompense de parrainage indirect du pool de croissance"
+  "GP_INDIRECT_PUSH_REWARD": "Récompense de parrainage indirect du pool de croissance",
+  "direct_referral": "Parrainage Direct",
+  "asset": "Actif",
+  "referral": "Parrainage"
 }
