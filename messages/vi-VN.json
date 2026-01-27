@@ -999,5 +999,7 @@
   "site_message": "Tin Nhắn Trong Ứng Dụng",
   "direct_referral": "Giới thiệu trực tiếp",
   "asset": "Tài sản",
-  "referral": "Giới thiệu"
+  "referral": "Giới thiệu",
+  "internal_transfer": "Chuyển nội bộ",
+  "onchain_withdrawal": "Rút trên chuỗi"
 }

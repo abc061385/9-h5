@@ -999,5 +999,7 @@
   "site_message": "Internt Meddelande",
   "direct_referral": "Direkt Rekommendation",
   "asset": "Tillgång",
-  "referral": "Rekommendation"
+  "referral": "Rekommendation",
+  "internal_transfer": "Intern överföring",
+  "onchain_withdrawal": "On-chain uttag"
 }

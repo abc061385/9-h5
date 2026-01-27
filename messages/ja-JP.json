@@ -999,5 +999,7 @@
   "site_message": "アプリ内メッセージ",
   "direct_referral": "直接紹介",
   "asset": "資産",
-  "referral": "紹介"
+  "referral": "紹介",
+  "internal_transfer": "内部振替",
+  "onchain_withdrawal": "オンチェーン出金"
 }

@@ -999,5 +999,7 @@
   "site_message": "站內信",
   "direct_referral": "直推",
   "asset": "資產",
-  "referral": "推薦"
+  "referral": "推薦",
+  "internal_transfer": "內轉",
+  "onchain_withdrawal": "鏈上提現"
 }

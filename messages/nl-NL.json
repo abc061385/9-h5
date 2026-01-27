@@ -999,5 +999,7 @@
   "site_message": "Interne Berichtgeving",
   "direct_referral": "Directe Verwijzing",
   "asset": "Activa",
-  "referral": "Verwijzing"
+  "referral": "Verwijzing",
+  "internal_transfer": "Interne overboeking",
+  "onchain_withdrawal": "On-chain opname"
 }

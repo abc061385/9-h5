@@ -999,5 +999,7 @@
   "site_message": "Intern Melding",
   "direct_referral": "Direkte Henvisning",
   "asset": "Eiendel",
-  "referral": "Henvisning"
+  "referral": "Henvisning",
+  "internal_transfer": "Intern overføring",
+  "onchain_withdrawal": "On-chain uttak"
 }

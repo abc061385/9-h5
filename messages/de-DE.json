@@ -999,5 +999,7 @@
   "site_message": "Interne Nachricht",
   "direct_referral": "Direkte Empfehlung",
   "asset": "Vermögenswert",
-  "referral": "Empfehlung"
+  "referral": "Empfehlung",
+  "internal_transfer": "Interne Überweisung",
+  "onchain_withdrawal": "On-chain Auszahlung"
 }

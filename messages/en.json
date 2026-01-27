@@ -999,5 +999,7 @@
   "site_message": "In-App Message",
   "direct_referral": "Direct Referral",
   "asset": "Asset",
-  "referral": "Referral"
+  "referral": "Referral",
+  "internal_transfer": "Internal Transfer",
+  "onchain_withdrawal": "On-chain Withdrawal"
 }

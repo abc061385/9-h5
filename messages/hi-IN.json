@@ -996,5 +996,7 @@
   "site_message": "इन-ऐप संदेश",
   "direct_referral": "प्रत्यक्ष रेफ़रल",
   "asset": "संपत्ति",
-  "referral": "रेफ़रल"
+  "referral": "रेफ़रल",
+  "internal_transfer": "आंतरिक स्थानांतरण",
+  "onchain_withdrawal": "ऑन-चेन निकासी"
 }

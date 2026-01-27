@@ -12,6 +12,7 @@ import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
 import { blankToast } from "@/components/toast-wrapper";
+import { WithDrawDrawer } from "./withdrawDrawer";
 
 interface NpAssets {
   coin: string; // 币种名称
@@ -50,6 +51,7 @@ const HeaderBox = () => {
   const [coinListData, setCoinList] = useState<CryptoAsset[]>([]);
   const [depositCoinDrawerOpen, setDepositCoinDrawerOpen] = useState(false);
   const [depositChainDrawerOpen, setDepositChainDrawerOpen] = useState(false);
+  const [withDrawDrawerOpen, setWithDrawDrawerOpen] = useState(false);
   const [oneClickFund, setOneClickFund] = useState<{
     productId: number;
     pledgeDays: number;
@@ -95,7 +97,8 @@ const HeaderBox = () => {
     {
       icon: "/images/assets/withdraw.svg",
       label: "assets.withdraw",
-      path: routerMap.walletWithdraw,
+      // path: routerMap.walletWithdraw,
+      onClick: () => setWithDrawDrawerOpen(true),
     },
     {
       icon: "/images/assets/flash.svg",
@@ -255,7 +258,7 @@ const HeaderBox = () => {
       <div
         className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
-          push(routerMap.growthPool);
+          push(routerMap.pool);
         }}
       >
         <div className="flex flex-1 gap-4">
@@ -359,6 +362,10 @@ const HeaderBox = () => {
           {t("common.cancel")}
         </button>
       </Drawer>
+      <WithDrawDrawer
+        open={withDrawDrawerOpen}
+        onChange={() => setWithDrawDrawerOpen(false)}
+      />
     </div>
   );
 };

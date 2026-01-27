@@ -140,13 +140,7 @@ const SmartYield = () => {
   return (
     <ViewLayout
       heightFull
-      header={
-        <HeaderWithBack
-          title="Smart Yield Wallet"
-          algin="center"
-          onClick={back}
-        />
-      }
+      header={<HeaderWithBack title="POOL" algin="center" onClick={back} />}
       className="flex flex-col"
     >
       <div className="p-content overflow-x-hidden h-max">

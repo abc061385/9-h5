@@ -999,5 +999,7 @@
   "site_message": "앱 내 메시지",
   "direct_referral": "직접 추천",
   "asset": "자산",
-  "referral": "추천"
+  "referral": "추천",
+  "internal_transfer": "내부 이체",
+  "onchain_withdrawal": "온체인 출금"
 }

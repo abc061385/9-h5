@@ -999,5 +999,7 @@
   "site_message": "ข้อความภายในระบบ",
   "direct_referral": "การแนะนำโดยตรง",
   "asset": "สินทรัพย์",
-  "referral": "การแนะนำ"
+  "referral": "การแนะนำ",
+  "internal_transfer": "โอนภายใน",
+  "onchain_withdrawal": "ถอนบนเชน"
 }

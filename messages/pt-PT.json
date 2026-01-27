@@ -999,5 +999,7 @@
   "site_message": "Mensagem Interna",
   "direct_referral": "Indicação Direta",
   "asset": "Ativo",
-  "referral": "Indicação"
+  "referral": "Indicação",
+  "internal_transfer": "Transferência interna",
+  "onchain_withdrawal": "Retirada on-chain"
 }

@@ -999,5 +999,7 @@
   "site_message": "Interní Zpráva",
   "direct_referral": "Přímé Doporučení",
   "asset": "Aktivum",
-  "referral": "Doporučení"
+  "referral": "Doporučení",
+  "internal_transfer": "Interní převod\nonchain_withdrawal",
+  "onchain_withdrawal": "On-chain výběr\ninternal_transfer"
 }

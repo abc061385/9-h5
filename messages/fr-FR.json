@@ -999,5 +999,7 @@
   "site_message": "Message Interne",
   "direct_referral": "Parrainage Direct",
   "asset": "Actif",
-  "referral": "Parrainage"
+  "referral": "Parrainage",
+  "internal_transfer": "Virement interne",
+  "onchain_withdrawal": "Retrait on-chain"
 }

@@ -999,5 +999,7 @@
   "site_message": "Mesej Dalam Aplikasi",
   "direct_referral": "Rujukan Langsung",
   "asset": "Aset",
-  "referral": "Rujukan"
+  "referral": "Rujukan",
+  "internal_transfer": "Pemindahan dalaman",
+  "onchain_withdrawal": "Pengeluaran on-chain"
 }

@@ -24,6 +24,9 @@ export const routerMap = {
   walletWithdraw: "/wallet/withdraw/",
   walletWithdrawConfirm: "/wallet/withdraw/confirm/",
   walletWithdrawResults: "/wallet/withdraw/results/",
+  internalTransfer: "/wallet/internal-transfer/",
+  internalTransferConfirm: "/wallet/internal-transfer/confirm/",
+  internalTransferResults: "/wallet/internal-transfer/results/",
   login: "/login/",
   register: "/register/",
   verification: "/verification/",
@@ -90,6 +93,7 @@ export const routerMap = {
     "/business-school/previous-highlights/detail/",
   teamsMembers: "/teams/members/",
   growthPool: "/growthpool/",
+  pool: "/assets/pool/",
 };
 
 export const WhiteListPath = [

@@ -999,5 +999,7 @@
   "site_message": "Mesaj Intern",
   "direct_referral": "Recomandare Directă",
   "asset": "Activum",
-  "referral": "Recomandare"
+  "referral": "Recomandare",
+  "internal_transfer": "Transfer intern",
+  "onchain_withdrawal": "Retragere on-chain"
 }
