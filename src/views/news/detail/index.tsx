@@ -3,17 +3,14 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import { useTrans } from "@/hooks/useTrans";
 import { useRouter } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { NewsDataType } from "../type";
-import { langType } from "..";
 import ViewLayout from "@/components/layout";
 import Bridge from "@/lib/dsBridge";
 
 const NewsDetailView = () => {
   const t = useTrans();
   const { back } = useRouter();
-  const locale = useLocale();
   const [newsDetail, setNewsDetail] = useState<NewsDataType>();
   useEffect(() => {
     const detail = localStorage.getItem("newsDetail");
@@ -32,9 +29,7 @@ const NewsDetailView = () => {
       header={<HeaderWithBack title={t("详情")} algin="center" />}
     >
       <div className="p-content">
-        <h2 className="font-bold text-lg">
-          {newsDetail?.["title" + (langType[locale] || "En")]}
-        </h2>
+        <h2 className="font-bold text-lg">{newsDetail?.["title"]}</h2>
         <div className="text-text4 mb-6 text-sm mt-1.5">
           {newsDetail?.createTime}
         </div>

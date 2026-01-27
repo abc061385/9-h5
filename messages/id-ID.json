@@ -150,14 +150,16 @@
     "securityWarning": "For your asset security"
   },
   "home": {
-    "welcome": "Welcome to 9M Investment Platform",
+    "welcome": "9M में आपका स्वागत है",
     "subtitle": "Smart Investment Future",
     "startNow": "Start Now",
     "fund": "9M AI Fund",
     "aiSystem": "Powerful AI Smart Chat System",
     "startJourney": "Start Your Investment Journey Now",
     "aiDesc1": "No need to stare at charts",
-    "aiDesc2": "using probability models to secure optimal solutions for each trade."
+    "aiDesc2": "using probability models to secure optimal solutions for each trade.",
+    "investmentPlatform": "निवेश प्लेटफॉर्म",
+    "aiAcceleratesWealth": "AI आपकी संपत्ति को गति देता है"
   },
   "assets": {
     "title": "Assets",
@@ -600,7 +602,7 @@
   "周": "Week",
   "月": "Month",
   "年": "Year",
-  "公司": "9M AI Corporation",
+  "公司": "{plat} Corporation",
   "资本连接": "Capital Connectivity",
   "公司简介": "AI opens up new horizons for your investments",
   "代数": "Generation",
@@ -846,5 +848,24 @@
   "useUSDTBalance": "अकाउंट में USDT बैलेंस का उपयोग करें",
   "balancePriority": "USDT को प्राथमिकता दें, कमी USDM से पूरी होगी",
   "swapAmount": "स्वैप राशि (USDM)",
-  "usdtAmount": "USDM एक्सचेंज से प्राप्त USDT राशि"
+  "usdtAmount": "USDM एक्सचेंज से प्राप्त USDT राशि",
+  "total": "कुल",
+  "searchForTeamMemberAccounts": "टीम सदस्य खाते खोजें",
+  "myDirectReferrals": "मेरे प्रत्यक्ष रेफ़रल",
+  "highestLevelUser": "उच्चतम स्तर का उपयोगकर्ता",
+  "highestPerformingUsers": "सर्वोच्च प्रदर्शन करने वाले उपयोगकर्ता",
+  "totalTeamInvestment": "कुल टीम निवेश",
+  "totalTeamMembers": "कुल टीम सदस्य",
+  "members": "सदस्य",
+  "registrationDate": "पंजीकरण तिथि",
+  "statisticsByTime": "समय के अनुसार आंकड़े",
+  "reset": "रीसेट",
+  "startTime": "प्रारंभ समय",
+  "endTime": "समाप्ति समय",
+  "team": "टीम",
+  "personal": "व्यक्तिगत",
+  "9mAIStategyFund": "9M AI स्ट्रैटेजी फंड",
+  "9mAIStableFund": "9M AI स्टेबल फंड",
+  "personalInformation": "व्यक्तिगत जानकारी"
 }
+

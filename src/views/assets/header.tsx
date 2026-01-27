@@ -11,11 +11,19 @@ import { useAssetStore } from "@/store/useAssetStore";
 import { Icon } from "@/components/icon";
 import { ShowIf } from "@/components/show-if";
 import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { blankToast } from "@/components/toast-wrapper";
 
+interface NpAssets {
+  coin: string; // 币种名称
+  released: number; // 已发放
+  total: number; // 总资产
+  dailyRate: number; // 每日释放比例 = 0.1%
+}
 interface TotalInvestmentType {
   personalFundInvestment: number;
   yesterdayReturn: number;
   frozenUbx: number;
+  npAssets: null | NpAssets;
 }
 
 type CardType = {
@@ -61,7 +69,7 @@ const HeaderBox = () => {
         onSuccess: ({ data }) => {
           setTotalInvestment(data as TotalInvestmentType);
         },
-      }
+      },
     );
   }, [trigger]);
 
@@ -125,6 +133,30 @@ const HeaderBox = () => {
       <h4 className="text-[28px] font-bold leading-8">
         ${formatBalance(totalAmount, 2)}
       </h4>
+      <>
+        {totalInvestment?.npAssets ? (
+          <div className="text-text4 text-sm mt-2 flex items-center">
+            <span>
+              {totalInvestment?.npAssets?.coin || "-"}:{" "}
+              {totalInvestment?.npAssets?.released || "-"}/
+              {totalInvestment?.npAssets?.total || "-"}
+            </span>
+            <Icon
+              name="annotation"
+              className="size-4 ml-2"
+              onClick={() => {
+                blankToast(
+                  t("assets_np_tips", {
+                    token_name: totalInvestment?.npAssets?.coin || "",
+                    precent: (totalInvestment?.npAssets?.dailyRate || 0) * 100,
+                  }),
+                );
+              }}
+            />
+          </div>
+        ) : null}
+      </>
+
       {/* {totalInvestment?.frozenUbx ? ( */}
       {/*   <div className="text-text4 text-sm mt-2"> */}
       {/*     <div className="flex items-center"> */}
@@ -185,7 +217,7 @@ const HeaderBox = () => {
         onClick={() => {
           if (!oneClickFund?.productId) return;
           push(
-            `${routerMap.fundBuy}?id=${oneClickFund?.productId}&pledgeDays=360&oneClick=1`
+            `${routerMap.fundBuy}?id=${oneClickFund?.productId}&pledgeDays=360&oneClick=1`,
           );
         }}
       >
@@ -195,6 +227,24 @@ const HeaderBox = () => {
             <dt>{t("oneClickInvestment")}</dt>
             <dd className="font-normal text-xs text-text4">
               {t("investmentDescription")}
+            </dd>
+          </dl>
+        </div>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
+      {/* --9M Ecosystem Growth Pool-- */}
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        onClick={() => {
+          push(routerMap.growthPool);
+        }}
+      >
+        <div className="flex flex-1 gap-4">
+          <Icon name="growthclub" className="w-4.5 h-4 mt-1" />
+          <dl className="flex-1">
+            <dt>{t("9MEcosystemGrowthPool")}</dt>
+            <dd className="font-normal text-xs text-text4">
+              {t("growthClubmembe")}
             </dd>
           </dl>
         </div>

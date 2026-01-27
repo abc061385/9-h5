@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
@@ -20,10 +20,34 @@ const TeamsView = () => {
   const { push } = useRouter();
   const userInfo = useUserStore((s) => s.userInfo);
   const [tabsValue, setTabsValue] = useState<number | string>("");
-  const [list, setList] = useState<DataType[]>([]);
+  const [list, setList] = useState<DataType[]>([
+    {
+      generation: 0,
+      totalInvestmentYesterday: 0,
+      totalInvestment: 0,
+      yesterdayReturn: 0,
+      totalFundReturn: 0,
+      yesterdayNewUsersCount: 0,
+      totalUsersCount: 0,
+      totalInvestmentTeam: 0,
+      id: 0,
+      parentId: 0,
+      nodeInvestment: 0,
+      tel: "",
+      nickname: "",
+      createTime: "",
+      vipLevel: 0,
+      frozen_ubx: 0,
+      emailAccount: "",
+      isInvest: 0,
+      areaType: 0,
+      accountType: 0,
+      area: "",
+    },
+  ]);
   const [teamNumbers, setTeamNumbers] = useState(0);
   const [searchValue, setSearchValue] = useState("");
-  const [pageSize] = useState(100);
+  const [pageSize] = useState(10);
 
   const tabsList = [
     { label: t("withdraw.useAll"), value: "" },
@@ -41,6 +65,7 @@ const TeamsView = () => {
         generation: 1,
         tel: searchValue,
       });
+
       const newData = data?.list || [];
       setList(newData);
       return {
@@ -48,7 +73,7 @@ const TeamsView = () => {
         hasMore: page < data.total / pageSize,
       };
     },
-    [tabsValue, searchValue, userInfo, pageSize],
+    [tabsValue, searchValue, userInfo, pageSize]
   );
 
   const getInfo = useCallback(async () => {
@@ -57,8 +82,11 @@ const TeamsView = () => {
   }, []);
   const deboun = useDebouncedCallback(() => {
     getList();
+  }, 1000);
+
+  useEffect(() => {
     getInfo();
-  }, 300);
+  }, [getInfo]);
 
   useEffect(() => {
     deboun();
@@ -100,12 +128,15 @@ const TeamsView = () => {
           }}
         />
       </div>
-      <header className="p-content absolute top-0 w-full">
+      <header className="p-content absolute top-0 w-full text-white">
         <div className="flex items-center justify-between gap-4">
           <span className="font-bold text-lg">{t("我的团队")}</span>
-          <span className="text-sm flex-1 text-right" onClick={() => push(routerMap.teamDetail)}>
+          <span
+            className="text-sm flex-1 text-right"
+            onClick={() => push(routerMap.teamDetail)}
+          >
             {t("查看团队投资数据")}
-            <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
+            <Icon name="right-enter-white" className="w-1.5 h-2.5 ml-2" />
           </span>
         </div>
         <div className="mt-1">
@@ -119,19 +150,12 @@ const TeamsView = () => {
             type="search"
             className="grow"
             placeholder={t("查询团队账号")}
-            onInput={(e) => {
-              setSearchValue((e.target as HTMLInputElement).value);
-              // if (!(e.target as HTMLInputElement).value) {
-              //   // 清除按钮被点击时触发
-              //   getList();
-              //   getInfo();
-              // }
-            }}
-            // onKeyDown={(e) => {
-            //   if (e.code === "Enter") {
-            //     setSearchValue((e.target as HTMLInputElement).value);
-            //   }
-            // }}
+            onChange={useDebouncedCallback(
+              (e: ChangeEvent<HTMLInputElement>) => {
+                setSearchValue(e.target.value);
+              },
+              1000
+            )}
           />
         </label>
         <Tabs

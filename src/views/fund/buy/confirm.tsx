@@ -18,6 +18,26 @@ interface Iprops {
   onChange: () => void;
 }
 
+type PurchaseUsingPostQuery = {
+  isFastPledge?: boolean;
+  isLockPosit?: boolean;
+  /** 复投是否开启(0:否,1:是) */
+  isReinvestment?: boolean;
+  isUsdtFirst?: boolean;
+  /**
+   * 质押计划ID
+   * @format int64
+   */
+  pledgeId: number;
+  /**
+   * 产品ID
+   * @format int64
+   */
+  productId: number;
+  /** 投资总金额(USDT) */
+  totalAmount: number;
+};
+
 const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
   const t = useTrans();
   const params = useSearchParams();
@@ -127,7 +147,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
               productId: number;
               pledgeId: number;
               totalAmount: number;
-              isReinvestment: boolean;
+              isReinvestment?: boolean;
               isUsdtFirst?: string;
               isFastPledge?: number;
             } = {
@@ -141,7 +161,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
               params.isUsdtFirst = usdtFirstIs || "0";
               params.isFastPledge = 1;
             }
-            postBuy(params, {
+            postBuy(params as unknown as PurchaseUsingPostQuery, {
               onSuccess: () => {
                 push(routerMap.fundSuccess);
               },

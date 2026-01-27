@@ -20,7 +20,7 @@ function flattenObject(obj, prefix = "", res = {}) {
 // const flatEn = flattenObject(en);
 
 
-const langList = ['en', 'zh-Hans', 'zh-Hant', 'ja-JP', 'ko-KR', 'ms-MY', 'th-TH', 'vi-VN', 'hi-IN', 'de-DE', 'fr-FR', 'pt-PT', 'es-ES',
+const langList = ['en', 'zh-Hans', 'zh-Hant', 'ja-JP', 'ko-KR', 'ms-MY', 'th-TH', 'vi-VN', 'hi-IN', 'de-DE', 'fr-FR', 'pt-PT', 'es-ES', 'it-IT',
   "nl-NL",
   "no-NO",
   "sv-SE",
@@ -38,11 +38,12 @@ for (let index = 0; index < langList.length; index++) {
   
 }
 
+// for (const key in langsMap["en"]) {
 for (const key in langsMap["zh-Hans"]) {
   let langStr = ""
   for (let index = 0; index < langList.length; index++) {
     const _lang = langList[index];
-    langStr += `"${langsMap[_lang][key]}"`+ ","    
+    langStr += `"${langsMap[_lang][key] || ''}"`+ ","    
   }
   // console.log(langStr)
   // let _zh = String(flat[key]);

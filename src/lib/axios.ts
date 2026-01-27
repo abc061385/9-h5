@@ -19,7 +19,7 @@ export interface ApiResponse<T> {
 // 构建 axios 实例的函数，可动态传入 baseURL
 const createAxiosInstance = (
   baseURL: string,
-  setPost?: (config: InternalAxiosRequestConfig) => void
+  setPost?: (config: InternalAxiosRequestConfig) => void,
 ): AxiosInstance => {
   const instance = axios.create({
     // baseURL: getIsDev() ? baseURL : process.env.NEXT_PUBLIC_API_URL + baseURL,
@@ -66,7 +66,7 @@ const createAxiosInstance = (
     (err) => {
       console.error("API Error", err);
       return Promise.reject(err);
-    }
+    },
   );
 
   return instance;
@@ -74,11 +74,28 @@ const createAxiosInstance = (
 
 // 默认导出一个主实例（默认 baseURL）
 const axiosIn = createAxiosInstance("/app/", (config) => {
-  config.headers["Content-Type"] = ContentType.FormData;
+  // 白名单api - 不需要转换成form-data格式。
+  const wihteList: string[] = ["/withdraw-address/bind-address", "/growth/buy"];
+  if (!wihteList.includes(config?.url || "")) {
+    config.headers["Content-Type"] = ContentType.FormData;
+  }
   config.data = config.data
-    ? { ...Object.fromEntries(config.data.entries()), ...config.params }
+    ? {
+        ...Object.fromEntries(
+          config.data.entries
+            ? config.data.entries()
+            : Object.entries(config.data),
+        ),
+        ...config.params,
+      }
     : config.params;
   config.params = {};
+
+  // config.headers["Content-Type"] = ContentType.FormData;
+  // config.data = config.data
+  //   ? { ...Object.fromEntries(config.data.entries()), ...config.params }
+  //   : config.params;
+  // config.params = {};
 });
 
 export const spotAxios = (() => {
@@ -109,7 +126,7 @@ export const spotAxios = (() => {
     (err) => {
       console.error("API Error", err);
       return Promise.reject(err);
-    }
+    },
   );
 
   return instance;

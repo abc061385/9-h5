@@ -181,6 +181,7 @@ type PledgeType = {
   dailyYield: number;
   id: number;
   maxBet: number;
+  isHot: number;
 };
 
 type FundOrder = {
@@ -275,6 +276,7 @@ type AssetsIncomeType = {
   unWithdrawnReturn: number;
   yesterdayReturn: number;
   frozenUbx: number;
+  remainingProportion: number;
 };
 type AssetsIncomeType1 = {
   dayRate: number;
@@ -305,6 +307,12 @@ type IncomeListType = {
   inout?: 1 | 2 | null;
 };
 
+interface GrowthPoolConfigType {
+  growthRate: number;
+  limitLevel: number;
+  buyGrowth: boolean;
+}
+
 type AwardInfoType = {
   totalReward: number;
   totalCurrency: number;
@@ -319,6 +327,8 @@ type AwardInfoType = {
     totalQuota: number;
     usedQuota: number;
   };
+  growthPoolConfig: GrowthPoolConfigType;
+  remainingProportion: number;
 };
 
 type AwardListType = {
@@ -356,6 +366,7 @@ type TokenListType = {
   dailyYield: number;
   productId: number;
   title: string;
+  isHot: 0 | 1;
 };
 
 type ActivityList = {
@@ -477,4 +488,105 @@ interface BusinessCollegeMeetType {
   createTime: string;
   updateTime: string;
   i18nList: { id: number; language: string; meetDesc: string }[];
+}
+
+interface TeamDirectReferralAreaType {
+  id: number;
+  username: string;
+  nickname?: string;
+  vipLevel?: number;
+  totalTeamInvestment?: number;
+  totalTeamMembers?: number;
+  star?: number;
+  tel?: string;
+  bindEmail?: string;
+  headUrl?: string;
+}
+
+interface UserInvestmentData {
+  createTime: string;
+  id: number;
+  levelName: string;
+  nickname: string;
+  newCommunityInvestmentToday: number | null;
+  newTeamInvestmentToday: number | null;
+  personalInvestmentStable7Days: number | null;
+  personalInvestmentStable30Days: number | null;
+  personalInvestmentStable90Days: number | null;
+  personalInvestmentStable180Days: number | null;
+  personalInvestmentStable360Days: number | null;
+  personalInvestmentStableAmount: number | null;
+  personalInvestmentStrategy7Days: number | null;
+  personalInvestmentStrategy30Days: number | null;
+  personalInvestmentStrategy90Days: number | null;
+  personalInvestmentStrategy180Days: number | null;
+  personalInvestmentStrategy360Days: number | null;
+  personalInvestmentStrategyAmount: number | null;
+  star: number | null;
+  totalCommunityInvestment: number | null;
+  totalInvestmentStable7Days: number | null;
+  totalInvestmentStable30Days: number | null;
+  totalInvestmentStable90Days: number | null;
+  totalInvestmentStable180Days: number | null;
+  totalInvestmentStable360Days: number | null;
+  totalInvestmentStableAmount: number | null;
+  totalInvestmentStrategy7Days: number | null;
+  totalInvestmentStrategy30Days: number | null;
+  totalInvestmentStrategy90Days: number | null;
+  totalInvestmentStrategy180Days: number | null;
+  totalInvestmentStrategy360Days: number | null;
+  totalInvestmentStrategyAmount: number | null;
+  totalRegionInvestment: number | null;
+  totalTeamInvestment: number | null;
+  totalTeamMembers: number;
+  vipLevel: number;
+  headUrl?: string;
+  invitationCode?: string;
+}
+
+interface InvestmentStats {
+  newCommunityInvestmentToday: number | null;
+  newMembersToday: number | null;
+  newTeamInvestmentToday: number;
+  totalCommunityInvestment: number;
+  totalFaithNodeInvestment: number | null;
+  totalGenesisNodeInvestment: number | null;
+  totalInvestment7Days: number;
+  totalInvestment30Days: number;
+  totalInvestment90Days: number;
+  totalInvestment180Days: number;
+  totalInvestment360Days: number;
+  totalInvestmentStable7Days: number | null;
+  totalInvestmentStable30Days: number | null;
+  totalInvestmentStable90Days: number | null;
+  totalInvestmentStable180Days: number | null;
+  totalInvestmentStable360Days: number | null;
+  totalInvestmentStableAmount: number | null;
+  totalInvestmentStrategy7Days: number | null;
+  totalInvestmentStrategy30Days: number | null;
+  totalInvestmentStrategy90Days: number | null;
+  totalInvestmentStrategy180Days: number | null;
+  totalInvestmentStrategy360Days: number | null;
+  totalInvestmentStrategyAmount: number | null;
+  totalTeamInvestment: number;
+  totalTeamMembers: number;
+}
+
+interface TeamsAllUserSearchList {
+  id: number;
+  nickname: string;
+  vipLevel: number;
+  levelName: string;
+  star?: number;
+}
+
+interface InvestmentRecord {
+  id: number;
+  createdTime: string; // ISO 时间字符串，例如 "2025-05-15T21:28:26.000+00:00"
+  updatedTime: string; // ISO 时间字符串，例如 "2025-10-14T07:45:00.000+00:00"
+  investmentReturn: number;
+  managementFee: number;
+  platformDividend: number;
+  smartExtractFee: number;
+  withdrawTag: number;
 }

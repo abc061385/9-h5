@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>日期</title>
+    <g id="App-V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Personal-Information_Filter" transform="translate(-334, -172)" fill="#6C6C6C" fill-rule="nonzero">
+            <g id="Group备份-6" transform="translate(24, 156)">
+                <path d="M326,19.4285714 L310,19.4285714 L310,16 L326,16 L326,19.4285714 Z M326,21.7142857 L326,32 L310,32 L310,21.7142857 L326,21.7142857 Z M321.428571,27.4285714 L321.428571,29.7142857 L323.714286,29.7142857 L323.714286,27.4285714 L321.428571,27.4285714 Z M318,27.4285714 L318,29.7142857 L320.285714,29.7142857 L320.285714,27.4285714 L318,27.4285714 L318,27.4285714 Z M321.428571,24 L321.428571,26.2857143 L323.714286,26.2857143 L323.714286,24 L321.428571,24 Z" id="日期"></path>
+            </g>
+        </g>
+    </g>
+</svg>

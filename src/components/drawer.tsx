@@ -6,6 +6,7 @@ type IProps = PropsWithChildren<{
   onChange?: (open: boolean) => void;
   title?: string | ReactNode;
   className?: string;
+  direction?: "bottom" | "top";
 }>;
 export const Drawer: FC<IProps> = ({
   children,
@@ -13,12 +14,16 @@ export const Drawer: FC<IProps> = ({
   onChange,
   title,
   className,
+  direction = "bottom",
 }) => {
   const id = useId();
   const inputId = `drawer-${id}`;
   return (
     <div
-      className="drawer drawer-bottom"
+      className={cn(
+        "drawer",
+        direction === "top" ? "drawer-top" : "drawer-bottom"
+      )}
       role="dialog"
       aria-label={typeof title === "string" ? title : undefined}
       aria-modal={true}
@@ -44,12 +49,16 @@ export const Drawer: FC<IProps> = ({
           className={cn([
             "fixed",
             "md-pc:absolute bottom-0 h-[50%] w-full rounded-t-2xl bg-white p-4 flex flex-col",
+            direction === "top" && "top-0 rounded-b-2xl rounded-t-none",
             className,
           ])}
         >
-          <div className="flex justify-center mb-4">
-            <div className="w-[46px] h-1 bg-[#D9D9D9] rounded-xs"></div>
-          </div>
+          {direction === "top" ? null : (
+            <div className="flex justify-center mb-4">
+              <div className="w-[46px] h-1 bg-[#D9D9D9] rounded-xs"></div>
+            </div>
+          )}
+
           {title ? (
             <div className="text-center text-lg font-bold mb-4">{title}</div>
           ) : null}

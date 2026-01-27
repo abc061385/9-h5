@@ -12,6 +12,9 @@ import { typeMap, WalletOrderType } from "@/lib/const";
 import { useAssetStore } from "@/store/useAssetStore";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
+import { cn } from "@/lib/utils";
+import BaseImage from "@/components/base-image";
 
 interface ListType {
   id: number;
@@ -19,8 +22,10 @@ interface ListType {
   type: string;
   inOut: string;
   amount: string;
+  beforeBalance: string;
   symbol: string;
   createTime: string;
+  detail?: string;
 }
 
 const WalletDetailView = () => {
@@ -28,15 +33,16 @@ const WalletDetailView = () => {
   const { push } = useRouter();
   const { formatBalance } = useFormatBalance();
   const searchParams = useSearchParams();
-  const { balanceList, getBalanceList } = useAssetStore();
+  const { getCoinList, coinLogoMap } = useAssetStore();
+  const [tabsValue, setTabsValue] = useState(-1);
 
   const [coin, setCoin] = useState("");
 
   const showDetail = ["RECHARGE", "WITHDRAW"];
 
   useEffect(() => {
-    getBalanceList();
-  }, [getBalanceList]);
+    getCoinList();
+  }, [getCoinList]);
 
   useEffect(() => {
     setCoin(searchParams.get("coin") || "");
@@ -48,6 +54,7 @@ const WalletDetailView = () => {
         pageNo: page,
         pageSize: 20,
         coinCode: searchParams.get("coin") || "",
+        type: (tabsValue === -1 ? "" : tabsValue) as unknown as number,
       });
       const newData = data?.list || [];
       return {
@@ -55,34 +62,12 @@ const WalletDetailView = () => {
         hasMore: data.pageNum < data.pages,
       };
     },
-    [searchParams],
-  );
-
-  const balance = useCallback(
-    (coin: string | undefined) => {
-      if (!balanceList?.length) return;
-      return formatBalance(
-        balanceList.find((v) => v.coin === coin)?.balance || "0",
-        coin || "",
-      );
-    },
-    [balanceList, formatBalance],
-  );
-
-  const usdtValue = useCallback(
-    (coin: string | undefined) => {
-      if (!balanceList?.length) return;
-      return formatBalance(
-        balanceList.find((v) => v.coin === coin)?.usdtValue || "0",
-        "USDT",
-      );
-    },
-    [balanceList, formatBalance],
+    [searchParams, tabsValue],
   );
 
   const getStatusText = (status: ListType["status"], type: string) => {
     const statusMap = {
-      0: t("walletDetail.statusPending"),
+      0: t("处理中"),
       1: t("walletDetail.statusSuccess"),
       2: t("walletDetail.statusFailed"),
     };
@@ -104,49 +89,92 @@ const WalletDetailView = () => {
     }
     return statusMap[status] || t("walletDetail.statusUnknown");
   };
+  const tabs = [
+    {
+      label: t("withdraw.useAll"),
+      value: -1,
+    },
+    {
+      label: t("充值"),
+      value: 4,
+    },
+    {
+      label: t("transaction_WITHDRAW"),
+      value: 3,
+    },
+    {
+      label: t("transaction_TRANSFER"),
+      value: 0,
+    },
+  ];
   return (
     <ViewLayout
       heightFull
       header={<HeaderWithBack title={coin?.toUpperCase()} algin="center" />}
     >
       <div className="p-content flex flex-col h-full">
-        <h2 className="text-[32px] font-bold leading-7.5 mb-2">
-          {balance(coin)}
-        </h2>
-        <p className="text-sm text-text4">≈ {usdtValue(coin)} USDT</p>
-        <div className="mt-4 pt-4 border-t border-border2 grow flex flex-col">
-          <h3 className="font-medium">{t("history")}</h3>
+        <HorizontalTabs
+          type="border"
+          tabs={tabs}
+          value={tabsValue}
+          className="mb-4"
+          onChange={(value) => setTabsValue(value as number)}
+        />
+
+        <div className="grow flex flex-col">
           <div className="grow">
             <InfiniteVirtuosoList<ListType>
               fetchData={getList}
               renderItem={(item) => (
                 <div
                   key={item?.id}
-                  className="border-b border-border2 py-4"
+                  className="rounded-lg bg-bg2 p-4 mb-4"
                   onClick={() => {
                     if (showDetail.indexOf(item.type) !== -1) {
                       push(`${routerMap.walletTransDetail}?id=${item.id}`);
                     }
                   }}
                 >
-                  <div className="flex items-center justify-between gap-1 text-sm leading-5 mb-1">
-                    <span>{t(typeMap[item?.type] || "--")}</span>
-                    <span>
-                      {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
-                      {formatBalance(item?.amount, coin)}
-                      <span className="ml-1">{item?.symbol}</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-text4">
-                    <div className="flex flex-col gap-1 ">
-                      <span>{getStatusText(item?.status, item?.type)}</span>
+                  <div className="flex justify-between">
+                    <BaseImage
+                      src={coinLogoMap[item?.symbol?.toUpperCase()]}
+                      className="size-6 mr-1"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <div className="mb-2">
+                          {item?.inOut === "ADD_BALANCE" ? "+" : "-"}
+                          {/* {formatBalance(item?.amount, coin)} */}
+                          {formatBalance(Math.abs(Number(item?.amount)), coin)}
+                          <span className="ml-1">{item?.symbol}</span>
+                        </div>
+                        <div>
+                          <span
+                            className={cn([
+                              {
+                                "text-[#3491FA]": item.status === 0,
+                                "text-[#1DA75C]": item.status === 1,
+                                "text-[#6E2AFE]": item.status === 2,
+                              },
+                            ])}
+                          >
+                            {getStatusText(item?.status, item?.type)}
+                          </span>
+                          {showDetail.indexOf(item.type) !== -1 ? (
+                            <Icon
+                              name="right-enter"
+                              className="w-1.5 h-2.5 ml-2"
+                            />
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-text4">
+                        <span>{item?.createTime}</span>
+                        <span className="text-right">
+                          {t(typeMap[item?.type] || "--")}
+                        </span>
+                      </div>
                     </div>
-                    <span>
-                      <span>{item?.createTime}</span>
-                      {showDetail.indexOf(item.type) !== -1 ? (
-                        <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
-                      ) : null}
-                    </span>
                   </div>
                 </div>
               )}

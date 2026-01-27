@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
@@ -54,10 +54,16 @@ const FundBuyView = () => {
             },
           );
           data.pledgePlans = pledgeList;
-          const pledge = data.pledgePlans.find(
-            (v: PledgeType) =>
-              v.pledgeDays.toString() === params.get("pledgeDays"),
-          );
+
+          const pid = params.get("pid");
+          const pledge =
+            data.pledgePlans.find((v: PledgeType) => {
+              if (pid) {
+                return v.id.toString() === pid;
+              } else {
+                return v.pledgeDays.toString() === params.get("pledgeDays");
+              }
+            }) || data.pledgePlans[0];
           setPlegeValue(pledge);
           setField("pledgeDays", pledge);
           setInfo(data as FundInfoType);
@@ -65,6 +71,15 @@ const FundBuyView = () => {
       },
     );
   }, [trigger, params, setField]);
+  const pledgePlans = useMemo(() => {
+    const _result = info.pledgePlans || [];
+    return _result.sort((a, b) => {
+      if (a.pledgeDays !== b.pledgeDays) {
+        return b.pledgeDays - a.pledgeDays;
+      }
+      return b.isHot - a.isHot;
+    });
+  }, [info.pledgePlans]);
 
   return (
     <ViewLayout
@@ -129,14 +144,13 @@ const FundBuyView = () => {
           onChange={(e) => setDrawerOpen(e)}
           className="h-auto"
         >
-          {info?.pledgePlans?.map((item, index) => {
+          {pledgePlans.map((item, index) => {
             return (
               <div
                 key={index}
                 className={cn(
                   "flex justify-between items-center mt-2 h-16 bg-bg2 rounded-lg px-4",
-                  plegeValue?.pledgeDays === item.pledgeDays &&
-                    "bg-primary text-white",
+                  plegeValue?.id === item.id && "bg-primary text-white",
                 )}
                 onClick={() => {
                   setPlegeValue(item);
@@ -150,7 +164,7 @@ const FundBuyView = () => {
                 <span
                   className={cn(
                     "text-base text-text4",
-                    plegeValue?.pledgeDays === item.pledgeDays && "text-white",
+                    plegeValue?.id === item.id && "text-white",
                   )}
                 >
                   {t("日收益率")} ≈ {item?.dailyYield}%

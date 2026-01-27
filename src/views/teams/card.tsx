@@ -2,8 +2,11 @@ import { FC } from "react";
 import { useTrans } from "@/hooks/useTrans";
 import { ICardProps, IndividualType, TeamType } from "./type";
 import { cn, formatThousand } from "@/lib/utils";
+import { routerMap, useRouter } from "@/i18n/navigation";
+import StarIcon from "../vip/star-icon";
 
 const CardBox: FC<ICardProps> = ({ data }) => {
+  const { push } = useRouter();
   const t = useTrans();
   const individualList: IndividualType[] = [
     { label: "代数", value: "generation" },
@@ -19,7 +22,10 @@ const CardBox: FC<ICardProps> = ({ data }) => {
     { label: "团队投资金额", value: "totalInvestmentTeam" },
   ];
   return (
-    <div className="rounded-md bg-bg2 mb-6 p-4">
+    <div
+      className="rounded-md bg-bg2 mb-6 p-4"
+      onClick={() => push(`${routerMap.teamsInformation}?id=${data.id}`)}
+    >
       <div className="flex justify-between border-b border-border2 pb-4 mb-4">
         <div className="flex flex-wrap gap-1 items-center max-w-[70%]">
           <span className="text-lg font-bold mr-2 max-w-[100%] wrap-break-word">
@@ -27,11 +33,12 @@ const CardBox: FC<ICardProps> = ({ data }) => {
             {/* {maskString(data.nickname) || "--"} */}
           </span>
           <div className="badge badge-soft badge-primary rounded-xs text-xs">
-            {data.areaType === 1 ? t("小区") : t("大区")}
+            V{data?.vipLevel || "0"}
+            <StarIcon level={data?.vipLevel || 0} star={data?.star || 0} />
           </div>
-          <div className="badge badge-soft badge-primary2 rounded-xs text-xs">
+          {/* <div className="badge badge-soft badge-primary2 rounded-xs text-xs">
             {data.area || "--"} {t("区")}
-          </div>
+          </div> */}
         </div>
         <div
           className={cn(

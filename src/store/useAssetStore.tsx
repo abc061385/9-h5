@@ -11,6 +11,7 @@ interface AssetState extends BaseState<AssetState> {
   depositChainItem: ChainList;
   incomeWithdrawAmount: string;
   resultPageType: "smart" | "normal";
+  coinLogoMap: { [key: string]: string };
   getBalanceList: () => Promise<void>;
   getCoinList: () => Promise<void>;
   formatBalance: (value: string | number, coin: string) => Promise<void>;
@@ -24,6 +25,7 @@ export const useAssetStore = create<AssetState>()(
         return {
           balanceList: [],
           coinList: [],
+          coinLogoMap: {},
           chainList: [],
           depositCoinItem: {},
           depositChainItem: {},
@@ -34,9 +36,15 @@ export const useAssetStore = create<AssetState>()(
             set(() => ({ balanceList: data?.wallet || [] }));
           },
           getCoinList: async () => {
-            const { data } = await api.currencySettings.protocolListUsingGet();
+            const { data } = await api.currencySettings.protocolListUsingGet1();
+            const coinList = Array.isArray(data) ? data : [];
+            const coinLogoMap = {} as { [key: string]: string };
+            coinList.forEach((item) => {
+              coinLogoMap[item?.currencyCode?.toUpperCase()] = item.logo;
+            }, coinLogoMap);
             set(() => ({
-              coinList: Array.isArray(data) ? data : [],
+              coinList,
+              coinLogoMap,
             }));
           },
           getChainList: async () => {

@@ -7,8 +7,8 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import { utils } from "@/lib/utils";
 import { Icon } from "@/components/icon";
-import { useLocale } from "next-intl";
-import { useCallback, useState } from "react";
+// import { useLocale } from "next-intl";
+import { useState } from "react";
 import { InfiniteList } from "@/components/infinite-list";
 import { Modal } from "@/components/modal";
 import { useTrans } from "@/hooks/useTrans";
@@ -26,24 +26,24 @@ type Item = {
 const FAQDocView = () => {
   const { data } = useRequestQuery(
     api.publicizeDocVideo.getDocListUsingGet,
-    {}
+    {},
   );
   const t = useTrans();
   // const [currentUrl, setCurrentUrl] = useState("");
   const [open, setOpen] = useState(false);
   const list = (data?.data || []) as unknown as Item[];
-  const locale = useLocale();
-  const getTitle = useCallback(
-    (item: Item) => {
-      const _content = JSON.parse(item.content || "{}");
-      const _title = _content[locale] || _content["en"];
-      if (_title) {
-        return _title;
-      }
-      return "-";
-    },
-    [locale]
-  );
+  // const locale = useLocale();
+  // const getTitle = useCallback(
+  //   (item: Item) => {
+  //     const _content = JSON.parse(item.content || "{}");
+  //     const _title = _content[locale] || _content["en"];
+  //     if (_title) {
+  //       return _title;
+  //     }
+  //     return "-";
+  //   },
+  //   [locale],
+  // );
   // const [numPages, setNumPages] = useState<number>();
   // function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
   //   setNumPages(numPages);
@@ -106,7 +106,7 @@ const FAQDocView = () => {
                     </a>
                   </div>
                   <div className="flex items-center justify-around w-full bg-white h-11">
-                    <p className="truncate w-[60%]">{getTitle(item)}</p>
+                    <p className="truncate w-[60%]">{item?.content || ""}</p>
                     &nbsp;
                     <Icon
                       name="download"
