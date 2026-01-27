@@ -1,11 +1,8 @@
 "use client";
 import { api } from "@/api";
-import { NumberWithUnit } from "@/components/number-with-unit";
 import { HeaderWithBack } from "@/components/header-with-back";
-import { Icon } from "@/components/icon";
 import { TextError } from "@/components/input/text-error";
 import ViewLayout from "@/components/layout";
-import { SelectChain } from "@/components/select/select-chain";
 import { SelectToken } from "@/components/select/select-token";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
@@ -13,7 +10,10 @@ import { routerMap, useRouter } from "@/i18n/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
-import { defaultFormState, useWithdrawalStore } from "@/store/useWithdrawal";
+import {
+  defaultFormState,
+  useInternalTransferStore,
+} from "@/store/useInternalTransfer";
 import { useSettingStore } from "@/store/useSettingStore";
 import { ConfirmModal } from "@/components/modal/confirm-modal";
 import useSchema from "./useSchema";
@@ -24,17 +24,16 @@ const InternalTransferView = () => {
   const { push } = useRouter();
   const t = useTrans();
 
-  const setField = useWithdrawalStore((s) => s.setField);
-  const formState = useWithdrawalStore((s) => s.formState);
-  const resetFormState = useWithdrawalStore((s) => s.resetFormState);
-  const getAddrMap = useWithdrawalStore((s) => s.getAddrMap);
-  const addressMap = useWithdrawalStore((s) => s.addressMap);
+  const setField = useInternalTransferStore((s) => s.setField);
+  const formState = useInternalTransferStore((s) => s.formState);
+  const resetFormState = useInternalTransferStore((s) => s.resetFormState);
+  const getAddrMap = useInternalTransferStore((s) => s.getAddrMap);
 
   const setSettingField = useSettingStore((s) => s.setField);
   const clearGoogleCode = useSettingStore((s) => s.clearGoogleCode);
   const clearAddressInfo = useSettingStore((s) => s.clearAddressInfo);
   const getPlatformInfo = useSettingStore((s) => s.getPlatformInfo);
-  const platformInfo = useSettingStore((s) => s.platformInfo);
+  // const platformInfo = useSettingStore((s) => s.platformInfo);
   const addressPreviousPageType = useSettingStore(
     (s) => s.addressPreviousPageType,
   );
@@ -42,7 +41,6 @@ const InternalTransferView = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
-  // const [isSubmit, setIsSubmit] = useState(false);
 
   const Schema = useSchema();
 
@@ -60,7 +58,6 @@ const InternalTransferView = () => {
   });
 
   const currencyCode = useWatch({ control, name: "currencyCode" });
-  const chainEnum = useWatch({ control, name: "chainEnum" });
 
   useEffect(() => {
     getPlatformInfo();
@@ -71,14 +68,6 @@ const InternalTransferView = () => {
     getAddrMap();
   }, [getAddrMap]);
 
-  useEffect(() => {
-    setValue("withdrawAddress", "");
-  }, [chainEnum?.protocolType]);
-
-  const [withdrawalFeeConfig, withdrawalFeeType] = useWatch({
-    control,
-    name: ["chainEnum.withdrawalFeeConfig", "chainEnum.withdrawalFeeType"],
-  });
   const { data: accountResponse } = useRequestQuery(
     api.wallet.listUsingPost,
     {},
@@ -91,15 +80,8 @@ const InternalTransferView = () => {
     return accountList.find((item) => item.coin === currencyCode);
   }, [accountList, currencyCode]);
 
-  const feeUnit =
-    withdrawalFeeType === "fixed"
-      ? currencyCode
-      : withdrawalFeeType === "percentage"
-        ? "%"
-        : "";
-
   const handleNext = () => {
-    setField("formState", getValues());
+    // setField("formState", getValues());
     setSettingField("gaPreviousPageType", "withdraw");
     setVerifyOpen(true);
   };
@@ -130,9 +112,9 @@ const InternalTransferView = () => {
   }, [clear]);
 
   // 获取标识 withdrawTag 【0=可输入地址，1=不能输入】
-  const isInputAddressDisabled = useMemo(() => {
-    return platformInfo.withdrawTag === 1;
-  }, [platformInfo]);
+  // const isInputAddressDisabled = useMemo(() => {
+  //   return platformInfo.withdrawTag === 1;
+  // }, [platformInfo]);
 
   return (
     <ViewLayout
@@ -164,69 +146,41 @@ const InternalTransferView = () => {
                   {...field}
                   onChange={(e) => {
                     field.onChange(e);
-                    setValue("chainEnum", {
-                      protocolType: "",
-                      minWithdrawal: 0,
-                      maxWithdrawal: 0,
-                      withdrawalFeeType: "",
-                      withdrawalFeeConfig: 0,
-                    });
                   }}
                 />
               )}
             ></Controller>
           </fieldset>
 
-          {getValues("currencyCode").toUpperCase() === "XRP" ? (
-            <fieldset className="fieldset p-0">
-              <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
-                XRP Tag
-              </legend>
-              <label className="input w-full h-12">
-                <input
-                  type="text"
-                  {...register("XRPTag")}
-                  placeholder={t("输入 XRP Tag")}
-                  className="grow"
-                />
-              </label>
-              <TextError>{errors.XRPTag?.message}</TextError>
-            </fieldset>
-          ) : null}
+          {
+            //   getValues("currencyCode").toUpperCase() === "XRP" ? (
+            //   <fieldset className="fieldset p-0">
+            //     <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+            //       XRP Tag
+            //     </legend>
+            //     <label className="input w-full h-12">
+            //       <input
+            //         type="text"
+            //         {...register("XRPTag")}
+            //         placeholder={t("输入 XRP Tag")}
+            //         className="grow"
+            //       />
+            //     </label>
+            //     <TextError>{errors.XRPTag?.message}</TextError>
+            //   </fieldset>
+            // ) : null
+          }
 
           <fieldset className="fieldset p-0">
             <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
-              {t("withdraw.network")}
-            </legend>
-            <Controller
-              name="chainEnum"
-              control={control}
-              render={({ field }) => (
-                <SelectChain
-                  {...field}
-                  currencyCode={currencyCode}
-                  value={field.value?.protocolType as string}
-                />
-              )}
-            ></Controller>
-            <TextError>{errors.chainEnum?.message}</TextError>
-          </fieldset>
-
-          <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
-              {t("withdraw.address")}
+              邀请码
             </legend>
             <div className="join items-center gap-4.5">
               <label className="input w-full flex items-center h-12 rounded-lg pr-0">
                 <input
                   type="text"
                   {...register("withdrawAddress")}
-                  disabled={isInputAddressDisabled}
-                  placeholder={
-                    isInputAddressDisabled
-                      ? t("withdrawalBindTip")
-                      : t("enter_receiving_address")
-                  }
+                  placeholder={"请输入邀请码"}
                   onChange={(e) => {
                     setValue("withdrawAddress", e.target.value);
                     setField("formState", {
@@ -240,26 +194,6 @@ const InternalTransferView = () => {
                   {/* <Icon name="scan" className="size-11" /> */}
                 </div>
               </label>
-              <Icon
-                name="address-book"
-                className="size-5"
-                onClick={() => {
-                  setSettingField("addressPreviousPageType", "withdraw");
-                  setField("formState", getValues());
-                  setSettingField(
-                    "withdrawNetwork",
-                    getValues("chainEnum").protocolType,
-                  );
-                  const _withdrawAddress = addressMap
-                    ? addressMap[chainEnum?.protocolType]?.addr
-                    : "";
-                  if (_withdrawAddress) {
-                    push(routerMap.settingAddress);
-                  } else {
-                    push(routerMap.settingAddressAdd);
-                  }
-                }}
-              />
             </div>
             <TextError>{errors.withdrawAddress?.message}</TextError>
           </fieldset>
@@ -297,11 +231,6 @@ const InternalTransferView = () => {
               {getValues("currencyCode")}
             </p>
             <TextError>{errors.withdrawAmount?.message}</TextError>
-          </fieldset>
-
-          <fieldset className="fieldset h-12 rounded-lg bg-bg2 flex items-center p-4 mt-6 text-sm text-text4 justify-between font-normal">
-            <span>{t("withdraw.fee")}</span>
-            <NumberWithUnit value={withdrawalFeeConfig} unit={feeUnit} />
           </fieldset>
         </form>
         <button

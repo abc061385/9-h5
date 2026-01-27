@@ -10,7 +10,7 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useSettingStore } from "@/store/useSettingStore";
-import { useWithdrawalStore } from "@/store/useWithdrawal";
+import { useInternalTransferStore } from "@/store/useInternalTransfer";
 import { ReactNode, useCallback } from "react";
 import toast from "react-hot-toast";
 
@@ -26,7 +26,7 @@ type ChainEnum = {
 const WithdrawConfirmView = () => {
   const t = useTrans();
   const { push } = useRouter();
-  const { formState, resetFormState } = useWithdrawalStore();
+  const { formState, resetFormState } = useInternalTransferStore();
   const { googleCode, clearGoogleCode, platformInfo } = useSettingStore();
   const { clearAddressInfo } = useSettingStore();
 
@@ -99,7 +99,7 @@ const WithdrawConfirmView = () => {
           {formatBalance(formState.withdrawAmount, formState.currencyCode)}{" "}
           {formState.currencyCode}
         </div>
-        {fieldEl("Network", formState.chainEnum.protocolType)}
+        {/* {fieldEl("Network", formState.chainEnum.protocolType)} */}
         {fieldEl(
           "Address",
           <div className="flex items-center gap-2">
@@ -107,10 +107,7 @@ const WithdrawConfirmView = () => {
             <CopyText text={formState.withdrawAddress} />
           </div>,
         )}
-        {fieldEl(
-          "Service Fee",
-          formState.chainEnum.withdrawalFeeConfig + " USDT",
-        )}
+        {/* {fieldEl("Service Fee", 0 + " USDT")} */}
         <button className="btn btn-primary w-full mt-10" onClick={confirm}>
           {t("confirmSubmit")}
         </button>

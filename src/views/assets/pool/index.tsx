@@ -6,20 +6,17 @@ import { Drawer } from "@/components/drawer";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
-import { ShowIf } from "@/components/show-if";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
-import { useRequestMutation } from "@/hooks/useRequestMutation";
-// import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
-import { cn } from "@/lib/utils";
+import { cn, utils } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import toast from "react-hot-toast";
+import { useCallback, useMemo, useState } from "react";
 import CardBox from "./card";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { useBack } from "@/hooks/useBack";
 import { PLATFORMTOKEN, USD1 } from "@/lib/const";
+import { useRequestQuery } from "@/hooks/useRequestQuery";
 
 const SmartYield = () => {
   const t = useTrans();
@@ -29,53 +26,57 @@ const SmartYield = () => {
 
   const back = useBack();
   const [tabsValue, setTabsValue] = useState(USD1);
-  const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType1>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
   const [detailTabsValue, setDetailTabsValue] = useState(0);
   const [pageSize] = useState(20);
 
-  const { trigger } = useRequestMutation(
-    api.fundProductConfig.claimedProfitSmartWalletUsingGet,
+  const { data: poolStaticRes } = useRequestQuery(
+    api.fundPoolStatic.getTotalUsingGet1,
+    {
+      coin: tabsValue,
+    },
   );
+
+  const { data: poolDynamicRes } = useRequestQuery(
+    api.fundPoolDynamic.getDetailUsingGet,
+    {
+      coin: tabsValue,
+    },
+  );
+
+  const poolStatic = poolStaticRes?.data || {};
+
+  const poolDynamic = poolDynamicRes?.data || {};
+
+  const totalReward = utils
+    .toBigNumber(poolStatic?.reward || 0)
+    .plus(poolDynamic?.reward || 0)
+    .toNumber();
 
   // const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
   // const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
 
-  const getInfo = useCallback(() => {
-    trigger(
-      {
-        outputToken: tabsValue,
-      },
-      {
-        onSuccess: ({ data }) => {
-          setIncomeInfo(data as AssetsIncomeType1);
-        },
-      },
-    );
-  }, [trigger, tabsValue]);
-
-  useEffect(() => {
-    getInfo();
-  }, [getInfo]);
-
-  const getIncomeList = useCallback(
-    async (page: number) => {
-      const { data } =
-        await api.fundProductConfig.claimedProfitIncomeDetailsUsingGet({
-          pageNo: page,
-          pageSize: pageSize,
-          tabType: detailTabsValue,
-          outputToken: tabsValue,
-        });
+  const getIncomeList = useCallback(async () => {
+    if (detailTabsValue === 0) {
+      const { data } = await api.fundPoolStatic.getTotalUsingGet1({
+        coin: tabsValue,
+      });
       const newData = data?.list || [];
       return {
         data: newData,
-        hasMore: page < data.total / pageSize,
+        hasMore: false,
       };
-    },
-    [tabsValue, pageSize, detailTabsValue],
-  );
+    }
+    const { data } = await api.fundPoolDynamic.getTotalUsingGet({
+      coin: tabsValue,
+    });
+    const newData = data?.list || [];
+    return {
+      data: newData,
+      hasMore: false,
+    };
+  }, [tabsValue, detailTabsValue]);
 
   const tabs = [
     { label: USD1, value: USD1 },
@@ -84,10 +85,9 @@ const SmartYield = () => {
   const [submitLoading, setSumitLoading] = useState(false);
 
   const detailTabs = [
-    { label: t("walletDetail.all"), value: 0 },
-    { label: t("投资收益转入"), value: 1 },
-    { label: t("币权收益转入"), value: 2 },
-    { label: t("SmartYieldWallet"), value: 3 },
+    // { label: t("walletDetail.all"), value: 0 },
+    { label: "静态池", value: 0 },
+    { label: "动态池", value: 1 },
   ];
 
   const coinLogo = useCallback(
@@ -117,7 +117,6 @@ const SmartYield = () => {
       setSumitLoading(false);
       if (res.code === 200) {
         setOpenWithdraw(false);
-        getInfo();
         setField(
           "incomeWithdrawAmount",
           `${formatBalance(withDrawNum || 0, tabsValue)} ${tabsValue}`,
@@ -128,14 +127,15 @@ const SmartYield = () => {
     } catch {
       setSumitLoading(false);
     }
-  }, [withDrawNum, tabsValue, getInfo, push, setField, formatBalance]);
+  }, [withDrawNum, tabsValue, push, setField, formatBalance]);
 
   const disabledWithdrawSubmit = useMemo(() => {
-    return (
-      !!withDrawNum &&
-      Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
-    );
-  }, [withDrawNum, incomeInfo?.unWithdrawnReturn]);
+    return true;
+    // return (
+    //   !!withDrawNum &&
+    //   Number(withDrawNum) > Number(incomeInfo?.unWithdrawnReturn || 0)
+    // );
+  }, []);
 
   return (
     <ViewLayout
@@ -170,58 +170,70 @@ const SmartYield = () => {
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
           />
           <div className="text-center border-b border-border2 pb-4 mb-4">
-            <p className="text-xs mb-1 text-text4">
-              {t("SmartYieldWallet总收益")}
-            </p>
+            <p className="text-xs mb-1 text-text4">总收益</p>
             <div className="text-xl font-medium">
-              {formatBalance(incomeInfo?.totalFundReturn || "0", tabsValue)}{" "}
-              {tabsValue}
+              {formatBalance(totalReward || "0", tabsValue)} {tabsValue}
             </div>
           </div>
 
           <div className="mt-4 flex items-center justify-center text-xs">
-            <p className="text-xs  text-text4">{t("每日复利收益")}: </p>
-            <p className="ml-2">{(incomeInfo?.dayRate || 0) * 100} %</p>
+            <p className="text-xs  text-text4">{t("每日复利收益")}:</p>
+            <p className="ml-2">
+              {utils.toBigNumber(poolStatic.rate).times(100).toNumber() || 0} %
+            </p>
           </div>
-          <div className="flex py-4">
+          <div className="flex mt-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">{t("累计转出")}</span>
+              <span className="text-xs text-text4">静态余额</span>
               <span className="text-sm">
-                {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
+                {formatBalance(poolStatic?.total || "0", tabsValue)} {tabsValue}
+              </span>
+            </div>
+            <div className="flex-1 flex flex-col gap-0.5 items-end">
+              <span className="text-xs text-text4">动态余额</span>
+              <span className="text-sm">
+                {formatBalance(poolDynamic?.total || "0", tabsValue)}{" "}
+                {tabsValue}
+              </span>
+            </div>
+          </div>
+          <div className="flex">
+            <div className="flex-1 flex flex-col gap-0.5 items-start">
+              <span className="text-xs text-text4">静态收益</span>
+              <span className="text-sm">
+                {formatBalance(poolStatic?.reward || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">
-                {t("smartyieldwallet可用余额")}
-              </span>
+              <span className="text-xs text-text4">动态收益</span>
               <span className="text-sm">
-                {formatBalance(incomeInfo?.unWithdrawnReturn || "0", tabsValue)}{" "}
+                {formatBalance(poolDynamic?.reward || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
           </div>
-          <div className="bg-white rounded-lg py-3.5 px-4">
-            <div className="flex items-center justify-between ">
-              <span className="text-xs text-text4">
-                {t("昨日SmartYieldWallet收益")}
-              </span>
-              <span className="text-primary text-sm text-right">
-                {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
-                {tabsValue}
-              </span>
-            </div>
-          </div>
-          <button
-            className="btn btn-primary w-full mt-6"
-            onClick={() => {
-              if (!incomeInfo?.unWithdrawnReturn)
-                return toast.error(t("没有可提取的收益"));
-              setOpenWithdraw(true);
-            }}
-          >
-            {t("提取收益")}
-          </button>
+          {/* <div className="bg-white rounded-lg py-3.5 px-4"> */}
+          {/*   <div className="flex items-center justify-between "> */}
+          {/*     <span className="text-xs text-text4"> */}
+          {/*       {t("昨日SmartYieldWallet收益")} */}
+          {/*     </span> */}
+          {/*     <span className="text-primary text-sm text-right"> */}
+          {/*       {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "} */}
+          {/*       {tabsValue} */}
+          {/*     </span> */}
+          {/*   </div> */}
+          {/* </div> */}
+          {/* <button */}
+          {/*   className="btn btn-primary w-full mt-6" */}
+          {/*   onClick={() => { */}
+          {/*     if (!incomeInfo?.unWithdrawnReturn) */}
+          {/*       return toast.error(t("没有可提取的收益")); */}
+          {/*     setOpenWithdraw(true); */}
+          {/*   }} */}
+          {/* > */}
+          {/*   {t("提取收益")} */}
+          {/* </button> */}
         </div>
         <HorizontalTabs
           type="border"
@@ -257,67 +269,67 @@ const SmartYield = () => {
           <legend className="fieldset-legend">{t("transfer_amount")}</legend>
 
           <label className="input w-full h-12">
-            <input
-              value={withDrawNum}
-              type="number"
-              onChange={(e) => {
-                let value = e.target.value;
-                if (value === "") {
-                  // 更新输入框的值
-                  e.target.value = "";
-                  setWithDrawNum("");
-                  return;
-                }
-
-                // 匹配合法数字格式（允许中间态：12.  /  0.）
-                if (!/^\d*\.?\d*$/.test(value)) {
-                  return;
-                }
-
-                // 限制小数点后两位
-                if (value.includes(".")) {
-                  const [int, dec] = value.split(".");
-                  if (dec.length > 2) {
-                    value = `${int}.${dec.slice(0, 2)}`;
-                  }
-                }
-
-                // 数值范围限制（只在能转成 number 时判断）
-                const num = Number(value);
-                if (!isNaN(num)) {
-                  if (num < 1) value = "1";
-                  if (
-                    incomeInfo?.unWithdrawnReturn &&
-                    num > Number(incomeInfo.unWithdrawnReturn)
-                  ) {
-                    value = String(incomeInfo.unWithdrawnReturn);
-                  }
-                }
-
-                setWithDrawNum(value);
-              }}
-            />
-            <span className="text-text4 text-sm">{tabsValue}</span>
-            <span
-              className="font-bold text-sm ml-2"
-              onClick={() => {
-                setWithDrawNum(String(incomeInfo?.unWithdrawnReturn) || "0");
-              }}
-            >
-              {t("withdraw.useAll")}
-            </span>
+            {/* <input */}
+            {/*   value={withDrawNum} */}
+            {/*   type="number" */}
+            {/*   onChange={(e) => { */}
+            {/*     let value = e.target.value; */}
+            {/*     if (value === "") { */}
+            {/*       // 更新输入框的值 */}
+            {/*       e.target.value = ""; */}
+            {/*       setWithDrawNum(""); */}
+            {/*       return; */}
+            {/*     } */}
+            {/**/}
+            {/*     // 匹配合法数字格式（允许中间态：12.  /  0.） */}
+            {/*     if (!/^\d*\.?\d*$/.test(value)) { */}
+            {/*       return; */}
+            {/*     } */}
+            {/**/}
+            {/*     // 限制小数点后两位 */}
+            {/*     if (value.includes(".")) { */}
+            {/*       const [int, dec] = value.split("."); */}
+            {/*       if (dec.length > 2) { */}
+            {/*         value = `${int}.${dec.slice(0, 2)}`; */}
+            {/*       } */}
+            {/*     } */}
+            {/**/}
+            {/*     // 数值范围限制（只在能转成 number 时判断） */}
+            {/*     const num = Number(value); */}
+            {/*     if (!isNaN(num)) { */}
+            {/*       if (num < 1) value = "1"; */}
+            {/*       if ( */}
+            {/*         incomeInfo?.unWithdrawnReturn && */}
+            {/*         num > Number(incomeInfo.unWithdrawnReturn) */}
+            {/*       ) { */}
+            {/*         value = String(incomeInfo.unWithdrawnReturn); */}
+            {/*       } */}
+            {/*     } */}
+            {/**/}
+            {/*     setWithDrawNum(value); */}
+            {/*   }} */}
+            {/* /> */}
+            {/* <span className="text-text4 text-sm">{tabsValue}</span> */}
+            {/* <span */}
+            {/*   className="font-bold text-sm ml-2" */}
+            {/*   onClick={() => { */}
+            {/*     setWithDrawNum(String(incomeInfo?.unWithdrawnReturn) || "0"); */}
+            {/*   }} */}
+            {/* > */}
+            {/*   {t("withdraw.useAll")} */}
+            {/* </span> */}
           </label>
         </fieldset>
-        <ShowIf condition={disabledWithdrawSubmit}>
-          <div className="text-xs text-primary mt-1">{t("可用余额不足")}</div>
-        </ShowIf>
+        {/* <ShowIf condition={disabledWithdrawSubmit}> */}
+        {/*   <div className="text-xs text-primary mt-1">{t("可用余额不足")}</div> */}
+        {/* </ShowIf> */}
 
-        <div className="flex items-center justify-between text-sm mt-1">
-          <span className=" text-text4">{t("可提取数量")}</span>
-          <span>
-            {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
-          </span>
-        </div>
+        {/* <div className="flex items-center justify-between text-sm mt-1"> */}
+        {/*   <span className=" text-text4">{t("可提取数量")}</span> */}
+        {/*   <span> */}
+        {/*     {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)} */}
+        {/*   </span> */}
+        {/* </div> */}
 
         {/* <fieldset className="fieldset"> */}
         {/*   <legend className="fieldset-legend">{t("预计到账")}</legend> */}

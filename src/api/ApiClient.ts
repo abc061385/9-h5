@@ -2590,6 +2590,104 @@ export class Api<
         ...params,
       }),
   };
+  fundPoolDynamic = {
+    /**
+     * No description
+     *
+     * @tags 动态资金池明细
+     * @name GetDetailUsingGet
+     * @summary 根据用户ID查询动态资金池明细
+     * @request GET:/fund-pool-dynamic/detail
+     * @secure
+     */
+    getDetailUsingGet: (
+      query?: {
+        /** coin */
+        coin?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/fund-pool-dynamic/detail`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 动态资金池明细
+     * @name GetTotalUsingGet
+     * @summary 动态资金池总额
+     * @request GET:/fund-pool-dynamic/total
+     * @secure
+     */
+    getTotalUsingGet: (
+      query?: {
+        /** coin */
+        coin?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/fund-pool-dynamic/total`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+  };
+  fundPoolStatic = {
+    /**
+     * No description
+     *
+     * @tags 静态资金池明细
+     * @name GetDetailUsingGet1
+     * @summary 静态资金池明细
+     * @request GET:/fund-pool-static/detail
+     * @secure
+     */
+    getDetailUsingGet1: (
+      query?: {
+        /** coin */
+        coin?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/fund-pool-static/detail`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 静态资金池明细
+     * @name GetTotalUsingGet1
+     * @summary 静态资金池总额
+     * @request GET:/fund-pool-static/total
+     * @secure
+     */
+    getTotalUsingGet1: (
+      query?: {
+        /** coin */
+        coin?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/fund-pool-static/total`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+  };
   fundProductConfig = {
     /**
      * No description
