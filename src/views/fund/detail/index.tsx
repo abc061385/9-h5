@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/skeleton";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import CoinIcon from "../coin-icon";
 import toast from "react-hot-toast";
+import { USD1 } from "@/lib/const";
 
 const FundDetailView = () => {
   const t = useTrans();
@@ -150,19 +151,19 @@ const FundDetailView = () => {
           t("昨日收益"),
           `${formatBalance(
             data?.yesterdayProfit || 0,
-            data?.outputToken || "USD1",
+            data?.outputToken || USD1,
           )} ${data?.outputToken}`,
         )}
         {cardEl(
           t("已获取收益"),
           `${formatBalance(
             data?.totalProfit || 0,
-            data?.outputToken || "USD1",
+            data?.outputToken || USD1,
           )} ${data?.outputToken}`,
         )}
         {cardEl(
           t("最大收益"),
-          `${formatBalance(data?.maxProfit || 0, "USD1")} USD1`,
+          `${formatBalance(data?.maxProfit || 0, USD1)} ${USD1}`,
         )}
         {cardEl(t("日收益率"), `≈${data?.dailyYield}%`)}
         {cardEl(t("发放时间"), t("发放时间p"))}

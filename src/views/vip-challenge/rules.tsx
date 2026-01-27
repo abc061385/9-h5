@@ -1,5 +1,6 @@
 import { ShowIf } from "@/components/show-if";
 import { useTrans } from "@/hooks/useTrans";
+import { USD1 } from "@/lib/const";
 
 const ChallengeRewardRules = () => {
   const t = useTrans();
@@ -10,7 +11,7 @@ const ChallengeRewardRules = () => {
     { title: t("teamStakingRequirement"), desc: `(${t("order180Days")})` },
     {
       title: t("reward"),
-      desc: `(USDT ${t("equivalentValue")} → USD1 ${t("distribution")})`,
+      desc: `(USDT ${t("equivalentValue")} → ${USD1} ${t("distribution")})`,
     },
   ];
 
@@ -20,49 +21,49 @@ const ChallengeRewardRules = () => {
       targetLevel: "VIP4",
       challengeCycle: "20",
       pledge: "≥ 100,000 USDT",
-      award: `1,000 USDT ${t("equivalentValue")} USD1`,
+      award: `1,000 USDT ${t("equivalentValue")} ${USD1}`,
     },
     {
       currentLevel: "VIP2",
       targetLevel: "VIP5",
       challengeCycle: "25",
       pledge: "≥ 300,000 USDT",
-      award: `3,000 USDT ${t("equivalentValue")} USD1`,
+      award: `3,000 USDT ${t("equivalentValue")} ${USD1}`,
     },
     {
       currentLevel: "VIP3",
       targetLevel: "VIP6",
       challengeCycle: "30",
       pledge: "≥ 1,000,000 USDT",
-      award: `9,000 USDT ${t("equivalentValue")} USD1`,
+      award: `9,000 USDT ${t("equivalentValue")} ${USD1}`,
     },
     {
       currentLevel: "VIP4",
       targetLevel: "VIP7",
       challengeCycle: "35",
       pledge: "≥ 3,000,000 USDT",
-      award: `27,000 USDT ${t("equivalentValue")} USD1`,
+      award: `27,000 USDT ${t("equivalentValue")} ${USD1}`,
     },
     {
       currentLevel: "VIP5",
       targetLevel: "VIP8",
       challengeCycle: "50",
       pledge: "≥ 10,000,000 USDT",
-      award: `90,000 USDT ${t("equivalentValue")} USD1`,
+      award: `90,000 USDT ${t("equivalentValue")} ${USD1}`,
     },
     {
       currentLevel: "VIP6",
       targetLevel: "VIP9",
       challengeCycle: "60",
       pledge: "≥ 20,000,000 USDT",
-      award: `270,000 USDT ${t("equivalentValue")} USD1`,
+      award: `270,000 USDT ${t("equivalentValue")} ${USD1}`,
     },
     {
       currentLevel: "VIP7",
       targetLevel: "VIP9⭐️",
       challengeCycle: "60",
       pledge: "≥ 30,000,000 USDT",
-      award: `300,000 USDT ${t("equivalentValue")} USD1`,
+      award: `300,000 USDT ${t("equivalentValue")} ${USD1}`,
       orAward: t("mercedesMaybach"),
     },
     {
@@ -70,7 +71,7 @@ const ChallengeRewardRules = () => {
       targetLevel: "VIP9⭐️⭐️",
       challengeCycle: "90",
       pledge: "≥ 50,000,000 USDT",
-      award: `300,000 USDT ${t("equivalentValue")} USD1`,
+      award: `300,000 USDT ${t("equivalentValue")} ${USD1}`,
       orAward: t("mercedesMaybach"),
     },
   ];

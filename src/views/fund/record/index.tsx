@@ -16,6 +16,7 @@ import ViewLayout from "@/components/layout";
 import { useAssetStore } from "@/store/useAssetStore";
 import Platform from "@/lib/platfrom";
 import { ShowIf } from "@/components/show-if";
+import { PLATFORMTOKEN, USD1 } from "@/lib/const";
 
 const FundRecordView = () => {
   const reloadRef = useRef<() => Promise<void>>(null);
@@ -53,8 +54,8 @@ const FundRecordView = () => {
 
   const tabs = [
     { label: t("walletDetail.all"), value: "" },
-    { label: "USD1", value: "USD1" },
-    { label: "9MD", value: "9MD" },
+    { label: USD1, value: USD1 },
+    { label: PLATFORMTOKEN, value: PLATFORMTOKEN },
   ];
 
   const statusText = [

@@ -251,6 +251,22 @@ const HeaderBox = () => {
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
 
+      {/* --9M new-- */}
+      <div
+        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        onClick={() => {
+          push(routerMap.growthPool);
+        }}
+      >
+        <div className="flex flex-1 gap-4">
+          <Icon name="growthclub" className="w-4.5 h-4 mt-1" />
+          <dl className="flex-1">
+            <dt>xxxxxx</dt>
+            <dd className="font-normal text-xs text-text4">xxx1xxxxxxxxxx</dd>
+          </dl>
+        </div>
+        <Icon name="right-enter" className="w-1.5 h-2.5" />
+      </div>
       <div className="divider"></div>
 
       <Drawer

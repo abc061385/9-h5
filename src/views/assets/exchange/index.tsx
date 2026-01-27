@@ -25,13 +25,14 @@ import { useRequestMutation } from "@/hooks/useRequestMutation";
 import toast from "react-hot-toast";
 import { Skeleton } from "@/components/skeleton";
 import { ShowIf } from "@/components/show-if";
+import { PLATFORMTOKEN, USD1 } from "@/lib/const";
 
 type FormData = {
   formCoinValue: string;
   toCoinValue: string;
 };
 
-const utilCoinList = ["USDT", "USDC", "USD1", "9MD"];
+const utilCoinList = ["USDT", "USDC", USD1, PLATFORMTOKEN];
 
 const AssetsExchangeView = () => {
   const t = useTrans();

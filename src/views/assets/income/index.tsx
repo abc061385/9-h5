@@ -19,6 +19,7 @@ import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import { ShowIf } from "@/components/show-if";
 import { Icon } from "@/components/icon";
 import { useBack } from "@/hooks/useBack";
+import { PLATFORMTOKEN, USD1 } from "@/lib/const";
 
 const NewVersionMap = {
   balance: 0,
@@ -33,7 +34,7 @@ const IncomeView = () => {
 
   const { coinList, setField } = useAssetStore();
 
-  const [tabsValue, setTabsValue] = useState("USD1");
+  const [tabsValue, setTabsValue] = useState(USD1);
   const [incomeInfo, setIncomeInfo] = useState<AssetsIncomeType>();
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [openSelect, setOpenSelect] = useState(false);
@@ -100,8 +101,8 @@ const IncomeView = () => {
   }, [withDrawNum, withdrawConfig]);
 
   const tabs = [
-    { label: "USD1", value: "USD1" },
-    { label: "9MD", value: "9MD" },
+    { label: USD1, value: USD1 },
+    { label: PLATFORMTOKEN, value: PLATFORMTOKEN },
   ];
 
   const coinLogo = useCallback(

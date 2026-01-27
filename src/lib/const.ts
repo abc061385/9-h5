@@ -79,3 +79,6 @@ export const WalletOrderType = [
   "UBX_ADD", //39("UBX账号导入赠送")
   "FLASH_REDEMPTION_DEDUCTION", //40("闪兑扣款")
 ]; //一些特殊的类型
+
+export const PLATFORMTOKEN = "9MT";
+export const USD1 = "USD1";

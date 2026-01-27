@@ -13,17 +13,18 @@ import { api } from "@/api";
 import { useAssetStore } from "@/store/useAssetStore";
 import BaseImage from "@/components/base-image";
 import { useBack } from "@/hooks/useBack";
+import { PLATFORMTOKEN, USD1 } from "@/lib/const";
 
 const UpgradeView = () => {
   const t = useTrans();
   const { coinList } = useAssetStore();
   const back = useBack();
 
-  const [tabsValue, setTabsValue] = useState("USD1");
+  const [tabsValue, setTabsValue] = useState(USD1);
   const [awardInfo, setAwardInfo] = useState<AwardInfoType>();
   const tabs = [
-    { label: "USD1", value: "USD1" },
-    { label: "9MD", value: "9MD" },
+    { label: USD1, value: USD1 },
+    { label: PLATFORMTOKEN, value: PLATFORMTOKEN },
   ];
 
   const { trigger } = useRequestMutation(
