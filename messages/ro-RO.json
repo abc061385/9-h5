@@ -1001,5 +1001,16 @@
   "asset": "Activum",
   "referral": "Recomandare",
   "internal_transfer": "Transfer intern",
-  "onchain_withdrawal": "Retragere on-chain"
+  "onchain_withdrawal": "Retragere on-chain",
+  "static_pool": "Pool Static",
+  "dynamic_pool": "Pool Dinamic",
+  "total_rewards": "Recompense Totale",
+  "daily_compound_interest": "Venituri Zilnice de Dobândă Compusă",
+  "static_balance": "Sold Static",
+  "dynamic_balance": "Sold Dinamic",
+  "static_earnings": "Câștiguri Statice",
+  "dynamic_earnings": "Câștiguri Dinamice",
+  "withdraw_earnings": "Retrage Câștiguri",
+  "estimated_arrival": "Sosire Estimat",
+  "earnings_lock_pool": "Blocare Venituri Piscină"
 }

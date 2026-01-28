@@ -1001,5 +1001,16 @@
   "asset": "Aktivum",
   "referral": "Doporučení",
   "internal_transfer": "Interní převod\nonchain_withdrawal",
-  "onchain_withdrawal": "On-chain výběr\ninternal_transfer"
+  "onchain_withdrawal": "On-chain výběr\ninternal_transfer",
+  "static_pool": "Statický Pool",
+  "dynamic_pool": "Dynamický Pool",
+  "total_rewards": "Celkové Odměny",
+  "daily_compound_interest": " Denní Složené Úrokové Výnosy",
+  "static_balance": "B Statický Zůstatek",
+  "dynamic_balance": "Dynamický Zůstatek",
+  "static_earnings": "Statické Výnosy",
+  "dynamic_earnings": "Dynamické Výnosy",
+  "withdraw_earnings": "Vybrat Výnosy",
+  "estimated_arrival": "Odhadovaný Příjezd",
+  "earnings_lock_pool": "Pozamykací Pool Výdělků"
 }

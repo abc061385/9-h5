@@ -1001,5 +1001,17 @@
   "asset": "Actif",
   "referral": "Parrainage",
   "internal_transfer": "Virement interne",
-  "onchain_withdrawal": "Retrait on-chain"
+  "onchain_withdrawal": "Retrait on-chain",
+  "static_pool": "Pool Statique",
+  "dynamic_pool": "Pool Dynamique",
+  "total_rewards": "Récompenses Totales",
+  "daily_compound_interest": "Revenus d'Intérêts Composés Quotidiens",
+  "static_balance": "Solde Statique",
+  "dynamic_balance": "Solde Dynamique",
+  "static_earnings": "Gains Statiques",
+  "dynamic_earnings": "Gains Dynamiques",
+  "withdraw_earnings": "Retirer les Gains",
+  "estimated_arrival": "Arrivée Estimée",
+  "earnings_lock_pool": "Piscine de Blocage des Revenus",
+  "build_long_term_win_win_ecosystem": "Construire un Écosystème Gagnant-Gagnant à Long Terme"
 }

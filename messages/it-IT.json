@@ -997,5 +997,17 @@
   "asset": "Bene",
   "referral": "Riferimento",
   "internal_transfer": "Trasferimento interno",
-  "onchain_withdrawal": "Prelievo on-chain"
+  "onchain_withdrawal": "Prelievo on-chain",
+  "static_pool": "Pool Statico",
+  "dynamic_pool": "Pool Dinamico",
+  "total_rewards": "Ricompense Totali",
+  "daily_compound_interest": "Interessi Composti Giornalieri",
+  "static_balance": "Saldo Statico",
+  "dynamic_balance": "Saldo Dinamico",
+  "static_earnings": "Guadagni Statici",
+  "dynamic_earnings": "Guadagni Dinamici",
+  "withdraw_earnings": "Ritira Guadagni",
+  "estimated_arrival": "Arrivo Stimato",
+  "earnings_lock_pool": "Piscina di Blocco dei Ricavi",
+  "build_long_term_win_win_ecosystem": "Costruire un Ecosistema Win-Win a Lungo Termine"
 }

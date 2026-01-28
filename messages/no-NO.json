@@ -1001,5 +1001,17 @@
   "asset": "Eiendel",
   "referral": "Henvisning",
   "internal_transfer": "Intern overføring",
-  "onchain_withdrawal": "On-chain uttak"
+  "onchain_withdrawal": "On-chain uttak",
+  "static_pool": "Statisk Pool",
+  "dynamic_pool": "Dynamisk Pool",
+  "total_rewards": "Totale Belønninger",
+  "daily_compound_interest": "Daglige Renteinntekter med Renters Rente",
+  "static_balance": "Statisk Saldo",
+  "dynamic_balance": "Dynamisk Saldo",
+  "static_earnings": "Statisk Inntekt",
+  "dynamic_earnings": "Dynamisk Inntekt",
+  "withdraw_earnings": "Ta Ut Inntekter",
+  "estimated_arrival": "Estimert Ankomst",
+  "earnings_lock_pool": "Låst Inntektspool",
+  "build_long_term_win_win_ecosystem": "Långsiktigt Win-Win Ekosystem Construiește un Ecosistem Win-Win pe Termen Lung"
 }

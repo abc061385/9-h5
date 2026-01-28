@@ -1001,5 +1001,17 @@
   "asset": "Ativo",
   "referral": "Indicação",
   "internal_transfer": "Transferência interna",
-  "onchain_withdrawal": "Retirada on-chain"
+  "onchain_withdrawal": "Retirada on-chain",
+  "static_pool": "Pool Estático",
+  "dynamic_pool": "Pool Dinâmico",
+  "total_rewards": "Recompensas Totais",
+  "daily_compound_interest": "Rendimentos de Juros Compostos Diários",
+  "static_balance": "Saldo Estático",
+  "dynamic_balance": "Saldo Dinâmico",
+  "static_earnings": "Ganhos Estáticos",
+  "dynamic_earnings": "Ganhos Dinâmicos",
+  "withdraw_earnings": "Retirar Ganhos",
+  "estimated_arrival": "Chegada Estimada",
+  "earnings_lock_pool": "Piscina de Bloqueio de Rendimentos",
+  "build_long_term_win_win_ecosystem": "Construir um Ecossistema de Ganho-Ganho de Longo Prazo"
 }

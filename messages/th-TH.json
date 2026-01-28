@@ -1001,5 +1001,17 @@
   "asset": "สินทรัพย์",
   "referral": "การแนะนำ",
   "internal_transfer": "โอนภายใน",
-  "onchain_withdrawal": "ถอนบนเชน"
+  "onchain_withdrawal": "ถอนบนเชน",
+  "static_pool": "สระนิ่ง",
+  "dynamic_pool": "สระแบบไดนามิก",
+  "total_rewards": "รางวัลรวม",
+  "daily_compound_interest": "รายได้ดอกเบี้ยทบต้นรายวัน",
+  "static_balance": "ยอดคงเหลือคงที่",
+  "dynamic_balance": "ยอดคงเหลือแบบไดนามิก",
+  "static_earnings": "รายได้คงที่",
+  "dynamic_earnings": "รายได้แบบไดนามิก",
+  "withdraw_earnings": "ถอนรายได้",
+  "estimated_arrival": "เวลาถึงโดยประมาณ",
+  "earnings_lock_pool": "พูลล็อกรายได้",
+  "build_long_term_win_win_ecosystem": "สร้างระบบนิเวศที่ “วิน-วิน” ระยะยาว"
 }

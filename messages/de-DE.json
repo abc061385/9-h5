@@ -1001,5 +1001,17 @@
   "asset": "Vermögenswert",
   "referral": "Empfehlung",
   "internal_transfer": "Interne Überweisung",
-  "onchain_withdrawal": "On-chain Auszahlung"
+  "onchain_withdrawal": "On-chain Auszahlung",
+  "static_pool": "Statischer Pool",
+  "dynamic_pool": "Dynamischer Pool",
+  "total_rewards": "Gesamtbelohnungen",
+  "daily_compound_interest": "Tägliche Zinseszins-Erträge",
+  "static_balance": "Statisches Guthaben",
+  "dynamic_balance": "Dynamisches Guthaben",
+  "static_earnings": "Statische Erträge",
+  "dynamic_earnings": "Dynamische Erträge",
+  "withdraw_earnings": "Erträge Abheben",
+  "estimated_arrival": "Geschätzte Ankunft",
+  "earnings_lock_pool": "Einkommens-Sperrpool",
+  "build_long_term_win_win_ecosystem": "Langfristiges Win-Win-Ökosystem aufbauen"
 }

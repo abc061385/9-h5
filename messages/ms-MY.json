@@ -1001,5 +1001,17 @@
   "asset": "Aset",
   "referral": "Rujukan",
   "internal_transfer": "Pemindahan dalaman",
-  "onchain_withdrawal": "Pengeluaran on-chain"
+  "onchain_withdrawal": "Pengeluaran on-chain",
+  "static_pool": "Kolam statik",
+  "dynamic_pool": "Kolam dinamik",
+  "total_rewards": "Jumlah Ganjaran",
+  "daily_compound_interest": "Pendapatan Faedah Kompaun Harian",
+  "static_balance": "Baki Statik",
+  "dynamic_balance": "Baki Dinamik",
+  "static_earnings": "Pendapatan Statik",
+  "dynamic_earnings": "Pendapatan Dinamik",
+  "withdraw_earnings": "Mengeluarkan Pendapatan",
+  "estimated_arrival": "Anggaran Ketibaan",
+  "earnings_lock_pool": "Kolam Kunci Pendapatan",
+  "build_long_term_win_win_ecosystem": "Membina Ekosistem Menang Menang Jangka Panjang"
 }

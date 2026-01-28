@@ -998,5 +998,17 @@
   "asset": "संपत्ति",
   "referral": "रेफ़रल",
   "internal_transfer": "आंतरिक स्थानांतरण",
-  "onchain_withdrawal": "ऑन-चेन निकासी"
+  "onchain_withdrawal": "ऑन-चेन निकासी",
+  "static_pool": "स्थिर पूल",
+  "dynamic_pool": "गतिशील पूल",
+  "total_rewards": "कुल पुरस्कार",
+  "daily_compound_interest": "दैनिक चक्रवृद्धि ब्याज आय",
+  "static_balance": "स्थिर शेष",
+  "dynamic_balance": "गतिशील शेष",
+  "static_earnings": "स्थिर आय",
+  "dynamic_earnings": "गतिशील आय",
+  "withdraw_earnings": "आय निकालें",
+  "estimated_arrival": "अनुमानित आगमन",
+  "earnings_lock_pool": "आय लॉक पूल",
+  "build_long_term_win_win_ecosystem": "दीर्घकालिक वन-विन पारिस्थितिकी तंत्र बनाना"
 }

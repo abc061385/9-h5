@@ -1001,5 +1001,17 @@
   "asset": "Tillgång",
   "referral": "Rekommendation",
   "internal_transfer": "Intern överföring",
-  "onchain_withdrawal": "On-chain uttag"
+  "onchain_withdrawal": "On-chain uttag",
+  "static_pool": "Statisk Pool",
+  "dynamic_pool": "Dynamisk Pool",
+  "total_rewards": "Totala Belöningar",
+  "daily_compound_interest": "Dagliga Sammansatta Ränteintäkter",
+  "static_balance": "Statisk Saldo",
+  "dynamic_balance": "Dynamisk Saldo",
+  "static_earnings": "Statisk Inkomst",
+  "dynamic_earnings": "Dynamisk Inkomst",
+  "withdraw_earnings": "Ta Ut Intäkter",
+  "estimated_arrival": "Uppskattad Ankomst",
+  "earnings_lock_pool": "Låst Intäktspool",
+  "build_long_term_win_win_ecosystem": "Vytvořit dlouhodobý ekosystém výhodný pro obě strany"
 }

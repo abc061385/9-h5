@@ -1001,5 +1001,17 @@
   "asset": "資產",
   "referral": "推薦",
   "internal_transfer": "內轉",
-  "onchain_withdrawal": "鏈上提現"
+  "onchain_withdrawal": "鏈上提現",
+  "static_pool": "靜態池",
+  "dynamic_pool": "動態池",
+  "total_rewards": "總收益",
+  "daily_compound_interest": "每日複利收益",
+  "static_balance": "靜態餘額",
+  "dynamic_balance": "動態餘額",
+  "static_earnings": "靜態收益",
+  "dynamic_earnings": "動態收益",
+  "withdraw_earnings": "提取收益",
+  "estimated_arrival": "預計到賬",
+  "earnings_lock_pool": "收益鎖倉池",
+  "build_long_term_win_win_ecosystem": "打造長期雙贏的生態系統"
 }

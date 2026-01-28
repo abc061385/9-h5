@@ -1001,5 +1001,17 @@
   "asset": "Asset",
   "referral": "Referral",
   "internal_transfer": "Internal Transfer",
-  "onchain_withdrawal": "On-chain Withdrawal"
+  "onchain_withdrawal": "On-chain Withdrawal",
+  "static_pool": "Static Pool",
+  "dynamic_pool": "Dynamic Pool",
+  "total_rewards": "Total Rewards",
+  "daily_compound_interest": "Daily Compound Interest Earnings",
+  "static_balance": "Static Balance",
+  "dynamic_balance": "Dynamic Balance",
+  "static_earnings": "Static Earnings",
+  "dynamic_earnings": "Dynamic Earnings",
+  "withdraw_earnings": "Withdraw Earnings",
+  "estimated_arrival": "Estimated Arrival",
+  "earnings_lock_pool": "Earnings Lock Pool",
+  "build_long_term_win_win_ecosystem": "Build a Long-Term Win-Win Ecosystem"
 }

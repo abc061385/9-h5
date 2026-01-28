@@ -86,8 +86,8 @@ const SmartYield = () => {
 
   const detailTabs = [
     // { label: t("walletDetail.all"), value: 0 },
-    { label: "静态池", value: 0 },
-    { label: "动态池", value: 1 },
+    { label: t("static_pool"), value: 0 },
+    { label: t("dynamic_pool"), value: 1 },
   ];
 
   const coinLogo = useCallback(
@@ -140,7 +140,13 @@ const SmartYield = () => {
   return (
     <ViewLayout
       heightFull
-      header={<HeaderWithBack title="POOL" algin="center" onClick={back} />}
+      header={
+        <HeaderWithBack
+          title={t("earnings_lock_pool")}
+          algin="center"
+          onClick={back}
+        />
+      }
       className="flex flex-col"
     >
       <div className="p-content overflow-x-hidden h-max">
@@ -170,7 +176,7 @@ const SmartYield = () => {
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
           />
           <div className="text-center border-b border-border2 pb-4 mb-4">
-            <p className="text-xs mb-1 text-text4">总收益</p>
+            <p className="text-xs mb-1 text-text4">{t("total_rewards")}</p>
             <div className="text-xl font-medium">
               {formatBalance(totalReward || "0", tabsValue)} {tabsValue}
             </div>
@@ -184,13 +190,13 @@ const SmartYield = () => {
           </div>
           <div className="flex mt-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">静态余额</span>
+              <span className="text-xs text-text4">{t("static_balance")}</span>
               <span className="text-sm">
                 {formatBalance(poolStatic?.total || "0", tabsValue)} {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">动态余额</span>
+              <span className="text-xs text-text4">{t("dynamic_balance")}</span>
               <span className="text-sm">
                 {formatBalance(poolDynamic?.total || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -199,14 +205,16 @@ const SmartYield = () => {
           </div>
           <div className="flex">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">静态收益</span>
+              <span className="text-xs text-text4">{t("static_earnings")}</span>
               <span className="text-sm">
                 {formatBalance(poolStatic?.reward || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">动态收益</span>
+              <span className="text-xs text-text4">
+                {t("dynamic_earnings")}
+              </span>
               <span className="text-sm">
                 {formatBalance(poolDynamic?.reward || "0", tabsValue)}{" "}
                 {tabsValue}

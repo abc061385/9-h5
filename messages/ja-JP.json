@@ -1001,5 +1001,17 @@
   "asset": "資産",
   "referral": "紹介",
   "internal_transfer": "内部振替",
-  "onchain_withdrawal": "オンチェーン出金"
+  "onchain_withdrawal": "オンチェーン出金",
+  "static_pool": "静的プール",
+  "dynamic_pool": "動的プール",
+  "total_rewards": "合計報酬",
+  "daily_compound_interest": "日次複利収益",
+  "static_balance": "静的残高",
+  "dynamic_balance": "動的残高",
+  "static_earnings": "静的収益",
+  "dynamic_earnings": "動的収益",
+  "withdraw_earnings": "収益を引き出す",
+  "estimated_arrival": "到着予想",
+  "earnings_lock_pool": "収益ロックプール",
+  "build_long_term_win_win_ecosystem": "長期的ウィンウィンエコシステムを構築する"
 }

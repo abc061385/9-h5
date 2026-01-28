@@ -1001,5 +1001,17 @@
   "asset": "Activa",
   "referral": "Verwijzing",
   "internal_transfer": "Interne overboeking",
-  "onchain_withdrawal": "On-chain opname"
+  "onchain_withdrawal": "On-chain opname",
+  "static_pool": "Statische Pool",
+  "dynamic_pool": "Dynamische Pool",
+  "total_rewards": "Totale Beloningen",
+  "daily_compound_interest": "Dagelijkse Samengestelde Rente-Inkomen",
+  "static_balance": "Statische Balans",
+  "dynamic_balance": "Dynamische Balans",
+  "static_earnings": "Statische Inkomsten",
+  "dynamic_earnings": "Dynamische Inkomsten",
+  "withdraw_earnings": "Inkomsten Opnemen",
+  "estimated_arrival": "Geschatte Aankomst",
+  "earnings_lock_pool": "Inkomsten Vergrendelingspool",
+  "build_long_term_win_win_ecosystem": "Lange Termijn Win-Win Ecosysteem Bygge Langsiktig Vin-Vin Økosystem"
 }

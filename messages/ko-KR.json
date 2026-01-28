@@ -1001,5 +1001,17 @@
   "asset": "자산",
   "referral": "추천",
   "internal_transfer": "내부 이체",
-  "onchain_withdrawal": "온체인 출금"
+  "onchain_withdrawal": "온체인 출금",
+  "static_pool": "정적 풀",
+  "dynamic_pool": "동적 풀",
+  "total_rewards": "총 보상",
+  "daily_compound_interest": "일일 복리 수익",
+  "static_balance": "정적 잔액",
+  "dynamic_balance": "동적 잔액",
+  "static_earnings": "정적 수익",
+  "dynamic_earnings": "동적 수익",
+  "withdraw_earnings": "수익 인출",
+  "estimated_arrival": "예상 도착",
+  "earnings_lock_pool": "수익 잠금 풀",
+  "build_long_term_win_win_ecosystem": "장기적 상생 생태계 구축"
 }

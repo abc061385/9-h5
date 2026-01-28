@@ -1001,5 +1001,17 @@
   "asset": "Tài sản",
   "referral": "Giới thiệu",
   "internal_transfer": "Chuyển nội bộ",
-  "onchain_withdrawal": "Rút trên chuỗi"
+  "onchain_withdrawal": "Rút trên chuỗi",
+  "static_pool": "Hồ tĩnh",
+  "dynamic_pool": "Hồ động",
+  "total_rewards": "Tổng phần thưởng",
+  "daily_compound_interest": "Thu nhập lãi kép hàng ngày",
+  "static_balance": "Số dư tĩnh",
+  "dynamic_balance": "Số dư động",
+  "static_earnings": "Thu nhập tĩnh",
+  "dynamic_earnings": "Thu nhập động",
+  "withdraw_earnings": "Rút Thu Nhập",
+  "estimated_arrival": "Thời Gian Đến Ước Tính",
+  "earnings_lock_pool": "Hồ khóa thu nhập",
+  "build_long_term_win_win_ecosystem": "Xây dựng hệ sinh thái đôi bên cùng có lợi lâu dài"
 }
