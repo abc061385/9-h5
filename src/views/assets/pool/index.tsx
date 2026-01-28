@@ -29,7 +29,7 @@ const SmartYield = () => {
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
   const [detailTabsValue, setDetailTabsValue] = useState(0);
-  const [pageSize] = useState(20);
+  // const [pageSize] = useState(20);
 
   const { data: poolStaticRes } = useRequestQuery(
     api.fundPoolStatic.getTotalUsingGet1,

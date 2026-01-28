@@ -1,8 +1,8 @@
-import { useTrans } from "@/hooks/useTrans";
+// import { useTrans } from "@/hooks/useTrans";
 import z from "@/lib/z";
 
 const useSchema = () => {
-  const t = useTrans();
+  // const t = useTrans();
   const Schema = z
     .object({
       currencyCode: z.string().nonempty(),
@@ -10,7 +10,7 @@ const useSchema = () => {
       withdrawAddress: z.string().nonempty({ message: "请输入邀请码" }),
       withdrawAmount: z.string(),
     })
-    .check((ctx) => {
+    .check(() => {
       // const data = ctx.value;
       // if (!data.chainEnum?.protocolType) {
       //   ctx.issues.push({
