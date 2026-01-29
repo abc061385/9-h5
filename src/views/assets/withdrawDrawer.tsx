@@ -37,7 +37,7 @@ export const WithDrawDrawer: FC<IProps> = ({ open, onChange }) => {
           );
         })}
       </div>
-      <button className="btn btn-outline w-full mt-6" onClick={() => {}}>
+      <button className="btn btn-outline w-full mt-6" onClick={onChange}>
         {t("common.cancel")}
       </button>
     </Drawer>
