@@ -83,4 +83,4 @@ export const WalletOrderType = [
 ]; //一些特殊的类型
 
 export const PLATFORMTOKEN = "9MT";
-export const USD1 = "USD1";
+export const USD1 = "USD9";

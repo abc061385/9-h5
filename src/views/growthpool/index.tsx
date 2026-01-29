@@ -302,9 +302,9 @@ const GrowthPoolView = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary mt-4" onClick={() => setOpen(true)}>
-          {t("9MEcosystemBuy")}
-        </button>
+        {/* <button className="btn btn-primary mt-4" onClick={() => setOpen(true)}> */}
+        {/*   {t("9MEcosystemBuy")} */}
+        {/* </button> */}
         <Modal
           open={open}
           onClose={() => setOpen(false)}
