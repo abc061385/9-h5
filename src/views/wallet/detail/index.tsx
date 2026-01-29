@@ -106,6 +106,10 @@ const WalletDetailView = () => {
       label: t("transaction_TRANSFER"),
       value: 0,
     },
+    {
+      label: t("internal_transfer"),
+      value: 73,
+    },
   ];
   return (
     <ViewLayout
