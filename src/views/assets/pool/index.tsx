@@ -39,7 +39,7 @@ const SmartYield = () => {
   );
 
   const { data: poolDynamicRes } = useRequestQuery(
-    api.fundPoolDynamic.getDetailUsingGet,
+    api.fundPoolDynamic.getTotalUsingGet,
     {
       coin: tabsValue,
     },
@@ -59,19 +59,19 @@ const SmartYield = () => {
 
   const getIncomeList = useCallback(async () => {
     if (detailTabsValue === 0) {
-      const { data } = await api.fundPoolStatic.getTotalUsingGet1({
+      const { data } = await api.fundPoolStatic.getDetailUsingGet1({
         coin: tabsValue,
       });
-      const newData = data?.list || [];
+      const newData = data || [];
       return {
         data: newData,
         hasMore: false,
       };
     }
-    const { data } = await api.fundPoolDynamic.getTotalUsingGet({
+    const { data } = await api.fundPoolDynamic.getDetailUsingGet({
       coin: tabsValue,
     });
-    const newData = data?.list || [];
+    const newData = data || [];
     return {
       data: newData,
       hasMore: false,
