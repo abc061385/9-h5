@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const CardBox: FC<{
-  data: IncomeListType;
+  data: PoolListType;
   symbol: string;
 }> = ({ data, symbol }) => {
   return (

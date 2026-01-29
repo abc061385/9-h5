@@ -307,6 +307,11 @@ type IncomeListType = {
   inout?: 1 | 2 | null;
 };
 
+type PoolListType = {
+  id: number;
+  amount: number;
+  createTime: string;
+};
 interface GrowthPoolConfigType {
   growthRate: number;
   limitLevel: number;

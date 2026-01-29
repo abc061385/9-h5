@@ -64,7 +64,7 @@ const SmartYield = () => {
       });
       const newData = data || [];
       return {
-        data: newData,
+        data: newData as PoolListType[],
         hasMore: false,
       };
     }
@@ -73,7 +73,7 @@ const SmartYield = () => {
     });
     const newData = data || [];
     return {
-      data: newData,
+      data: newData as PoolListType[],
       hasMore: false,
     };
   }, [tabsValue, detailTabsValue]);
@@ -253,10 +253,10 @@ const SmartYield = () => {
         />
 
         <div className="h-[80vh]">
-          <InfiniteVirtuosoList<IncomeListType>
+          <InfiniteVirtuosoList<PoolListType>
             fetchData={getIncomeList}
             columns={1}
-            renderItem={(item: IncomeListType) => (
+            renderItem={(item: PoolListType) => (
               <CardBox key={item.id} data={item} symbol={tabsValue} />
             )}
           />
