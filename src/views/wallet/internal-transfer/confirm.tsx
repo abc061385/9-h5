@@ -13,14 +13,14 @@ import { useInternalTransferStore } from "@/store/useInternalTransfer";
 import { ReactNode, useCallback } from "react";
 import toast from "react-hot-toast";
 
-type ChainEnum = {
-  protocolType: string;
-  minWithdrawal: number;
-  maxWithdrawal: number;
-  withdrawalFeeType: string;
-  withdrawalFeeConfig: number;
-  logo: string;
-};
+// type ChainEnum = {
+//   protocolType: string;
+//   minWithdrawal: number;
+//   maxWithdrawal: number;
+//   withdrawalFeeType: string;
+//   withdrawalFeeConfig: number;
+//   logo: string;
+// };
 
 const WithdrawConfirmView = () => {
   const t = useTrans();

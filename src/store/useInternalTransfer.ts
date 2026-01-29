@@ -4,13 +4,13 @@ import { getIsDev } from "@/lib/utils";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-type ChainEnum = {
-  protocolType: string;
-  minWithdrawal: number;
-  maxWithdrawal: number;
-  withdrawalFeeType: string;
-  withdrawalFeeConfig: number;
-};
+// type ChainEnum = {
+//   protocolType: string;
+//   minWithdrawal: number;
+//   maxWithdrawal: number;
+//   withdrawalFeeType: string;
+//   withdrawalFeeConfig: number;
+// };
 interface AddrItem {
   addr: string;
   coin: string;
