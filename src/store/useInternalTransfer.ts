@@ -24,8 +24,8 @@ interface AddrItem {
 
 export type WithdrawForm = {
   currencyCode: string;
-  chainEnum: ChainEnum;
-  XRPTag: string;
+  // chainEnum: ChainEnum;
+  // XRPTag: string;
   withdrawAddress: string;
   withdrawAmount: string;
 };
@@ -42,14 +42,14 @@ interface WithdrawalState extends BaseState<WithdrawalState> {
 
 export const defaultFormState = {
   currencyCode: "9MT",
-  chainEnum: {
-    protocolType: "",
-    minWithdrawal: 0,
-    maxWithdrawal: 0,
-    withdrawalFeeType: "",
-    withdrawalFeeConfig: 0,
-  },
-  XRPTag: "",
+  // chainEnum: {
+  //   protocolType: "",
+  //   minWithdrawal: 0,
+  //   maxWithdrawal: 0,
+  //   withdrawalFeeType: "",
+  //   withdrawalFeeConfig: 0,
+  // },
+  // XRPTag: "",
   withdrawAmount: "0",
   withdrawAddress: "",
 };

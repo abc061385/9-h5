@@ -3,7 +3,7 @@ import { api } from "@/api";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { TextError } from "@/components/input/text-error";
 import ViewLayout from "@/components/layout";
-import { SelectToken } from "@/components/select/select-token";
+import { SelectToken1 } from "@/components/select/select-token1";
 import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
@@ -81,9 +81,10 @@ const InternalTransferView = () => {
   }, [accountList, currencyCode]);
 
   const handleNext = () => {
-    // setField("formState", getValues());
-    setSettingField("gaPreviousPageType", "withdraw");
-    setVerifyOpen(true);
+    setField("formState", getValues());
+    // setSettingField("gaPreviousPageType", "internal_transfer");
+    // setVerifyOpen(true);
+    push(routerMap.internalTransferConfirm);
   };
 
   // INFO: 如果是有谷歌验证码就提示弹窗
@@ -142,7 +143,7 @@ const InternalTransferView = () => {
               name="currencyCode"
               control={control}
               render={({ field }) => (
-                <SelectToken
+                <SelectToken1
                   {...field}
                   onChange={(e) => {
                     field.onChange(e);
@@ -173,14 +174,14 @@ const InternalTransferView = () => {
 
           <fieldset className="fieldset p-0">
             <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
-              邀请码
+              {t("invite.inviteCode")}
             </legend>
             <div className="join items-center gap-4.5">
               <label className="input w-full flex items-center h-12 rounded-lg pr-0">
                 <input
                   type="text"
                   {...register("withdrawAddress")}
-                  placeholder={"请输入邀请码"}
+                  placeholder={t("invite.inviteCode")}
                   onChange={(e) => {
                     setValue("withdrawAddress", e.target.value);
                     setField("formState", {

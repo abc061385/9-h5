@@ -39,6 +39,13 @@ export interface ActivitiesVO {
   updateTime?: string;
 }
 
+/** CoinTransferDTO */
+export interface CoinTransferDTO {
+  amount?: number;
+  coin?: string;
+  invitationCode?: string;
+}
+
 /** GrowthPoolBuyDTO */
 export interface GrowthPoolBuyDTO {
   /** 购买金额 */
@@ -2313,6 +2320,84 @@ export class Api<
         ...params,
       }),
   };
+  coinTransfer = {
+    /**
+     * No description
+     *
+     * @tags 代币划转
+     * @name GetCoinBalanceUsingGet
+     * @summary 列表
+     * @request GET:/coin-transfer/coin-balance
+     * @secure
+     */
+    getCoinBalanceUsingGet: (
+      query?: {
+        /** coin */
+        coin?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/coin-transfer/coin-balance`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 代币划转
+     * @name GetCoinListUsingGet
+     * @summary 内转币种列表
+     * @request GET:/coin-transfer/coin-list
+     * @secure
+     */
+    getCoinListUsingGet: (params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/coin-transfer/coin-list`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 代币划转
+     * @name GetCoinTransferDetailUsingGet
+     * @summary 列表
+     * @request GET:/coin-transfer/detail
+     * @secure
+     */
+    getCoinTransferDetailUsingGet: (params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/coin-transfer/detail`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 代币划转
+     * @name TransferUsingPost
+     * @summary transfer
+     * @request POST:/coin-transfer/transfer
+     * @secure
+     */
+    transferUsingPost: (dto: CoinTransferDTO, params: RequestParams = {}) =>
+      this.request<_2, void>({
+        path: `/coin-transfer/transfer`,
+        method: "POST",
+        body: dto,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+  };
   coin = {
     /**
      * No description
@@ -3750,12 +3835,12 @@ export class Api<
      * No description
      *
      * @tags 内部接口
-     * @name TransferUsingPost
+     * @name TransferUsingPost1
      * @summary 内部转账
      * @request POST:/internal/transfer
      * @secure
      */
-    transferUsingPost: (
+    transferUsingPost1: (
       req: InternalTransferRequest,
       params: RequestParams = {},
     ) =>
@@ -7097,12 +7182,12 @@ export class Api<
      * No description
      *
      * @tags 资产
-     * @name TransferUsingPost1
+     * @name TransferUsingPost2
      * @summary 转账
      * @request POST:/wallet/transfer
      * @secure
      */
-    transferUsingPost1: (
+    transferUsingPost2: (
       query?: {
         balance?: number;
         jyPassword?: string;

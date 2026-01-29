@@ -22,7 +22,7 @@ export const SelectToken1 = forwardRef<HTMLInputElement, ITokenSelectProps>(
     const t = useTrans();
     const [open, setOpen] = useState(false);
     const { data, isLoading } = useRequestQuery(
-      api.currencySettings.protocolListUsingGet1,
+      api.coinTransfer.getCoinListUsingGet,
       {},
     );
     const currencyList = data?.data as CurrencyInfo[];

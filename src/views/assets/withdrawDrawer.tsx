@@ -10,7 +10,7 @@ type IProps = {
 export const WithDrawDrawer: FC<IProps> = ({ open, onChange }) => {
   const t = useTrans();
   const list = [
-    // { lable: t("internal_transfer"), link: routerMap.internalTransfer },
+    { lable: t("internal_transfer"), link: routerMap.internalTransfer },
     { lable: t("onchain_withdrawal"), link: routerMap.walletWithdraw },
   ];
   return (

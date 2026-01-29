@@ -1,7 +1,6 @@
 "use client";
 
 import { api } from "@/api";
-import BaseImage from "@/components/base-image";
 import CopyText from "@/components/copy-text";
 import { HeaderWithBack } from "@/components/header-with-back";
 import ViewLayout from "@/components/layout";
@@ -27,12 +26,14 @@ const WithdrawConfirmView = () => {
   const t = useTrans();
   const { push } = useRouter();
   const { formState, resetFormState } = useInternalTransferStore();
-  const { googleCode, clearGoogleCode, platformInfo } = useSettingStore();
+  // const { googleCode, clearGoogleCode } = useSettingStore();
   const { clearAddressInfo } = useSettingStore();
 
   const { formatBalance } = useFormatBalance();
 
-  const { trigger } = useRequestMutation(api.wallet.withdrawUsingPost);
+  const { trigger, isMutating } = useRequestMutation(
+    api.coinTransfer.transferUsingPost,
+  );
 
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
@@ -47,24 +48,19 @@ const WithdrawConfirmView = () => {
   );
 
   const clear = useCallback(() => {
-    clearGoogleCode();
+    // clearGoogleCode();
     resetFormState();
     clearAddressInfo();
-  }, [clearGoogleCode, resetFormState, clearAddressInfo]);
+  }, [resetFormState, clearAddressInfo]);
 
   const confirm = useCallback(() => {
     const _data = {
-      address: formState.withdrawAddress,
+      invitationCode: formState.withdrawAddress,
       amount: Number(formState.withdrawAmount),
-      coinCode: formState.currencyCode,
-      protocol: formState.chainEnum.protocolType,
-      code: Number(googleCode),
-      tag: platformInfo.withdrawTag,
+      coin: formState.currencyCode,
+      // code: Number(googleCode),
     } as unknown as Parameters<typeof trigger>[0];
 
-    if (formState.XRPTag) {
-      _data.memo = formState.XRPTag;
-    }
     trigger(_data)
       .then(() => {
         clear();
@@ -72,18 +68,9 @@ const WithdrawConfirmView = () => {
         push(routerMap.assets);
       })
       .catch(() => {
-        clearGoogleCode();
+        // clearGoogleCode();
       });
-  }, [
-    googleCode,
-    formState,
-    trigger,
-    clearGoogleCode,
-    t,
-    clear,
-    push,
-    platformInfo,
-  ]);
+  }, [formState, trigger, clear, push, t]);
 
   return (
     <ViewLayout
@@ -91,24 +78,22 @@ const WithdrawConfirmView = () => {
     >
       <div className="p-content">
         <h5 className="text-sm text-text4 mt-2">{t("withdrawalCurrency")}</h5>
-        <BaseImage
-          className="size-10 rounded-full overflow-hidden my-4"
-          src={(formState?.chainEnum as ChainEnum).logo}
-        />
         <div className="font-bold text-2xl mb-10">
           {formatBalance(formState.withdrawAmount, formState.currencyCode)}{" "}
           {formState.currencyCode}
         </div>
-        {/* {fieldEl("Network", formState.chainEnum.protocolType)} */}
         {fieldEl(
-          "Address",
+          t("invite.inviteCode"),
           <div className="flex items-center gap-2">
             <span>{formState.withdrawAddress}</span>
             <CopyText text={formState.withdrawAddress} />
           </div>,
         )}
-        {/* {fieldEl("Service Fee", 0 + " USDT")} */}
-        <button className="btn btn-primary w-full mt-10" onClick={confirm}>
+        <button
+          className="btn btn-primary w-full mt-10"
+          onClick={confirm}
+          disabled={isMutating}
+        >
           {t("confirmSubmit")}
         </button>
       </div>
