@@ -30,7 +30,7 @@ export default function IndexView() {
       >
         <BaseImage
           src={"/images/logo-white.svg"}
-          className="w-33 h-13 absolute z-10 left-[50%] translate-x-[-50%] top-14"
+          className="w-44 h-22 absolute z-10 left-[50%] translate-x-[-50%] top-14"
         />
         <div
           className="absolute top-6 right-6 flex items-center text-white"
@@ -42,10 +42,26 @@ export default function IndexView() {
           <Icon name="language-white" className="size-5" />
         </div>
         <div className="flex-1"></div>
-        <h2 className="text-[28px] font-bold text-white text-center leading-[32px]">
+        <h2
+          className="text-[28px] font-bold  text-center leading-[32px]
+        text-5xl tracking-wide
+         bg-gradient-to-b from-[#FFF3C4] via-[#E0B65C] to-[#C9972B]
+         bg-clip-text text-transparent
+         drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]
+
+        "
+        >
           {t("home.welcome")}
         </h2>
-        <h2 className="text-[28px] font-bold text-[#FEC700] text-center leading-[32px]">
+        <h2
+          className="text-[28px] font-bold  text-center leading-[32px]
+                text-5xl tracking-wide
+         bg-gradient-to-b from-[#FFF3C4] via-[#E0B65C] to-[#C9972B]
+         bg-clip-text text-transparent
+         drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]
+
+        "
+        >
           {t("home.investmentPlatform")}
         </h2>
         <p className="font-medium leading-[20px] text-lg text-white mt-6 text-center">
@@ -55,7 +71,13 @@ export default function IndexView() {
           {t("home.aiAcceleratesWealth")}
         </p>
         <button
-          className="btn btn-primary border-none shadow-none w-full"
+          className="w-full px-10 py-3 
+          rounded-full font-semibold text-black
+         bg-gradient-to-r from-[#F2B84B] via-[#F9D976] to-[#F4A83D]
+         shadow-[0_8px_20px_rgba(0,0,0,0.35)]
+         hover:brightness-105 active:brightness-95
+         transition
+          "
           onClick={() => {
             if (!token) return push(routerMap.login);
             push(routerMap.home);
