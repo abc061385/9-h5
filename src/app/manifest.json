@@ -3,7 +3,7 @@
   "short_name":"9m",
   "start_url":"/en/",
   "display":"standalone",
-  "icons":[{"src":"/images/common/1024x1024.png","sizes":"192x192","type":"image/png"}],
+  "icons":[{"src":"/images/common/1024x1024.svg","sizes":"192x192","type":"image/png"}],
   "plus": {
     "kernel": {
       "scalable": false

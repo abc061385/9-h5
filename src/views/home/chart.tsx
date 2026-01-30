@@ -63,7 +63,7 @@ const ChartBox = () => {
         <div className="w-5 h-5 rounded-full bg-[#E1C9FF] p-[1PX] mr-1">
           <BaseImage
             className="w-full h-full"
-            src="/images/common/1024x1024.png"
+            src="/images/common/1024x1024.svg"
           />
         </div>
         <span className="font-bold text-xs flex-1">9M /USDT</span>

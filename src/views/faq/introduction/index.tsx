@@ -22,10 +22,10 @@ const FAQIntroductionView = () => {
     <ViewLayout
       header={<HeaderWithBack title={t("平台介绍")} algin="center" />}
     >
-      <div className="flex justify-center mt-[60px] mb-[48px]">
+      <div className="flex justify-center mt-[40px] mb-[20px]">
         <BaseImage
-          src="/images/common/1024x1024.png"
-          className="size-[80px] cursor-pointer"
+          src="/images/common/logo-start.svg"
+          className="h-[170px] w-[100px] cursor-pointer"
           onClick={() => push(routerMap.home)}
         />
       </div>
