@@ -205,6 +205,7 @@ const HeaderBox = () => {
           </div>
         ))}
       </div>
+      {/* 
       <div
         className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer"
         onClick={() => {
@@ -215,6 +216,7 @@ const HeaderBox = () => {
         <span className="flex-1">Smart Yield Wallet</span>
         <Icon name="right-enter" className="w-1.5 h-2.5" />
       </div>
+        */}
       <div
         className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
@@ -229,7 +231,9 @@ const HeaderBox = () => {
           <dl className="flex-1">
             <dt>{t("oneClickInvestment")}</dt>
             <dd className="font-normal text-xs text-text4">
-              {t("investmentDescription")}
+              {
+                // t("investmentDescription")
+              }
             </dd>
           </dl>
         </div>
@@ -262,11 +266,13 @@ const HeaderBox = () => {
         }}
       >
         <div className="flex flex-1 gap-4">
-          <Icon name="growthclub" className="w-4.5 h-4 mt-1" />
+          <Icon name="smartYieldWallet" className="w-4.5 h-4 mt-1" />
           <dl className="flex-1">
             <dt>{t("earnings_lock_pool")}</dt>
             <dd className="font-normal text-xs text-text4">
-              {t("build_long_term_win_win_ecosystem")}
+              {
+                // t("build_long_term_win_win_ecosystem")
+              }
             </dd>
           </dl>
         </div>

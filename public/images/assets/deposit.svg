@@ -11,7 +11,7 @@
                     <mask id="mask-2" fill="white">
                         <use xlink:href="#path-1"></use>
                     </mask>
-                    <use id="Rectangle-34624293" fill="#6E2AFE" xlink:href="#path-1"></use>
+                    <use id="Rectangle-34624293" fill="#F0B90B" xlink:href="#path-1"></use>
                     <g id="编组" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
                         <g transform="translate(12, 12)" id="形状结合">
                             <path d="M9.5,0 L9.499,10 L13.6666667,5.83333333 L16,8.16666666 L8,16 L0,8.16666666 L2.33333335,5.83333333 L6.333,9.832 L6.33333333,0 L9.5,0 Z"></path>

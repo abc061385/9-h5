@@ -133,12 +133,12 @@
   }
 
   .progress-gradient::-webkit-progress-value {
-    background: var(--color-gradient2);
+    background: var(--color-gradient1);
     border-radius: 0;
   }
 
   .progress-gradient1::-webkit-progress-value {
-    background: linear-gradient(90deg, #a754ff 0%, #6e2afe 100%);
+    background: var(--color-gradient1);
     border-radius: 14px;
   }
 

@@ -11,11 +11,11 @@ const FeesDescBox = () => {
   const feesData = data?.data;
 
   const feesList = [
-    { title: "平台分红", value: feesData?.platformDividend, color: "#6E2AFE" },
+    { title: "平台分红", value: feesData?.platformDividend, color: "#F2B84B" },
     {
       title: "用户投资收益",
       value: feesData?.investmentReturn,
-      color: "#A93AFF",
+      color: "#F9D976",
     },
     { title: "管理费", value: feesData?.managementFee, color: "#000000" },
   ];
@@ -42,7 +42,7 @@ const FeesDescBox = () => {
         ],
       },
     ],
-    color: ["#6E2AFE", "#A93AFF", "#000000"],
+    color: ["#F2B84B", "#F9D976", "#000000"],
   };
   return (
     <div className="border-y border-border2 py-6">

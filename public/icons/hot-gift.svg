@@ -3,8 +3,8 @@
     <title>Gift</title>
     <defs>
         <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
-            <stop stop-color="#A93AFF" offset="0%"></stop>
-            <stop stop-color="#6E2AFE" offset="100%"></stop>
+            <stop stop-color="#F0B90B" offset="0%"></stop>
+            <stop stop-color="#F0B90B" offset="100%"></stop>
         </linearGradient>
     </defs>
     <g id="App-V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
