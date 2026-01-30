@@ -21,11 +21,11 @@ const ListBox = () => {
 
   const tabs = [
     {
-      label: t("策略基金"),
+      label: t("fund_no_1"),
       value: 2,
     },
     {
-      label: t("稳健基金"),
+      label: t("fund_no_2"),
       value: 1,
     },
   ];
