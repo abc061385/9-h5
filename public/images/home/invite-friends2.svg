@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Invite</title>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home" transform="translate(-119, -330)">
+            <g id="编组-8" transform="translate(110, 330)">
+                <g id="Invite" transform="translate(9, 0)">
+                    <rect id="矩形" stroke="#EEEEEE" x="0.5" y="0.5" width="55" height="55" rx="12"></rect>
+                    <g id="编组-4" transform="translate(14, 17)" fill-rule="nonzero">
+                        <path d="M18.0000153,10 C20.7625005,10 23,7.76250736 23,5 C23,2.23749264 20.7625005,0 18.0000153,0 C15.2375302,0 13,2.23749264 13,5 C13,7.76250736 15.2374995,10 18.0000153,10 Z" id="路径" fill="#000000"></path>
+                        <polygon id="路径" fill="#A93AFF" points="6.25 7.74996933 6.25 4 3.75 4 3.75 7.75 0 7.75 0 10.25 3.75 10.25 3.75 14 6.25 14 6.25 10.2499693 10 10.2499693 10 7.74996933"></polygon>
+                        <path d="M8,18.3333333 L8,22 L28,22 L28,18.3333333 C28,14.7866654 21.3374943,13 18,13 C14.6625057,13 8,14.7866654 8,18.3333333 Z" id="路径" fill="#6E2AFE"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

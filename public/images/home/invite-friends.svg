@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Invite</title>
-    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Home" transform="translate(-119, -330)">
-            <g id="编组-8" transform="translate(110, 330)">
-                <g id="Invite" transform="translate(9, 0)">
-                    <rect id="矩形" stroke="#EEEEEE" x="0.5" y="0.5" width="55" height="55" rx="12"></rect>
-                    <g id="编组-4" transform="translate(14, 17)" fill-rule="nonzero">
-                        <path d="M18.0000153,10 C20.7625005,10 23,7.76250736 23,5 C23,2.23749264 20.7625005,0 18.0000153,0 C15.2375302,0 13,2.23749264 13,5 C13,7.76250736 15.2374995,10 18.0000153,10 Z" id="路径" fill="#000000"></path>
-                        <polygon id="路径" fill="#A93AFF" points="6.25 7.74996933 6.25 4 3.75 4 3.75 7.75 0 7.75 0 10.25 3.75 10.25 3.75 14 6.25 14 6.25 10.2499693 10 10.2499693 10 7.74996933"></polygon>
-                        <path d="M8,18.3333333 L8,22 L28,22 L28,18.3333333 C28,14.7866654 21.3374943,13 18,13 C14.6625057,13 8,14.7866654 8,18.3333333 Z" id="路径" fill="#6E2AFE"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg width="560" height="560" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3951_91)">
+<path d="M435 5H125C58.7258 5 5 58.7258 5 125V435C5 501.274 58.7258 555 125 555H435C501.274 555 555 501.274 555 435V125C555 58.7258 501.274 5 435 5Z" stroke="#EEEEEE" stroke-width="10"/>
+<path d="M320 270C347.625 270 370 247.625 370 220C370 192.375 347.625 170 320 170C292.375 170 270 192.375 270 220C270 247.625 292.375 270 320 270Z" fill="black"/>
+<path d="M202.5 247.5V210H177.5V247.5H140V272.5H177.5V310H202.5V272.5H240V247.5H202.5Z" fill="#F0B90B"/>
+<path d="M220 353.333V390H420V353.333C420 317.867 353.375 300 320 300C286.625 300 220 317.867 220 353.333Z" fill="#F0B90B"/>
+</g>
+<defs>
+<clipPath id="clip0_3951_91">
+<rect width="560" height="560" fill="white"/>
+</clipPath>
+</defs>
 </svg>
