@@ -105,7 +105,7 @@ const FundRecordView = () => {
                     )
                   }
                 >
-                  {item.fundType === 1 ? t("稳健基金") : t("策略基金")}
+                  {item.fundType === 1 ? t("fund_no_2") : t("fund_no_1")}
 
                   <div className="flex items-center gap-1 flex-1">
                     <div className="text-primary text-sm text-right">

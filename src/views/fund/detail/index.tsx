@@ -65,7 +65,7 @@ const FundDetailView = () => {
       heightFull
       header={
         <HeaderWithBack
-          title={`${t(data?.fundType === 1 ? "稳健基金" : "策略基金")}-${
+          title={`${t(data?.fundType === 1 ? "fund_no_2" : "fund_no_1")}-${
             data?.fundCycleDays
           }${t("天")}`}
           algin="center"

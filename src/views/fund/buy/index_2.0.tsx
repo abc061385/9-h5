@@ -91,13 +91,19 @@ const FundBuyView = () => {
           <div>
             <h3 className="text-text4 text-xs">{t("质押代币")}</h3>
             <p className="text-base font-medium mb-2 mt-1">
-              {info?.pledgeToken1} / {info?.pledgeToken2}
+              {String(info.productType) === "2"
+                ? info?.pledgeToken1
+                : `${info?.pledgeToken1}/${info?.pledgeToken2}`}
             </p>
             <CoinIcon
-              coins={[
-                { src: info?.pledgeToken2Logo || "" },
-                { src: info?.pledgeToken1Logo || "" },
-              ]}
+              coins={
+                String(info.productType) === "2"
+                  ? [{ src: info?.pledgeToken1Logo || "" }]
+                  : [
+                      { src: info?.pledgeToken1Logo || "" },
+                      { src: info?.pledgeToken2Logo || "" },
+                    ]
+              }
               overlap={18}
               size={24}
               className="justify-start"
