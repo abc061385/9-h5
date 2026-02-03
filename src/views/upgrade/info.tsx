@@ -187,28 +187,28 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
         onChange={(e) => setOpenSelect(e)}
       >
         <div>
-          <div
-            className="border border-border1 rounded-lg p-4 grid grid-cols-10"
-            onClick={() => {
-              setNewVersion(NewVersionMap.smartWallet);
-              setOpenSelect(false);
-              setOpenWithdraw(true);
-            }}
-          >
-            <div className="col-span-9">
-              <p className="text-base font-bold ">
-                {t("depositIntoSmartWallet")}
-              </p>
-              <p className="text-text4">
-                {t("depositIntoSmartWalletDesc", {
-                  rate: `${smartRate} %`,
-                })}
-              </p>
-            </div>
-            <div className="col-span-1 flex justify-end items-center">
-              <Icon name="right-enter" className="size-4" />
-            </div>
-          </div>
+          {/* <div */}
+          {/*   className="border border-border1 rounded-lg p-4 grid grid-cols-10" */}
+          {/*   onClick={() => { */}
+          {/*     setNewVersion(NewVersionMap.smartWallet); */}
+          {/*     setOpenSelect(false); */}
+          {/*     setOpenWithdraw(true); */}
+          {/*   }} */}
+          {/* > */}
+          {/*   <div className="col-span-9"> */}
+          {/*     <p className="text-base font-bold "> */}
+          {/*       {t("depositIntoSmartWallet")} */}
+          {/*     </p> */}
+          {/*     <p className="text-text4"> */}
+          {/*       {t("depositIntoSmartWalletDesc", { */}
+          {/*         rate: `${smartRate} %`, */}
+          {/*       })} */}
+          {/*     </p> */}
+          {/*   </div> */}
+          {/*   <div className="col-span-1 flex justify-end items-center"> */}
+          {/*     <Icon name="right-enter" className="size-4" /> */}
+          {/*   </div> */}
+          {/* </div> */}
           <div
             className="border border-border1 rounded-lg p-4 grid grid-cols-10 mt-4"
             onClick={() => {

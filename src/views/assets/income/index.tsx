@@ -282,6 +282,7 @@ const IncomeView = () => {
         onChange={(e) => setOpenSelect(e)}
       >
         <div>
+          {/*
           <div
             className="border border-border1 rounded-lg p-4 grid grid-cols-10"
             onClick={() => {
@@ -304,6 +305,7 @@ const IncomeView = () => {
               <Icon name="right-enter" className="size-4" />
             </div>
           </div>
+          */}
           <div
             className="border border-border1 rounded-lg p-4 grid grid-cols-10 mt-4"
             onClick={() => {
