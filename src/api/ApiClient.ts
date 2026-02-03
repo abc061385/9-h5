@@ -2326,7 +2326,7 @@ export class Api<
      *
      * @tags 代币划转
      * @name GetCoinBalanceUsingGet
-     * @summary 列表
+     * @summary 币种余额
      * @request GET:/coin-transfer/coin-balance
      * @secure
      */
@@ -2357,23 +2357,6 @@ export class Api<
     getCoinListUsingGet: (params: RequestParams = {}) =>
       this.request<_2, void>({
         path: `/coin-transfer/coin-list`,
-        method: "GET",
-        secure: true,
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @tags 代币划转
-     * @name GetCoinTransferDetailUsingGet
-     * @summary 列表
-     * @request GET:/coin-transfer/detail
-     * @secure
-     */
-    getCoinTransferDetailUsingGet: (params: RequestParams = {}) =>
-      this.request<_2, void>({
-        path: `/coin-transfer/detail`,
         method: "GET",
         secure: true,
         ...params,
@@ -2904,6 +2887,32 @@ export class Api<
         query: query,
         secure: true,
         type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags fund-product-config-controller
+     * @name ExtraFeeUsingGet
+     * @summary extraFee
+     * @request GET:/fund-product-config/claimedProfit/extract/fee
+     * @secure
+     */
+    extraFeeUsingGet: (
+      query?: {
+        /** amount */
+        amount?: number;
+        /** outputToken */
+        outputToken?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<_2, void>({
+        path: `/fund-product-config/claimedProfit/extract/fee`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 

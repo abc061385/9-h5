@@ -11,7 +11,7 @@ import { api } from "@/api";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import toast from "react-hot-toast";
 import { Drawer } from "@/components/drawer";
-import { useRequestQuery } from "@/hooks/useRequestQuery";
+// import { useRequestQuery } from "@/hooks/useRequestQuery";
 import BaseImage from "@/components/base-image";
 import { useAssetStore } from "@/store/useAssetStore";
 import { routerMap, useRouter } from "@/i18n/navigation";
@@ -20,10 +20,25 @@ import { ShowIf } from "@/components/show-if";
 import { Icon } from "@/components/icon";
 import { useBack } from "@/hooks/useBack";
 import { PLATFORMTOKEN, USD1 } from "@/lib/const";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 const NewVersionMap = {
   balance: 0,
   smartWallet: 1,
+};
+
+type FeeInfoProps = {
+  arriveAmount: number;
+  extractFeeRate: number;
+  fee: number;
+  feeCoin: string;
+};
+
+const defaultFeeInfo = {
+  arriveAmount: 0,
+  extractFeeRate: 0,
+  fee: 0,
+  feeCoin: "--",
 };
 
 const IncomeView = () => {
@@ -41,6 +56,7 @@ const IncomeView = () => {
   const [newVersion, setNewVersion] = useState(NewVersionMap.balance);
   const [pageSize] = useState(20);
   const [withDrawNum, setWithDrawNum] = useState<string>("");
+  const [feeInfo, setFeeInfo] = useState<FeeInfoProps>(defaultFeeInfo);
 
   const { trigger } = useRequestMutation(
     api.fundProductConfig.claimedProfitUsingGet,
@@ -53,8 +69,8 @@ const IncomeView = () => {
     api.fundProductConfig.extractUsingPost,
   );
 
-  const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
-  const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
+  // const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
+  // const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
 
   const getIncomeList = useCallback(
     async (page: number) => {
@@ -91,14 +107,38 @@ const IncomeView = () => {
     getInfo();
   }, [getInfo]);
 
-  const estimatedArrival = useMemo(() => {
-    return (
-      utils
-        .toBigNumber(withDrawNum)
-        .times((100 - withdrawConfig?.managementFee) / 100)
-        .toNumber() || 0
-    );
-  }, [withDrawNum, withdrawConfig]);
+  // const estimatedArrival = useMemo(() => {
+  //   return (
+  //     utils
+  //       .toBigNumber(withDrawNum)
+  //       .times((100 - withdrawConfig?.managementFee) / 100)
+  //       .toNumber() || 0
+  //   );
+  // }, [withDrawNum, withdrawConfig]);
+
+  const debouncedFetch = useDebouncedCallback(
+    (amount: string) => {
+      api.fundProductConfig
+        .extraFeeUsingGet({
+          amount: Number(amount),
+          outputToken: tabsValue,
+        })
+        .then((res) => {
+          if (res?.data) {
+            setFeeInfo(res.data as FeeInfoProps);
+          }
+        });
+    },
+    300, // 防抖时间
+  );
+
+  useEffect(() => {
+    if (!withDrawNum) {
+      setFeeInfo(defaultFeeInfo);
+      return;
+    }
+    debouncedFetch(withDrawNum);
+  }, [withDrawNum, debouncedFetch]);
 
   const tabs = [
     { label: USD1, value: USD1 },
@@ -368,12 +408,14 @@ const IncomeView = () => {
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("手续费")}</span>
-          <span>{withdrawConfig?.managementFee || "-"}%</span>
+          <span>
+            {feeInfo?.fee || "-"} {feeInfo?.feeCoin || "-"}
+          </span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("预计到账")}</span>
           <span>
-            {formatBalance(estimatedArrival, tabsValue)} {tabsValue}
+            {formatBalance(feeInfo.arriveAmount, tabsValue)} {tabsValue}
           </span>
         </div>
 

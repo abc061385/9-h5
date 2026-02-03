@@ -12,6 +12,7 @@ import { useAssetStore } from "@/store/useAssetStore";
 import { FC, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import ChallengeProgress from "../vip-challenge/progress";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 interface IUpgradeProps {
   tabsValue: string;
@@ -30,6 +31,19 @@ const rewardStatsDefault = {
   buyGrowth: false,
 };
 
+type FeeInfoProps = {
+  arriveAmount: number;
+  extractFeeRate: number;
+  fee: number;
+  feeCoin: string;
+};
+const defaultFeeInfo = {
+  arriveAmount: 0,
+  extractFeeRate: 0,
+  fee: 0,
+  feeCoin: "--",
+};
+
 const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const t = useTrans();
   const { setField } = useAssetStore();
@@ -42,8 +56,9 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   const [withDrawNum, setWithDrawNum] = useState<string>("");
   const [rewardStats, setRewardStats] = useState(rewardStatsDefault);
 
-  const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
-  const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
+  // const { data } = useRequestQuery(api.platformConfig.infoUsingGet1, {});
+  // const withdrawConfig: infoUsingGet1Type = data?.data as infoUsingGet1Type;
+  const [feeInfo, setFeeInfo] = useState<FeeInfoProps>(defaultFeeInfo);
 
   const { data: incomeInfoSmart } = useRequestQuery(
     api.fundProductConfig.claimedProfitSmartWalletUsingGet,
@@ -83,14 +98,39 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
       !!withDrawNum && Number(withDrawNum) > Number(info?.frozenRewards || 0)
     );
   }, [withDrawNum, info?.frozenRewards]);
-  const estimatedArrival = useMemo(() => {
-    return (
-      utils
-        .toBigNumber(withDrawNum)
-        .times((100 - withdrawConfig?.managementFee) / 100)
-        .toNumber() || 0
-    );
-  }, [withDrawNum, withdrawConfig]);
+  // const estimatedArrival = useMemo(() => {
+  //   return (
+  //     utils
+  //       .toBigNumber(withDrawNum)
+  //       .times((100 - withdrawConfig?.managementFee) / 100)
+  //       .toNumber() || 0
+  //   );
+  // }, [withDrawNum, withdrawConfig]);
+
+  const debouncedFetch = useDebouncedCallback(
+    (amount: string) => {
+      api.fundProductConfig
+        .extraFeeUsingGet({
+          amount: Number(amount),
+          outputToken: tabsValue,
+        })
+        .then((res) => {
+          if (res?.data) {
+            setFeeInfo(res.data as FeeInfoProps);
+          }
+        });
+    },
+    300, // 防抖时间
+  );
+
+  useEffect(() => {
+    if (!withDrawNum) {
+      setFeeInfo(defaultFeeInfo);
+      return;
+    }
+    debouncedFetch(withDrawNum);
+  }, [withDrawNum, debouncedFetch]);
+
   return (
     <div>
       <div className="rounded-lg bg-bg2 p-4 pt-6">
@@ -274,12 +314,14 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("手续费")}</span>
-          <span>{withdrawConfig?.managementFee || "-"}%</span>
+          <span>
+            {feeInfo?.fee || "-"} {feeInfo?.feeCoin || "-"}
+          </span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
           <span className=" text-text4">{t("预计到账")}</span>
           <span>
-            {formatBalance(estimatedArrival, tabsValue)} {tabsValue}
+            {formatBalance(feeInfo.arriveAmount, tabsValue)} {tabsValue}
           </span>
         </div>
         <ShowIf condition={rewardStats.buyGrowth}>
