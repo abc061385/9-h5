@@ -5,7 +5,7 @@ import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 import RuleHeaderBox from "./header";
 import ProcessBox from "./process";
-import FeesDescBox from "./fees";
+// import FeesDescBox from "./fees";
 import RuleDescBox from "./desc";
 
 const FundRuleView = () => {
@@ -18,7 +18,7 @@ const FundRuleView = () => {
       <div className="p-content">
         <RuleHeaderBox />
         <ProcessBox />
-        <FeesDescBox />
+        {/* <FeesDescBox /> */}
         <RuleDescBox />
       </div>
     </ViewLayout>

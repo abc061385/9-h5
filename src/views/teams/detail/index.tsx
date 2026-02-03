@@ -22,7 +22,7 @@ const TeamsDetailView = () => {
   const [info, setInfo] = useState<InvestmentStats>();
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [timePickerType, setTimePickerType] = useState<"start" | "end">(
-    "start"
+    "start",
   );
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -35,12 +35,12 @@ const TeamsDetailView = () => {
           <span className="text-text4 flex-1">{label}</span>
           <span className="text-right">{`≈ ${formatBalance(
             value,
-            "USDT"
+            "USDT",
           )} USDT`}</span>
         </div>
       );
     },
-    [formatBalance]
+    [formatBalance],
   );
 
   const getTeamInvesData = useCallback(async (start?: string, end?: string) => {
@@ -52,7 +52,7 @@ const TeamsDetailView = () => {
             startTime: start,
             endTime: end,
           },
-        }
+        },
       );
       if (res.code === 200) {
         setInfo(res.data);
@@ -79,7 +79,10 @@ const TeamsDetailView = () => {
   );
 
   return (
-    <ViewLayout header={<HeaderWithBack title={header} algin="center" />} heightFull>
+    <ViewLayout
+      header={<HeaderWithBack title={header} algin="center" />}
+      heightFull
+    >
       <div className="p-content">
         <div className="bg-[url('/images/team/team-data-bg.png')] bg-contain bg-no-repeat flex items-center justify-around h-[96px] text-white px-4 gap-2">
           <div
@@ -126,7 +129,10 @@ const TeamsDetailView = () => {
           {FieldEL(t("团队投资总额"), info?.totalTeamInvestment || 0)}
           {FieldEL(t("小区总投资额"), info?.totalCommunityInvestment || 0)}
           <div className="divider"></div>
-          {FieldEL(t("今日新增小区投资"), info?.newCommunityInvestmentToday || 0)}
+          {FieldEL(
+            t("今日新增小区投资"),
+            info?.newCommunityInvestmentToday || 0,
+          )}
           {FieldEL(t("今日新增团队投资"), info?.newTeamInvestmentToday || 0)}
         </div>
         <div className="divider"></div>
@@ -134,48 +140,56 @@ const TeamsDetailView = () => {
         <div>
           <h3 className="font-medium text-sm">{t("投资总额")}</h3>
 
-          <h4 className="my-4 text-sm">{t("9mAIStategyFund")}</h4>
+          <h4 className="my-4 text-sm">9M {t("fund_no_1")}</h4>
           {FieldEL(
             `360 ${t("daysFund")}`,
-            info?.totalInvestmentStrategy360Days || 0
+            info?.totalInvestmentStrategy360Days || 0,
           )}
           {FieldEL(
             `180 ${t("daysFund")}`,
-            info?.totalInvestmentStrategy180Days || 0
+            info?.totalInvestmentStrategy180Days || 0,
           )}
           {FieldEL(
             `90 ${t("daysFund")}`,
-            info?.totalInvestmentStrategy90Days || 0
+            info?.totalInvestmentStrategy90Days || 0,
           )}
-          {FieldEL(
-            `30 ${t("daysFund")}`,
-            info?.totalInvestmentStrategy30Days || 0
-          )}
-          {FieldEL(
-            `7 ${t("daysFund")}`,
-            info?.totalInvestmentStrategy7Days || 0
-          )}
+          {
+            //   FieldEL(
+            //   `30 ${t("daysFund")}`,
+            //   info?.totalInvestmentStrategy30Days || 0
+            // )
+          }
+          {
+            //   FieldEL(
+            //   `7 ${t("daysFund")}`,
+            //   info?.totalInvestmentStrategy7Days || 0
+            // )
+          }
           {FieldEL(t("total"), info?.totalInvestmentStrategyAmount || 0)}
 
-          <h4 className="my-4 text-sm">{t("9mAIStableFund")}</h4>
+          <h4 className="my-4 text-sm">9M {t("fund_no_2")}</h4>
 
           {FieldEL(
             `360 ${t("daysFund")}`,
-            info?.totalInvestmentStable360Days || 0
+            info?.totalInvestmentStable360Days || 0,
           )}
           {FieldEL(
             `180 ${t("daysFund")}`,
-            info?.totalInvestmentStable180Days || 0
+            info?.totalInvestmentStable180Days || 0,
           )}
-          {FieldEL(
-            `90 ${t("daysFund")}`,
-            info?.totalInvestmentStable90Days || 0
-          )}
-          {FieldEL(
-            `30 ${t("daysFund")}`,
-            info?.totalInvestmentStable30Days || 0
-          )}
-          {FieldEL(`7 ${t("daysFund")}`, info?.totalInvestmentStable7Days || 0)}
+          {
+            //   FieldEL(
+            //   `90 ${t("daysFund")}`,
+            //   info?.totalInvestmentStable90Days || 0,
+            // )
+          }
+          {
+            //   FieldEL(
+            //   `30 ${t("daysFund")}`,
+            //   info?.totalInvestmentStable30Days || 0,
+            // )
+          }
+          {/* {FieldEL(`7 ${t("daysFund")}`, info?.totalInvestmentStable7Days || 0)} */}
           {FieldEL(t("total"), info?.totalInvestmentStableAmount || 0)}
         </div>
       </div>

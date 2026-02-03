@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/icon";
 import { useTrans } from "@/hooks/useTrans";
 import { api } from "@/api";
@@ -33,8 +33,15 @@ const ListBox = () => {
     { label: "360" + t("天"), value: 360 },
     { label: "180" + t("天"), value: 180 },
     { label: "90" + t("天"), value: 90 },
-    { label: "30" + t("天"), value: 30 },
-    { label: "7" + t("天"), value: 7 },
+    // { label: "30" + t("天"), value: 30 },
+    // { label: "7" + t("天"), value: 7 },
+  ];
+  const pledgeList1 = [
+    { label: "360" + t("天"), value: 360 },
+    { label: "180" + t("天"), value: 180 },
+    // { label: "90" + t("天"), value: 90 },
+    // { label: "30" + t("天"), value: 30 },
+    // { label: "7" + t("天"), value: 7 },
   ];
 
   // const getTokenList = useCallback(
@@ -75,7 +82,10 @@ const ListBox = () => {
       <Tabs
         tabs={tabs}
         value={tabsValue}
-        onChange={(value) => setTabsValue(value as number)}
+        onChange={(value) => {
+          setTabsValue(value as number);
+          setPledgeDays(360);
+        }}
       />
 
       <div className="flex items-center justify-between mt-4 font-medium mb-2">
@@ -90,7 +100,7 @@ const ListBox = () => {
         </span>
       </div>
       <HorizontalTabs
-        tabs={pledgeList}
+        tabs={tabsValue === 2 ? pledgeList : pledgeList1}
         value={pledgeDays}
         onChange={(value) => setPledgeDays(value as number)}
       />
