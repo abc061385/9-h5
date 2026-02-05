@@ -70,3 +70,8 @@ const {
   isMutating: isLogLoading,
 } = useRequestMutation(api.cms.pageAnnouncementUsingGet);
 ```
+
+### TODO
+
+- 稳健基金 = fund_no_2 === fundType:1
+- 策略基金 = fund_no_1 === fundType: 2

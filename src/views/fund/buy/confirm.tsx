@@ -65,7 +65,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
       >
         <h4 className="text-text4 text-sm leading-4">{t("purchase")}</h4>
         <div className="font-bold my-1 leading-5">
-          {Number(buyData?.productType) === 1 ? t("稳健基金") : t("策略基金")}
+          {Number(buyData?.productType) === 1 ? t("fund_no_2") : t("fund_no_1")}
           &nbsp;
           {buyData?.selectCycle} {t("天")}
         </div>

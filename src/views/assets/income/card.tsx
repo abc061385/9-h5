@@ -12,10 +12,10 @@ const CardBox: FC<{
 
   const title = useMemo(() => {
     if (data.fundType === 1 && data.type === "INVESTMENT_INCOME") {
-      return t("稳健基金");
+      return t("fund_no_2");
     }
     if (data.fundType === 2 && data.type === "INVESTMENT_INCOME") {
-      return t("策略基金");
+      return t("fund_no_1");
     }
     return t(typeMap[data.type]);
   }, [data, t]);
