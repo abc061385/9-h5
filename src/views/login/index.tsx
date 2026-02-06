@@ -1,4 +1,5 @@
 "use client";
+import * as z from "zod";
 import ViewLayout from "@/components/layout";
 import { useTrans } from "@/hooks/useTrans";
 
@@ -7,14 +8,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, routerMap, useRouter } from "@/i18n/navigation";
 import { TextError } from "@/components/input/text-error";
 import { InputPassword } from "@/components/input/password";
-import z, { useRootReg } from "@/lib/z";
-import { encryptPassword } from "@/lib/utils";
+import { useRootReg } from "@/lib/z";
+import { encryptPassword, utils } from "@/lib/utils";
 import { useVerificationStore } from "@/store/useVerification";
 import { AccountType, FaBizType } from "@/lib/const";
 import { api } from "@/api";
 import { Geetest, GeetestRef, GeetestValidateRes } from "@/components/geetest";
 import { useRef } from "react";
 import { HeaderWithBack } from "@/components/header-with-back";
+import { useUserStore } from "@/store/useUserStore";
 
 type FormData = {
   email: string;
@@ -25,11 +27,12 @@ const LoginView = () => {
   const t = useTrans("login");
   const router = useRouter();
   const setField = useVerificationStore((s) => s.setField);
+  const setUserField = useUserStore((s) => s.setField);
   const reg = useRootReg();
   const geetestRef = useRef<GeetestRef | null>(null);
 
   const Schema = z.object({
-    email: reg.email,
+    email: z.string(""),
     password: reg.password,
   });
 
@@ -58,7 +61,17 @@ const LoginView = () => {
       setField("account", data.email);
       setField("accountType", AccountType.email);
       setField("faBizType", FaBizType.login);
-      router.push(routerMap["verification"]);
+      if (res.data.bindEmailFlag === 1) {
+        router.push(routerMap["verification"]);
+      }
+      const userInfo = res.data?.loginInfo || null;
+      if (res.data.bindEmailFlag === 0 && userInfo) {
+        setUserField("userInfo", userInfo);
+        setUserField("token", userInfo?.token);
+        window.localStorage.setItem("token", userInfo?.token);
+        utils.setJwtCookie(userInfo?.token);
+        router.push(routerMap.home);
+      }
     } catch (err) {
       console.log(err, "err");
     }
@@ -79,26 +92,26 @@ const LoginView = () => {
           <form className="grow" autoComplete="off">
             <fieldset className="fieldset py-0">
               <legend className="fieldset-legend text-base py-0 mb-2">
-                {t("email")}
+                {t("email")}/{t("username")}
               </legend>
               <label className="input w-full h-12">
                 <input
                   type="email"
                   {...register("email")}
-                  placeholder={t("email")}
+                  placeholder={`${t("email")}/${t("username")}`}
                   className="grow rounded-lg"
                 />
               </label>
               <TextError>{errors?.email?.message}</TextError>
-              <div className="text-xs">
-                {t("old_user_email_hint")}{" "}
-                <a
-                  className="text-primary"
-                  href="https://old.9mc.org/#/pages/login/login1"
-                >
-                  {t("go_bind")}
-                </a>
-              </div>
+              {/* <div className="text-xs"> */}
+              {/*   {t("old_user_email_hint")}{" "} */}
+              {/*   <a */}
+              {/*     className="text-primary" */}
+              {/*     href="https://old.9mc.org/#/pages/login/login1" */}
+              {/*   > */}
+              {/*     {t("go_bind")} */}
+              {/*   </a> */}
+              {/* </div> */}
             </fieldset>
             <fieldset className="fieldset mt-6 py-0">
               <legend className="fieldset-legend text-base py-0 mb-2">
