@@ -22,11 +22,11 @@ export const HeaderWithBack = ({
   onChange,
   path,
   onClick,
-  theme = "light",
+  theme = "dark",
 }: IProps) => {
   const warpClass = cn([
     "flex items-center w-full h-[44px] p-content pl-2 bg-white",
-    theme === "light" ? "bg-white" : "bg-black text-white",
+    theme === "light" ? "bg-white" : "bg-bg text-white",
     className,
   ]);
   const { push, back } = useI18nRouter();

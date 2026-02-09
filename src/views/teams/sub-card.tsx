@@ -15,7 +15,7 @@ const SubCardBox: FC<ISubCardProps> = ({ data }) => {
   const t = useTrans();
   return (
     <div
-      className="rounded-lg bg-bg2 p-4 mb-2 last:mb-0"
+      className="rounded-lg bg-bg1 p-4 mb-2 last:mb-0"
       onClick={() => push(`${routerMap.teamsInformation}?id=${data?.id}`)}
     >
       <div className="flex justify-between items-center flex-wrap gap-2 font-bold mb-4">
@@ -35,7 +35,7 @@ const SubCardBox: FC<ISubCardProps> = ({ data }) => {
         </div> */}
 
         <div className="flex-1"></div>
-        <Icon name="right-enter" className="w-1.5 h-2.5" />
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="#FFF" />
       </div>
       <div className="text-sm flex items-center justify-between">
         <span className="text-text4">{t("totalTeamInvestment")}</span>

@@ -12,7 +12,7 @@ type IProps = PropsWithChildren<{
   footer?: ReactNode;
   heightFull?: boolean;
   className?: string;
-  // theme?: "light" | "dark";
+  theme?: "light" | "dark";
 }>;
 export default function ViewLayout({
   children,
@@ -21,7 +21,7 @@ export default function ViewLayout({
   footer,
   heightFull = false,
   className,
-  // theme = "light",
+  theme = "dark",
 }: IProps) {
   useInitToken();
   useSettingChat();

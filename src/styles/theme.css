@@ -1,5 +1,5 @@
 /* custom color */
-@theme { 
+@theme {
   /*color*/
   --color-green1: #28c76f;
   --color-green2: #b1ffd4;
@@ -72,7 +72,7 @@
   --color-bg3: #f4f4f4;
   --color-bg4: #121212;
   --color-border1: #cecece;
-  --color-border2: #eeeeee;
+  --color-border2: #414040;
   --color-assist1: #f2f3f6;
   --color-assist2: #fe2c55;
   --color-bg-assist2: rgba(254, 44, 85, 0.1);

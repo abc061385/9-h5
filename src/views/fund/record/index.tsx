@@ -79,7 +79,7 @@ const FundRecordView = () => {
         <HeaderWithBack title={t("购买记录")} algin="center" path={fundPath} />
       }
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <Tabs
           tabs={tabs}
           value={tabsValue}
@@ -96,7 +96,7 @@ const FundRecordView = () => {
           }}
           renderItem={(item: FundOrder) => (
             <div key={item.id} className="mt-4">
-              <div className="bg-bg2 rounded-2xl p-4 pb-5">
+              <div className="bg-bg1 rounded-2xl p-4 pb-5">
                 <h3
                   className="text-base font-medium flex items-center justify-between gap-2"
                   onClick={() =>
@@ -161,7 +161,7 @@ const FundRecordView = () => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-7">
-                  <span className="text-text6 text-sm">{t("自动复投")}</span>
+                  <span className="text-text4 text-sm">{t("自动复投")}</span>
                   <input
                     type="checkbox"
                     checked={Boolean(item.isReinvestment)}

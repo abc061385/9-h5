@@ -50,7 +50,7 @@ export const Drawer: FC<IProps> = ({
             "fixed",
             "md-pc:absolute bottom-0 h-[50%] w-full rounded-t-2xl bg-white p-4 flex flex-col",
             direction === "top" && "top-0 rounded-b-2xl rounded-t-none",
-            className,
+            className + " bg-bg1",
           ])}
         >
           {direction === "top" ? null : (

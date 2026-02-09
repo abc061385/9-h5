@@ -7,6 +7,7 @@ interface IBaseImageProps {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
   cover?: boolean;
+  color?: string;
 }
 
 const BaseImage: React.FC<IBaseImageProps> = ({
@@ -15,19 +16,35 @@ const BaseImage: React.FC<IBaseImageProps> = ({
   className = "",
   cover = true,
   onClick,
+  color,
 }) => {
+  const imgStyle: React.CSSProperties = cover ? { objectFit: "cover" } : {};
+
+
   return (
     <span
       className={cn("relative inline-block", className)}
       onClick={(e) => onClick?.(e)}
     >
       {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          style={cover ? { objectFit: "cover" } : {}}
-        />
+        color ? (
+          <span
+            aria-label={alt}
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: color,
+              WebkitMask: `url(${src}) no-repeat center / cover`,
+              mask: `url(${src}) no-repeat center / cover`,
+              maskRepeat: "no-repeat",
+              WebkitMaskRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        ) : (
+          <Image src={src} alt={alt} fill style={imgStyle} />
+        )
       ) : (
         alt
       )}

@@ -205,7 +205,7 @@ const HeaderBox = () => {
           </div>
         ))}
       </div>
-      {/* 
+      {/*
       <div
         className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer"
         onClick={() => {
@@ -218,7 +218,7 @@ const HeaderBox = () => {
       </div>
         */}
       <div
-        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        className="p-4 bg-bg1 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
           if (!oneClickFund?.productId) return;
           push(
@@ -241,7 +241,7 @@ const HeaderBox = () => {
       </div>
       {/* --9M Ecosystem Growth Pool-- */}
       <div
-        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        className="p-4 bg-bg1 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
           push(routerMap.growthPool);
         }}
@@ -260,7 +260,7 @@ const HeaderBox = () => {
 
       {/* --9M new-- */}
       <div
-        className="p-4 bg-bg2 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
+        className="p-4 bg-bg1 rounded-lg flex items-center justify-between gap-4 cursor-pointer mt-2"
         onClick={() => {
           push(routerMap.pool);
         }}

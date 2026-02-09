@@ -1,13 +1,8 @@
-<svg width="560" height="560" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_3951_101)">
-<path d="M435 5H125C58.7258 5 5 58.7258 5 125V435C5 501.274 58.7258 555 125 555H435C501.274 555 555 501.274 555 435V125C555 58.7258 501.274 5 435 5Z" stroke="#EEEEEE" stroke-width="10"/>
-<path d="M400 180V400H200.25C178 400 160 382 160 359.75V200.25C160 178 178 160 200.25 160H360V320H200.5C189.25 320 180 329.25 180 340.5V359.5C180 370.75 189.25 380 200.5 380H380V180H400Z" fill="#F0B90B"/>
-<path d="M400 180H380V400H400V180Z" fill="#F0B90B"/>
-<path d="M360 340H200V360H360V340Z" fill="black"/>
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Datebase">
+<rect id="&#231;&#159;&#169;&#229;&#189;&#162;" x="0.5" y="0.5" width="55" height="55" rx="11.5" stroke="#414040"/>
+<path id="&#232;&#183;&#175;&#229;&#190;&#132;" d="M40 18V40H20.025C17.8 40 16 38.2 16 35.975V20.025C16 17.8 17.8 16 20.025 16H36V32H20.05C18.925 32 18 32.925 18 34.05V35.95C18 37.075 18.925 38 20.05 38H38V18H40Z" fill="#F0B90B"/>
+<rect id="&#231;&#159;&#169;&#229;&#189;&#162;_2" x="38" y="18" width="2" height="22" fill="#F0B90B"/>
+<path id="&#232;&#183;&#175;&#229;&#190;&#132;_2" d="M36 34H20V36H36V34Z" fill="white"/>
 </g>
-<defs>
-<clipPath id="clip0_3951_101">
-<rect width="560" height="560" fill="white"/>
-</clipPath>
-</defs>
 </svg>

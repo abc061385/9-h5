@@ -144,11 +144,11 @@ const TeamsNextView = () => {
       const res: ApiResponse<TeamDirectReferralAreaType[]> =
         userTabValue === 0
           ? await baseApi.get("/member/team/highest-level-user/list", {
-              params,
-            })
+            params,
+          })
           : await baseApi.get("/member/team/highest-performing-user/list", {
-              params,
-            });
+            params,
+          });
       setHighLoading(false);
       if (res.code === 200) {
         setHighestList(res.data);
@@ -218,11 +218,11 @@ const TeamsNextView = () => {
           <label
             ref={ref}
             className={cn(
-              "input w-full !bg-bg3 border-none placeholder:text-text5 relative",
+              "input w-full !bg-bg1 border-none placeholder:text-text5 relative",
               Boolean(searchValue) ? "rounded-b-none!" : ""
             )}
           >
-            <Icon name="search" className="w-4 h-4" />
+            <Icon name="search" className="w-4 h-4" color="#FFF" />
             <input
               type="search"
               className={cn("grow")}
@@ -287,18 +287,12 @@ const TeamsNextView = () => {
             />
           </label>
         </div>
-
-        <HorizontalTabs
+        <Tabs
           tabs={areaList}
           value={tabsValue!}
-          onChange={(e) => {
-            push(`${routerMap.teamsInformation}?id=${e}`);
-            // setTabsValue(e);
-            // const checkItem = areaList.find((item) => item.value === e);
-            // setTabsCheck(checkItem);
-          }}
-          type="border"
-          wrapClassName="gap-4"
+          onChange={(e) => push(`${routerMap.teamsInformation}?id=${e}`)}
+          between={false}
+          className="text-base justify-start"
         />
         <ShowIf
           condition={!loading}
@@ -309,13 +303,11 @@ const TeamsNextView = () => {
               return (
                 <div
                   key={index}
-                  className="flex flex-col h-13.5 rounded-lg items-center justify-center bg-bg3 text-sm"
+                  className="flex flex-col h-13.5 rounded-lg items-center justify-center bg-bg1 text-sm"
                   onClick={() => {
                     push(
-                      `${routerMap.teamsMembers}?id=${
-                        searchParams.get("id") || userInfo.id
-                      }&type=level&level=${item.vipLevel}&isDepositor=${
-                        isDepositor ? 1 : 0
+                      `${routerMap.teamsMembers}?id=${searchParams.get("id") || userInfo.id
+                      }&type=level&level=${item.vipLevel}&isDepositor=${isDepositor ? 1 : 0
                       }&star=${item.star}`
                     );
                   }}
@@ -339,8 +331,7 @@ const TeamsNextView = () => {
             className="flex items-center justify-between text-sm border-y border-border2 py-6 my-6"
             onClick={() => {
               push(
-                `${routerMap.teamsMembers}?id=${
-                  searchParams.get("id") || userInfo?.id
+                `${routerMap.teamsMembers}?id=${searchParams.get("id") || userInfo?.id
                 }&type=direct&isDepositor=${isDepositor ? 1 : 0}`
               );
             }}
@@ -348,7 +339,7 @@ const TeamsNextView = () => {
             <span>{t("myDirectReferrals")}</span>
             <span className="flex gap-2 items-center font-medium">
               {directReferralNum}
-              <Icon name="right-enter" className="w-1.5 h-2.5" />
+              <Icon name="right-enter" className="w-1.5 h-2.5" color="#FFF" />
             </span>
           </div>
         </ShowIf>

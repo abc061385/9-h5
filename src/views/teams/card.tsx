@@ -23,7 +23,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
   ];
   return (
     <div
-      className="rounded-md bg-bg2 mb-6 p-4"
+      className="rounded-md bg-bg1 mb-6 p-4"
       onClick={() => push(`${routerMap.teamsInformation}?id=${data.id}`)}
     >
       <div className="flex justify-between border-b border-border2 pb-4 mb-4">
@@ -50,7 +50,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
         </div>
       </div>
       <h3 className="font-medium mb-2">{t("个人")}</h3>
-      <div className="bg-white rounded-lg p-4">
+      <div className="bg-bg rounded-lg p-4">
         {individualList.map((item) => {
           return (
             <div key={item.value} className="flex justify-between mt-2 text-sm">
@@ -61,7 +61,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
         })}
       </div>
       <h3 className="font-medium mb-2 mt-4">{t("团队")}</h3>
-      <div className="bg-white rounded-lg p-4">
+      <div className="bg-bg rounded-lg p-4">
         {teamList.map((item) => {
           return (
             <div key={item.value} className="flex justify-between mt-2">

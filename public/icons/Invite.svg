@@ -1,14 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Invite</title>
-    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Team_Null" transform="translate(-167, -370)">
-            <g id="Invite" transform="translate(167, 370)">
-                <rect id="矩形" stroke="#EEEEEE" x="0.5" y="0.5" width="55" height="55" rx="12"></rect>
-                <path d="M32.0000153,27 C34.7625005,27 37,24.7625074 37,22 C37,19.2374926 34.7625005,17 32.0000153,17 C29.2375302,17 27,19.2374926 27,22 C27,24.7625074 29.2374995,27 32.0000153,27 Z" id="路径" fill="#000000" fill-rule="nonzero"></path>
-                <polygon id="路径" fill="#A93AFF" fill-rule="nonzero" points="20.25 24.7499693 20.25 21 17.75 21 17.75 24.75 14 24.75 14 27.25 17.75 27.25 17.75 31 20.25 31 20.25 27.2499693 24 27.2499693 24 24.7499693"></polygon>
-                <path d="M22,35.3333333 L22,39 L42,39 L42,35.3333333 C42,31.7866654 35.3374943,30 32,30 C28.6625057,30 22,31.7866654 22,35.3333333 Z" id="路径" fill="#6E2AFE" fill-rule="nonzero"></path>
-            </g>
-        </g>
-    </g>
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Invite">
+<rect id="&#231;&#159;&#169;&#229;&#189;&#162;" x="0.5" y="0.5" width="55" height="55" rx="11.5" stroke="#414040"/>
+<g id="&#231;&#188;&#150;&#231;&#187;&#132; 4">
+<path id="&#232;&#183;&#175;&#229;&#190;&#132;" d="M32 27C34.7625 27 37 24.7625 37 22C37 19.2375 34.7625 17 32 17C29.2375 17 27 19.2375 27 22C27 24.7625 29.2375 27 32 27Z" fill="white"/>
+<path id="&#232;&#183;&#175;&#229;&#190;&#132;_2" d="M20.25 24.75V21H17.75V24.75H14V27.25H17.75V31H20.25V27.25H24V24.75H20.25Z" fill="#F0B90B"/>
+<path id="&#232;&#183;&#175;&#229;&#190;&#132;_3" d="M22 35.3333V39H42V35.3333C42 31.7867 35.3375 30 32 30C28.6625 30 22 31.7867 22 35.3333Z" fill="#F0B90B"/>
+</g>
+</g>
 </svg>
