@@ -37,7 +37,7 @@ export default async function LocaleLayout({
   const lang =
     CustomerSupportLang[locale as keyof typeof CustomerSupportLang] || "en-US";
   return (
-    <html className="scroll-smooth" lang={locale} data-theme="light">
+    <html className="scroll-smooth" lang={locale} data-theme="dark">
       <body className={`antialiased`}>
         <NextIntlClientProvider>
           <div className="size-full md:bg-gray-100">

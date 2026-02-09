@@ -22,7 +22,7 @@ export const Launch = ({ children }: IProps) => {
   if (!isMount) return null;
   if (showSplash) {
     return (
-      <div className="size-full bg-white flex justify-center items-center">
+      <div className="size-full bg-bg flex justify-center items-center">
         <div className="w-25 h-full relative">
           <Image
             className="animate-in zoom-in duration-2000 ease-in-out"

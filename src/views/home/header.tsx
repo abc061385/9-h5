@@ -16,7 +16,7 @@ const HomeHeaderBox = () => {
   };
   const { data } = useRequestQuery(api.getMemberMessageUnreadCount, {});
   return (
-    <div className="flex items-center justify-between py-2 px-3.5 bg-white">
+    <div className="flex items-center justify-between py-2 px-3.5 bg-bg">
       <BaseImage
         src="/images/common/logo.svg"
         className="h-[34px] w-[90px] cursor-pointer"

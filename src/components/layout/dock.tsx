@@ -34,7 +34,7 @@ export const LayoutDock = () => {
   };
 
   return (
-    <div className="dock md-pc:absolute m-0 p-0 z-50 bg-white border-none shadow-[0_0_2px_rgba(0,0,0,0.16)] backdrop-blur-[20px]">
+    <div className="dock md-pc:absolute m-0 p-0 z-50 bg-bg border-none shadow-[0_0_2px_rgba(0,0,0,0.16)] backdrop-blur-[20px]">
       {/* <Link href={i.href} key={index} className="h-full"> */}
       {/* </Link> */}
       {pathList.map((i, index) => {

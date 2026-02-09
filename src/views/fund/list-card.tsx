@@ -17,10 +17,7 @@ const ListCardBox: FC<IProps> = ({ item, pledgeDays }) => {
   return (
     <div
       key={item.id}
-      className={cn(
-        "bg-bg2 rounded-2xl p-4 relative",
-        item.isHot === 1 && "bg-[rgba(110,42,254,0.08)]",
-      )}
+      className={cn("bg-bg1 rounded-2xl p-4 relative")}
       onClick={() =>
         push(
           `${routerMap.fundBuy}?id=${item.productId}&pledgeDays=${pledgeDays}&pid=${item.id}`,
