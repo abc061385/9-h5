@@ -96,7 +96,7 @@ const ListBox = () => {
             push(routerMap.rule);
           }}
         >
-          {t("基金规则")} <Icon name="right-enter" className="w-2 h-2.5 ml-2" color="#FFF"/>
+          {t("基金规则")} <Icon name="right-enter" className="w-2 h-2.5 ml-2" color="var(--color-text1)"/>
         </span>
       </div>
       <HorizontalTabs

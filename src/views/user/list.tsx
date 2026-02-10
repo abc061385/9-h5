@@ -99,10 +99,10 @@ const ListBox = () => {
                       push(v.path);
                     }}
                   >
-                    <Icon name={v.icon} className="size-5 mr-4" />
+                    <Icon name={v.icon} className="size-5 mr-4" color="var(--color-primary)"/>
                     <span className="flex-1">{t(v.title)}</span>
                     <span className="text-text4 text-sm mr-2">{v.value}</span>
-                    <Icon name="right-enter" className="w-1.5 h-2.5" />
+                    <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
                   </div>
                 );
               })}

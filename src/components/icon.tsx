@@ -16,7 +16,7 @@ export const Icon: FC<IconProps> = ({ name, className, onClick, color }) => {
     <BaseImage
       alt={name}
       src={`/icons/${name}.svg`}
-      className={cn(["inline-block", "size-4", className])}
+      className={cn(["inline-block", className])}
       cover={false}
       onClick={onClick}
       color={color}

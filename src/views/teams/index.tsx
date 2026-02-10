@@ -144,8 +144,8 @@ const TeamsView = () => {
         </div>
       </header>
       <div className="p-content flex-1 flex flex-col relative pb-4">
-        <label className="input w-full mb-4 !bg-bg3 border-none placeholder:text-text5">
-          <Icon name="search" className="w-4 h-4" />
+        <label className="input w-full mb-4 !bg-bg1 border-none placeholder:text-text5">
+          <Icon name="search" className="w-4 h-4" color="var(--color-text1)"/>
           <input
             type="search"
             className="grow"

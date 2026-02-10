@@ -222,7 +222,7 @@ const TeamsNextView = () => {
               Boolean(searchValue) ? "rounded-b-none!" : ""
             )}
           >
-            <Icon name="search" className="w-4 h-4" color="#FFF" />
+            <Icon name="search" className="w-4 h-4" color="var(--color-text1)" />
             <input
               type="search"
               className={cn("grow")}
@@ -339,7 +339,7 @@ const TeamsNextView = () => {
             <span>{t("myDirectReferrals")}</span>
             <span className="flex gap-2 items-center font-medium">
               {directReferralNum}
-              <Icon name="right-enter" className="w-1.5 h-2.5" color="#FFF" />
+              <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
             </span>
           </div>
         </ShowIf>

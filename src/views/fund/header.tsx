@@ -12,7 +12,7 @@ const FundHeaderBox = () => {
         name="order"
         className="size-10"
         onClick={() => push("/fund/record/")}
-        color="#FFF"
+        color="var(--color-text1)"
       />
     </div>
   );

@@ -167,17 +167,17 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
   return (
     <div className="flex flex-col flex-1">
       <h2 className="mt-6 mb-2 font-medium text-base">{t("买入基金")}</h2>
-      <label className="input w-full text-right">
+      <label className="input w-full text-right !bg-bg1 border-none">
         <div className="flex items-center gap-1">
           <BaseImage
             src={info.pledgeToken1Logo}
-            className="w-5 h-5 rounded-full flex-1"
+            className="w-5 h-5 flex-1"
           />
           <span>{info.pledgeToken1}</span>
         </div>
         <input
           type="text"
-          className="input bg-white text-right placeholder:text-text1 px-0"
+          className="input text-right placeholder:text-text1 px-0 !bg-bg1"
           placeholder="0.00"
           value={amount}
           onChange={(e) => {
@@ -227,7 +227,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           :{info.token2Percentage / 10}
         </span>
       </h3>
-      <div className="flex justify-between items-center h-12 bg-bg2 rounded-lg px-4">
+      <div className="flex justify-between items-center h-12 bg-bg1 rounded-lg px-4">
         <div className="flex items-center gap-1">
           <BaseImage
             src={info.pledgeToken1Logo}
@@ -262,7 +262,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
           {t("充值")}
         </span>
       </div>
-      <div className="flex justify-between items-center h-12 bg-bg2 rounded-lg px-4">
+      <div className="flex justify-between items-center h-12 bg-bg1 rounded-lg px-4">
         <div className="flex items-center gap-1">
           <BaseImage
             src={info.pledgeToken2Logo}

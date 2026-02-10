@@ -64,7 +64,7 @@ const UserInfoBox = () => {
         {cards.map((item, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 bg-bg2 p-4 pr-2 rounded-lg"
+            className="flex items-center gap-4 bg-bg1 p-4 pr-2 rounded-lg"
             onClick={() => push(item.path)}
           >
             <Icon name={item.icon} className="size-7.5" />

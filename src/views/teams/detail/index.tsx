@@ -74,7 +74,7 @@ const TeamsDetailView = () => {
         name={filterDrawerOpen ? "filter-check" : "filter"}
         className="size-10 absolute right-[-32px]"
         onClick={() => setFilterDrawerOpen(!filterDrawerOpen)}
-        color="white"
+        color="var(--color-text1)"
       />
     </div>
   );

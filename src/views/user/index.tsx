@@ -36,7 +36,7 @@ const UserView = () => {
         />
       }
     >
-      <div className="p-content bg-white">
+      <div className="p-content bg-bg">
         <UserInfoBox />
         <Link href={routerMap.activity}>
           <div className="w-full relative mt-4">
@@ -52,7 +52,7 @@ const UserView = () => {
         </Link>
         <ListBox />
         <button
-          className="btn btn-soft w-full text-assist2 bg-bg-assist2 border-none"
+          className="btn btn-soft w-full text-white bg-assist2 border-none"
           onClick={() => setLogoutOpen(true)}
         >
           {t("user.logout")}

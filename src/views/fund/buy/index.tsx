@@ -111,14 +111,14 @@ const FundBuyView = () => {
             <CoinIcon size={24} coins={[{ src: info?.outputTokenLogo }]} />
           </div>
           <div className="divider divider-neutral w-[70%] absolute bottom-1 left-[18%] m-0">
-            <Icon name="circle-right-arrow" className="size-12" />
+            <Icon name="circle-right-arrow" className="size-4" color="var(--color-text1)"/>
           </div>
         </div>
 
         <div className="mt-10">
           <h3 className="font-medium text-base mb-2">{t("日收益率")}</h3>
           <div
-            className="bg-bg2 rounded-lg px-4 py-3.5 flex items-center justify-between text-sm"
+            className="bg-bg1 rounded-lg px-4 py-3.5 flex items-center justify-between text-sm"
             onClick={() => setDrawerOpen(true)}
           >
             <span className="font-bold">
@@ -127,7 +127,7 @@ const FundBuyView = () => {
             </span>
             <span>
               {t("日收益率")} ≈ {plegeValue?.dailyYield}%
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-2" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-2" color="var(--color-text1)" />
             </span>
           </div>
         </div>
@@ -143,7 +143,7 @@ const FundBuyView = () => {
               <div
                 key={index}
                 className={cn(
-                  "flex justify-between items-center mt-2 h-16 bg-bg2 rounded-lg px-4",
+                  "flex justify-between items-center mt-2 h-16 rounded-lg px-4",
                   plegeValue?.id === item.id && "bg-primary text-white",
                 )}
                 onClick={() => {

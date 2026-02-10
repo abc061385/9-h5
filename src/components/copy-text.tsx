@@ -34,7 +34,7 @@ const CopyText: React.FC<PropsWithChildren<CopyTextProps>> = ({
       {children ? (
         children
       ) : (
-        <Icon name={theme === "dark" ? "copy-user-dark" : "copy-user"} />
+        <Icon name={theme === "dark" ? "copy-user-dark" : "copy-user"} color="var(--color-text1)" />
       )}
     </div>
   );

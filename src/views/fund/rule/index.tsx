@@ -15,7 +15,7 @@ const FundRuleView = () => {
       heightFull
       header={<HeaderWithBack title={t("基金规则")} algin="center" />}
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <RuleHeaderBox />
         <ProcessBox />
         {/* <FeesDescBox /> */}

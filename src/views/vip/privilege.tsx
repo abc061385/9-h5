@@ -94,6 +94,7 @@ const PrivilegeBox = () => {
               <BaseImage
                 src={`/images/vip/${v.icon}.svg`}
                 className="size-6 mt-1"
+                color="var(--color-text1)"
               />
               <div className="flex-1">
                 <h3 className="text-sm font-medium mb-1">{v.title}</h3>
@@ -104,7 +105,7 @@ const PrivilegeBox = () => {
         })
       ) : (
         <div key={"di"} className="flex gap-4">
-          <BaseImage src={`/images/vip/icon-ai.svg`} className="size-6 mt-1" />
+          <BaseImage src={`/images/vip/icon-ai.svg`} className="size-6 mt-1" color="var(--color-text1)"/>
           <div className="flex-1">
             <h3 className="text-sm font-medium mb-1">{t("AI助手权限")}</h3>
             <p className="text-xs text-text4 leading-4">
@@ -134,6 +135,7 @@ const PrivilegeBox = () => {
                 <BaseImage
                   src={`/images/vip/${v.icon}.svg`}
                   className="size-6 mt-1"
+                  color="var(--color-text1)"
                 />
                 <div className="flex-1">
                   <h3 className="text-sm font-medium mb-1">{v.title}</h3>

@@ -35,7 +35,7 @@ const SubCardBox: FC<ISubCardProps> = ({ data }) => {
         </div> */}
 
         <div className="flex-1"></div>
-        <Icon name="right-enter" className="w-1.5 h-2.5" color="#FFF" />
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
       </div>
       <div className="text-sm flex items-center justify-between">
         <span className="text-text4">{t("totalTeamInvestment")}</span>

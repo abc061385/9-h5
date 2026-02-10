@@ -76,7 +76,7 @@ const FundBox = () => {
         <p className="flex-1 text-left mr-8 truncate text-xs">
           {newsList?.[0]?.["title"]}
         </p>
-        <Icon name="right-enter" className="w-1.5 h-2.5" color="#FFF" />
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
       </div>
       <div className="grid grid-cols-4 gap-2 mt-6">
         {hotList.map((v, i) => {
@@ -111,7 +111,7 @@ const FundBox = () => {
         onClick={() => push(routerMap.fund)}
       >
         {t("common.more")}
-        <Icon name="right-enter" className="w-1.5 h-2.5" color="#FFF"/>
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
       </div>
     </div>
   );

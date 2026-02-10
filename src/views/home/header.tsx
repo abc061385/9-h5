@@ -27,14 +27,14 @@ const HomeHeaderBox = () => {
           className="size-11 cursor-pointer"
           name="ai-icon"
           onClick={handleCustomerSupport}
-          color="white"
+          color="var(--color-text1)"
         />
         <div className="inline-block relative">
           <Icon
             className="size-11 cursor-pointer"
             name="ling-dang"
             onClick={() => push(routerMap.news)}
-            color="white"
+            color="var(--color-text1)"
           />
 
           {data?.data ? (
