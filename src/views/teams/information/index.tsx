@@ -1,24 +1,23 @@
 "use client";
 
 import BaseImage from "@/components/base-image";
+import CopyText from "@/components/copy-text";
 import TimePicker from "@/components/date-picker";
 import { Drawer } from "@/components/drawer";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
-import HorizontalTabs from "@/components/tabs/horizontal-tabs";
+import Tabs from "@/components/tabs/tabs";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
-import { createAxiosInstance, ApiResponse } from "@/lib/axios";
+import { ApiResponse, createAxiosInstance } from "@/lib/axios";
 import { formatBalance1 } from "@/lib/utils";
 import { useUserStore } from "@/store/useUserStore";
 import StarIcon from "@/views/vip/star-icon";
-import CopyText from "@/components/copy-text";
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
 import { ReactNode, useCallback, useEffect, useState } from "react";
-import Tabs from "@/components/tabs/tabs";
 
 const TeamsInformationView = () => {
   const t = useTrans();

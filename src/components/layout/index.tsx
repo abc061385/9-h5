@@ -28,8 +28,7 @@ export default function ViewLayout({
   return (
     <div
       data-name="layout"
-      // className={cn("size-full md-pc:relative", theme === "dark" && "dark")}
-      className={cn("size-full md-pc:relative ")}
+      className={cn("size-full md-pc:relative", theme === "dark" && "dark")}
     >
       <ShowIf condition={!!header}>
         <div

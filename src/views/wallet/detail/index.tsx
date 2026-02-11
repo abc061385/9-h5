@@ -1,21 +1,20 @@
 "use client";
 
 import { api } from "@/api";
+import BaseImage from "@/components/base-image";
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
 import ViewLayout from "@/components/layout";
+import Tabs from "@/components/tabs/tabs";
 import { useFormatBalance } from "@/hooks/useFormatBalance";
 import { useTrans } from "@/hooks/useTrans";
 import { routerMap, useRouter } from "@/i18n/navigation";
 import { typeMap, WalletOrderType } from "@/lib/const";
+import { cn } from "@/lib/utils";
 import { useAssetStore } from "@/store/useAssetStore";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import HorizontalTabs from "@/components/tabs/horizontal-tabs";
-import { cn } from "@/lib/utils";
-import BaseImage from "@/components/base-image";
-import Tabs from "@/components/tabs/tabs";
 
 interface ListType {
   id: number;

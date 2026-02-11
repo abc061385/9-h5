@@ -3,7 +3,6 @@
 import { HeaderWithBack } from "@/components/header-with-back";
 import { Icon } from "@/components/icon";
 import ViewLayout from "@/components/layout";
-import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import Tabs from "@/components/tabs/tabs";
 import { useTrans } from "@/hooks/useTrans";
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
