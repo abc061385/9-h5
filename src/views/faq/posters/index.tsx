@@ -36,7 +36,7 @@ const FAQPostersView = () => {
           <img src={currentUrl} alt="" />
         </div>
       </Modal>
-      <div className="grid grid-cols-2 gap-4 p-content">
+      <div className="grid grid-cols-2 gap-4 p-content bg-bg">
         {list.map((item, index) => {
           return (
             <div

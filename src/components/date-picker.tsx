@@ -59,7 +59,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       title={
         <div className="flex justify-between">
           <span
-            className="text-text3 font-normal"
+            className="text-text2 font-normal"
             onClick={() => {
               setSelectedYear(value?.year || new Date().getFullYear());
               setSelectedMonth(value?.month || new Date().getMonth());

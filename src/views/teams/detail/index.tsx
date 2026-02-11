@@ -204,10 +204,10 @@ const TeamsDetailView = () => {
         <div className="p-content pb-6">
           <h4 className="font-medium mb-2">{t("statisticsByTime")}</h4>
 
-          <label className="input w-full h-12">
+          <label className="input w-full h-12 !bg-bg border-none">
             <input
               type="text"
-              className="input p-0"
+              className="input p-0 !bg-bg"
               readOnly
               onClick={() => {
                 setTimePickerType("start");
@@ -218,10 +218,10 @@ const TeamsDetailView = () => {
             />
             <Icon name={"date"} className="size-4" />
           </label>
-          <label className="input w-full h-12 mt-2">
+          <label className="input w-full h-12 mt-2 !bg-bg border-none">
             <input
               type="text"
-              className="input p-0"
+              className="input p-0 !bg-bg"
               readOnly
               onClick={() => {
                 setTimePickerType("end");

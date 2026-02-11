@@ -94,7 +94,7 @@ const SettingAddressView = () => {
               return (
                 <div
                   className={cn([
-                    "bg-bg2 p-4 rounded-lg mb-4 w-full",
+                    "bg-bg1 p-4 rounded-lg mb-4 w-full",
                     {
                       "opacity-55":
                         item.protocol !== withdrawNetwork &&

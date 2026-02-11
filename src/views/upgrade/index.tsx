@@ -61,13 +61,13 @@ const UpgradeView = () => {
         <HeaderWithBack title={t("VIP计划")} algin="center" onClick={back} />
       }
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <div role="tablist" className="tabs mb-4">
           {tabs.map((tab) => (
             <a
               role="tab"
               className={cn(
-                "tab flex-1 leading-[100%]",
+                "tab flex-1 !text-text2 leading-[100%]",
                 tab.value === tabsValue && "tab-active font-bold",
               )}
               key={tab.value}

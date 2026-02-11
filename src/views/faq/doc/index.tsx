@@ -68,7 +68,7 @@ const FAQDocView = () => {
           {/* </Document> */}
         </div>
       </Modal>
-      <div className="min-h-full  bg-bg3 relative">
+      <div className="min-h-full  bg-bg relative">
         <div className="absolute top-0 bottom-0 size-full ">
           <InfiniteList<Item, unknown>
             data={list}
@@ -76,7 +76,7 @@ const FAQDocView = () => {
             itemContent={(index, item) => (
               <div className="p-content relative">
                 <div className="aspect-[358/185]" key={index + "_posters"}>
-                  <div className="size-full flex items-center [background:var(--color-gradient3)]">
+                  <div className="size-full flex items-center bg-bg1">
                     <a
                       href={item.originalUrl}
                       target="_blank"
@@ -105,12 +105,13 @@ const FAQDocView = () => {
                       {/* /> */}
                     </a>
                   </div>
-                  <div className="flex items-center justify-around w-full bg-white h-11">
+                  <div className="flex items-center justify-around w-full bg-bg1 h-11">
                     <p className="truncate w-[60%]">{item?.content || ""}</p>
                     &nbsp;
                     <Icon
                       name="download"
                       className="size-5"
+                      color="var(--color-text1)"
                       onClick={() =>
                         utils.downloadFile(item.originalUrl, item.fileName)
                       }

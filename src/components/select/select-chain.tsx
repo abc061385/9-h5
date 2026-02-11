@@ -30,7 +30,7 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
       <div ref={ref}>
         <button
           type="button"
-          className="input w-full flex justify-between items-center h-12"
+          className="input w-full flex justify-between items-center h-12 !bg-bg1"
           onClick={() => setOpen(true)}
         >
           {value ? (
@@ -40,7 +40,7 @@ export const SelectChain = forwardRef<HTMLDivElement, IChainSelectProps>(
           ) : (
             <p className="text-text2">{t("deposit.selectChain")}</p>
           )}
-          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" />
+          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" color="var(--color-text1)"/>
         </button>
         <Drawer
           open={open}

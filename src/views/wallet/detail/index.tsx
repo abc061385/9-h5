@@ -15,6 +15,7 @@ import { useCallback, useEffect, useState } from "react";
 import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 import { cn } from "@/lib/utils";
 import BaseImage from "@/components/base-image";
+import Tabs from "@/components/tabs/tabs";
 
 interface ListType {
   id: number;
@@ -117,8 +118,7 @@ const WalletDetailView = () => {
       header={<HeaderWithBack title={coin?.toUpperCase()} algin="center" />}
     >
       <div className="p-content flex flex-col h-full">
-        <HorizontalTabs
-          type="border"
+        <Tabs
           tabs={tabs}
           value={tabsValue}
           className="mb-4"
@@ -132,7 +132,7 @@ const WalletDetailView = () => {
               renderItem={(item) => (
                 <div
                   key={item?.id}
-                  className="rounded-lg bg-bg2 p-4 mb-4"
+                  className="rounded-lg bg-bg1 p-4 mb-4"
                   onClick={() => {
                     if (showDetail.indexOf(item.type) !== -1) {
                       push(`${routerMap.walletTransDetail}?id=${item.id}`);

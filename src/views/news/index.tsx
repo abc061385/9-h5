@@ -109,7 +109,7 @@ const NewsView = () => {
               renderItem={(item: AnnouncementRespDTO) => (
                 <div
                   key={item.id}
-                  className="pb-4 mt-4 text-sm border-b border-assist1 "
+                  className="pb-4 mt-4 text-sm border-b border-border2"
                   onClick={() => {
                     localStorage.setItem("newsDetail", JSON.stringify(item));
                     push(routerMap.newsDetail);
@@ -130,7 +130,7 @@ const NewsView = () => {
               renderItem={(item: AnnouncementRespDTO) => (
                 <div
                   key={item.id}
-                  className="pb-4 mt-4 text-sm border-b border-assist1 "
+                  className="pb-4 mt-4 text-sm border-b border-border2 "
                   onClick={() => {
                     api
                       .postMemberMessageChangeStatus({

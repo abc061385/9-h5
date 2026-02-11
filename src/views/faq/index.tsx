@@ -57,7 +57,7 @@ const FAQView = () => {
   }, []);
   return (
     <ViewLayout heightFull>
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <BaseImage
           src="/images/common/logo.svg"
           className="h-[31px] w-[91px] cursor-pointer"
@@ -75,7 +75,7 @@ const FAQView = () => {
             onClick={() => push(routerMap.faq_introduction)}
           >
             {t("common.more")}
-            <Icon name="right-enter" className="size-[10px]" />
+            <Icon name="right-enter" className="size-[10px] ml-2" color="var(--color-text1)"/>
           </span>
         </div>
         <div className="flex gap-2 mt-8">
@@ -98,11 +98,11 @@ const FAQView = () => {
 
         <div className="flex flex-wrap gap-2">
           <div
-            className="bg-black  flex-1 h-[168px] rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
+            className="bg-bg1 flex-1 h-[168px] rounded-lg flex justify-center items-center flex-col"
             onClick={() => push(routerMap.faq_posters)}
           >
             <BaseImage
-              src="/images/faq/Promotional Posters@2x.png"
+              src="/images/faq/Promotional Posters.svg"
               className="size-[40px]"
             />
             <p className="max-w-[80%] text-wrap text-center mt-6">
@@ -110,11 +110,11 @@ const FAQView = () => {
             </p>
           </div>
           <div
-            className="bg-black  flex-1  rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
+            className="bg-bg1 flex-1  rounded-lg flex justify-center items-center flex-col"
             onClick={() => push(routerMap.faq_doc)}
           >
             <BaseImage
-              src="/images/faq/9M AI Documentation@2x.png"
+              src="/images/faq/9M AI Documentation.svg"
               className="size-[40px]"
             />
             <p className="max-w-[80%] text-wrap text-center mt-6">
@@ -122,11 +122,11 @@ const FAQView = () => {
             </p>
           </div>
           <div
-            className="w-full h-[148px] bg-black  rounded-lg [background:var(--color-gradient3)] flex justify-center items-center flex-col"
+            className="w-full h-[148px] bg-bg1  rounded-lg flex justify-center items-center flex-col"
             onClick={() => push(routerMap.faq_video)}
           >
             <BaseImage
-              src="/images/faq/Promotional Videos@2x.png"
+              src="/images/faq/Promotional Videos.svg"
               className="size-[40px]"
             />
             <p className="mt-6">{t("faq_videos")}</p>

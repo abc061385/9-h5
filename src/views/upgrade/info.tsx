@@ -133,7 +133,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
 
   return (
     <div>
-      <div className="rounded-lg bg-bg2 p-4 pt-6">
+      <div className="rounded-lg bg-bg1 p-4 pt-6">
         <h2 className="text-xs text-text4 text-center">{t("币权累计")}</h2>
         <div className="text-xl font-medium leading-6 mt-1 text-center">
           {formatBalance(info.totalCurrency || "0", tabsValue)} {tabsValue}
@@ -163,7 +163,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
             />
           ) : null}
         </div>
-        <div className="flex items-center justify-between bg-white rounded-lg h-12 px-4 mt-4 mb-6">
+        <div className="flex items-center justify-between bg-bg rounded-lg h-12 px-4 mt-4 mb-6">
           <h3 className="text-xs text-text4">{t("昨日币权奖励")}</h3>
           <div className="text-sm text-primary">
             {formatBalance(info.yesterdayCurrencyReward || "0", tabsValue)}{" "}

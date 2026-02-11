@@ -60,7 +60,7 @@ const ForgotPasswordView = () => {
               <legend className="fieldset-legend">
                 {t("forgotPassword.account")}
               </legend>
-              <label className="input w-full">
+              <label className="input w-full !bg-bg1">
                 <input
                   type="text"
                   {...register("account")}
@@ -76,7 +76,7 @@ const ForgotPasswordView = () => {
                   {t("googleVerify.authFromApp")}
                 </p>
               </legend>
-              <label className="input w-full">
+              <label className="input w-full !bg-bg1">
                 <Icon name="google-verify" />
                 <input
                   type="code"

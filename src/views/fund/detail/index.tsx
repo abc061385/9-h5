@@ -121,7 +121,7 @@ const FundDetailView = () => {
         </div>
         <div className="border-y border-border2 py-6 my-6">
           <div className="flex items-center justify-between ">
-            <span className="text-text6 text-sm">{t("自动复投")}</span>
+            <span className="text-text1 text-sm">{t("自动复投")}</span>
             <input
               type="checkbox"
               checked={Boolean(data?.isReinvestment)}

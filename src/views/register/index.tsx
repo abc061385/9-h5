@@ -87,7 +87,7 @@ const RegisterView = () => {
           <form autoComplete="off">
             <fieldset className="fieldset">
               <legend className="fieldset-legend">{t("login.email")}</legend>
-              <label className="input w-full">
+              <label className="input w-full !bg-bg1">
                 <input
                   type="email"
                   {...register("email")}
@@ -121,7 +121,7 @@ const RegisterView = () => {
               <legend className="fieldset-legend">
                 {t("login.inviteCode")}
               </legend>
-              <label className="input w-full">
+              <label className="input w-full !bg-bg1">
                 <input
                   type="text"
                   {...register("invitationCode")}

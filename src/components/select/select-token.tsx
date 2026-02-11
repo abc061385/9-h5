@@ -49,7 +49,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
         <input type="hidden" name={name} ref={ref} value={value || ""} />
         <button
           type="button"
-          className="input w-full flex justify-between items-center  h-12"
+          className="input w-full flex justify-between items-center  h-12 !bg-bg1"
           onClick={() => setOpen(true)}
         >
           <Skeleton isLoading={isLoading}>
@@ -62,7 +62,7 @@ export const SelectToken = forwardRef<HTMLInputElement, ITokenSelectProps>(
               <span className="text-sm">{selectCurrency?.currencyCode}</span>
             </div>
           </Skeleton>
-          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" />
+          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" color="var(--color-text1)"/>
         </button>
         <Drawer
           open={open}

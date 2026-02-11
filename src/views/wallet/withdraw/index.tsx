@@ -153,7 +153,7 @@ const WithdrawView = () => {
       <div className="p-content h-full flex flex-col">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pb-4">
+            <legend className="fieldset-legend text-sm text-text2 font-normal pb-4">
               {t("withdraw.coinType")}
             </legend>
             <Controller
@@ -179,7 +179,7 @@ const WithdrawView = () => {
 
           {getValues("currencyCode").toUpperCase() === "XRP" ? (
             <fieldset className="fieldset p-0">
-              <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+              <legend className="fieldset-legend text-sm text-text2 font-normal pt-6 pb-4">
                 XRP Tag
               </legend>
               <label className="input w-full h-12">
@@ -195,7 +195,7 @@ const WithdrawView = () => {
           ) : null}
 
           <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+            <legend className="fieldset-legend text-sm text-text2 font-normal pt-6 pb-4">
               {t("withdraw.network")}
             </legend>
             <Controller
@@ -213,11 +213,11 @@ const WithdrawView = () => {
           </fieldset>
 
           <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+            <legend className="fieldset-legend text-sm text-text2 font-normal pt-6 pb-4">
               {t("withdraw.address")}
             </legend>
             <div className="join items-center gap-4.5">
-              <label className="input w-full flex items-center h-12 rounded-lg pr-0">
+              <label className="input w-full flex items-center h-12 rounded-lg pr-0 !bg-bg1">
                 <input
                   type="text"
                   {...register("withdrawAddress")}
@@ -243,6 +243,7 @@ const WithdrawView = () => {
               <Icon
                 name="address-book"
                 className="size-5"
+                color="var(--color-text1)"
                 onClick={() => {
                   setSettingField("addressPreviousPageType", "withdraw");
                   setField("formState", getValues());
@@ -272,7 +273,7 @@ const WithdrawView = () => {
               name="withdrawAmount"
               control={control}
               render={({ field }) => (
-                <label className="input w-full h-12">
+                <label className="input w-full h-12 !bg-bg1">
                   <input
                     type="number"
                     placeholder={t("withdraw.amount")}
@@ -317,7 +318,7 @@ const WithdrawView = () => {
             </button>
           </fieldset> */}
 
-          <fieldset className="fieldset h-12 rounded-lg bg-bg2 flex items-center p-4 mt-6 text-sm text-text4 justify-between font-normal">
+          <fieldset className="fieldset h-12 rounded-lg bg-bg1 flex items-center p-4 mt-6 text-sm text-text4 justify-between font-normal">
             <span>{t("withdraw.fee")}</span>
             <NumberWithUnit value={withdrawalFeeConfig} unit={feeUnit} />
           </fieldset>

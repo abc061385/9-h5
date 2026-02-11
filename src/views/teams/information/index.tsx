@@ -18,6 +18,7 @@ import CopyText from "@/components/copy-text";
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
 import { ReactNode, useCallback, useEffect, useState } from "react";
+import Tabs from "@/components/tabs/tabs";
 
 const TeamsInformationView = () => {
   const t = useTrans();
@@ -71,6 +72,7 @@ const TeamsInformationView = () => {
       <Icon
         name={filterDrawerOpen ? "filter-check" : "filter"}
         className="size-10 absolute right-[-32px]"
+        color="var(--color-text1)"
         onClick={() => setFilterDrawerOpen(!filterDrawerOpen)}
       />
     </div>
@@ -186,13 +188,10 @@ const TeamsInformationView = () => {
 
         <div className="mt-6">
           <h3 className="font-medium mb-4">{t("投资总额")}</h3>
-          <HorizontalTabs
+          <Tabs
             tabs={tabsList}
             value={tabsValue}
             onChange={(e) => setTabsValue(e as string)}
-            type="border"
-            wrapClassName="gap-4"
-            className="text-base!"
           />
           <h4 className="my-4 text-sm">{t("9mAIStategyFund")}</h4>
           {FieldEL(`360 ${t("daysFund")}`, "InvestmentStrategy360Days")}
@@ -221,10 +220,10 @@ const TeamsInformationView = () => {
         <div className="p-content pb-6">
           <h4 className="font-medium mb-2">{t("registrationDate")}</h4>
 
-          <label className="input w-full h-12">
+          <label className="input w-full h-12 !bg-bg border-none">
             <input
               type="text"
-              className="input p-0"
+              className="input p-0 !bg-bg"
               readOnly
               onClick={() => {
                 setTimePickerType("start");
@@ -235,10 +234,10 @@ const TeamsInformationView = () => {
             />
             <Icon name={"date"} className="size-4" />
           </label>
-          <label className="input w-full h-12 mt-2">
+          <label className="input w-full h-12 mt-2 !bg-bg border-none">
             <input
               type="text"
-              className="input p-0"
+              className="input p-0 !bg-bg"
               readOnly
               onClick={() => {
                 setTimePickerType("end");

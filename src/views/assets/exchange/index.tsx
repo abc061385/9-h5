@@ -171,7 +171,7 @@ const AssetsExchangeView = () => {
       <div className="p-content">
         <form className="grow relative" autoComplete="off">
           <fieldset className="fieldset p-0">
-            <label className="input w-full border-none !shadow-none h-[92px] !bg-bg2 rounded-lg px-6">
+            <label className="input w-full border-none !shadow-none h-[92px] !bg-bg1 rounded-lg px-6">
               <Skeleton isLoading={isLoading}>
                 <span
                   className="text-xs flex items-center gap-1"
@@ -193,6 +193,7 @@ const AssetsExchangeView = () => {
                   <Icon
                     name="right-enter"
                     className="rotate-90 w-1.5 h-2.5 ml-2"
+                    color="var(--color-text1)"
                   />
                 </span>
               </Skeleton>
@@ -305,7 +306,7 @@ const AssetsExchangeView = () => {
           />
 
           <fieldset className="fieldset">
-            <label className="input w-full border-none !shadow-none h-[92px] !bg-bg2 rounded-lg px-6">
+            <label className="input w-full border-none !shadow-none h-[92px] !bg-bg1 rounded-lg px-6">
               <Skeleton isLoading={isLoading}>
                 <span
                   className="text-xs flex items-center gap-1"
@@ -327,6 +328,7 @@ const AssetsExchangeView = () => {
                   <Icon
                     name="right-enter"
                     className="rotate-90 w-1.5 h-2.5 ml-2"
+                    color="var(--color-text1)"
                   />
                 </span>
               </Skeleton>

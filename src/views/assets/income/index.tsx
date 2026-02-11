@@ -180,7 +180,7 @@ const IncomeView = () => {
             <a
               role="tab"
               className={cn(
-                "tab flex-1 text-lg leading-5",
+                "tab flex-1 text-lg !text-text2 leading-5",
                 tab.value === tabsValue && "tab-active font-bold",
               )}
               key={tab.value}
@@ -195,7 +195,7 @@ const IncomeView = () => {
             </a>
           ))}
         </div>
-        <div className="bg-bg2 rounded-lg p-4 relative mt-14 pt-12">
+        <div className="bg-bg1 rounded-lg p-4 relative mt-14 pt-12">
           <BaseImage
             src={coinLogo(tabsValue)}
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
@@ -242,7 +242,7 @@ const IncomeView = () => {
           {/*     /> */}
           {/*   ) : null} */}
           {/* </div> */}
-          <div className="bg-white rounded-lg py-3.5 px-4">
+          <div className="bg-bg rounded-lg py-3.5 px-4">
             <div className="flex items-center justify-between ">
               <span className="text-xs text-text4">{t("昨日投资收益")}</span>
               <span className="text-primary text-sm text-right">

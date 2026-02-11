@@ -237,7 +237,7 @@ const HeaderBox = () => {
             </dd>
           </dl>
         </div>
-        <Icon name="right-enter" className="w-1.5 h-2.5" />
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
       </div>
       {/* --9M Ecosystem Growth Pool-- */}
       <div
@@ -255,7 +255,7 @@ const HeaderBox = () => {
             </dd>
           </dl>
         </div>
-        <Icon name="right-enter" className="w-1.5 h-2.5" />
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
       </div>
 
       {/* --9M new-- */}
@@ -276,7 +276,7 @@ const HeaderBox = () => {
             </dd>
           </dl>
         </div>
-        <Icon name="right-enter" className="w-1.5 h-2.5" />
+        <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
       </div>
       <div className="divider"></div>
 

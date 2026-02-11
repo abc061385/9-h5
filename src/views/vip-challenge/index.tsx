@@ -69,7 +69,7 @@ const VIPLevelUpChallengeView = () => {
         className="w-full h-42 mt-2"
       />
 
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <div
           className="embed-html"
           dangerouslySetInnerHTML={{

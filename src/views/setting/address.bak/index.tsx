@@ -85,13 +85,13 @@ const SettingAddressView = () => {
       }
       heightFull
     >
-      <div className="p-content h-full flex flex-col justify-between">
+      <div className="p-content h-full flex flex-col justify-between bg-bg">
         <div className="flex-1 overflow-auto">
           {addressList?.length ? (
             addressList.map((item) => {
               return (
                 <div
-                  className="bg-bg2 p-4 rounded-lg mb-4 w-full"
+                  className="bg-bg1 p-4 rounded-lg mb-4 w-full"
                   key={item.id}
                   onClick={() => {
                     if (addressPreviousPageType === "withdraw") {

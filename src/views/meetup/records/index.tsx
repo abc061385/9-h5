@@ -55,7 +55,7 @@ const StudioRecordsView = () => {
       heightFull
       header={<HeaderWithBack title={t("submitRecords")} algin="center" />}
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         {
           <ShowIf
             condition={!loading}
@@ -64,7 +64,7 @@ const StudioRecordsView = () => {
             {list?.length ? (
               list?.map((v) => {
                 return (
-                  <div key={v.id} className="bg-bg2 rounded-lg p-4 mt-4">
+                  <div key={v.id} className="bg-bg1 rounded-lg p-4 mt-4">
                     <div className="flex items-center justify-between leading-6">
                       <b>{t("applicationType")}:</b>
                       <span className={cn(statusTextColor[v.status])}>

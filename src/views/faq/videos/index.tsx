@@ -41,7 +41,7 @@ const FAQVideosView = () => {
       heightFull
       header={<HeaderWithBack title={t("faq_videos")} algin="center" />}
     >
-      <div className="min-h-full bg-bg3 relative">
+      <div className="min-h-full bg-bg relative">
         <div className="absolute top-0 bottom-0 size-full ">
           <InfiniteList<Item, unknown>
             data={list}
@@ -52,7 +52,7 @@ const FAQVideosView = () => {
                   className="aspect-[358/185] relative mb-4"
                   key={index + "_posters"}
                 >
-                  <div className="size-full flex items-center [background:var(--color-gradient3)]">
+                  <div className="size-full flex items-center bg-bg1">
                     {item?.originalUrl ? (
                       <video
                         controls
@@ -70,7 +70,7 @@ const FAQVideosView = () => {
                       />
                     )}
                   </div>
-                  <div className="flex items-center w-full bg-white h-11 p-4">
+                  <div className="flex items-center w-ful h-11 p-4 bg-bg1">
                     <p className="truncate w-[100%]">{getTitle(item)}</p>
                   </div>
                 </div>

@@ -91,7 +91,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
           </div>
         </div>
         <div className="flex justify-between border-t border-border2 pt-6 mt-6">
-          <span className="text-text6 text-sm">{t("自动复投功能")}</span>
+          <span className="text-text1 text-sm">{t("自动复投功能")}</span>
           <input
             type="checkbox"
             checked={isCheck}

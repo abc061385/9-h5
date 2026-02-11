@@ -91,10 +91,10 @@ const LoginView = () => {
         <div className="grow">
           <form className="grow" autoComplete="off">
             <fieldset className="fieldset py-0">
-              <legend className="fieldset-legend text-base py-0 mb-2">
+              <legend className="fieldset-legend text-text2 py-0 mb-2">
                 {t("email")}/{t("username")}
               </legend>
-              <label className="input w-full h-12">
+              <label className="input w-full h-12 !bg-bg1">
                 <input
                   type="email"
                   {...register("email")}
@@ -114,7 +114,7 @@ const LoginView = () => {
               {/* </div> */}
             </fieldset>
             <fieldset className="fieldset mt-6 py-0">
-              <legend className="fieldset-legend text-base py-0 mb-2">
+              <legend className="fieldset-legend text-text2 py-0 mb-2">
                 {t("password")}
               </legend>
               <InputPassword

@@ -58,7 +58,7 @@ const ActivityView = () => {
         />
       }
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         {
           <ShowIf
             condition={!loading}

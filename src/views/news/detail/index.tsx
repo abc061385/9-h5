@@ -28,7 +28,7 @@ const NewsDetailView = () => {
       heightFull
       header={<HeaderWithBack title={t("详情")} algin="center" />}
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <h2 className="font-bold text-lg">{newsDetail?.["title"]}</h2>
         <div className="text-text4 mb-6 text-sm mt-1.5">
           {newsDetail?.createTime}

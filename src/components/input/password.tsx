@@ -10,7 +10,7 @@ export const InputPassword: FC<IProps> = ({ err, ...props }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <label className="input w-full h-12">
+      <label className="input w-full h-12 !bg-bg1">
         <input type={open ? "text" : "password"} className="grow" {...props} />
         <Icon
           name={open ? "eye-open" : "eye-close"}

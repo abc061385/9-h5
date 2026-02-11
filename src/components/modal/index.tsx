@@ -35,7 +35,7 @@ export const Modal: React.FC<IModalProps> = ({
         onChange={() => onClose?.()}
       />
       <div className={cn(["modal md-pc:absolute", className])} role="dialog">
-        <div className={cn("modal-box rounded-2xl", wrapClassName)}>
+        <div className={cn("modal-box rounded-2xl !bg-bg1", wrapClassName)}>
           <header className="relative pt-2">
             {title && (
               <div

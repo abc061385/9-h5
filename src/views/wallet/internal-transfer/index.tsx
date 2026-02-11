@@ -136,7 +136,7 @@ const InternalTransferView = () => {
       <div className="p-content h-full flex flex-col">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pb-4">
+            <legend className="fieldset-legend text-sm text-text2 font-normal pb-4">
               {t("withdraw.coinType")}
             </legend>
             <Controller
@@ -173,11 +173,11 @@ const InternalTransferView = () => {
           }
 
           <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+            <legend className="fieldset-legend text-sm text-text2 font-normal pt-6 pb-4">
               {t("invite.inviteCode")}
             </legend>
             <div className="join items-center gap-4.5">
-              <label className="input w-full flex items-center h-12 rounded-lg pr-0">
+              <label className="input w-full flex items-center h-12 rounded-lg pr-0 !bg-bg1">
                 <input
                   type="text"
                   {...register("withdrawAddress")}
@@ -200,14 +200,14 @@ const InternalTransferView = () => {
           </fieldset>
 
           <fieldset className="fieldset p-0">
-            <legend className="fieldset-legend text-sm font-normal pt-6 pb-4">
+            <legend className="fieldset-legend text-sm text-text2 font-normal pt-6 pb-4">
               {t("withdraw.amount")}
             </legend>
             <Controller
               name="withdrawAmount"
               control={control}
               render={({ field }) => (
-                <label className="input w-full h-12">
+                <label className="input w-full h-12 !bg-bg1">
                   <input
                     type="number"
                     placeholder={t("withdraw.amount")}

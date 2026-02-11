@@ -111,8 +111,8 @@ const TeamsMembersView = () => {
       heightFull
     >
       <div className="p-content h-full flex-col flex">
-        <label className="input w-full !bg-bg3 border-none placeholder:text-text5 mb-4">
-          <Icon name="search" className="w-4 h-4" />
+        <label className="input w-full !bg-bg1 border-none placeholder:text-text5 mb-4">
+          <Icon name="search" className="w-4 h-4" color="var(--color-text1)"/>
           <input
             type="search"
             className="grow"

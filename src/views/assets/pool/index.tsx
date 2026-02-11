@@ -156,7 +156,7 @@ const SmartYield = () => {
               role="tab"
               className={cn(
                 "tab flex-1 text-lg leading-5",
-                tab.value === tabsValue && "tab-active font-bold",
+                tab.value === tabsValue ? "tab-active font-bold text-text1" : "!text-text2",
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}
@@ -170,7 +170,7 @@ const SmartYield = () => {
             </a>
           ))}
         </div>
-        <div className="bg-bg2 rounded-lg p-4 relative mt-14 pt-12">
+        <div className="bg-bg1 rounded-lg p-4 relative mt-14 pt-12">
           <BaseImage
             src={coinLogo(tabsValue)}
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
