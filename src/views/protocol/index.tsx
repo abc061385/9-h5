@@ -31,6 +31,7 @@ const ProtocolView = () => {
   }, []);
   return (
     <ViewLayout
+      className="relative"
       header={
         <HeaderWithBack
           title={detail?.title || t("common.loading")}
@@ -38,12 +39,14 @@ const ProtocolView = () => {
         />
       }
     >
-      <div
-        className="p-content text-sm"
-        dangerouslySetInnerHTML={{
-          __html: detail?.["content"] || "",
-        }}
-      ></div>
+      <div className="absolute top-11 left-0 size-full overscroll-y-auto">
+        <div
+          className="p-content text-sm bg-bg"
+          dangerouslySetInnerHTML={{
+            __html: detail?.["content"] || "",
+          }}
+        ></div>
+      </div>
     </ViewLayout>
   );
 };
