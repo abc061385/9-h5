@@ -20,7 +20,7 @@
     "faq4": "What are 9M AI’s core competitive advantages?",
     "faq4Content": "As a global AI fintech company, 9M AI relies on a proprietary technology framework and unique algorithmic models—integrating market sensing, strategy execution, risk control, and optimization—to create differentiated performance in live trading.",
     "faq5": "What products does 9M offer?",
-    "faq5Content": "Two main fund types:\nAI Strategy Funds – Stake USDT + major coins to earn USD9\nAI Stable Funds – Stake USDT + USD9 to earn 9MT\nBoth offer cycles from short-term to 360 days with principal redemption at maturity."
+    "faq5Content": "Two main fund types:\r\nFund 1 – Stake USDT + major coins to earn USD9\r\nFund 2 – Stake USDT + USD9 to earn 9MT\r\nBoth offer cycles from short-term to 360 days with principal redemption at maturity."
   },
   "tabbar": {
     "home": "Home",
@@ -567,7 +567,7 @@
   "推荐代数": "Recommended Generations",
   "代": "Generation",
   "邀请时间": "Invitation Time",
-  "查看下级": "View Team",
+  "查看下级": "View Organisations",
   "邀请人": "Referrer",
   "返回上级": "Return to Superior",
   "团队投资数据": "Team Investment Data",
@@ -977,7 +977,7 @@
   "NP_ASSETS_RELEASE": "Asset Release",
   "9MEcosystemGrowthPool": "9M Ecosystem Partnership Programme",
   "growthClubmembe": "Become a Growth Club member and co-create long-term value",
-  "9MEcosystemGrowthPoolDesc": "Join the “9M Ecosystem Partnership Programme” = Step into the core growth engine of the 9M ecosystem.\nHere, the returns come from real business expansion, not short-term volatility.\nAs an ecosystem co-builder, you will:\nShare global payment & trading core revenue\nReceive sustainable quarterly dividends\nEnjoy long-term growth rewards from 9M’s global expansion\nCo-create and share the value of the future financial ecosystem with global users—so growth is more than just numbers.",
+  "9MEcosystemGrowthPoolDesc": "Join the “9M Ecosystem Partnership Programme” = Step into the core growth engine of the 9M ecosystem.\r\nHere, the returns come from real business expansion, not short-term volatility.\r\nAs an ecosystem co-builder, you will:\r\nShare global payment & trading core revenue\r\nReceive sustainable quarterly dividends\r\nEnjoy long-term growth rewards from 9M’s global expansion\r\nCo-create and share the value of the future financial ecosystem with global users—so growth is more than just numbers.",
   "USDMBalance": "USD9 Balance",
   "9MCBalance": "9MT Balance",
   "Deposit History": "Deposit History:",

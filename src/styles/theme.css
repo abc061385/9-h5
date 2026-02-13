@@ -58,13 +58,13 @@
   --color-op-accent: var(--color-green2);
   --color-border-primary: var(--color-primary);
   --color-text1: #ffffff;
-  --color-text2: #909090;
+  --color-text2: #DADADA;
   --color-text3: #5F646E;
   --color-text4: #4F525C;
   --color-text5: #9c9c9c;
   --color-text6: #090909;
   --color-text-tip: var(--color-primary);
-  --color-rise: #05c497;
+  --color-rise: #2EBD85;
   --color-fall: #fd4141;
   --color-bg: #15161A;
   --color-bg1: #31333A;
