@@ -67,8 +67,8 @@ const UpgradeView = () => {
             <a
               role="tab"
               className={cn(
-                "tab flex-1 !text-text2 leading-[100%]",
-                tab.value === tabsValue && "tab-active font-bold",
+                "tab flex-1 font-bold !text-text2 leading-[100%]",
+                tab.value === tabsValue && "tab-active font-bold !text-text1",
               )}
               key={tab.value}
               onClick={() => setTabsValue(tab.value)}

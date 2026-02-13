@@ -13,7 +13,7 @@ const VipBannerBox = () => {
   return (
     <div className="flex items-center justify-between border-b border-border2 pb-3">
       <div className="flex-1">
-        <h2 className="text-text4 text-sm mb-1">{t("目前团队投资总额")}</h2>
+        <h2 className="text-text2 text-sm mb-1">{t("目前团队投资总额")}</h2>
         <div className="font-bold text-2xl">
           {formatBalance(userInfo?.totalTeamInvestment || 0, "USDT")} USDT
         </div>

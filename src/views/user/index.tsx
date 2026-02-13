@@ -41,12 +41,12 @@ const UserView = () => {
         <Link href={routerMap.activity}>
           <div className="w-full relative mt-4">
             <BaseImage
-              src="/images/user/entry@2x.webp"
+              src="/images/user/entry.png"
               className="h-[48px] w-full"
             />
-            <div className="absolute top-0 left-0 size-full flex items-center pl-2">
+            <div className="absolute top-0 left-0 size-full flex items-center pl-2 gap-1">
               <span className="text-white">{t("activityCenter")}</span>
-              <Icon name="right-enter-white" className="h-2"></Icon>
+              <Icon name="right-enter" className="h-3 w-1.5" color="var(--color-text1)"/>
             </div>
           </div>
         </Link>

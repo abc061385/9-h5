@@ -89,7 +89,7 @@ const FundBuyView = () => {
       <div className="p-content relative h-full flex flex-col">
         <div className="flex justify-between relative">
           <div>
-            <h3 className="text-text4 text-xs">{t("质押代币")}</h3>
+            <h3 className="text-text2 text-xs">{t("质押代币")}</h3>
             <p className="text-base font-medium mb-2 mt-1">
               {info?.pledgeToken1} / {info?.pledgeToken2}
             </p>
@@ -104,7 +104,7 @@ const FundBuyView = () => {
             />
           </div>
           <div className="text-center">
-            <h3 className="text-text4 text-xs">{t("产出代币")}</h3>
+            <h3 className="text-text2 text-xs">{t("产出代币")}</h3>
             <p className="text-base font-medium mb-2 mt-1">
               {info?.outputToken}
             </p>
@@ -127,7 +127,7 @@ const FundBuyView = () => {
             </span>
             <span>
               {t("日收益率")} ≈ {plegeValue?.dailyYield}%
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-2" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-2" color="var(--color-text1)"/>
             </span>
           </div>
         </div>
@@ -157,7 +157,7 @@ const FundBuyView = () => {
                 </span>
                 <span
                   className={cn(
-                    "text-base text-text4",
+                    "text-base text-text2",
                     plegeValue?.id === item.id && "text-white",
                   )}
                 >

@@ -36,7 +36,7 @@ const SettingPasswordView = () => {
     confirmPswd: reg.password,
     code: reg.googleVerifyCode,
   }).refine((data) => data.pswd === data.confirmPswd, {
-    path: ["confirmPswd"], 
+    path: ["confirmPswd"],
     message: t("alerts.passwordMismatch"),
   });
 
@@ -94,7 +94,7 @@ const SettingPasswordView = () => {
               <h3 className="font-medium text-base">
                 {t("googleVerify.googleAuth")}
               </h3>
-              <p className="text-sm text-text4 font-normal">
+              <p className="text-sm text-text2 font-normal">
                 {t("googleVerify.authFromApp")}
               </p>
             </legend>
@@ -151,7 +151,7 @@ const SettingPasswordView = () => {
             <h3 className="mt-6 mb-4 text-lg font-bold">
               Google Authenticator Not Bound
             </h3>
-            <p className="text-text4 text-sm">
+            <p className="text-text2 text-sm">
               You have not bound Google Authenticator and cannot reset your
               password.
             </p>

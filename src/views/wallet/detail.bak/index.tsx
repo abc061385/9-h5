@@ -113,7 +113,7 @@ const WalletDetailView = () => {
         <h2 className="text-[32px] font-bold leading-7.5 mb-2">
           {balance(coin)}
         </h2>
-        <p className="text-sm text-text4">≈ {usdtValue(coin)} USDT</p>
+        <p className="text-sm text-text2">≈ {usdtValue(coin)} USDT</p>
         <div className="mt-4 pt-4 border-t border-border2 grow flex flex-col">
           <h3 className="font-medium">{t("history")}</h3>
           <div className="grow">
@@ -137,14 +137,14 @@ const WalletDetailView = () => {
                       <span className="ml-1">{item?.symbol}</span>
                     </span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-text4">
+                  <div className="flex items-center justify-between text-xs text-text2">
                     <div className="flex flex-col gap-1 ">
                       <span>{getStatusText(item?.status, item?.type)}</span>
                     </div>
                     <span>
                       <span>{item?.createTime}</span>
                       {showDetail.indexOf(item.type) !== -1 ? (
-                        <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" />
+                        <Icon name="right-enter" className="w-1.5 h-2.5 ml-2"  color="var(--color-text1)"/>
                       ) : null}
                     </span>
                   </div>

@@ -217,12 +217,12 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
             {t("useUSDTBalance")}
           </label>
         </div>
-        <p className="text-xs text-text4 pl-6">{t("balancePriority")}</p>
+        <p className="text-xs text-text2 pl-6">{t("balancePriority")}</p>
       </ShowIf>
 
       <h3 className="text-sm my-4 flex justify-between">
         <span>{t("您需支付")}</span>
-        <span className="text-text4">
+        <span className="text-text2">
           {info.pledgeToken1}:{info.pledgeToken2} = {info.token1Percentage / 10}
           :{info.token2Percentage / 10}
         </span>
@@ -238,7 +238,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         <span>{payAmount1}</span>
       </div>
       <div className="flex items-center justify-between mt-2 mb-4 text-xs ">
-        <span className="text-text4">
+        <span className="text-text2">
           {t("余额")}{" "}
           {formatBalance(getBalance(info.pledgeToken1), info.pledgeToken1)}
           {info.pledgeToken1}
@@ -273,7 +273,7 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         <span>{payAmount2}</span>
       </div>
       <div className="flex items-center justify-between mt-2 text-xs">
-        <span className="text-text4">
+        <span className="text-text2">
           {t("余额")}{" "}
           {formatBalance(getBalance(info.pledgeToken2), info.pledgeToken2)}
           {info.pledgeToken2}
@@ -298,8 +298,8 @@ const BuyingBox: FC<{ info: FundInfoType }> = ({ info }) => {
         </span>
       </div>
       <div className="grow"></div>
-      <div className="flex items-center text-xs mt-2 text-text4">
-        <label className="label">
+      <div className="flex items-center text-xs mt-2 text-text2">
+        <label className="label text-text2">
           <input
             type="checkbox"
             className="checkbox checkbox-neutral"

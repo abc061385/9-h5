@@ -176,27 +176,27 @@ const SmartYield = () => {
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
           />
           <div className="text-center border-b border-border2 pb-4 mb-4">
-            <p className="text-xs mb-1 text-text4">{t("total_rewards")}</p>
+            <p className="text-xs mb-1 text-text2">{t("total_rewards")}</p>
             <div className="text-xl font-medium">
               {formatBalance(totalReward || "0", tabsValue)} {tabsValue}
             </div>
           </div>
 
           <div className="mt-4 flex items-center justify-center text-xs">
-            <p className="text-xs  text-text4">{t("每日复利收益")}:</p>
+            <p className="text-xs  text-text2">{t("每日复利收益")}:</p>
             <p className="ml-2">
               {utils.toBigNumber(poolStatic.rate).times(100).toNumber() || 0} %
             </p>
           </div>
           <div className="flex mt-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">{t("static_balance")}</span>
+              <span className="text-xs text-text2">{t("static_balance")}</span>
               <span className="text-sm">
                 {formatBalance(poolStatic?.total || "0", tabsValue)} {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">{t("dynamic_balance")}</span>
+              <span className="text-xs text-text2">{t("dynamic_balance")}</span>
               <span className="text-sm">
                 {formatBalance(poolDynamic?.total || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -205,14 +205,14 @@ const SmartYield = () => {
           </div>
           <div className="flex">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">{t("static_earnings")}</span>
+              <span className="text-xs text-text2">{t("static_earnings")}</span>
               <span className="text-sm">
                 {formatBalance(poolStatic?.reward || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">
+              <span className="text-xs text-text2">
                 {t("dynamic_earnings")}
               </span>
               <span className="text-sm">
@@ -223,7 +223,7 @@ const SmartYield = () => {
           </div>
           {/* <div className="bg-white rounded-lg py-3.5 px-4"> */}
           {/*   <div className="flex items-center justify-between "> */}
-          {/*     <span className="text-xs text-text4"> */}
+          {/*     <span className="text-xs text-text2"> */}
           {/*       {t("昨日SmartYieldWallet收益")} */}
           {/*     </span> */}
           {/*     <span className="text-primary text-sm text-right"> */}
@@ -271,7 +271,7 @@ const SmartYield = () => {
           setOpenWithdraw(e);
         }}
       >
-        {/* <p className="text-text4 mb-6">{t("withdrawNotice")}</p> */}
+        {/* <p className="text-text2 mb-6">{t("withdrawNotice")}</p> */}
 
         <fieldset className="fieldset">
           <legend className="fieldset-legend">{t("transfer_amount")}</legend>
@@ -317,7 +317,7 @@ const SmartYield = () => {
             {/*     setWithDrawNum(value); */}
             {/*   }} */}
             {/* /> */}
-            {/* <span className="text-text4 text-sm">{tabsValue}</span> */}
+            {/* <span className="text-text2 text-sm">{tabsValue}</span> */}
             {/* <span */}
             {/*   className="font-bold text-sm ml-2" */}
             {/*   onClick={() => { */}
@@ -333,7 +333,7 @@ const SmartYield = () => {
         {/* </ShowIf> */}
 
         {/* <div className="flex items-center justify-between text-sm mt-1"> */}
-        {/*   <span className=" text-text4">{t("可提取数量")}</span> */}
+        {/*   <span className=" text-text2">{t("可提取数量")}</span> */}
         {/*   <span> */}
         {/*     {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)} */}
         {/*   </span> */}
@@ -343,16 +343,16 @@ const SmartYield = () => {
         {/*   <legend className="fieldset-legend">{t("预计到账")}</legend> */}
         {/*   <label className="input w-full h-12"> */}
         {/*     <input value={estimatedArrival} type="text" disabled /> */}
-        {/*     <span className="text-text4 text-sm">{tabsValue}</span> */}
+        {/*     <span className="text-text2 text-sm">{tabsValue}</span> */}
         {/*   </label> */}
         {/* </fieldset> */}
 
         {/* <div className="flex items-center justify-between mt-2 text-sm"> */}
-        {/*   <span className=" text-text4">{t("手续费")}</span> */}
+        {/*   <span className=" text-text2">{t("手续费")}</span> */}
         {/*   <span>{withdrawConfig?.managementFee || "-"}%</span> */}
         {/* </div> */}
         <div className="flex items-center justify-between mt-2 text-sm">
-          <span className=" text-text4">{t("预计到账")}</span>
+          <span className=" text-text2">{t("预计到账")}</span>
           <span>
             {formatBalance(estimatedArrival, tabsValue)} {tabsValue}
           </span>

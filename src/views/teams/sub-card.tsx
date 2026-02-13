@@ -38,11 +38,11 @@ const SubCardBox: FC<ISubCardProps> = ({ data }) => {
         <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
       </div>
       <div className="text-sm flex items-center justify-between">
-        <span className="text-text4">{t("totalTeamInvestment")}</span>
+        <span className="text-text2">{t("totalTeamInvestment")}</span>
         <span>≈ {formatBalance(data?.totalTeamInvestment || 0, 4)} USDT</span>
       </div>
       <div className="text-sm flex items-center justify-between mt-1">
-        <span className="text-text4">{t("totalTeamMembers")}</span>
+        <span className="text-text2">{t("totalTeamMembers")}</span>
         <span>{data?.totalTeamMembers || 0}</span>
       </div>
     </div>

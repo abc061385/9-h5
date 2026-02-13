@@ -220,7 +220,7 @@ const LoginView = () => {
           close={false}
           onClose={() => setConfirmModalOpen(false)}
         >
-          <p className="text-sm text-text4 mt-4 mb-8">
+          <p className="text-sm text-text2 mt-4 mb-8">
             {t("bindConfirmation")}
           </p>
           <button

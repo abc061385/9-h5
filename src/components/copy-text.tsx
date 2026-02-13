@@ -8,7 +8,6 @@ type CopyTextProps = {
   text: string;
   copySuccessTip?: string;
   className?: string;
-  theme?: "dark" | "light";
 };
 
 const CopyText: React.FC<PropsWithChildren<CopyTextProps>> = ({
@@ -16,7 +15,6 @@ const CopyText: React.FC<PropsWithChildren<CopyTextProps>> = ({
   copySuccessTip,
   children,
   className,
-  theme = "dark",
 }) => {
   const t = useTrans();
   const handleCopy = async () => {
@@ -31,11 +29,7 @@ const CopyText: React.FC<PropsWithChildren<CopyTextProps>> = ({
 
   return (
     <div onClick={handleCopy} className={className}>
-      {children ? (
-        children
-      ) : (
-        <Icon name={theme === "dark" ? "copy-user-dark" : "copy-user"} color="var(--color-text1)" />
-      )}
+      <Icon name="copy-user" className="size-3.5" color="var(--color-text1)" />
     </div>
   );
 };

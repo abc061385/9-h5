@@ -166,7 +166,7 @@ const RegisterView = () => {
                   onChange={(e) => setIsAgreement(e.target.checked)}
                   className="checkbox checkbox-neutral size-4"
                 />
-                <div className="text-text4 text-xs flex flex-wrap">
+                <div className="text-text2 text-xs flex flex-wrap">
                   {t("login.agreement")}
                   <a
                     className="text-text1"
@@ -199,7 +199,7 @@ const RegisterView = () => {
           </button>
         </div>
         <div className="text-center text-sm pb-6">
-          <h3 className="text-text4">
+          <h3 className="text-text2">
             {t("existingAccount")}
             <Link
               href={routerMap.accountsAdd}

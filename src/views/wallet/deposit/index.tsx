@@ -66,7 +66,7 @@ const DepositView = () => {
           {t("address.selectChain")}
         </h5>
         <label
-          className="input w-full"
+          className="input w-full !bg-bg1"
           onClick={() => {
             setDepositChainDrawerOpen(true);
           }}
@@ -78,7 +78,7 @@ const DepositView = () => {
             readOnly
             placeholder={t("addressAdd.selectChain")}
           />
-          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5" />
+          <Icon name="right-enter" className="rotate-90 w-1.5 h-2.5"  color="var(--color-text1)"/>
         </label>
         {depositCoinItem?.currencyCode?.toUpperCase() === "XRP" ? (
           <>
@@ -91,22 +91,22 @@ const DepositView = () => {
               </p>
               <CopyText text={memo} />
             </div>
-            <div className="text-xs mt-1 text-text4">
+            <div className="text-xs mt-1 text-text2">
               {t("XRP Tag Recharge")}
             </div>
           </>
         ) : null}
-        {/* <div className="flex items-center justify-between text-text4 text-xs mb-1 mt-4"> */}
+        {/* <div className="flex items-center justify-between text-text2 text-xs mb-1 mt-4"> */}
         {/*   <span>Arrived(Tradable)</span> */}
         {/*   <span>6 Confirmations</span> */}
         {/* </div> */}
-        {/* <div className="flex items-center justify-between text-text4 text-xs"> */}
+        {/* <div className="flex items-center justify-between text-text2 text-xs"> */}
         {/*   <span>Unlocked(Withdrawable)</span> */}
         {/*   <span>64 Confirmations</span> */}
         {/* </div> */}
         {/* <div className="bg-bg2 rounded-lg py-3 px-4 flex gap-2 mt-6"> */}
         {/*   <Icon name="warning-black" className="size-4" /> */}
-        {/*   <p className="flex-1 text-xs text-text4 leading-4"> */}
+        {/*   <p className="flex-1 text-xs text-text2 leading-4"> */}
         {/*     {t("depositWarning")} */}
         {/*   </p> */}
         {/* </div> */}
@@ -147,7 +147,7 @@ const DepositView = () => {
                   <ShowIf
                     condition={depositChainItem.protocolType === v.protocolType}
                   >
-                    <Icon name="duigou-primary" className="w-4 h-3" />
+                    <Icon name="duigou-primary" className="w-4 h-3" color="var(--color-primary)"/>
                   </ShowIf>
                 </div>
               );

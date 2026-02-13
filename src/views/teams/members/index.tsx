@@ -128,7 +128,7 @@ const TeamsMembersView = () => {
         <div className="flex-1">
           {list === undefined ? (
             <div className="flex-1 flex items-center justify-center">
-              <div className="p-4 text-center text-text4">
+              <div className="p-4 text-center text-text2">
                 {t("common.loading")}
               </div>
             </div>

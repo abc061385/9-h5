@@ -32,7 +32,7 @@ const TeamsDetailView = () => {
     (label: string | ReactNode, value: number) => {
       return (
         <div className="flex justify-between items-center mb-2 text-sm last:mb-0">
-          <span className="text-text4 flex-1">{label}</span>
+          <span className="text-text2 flex-1">{label}</span>
           <span className="text-right">{`≈ ${formatBalance(
             value,
             "USDT",
@@ -95,8 +95,9 @@ const TeamsDetailView = () => {
             <span className="text-2xl font-bold leading-6">
               {info?.totalTeamMembers || 0}
               <Icon
-                name="right-enter-white"
+                name="right-enter"
                 className="w-1.5 h-2.5 mb-1 ml-2"
+                color="var(--color-text1)"
               />
             </span>
             <span className="font-medium leading-4 text-sm">
@@ -112,8 +113,9 @@ const TeamsDetailView = () => {
             <span className="text-2xl font-bold leading-6">
               {info?.newMembersToday || 0}
               <Icon
-                name="right-enter-white"
+                name="right-enter"
                 className="w-1.5 h-2.5 mb-1 ml-2"
+                color="var(--color-text1)"
               />
             </span>
             <span className="font-medium leading-4 text-sm">

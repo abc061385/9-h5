@@ -640,7 +640,7 @@ const FormBox = forwardRef<ChildHandle>((_props, ref) => {
                 onChange={(e) => console.log(e)}
                 // value={countryValue?.country}
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3"  color="var(--color-text1)"/>
             </label>
             <TextError>{errors?.country?.message}</TextError>
           </fieldset>
@@ -730,7 +730,7 @@ const FormBox = forwardRef<ChildHandle>((_props, ref) => {
                 readOnly
                 onClick={() => setDocumentSelectOpen(true)}
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3"  color="var(--color-text1)"/>
             </label>
             <TextError>{errors1?.idType?.message}</TextError>
           </fieldset>
@@ -739,7 +739,7 @@ const FormBox = forwardRef<ChildHandle>((_props, ref) => {
               <h3 className="font-medium text-[13px] mt-2">
                 {t("uploadIdPhotosPrompt")}
               </h3>
-              <p className="text-[13px] text-text4 font-normal mb-2">
+              <p className="text-[13px] text-text2 font-normal mb-2">
                 {t("clarityNote")}
               </p>
             </legend>
@@ -894,7 +894,7 @@ const FormBox = forwardRef<ChildHandle>((_props, ref) => {
             }}
             className="checkbox checkbox-neutral size-4 mt-0.5"
           />
-          <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
+          <div className="text-text2 text-xs flex">{t("agree_to_rules")}</div>
         </label>
         <a
           className="text-text1 text-xs relative top-[-4px]"

@@ -6,7 +6,7 @@ const CardBox: FC<{
 }> = ({ data, symbol }) => {
   return (
     <div className="border-b border-border2 pb-4 mb-4">
-      <div className="flex items-center justify-between text-xs text-text4">
+      <div className="flex items-center justify-between text-xs text-text2">
         <span>{data.amount + " " + symbol}</span>
         <span>{data.createTime}</span>
       </div>

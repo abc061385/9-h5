@@ -134,20 +134,20 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
   return (
     <div>
       <div className="rounded-lg bg-bg1 p-4 pt-6">
-        <h2 className="text-xs text-text4 text-center">{t("币权累计")}</h2>
+        <h2 className="text-xs text-text2 text-center">{t("币权累计")}</h2>
         <div className="text-xl font-medium leading-6 mt-1 text-center">
           {formatBalance(info.totalCurrency || "0", tabsValue)} {tabsValue}
         </div>
         <div className="border-t border-border2 mt-3 pt-4 flex justify-between">
           <div className="flex flex-col items-start gap-0.5">
-            <span className="text-xs text-text4">{t("已提取收益")}</span>
+            <span className="text-xs text-text2">{t("已提取收益")}</span>
             <span className="text-sm">
               {formatBalance(info.extractedRewards || "0", tabsValue)}{" "}
               {tabsValue}
             </span>
           </div>
           <div className="flex flex-col items-end gap-0.5">
-            <span className="text-xs text-text4">{t("未提取收益")}</span>{" "}
+            <span className="text-xs text-text2">{t("未提取收益")}</span>{" "}
             <span className="text-sm">
               {formatBalance(info.frozenRewards || "0", tabsValue)} {tabsValue}
             </span>
@@ -164,7 +164,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           ) : null}
         </div>
         <div className="flex items-center justify-between bg-bg rounded-lg h-12 px-4 mt-4 mb-6">
-          <h3 className="text-xs text-text4">{t("昨日币权奖励")}</h3>
+          <h3 className="text-xs text-text2">{t("昨日币权奖励")}</h3>
           <div className="text-sm text-primary">
             {formatBalance(info.yesterdayCurrencyReward || "0", tabsValue)}{" "}
             {tabsValue}
@@ -199,7 +199,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           {/*     <p className="text-base font-bold "> */}
           {/*       {t("depositIntoSmartWallet")} */}
           {/*     </p> */}
-          {/*     <p className="text-text4"> */}
+          {/*     <p className="text-text2"> */}
           {/*       {t("depositIntoSmartWalletDesc", { */}
           {/*         rate: `${smartRate} %`, */}
           {/*       })} */}
@@ -221,10 +221,10 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
               <p className="text-base font-bold ">
                 {t("depositIntoAssetsWallet")}
               </p>
-              <p className="text-text4">{t("withdrawNotice")}</p>
+              <p className="text-text2">{t("withdrawNotice")}</p>
             </div>
             <div className="col-span-1 flex justify-end items-center">
-              <Icon name="right-enter" className="size-4" />
+              <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           setWithDrawNum("");
         }}
       >
-        <p className="text-text4 mb-6">
+        <p className="text-text2 mb-6">
           {newVersion === NewVersionMap.balance
             ? t("withdrawNotice")
             : t("depositIntoSmartWalletDesc", {
@@ -250,7 +250,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
               })}
         </p>
 
-        <label className="input w-full h-12">
+        <label className="input w-full h-12 !bg-bg1">
           <input
             value={withDrawNum}
             type="number"
@@ -289,7 +289,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
               setWithDrawNum(value);
             }}
           />
-          <span className="text-text4 text-sm">{tabsValue}</span>
+          <span className="text-text2 text-sm">{tabsValue}</span>
           <span
             className="font-bold text-sm ml-2"
             onClick={() => {
@@ -309,24 +309,24 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
         {/*   </div> */}
         {/* </div> */}
         <div className="flex items-center justify-between text-sm mt-4">
-          <span className=" text-text4">{t("可提取数量")}</span>
+          <span className=" text-text2">{t("可提取数量")}</span>
           <span>{formatBalance(info?.frozenRewards || 0, tabsValue)}</span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
-          <span className=" text-text4">{t("手续费")}</span>
+          <span className=" text-text2">{t("手续费")}</span>
           <span>
             {feeInfo?.fee || "-"} {feeInfo?.feeCoin || "-"}
           </span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
-          <span className=" text-text4">{t("预计到账")}</span>
+          <span className=" text-text2">{t("预计到账")}</span>
           <span>
             {formatBalance(feeInfo.arriveAmount, tabsValue)} {tabsValue}
           </span>
         </div>
         <ShowIf condition={rewardStats.buyGrowth}>
           <div
-            className="text-sm text-text4 mt-2"
+            className="text-sm text-text2 mt-2"
             style={{ whiteSpace: "pre-line" }}
             dangerouslySetInnerHTML={{
               __html: t("swap_ext_hint", {
@@ -339,7 +339,7 @@ const InfoBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           ></div>
         </ShowIf>
         <ShowIf condition={newVersion === NewVersionMap.smartWallet}>
-          <div className="text-sm text-text4 mb-8">
+          <div className="text-sm text-text2 mb-8">
             <hr className="border-border2 my-4" />
             <p>{t("smartWalletN1Tip1")}</p>
             <p>{t("smartWalletN1Tip2")}</p>

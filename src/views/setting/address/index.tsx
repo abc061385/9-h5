@@ -116,10 +116,10 @@ const SettingAddressView = () => {
                         <span>{item.protocol}</span>
                         {openEdit && check(item)}
                       </div>
-                      <p className="text-text4 text-sm wrap-break-word mt-4 mb-2">
+                      <p className="text-text2 text-sm wrap-break-word mt-4 mb-2">
                         {item.addr}
                       </p>
-                      {/* <p className="text-text4 text-sm"> */}
+                      {/* <p className="text-text2 text-sm"> */}
                       {/*   {t("address.remark")}: */}
                       {/* </p> */}
                     </div>

@@ -56,7 +56,7 @@ const UserInfoBox = () => {
           {t("invite.inviteCode")}：{userInfo.invitationCode || "-–"}
           <CopyText
             text={userInfo.invitationCode || ""}
-            className="mt-0.5 size-3.5"
+            className="mt-0.5 size-2"
           />
         </div>
       </div>
@@ -70,7 +70,7 @@ const UserInfoBox = () => {
             <Icon name={item.icon} className="size-7.5" />
             <div>
               <div className="font-medium text-sm leading-6">{item.title}</div>
-              <p className="text-text4 text-xs mt-1 leading-3">{item.desc}</p>
+              <p className="text-text2 text-xs mt-1 leading-3">{item.desc}</p>
             </div>
           </div>
         ))}

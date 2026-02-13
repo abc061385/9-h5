@@ -252,7 +252,7 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm text-center">
+                <span className="text-text2 text-sm text-center">
                   {t("uploadPhotos")}
                 </span>
               </div>
@@ -298,7 +298,7 @@ const StudioView = () => {
             <ShowIf condition={!v.fileName}>
               <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
                 <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm text-center">
+                <span className="text-text2 text-sm text-center">
                   {t("uploadVideos")}
                 </span>
               </div>
@@ -416,7 +416,7 @@ const StudioView = () => {
           <fieldset className="fieldset">
             <legend className="fieldset-legend flex-col items-start gap-1">
               <h3 className="font-medium text-base">{t("venue_address")}</h3>
-              <p className="text-sm text-text4 font-normal">
+              <p className="text-sm text-text2 font-normal">
                 {t("venue_address_detail")}
               </p>
             </legend>
@@ -472,7 +472,7 @@ const StudioView = () => {
                 className="grow placeholder:text-sm"
                 readOnly
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" color="var(--color-text1)"/>
             </label>
             <TextError>{errors?.siteType?.message}</TextError>
           </fieldset>
@@ -483,7 +483,7 @@ const StudioView = () => {
           <div className="grid grid-cols-2 gap-2">{imageUploadDom}</div>
 
           <h3 className="text-lg font-bold mt-11">{t("live_video_upload")}</h3>
-          <p className="text-text4 text-sm my-4">{t("upload_live_video")}</p>
+          <p className="text-text2 text-sm my-4">{t("upload_live_video")}</p>
           <div className="grid grid-cols-2 gap-2">{videoUploadDom}</div>
 
           <fieldset className="fieldset">
@@ -582,7 +582,7 @@ const StudioView = () => {
                 {...register("receiveNetwork")}
                 onClick={() => setChainSelectOpen(true)}
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" color="var(--color-text1)"/>
             </label>
           </fieldset>
 
@@ -609,7 +609,7 @@ const StudioView = () => {
               }}
               className="checkbox checkbox-neutral size-4 mt-0.5"
             />
-            <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
+            <div className="text-text2 text-xs flex">{t("agree_to_rules")}</div>
           </label>
           <a
             className="text-text1 text-xs relative top-[-6px]"

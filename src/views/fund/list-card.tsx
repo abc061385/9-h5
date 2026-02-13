@@ -42,7 +42,7 @@ const ListCardBox: FC<IProps> = ({ item, pledgeDays }) => {
           className="pr-2"
         />
       </div>
-      <div className="text-text4 text-xs mt-1 flex flex-col">
+      <div className="text-text2 text-xs mt-1 flex flex-col">
         {t("日收益率")}
         <span className="text-rise text-base font-bold">
           {" "}

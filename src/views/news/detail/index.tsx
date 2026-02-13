@@ -30,12 +30,12 @@ const NewsDetailView = () => {
     >
       <div className="p-content bg-bg">
         <h2 className="font-bold text-lg">{newsDetail?.["title"]}</h2>
-        <div className="text-text4 mb-6 text-sm mt-1.5">
+        <div className="text-text2 mb-6 text-sm mt-1.5">
           {newsDetail?.createTime}
         </div>
         <div className="border-b border-assist1"></div>
         <div
-          className="my-4 text-sm text-text4"
+          className="my-4 text-sm text-text2"
           dangerouslySetInnerHTML={{
             __html: newsDetail?.["content"] || "",
           }}

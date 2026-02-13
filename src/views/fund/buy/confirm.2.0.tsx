@@ -66,7 +66,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
         className="h-auto"
         onChange={() => onChange?.()}
       >
-        <h4 className="text-text4 text-sm leading-4">{t("purchase")}</h4>
+        <h4 className="text-text2 text-sm leading-4">{t("purchase")}</h4>
         <div className="font-bold my-1 leading-5">
           {Number(buyData?.productType) === 1 ? t("稳健基金") : t("策略基金")}
           &nbsp;
@@ -89,7 +89,7 @@ const ConfirmOrderBox: FC<Iprops> = ({ open, onChange }) => {
             size={24}
           />
           <div className="text-right">
-            <h4 className="text-text4 text-sm leading-4">{t("支付代币")}</h4>
+            <h4 className="text-text2 text-sm leading-4">{t("支付代币")}</h4>
             {}
             <p>
               {buyData?.pledgeToken1Amount}

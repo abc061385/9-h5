@@ -201,7 +201,7 @@ const IncomeView = () => {
             className="size-12 absolute left-[50%] top-0 translate-[-50%] rounded-full overflow-hidden"
           />
           <div className="text-center border-b border-border2 pb-4 mb-4">
-            <p className="text-xs mb-1 text-text4">{t("个人基金投资额")}</p>
+            <p className="text-xs mb-1 text-text2">{t("个人基金投资额")}</p>
             <div className="text-xl font-medium">
               {formatBalance(incomeInfo?.personalFundInvestment || "0", "USDT")}{" "}
               USDT
@@ -209,7 +209,7 @@ const IncomeView = () => {
           </div>
 
           <div className="text-center mt-4">
-            <p className="text-xs mb-0,5 text-text4">{t("基金投资总收益")}</p>
+            <p className="text-xs mb-0,5 text-text2">{t("基金投资总收益")}</p>
             <div>
               {formatBalance(incomeInfo?.totalFundReturn || "0", tabsValue)}{" "}
               {tabsValue}
@@ -217,14 +217,14 @@ const IncomeView = () => {
           </div>
           <div className="flex py-4">
             <div className="flex-1 flex flex-col gap-0.5 items-start">
-              <span className="text-xs text-text4">{t("已提取收益")}</span>
+              <span className="text-xs text-text2">{t("已提取收益")}</span>
               <span className="text-sm">
                 {formatBalance(incomeInfo?.withdrawnReturn || "0", tabsValue)}{" "}
                 {tabsValue}
               </span>
             </div>
             <div className="flex-1 flex flex-col gap-0.5 items-end">
-              <span className="text-xs text-text4">{t("未提取收益")}</span>
+              <span className="text-xs text-text2">{t("未提取收益")}</span>
               <span className="text-sm">
                 {formatBalance(incomeInfo?.unWithdrawnReturn || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -244,7 +244,7 @@ const IncomeView = () => {
           {/* </div> */}
           <div className="bg-bg rounded-lg py-3.5 px-4">
             <div className="flex items-center justify-between ">
-              <span className="text-xs text-text4">{t("昨日投资收益")}</span>
+              <span className="text-xs text-text2">{t("昨日投资收益")}</span>
               <span className="text-primary text-sm text-right">
                 {formatBalance(incomeInfo?.yesterdayReturn || "0", tabsValue)}{" "}
                 {tabsValue}
@@ -295,7 +295,7 @@ const IncomeView = () => {
               <p className="text-base font-bold ">
                 {t("depositIntoSmartWallet")}
               </p>
-              <p className="text-text4">
+              <p className="text-text2">
                 {t("depositIntoSmartWalletDesc", {
                   rate: `${smartRate} %`,
                 })}
@@ -318,10 +318,10 @@ const IncomeView = () => {
               <p className="text-base font-bold ">
                 {t("depositIntoAssetsWallet")}
               </p>
-              <p className="text-text4">{t("withdrawNotice")}</p>
+              <p className="text-text2">{t("withdrawNotice")}</p>
             </div>
             <div className="col-span-1 flex justify-end items-center">
-              <Icon name="right-enter" className="size-4" />
+              <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
             </div>
           </div>
         </div>
@@ -339,7 +339,7 @@ const IncomeView = () => {
           setWithDrawNum("");
         }}
       >
-        <p className="text-text4 mb-6">
+        <p className="text-text2 mb-6">
           {newVersion === NewVersionMap.balance
             ? t("withdrawNotice")
             : t("depositIntoSmartWalletDesc", {
@@ -347,7 +347,7 @@ const IncomeView = () => {
               })}
         </p>
 
-        <label className="input w-full h-12">
+        <label className="input w-full h-12 !bg-bg1">
           <input
             value={withDrawNum}
             type="number"
@@ -388,7 +388,7 @@ const IncomeView = () => {
               setWithDrawNum(value);
             }}
           />
-          <span className="text-text4 text-sm">{tabsValue}</span>
+          <span className="text-text2 text-sm">{tabsValue}</span>
           <span
             className="font-bold text-sm ml-2"
             onClick={() => {
@@ -403,26 +403,26 @@ const IncomeView = () => {
         </ShowIf>
 
         <div className="flex items-center justify-between text-sm mt-4">
-          <span className=" text-text4">{t("可提取数量")}</span>
+          <span className=" text-text2">{t("可提取数量")}</span>
           <span>
             {formatBalance(incomeInfo?.unWithdrawnReturn || 0, tabsValue)}
           </span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
-          <span className=" text-text4">{t("手续费")}</span>
+          <span className=" text-text2">{t("手续费")}</span>
           <span>
             {feeInfo?.fee || "-"} {feeInfo?.feeCoin || "-"}
           </span>
         </div>
         <div className="flex items-center justify-between mt-2 text-sm">
-          <span className=" text-text4">{t("预计到账")}</span>
+          <span className=" text-text2">{t("预计到账")}</span>
           <span>
             {formatBalance(feeInfo.arriveAmount, tabsValue)} {tabsValue}
           </span>
         </div>
 
         <ShowIf condition={newVersion === NewVersionMap.smartWallet}>
-          <div className="text-text4 mb-8">
+          <div className="text-text2 mb-8">
             <hr className="border-border2 my-4" />
             <p>{t("smartWalletN1Tip1")}</p>
             <p>{t("smartWalletN1Tip2")}</p>

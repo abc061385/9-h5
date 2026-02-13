@@ -106,7 +106,7 @@ const ListBox = () => {
       />
       <div className="mt-4 grow flex flex-col pb-2">
         {list?.length === 0 && (
-          <div className="text-text4 font-medium text-sm py-4 text-center">
+          <div className="text-text2 font-medium text-sm py-4 text-center">
             {t("walletDetail.noMoreData")}
           </div>
         )}

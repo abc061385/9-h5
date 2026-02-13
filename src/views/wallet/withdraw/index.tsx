@@ -293,7 +293,7 @@ const WithdrawView = () => {
                 </label>
               )}
             />
-            <p className="text-text4 text-xs">
+            <p className="text-text2 text-xs">
               {t("余额")}：{formatBalance1(currencyAccount?.balance || 0, 8)}{" "}
               {getValues("currencyCode")}
             </p>
@@ -318,7 +318,7 @@ const WithdrawView = () => {
             </button>
           </fieldset> */}
 
-          <fieldset className="fieldset h-12 rounded-lg bg-bg1 flex items-center p-4 mt-6 text-sm text-text4 justify-between font-normal">
+          <fieldset className="fieldset h-12 rounded-lg bg-bg1 flex items-center p-4 mt-6 text-sm text-text2 justify-between font-normal">
             <span>{t("withdraw.fee")}</span>
             <NumberWithUnit value={withdrawalFeeConfig} unit={feeUnit} />
           </fieldset>

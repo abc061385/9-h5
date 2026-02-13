@@ -131,7 +131,7 @@ const AssetsExchangeView = () => {
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
       return (
-        <div className="text-sm text-text4 flex items-center justify-between mb-2">
+        <div className="text-sm text-text2 flex items-center justify-between mb-2">
           <div>{label}</div>
           <div>{value}</div>
         </div>
@@ -285,7 +285,7 @@ const AssetsExchangeView = () => {
               >
                 {t("walletDetail.all")}
               </span>
-              <div className="text-xs text-text4 absolute bottom-4 right-6">
+              <div className="text-xs text-text2 absolute bottom-4 right-6">
                 {t("余额")}：
                 {balance(
                   formCoinItem?.currencyCode,
@@ -339,7 +339,7 @@ const AssetsExchangeView = () => {
                 placeholder="0"
                 readOnly
               />
-              <div className="text-xs text-text4 absolute bottom-4 right-6">
+              <div className="text-xs text-text2 absolute bottom-4 right-6">
                 {t("余额")}：{" "}
                 {balance(
                   toCoinItem?.currencyCode,
@@ -349,7 +349,7 @@ const AssetsExchangeView = () => {
             </label>
           </fieldset>
         </form>
-        <div className="flex items-center justify-between text-xs text-text4 my-6">
+        <div className="flex items-center justify-between text-xs text-text2 my-6">
           <span>{t("兑换价格")}</span>
           {formCoinItem?.currencyCode && toCoinItem?.currencyCode ? (
             <span>
@@ -427,7 +427,7 @@ const AssetsExchangeView = () => {
                   className="size-12 animate-spin1 duration-50000"
                   name="confirm-loading"
                 />
-                <p className="text-sm text-text4 mt-6">{t("securityCheck")}</p>
+                <p className="text-sm text-text2 mt-6">{t("securityCheck")}</p>
               </div>
             }
           >
@@ -465,7 +465,7 @@ const AssetsExchangeView = () => {
             {fieldEl(t("expectedToReceive"), getValues().toCoinValue)}
             {/* {showTip ? ( */}
             {/*   <div */}
-            {/*     className="text-sm text-text4" */}
+            {/*     className="text-sm text-text2" */}
             {/*     style={{ whiteSpace: "pre-line" }} */}
             {/*     dangerouslySetInnerHTML={{ */}
             {/*       __html: t("swap_ext_hint", { precent: growthRate }).replace( */}

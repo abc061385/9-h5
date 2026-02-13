@@ -250,7 +250,7 @@ const TeamsNextView = () => {
                               push(`${routerMap.teamsInformation}?id=${v.id}`)
                             }
                           >
-                            <span className="font-medium text-text3">
+                            <span className="font-medium text-text2">
                               {v.nickname}
                             </span>
                             <div className="flex">
@@ -311,7 +311,7 @@ const TeamsNextView = () => {
                     );
                   }}
                 >
-                  <span className="text-text4">VIP{item.vipLevel}</span>
+                  <span className="text-text2">VIP{item.vipLevel}</span>
                   <StarIcon
                     level={item?.vipLevel || 0}
                     star={item?.star || 0}

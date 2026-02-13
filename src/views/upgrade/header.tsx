@@ -35,7 +35,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           )}
         </div>
         <div className="text-sm flex items-center relative z-[1]">
-          <span className="text-xs text-text4 mr-2">
+          <span className="text-xs text-text2 mr-2">
             {t("vipEarningsLimit")}
           </span>
           <span className="text-text1">
@@ -49,7 +49,7 @@ const VipBannerBox: FC<IUpgradeProps> = ({ tabsValue, info }) => {
           />
         </div>
         <div className="text-sm">
-          <span className="text-xs text-text4 mr-2">{t("昨日VIP奖励")}</span>
+          <span className="text-xs text-text2 mr-2">{t("昨日VIP奖励")}</span>
           <span className="text-primary">
             {formatBalance(info?.yesterdayVipReward || 0, tabsValue)}{" "}
             {tabsValue}

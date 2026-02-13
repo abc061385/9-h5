@@ -43,7 +43,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
         <div
           className={cn(
             "flex items-center gap-1 text-sm text-right",
-            data.isInvest === 0 ? "text-text4" : "text-primary"
+            data.isInvest === 0 ? "text-text2" : "text-primary"
           )}
         >
           {data.isInvest === 0 ? t("未投资") : t("已投资")}
@@ -54,7 +54,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
         {individualList.map((item) => {
           return (
             <div key={item.value} className="flex justify-between mt-2 text-sm">
-              <span className="text-text4">{t(item.label)}</span>
+              <span className="text-text2">{t(item.label)}</span>
               <span>{formatThousand(data[item.value] || 0)}</span>
             </div>
           );
@@ -65,7 +65,7 @@ const CardBox: FC<ICardProps> = ({ data }) => {
         {teamList.map((item) => {
           return (
             <div key={item.value} className="flex justify-between mt-2">
-              <span className="text-text4">{t(item.label)}</span>
+              <span className="text-text2">{t(item.label)}</span>
               <span>{formatThousand(data[item.value] || 0)}</span>
             </div>
           );

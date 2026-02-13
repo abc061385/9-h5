@@ -105,7 +105,7 @@ const ChallengeStatusBox = () => {
               onChange={(e) => setIsAgreement(e.target.checked)}
               className="checkbox checkbox-neutral size-4 mt-0.5"
             />
-            <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
+            <div className="text-text2 text-xs flex">{t("agree_to_rules")}</div>
           </label>
           <a
             className="text-text1 text-xs relative top-[-6px]"

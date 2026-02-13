@@ -227,7 +227,7 @@ const InternalTransferView = () => {
                 </label>
               )}
             />
-            <p className="text-text4 text-xs">
+            <p className="text-text2 text-xs">
               {t("余额")}：{formatBalance1(currencyAccount?.balance || 0, 8)}{" "}
               {getValues("currencyCode")}
             </p>

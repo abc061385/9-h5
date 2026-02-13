@@ -171,7 +171,7 @@ const WalletDetailView = () => {
                           ) : null}
                         </div>
                       </div>
-                      <div className="flex items-center justify-between text-xs text-text4">
+                      <div className="flex items-center justify-between text-xs text-text2">
                         <span>{item?.createTime}</span>
                         <span className="text-right">
                           {t(typeMap[item?.type] || "--")}

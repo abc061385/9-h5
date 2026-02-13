@@ -142,7 +142,7 @@ const LoginView = () => {
           </button>
         </div>
         <div className="text-center text-sm pb-6">
-          <h3 className="text-text4">Don&apos;t have a 9M AI account? </h3>
+          <h3 className="text-text2">Don&apos;t have a 9M AI account? </h3>
           <Link href={routerMap.register}>Register now</Link>
         </div>
         <Geetest

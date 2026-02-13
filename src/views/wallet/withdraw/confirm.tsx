@@ -37,7 +37,7 @@ const WithdrawConfirmView = () => {
   const fieldEl = useCallback(
     (label: string | ReactNode, value: string | ReactNode) => {
       return (
-        <div className="text-sm text-text4 flex items-center justify-between mb-4">
+        <div className="text-sm text-text2 flex items-center justify-between mb-4">
           <div>{label}</div>
           <div>{value}</div>
         </div>
@@ -90,7 +90,7 @@ const WithdrawConfirmView = () => {
       header={<HeaderWithBack title={t("confirmInfo")} algin="center" />}
     >
       <div className="p-content">
-        <h5 className="text-sm text-text4 mt-2">{t("withdrawalCurrency")}</h5>
+        <h5 className="text-sm text-text2 mt-2">{t("withdrawalCurrency")}</h5>
         <BaseImage
           className="size-10 rounded-full overflow-hidden my-4"
           src={(formState?.chainEnum as ChainEnum).logo}

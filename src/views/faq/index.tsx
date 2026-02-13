@@ -75,7 +75,7 @@ const FAQView = () => {
             onClick={() => push(routerMap.faq_introduction)}
           >
             {t("common.more")}
-            <Icon name="right-enter" className="size-[10px] ml-2" color="var(--color-text1)"/>
+            <Icon name="right-enter" className="w-1.5 h-2.5 ml-2" color="var(--color-text1)"/>
           </span>
         </div>
         <div className="flex gap-2 mt-8">
@@ -157,7 +157,7 @@ const FAQView = () => {
         </div>
         <div className="text-2xl font-bold mt-12">FAQ</div>
         <div>
-          <div className="collapse collapse-plus  border border-transparent border-b-border2">
+          <div className="collapse collapse-plus  border border-transparent border-b-border1">
             <input type="radio" name="my-accordion-3" defaultChecked />
             <div className="collapse-title font-semibold">{t("faq.faq1")}</div>
             <div className="collapse-content text-sm">

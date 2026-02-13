@@ -31,7 +31,7 @@ const CardBox: FC<{
           {formatBalance(data.amount, symbol) + " " + symbol}
         </span>
       </div>
-      <div className="flex items-center justify-between text-xs text-text4">
+      <div className="flex items-center justify-between text-xs text-text2">
         <span>{t("投资收益")}</span>
         <span>{data.createTime}</span>
       </div>

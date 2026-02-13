@@ -116,7 +116,7 @@ const FundRecordView = () => {
                 </h3>
                 <div className="flex justify-between mt-4 pr-4">
                   <div>
-                    <h4 className="text-text4 text-sm leading-4">
+                    <h4 className="text-text2 text-sm leading-4">
                       {t("支付代币")}
                     </h4>
                     <p>
@@ -150,7 +150,7 @@ const FundRecordView = () => {
                   value={item.totalProfit || 0}
                   max={item.maxProfit}
                 ></progress>
-                <div className="flex justify-between text-text4 text-xs">
+                <div className="flex justify-between text-text2 text-xs">
                   <div className="flex flex-col">
                     <span>{t("购买时间")}</span>
                     <span>{item.purchaseTime}</span>
@@ -161,11 +161,11 @@ const FundRecordView = () => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-7">
-                  <span className="text-text4 text-sm">{t("自动复投")}</span>
+                  <span className="text-text2 text-sm">{t("自动复投")}</span>
                   <input
                     type="checkbox"
                     checked={Boolean(item.isReinvestment)}
-                    className="toggle toggle-primary checked:border-primary checked:bg-primary checked:text-white"
+                    className="toggle checked:border-primary checked:bg-primary checked:text-white"
                     onChange={(e) => {
                       editReinvestment(
                         {

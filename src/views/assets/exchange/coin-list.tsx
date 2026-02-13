@@ -33,7 +33,7 @@ const CoinList: FC<CoinListType> = ({
                 className="w-6 h-6 rounded-full overflow-hidden mr-4"
               />
               <span className="font-bold">{item.currencyCode}</span>
-              <span className="flex-1 ml-2 text-sm text-text4">
+              <span className="flex-1 ml-2 text-sm text-text2">
                 {item.currencyCode}
               </span>
               <ShowIf condition={item.id === checkValue}>

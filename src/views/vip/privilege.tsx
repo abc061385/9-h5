@@ -98,7 +98,7 @@ const PrivilegeBox = () => {
               />
               <div className="flex-1">
                 <h3 className="text-sm font-medium mb-1">{v.title}</h3>
-                <p className="text-xs text-text4 leading-4">{v.desc}</p>
+                <p className="text-xs text-text2 leading-4">{v.desc}</p>
               </div>
             </div>
           );
@@ -108,7 +108,7 @@ const PrivilegeBox = () => {
           <BaseImage src={`/images/vip/icon-ai.svg`} className="size-6 mt-1" color="var(--color-text1)"/>
           <div className="flex-1">
             <h3 className="text-sm font-medium mb-1">{t("AI助手权限")}</h3>
-            <p className="text-xs text-text4 leading-4">
+            <p className="text-xs text-text2 leading-4">
               {t("AI助手权限p", {
                 n: 20,
               })}
@@ -139,7 +139,7 @@ const PrivilegeBox = () => {
                 />
                 <div className="flex-1">
                   <h3 className="text-sm font-medium mb-1">{v.title}</h3>
-                  <p className="text-xs text-text4 leading-4">{v.desc}</p>
+                  <p className="text-xs text-text2 leading-4">{v.desc}</p>
                 </div>
               </div>
             ) : null;

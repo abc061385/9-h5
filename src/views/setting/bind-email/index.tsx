@@ -241,7 +241,7 @@ const SettingGoogleVerifyView = () => {
               <h3 className="font-medium text-base">
                 {t("googleVerify.googleAuth")}
               </h3>
-              <p className="text-sm text-text4 font-normal">
+              <p className="text-sm text-text2 font-normal">
                 {t("googleVerify.authFromApp")}
               </p>
             </legend>

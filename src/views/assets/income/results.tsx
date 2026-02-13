@@ -17,7 +17,7 @@ const AssetsIncomeResultsView = () => {
     <ViewLayout header={<HeaderWithBack title={t("results")} algin="center" />}>
       <div className="p-content flex flex-col items-center pt-16">
         <Icon name="right-result" className="size-16" />
-        <h5 className="mt-6 mb-2 text-text4">{t("withdrawComplete")}</h5>
+        <h5 className="mt-6 mb-2 text-text2">{t("withdrawComplete")}</h5>
         <div className="text-2xl font-bold mb-6">{incomeWithdrawAmount}</div>
         <p className="text-sm text-center">
           {resultPageType === "smart"

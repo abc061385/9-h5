@@ -43,7 +43,7 @@ const AwardDetail: FC<{ tabsValue: string }> = ({ tabsValue }) => {
                 {formatBalance(item.amount, tabsValue)} {tabsValue}
               </span>
             </div>
-            <div className="flex items-center justify-between text-xs text-text4">
+            <div className="flex items-center justify-between text-xs text-text2">
               <span>{t("投资收益")}</span>
               <span>{item.createTime}</span>
             </div>

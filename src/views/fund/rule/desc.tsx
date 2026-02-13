@@ -16,7 +16,7 @@ const RuleDescBox = () => {
         return (
           <div key={index} className="mb-8">
             <h3 className="font-medium mb-2 leading-6">{t(item.title)}</h3>
-            <p className="text-text4 text-sm leading-4">{t(item.desc)}</p>
+            <p className="text-text2 text-sm leading-4">{t(item.desc)}</p>
           </div>
         );
       })}

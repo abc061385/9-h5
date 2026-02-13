@@ -60,7 +60,7 @@
   --color-text1: #ffffff;
   --color-text2: #909090;
   --color-text3: #5F646E;
-  --color-text4: #6c6c6c;
+  --color-text4: #4F525C;
   --color-text5: #9c9c9c;
   --color-text6: #090909;
   --color-text-tip: var(--color-primary);
@@ -111,6 +111,7 @@
   /* --color-primary: #6e2afe; */
   --color-primary: #F0B90B;
   --color-primary2: #a93aff;
+  --color-primary3: #F0B90B33;
   --color-primary-content: var(--color-white);
   --color-secondary: #f2f3f6;
   --color-secondary-content: #323232;
@@ -178,7 +179,4 @@ td {
   background: #000;
 }
 
-.btn-primary1 {
-  background-color: var(--color-primary2);
-  color: var(--color-white);
-}
+

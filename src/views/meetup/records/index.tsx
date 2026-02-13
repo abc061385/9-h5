@@ -75,7 +75,7 @@ const StudioRecordsView = () => {
                       {v.meetType === 1 ? t("smallScale") : t("mediumScale")}
                     </div>
                     <div className="flex items-center justify-between text-sm mb-2">
-                      <span className="text-text3">
+                      <span className="text-text2">
                         {t("transactionDetail.time")}:
                       </span>
                       <span>
@@ -86,7 +86,7 @@ const StudioRecordsView = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-text3">
+                      <span className="text-text2">
                         {t("number_of_participants")}
                       </span>
                       <span>{v.participantNumber}</span>

@@ -52,7 +52,7 @@ const TeamsInformationView = () => {
 
       return (
         <div className="flex justify-between items-center mb-2 text-sm last:mb-0">
-          <span className="text-text4">{label}</span>
+          <span className="text-text2">{label}</span>
           <span>{`≈ ${formatBalance(value, "USDT")} USDT`}</span>
         </div>
       );
@@ -137,7 +137,7 @@ const TeamsInformationView = () => {
               ) : null}
             </div>
           </div>
-          <div className="flex flex-col items-end text-text4 text-sm gap-1">
+          <div className="flex flex-col items-end text-text2 text-sm gap-1">
             <span>{t("registrationDate")}</span>
             <span>{information?.createTime || "--"}</span>
           </div>
@@ -168,7 +168,7 @@ const TeamsInformationView = () => {
           <span>{t("totalTeamMembers")}</span>
           <span className="flex gap-2 items-center font-medium">
             {information?.totalTeamMembers || 0}{" "}
-            <Icon name="right-enter" className="w-1.5 h-2.5" />
+            <Icon name="right-enter" className="w-1.5 h-2.5"  color="var(--color-text1)"/>
           </span>
         </div>
         <div className="flex items-center justify-between text-sm py-6">

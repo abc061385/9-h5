@@ -132,13 +132,13 @@ const HeaderBox = () => {
   return (
     <div className="">
       <h3 className="text-lg font-bold mb-9.5">{t("myAssets")}</h3>
-      <h4 className="text-sm text-text4 mb-1">{t("assets.balance")}</h4>
+      <h4 className="text-sm text-text2 mb-1">{t("assets.balance")}</h4>
       <h4 className="text-[28px] font-bold leading-8">
         ${formatBalance(totalAmount, 2)}
       </h4>
       <>
         {totalInvestment?.npAssets ? (
-          <div className="text-text4 text-sm mt-2 flex items-center">
+          <div className="text-text2 text-sm mt-2 flex items-center">
             <span>
               {totalInvestment?.npAssets?.coin || "-"}:{" "}
               {totalInvestment?.npAssets?.released || "-"}/
@@ -161,7 +161,7 @@ const HeaderBox = () => {
       </>
 
       {/* {totalInvestment?.frozenUbx ? ( */}
-      {/*   <div className="text-text4 text-sm mt-2"> */}
+      {/*   <div className="text-text2 text-sm mt-2"> */}
       {/*     <div className="flex items-center"> */}
       {/*       <span className="text-xs">{t("冻结金额")}</span>： */}
       {/*       <span> */}
@@ -171,14 +171,14 @@ const HeaderBox = () => {
       {/*     </div> */}
       {/*   </div> */}
       {/* ) : null} */}
-      <div className="text-text4 text-sm mt-2">
+      <div className="text-text2 text-sm mt-2">
         <span className="mb-2 text-xs">{t("投资总额")}</span>：
         <span>
           {formatBalance(totalInvestment?.personalFundInvestment || 0, 2)} USDT
         </span>
       </div>
       {/* {frozenTotal ? ( */}
-      {/*   <div className="text-text4 text-sm flex items-center"> */}
+      {/*   <div className="text-text2 text-sm flex items-center"> */}
       {/*     <span className="text-xs">{t("funds_frozen")}</span>： */}
       {/*     <span>{formatBalance(frozenTotal, 2)} USDT</span> */}
       {/*     <Icon */}
@@ -230,7 +230,7 @@ const HeaderBox = () => {
           <Icon name="oneInvestment" className="w-4.5 h-4 mt-1" />
           <dl className="flex-1">
             <dt>{t("oneClickInvestment")}</dt>
-            <dd className="font-normal text-xs text-text4">
+            <dd className="font-normal text-xs text-text2">
               {
                 // t("investmentDescription")
               }
@@ -250,7 +250,7 @@ const HeaderBox = () => {
           <Icon name="growthclub" className="w-4.5 h-4 mt-1" />
           <dl className="flex-1">
             <dt>{t("9MEcosystemGrowthPool")}</dt>
-            <dd className="font-normal text-xs text-text4">
+            <dd className="font-normal text-xs text-text2">
               {t("growthClubmembe")}
             </dd>
           </dl>
@@ -269,7 +269,7 @@ const HeaderBox = () => {
           <Icon name="smartYieldWallet" className="w-4.5 h-4 mt-1" />
           <dl className="flex-1">
             <dt>{t("earnings_lock_pool")}</dt>
-            <dd className="font-normal text-xs text-text4">
+            <dd className="font-normal text-xs text-text2">
               {
                 // t("build_long_term_win_win_ecosystem")
               }
@@ -307,7 +307,7 @@ const HeaderBox = () => {
                   className="w-6 h-6 rounded-full overflow-hidden mr-4"
                 />
                 <span className="font-bold">{v.currencyCode}</span>
-                <span className="flex-1 ml-2 text-sm text-text4">
+                <span className="flex-1 ml-2 text-sm text-text2">
                   {v.currencyCode}
                 </span>
                 <ShowIf

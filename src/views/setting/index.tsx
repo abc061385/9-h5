@@ -51,8 +51,8 @@ const SettingView = () => {
               >
                 <span className="flex-1">{v.label}</span>
 
-                <span className="text-text4 text-xs mr-2">{v.value}</span>
-                <Icon name="right-enter" className="w-1.5 h-2.5" />
+                <span className="text-text2 text-xs mr-2">{v.value}</span>
+                <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
               </div>
             );
           })}
@@ -90,7 +90,7 @@ const SettingView = () => {
           <div className="pt-2 text-center">
             <Icon name="google-verify" className="w-13 h-12" />
             <h2 className="text-lg mt-8 mb-4 font-bold">{t("安全提示")}</h2>
-            <p className="text-text4 text-sm">
+            <p className="text-text2 text-sm">
               {t("login.loginSuccessContent")}
             </p>
             <button

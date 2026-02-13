@@ -91,13 +91,13 @@ const HorizontalTabs: React.FC<HorizontalTabsProps> = ({
               key={tab.value}
               ref={isActive ? activeTabRef : null}
               className={cn(
-                "tab leading-[20px] rounded-lg h-8 text-text4 font-normal flex-col transition-all",
-                type === "border" ? "bg-transparent px-0" : "bg-bg3 px-3",
+                "tab leading-[20px] rounded-lg h-8 text-text1 font-normal flex-col transition-all",
+                type === "border" ? "bg-transparent px-0 " : "bg-bg1 px-3 text-text1",
                 className,
                 isActive &&
                   cn(
                     type === "box"
-                      ? "tab-active bg-black text-white font-bold hover:text-white"
+                      ? "tab-active bg-primary text-black font-bold hover:text-black"
                       : "tab-active text-primary font-bold",
                     activeClassName
                   )

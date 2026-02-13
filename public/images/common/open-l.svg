@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>+</title>
+    <g id="App-V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Datebase" transform="translate(-326, -1245)" fill="#000000">
+            <g id="编组-2备份" transform="translate(24, 1245)">
+                <path d="M322,0 C333.045695,0 342,8.954305 342,20 C342,31.045695 333.045695,40 322,40 C310.954305,40 302,31.045695 302,20 C302,8.954305 310.954305,0 322,0 Z M322,1 C311.50659,1 303,9.50658975 303,20 C303,30.4934102 311.50659,39 322,39 C332.49341,39 341,30.4934102 341,20 C341,9.50658975 332.49341,1 322,1 Z M323,14 L323,19 L328,19 L328,21 L323,21 L323,26 L321,26 L321,21 L316,21 L316,19 L321,19 L321,14 L323,14 Z" id="+"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -80,7 +80,7 @@ const BusinessSchoolView = () => {
                   }
                 >
                   {t("seeMore")}{" "}
-                  <Icon name="right-enter" className="w-1.5 h-2.5" />
+                  <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
                 </span>
               </h3>
               <video

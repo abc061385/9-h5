@@ -68,7 +68,7 @@ const ListStepBox = () => {
                 <div className="flex-1">
                   <h4 className="font-medium leading-6 flex justify-between items-center">
                     {v.holdCountry}
-                    <Icon name="right-enter-white" className="w-1.5 h-2.5" />
+                    <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
                   </h4>
                   <p className="leading-5 text-sm mt-2 line-clamp-2">
                     {v.description}

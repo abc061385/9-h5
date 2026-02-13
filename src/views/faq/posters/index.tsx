@@ -55,7 +55,7 @@ const FAQPostersView = () => {
                   e.stopPropagation();
                   utils.downloadFile(item.originalUrl, item.fileName);
                 }}
-                src="/images/faq/download_icon.png"
+                src="/images/faq/download_icon.svg"
                 className="size-9 absolute bottom-4 left-0 right-0 m-auto"
               />
             </div>

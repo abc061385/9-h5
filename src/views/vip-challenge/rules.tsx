@@ -92,7 +92,7 @@ const ChallengeRewardRules = () => {
                     {v.title}
                   </h4>
                   <ShowIf condition={Boolean(v.desc)}>
-                    <p className="text-[10px] text-text4 mt-0.5">{v.desc}</p>
+                    <p className="text-[10px] text-text2 mt-0.5">{v.desc}</p>
                   </ShowIf>
                 </th>
               );

@@ -21,11 +21,11 @@ const AboutUsView = () => {
       header={<HeaderWithBack title={t("关于我们")} algin="center" />}
     >
       <div
-        className="p-content text-sm"
+        className="p-content text-sm !bg-bg"
         dangerouslySetInnerHTML={{
           __html: detail?.["content"] || "",
         }}
-      ></div>
+      />
     </ViewLayout>
   );
 };

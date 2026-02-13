@@ -18,7 +18,7 @@ const FundSuccessView = () => {
     <ViewLayout header={<HeaderWithBack title={t("results")} algin="center" />}>
       <div className="p-content flex flex-col items-center">
         <Icon name="right-result" className="w-16 h-16 mt-16" />
-        <p className="text-text4 mt-6 mb-2">{t("购买总额")}</p>
+        <p className="text-text2 mt-6 mb-2">{t("购买总额")}</p>
         <b className="text-2xl">
           {formatBalance(buyData?.totalAmount || "", "USDT")} USDT
         </b>

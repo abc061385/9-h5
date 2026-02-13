@@ -289,9 +289,9 @@ const StudioView = () => {
             className="bg-bg3 rounded-lg"
           >
             <ShowIf condition={!v.fileName}>
-              <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
-                <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm text-center">
+              <div className="bg-bg1 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
+                <Icon name="add" className="size-6" color="var(--color-text1)" />
+                <span className="text-text1 text-sm text-center">
                   {t("uploadPhotos")}
                 </span>
               </div>
@@ -335,9 +335,9 @@ const StudioView = () => {
             className="bg-bg3 rounded-lg"
           >
             <ShowIf condition={!v.fileName}>
-              <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
-                <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm text-center">
+              <div className="bg-bg1 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
+                <Icon name="add" className="size-6" color="var(--color-text1)" />
+                <span className="text-text1 text-sm text-center">
                   {t("uploadPhotos")}
                 </span>
               </div>
@@ -381,9 +381,9 @@ const StudioView = () => {
             className="bg-bg3 rounded-lg"
           >
             <ShowIf condition={!v.fileName}>
-              <div className="bg-bg3 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
-                <Icon name="add" className="size-6" />
-                <span className="text-text4 text-sm text-center">
+              <div className="bg-bg1 rounded-lg h-full flex flex-col gap-4 items-center justify-center cursor-pointer">
+                <Icon name="add" className="size-6" color="var(--color-text1)" />
+                <span className="text-text1 text-sm text-center">
                   {t("uploadVideos")}
                 </span>
               </div>
@@ -454,14 +454,14 @@ const StudioView = () => {
       className="mt-2"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
-      <div className="p-content pb-10" ref={wrapRef}>
+      <div className="p-content pb-10 bg-bg" ref={wrapRef}>
         <h2 className="font-bold text-xl leading-5 mb-2">{t("basic_info")}</h2>
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("phone_number")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <div
                 className="h-6 border-r border-border2 pr-2.5"
                 onClick={(e) => {
@@ -473,6 +473,7 @@ const StudioView = () => {
                 <Icon
                   name="right-enter"
                   className="w-1.5 h-2.5 rotate-90 ml-3"
+                  color="var(--color-text1)"
                 />
               </div>
               <input
@@ -485,10 +486,10 @@ const StudioView = () => {
             <TextError>{errors?.phoneNumber?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("login.email")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="email"
                 {...register("emailAccount")}
@@ -499,13 +500,13 @@ const StudioView = () => {
             <TextError>{errors?.emailAccount?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend flex-col items-start gap-1">
+            <legend className="fieldset-legend flex-col items-start gap-1 text-text2">
               <h3 className="font-medium text-base">{t("venue_address")}</h3>
-              <p className="text-sm text-text4 font-normal">
+              <p className="text-sm text-text3 font-normal">
                 {t("venue_address_detail")}
               </p>
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="text"
                 {...register("address")}
@@ -516,10 +517,10 @@ const StudioView = () => {
             <TextError>{errors?.address?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("contactMethod")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <div
                 className="h-6 border-r border-border2 pr-2.5"
                 onClick={(e) => {
@@ -531,6 +532,7 @@ const StudioView = () => {
                 <Icon
                   name="right-enter"
                   className="w-1.5 h-2.5 rotate-90 ml-3"
+                  color="var(--color-text1)"
                 />
               </div>
               <input
@@ -543,11 +545,11 @@ const StudioView = () => {
             <TextError>{errors?.contactInformation?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("meetupType")}
             </legend>
             <label
-              className="input w-full h-12"
+              className="input w-full h-12 !bg-bg1"
               onClick={() => setVenueSelectOpen(true)}
             >
               <input
@@ -557,7 +559,7 @@ const StudioView = () => {
                 className="grow placeholder:text-sm"
                 readOnly
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" color="var(--color-text1)"/>
             </label>
             <TextError>{errors?.siteType?.message}</TextError>
           </fieldset>
@@ -565,24 +567,24 @@ const StudioView = () => {
           <h3 className="text-lg font-bold mt-11 mb-6">
             {t("venue_rental_certificate")}
           </h3>
-          <p className="text-text4 text-sm my-4">{t("uploadVenueProof")}</p>
+          <p className="text-text3 text-sm my-4">{t("uploadVenueProof")}</p>
           <div className="grid grid-cols-2 gap-2">{imageUploadDom}</div>
 
           <h3 className="text-lg font-bold mt-11 mb-6">
             {t("venueSetupPhotos")}
           </h3>
-          <p className="text-text4 text-sm my-4">{t("uploadSetupPhotos")}</p>
+          <p className="text-text3 text-sm my-4">{t("uploadSetupPhotos")}</p>
           <div className="grid grid-cols-2 gap-2">{arrangeImageUploadDom}</div>
 
           <h3 className="text-lg font-bold mt-11">{t("live_video_upload")}</h3>
-          <p className="text-text4 text-sm my-4">{t("uploadVideos1")}</p>
+          <p className="text-text3 text-sm my-4">{t("uploadVideos1")}</p>
           <div className="grid grid-cols-2 gap-2">{videoUploadDom}</div>
 
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("operational_plan")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="text"
                 {...register("operationPlan")}
@@ -593,10 +595,10 @@ const StudioView = () => {
             <TextError>{errors?.operationPlan?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("number_of_participants")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="text"
                 {...register("participantNumber")}
@@ -608,10 +610,10 @@ const StudioView = () => {
           </fieldset>
 
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-sm py-3.5">
+            <legend className="fieldset-legend font-medium text-sm py-3.5 text-text2">
               {t("receiving_address")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="text"
                 placeholder={t("withdraw.selectChain")}
@@ -620,12 +622,12 @@ const StudioView = () => {
                 {...register("receiveNetwork")}
                 onClick={() => setChainSelectOpen(true)}
               />
-              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" />
+              <Icon name="right-enter" className="w-1.5 h-2.5 rotate-90 ml-3" color="var(--color-text1)"/>
             </label>
           </fieldset>
 
           <fieldset className="fieldset">
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="text"
                 {...register("receiveAddress")}
@@ -647,7 +649,7 @@ const StudioView = () => {
               }}
               className="checkbox checkbox-neutral size-4 mt-0.5"
             />
-            <div className="text-text4 text-xs flex">{t("agree_to_rules")}</div>
+            <div className="text-text2 text-xs flex">{t("agree_to_rules")}</div>
           </label>
           <a
             className="text-text1 text-xs relative top-[-6px]"

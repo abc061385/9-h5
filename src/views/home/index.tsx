@@ -93,7 +93,7 @@ export default function HomeView() {
                 <span className="ml-2 text-sm font-medium flex-1">
                   {v.title}
                 </span>
-                <Icon name="right-enter" className="w-1.5 h-2.5 min-w-1.5" />
+                <Icon name="right-enter" className="w-1.5 h-2.5 min-w-1.5" color="var(--color-text1)"/>
               </div>
             );
           })}

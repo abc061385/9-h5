@@ -154,7 +154,7 @@ const SettingGoogleVerifyView = () => {
                 {t("googleVerify.step3")}
               </li>
             </ul>
-            <p className="text-center text-xs text-text4 my-8">
+            <p className="text-center text-xs text-text2 my-8">
               {t("googleVerify.instructions")}
             </p>
             <div className="w-30 mx-auto">
@@ -194,7 +194,7 @@ const SettingGoogleVerifyView = () => {
         </form>
         <div className="flex items-start gap-2 px-4 py-3 bg-bg2 rounded-lg mt-6">
           <Icon name="warning-black" className="w-4 h-4 mt-0" />
-          <p className="flex-1 text-xs text-text4">
+          <p className="flex-1 text-xs text-text2">
             The key of Google Authenticator is valid for 30 seconds. Please
             enter the correct key within the valid time.
           </p>

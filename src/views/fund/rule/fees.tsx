@@ -47,7 +47,7 @@ const FeesDescBox = () => {
   return (
     <div className="border-y border-border2 py-6">
       <h3 className="font-medium leading-6 mb-2">{t("运作费用说明")}</h3>
-      <p className="text-text4 leading-4 text-sm mb-6">{t("运作费用说明p")}</p>
+      <p className="text-text2 leading-4 text-sm mb-6">{t("运作费用说明p")}</p>
       <div className="flex justify-between gap-2">
         {feesList.map((v, i) => {
           return (

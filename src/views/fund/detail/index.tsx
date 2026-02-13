@@ -50,7 +50,7 @@ const FundDetailView = () => {
     (label: string | ReactNode, value: string | ReactNode) => {
       return (
         <div className="flex items-start justify-between text-sm mb-4 last:mb-0">
-          <span className="text-text4">{label}</span>
+          <span className="text-text2">{label}</span>
           <Skeleton isLoading={isMutating} className="text-right">
             <span>{value}</span>
           </Skeleton>
@@ -75,7 +75,7 @@ const FundDetailView = () => {
       <div className="p-content">
         <div className="flex justify-between items-end pr-4 mb-6">
           <div>
-            <h4 className="text-text4 text-sm leading-4 mb-1">
+            <h4 className="text-text2 text-sm leading-4 mb-1">
               {t("支付代币")}
             </h4>
             <Skeleton isLoading={isMutating}>
@@ -104,7 +104,7 @@ const FundDetailView = () => {
           />
         </div>
         <div className="flex flex-col">
-          <span className="text-text4 text-sm">{t("购买总额")}</span>
+          <span className="text-text2 text-sm">{t("购买总额")}</span>
           <Skeleton isLoading={isMutating}>
             <b className="text-xl">
               {formatBalance(data?.investmentAmount || "", "USDT")} USDT
@@ -142,7 +142,7 @@ const FundDetailView = () => {
               }}
             />
           </div>
-          <p className="text-xs text-text4 mt-4 leading-4">
+          <p className="text-xs text-text2 mt-4 leading-4">
             {t("autoReinvestmentDesc")}
           </p>
         </div>

@@ -88,7 +88,7 @@ const ListBox = () => {
               key={index}
               className="border-b border-border2 pb-8 mb-8 last:mb-0 last:border-0"
             >
-              <h4 className="text-sm text-text4 mb-6">{item.title}</h4>
+              <h4 className="text-sm text-text2 mb-6">{item.title}</h4>
               {item.list.map((v, i) => {
                 return (
                   <div
@@ -101,7 +101,7 @@ const ListBox = () => {
                   >
                     <Icon name={v.icon} className="size-5 mr-4" color="var(--color-primary)"/>
                     <span className="flex-1">{t(v.title)}</span>
-                    <span className="text-text4 text-sm mr-2">{v.value}</span>
+                    <span className="text-text2 text-sm mr-2">{v.value}</span>
                     <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)" />
                   </div>
                 );

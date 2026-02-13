@@ -56,13 +56,13 @@ const AssetsListBox = () => {
 
               <div className="flex-1 flex flex-col">
                 <span>{item.coin}</span>
-                <span className="text-xs text-text4">{item.coin}</span>
+                <span className="text-xs text-text2">{item.coin}</span>
               </div>
               <div className="flex flex-col items-end">
                 <span>
                   {formatBalance(item.balance || "0", item.coin || "USDT")}
                 </span>
-                <span className="text-xs text-text4">
+                <span className="text-xs text-text2">
                   ≈ {formatBalance(item.usdtValue || "0", "USDT")} USDT
                 </span>
               </div>

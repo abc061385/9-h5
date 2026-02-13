@@ -50,9 +50,9 @@ const SmartChatBox = () => {
           />
           <div className="flex-1">
             <h4>{item.label}</h4>
-            <p className="text-text4 text-xs mt-2">{item.desc}</p>
+            <p className="text-text2 text-xs mt-2">{item.desc}</p>
           </div>
-          <Icon name="right-enter" className="w-1.5 h-2.5" />
+          <Icon name="right-enter" className="w-1.5 h-2.5" color="var(--color-text1)"/>
         </div>
       ))}
     </div>
