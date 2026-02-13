@@ -98,7 +98,7 @@ const WalletTransDetailView = () => {
         <div className="mt-4">
           {cardEl(
             t("transactionDetail.protocol"),
-            <div className="badge badge-soft badge-primary rounded-sm text-xs">
+            <div className="badge badge-soft badge-primary rounded-sm text-xs bg-bg1 border-primary">
               {detail?.protocol}
             </div>
           )}

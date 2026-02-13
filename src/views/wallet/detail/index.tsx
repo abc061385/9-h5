@@ -167,6 +167,7 @@ const WalletDetailView = () => {
                             <Icon
                               name="right-enter"
                               className="w-1.5 h-2.5 ml-2"
+                              color="var(--color-text1)"
                             />
                           ) : null}
                         </div>
