@@ -59,13 +59,13 @@ const CountrySelectDrawer: FC<ICountrySelectProps> = ({
 
   return (
     <Drawer
-      className="h-auto"
+      className="h-auto bg-bg1"
       title={t("selectCountry")}
       open={open}
       onChange={() => onClose?.()}
     >
-      <label className="input w-full !bg-bg3 border-none placeholder:text-text5">
-        <Icon name="search" className="w-4 h-4" />
+      <label className="input w-full !bg-bg border-none placeholder:text-text5">
+        <Icon name="search" className="w-4 h-4" color="var(--color-text1)"/>
         <input
           type="search"
           className="grow"

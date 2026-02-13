@@ -29,7 +29,7 @@ const ContactSelectDrawer: FC<IContactSelectProps> = ({
 
   return (
     <Drawer
-      className="h-auto"
+      className="h-auto bg-bg1"
       title={t("selectContact")}
       open={open}
       onChange={() => onClose?.()}

@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { useClickAway } from "@/hooks/useClickOutside";
 import StarIcon from "@/views/vip/star-icon";
+import HorizontalTabs from "@/components/tabs/horizontal-tabs";
 
 interface AreaStatData {
   count: number;
@@ -286,12 +287,11 @@ const TeamsNextView = () => {
             />
           </label>
         </div>
-        <Tabs
+        <HorizontalTabs
           tabs={areaList}
           value={tabsValue!}
           onChange={(e) => push(`${routerMap.teamsInformation}?id=${e}`)}
-          between={false}
-          className="text-base justify-start"
+          className="text-base justify-center"
         />
         <ShowIf
           condition={!loading}

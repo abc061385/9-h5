@@ -20,21 +20,24 @@ const FAQIntroductionView = () => {
 
   return (
     <ViewLayout
+      className="relative"
       header={<HeaderWithBack title={t("平台介绍")} algin="center" />}
     >
-      <div className="flex justify-center mt-[40px] mb-[20px]">
-        <BaseImage
-          src="/images/common/logo-start.svg"
-          className="h-[170px] w-[100px] cursor-pointer"
-          onClick={() => push(routerMap.home)}
-        />
+      <div className="absolute top-11 left-0 size-full overscroll-y-auto">
+        <div className="flex justify-center mt-[40px] mb-[20px] bg-bg">
+          <BaseImage
+            src="/images/common/logo-start.svg"
+            className="h-[170px] w-[100px] cursor-pointer"
+            onClick={() => push(routerMap.home)}
+          />
+        </div>
+        <div
+          className="p-content text-sm"
+          dangerouslySetInnerHTML={{
+            __html: detail?.["content"] || "",
+          }}
+        ></div>
       </div>
-      <div
-        className="p-content text-sm"
-        dangerouslySetInnerHTML={{
-          __html: detail?.["content"] || "",
-        }}
-      ></div>
     </ViewLayout>
   );
 };

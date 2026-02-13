@@ -42,10 +42,10 @@ const AddressAddItem: FC<{ network: string; addr: string }> = ({
     <div>
       <form autoComplete="off">
         <fieldset className="fieldset p-0">
-          <legend className="fieldset-legend p-0 pb-4">
+          <legend className="fieldset-legend p-0 pb-4 text-text2">
             {t("withdraw.network")}
           </legend>
-          <label className="input w-full h-12 border border-border1 bg-bg3 ">
+          <label className="input w-full h-12 border border-border1 !bg-bg1">
             <BaseImage
               src={`/images/chain-icon/${network.toUpperCase()}.png`}
               className="size-6 shrink-0"
@@ -54,15 +54,15 @@ const AddressAddItem: FC<{ network: string; addr: string }> = ({
               {...register("network")}
               type="text"
               disabled
-              className="grow placeholder:text-sm font-normal  text-black bg-none"
+              className="grow placeholder:text-sm font-normal  text-text1 bg-none"
             />
           </label>
         </fieldset>
         <fieldset className="fieldset p-0">
-          <legend className="fieldset-legend p-0 pb-4 pt-6">
+          <legend className="fieldset-legend p-0 pb-4 pt-6 text-text2">
             {t("addressAdd.address")}
           </legend>
-          <label className="input w-full h-12">
+          <label className="input w-full h-12 !bg-bg1">
             <input
               type="text"
               {...register("address")}

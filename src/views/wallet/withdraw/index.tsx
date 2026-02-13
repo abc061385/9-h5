@@ -234,7 +234,7 @@ const WithdrawView = () => {
                       withdrawAddress: e.target.value,
                     });
                   }}
-                  className="w-9/10"
+                  className="w-9/10 text-text2"
                 />
                 <div className="inline-flex items-center h-12">
                   {/* <Icon name="scan" className="size-11" /> */}

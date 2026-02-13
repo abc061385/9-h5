@@ -111,7 +111,7 @@ const FundRecordView = () => {
                     <div className="text-primary text-sm text-right">
                       {statusText[item.status]}
                     </div>
-                    <Icon name="right-arrow" className="w-1.5 h-2.5" />
+                    <Icon name="right-arrow" className="w-1.5 h-2.5" color="var(--color-text2)"/>
                   </div>
                 </h3>
                 <div className="flex justify-between mt-4 pr-4">
