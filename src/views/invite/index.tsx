@@ -57,7 +57,6 @@ const InviteView = () => {
                 <CopyText
                   text={userInfo.invitationCode || ""}
                   className="mt-0.5"
-                  theme="light"
                 />
               </span>
             </div>
@@ -67,7 +66,7 @@ const InviteView = () => {
               </span>
               <span className="font-bold flex items-center gap-1 flex-1  leading-4">
                 <span className="truncate max-w-40">{copyLink}</span>
-                <CopyText className="mt-0.5" text={copyLink} theme="light" />
+                <CopyText className="mt-0.5" text={copyLink}/>
               </span>
             </div>
           </div>

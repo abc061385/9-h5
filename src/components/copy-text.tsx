@@ -29,7 +29,11 @@ const CopyText: React.FC<PropsWithChildren<CopyTextProps>> = ({
 
   return (
     <div onClick={handleCopy} className={className}>
-      <Icon name="copy-user" className="size-3.5" color="var(--color-text1)" />
+      {children ? (
+        children
+      ) : (
+        <Icon name="copy-user" className="size-3.5" color="var(--color-text1)" />
+      )}
     </div>
   );
 };

@@ -12,8 +12,6 @@ import { useRequestQuery } from "@/hooks/useRequestQuery";
 import { api } from "@/api";
 import Tabs from "@/components/tabs/tabs";
 import { InfiniteVirtuosoList } from "@/components/infinite-scroll";
-// import { Icon } from "@/components/icon";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "@/lib/z";
 import { GrowthPoolBuyDTO } from "@/api/ApiClient";
