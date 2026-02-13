@@ -144,7 +144,7 @@ const FundBuyView = () => {
                 key={index}
                 className={cn(
                   "flex justify-between items-center mt-2 h-16 rounded-lg px-4",
-                  plegeValue?.id === item.id && "bg-primary text-white",
+                  plegeValue?.id === item.id && "bg-primary text-black",
                 )}
                 onClick={() => {
                   setPlegeValue(item);
@@ -158,7 +158,7 @@ const FundBuyView = () => {
                 <span
                   className={cn(
                     "text-base text-text2",
-                    plegeValue?.id === item.id && "text-white",
+                    plegeValue?.id === item.id && "text-black",
                   )}
                 >
                   {t("日收益率")} ≈ {item?.dailyYield}%
