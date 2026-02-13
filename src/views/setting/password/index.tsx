@@ -68,7 +68,7 @@ const SettingPasswordView = () => {
       <div className="p-content">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-base">
+            <legend className="fieldset-legend font-medium text-text2">
               {t("forgotPassword.newPassword")}
             </legend>
             <InputPassword
@@ -79,7 +79,7 @@ const SettingPasswordView = () => {
             />
           </fieldset>
           <fieldset className="fieldset my-3">
-            <legend className="fieldset-legend font-medium text-base">
+            <legend className="fieldset-legend font-medium text-text2">
               {t("forgotPassword.confirmPassword")}
             </legend>
             <InputPassword
@@ -91,14 +91,14 @@ const SettingPasswordView = () => {
           </fieldset>
           <fieldset className="fieldset">
             <legend className="fieldset-legend flex-col items-start gap-1">
-              <h3 className="font-medium text-base">
+              <h3 className="font-medium text-text2">
                 {t("googleVerify.googleAuth")}
               </h3>
               <p className="text-sm text-text2 font-normal">
                 {t("googleVerify.authFromApp")}
               </p>
             </legend>
-            <label className="input w-full h-12 mt-2">
+            <label className="input w-full h-12 mt-2 !bg-bg1">
               <Icon name="google-verify" />
               <input
                 type="code"

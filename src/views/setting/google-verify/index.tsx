@@ -133,7 +133,7 @@ const SettingGoogleVerifyView = () => {
       heightFull
       header={<HeaderWithBack title={t("verify.title")} algin="center" />}
     >
-      <div className="p-content h-full flex flex-col">
+      <div className="p-content h-full flex flex-col bg-bg">
         {!isVerify && (
           <div>
             <ul className="steps w-full text-xs">
@@ -168,7 +168,7 @@ const SettingGoogleVerifyView = () => {
         )}
         <form autoComplete="off">
           <fieldset className="fieldset">
-            <label className="input w-full">
+            <label className="input w-full !bg-bg1">
               <Icon name="google-verify" />
               <input
                 type="code"
@@ -192,8 +192,8 @@ const SettingGoogleVerifyView = () => {
             <TextError>{errors?.code?.message}</TextError>
           </fieldset>
         </form>
-        <div className="flex items-start gap-2 px-4 py-3 bg-bg2 rounded-lg mt-6">
-          <Icon name="warning-black" className="w-4 h-4 mt-0" />
+        <div className="flex items-start gap-2 px-4 py-3 bg-bg1 rounded-lg mt-6">
+          <Icon name="warning-black" className="w-4 h-4 mt-0" color="var(--color-text2)"/>
           <p className="flex-1 text-xs text-text2">
             The key of Google Authenticator is valid for 30 seconds. Please
             enter the correct key within the valid time.

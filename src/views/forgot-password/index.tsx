@@ -57,7 +57,7 @@ const ForgotPasswordView = () => {
         <ShowIf condition={pageStatus === 0}>
           <form className="grow" autoComplete="off">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">
+              <legend className="fieldset-legend text-text2">
                 {t("forgotPassword.account")}
               </legend>
               <label className="input w-full !bg-bg1">
@@ -70,7 +70,7 @@ const ForgotPasswordView = () => {
               </label>
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend flex-col items-start gap-0">
+              <legend className="fieldset-legend flex-col items-start gap-0 text-text2">
                 <h3>{t("googleVerify.googleAuth")}</h3>
                 <p className="text-xs text-text2">
                   {t("googleVerify.authFromApp")}

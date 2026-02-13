@@ -8,7 +8,7 @@ const DownloadView = () => {
     <ViewLayout className="bg-[url('/images/download/download-bg.png')] bg-cover">
       <div className="p-content pb-10 text-center">
         <BaseImage
-          src="/images/common/logo.svg"
+          src="/images/common/logo-l.svg"
           className="w-[186px] h-[72px] mt-14"
         />
         <BaseImage

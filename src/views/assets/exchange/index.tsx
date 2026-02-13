@@ -442,7 +442,7 @@ const AssetsExchangeView = () => {
                   {formCoinItem?.currencyCode}
                 </b>
               </div>
-              <Icon name="right-jt" className="size-4 relative top-[-20px]" />
+              <Icon name="right-jt" className="size-4 relative top-[-20px]" color="var(--color-text1)" />
               <div className="flex flex-col items-end gap-4">
                 <BaseImage
                   src={toCoinItem?.logo || ""}

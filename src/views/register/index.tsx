@@ -86,7 +86,7 @@ const RegisterView = () => {
         <div className="grow">
           <form autoComplete="off">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">{t("login.email")}</legend>
+              <legend className="fieldset-legend text-text2">{t("login.email")}</legend>
               <label className="input w-full !bg-bg1">
                 <input
                   type="email"
@@ -98,7 +98,7 @@ const RegisterView = () => {
               <TextError>{errors?.email?.message}</TextError>
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">{t("login.password")}</legend>
+              <legend className="fieldset-legend text-text2">{t("login.password")}</legend>
               <InputPassword
                 className="grow"
                 placeholder={t("login.password")}
@@ -107,7 +107,7 @@ const RegisterView = () => {
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">
+              <legend className="fieldset-legend text-text2">
                 {t("login.confirmPassword")}
               </legend>
               <InputPassword
@@ -118,7 +118,7 @@ const RegisterView = () => {
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">
+              <legend className="fieldset-legend text-text2">
                 {t("login.inviteCode")}
               </legend>
               <label className="input w-full !bg-bg1">

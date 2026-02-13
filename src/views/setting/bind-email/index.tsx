@@ -122,13 +122,13 @@ const SettingGoogleVerifyView = () => {
     <ViewLayout
       header={<HeaderWithBack title={t("绑定邮箱")} algin="center" />}
     >
-      <div className="p-content">
+      <div className="p-content bg-bg">
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-medium text-base pb-2">
+            <legend className="fieldset-legend font-medium text-base pb-2 text-text2">
               {t(isBind ? "新邮箱" : "邮箱账号")}
             </legend>
-            <label className="input w-full h-12">
+            <label className="input w-full h-12 !bg-bg1">
               <input
                 type="email"
                 {...register("email")}
@@ -139,7 +139,7 @@ const SettingGoogleVerifyView = () => {
             <TextError>{errors?.email?.message}</TextError>
           </fieldset>
           <fieldset className="fieldset">
-            <label className="input w-full pr-2 h-12 border-border1">
+            <label className="input w-full pr-2 h-12 border-border1 !bg-bg1">
               <input
                 type="text"
                 {...register("emailCode")}
@@ -185,10 +185,10 @@ const SettingGoogleVerifyView = () => {
           <ShowIf condition={isBind}>
             <fieldset className="fieldset">
               <fieldset className="fieldset">
-                <legend className="fieldset-legend font-medium text-base pb-2">
+                <legend className="fieldset-legend font-medium text-base pb-2 text-text2">
                   {t("已绑定的邮箱验证码")}
                 </legend>
-                <label className="input w-full pr-2 h-12 border-border1">
+                <label className="input w-full pr-2 h-12 border-border1 !bg-bg1">
                   <input
                     type="text"
                     {...register("oldEmailCode")}
@@ -238,14 +238,14 @@ const SettingGoogleVerifyView = () => {
           </ShowIf>
           <fieldset className="fieldset mt-2">
             <legend className="fieldset-legend flex-col items-start gap-1">
-              <h3 className="font-medium text-base">
+              <h3 className="font-medium text-text2">
                 {t("googleVerify.googleAuth")}
               </h3>
               <p className="text-sm text-text2 font-normal">
                 {t("googleVerify.authFromApp")}
               </p>
             </legend>
-            <label className="input w-full h-12 mt-1">
+            <label className="input w-full h-12 mt-1 !bg-bg1">
               <Icon name="google-verify" />
               <input
                 type="text"

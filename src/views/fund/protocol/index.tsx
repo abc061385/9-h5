@@ -22,6 +22,7 @@ const FundProtocolView = () => {
   }, [getDetail]);
   return (
     <ViewLayout
+      className="relative"
       header={
         <HeaderWithBack
           title={t(detail?.title || "common.loading")}
@@ -30,7 +31,7 @@ const FundProtocolView = () => {
       }
     >
       <div
-        className="p-content text-sm"
+        className="absolute top-11 left-0 size-full overscroll-y-auto p-content text-sm !bg-bg"
         dangerouslySetInnerHTML={{
           __html: detail?.["content"] || "",
         }}

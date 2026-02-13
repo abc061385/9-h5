@@ -27,13 +27,13 @@ const SecurityVerification: FC<ISecurityVerificationProps> = ({
     <Drawer open={open} className="h-auto" onChange={onClose}>
       <fieldset className="fieldset p-0">
         <legend className="fieldset-legend font-normal gap-1 pt-6 pb-4 flex flex-col items-start">
-          <h3 className="text-sm leading-5">{t("security.googleAuth")}</h3>
+          <h3 className="text-sm text-text2 leading-5">{t("security.googleAuth")}</h3>
           <p className="text-xs text-text2 leading-5">
             {t("googleVerify.authFromApp")}
           </p>
         </legend>
 
-        <label className="input w-full h-14">
+        <label className="input w-full h-14 !bg-bg1">
           <Icon name="google-verify" className="size-5" />
           <input
             type="code"

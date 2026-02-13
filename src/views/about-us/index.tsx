@@ -18,10 +18,11 @@ const AboutUsView = () => {
 
   return (
     <ViewLayout
+      className="relative"
       header={<HeaderWithBack title={t("关于我们")} algin="center" />}
     >
       <div
-        className="p-content text-sm !bg-bg"
+        className="absolute top-11 left-0 size-full overscroll-y-auto p-content text-sm !bg-bg"
         dangerouslySetInnerHTML={{
           __html: detail?.["content"] || "",
         }}

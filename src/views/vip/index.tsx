@@ -11,7 +11,7 @@ const VipView = () => {
   const t = useTrans();
   return (
     <ViewLayout heightFull header={<HeaderWithBack title={t("VIP权益")} algin="center" />}>
-      <div className="p-content">
+      <div className="p-content !bg-bg">
         <VipBannerBox />
         <PromoteBox />
         <PrivilegeBox />

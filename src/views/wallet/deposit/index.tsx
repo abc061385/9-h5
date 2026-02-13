@@ -54,7 +54,7 @@ const DepositView = () => {
             <div className="size-40 mx-auto my-12">
               <Qrcode value={address} size={160} />
             </div>
-            <div className="rounded-lg bg-bg2 flex items-center justify-between p-4 font-medium text-sm">
+            <div className="rounded-lg bg-bg1 flex items-center justify-between p-4 font-medium text-sm">
               <p className="max-w-[88%] flex-1 leading-4 wrap-break-word">
                 {address}
               </p>
