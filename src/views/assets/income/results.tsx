@@ -25,7 +25,7 @@ const AssetsIncomeResultsView = () => {
             : t("withdrawNotice")}
         </p>
         <button
-          className="btn btn-neutral w-50 mt-12 mb-2"
+          className="btn btn-outline w-50 mt-12 mb-2"
           onClick={() => {
             if (Platform.isInApp()) {
               Bridge.jumpTo("/assets");

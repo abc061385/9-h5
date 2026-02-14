@@ -23,7 +23,7 @@ const FundSuccessView = () => {
           {formatBalance(buyData?.totalAmount || "", "USDT")} USDT
         </b>
         <button
-          className="btn btn-neutral w-50 mt-12 mb-2"
+          className="btn btn-outline w-50 mt-12 mb-2"
           onClick={() => {
             setField("buyData", undefined);
             setField("usdtFirstIs", "0");
