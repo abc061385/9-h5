@@ -48,9 +48,9 @@ export const Drawer: FC<IProps> = ({
         <div
           className={cn([
             "fixed",
-            "md-pc:absolute bottom-0 h-[50%] w-full rounded-t-2xl bg-white p-4 flex flex-col",
+            "md-pc:absolute bottom-0 h-[50%] w-full rounded-t-2xl !bg-bg1 p-4 flex flex-col",
             direction === "top" && "top-0 rounded-b-2xl rounded-t-none",
-            className + " bg-bg1",
+            className + " !bg-bg1",
           ])}
         >
           {direction === "top" ? null : (
