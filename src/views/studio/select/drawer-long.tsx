@@ -25,7 +25,7 @@ export const Drawer: FC<IProps> = ({
 }) => {
   const id = useId();
   const inputId = `drawer-${id}`;
-  const [targetHeight, setTargetHeight] = useState<number>(1940);
+  const [targetHeight, setTargetHeight] = useState<number>(2300);
 
   useEffect(() => {
     if (target) {
@@ -34,6 +34,7 @@ export const Drawer: FC<IProps> = ({
       );
     }
   }, [target]);
+
   return (
     <div
       className="drawer drawer-bottom"
@@ -49,7 +50,7 @@ export const Drawer: FC<IProps> = ({
         className="drawer-toggle"
       />
       <div
-        className="drawer-side h-[1940px] md-pc:h-full !bottom-0 !top-[-10px]"
+        className="drawer-side h-[2300px] md-pc:!h-full !bottom-0 !top-[-10px]"
         style={{
           height: `${targetHeight}px`,
         }}
@@ -62,7 +63,7 @@ export const Drawer: FC<IProps> = ({
         <div
           className={cn([
             "fixed",
-            "md-pc:absolute bottom-0 h-[50%] w-full rounded-t-2xl bg-white p-4 flex flex-col",
+            "md-pc:absolute bottom-0 h-[50%] w-full rounded-t-2xl !bg-bg1 p-4 flex flex-col",
             className,
           ])}
         >

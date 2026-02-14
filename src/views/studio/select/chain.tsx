@@ -26,7 +26,7 @@ const ChainSelectDrawer: FC<IChainSelectProps> = ({
 
   return (
     <Drawer
-      className="h-auto bg-bg1"
+      className="h-auto"
       title={t("address.selectChain")}
       open={open}
       onChange={() => onClose?.()}

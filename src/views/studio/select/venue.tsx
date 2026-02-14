@@ -29,7 +29,7 @@ const VenueSelectDrawer: FC<IVenueSelectProps> = ({
 
   return (
     <Drawer
-      className="h-auto bg-bg1"
+      className="h-auto"
       title={t("select_venue_type")}
       open={open}
       onChange={() => onClose?.()}
