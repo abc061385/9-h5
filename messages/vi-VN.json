@@ -20,7 +20,7 @@
     "faq4": "Lợi thế cạnh tranh cốt lõi của 9M AI là gì?",
     "faq4Content": "9M AI sở hữu công nghệ và thuật toán độc quyền, tích hợp đầy đủ từ cảm biến thị trường đến kiểm soát rủi ro, giúp tạo ra hiệu suất khác biệt trong giao dịch thực tế.",
     "faq5": "9M cung cấp những sản phẩm gì?",
-    "faq5Content": "Có hai loại quỹ chính:\r\nQuỹ Chiến Lược AI – Stake USDT + các đồng coin chính để nhận USD9\r\nQuỹ Ổn Định AI – Stake USDT + USD9 để nhận 9MT\r\nCả hai loại đều có chu kỳ từ ngắn hạn đến 360 ngày và hoàn trả gốc khi đến hạn."
+    "faq5Content": "Có hai loại quỹ chính:\r\nQuỹ 1 – Stake USDT + các đồng coin chính để nhận USD9\r\nQuỹ 2 – Stake USDT + USD9 để nhận 9MT\r\nCả hai loại đều có chu kỳ từ ngắn hạn đến 360 ngày và hoàn trả gốc khi đến hạn."
   },
   "tabbar": {
     "home": "Trang chủ",
@@ -567,7 +567,7 @@
   "推荐代数": "Thế hệ Giới thiệu",
   "代": "Thế hệ",
   "邀请时间": "Thời gian Mời",
-  "查看下级": "Xem Cấp dưới",
+  "查看下级": "Xem Tổ chức",
   "邀请人": "Người giới thiệu",
   "返回上级": "Quay lại Cấp trên",
   "团队投资数据": "Dữ liệu Đầu tư Đội",
@@ -1012,7 +1012,7 @@
   "dynamic_earnings": "Thu nhập động",
   "withdraw_earnings": "Rút Thu Nhập",
   "estimated_arrival": "Thời Gian Đến Ước Tính",
-  "earnings_lock_pool": "Hồ khóa thu nhập",
+  "earnings_lock_pool": "Kho tiền thông minh tạo lợi nhuận",
   "build_long_term_win_win_ecosystem": "Xây dựng hệ sinh thái đôi bên cùng có lợi lâu dài",
   "key": "Xây dựng hệ sinh thái đôi bên cùng có lợi lâu dài",
   "fund_no_1": "Quỹ số 1",

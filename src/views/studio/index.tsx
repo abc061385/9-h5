@@ -369,7 +369,7 @@ const StudioView = () => {
       className="mt-2"
     >
       <BaseImage src="/images/studio/banner.png" className="w-full h-[148px]" />
-      <div className="p-content pb-10 bg-bg" ref={wrapRef}>
+      <div className="p-content pb-33 bg-bg" ref={wrapRef}>
         <h2 className="font-bold text-xl leading-5 mb-2">{t("basic_info")}</h2>
         <form className="grow" autoComplete="off">
           <fieldset className="fieldset">

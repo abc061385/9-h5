@@ -20,7 +20,7 @@
     "faq4": "Apakah kelebihan utama 9M AI?",
     "faq4Content": "Sebagai syarikat fintech AI global, 9M AI menggunakan rangka kerja teknologi milik sendiri dan model algoritma unik yang mengintegrasikan pengesanan pasaran, pelaksanaan strategi, kawalan risiko dan pengoptimuman, menghasilkan prestasi dagangan langsung yang unggul.",
     "faq5": "Apakah produk yang ditawarkan oleh 9M?",
-    "faq5Content": "erdapat dua jenis dana utama:\r\nDana Strategi AI – Pertaruhkan USDT + syiling utama untuk menjana USD9\r\nDana Stabil AI – Pertaruhkan USDT + USD9 untuk menjana 9MT\r\nKedua-duanya menawarkan tempoh dari jangka pendek hingga 360 hari dengan penebusan prinsipal pada tarikh matang."
+    "faq5Content": "erdapat dua jenis dana utama:\r\nNo.1 Dana – Pertaruhkan USDT + koin utama untuk mendapatkan USD9\r\nNo.2 Dana – Pertaruhkan USDT + USD9 untuk mendapatkan 9MT\r\nKedua-duanya menawarkan tempoh dari jangka pendek hingga 360 hari dengan penebusan prinsipal pada tarikh matang."
   },
   "tabbar": {
     "home": "Laman Utama",
@@ -567,7 +567,7 @@
   "推荐代数": "Generasi Disyorkan",
   "代": "Generasi",
   "邀请时间": "Masa Jemputan",
-  "查看下级": "Lihat Subordinat",
+  "查看下级": "Lihat Organisasi",
   "邀请人": "Perujuk",
   "返回上级": "Kembali ke Atasan",
   "团队投资数据": "Data Pelaburan Pasukan",
@@ -1012,7 +1012,7 @@
   "dynamic_earnings": "Pendapatan Dinamik",
   "withdraw_earnings": "Mengeluarkan Pendapatan",
   "estimated_arrival": "Anggaran Ketibaan",
-  "earnings_lock_pool": "Kolam Kunci Pendapatan",
+  "earnings_lock_pool": "Peti Hasil Cerdas",
   "build_long_term_win_win_ecosystem": "Membina Ekosistem Menang Menang Jangka Panjang",
   "key": "Membina Ekosistem Menang Menang Jangka Panjang",
   "fund_no_1": "Dana No. 1",

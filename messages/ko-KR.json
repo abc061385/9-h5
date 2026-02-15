@@ -20,7 +20,7 @@
     "faq4": "9M AI의 핵심 경쟁력은 무엇인가요?",
     "faq4Content": "글로벌 AI 핀테크 기업으로서, 9M AI는 고유 기술 프레임워크와 독창적인 알고리즘을 기반으로 실시간 거래에서 차별화된 성과를 보여줍니다.",
     "faq5": "9M이 제공하는 상품은?",
-    "faq5Content": "두 가지 주요 펀드 유형이 있습니다:\r\nAI 전략 펀드 – USDT와 주요 코인을 스테이킹하여 USD9 획득\r\nAI 스테이블 펀드 – USDT와 USD9을 스테이킹하여 9MT 획득\r\n모든 펀드는 단기부터 360일까지 선택 가능하며, 만기 시 원금이 반환됩니다."
+    "faq5Content": "두 가지 주요 펀드 유형이 있습니다:\r\n1호 펀드 – USDT와 주요 코인을 스테이킹하여 USD9 획득\r\n2호 펀드 – USDT와 USD9을 스테이킹하여 9MT 획득\r\n모든 펀드는 단기부터 360일까지 선택 가능하며, 만기 시 원금이 반환됩니다."
   },
   "tabbar": {
     "home": "홈",
@@ -1012,7 +1012,7 @@
   "dynamic_earnings": "동적 수익",
   "withdraw_earnings": "수익 인출",
   "estimated_arrival": "예상 도착",
-  "earnings_lock_pool": "수익 잠금 풀",
+  "earnings_lock_pool": "스마트 수익 금고",
   "build_long_term_win_win_ecosystem": "장기적 상생 생태계 구축",
   "key": "장기적 상생 생태계 구축",
   "fund_no_1": "1번 펀드",
