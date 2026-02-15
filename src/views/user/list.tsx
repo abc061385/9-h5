@@ -30,21 +30,21 @@ const ListBox = () => {
   const [langSelectOpen, setLangSelectOpen] = useState(false);
 
   const menuList: MenuListType[] = [
-    // {
-    //   title: t("accountSettings"),
-    //   list: [
-    //     {
-    //       icon: "save",
-    //       title: "user.securitySettings",
-    //       path: routerMap.setting,
-    //     },
-    //     {
-    //       icon: "accounts",
-    //       title: "accountManagement",
-    //       path: routerMap.accounts,
-    //     },
-    //   ],
-    // },
+    {
+      title: t("accountSettings"),
+      list: [
+        {
+          icon: "save",
+          title: "user.securitySettings",
+          path: routerMap.setting,
+        },
+        {
+          icon: "accounts",
+          title: "accountManagement",
+          path: routerMap.accounts,
+        },
+      ],
+    },
     {
       title: t("transactionSettings"),
       list: [
